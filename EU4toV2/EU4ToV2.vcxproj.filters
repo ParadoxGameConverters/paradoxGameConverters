@@ -200,6 +200,12 @@
     <ClCompile Include="Source\EU4World\History.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>
+    <ClCompile Include="..\common_items\NewParserToOldParserConverters.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\ParserHelpers.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Configuration.h" />
@@ -397,6 +403,12 @@
     </ClInclude>
     <ClInclude Include="Source\EU4World\History.h">
       <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\NewParserToOldParserConverters.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\ParserHelpers.h">
+      <Filter>CommonItems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

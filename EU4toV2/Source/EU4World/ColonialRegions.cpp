@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Color.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include "ParserHelpers.h"
 #include <algorithm>
 
 

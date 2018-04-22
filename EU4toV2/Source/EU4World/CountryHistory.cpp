@@ -21,6 +21,7 @@ THE SOFTWARE. */
 
 
 #include "CountryHistory.h"
+#include "ParserHelpers.h"
 
 
 
@@ -50,7 +51,7 @@ EU4::countryHistoryDate::countryHistoryDate(std::istream& theStream):
 {
 	registerKeyword(std::regex("leader"), [this](const std::string& date, std::istream& theStream)
 		{
-			shared_ptr<historyLeader> newLeader = make_unique<historyLeader>(theStream);
+		std::shared_ptr<historyLeader> newLeader = std::make_unique<historyLeader>(theStream);
 			items.emplace_back(newLeader);
 		}
 	);

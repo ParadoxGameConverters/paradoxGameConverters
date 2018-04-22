@@ -27,6 +27,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include "NewParserToOldParserConverters.h"
+#include "ParserHelpers.h"
 #include "../Configuration.h"
 #include "../Mappers/CultureMapper.h"
 #include "../Mappers/ProvinceMapper.h"
