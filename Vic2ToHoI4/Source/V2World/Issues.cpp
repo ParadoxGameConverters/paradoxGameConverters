@@ -23,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Issues.h"
 #include "../Configuration.h"
+#include "ParserHelpers.h"
 #include <vector>
 
 

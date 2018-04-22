@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -41,17 +41,17 @@ class V2Diplomacy
 {
 	public:
 		V2Diplomacy(): agreements() {}
-		explicit V2Diplomacy(shared_ptr<Object> obj);
+		explicit V2Diplomacy(std::shared_ptr<Object> obj);
 
-		const vector<const V2Agreement*>& getAgreements() const	{ return agreements; }
+		const std::vector<const V2Agreement*>& getAgreements() const	{ return agreements; }
 
 	private:
 		V2Diplomacy(const V2Diplomacy&) = delete;
 		V2Diplomacy& operator=(const V2Diplomacy&) = delete;
 
-		bool isARelevantDiplomaticObject(shared_ptr<Object> obj) const;
+		bool isARelevantDiplomaticObject(std::shared_ptr<Object> obj) const;
 
-		vector<const V2Agreement*>	agreements;
+		std::vector<const V2Agreement*>	agreements;
 };
 
 

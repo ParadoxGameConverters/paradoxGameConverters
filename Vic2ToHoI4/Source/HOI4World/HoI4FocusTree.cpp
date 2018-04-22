@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Object.h"
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
+#include "ParserHelpers.h"
 #include <fstream>
 using namespace std;
 

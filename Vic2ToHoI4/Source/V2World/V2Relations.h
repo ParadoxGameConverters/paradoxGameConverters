@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,9 +37,9 @@ class Object;
 class V2Relations
 {
 	public:
-		explicit V2Relations(shared_ptr<Object> relationsObj);
+		explicit V2Relations(std::shared_ptr<Object> relationsObj);
 
-		string getTag() const { return tag; }
+		std::string getTag() const { return tag; }
 		int getRelations() const { return value; }
 		int getLevel() const { return level; }
 
@@ -52,11 +52,11 @@ class V2Relations
 		V2Relations(const V2Relations&) = delete;
 		V2Relations& operator=(const V2Relations&) = delete;
 
-		void setLastDiplomat(shared_ptr<Object> relationsObj);
-		void setLastWar(shared_ptr<Object> relationsObj);
-		void setTruce(shared_ptr<Object> relationsObj);
+		void setLastDiplomat(std::shared_ptr<Object> relationsObj);
+		void setLastWar(std::shared_ptr<Object> relationsObj);
+		void setTruce(std::shared_ptr<Object> relationsObj);
 
-		string tag;
+		std::string tag;
 		int value;
 		int level;
 

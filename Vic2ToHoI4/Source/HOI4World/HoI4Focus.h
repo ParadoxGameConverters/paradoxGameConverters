@@ -39,7 +39,7 @@ class HoI4Focus: commonItems::parser
 		explicit HoI4Focus(std::istream& theStream);
 		HoI4Focus(const HoI4Focus&) = default;
 
-		friend ostream& operator << (std::ostream& output, const HoI4Focus& focus);
+		friend std::ostream& operator << (std::ostream& output, const HoI4Focus& focus);
 
 		std::shared_ptr<HoI4Focus> makeCustomizedCopy(const std::string& country) const;
 
@@ -64,7 +64,7 @@ class HoI4Focus: commonItems::parser
 	private:
 		HoI4Focus& operator=(const HoI4Focus&) = delete;
 
-		void customizeMutualExclusion(std::shared_ptr<HoI4Focus> newFocus, const string& country) const;
+		void customizeMutualExclusion(std::shared_ptr<HoI4Focus> newFocus, const std::string& country) const;
 		void customizePrerequisite(std::shared_ptr<HoI4Focus> newFocus, std::string& prerequisite, const std::string& country) const;
 };
 

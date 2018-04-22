@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Relations::V2Relations(shared_ptr<Object> relationsObj):
+V2Relations::V2Relations(std::shared_ptr<Object> relationsObj):
 	tag(relationsObj->getKey()),
 	value(relationsObj->safeGetInt("value")),
 	level(relationsObj->safeGetInt("level", 2)),
@@ -41,7 +41,7 @@ V2Relations::V2Relations(shared_ptr<Object> relationsObj):
 }
 
 
-void V2Relations::setLastDiplomat(shared_ptr<Object> relationsObj)
+void V2Relations::setLastDiplomat(std::shared_ptr<Object> relationsObj)
 {
 	auto lastSendObjs = relationsObj->safeGetObject("last_send_diplomat");
 	if (lastSendObjs != nullptr)
@@ -51,7 +51,7 @@ void V2Relations::setLastDiplomat(shared_ptr<Object> relationsObj)
 }
 
 
-void V2Relations::setLastWar(shared_ptr<Object> relationsObj)
+void V2Relations::setLastWar(std::shared_ptr<Object> relationsObj)
 {
 	auto lastWarObjs = relationsObj->safeGetObject("last_war");
 	if (lastWarObjs != nullptr)
@@ -61,7 +61,7 @@ void V2Relations::setLastWar(shared_ptr<Object> relationsObj)
 }
 
 
-void V2Relations::setTruce(shared_ptr<Object> relationsObj)
+void V2Relations::setTruce(std::shared_ptr<Object> relationsObj)
 {
 	auto truceUntilObjs = relationsObj->safeGetObject("truce_until");
 	if (truceUntilObjs != nullptr)

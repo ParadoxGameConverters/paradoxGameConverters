@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Event.h"
+#include "ParserHelpers.h"
 
 
 

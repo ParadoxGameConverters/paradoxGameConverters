@@ -41,7 +41,7 @@ HoI4::decisionsCategory::decisionsCategory(const std::string& categoryName, std:
 }
 
 
-ostream& HoI4::operator<<(ostream& outStream, const decisionsCategory& outCategory)
+std::ostream& HoI4::operator<<(std::ostream& outStream, const decisionsCategory& outCategory)
 {
 	outStream << outCategory.name << " = {\n";
 	std::for_each(outCategory.theDecisions.begin(), outCategory.theDecisions.end(), [&outStream](auto decision){ outStream << decision << "\n"; });

@@ -49,7 +49,7 @@ namespace HoI4
 			void replaceDecision(decision theDecision) { std::replace(theDecisions.begin(), theDecisions.end(), theDecision, theDecision); }
 			void addDecision(decision& theDecision) { theDecisions.push_back(theDecision); }
 
-			friend ostream& operator<<(ostream& outStream, const decisionsCategory& outCategory);
+			friend std::ostream& operator<<(std::ostream& outStream, const decisionsCategory& outCategory);
 			friend bool operator==(const decisionsCategory& categoryOne, const decisionsCategory& categoryTwo);
 
 		private:
