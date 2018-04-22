@@ -63,6 +63,18 @@ class singleInt: commonItems::parser
 };
 
 
+class doubleList: commonItems::parser
+{
+	public:
+		doubleList(std::istream& theStream);
+
+		std::vector<double> getDoubles() const { return doubles; }
+
+	private:
+		std::vector<double> doubles;
+};
+
+
 class singleDouble: commonItems::parser
 {
 	public:

@@ -137,6 +137,24 @@ commonItems::singleInt::singleInt(std::istream& theStream):
 }
 
 
+commonItems::doubleList::doubleList(std::istream& theStream):
+	doubles()
+{
+	registerKeyword(std::regex("\\d+"), [this](const std::string& theInt, std::istream& theStream)
+	{
+		doubles.push_back(std::stof(theInt));
+	}
+	);
+	registerKeyword(std::regex("\\\"\\d+\\\""), [this](const std::string& theInt, std::istream& theStream)
+	{
+		doubles.push_back(std::stof(theInt));
+	}
+	);
+
+	parseStream(theStream);
+}
+
+
 commonItems::singleDouble::singleDouble(std::istream& theStream):
 	theDouble()
 {
