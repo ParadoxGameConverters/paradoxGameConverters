@@ -23,8 +23,8 @@
 						<entryOptions>
 							<entryOption>
 								<name>hardcoded</name>
-								<friendlyName>Hard Coded (1.4.2)</friendlyName>
-								<description>Use the HoI4 version hard coded into the converter (1.4.2)</description>
+								<friendlyName>Hard Coded (1.5.3)</friendlyName>
+								<description>Use the HoI4 version hard coded into the converter (1.5.3)</description>
 								<isDefault>true</isDefault>
 							</entryOption>
 							<entryOption>
