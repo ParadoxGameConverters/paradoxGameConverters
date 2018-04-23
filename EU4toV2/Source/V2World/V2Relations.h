@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -35,17 +35,17 @@ class EU4Relations;
 class V2Relations
 {
 	public:
-		V2Relations(string newTag);
-		V2Relations(string newTag, EU4Relations* oldRelations);
+		V2Relations(std::string newTag);
+		V2Relations(std::string newTag, EU4Relations* oldRelations);
 		void output(FILE* out) const;
 
 		void		setLevel(int level);
 
-		string	getTag()			const { return tag; };
+		std::string	getTag()			const { return tag; };
 		int		getRelations()	const { return value; };
 		int		getLevel()		const { return level; };
 	private:
-		string	tag;
+	std::string	tag;
 		int		value;
 		bool		militaryAccess;
 		date		lastSendDiplomat;
