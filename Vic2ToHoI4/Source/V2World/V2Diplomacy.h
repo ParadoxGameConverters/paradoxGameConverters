@@ -41,17 +41,17 @@ class V2Diplomacy
 {
 	public:
 		V2Diplomacy(): agreements() {}
-		explicit V2Diplomacy(shared_ptr<Object> obj);
+		explicit V2Diplomacy(std::shared_ptr<Object> obj);
 
-		const vector<const V2Agreement*>& getAgreements() const	{ return agreements; }
+		const std::vector<const V2Agreement*>& getAgreements() const	{ return agreements; }
 
 	private:
 		V2Diplomacy(const V2Diplomacy&) = delete;
 		V2Diplomacy& operator=(const V2Diplomacy&) = delete;
 
-		bool isARelevantDiplomaticObject(shared_ptr<Object> obj) const;
+		bool isARelevantDiplomaticObject(std::shared_ptr<Object> obj) const;
 
-		vector<const V2Agreement*>	agreements;
+		std::vector<const V2Agreement*>	agreements;
 };
 
 

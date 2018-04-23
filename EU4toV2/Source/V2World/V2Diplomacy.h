@@ -33,9 +33,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 struct V2Agreement
 {
-	string	type;
-	string	country1;
-	string	country2;
+	std::string	type;
+	std::string	country1;
+	std::string	country2;
 	date		start_date;
 };
 
@@ -48,7 +48,7 @@ class V2Diplomacy
 
 		void addAgreement(V2Agreement agr) { agreements.push_back(agr); };
 	private:
-		vector<V2Agreement>	agreements;
+		std::vector<V2Agreement>	agreements;
 };
 
 

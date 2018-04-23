@@ -24,6 +24,7 @@ THE SOFTWARE. */
 #include "ID.h"
 #include "../Configuration.h"
 #include "Log.h"
+#include "ParserHelpers.h"
 
 
 

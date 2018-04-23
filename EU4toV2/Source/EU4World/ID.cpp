@@ -21,6 +21,7 @@ THE SOFTWARE. */
 
 
 #include "ID.h"
+#include "ParserHelpers.h"
 
 
 
