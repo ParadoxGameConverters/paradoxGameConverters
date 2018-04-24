@@ -57,7 +57,10 @@ namespace HoI4
 	class Events;
 }
 class V2Country;
-class V2World;
+namespace Vic2
+{
+class World;
+}
 
 
 struct advisorCompare;
@@ -67,7 +70,7 @@ struct advisorCompare;
 class HoI4World
 {
 	public:
-		explicit HoI4World(const V2World* sourceWorld);
+		explicit HoI4World(const Vic2::World* sourceWorld);
 		~HoI4World();
 
 		void output() const;
@@ -194,7 +197,7 @@ class HoI4World
 		int getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);*/
 
 
-		const V2World* sourceWorld;
+		const Vic2::World* sourceWorld;
 
 		HoI4States* states;
 		//map<int, HoI4Province*> provinces;

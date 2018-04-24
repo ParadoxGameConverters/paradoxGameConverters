@@ -39,14 +39,17 @@ class HoI4State;
 class V2Country;
 class V2Province;
 class Vic2State;
-class V2World;
+namespace Vic2
+{
+class World;
+}
 
 
 
 class HoI4States
 {
 	public:
-		explicit HoI4States(const V2World* _sourceWorld);
+		explicit HoI4States(const Vic2::World* _sourceWorld);
 
 		const map<int, HoI4State*>& getStates() const { return states; }
 		const map<int, int>& getProvinceToStateIDMap() const { return provinceToStateIDMap; }
@@ -73,7 +76,7 @@ class HoI4States
 		unsigned int getTotalManpower() const;
 
 
-		const V2World* sourceWorld;
+		const Vic2::World* sourceWorld;
 		map<int, string> ownersMap;
 		map<int, vector<string>> coresMap;
 		set<int> assignedProvinces;

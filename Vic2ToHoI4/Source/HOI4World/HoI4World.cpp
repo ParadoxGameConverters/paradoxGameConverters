@@ -52,7 +52,7 @@ using namespace std;
 
 
 
-HoI4World::HoI4World(const V2World* _sourceWorld):
+HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	sourceWorld(_sourceWorld),
 	states(new HoI4States(sourceWorld)),
 	supplyZones(new HoI4SupplyZones),

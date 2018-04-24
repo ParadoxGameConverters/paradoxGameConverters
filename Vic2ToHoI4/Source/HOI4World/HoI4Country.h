@@ -58,10 +58,10 @@ class HoI4Country
 	public:
 		HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld);
 
-		void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states);
+		void initFromV2Country(const Vic2::World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states);
 		void initFromHistory();
 		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies);
-		void convertGovernment(const V2World& _srcWorld);
+		void convertGovernment(const Vic2::World& _srcWorld);
 		void convertParties(const set<string>& majorIdeologies);
 		void convertIdeologySupport(const set<string>& majorIdeologies);
 		void		convertNavy(const map<string, HoI4UnitMap>& unitMap);

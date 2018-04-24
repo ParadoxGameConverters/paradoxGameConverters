@@ -99,7 +99,7 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 }
 
 
-void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states)
+void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states)
 {
 	srcCountry = _srcCountry;
 
@@ -183,7 +183,7 @@ void HoI4Country::determineFilename()
 }
 
 
-void HoI4Country::convertGovernment(const V2World& sourceWorld)
+void HoI4Country::convertGovernment(const Vic2::World& sourceWorld)
 {
 	auto possibleRulingParty = srcCountry->getRulingParty(sourceWorld.getParties());
 	if (!possibleRulingParty)

@@ -78,7 +78,7 @@ void ConvertV2ToHoI4(const string& V2SaveFileName)
 	checkMods();
 	getOutputName(V2SaveFileName);
 
-	V2World sourceWorld(V2SaveFileName);
+	Vic2::World sourceWorld(V2SaveFileName);
 	HoI4World destWorld(&sourceWorld);
 
 	output(destWorld);

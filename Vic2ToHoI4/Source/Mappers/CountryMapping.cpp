@@ -115,7 +115,7 @@ void CountryMapper::importRule(shared_ptr<Object> rule)
 }
 
 
-void CountryMapper::CreateMappings(const V2World* srcWorld)
+void CountryMapper::CreateMappings(const Vic2::World* srcWorld)
 {
 	LOG(LogLevel::Info) << "Creating country mapping";
 	resetMappingData();

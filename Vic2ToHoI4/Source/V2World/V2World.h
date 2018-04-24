@@ -21,58 +21,49 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef V2WORLD_H_
-#define V2WORLD_H_
+#ifndef VIC2_WORLD_H_
+#define VIC2_WORLD_H_
 
 
 
-#include "../Mappers/Mapper.h"
 #include "Object.h"
+#include "newParser.h"
 #include "V2Party.h"
 #include <optional>
 #include <string>
 #include <vector>
-using namespace std;
+
 
 
 class V2Country;
 class V2Diplomacy;
 namespace Vic2
 {
+
 class Province;
-}
 
 
-
-class V2World
+class World: commonItems::parser
 {
 	public:
-		explicit V2World(const string& filename);
+		explicit World(const string& filename);
 
 		std::optional<const Vic2::Province*> getProvince(int provNum) const;
 		
-		map<string, V2Country*> getCountries() const { return countries; }
+		std::map<std::string, V2Country*> getCountries() const { return countries; }
 		const V2Diplomacy* getDiplomacy() const { return diplomacy; }
-		vector<string> getGreatPowers() const	{ return greatPowers; }
-		vector<V2Party> getParties() const { return parties; }
+		std::vector<std::string> getGreatPowers() const	{ return greatPowers; }
+		std::vector<V2Party> getParties() const { return parties; }
 		auto getProvinces() const { return provinces; }
 
 	private:
-		V2World(const V2World&) = delete;
-		V2World& operator=(const V2World&) = delete;
+		World(const World&) = delete;
+		World& operator=(const World&) = delete;
 
 		void setLocalisations();
 		void handleMissingCountryCultures();
 
-		map<int, int> extractGreatNationIndices(const shared_ptr<Object> obj) const;
-
-		bool isProvinceKey(const string& key) const;
-		bool isCountryKey(const string& key) const;
-		bool isNormalCountryKey(const string& key) const;
-		bool isDominionCountryKey(const string& key) const;
-		bool isConvertedCountryKey(const string& key) const;
-
-		void setGreatPowerStatus(const string& tag, const map<int, int>& greatNationIndices, unsigned int countriesIndex);
+		void setGreatPowerStatus(const std::vector<int>& GPIndexes, const std::vector<std::string>& tagsInOrder);
 
 		void setProvinceOwners();
 		void addProvinceCoreInfoToCountries();
@@ -81,32 +72,34 @@ class V2World
 		void determineEmployedWorkers();
 		void removeEmptyNations();
 		void determinePartialStates();
-		void inputDiplomacy(const shared_ptr<Object>& diplomacyObj);
 
 		void overallMergeNations();
-		void mergeNations(const string& masterTag, const vector<string>& slaveTags);
+		void mergeNations(const std::string& masterTag, const std::vector<std::string>& slaveTags);
 
 		void checkAllProvincesMapped() const;
 
 		void readCountryFiles();
-		bool processCountriesDotTxt(const string& countryListFile, const string& mod);
-		bool shouldLineBeSkipped(const string& line) const;
-		string extractCountryFileName(const string& countryFileLine) const;
-		shared_ptr<Object> readCountryFile(const string& countryFileName, const string& mod) const;
-		void readCountryColor(shared_ptr<Object> countryData, const string& line);
-		void readShipNames(shared_ptr<Object> countryData, const string& line);
-		void inputPartyInformation(const vector<shared_ptr<Object>>& leaves);
+		bool processCountriesDotTxt(const std::string& countryListFile, const std::string& mod);
+		bool shouldLineBeSkipped(const std::string& line) const;
+		std::string extractCountryFileName(const std::string& countryFileLine) const;
+		shared_ptr<Object> readCountryFile(const std::string& countryFileName, const std::string& mod) const;
+		void readCountryColor(std::shared_ptr<Object> countryData, const std::string& line);
+		void readShipNames(std::shared_ptr<Object> countryData, const std::string& line);
+		void inputPartyInformation(const std::vector<std::shared_ptr<Object>>& leaves);
 
-		optional<V2Country*> getCountry(const string& tag) const;
+		std::optional<V2Country*> getCountry(const std::string& tag) const;
 
 
 		std::map<int, Vic2::Province*> provinces;
-		map<string, V2Country*>	countries;
-		const V2Diplomacy* diplomacy;
-		vector<V2Party> parties;
-		vector<string> greatPowers;
+		std::map<std::string, V2Country*> countries;
+		const V2Diplomacy* diplomacy = nullptr;
+		std::vector<V2Party> parties;
+		std::vector<std::string> greatPowers;
 };
 
 
+}
 
-#endif // V2WORLD_H_
+
+
+#endif // VIC2_WORLD_H_

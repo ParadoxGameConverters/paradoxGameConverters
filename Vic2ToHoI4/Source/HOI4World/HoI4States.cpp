@@ -39,7 +39,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4States::HoI4States(const V2World* _sourceWorld):
+HoI4States::HoI4States(const Vic2::World* _sourceWorld):
 	sourceWorld(_sourceWorld),
 	ownersMap(),
 	coresMap(),
