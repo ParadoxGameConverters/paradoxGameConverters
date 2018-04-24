@@ -21,7 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "V2Diplomacy.h"
+#include "Diplomacy.h"
 #include "Vic2Agreement.h"
 #include "Log.h"
 #include "NewParserToOldParserConverters.h"

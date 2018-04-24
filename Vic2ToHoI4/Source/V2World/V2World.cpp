@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParserHelpers.h"
 #include "Issues.h"
 #include "V2Country.h"
-#include "V2Diplomacy.h"
+#include "Diplomacy.h"
 #include "V2Party.h"
 #include "Province.h"
 #include "Vic2State.h"
