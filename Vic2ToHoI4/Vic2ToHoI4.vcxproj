@@ -177,13 +177,13 @@
     <ClCompile Include="Source\targa.cpp" />
     <ClCompile Include="Source\V2toHOI4Converter.cpp" />
     <ClCompile Include="Source\V2World\Issues.cpp" />
+    <ClCompile Include="Source\V2World\Pop.cpp" />
     <ClCompile Include="Source\V2World\Province.cpp" />
     <ClCompile Include="Source\V2World\V2Army.cpp" />
     <ClCompile Include="Source\V2World\V2Country.cpp" />
     <ClCompile Include="Source\V2World\V2Diplomacy.cpp" />
     <ClCompile Include="Source\V2World\V2Leader.cpp" />
     <ClCompile Include="Source\V2World\V2Party.cpp" />
-    <ClCompile Include="Source\V2World\V2Pop.cpp" />
     <ClCompile Include="Source\V2World\V2Relations.cpp" />
     <ClCompile Include="Source\V2World\V2World.cpp" />
     <ClCompile Include="Source\V2World\Vic2Agreement.cpp" />
@@ -251,6 +251,7 @@
     <ClInclude Include="Source\Mappers\CultureGroupMapper.h" />
     <ClInclude Include="Source\targa.h" />
     <ClInclude Include="Source\V2World\Issues.h" />
+    <ClInclude Include="Source\V2World\Pop.h" />
     <ClInclude Include="Source\V2World\Province.h" />
     <ClInclude Include="Source\V2World\Vic2Agreement.h" />
     <ClInclude Include="Source\V2World\V2Army.h" />
@@ -258,7 +259,6 @@
     <ClInclude Include="Source\V2World\V2Diplomacy.h" />
     <ClInclude Include="Source\V2World\V2Leader.h" />
     <ClInclude Include="Source\V2World\V2Party.h" />
-    <ClInclude Include="Source\V2World\V2Pop.h" />
     <ClInclude Include="Source\V2World\V2Relations.h" />
     <ClInclude Include="Source\V2World\V2World.h" />
     <ClInclude Include="Source\V2World\Vic2State.h" />

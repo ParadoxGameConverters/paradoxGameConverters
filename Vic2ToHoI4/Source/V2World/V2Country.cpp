@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Army.h"
 #include "V2Leader.h"
 #include "V2Party.h"
-#include "V2Pop.h"
+#include "Pop.h"
 #include "Province.h"
 #include "V2Relations.h"
 #include "Vic2State.h"
