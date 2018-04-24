@@ -73,8 +73,7 @@ Vic2::World::World(const string& filename)
 
 	registerKeyword(std::regex("diplomacy"), [this](const std::string& top, std::istream& theStream)
 	{
-		auto diplomacyObj = commonItems::convert8859Object(top, theStream);
-		diplomacy = new V2Diplomacy(diplomacyObj->getLeaves()[0]);
+		diplomacy = new Vic2::Diplomacy(theStream);
 	});
 
 	registerKeyword(std::regex("[A-Za-z0-9_]+"), commonItems::ignoreItem);
@@ -97,7 +96,7 @@ Vic2::World::World(const string& filename)
 	determinePartialStates();
 	if (diplomacy == nullptr)
 	{
-		diplomacy = new V2Diplomacy();
+		diplomacy = new Vic2::Diplomacy();
 	}
 	readCountryFiles();
 	setLocalisations();

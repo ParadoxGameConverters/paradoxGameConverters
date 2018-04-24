@@ -36,10 +36,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 class V2Country;
-class V2Diplomacy;
+
 namespace Vic2
 {
 
+class Diplomacy;
 class Province;
 
 
@@ -51,7 +52,7 @@ class World: commonItems::parser
 		std::optional<const Vic2::Province*> getProvince(int provNum) const;
 		
 		std::map<std::string, V2Country*> getCountries() const { return countries; }
-		const V2Diplomacy* getDiplomacy() const { return diplomacy; }
+		const Vic2::Diplomacy* getDiplomacy() const { return diplomacy; }
 		std::vector<std::string> getGreatPowers() const	{ return greatPowers; }
 		std::vector<V2Party> getParties() const { return parties; }
 		auto getProvinces() const { return provinces; }
@@ -92,7 +93,7 @@ class World: commonItems::parser
 
 		std::map<int, Vic2::Province*> provinces;
 		std::map<std::string, V2Country*> countries;
-		const V2Diplomacy* diplomacy = nullptr;
+		const Vic2::Diplomacy* diplomacy = nullptr;
 		std::vector<V2Party> parties;
 		std::vector<std::string> greatPowers;
 };

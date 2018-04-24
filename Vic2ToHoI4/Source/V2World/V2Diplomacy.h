@@ -21,13 +21,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef V2DIPLOMACY_H_
-#define V2DIPLOMACY_H_
+#ifndef VIC2_DIPLOMACY_H_
+#define VIC2_DIPLOMACY_H_
 
 
 
 #include "Date.h"
 #include "Object.h"
+#include "newParser.h"
 #include <memory>
 #include <vector>
 
@@ -37,22 +38,25 @@ class V2Agreement;
 
 
 
-class V2Diplomacy
+namespace Vic2
+{
+
+class Diplomacy: commonItems::parser
 {
 	public:
-		V2Diplomacy(): agreements() {}
-		explicit V2Diplomacy(std::shared_ptr<Object> obj);
+		Diplomacy() = default;
+		explicit Diplomacy(std::istream& theStream);
 
 		const std::vector<const V2Agreement*>& getAgreements() const	{ return agreements; }
 
 	private:
-		V2Diplomacy(const V2Diplomacy&) = delete;
-		V2Diplomacy& operator=(const V2Diplomacy&) = delete;
-
-		bool isARelevantDiplomaticObject(std::shared_ptr<Object> obj) const;
+		Diplomacy(const Diplomacy&) = delete;
+		Diplomacy& operator=(const Diplomacy&) = delete;
 
 		std::vector<const V2Agreement*>	agreements;
 };
+
+}
 
 
 

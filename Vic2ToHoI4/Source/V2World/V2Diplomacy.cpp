@@ -24,32 +24,38 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Diplomacy.h"
 #include "Vic2Agreement.h"
 #include "Log.h"
+#include "NewParserToOldParserConverters.h"
+#include "ParserHelpers.h"
 
 
 
-V2Diplomacy::V2Diplomacy(std::shared_ptr<Object> obj):
-	agreements()
+Vic2::Diplomacy::Diplomacy(std::istream& theStream)
 {
-	for (auto agreementObj: obj->getLeaves())
+	registerKeyword(std::regex("vassal"), [this](const std::string& agreementType, std::istream& theStream)
 	{
-		if (isARelevantDiplomaticObject(agreementObj))
-		{
-			V2Agreement* agreement = new V2Agreement(agreementObj);
-			agreements.push_back(agreement);
-		}
-	}
-}
+		auto agreementObj = commonItems::convert8859Object(agreementType, theStream);
+		V2Agreement* agreement = new V2Agreement(agreementObj->getLeaves()[0]);;
+		agreements.push_back(agreement);
+	});
+	registerKeyword(std::regex("alliance"), [this](const std::string& agreementType, std::istream& theStream)
+	{
+		auto agreementObj = commonItems::convert8859Object(agreementType, theStream);
+		V2Agreement* agreement = new V2Agreement(agreementObj->getLeaves()[0]);;
+		agreements.push_back(agreement);
+	});
+	registerKeyword(std::regex("casus_belli"), [this](const std::string& agreementType, std::istream& theStream)
+	{
+		auto agreementObj = commonItems::convert8859Object(agreementType, theStream);
+		V2Agreement* agreement = new V2Agreement(agreementObj->getLeaves()[0]);;
+		agreements.push_back(agreement);
+	});
+	registerKeyword(std::regex("warsubsidy"), [this](const std::string& agreementType, std::istream& theStream)
+	{
+		auto agreementObj = commonItems::convert8859Object(agreementType, theStream);
+		V2Agreement* agreement = new V2Agreement(agreementObj->getLeaves()[0]);;
+		agreements.push_back(agreement);
+	});
+	registerKeyword(std::regex("[A-Za-z0-9_]+"), commonItems::ignoreItem);
 
-
-bool V2Diplomacy::isARelevantDiplomaticObject(std::shared_ptr<Object> obj) const
-{
-	std::string key = obj->getKey();
-	if ((key == "vassal") || (key == "alliance") || (key == "casus_belli") || (key == "warsubsidy"))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	parseStream(theStream);
 }
