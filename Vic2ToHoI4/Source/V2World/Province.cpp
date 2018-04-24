@@ -146,7 +146,6 @@ Vic2::Province::Province(const std::string& numberString, std::istream& theStrea
 	registerKeyword(std::regex("flags"), commonItems::ignoreItem);
 	registerKeyword(std::regex("rgo"), commonItems::ignoreItem);
 
-	getNextToken(theStream);	// temporary to clear from caller converting an Object
 	parseStream(theStream);
 }
 

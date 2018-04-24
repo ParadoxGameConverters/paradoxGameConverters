@@ -61,10 +61,6 @@ Vic2::Pop::Pop(const std::string& typeString, std::istream& theStream):
 		{
 			auto equals = getNextToken(theStream);
 			auto issueSupport = getNextToken(theStream);
-			if (issueSupport->substr(0,1) == "\"")
-			{
-				issueSupport = issueSupport->substr(1, issueSupport->size() - 2);
-			}
 
 			std::string issueName = issuesInstance.getIssueName(std::stoi(*possibleIssue));
 			popIssues.insert(std::make_pair(issueName, std::stof(*issueSupport)));
