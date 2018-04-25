@@ -49,6 +49,7 @@ Vic2::Agreement::Agreement(const std::string& agreementType, std::istream& theSt
 		commonItems::singleString dateString(theStream);
 		startDate = date(dateString.getString());
 	});
+	registerKeyword(std::regex("[A-Za-z0-9_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
 }
