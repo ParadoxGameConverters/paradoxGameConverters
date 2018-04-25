@@ -21,39 +21,43 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef V2AGREEMENT_H_
-#define V2AGREEMENT_H_
+#ifndef VIC2_AGREEMENT_H_
+#define VIC2_AGREEMENT_H_
 
 
 
 #include "Date.h"
-#include "Object.h"
+#include "newParser.h"
 #include <memory>
 #include <string>
-using namespace std;
 
 
 
-class V2Agreement
+namespace Vic2
+{
+
+class Agreement: commonItems::parser
 {
 	public:
-		explicit V2Agreement(shared_ptr<Object> obj);
+		explicit Agreement(const std::string& agreementType, std::istream& theStream);
 
-		string getType() const { return type; }
-		string getCountry1() const { return country1; }
-		string getCountry2() const { return country2; }
+		std::string getType() const { return type; }
+		std::string getCountry1() const { return country1; }
+		std::string getCountry2() const { return country2; }
 		date getDate() const { return startDate; }
 
 	private:
-		V2Agreement(const V2Agreement&) = delete;
-		V2Agreement& operator=(const V2Agreement&) = delete;
+		Agreement(const Agreement&) = delete;
+		Agreement& operator=(const Agreement&) = delete;
 
-		string type;
-		string country1;
-		string country2;
+		std::string type = "";
+		std::string country1 = "";
+		std::string country2 = "";
 		date startDate;
 };
 
+}
 
 
-#endif // V2AGREEMENT_H_
+
+#endif // VIC2_AGREEMENT_H_

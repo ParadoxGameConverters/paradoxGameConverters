@@ -22,13 +22,33 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Vic2Agreement.h"
+#include "ParserHelpers.h"
 
 
 
-V2Agreement::V2Agreement(shared_ptr<Object> obj):
-	type(obj->getKey()),
-	country1(obj->safeGetString("first")),
-	country2(obj->safeGetString("second")),
-	startDate(obj->safeGetString("start_date"))
+Vic2::Agreement::Agreement(const std::string& agreementType, std::istream& theStream):
+	type(agreementType)
 {
+	registerKeyword(std::regex("first"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString countryString(theStream);
+		country1 = countryString.getString();
+		if (country1.substr(0,1) == "\"")
+		{
+			country1 = country1.substr(1, country1.size()-2);
+		}
+	});
+	registerKeyword(std::regex("second"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString countryString(theStream);
+		country2 = countryString.getString();
+		if (country2.substr(0,1) == "\"")
+		{
+			country2 = country2.substr(1, country2.size()-2);
+		}
+	});
+	registerKeyword(std::regex("start_date"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString dateString(theStream);
+		startDate = date(dateString.getString());
+	});
+
+	parseStream(theStream);
 }

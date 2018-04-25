@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Agreement::HoI4Agreement(const string& _country1, const string& _country2, const V2Agreement* oldAgreement):
+HoI4Agreement::HoI4Agreement(const string& _country1, const string& _country2, const Vic2::Agreement* oldAgreement):
 	type(oldAgreement->getType()),
 	country1(_country1),
 	country2(_country2),

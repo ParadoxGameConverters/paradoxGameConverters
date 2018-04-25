@@ -35,7 +35,7 @@ using namespace std;
 class HoI4Agreement
 {
 	public:
-		HoI4Agreement(const string& _country1, const string& _country2, const V2Agreement* oldAgreement);
+		HoI4Agreement(const string& _country1, const string& _country2, const Vic2::Agreement* oldAgreement);
 		HoI4Agreement(const string& _country1, const string& _country2, const string& _type, int _relationshipValue, const date& _startDate);
 
 		bool operator==(const HoI4Agreement &rhs) const

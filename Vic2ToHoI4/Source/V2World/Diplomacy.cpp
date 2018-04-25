@@ -33,26 +33,22 @@ Vic2::Diplomacy::Diplomacy(std::istream& theStream)
 {
 	registerKeyword(std::regex("vassal"), [this](const std::string& agreementType, std::istream& theStream)
 	{
-		auto agreementObj = commonItems::convert8859Object(agreementType, theStream);
-		V2Agreement* agreement = new V2Agreement(agreementObj->getLeaves()[0]);;
+		Agreement* agreement = new Agreement(agreementType, theStream);
 		agreements.push_back(agreement);
 	});
 	registerKeyword(std::regex("alliance"), [this](const std::string& agreementType, std::istream& theStream)
 	{
-		auto agreementObj = commonItems::convert8859Object(agreementType, theStream);
-		V2Agreement* agreement = new V2Agreement(agreementObj->getLeaves()[0]);;
+		Agreement* agreement = new Agreement(agreementType, theStream);
 		agreements.push_back(agreement);
 	});
 	registerKeyword(std::regex("casus_belli"), [this](const std::string& agreementType, std::istream& theStream)
 	{
-		auto agreementObj = commonItems::convert8859Object(agreementType, theStream);
-		V2Agreement* agreement = new V2Agreement(agreementObj->getLeaves()[0]);;
+		Agreement* agreement = new Agreement(agreementType, theStream);
 		agreements.push_back(agreement);
 	});
 	registerKeyword(std::regex("warsubsidy"), [this](const std::string& agreementType, std::istream& theStream)
 	{
-		auto agreementObj = commonItems::convert8859Object(agreementType, theStream);
-		V2Agreement* agreement = new V2Agreement(agreementObj->getLeaves()[0]);;
+		Agreement* agreement = new Agreement(agreementType, theStream);
 		agreements.push_back(agreement);
 	});
 	registerKeyword(std::regex("[A-Za-z0-9_]+"), commonItems::ignoreItem);

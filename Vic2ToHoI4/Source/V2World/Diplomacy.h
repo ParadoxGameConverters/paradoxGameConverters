@@ -34,12 +34,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-class V2Agreement;
-
-
-
 namespace Vic2
 {
+
+class Agreement;
+
 
 class Diplomacy: commonItems::parser
 {
@@ -47,13 +46,13 @@ class Diplomacy: commonItems::parser
 		Diplomacy() = default;
 		explicit Diplomacy(std::istream& theStream);
 
-		const std::vector<const V2Agreement*>& getAgreements() const	{ return agreements; }
+		const std::vector<const Agreement*>& getAgreements() const	{ return agreements; }
 
 	private:
 		Diplomacy(const Diplomacy&) = delete;
 		Diplomacy& operator=(const Diplomacy&) = delete;
 
-		std::vector<const V2Agreement*>	agreements;
+		std::vector<const Agreement*>	agreements;
 };
 
 }
