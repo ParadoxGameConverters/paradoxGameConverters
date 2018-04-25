@@ -107,9 +107,6 @@
     <ClCompile Include="Source\V2World\Vic2State.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\V2World\Vic2Agreement.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -221,6 +218,9 @@
     <ClCompile Include="Source\V2World\Diplomacy.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\V2World\Agreement.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -310,9 +310,6 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Airforce.h">
       <Filter>HoI4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\Vic2Agreement.h">
-      <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\GovernmentMapper.h">
       <Filter>Mappers</Filter>
@@ -427,6 +424,9 @@
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\Diplomacy.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Agreement.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,7 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Vic2Agreement.h"
+#include "Agreement.h"
 #include "ParserHelpers.h"
 
 

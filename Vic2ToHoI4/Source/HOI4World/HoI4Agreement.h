@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Date.h"
-#include "../V2World/Vic2Agreement.h"
+#include "../V2World/Agreement.h"
 #include <string>
 using namespace std;
 
