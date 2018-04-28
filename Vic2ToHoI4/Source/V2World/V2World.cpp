@@ -60,14 +60,12 @@ Vic2::World::World(const string& filename)
 	tagsInOrder.push_back(""); // REB (first country is index 1
 	registerKeyword(std::regex("[A-Z]{3}"), [&tagsInOrder, this](const std::string& countryTag, std::istream& theStream)
 	{
-		auto countryObj = commonItems::convert8859Object(countryTag, theStream);
-		countries[countryTag] = new V2Country(countryObj->getLeaves()[0]);
+		countries[countryTag] = new Country(countryTag, theStream);
 		tagsInOrder.push_back(countryTag);
 	});
 	registerKeyword(std::regex("[A-Z][0-9]{2}"), [&tagsInOrder, this](const std::string& countryTag, std::istream& theStream)
 	{
-		auto countryObj = commonItems::convert8859Object(countryTag, theStream);
-		countries[countryTag] = new V2Country(countryObj->getLeaves()[0]);
+		countries[countryTag] = new Country(countryTag, theStream);
 		tagsInOrder.push_back(countryTag);
 	});
 
@@ -181,14 +179,14 @@ void Vic2::World::removeSimpleLandlessNations()
 
 		if (!country.second->hasCoreOnCapital())
 		{
-			std::vector<Vic2::Province*> emptyCores;
+			std::vector<Province*> emptyCores;
 			country.second->replaceCores(emptyCores);
 		}
 	}
 }
 
 
-bool Vic2::World::shouldCoreBeRemoved(const Vic2::Province* core, const V2Country* country) const
+bool Vic2::World::shouldCoreBeRemoved(const Province* core, const Country* country) const
 {
 	if (core->getOwner() == nullptr)
 	{
@@ -224,7 +222,7 @@ void Vic2::World::determineEmployedWorkers()
 
 void Vic2::World::removeEmptyNations()
 {
-	map<string, V2Country*> newCountries;
+	map<string, Country*> newCountries;
 
 	for (auto country: countries)
 	{
@@ -322,7 +320,7 @@ string Vic2::World::extractCountryFileName(const string& countryFileLine) const
 }
 
 
-shared_ptr<Object> Vic2::World::readCountryFile(const string& countryFileName, const string& mod) const
+std::shared_ptr<Object> Vic2::World::readCountryFile(const string& countryFileName, const string& mod) const
 {
 	shared_ptr<Object> countryData = nullptr;
 	if (mod != "")
@@ -471,7 +469,7 @@ void Vic2::World::mergeNations(const string& masterTag, const vector<string>& sl
 }
 
 
-optional<V2Country*> Vic2::World::getCountry(const string& tag) const
+optional<Vic2::Country*> Vic2::World::getCountry(const string& tag) const
 {
 	auto countryItr = countries.find(tag);
 	if (countryItr != countries.end())

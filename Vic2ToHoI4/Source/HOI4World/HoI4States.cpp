@@ -61,7 +61,7 @@ void HoI4States::determineOwnersAndCores()
 		auto sourceProvinceNums = retrieveSourceProvinceNums(provinceNumber);
 		if (sourceProvinceNums)
 		{
-			map<const V2Country*, pair<int, int>> potentialOwners = determinePotentialOwners(*sourceProvinceNums);
+			auto potentialOwners = determinePotentialOwners(*sourceProvinceNums);
 			if (potentialOwners.size() == 0)
 			{
 				ownersMap.insert(make_pair(provinceNumber, ""));
@@ -104,9 +104,9 @@ optional<vector<int>> HoI4States::retrieveSourceProvinceNums(int provNum) const
 }
 
 
-map<const V2Country*, pair<int, int>> HoI4States::determinePotentialOwners(const vector<int>& sourceProvinceNums) const
+map<const Vic2::Country*, pair<int, int>> HoI4States::determinePotentialOwners(const vector<int>& sourceProvinceNums) const
 {
-	map<const V2Country*, pair<int, int>> potentialOwners;
+	map<const Vic2::Country*, pair<int, int>> potentialOwners;
 
 	for (auto srcProvNum: sourceProvinceNums)
 	{
@@ -116,7 +116,7 @@ map<const V2Country*, pair<int, int>> HoI4States::determinePotentialOwners(const
 			LOG(LogLevel::Warning) << "Old province " << srcProvNum << " does not exist (bad mapping?)";
 			continue;
 		}
-		const V2Country* owner = (*srcProvince)->getOwner();
+		auto owner = (*srcProvince)->getOwner();
 		if (owner == nullptr)
 		{
 			continue;
@@ -134,9 +134,9 @@ map<const V2Country*, pair<int, int>> HoI4States::determinePotentialOwners(const
 }
 
 
-const V2Country* HoI4States::selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const
+const Vic2::Country* HoI4States::selectProvinceOwner(const map<const Vic2::Country*, pair<int, int>>& potentialOwners) const
 {
-	const V2Country* oldOwner = nullptr;
+	const Vic2::Country* oldOwner = nullptr;
 	for (auto potentialOwner: potentialOwners)
 	{
 		// I am the new owner if there is no current owner, or I have more provinces than the current owner,
@@ -157,7 +157,7 @@ const V2Country* HoI4States::selectProvinceOwner(const map<const V2Country*, pai
 }
 
 
-vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, const V2Country* Vic2Owner) const
+vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, const Vic2::Country* Vic2Owner) const
 {
 	vector<string> cores;
 

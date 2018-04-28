@@ -21,15 +21,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef V2COUNTRY_H_
-#define V2COUNTRY_H_
+#ifndef VIC2_COUNTRY_H_
+#define VIC2_COUNTRY_H_
 
 
 
-#include "../Mappers/Mapper.h"
 #include "../Color.h"
 #include "Date.h"
 #include "V2Party.h"
+#include "newParser.h"
 #include <functional>
 #include <map>
 #include <memory>
@@ -37,13 +37,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <set>
 #include <string>
 #include <vector>
-using namespace std;
 
 
-namespace Vic2
-{
-class Province;
-}
+
 class V2Army;
 class V2Leader;
 class V2Relations;
@@ -51,133 +47,122 @@ class Vic2State;
 
 
 
-class V2Country
+namespace Vic2
+{
+
+class Province;
+
+
+class Country: commonItems::parser
 {
 	public:
-		explicit V2Country(shared_ptr<Object> obj);
+		explicit Country(const std::string& theTag, std::istream& theStream);
 
-		void addProvince(const std::pair<const int, Vic2::Province*>& province) { provinces.insert(province); }
+		void addProvince(const std::pair<const int, Province*>& province) { provinces.insert(province); }
 		void setColor(const ConverterColor::Color& newColor) { color = newColor; }
 		void setAsGreatNation() { greatNation = true; }
-		void addCore(Vic2::Province* core) { cores.push_back(core); }
-		void replaceCores(std::vector<Vic2::Province*> newCores) { cores.swap(newCores); }
-		void setShipNames(string category, vector<string> newShipNames) { shipNames[category] = newShipNames; }
+		void addCore(Province* core) { cores.push_back(core); }
+		void replaceCores(std::vector<Province*> newCores) { cores.swap(newCores); }
+		void setShipNames(std::string category, std::vector<std::string> newShipNames) { shipNames[category] = newShipNames; }
 
-		void eatCountry(V2Country* target);
+		void eatCountry(Country* target);
 		void putProvincesInStates();
 		void determineEmployedWorkers();
 		void setLocalisationNames();
 		void setLocalisationAdjectives();
 		void handleMissingCulture();
 
-		map<string, const V2Relations*> getRelations() const { return relations; }
-		vector<Vic2State*> getStates() const { return states; }
-		string getTag() const { return tag; }
-		string getPrimaryCulture() const { return primaryCulture; }
-		string getPrimaryCultureGroup() const { return primaryCultureGroup; }
-		set<string> getAcceptedCultures() const { return acceptedCultures; }
-		bool isAnAcceptedCulture(const string& culture) const { return (acceptedCultures.count(culture) > 0); }
-		set<string> getInventions() const { return inventions; }
-		string getGovernment() const { return government; }
+		std::map<std::string, const V2Relations*> getRelations() const { return relations; }
+		std::vector<Vic2State*> getStates() const { return states; }
+		std::string getTag() const { return tag; }
+		std::string getPrimaryCulture() const { return primaryCulture; }
+		std::string getPrimaryCultureGroup() const { return primaryCultureGroup; }
+		std::set<std::string> getAcceptedCultures() const { return acceptedCultures; }
+		bool isAnAcceptedCulture(const std::string& culture) const { return (acceptedCultures.count(culture) > 0); }
+		std::set<std::string> getInventions() const { return inventions; }
+		std::string getGovernment() const { return government; }
 		date getLastElection() const { return lastElection; }
 		int getCapital() const { return capital; }
-		set<string> getTechs() const { return techs; }
+		std::set<std::string> getTechs() const { return techs; }
 		const ConverterColor::Color& getColor() const { return color; }
-		double getEducationSpending() const { return educationSpending; }
-		double getMilitarySpending() const { return militarySpending; }
-		vector<const V2Army*> getArmies() const { return armies; }
-		vector<const V2Leader*> getLeaders() const { return leaders; }
+		std::vector<const V2Army*> getArmies() const { return armies; }
+		std::vector<const V2Leader*> getLeaders() const { return leaders; }
 		double getRevanchism() const { return revanchism; }
 		double getWarExhaustion() const { return warExhaustion; }
 		double getBadBoy() const { return badboy; }
-		map<string, string> getAllReforms() const { return reformsArray; }
+		std::map<std::string, std::string> getAllReforms() const { return reformsArray; }
 		bool isGreatNation() const { return greatNation; }
-		std::map<int, Vic2::Province*> getProvinces() const { return provinces; }
-		std::vector<Vic2::Province*> getCores() const { return cores; }
+		std::map<int, Province*> getProvinces() const { return provinces; }
+		std::vector<Province*> getCores() const { return cores; }
 		bool isEmpty() const { return ((cores.size() == 0) && (provinces.size() == 0)); }
 		bool isCivilized() const { return civilized; }
 		bool isHuman() const { return human; }
-		map<string, double> getUpperHouseComposition() const { return upperHouseComposition; }
+		std::map<std::string, double> getUpperHouseComposition() const { return upperHouseComposition; }
 
-		optional<string> getReform(const string& reform) const;
-		optional<string> getName(const string& language) const;
-		optional<string> getAdjective(const string& language) const;
-		double getUpperHousePercentage(const string& ideology) const;
+		std::optional<std::string> getReform(const std::string& reform) const;
+		std::optional<std::string> getName(const std::string& language) const;
+		std::optional<std::string> getAdjective(const std::string& language) const;
+		double getUpperHousePercentage(const std::string& ideology) const;
 		long getEmployedWorkers() const;
-		optional<const V2Party> getRulingParty(const vector<V2Party>& allParties) const;
-		set<V2Party, function<bool (const V2Party&, const V2Party&)>> getActiveParties(const vector<V2Party>& allParties) const;
+		std::optional<const V2Party> getRulingParty(const std::vector<V2Party>& allParties) const;
+		std::set<V2Party, std::function<bool (const V2Party&, const V2Party&)>> getActiveParties(const std::vector<V2Party>& allParties) const;
 		bool hasCoreOnCapital() const;
-		vector<string> getShipNames(string category) const;
+		std::vector<std::string> getShipNames(std::string category) const;
 		double getAverageMilitancy() const;
 		float getAverageIssueSupport(const std::string& issueName) const;
 
 	private:
-		V2Country(const V2Country&) = delete;
-		V2Country& operator=(const V2Country&) = delete;
+		Country(const Country&) = delete;
+		Country& operator=(const Country&) = delete;
 
-		void readInCultures(shared_ptr<Object> countryObj);
-		void readInTechnology(shared_ptr<Object> countryObj);
-		void readInInventions(shared_ptr<Object> countryObj);
-		void readInPoliticalParties(shared_ptr<Object> countryObj);
-		void readInSpending(shared_ptr<Object> countryObj);
-		void readInReforms(shared_ptr<Object> countryObj);
-		void readInUpperHouse(shared_ptr<Object> countryObj);
-		void readInRelations(shared_ptr<Object> countryObj);
-		bool isCountryTag(const string& potentialTag);
-		void readInMilitary(shared_ptr<Object> countryObj);
-		void readInLeaders(shared_ptr<Object> countryObj);
-		void readInStates(shared_ptr<Object> countryObj);
-		void createNewState(shared_ptr<Object> stateObj);
+		void setLocalisationName(const std::string& language, const std::string& name);
+		void setLocalisationAdjective(const std::string& language, const std::string& adjective);
 
-		void setLocalisationName(const string& language, const string& name);
-		void setLocalisationAdjective(const string& language, const string& adjective);
+		std::map<std::string, int> determineCultureSizes();
+		std::string selectLargestCulture(const std::map<std::string, int>& cultureSizes);
 
-		map<string, int> determineCultureSizes();
-		string selectLargestCulture(const map<string, int>& cultureSizes);
-
-		string tag;
+		std::string tag = "";
 		ConverterColor::Color color;
 
-		vector<Vic2State*> states;
-		map<int, Vic2::Province*> provinces;
-		std::vector<Vic2::Province*> cores;
+		std::vector<Vic2State*> states;
+		std::map<int, Province*> provinces;
+		std::vector<Province*> cores;
 		int capital;
 
-		string primaryCulture;
-		string primaryCultureGroup;
-		set<string> acceptedCultures;
+		std::string primaryCulture = "";
+		std::string primaryCultureGroup = "";
+		std::set<std::string> acceptedCultures;
 
-		set<string> techs;
-		set<string> inventions;
+		std::set<std::string> techs;
+		std::set<std::string> inventions;
 
-		map<string, const V2Relations*> relations;
-		bool greatNation;
-		bool civilized;
+		std::map<std::string, const V2Relations*> relations;
+		bool greatNation = false;
+		bool civilized = false;
 
-		vector<const V2Army*> armies;
-		vector<const V2Leader*> leaders;
+		std::vector<const V2Army*> armies;
+		std::vector<const V2Leader*> leaders;
 
-		double educationSpending;
-		double militarySpending;
+		double revanchism = 0.0;
+		double warExhaustion = 0.0;
+		double badboy = 0.0;
 
-		double revanchism;
-		double warExhaustion;
-		double badboy;
-
-		string government;
-		map<string, string> reformsArray;
-		map<string, double> upperHouseComposition;
-		unsigned	int rulingPartyID;
-		vector<unsigned int> activePartyIDs;
+		std::string government = "";
+		std::map<std::string, std::string> reformsArray;
+		std::map<std::string, double> upperHouseComposition;
+		unsigned	int rulingPartyID = 0; 	// Bad value, but normal for Rebel faction.
+		std::vector<unsigned int> activePartyIDs;
 		date lastElection;
 
-		string domainName;
-		string domainAdjective;
-		map<string, string> namesByLanguage;
-		map<string, string> adjectivesByLanguage;
-		map<string, vector<string> > shipNames;
+		std::string domainName = "";
+		std::string domainAdjective = "";
+		std::map<std::string, std::string> namesByLanguage;
+		std::map<std::string, std::string> adjectivesByLanguage;
+		std::map<std::string, std::vector<std::string> > shipNames;
 
 		bool human;
 };
 
-#endif	// V2COUNTRY_H_
+}
+
+#endif	// VIC2_COUNTRY_H_

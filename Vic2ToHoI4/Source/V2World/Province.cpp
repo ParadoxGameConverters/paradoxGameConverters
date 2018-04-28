@@ -150,7 +150,7 @@ Vic2::Province::Province(const std::string& numberString, std::istream& theStrea
 }
 
 
-void Vic2::Province::setCores(const std::map<std::string, V2Country*>& countries)
+void Vic2::Province::setCores(const std::map<std::string, Vic2::Country*>& countries)
 {
 	for (auto coreString: coreStrings)
 	{

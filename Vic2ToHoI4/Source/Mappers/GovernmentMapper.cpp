@@ -129,7 +129,7 @@ void governmentMapper::importPartyMappings(shared_ptr<Object> obj)
 }
 
 
-string governmentMapper::GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology) const
+string governmentMapper::GetIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology) const
 {
 	string ideology = "neutrality";
 	for (auto mapping: governmentMap)
@@ -146,7 +146,7 @@ string governmentMapper::GetIdeologyForCountry(const V2Country* country, const s
 }
 
 
-string governmentMapper::GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology) const
+string governmentMapper::GetLeaderIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology) const
 {
 	string ideology = "neutrality";
 	for (auto mapping: governmentMap)
@@ -163,7 +163,7 @@ string governmentMapper::GetLeaderIdeologyForCountry(const V2Country* country, c
 }
 
 
-string governmentMapper::GetExistingIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const
+string governmentMapper::GetExistingIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const
 {
 	string ideology = "neutrality";
 	for (auto mapping: governmentMap)
@@ -180,7 +180,7 @@ string governmentMapper::GetExistingIdeologyForCountry(const V2Country* country,
 }
 
 
-string governmentMapper::GetExistingLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const
+string governmentMapper::GetExistingLeaderIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const
 {
 	string ideology = "neutrality";
 	for (auto mapping: governmentMap)

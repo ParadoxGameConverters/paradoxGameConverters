@@ -45,7 +45,10 @@ using namespace std;
 
 
 
-class V2Country;
+namespace Vic2
+{
+class Country;
+}
 class HoI4Advisor;
 class HoI4Faction;
 class HoI4World;
@@ -58,7 +61,7 @@ class HoI4Country
 	public:
 		HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld);
 
-		void initFromV2Country(const Vic2::World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states);
+		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states);
 		void initFromHistory();
 		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies);
 		void convertGovernment(const Vic2::World& _srcWorld);
@@ -97,7 +100,7 @@ class HoI4Country
 		const map<string, HoI4Relations*>&	getRelations() const { return relations; }
 		set<int>									getProvinces() const { return provinces; }
 		string										getTag() const { return tag; }
-		const V2Country*							getSourceCountry() const { return srcCountry; }
+		const Vic2::Country*							getSourceCountry() const { return srcCountry; }
 		shared_ptr<const HoI4Faction> getFaction() const { return faction; }
 		string getGovernmentIdeology() const { return governmentIdeology; }
 		map<string, int> getIdeologySupport() const { return ideologySupport; }
@@ -170,7 +173,7 @@ class HoI4Country
 
 
 		const HoI4World* theWorld;
-		const V2Country* srcCountry;
+		const Vic2::Country* srcCountry;
 		string filename;
 
 		bool human;

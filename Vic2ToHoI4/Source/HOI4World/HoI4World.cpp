@@ -161,7 +161,7 @@ void HoI4World::convertCountries()
 }
 
 
-void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4World::convertCountry(pair<string, Vic2::Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	// don't convert rebels
 	if (country.first == "REB")
@@ -921,7 +921,7 @@ void HoI4World::convertTechs()
 
 	for (auto dstCountry : countries)
 	{
-		const V2Country* sourceCountry = dstCountry.second->getSourceCountry();
+		const Vic2::Country* sourceCountry = dstCountry.second->getSourceCountry();
 
 		for (auto technology : sourceCountry->getTechs())
 		{

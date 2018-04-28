@@ -37,9 +37,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-class V2Country;
-namespace Vic2 {
+namespace Vic2
+{
 
+class Country;
 class Pop;
 
 
@@ -47,22 +48,22 @@ class Province: commonItems::parser
 {
 	public:
 		explicit Province(const std::string& numberString, std::istream& theStream);
-		void setCores(const std::map<std::string, V2Country*>& countries);
+		void setCores(const std::map<std::string, Country*>& countries);
 
 		int getTotalPopulation() const;
 		int getPopulation(std::optional<std::string> type = {}) const;
 		int getLiteracyWeightedPopulation(std::optional<std::string> type = {}) const;
 		double getPercentageWithCultures(const std::set<std::string>& cultures) const;
 
-		void setOwner(const V2Country* _owner) { owner = _owner; }
+		void setOwner(const Country* _owner) { owner = _owner; }
 		void addCoreString(const std::string& coreString) { coreStrings.insert(coreString); }
 		void removeCoreString(const std::string& coreString) { coreStrings.erase(coreString); }
-		void removeCore(V2Country* core) { cores.erase(core); }
+		void removeCore(Country* core) { cores.erase(core); }
 
 		int getNumber() const { return number; }
 		std::string getOwnerString() const { return ownerString; }
-		const V2Country* getOwner() const { return owner; }
-		std::set<V2Country*> getCores() const { return cores; }
+		const Country* getOwner() const { return owner; }
+		std::set<Country*> getCores() const { return cores; }
 		int getRailLevel() const { return railLevel; }
 		int getFortLevel() const { return fortLevel; }
 		int getNavalBaseLevel() const { return navalBaseLevel; }
@@ -77,10 +78,10 @@ class Province: commonItems::parser
 		int number;
 
 		std::string ownerString = "";
-		const V2Country* owner = nullptr;
+		const Country* owner = nullptr;
 
 		std::set<std::string> coreStrings;
-		std::set<V2Country*> cores;
+		std::set<Country*> cores;
 
 		std::vector<std::shared_ptr<const Pop>> pops;
 

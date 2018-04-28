@@ -53,12 +53,12 @@ class HoI4SupplyZones;
 class HoI4UnitMap;
 namespace HoI4
 {
-	class decisions;
-	class Events;
+class decisions;
+class Events;
 }
-class V2Country;
 namespace Vic2
 {
+class Country;
 class World;
 }
 
@@ -92,7 +92,7 @@ class HoI4World
 		void convertNavalBases();
 
 		void convertCountries();
-		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void convertCountry(pair<string, Vic2::Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 
 		void importIdeologies();
 		void importIdeologyFile(const string& filename);

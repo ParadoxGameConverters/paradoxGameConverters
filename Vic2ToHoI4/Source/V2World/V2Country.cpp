@@ -23,7 +23,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "V2Country.h"
 #include "Log.h"
-#include "Object.h"
 #include "../Mappers/CultureGroupMapper.h"
 #include "../Mappers/InventionsMapper.h"
 #include "../Mappers/ReformMapper.h"
@@ -35,261 +34,187 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Province.h"
 #include "V2Relations.h"
 #include "Vic2State.h"
+#include "NewParserToOldParserConverters.h"
+#include "ParserHelpers.h"
 #include <functional>
-using namespace std;
 
 
 
-V2Country::V2Country(shared_ptr<Object> countryObj):
-	tag(countryObj->getKey()),
-	color(),
-	states(),
-	provinces(),
-	cores(),
-	capital(countryObj->safeGetInt("capital")),
-	primaryCulture(""),
-	primaryCultureGroup(""),
-	acceptedCultures(),
-	techs(),
-	inventions(),
-	relations(),
-	greatNation(false),
-	civilized(countryObj->safeGetString("civilized", "no") == "yes"),
-	armies(),
-	leaders(),
-	educationSpending(0.0),
-	militarySpending(0.0),
-	revanchism(countryObj->safeGetFloat("revanchism")),
-	warExhaustion(countryObj->safeGetFloat("war_exhaustion")),
-	badboy(countryObj->safeGetFloat("badboy")),
-	government(countryObj->safeGetString("government")),
-	reformsArray(),
-	upperHouseComposition(),
-	rulingPartyID(0),	// Bad value, but normal for Rebel faction.
-	activePartyIDs(),
-	lastElection(countryObj->safeGetString("last_election")),
-	domainName(countryObj->safeGetString("domain_region")),
-	domainAdjective(countryObj->safeGetString("domain_region")),
-	namesByLanguage(),
-	adjectivesByLanguage(),
-	human(countryObj->safeGetObject("human") != nullptr)
+Vic2::Country::Country(const std::string& theTag, std::istream& theStream):
+	tag(theTag)
 {
-	readInCultures(countryObj);
-	readInTechnology(countryObj);
-	readInInventions(countryObj);
-	readInPoliticalParties(countryObj);
-	readInSpending(countryObj);
-	readInReforms(countryObj);
-	readInUpperHouse(countryObj);
-	readInRelations(countryObj);
-	readInMilitary(countryObj);
-	readInLeaders(countryObj);
-	readInStates(countryObj);
-}
-
-
-void V2Country::readInCultures(shared_ptr<Object> countryObj)
-{
-	primaryCulture = countryObj->safeGetString("primary_culture");
-	acceptedCultures.insert(primaryCulture);
-
-	auto cultureGroupOption = cultureGroupMapper::getCultureGroup(primaryCulture);
-	if (cultureGroupOption)
-	{
-		primaryCultureGroup = *cultureGroupOption;
-	}
-	else
-	{
-		primaryCultureGroup = "";
-	}
-
-	auto cultures = countryObj->safeGetTokens("culture");
-	for (auto culture: cultures)
-	{
-		acceptedCultures.insert(culture);
-	}
-}
-
-
-void V2Country::readInTechnology(shared_ptr<Object> countryObj)
-{
-	auto techsObjs = countryObj->safeGetObject("technology");	// the object holding the technology levels
-	if (techsObjs != nullptr)
-	{
-		for (auto tech: techsObjs->getKeys())
+	registerKeyword(std::regex("capital"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleInt capitalInt(theStream);
+		capital = capitalInt.getInt();
+	});
+	registerKeyword(std::regex("civilized"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString civilizedString(theStream);
+		if (civilizedString.getString() == "yes")
 		{
-			techs.insert(tech);
+			civilized = true;
 		}
-	}
-}
-
-
-void V2Country::readInInventions(shared_ptr<Object> countryObj)
-{
-	auto activeInventionsNumbers = countryObj->safeGetTokens("active_inventions");
-	for (auto activeInventionNumber: activeInventionsNumbers)
-	{
-		auto inventionName = inventionsMapper::getInventionName(stoi(activeInventionNumber));
-		if (inventionName)
+	});
+	registerKeyword(std::regex("revanchism"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleDouble revanchismDouble(theStream);
+		revanchism = revanchismDouble.getDouble();
+	});
+	registerKeyword(std::regex("war_exhaustion"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleDouble warExhaustionDouble(theStream);
+		warExhaustion = warExhaustionDouble.getDouble();
+	});
+	registerKeyword(std::regex("badboy"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleDouble badboyDouble(theStream);
+		badboy = badboyDouble.getDouble();
+	});
+	registerKeyword(std::regex("government"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString governmentString(theStream);
+		government = governmentString.getString();
+	});
+	registerKeyword(std::regex("last_election"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString lastElectionString(theStream);
+		lastElection = date(lastElectionString.getString());
+	});
+	registerKeyword(std::regex("domain_region"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString regionString(theStream);
+		domainName = regionString.getString();
+		domainAdjective = regionString.getString();
+	});
+	registerKeyword(std::regex("human"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::ignoreItem(unused, theStream);
+		human = true;
+	});
+	registerKeyword(std::regex("primary_culture"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString cultureString(theStream);
+		primaryCulture = cultureString.getString();
+		if (primaryCulture.substr(0,1) == "\"")
 		{
-			inventions.insert(*inventionName);
+			primaryCulture = primaryCulture.substr(1, primaryCulture.size() - 2);
 		}
-	}
-}
+		acceptedCultures.insert(primaryCulture);
 
-
-void V2Country::readInPoliticalParties(shared_ptr<Object> countryObj)
-{
-	for (auto partyObj: countryObj->getValue("active_party"))
-	{
-		activePartyIDs.push_back(stoi(partyObj->getLeaf()));
-	}
-
-	if (activePartyIDs.size() > 0)
-	{
-		rulingPartyID = countryObj->safeGetInt("ruling_party", activePartyIDs[0]);
-	}
-}
-
-
-void V2Country::readInSpending(shared_ptr<Object> countryObj)
-{
-	auto spendingObjs = countryObj->safeGetObject("education_spending");
-	if (spendingObjs != nullptr)
-	{
-		educationSpending = spendingObjs->safeGetFloat("settings", educationSpending);
-	}
-
-	spendingObjs = countryObj->safeGetObject("military_spending");
-	if (spendingObjs != nullptr)
-	{
-		militarySpending = spendingObjs->safeGetFloat("settings", militarySpending);
-	}
-}
-
-
-void V2Country::readInReforms(shared_ptr<Object> countryObj)
-{
-	map<string, string> reformTypes = reformMapper::getReformTypes();
-
-	for (auto leaf: countryObj->getLeaves())
-	{
-		string key = leaf->getKey();
-		if (reformTypes.find(key) != reformTypes.end())
+		auto cultureGroupOption = cultureGroupMapper::getCultureGroup(primaryCulture);
+		if (cultureGroupOption)
 		{
-			reformsArray[key] = leaf->getLeaf();
+			primaryCultureGroup = *cultureGroupOption;
 		}
-	}
-}
-
-
-void V2Country::readInUpperHouse(shared_ptr<Object> countryObj)
-{
-	auto upperHouseObjs = countryObj->safeGetObject("upper_house");
-	if (upperHouseObjs != nullptr)
-	{
-		for (auto ideologyObj: upperHouseObjs->getLeaves())
+		else
 		{
-			upperHouseComposition.insert(make_pair(ideologyObj->getKey(), stof(ideologyObj->getLeaf())));
+			primaryCultureGroup = "";
 		}
-	}
-}
-
-
-void V2Country::readInRelations(shared_ptr<Object> countryObj)
-{
-	for (auto leaf: countryObj->getLeaves())
-	{
-		string key = leaf->getKey();
-
-		if (isCountryTag(key))
+	});
+	registerKeyword(std::regex("culture"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringList cultureString(theStream);
+		for (auto culture: cultureString.getStrings())
 		{
-			V2Relations* rel = new V2Relations(leaf);
-			relations.insert(make_pair(rel->getTag(), rel));
+			if (culture.substr(0,1) == "\"")
+			{
+				culture = culture.substr(1, culture.size() - 2);
+			}
+			acceptedCultures.insert(culture);
 		}
-	}
-}
-
-
-bool V2Country::isCountryTag(const string& potentialTag)
-{
-	if (potentialTag.size() != 3)
+	});
+	registerKeyword(std::regex("technology"), [this](const std::string& unused, std::istream& theStream){
+		auto equals = getNextTokenWithoutMatching(theStream);
+		auto openBrace = getNextTokenWithoutMatching(theStream);
+		auto token = getNextTokenWithoutMatching(theStream);
+		while (token != "}")
+		{
+			techs.insert(*token);
+			commonItems::ignoreItem(*token, theStream);
+			token = getNextTokenWithoutMatching(theStream);
+		}
+	});
+	registerKeyword(std::regex("active_inventions"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::intList inventionNums(theStream);
+		for (auto inventionNum: inventionNums.getInts())
+		{
+			auto inventionName = inventionsMapper::getInventionName(inventionNum);
+			if (inventionName)
+			{
+				inventions.insert(*inventionName);
+			}
+		}
+	});
+	registerKeyword(std::regex("active_party"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleInt partyNum(theStream);
+		activePartyIDs.push_back(partyNum.getInt());
+		if (rulingPartyID == 0)
+		{
+			rulingPartyID = partyNum.getInt();
+		}
+	});
+	registerKeyword(std::regex("ruling_party"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleInt partyNum(theStream);
+		rulingPartyID = partyNum.getInt();
+	});
+	for (auto reform: reformMapper::getReformTypes())
 	{
-		return false;
+		registerKeyword(std::regex(reform.first), [this](const std::string& reformType, std::istream& theStream){
+			commonItems::singleString reformValue(theStream);
+			reformsArray[reformType] = reformValue.getString();
+		});
 	}
-
-	// normal Vic2 countries
-	if (isupper(potentialTag[0]) && isupper(potentialTag[1]) && isupper(potentialTag[2]))
+	registerKeyword(std::regex("upper_house"), [this](const std::string& unused, std::istream& theStream){
+		auto equals = getNextTokenWithoutMatching(theStream);
+		auto openBrace = getNextTokenWithoutMatching(theStream);
+		auto token = getNextTokenWithoutMatching(theStream);
+		while (token != "}")
+		{
+			commonItems::singleDouble ideologyAmount(theStream);
+			upperHouseComposition.insert(make_pair(*token, ideologyAmount.getDouble()));
+			token = getNextTokenWithoutMatching(theStream);
+		}
+	});
+	registerKeyword(std::regex("[A-Z]{3}"), [this](const std::string& countryTag, std::istream& theStream)
 	{
-		return true;
-	}
-
-	// dominions
-	if ((potentialTag[0] == 'D') && isdigit(potentialTag[1]) && isdigit(potentialTag[2]))
+		auto relationsObject = commonItems::convert8859Object(countryTag, theStream);
+		V2Relations* rel = new V2Relations(relationsObject->getLeaves()[0]);
+		relations.insert(make_pair(rel->getTag(), rel));
+	});
+	registerKeyword(std::regex("[A-Z][0-9]{2}"), [this](const std::string& countryTag, std::istream& theStream)
 	{
-		return true;
-	}
-
-	// countries converted from EU4 or EU3
-	if (isupper(potentialTag[0]) && isdigit(potentialTag[1]) && isdigit(potentialTag[2]))
+		auto relationsObject = commonItems::convert8859Object(countryTag, theStream);
+		V2Relations* rel = new V2Relations(relationsObject->getLeaves()[0]);
+		relations.insert(make_pair(rel->getTag(), rel));
+	});
+	registerKeyword(std::regex("army"), [this](const std::string& unused, std::istream& theStream)
 	{
-		return true;
-	}
-
-	return false;
-}
-
-
-void V2Country::readInMilitary(shared_ptr<Object> countryObj)
-{
-	for (auto armyObj: countryObj->getValue("army"))
-	{
-		V2Army* army = new V2Army(armyObj);
+		auto armyObject = commonItems::convert8859Object(unused, theStream);
+		V2Army* army = new V2Army(armyObject->getLeaves()[0]);
 		armies.push_back(army);
-	}
-
-	for (auto navyObj: countryObj->getValue("navy"))
+	});
+	registerKeyword(std::regex("navy"), [this](const std::string& unused, std::istream& theStream)
 	{
-		V2Army* navy = new V2Army(navyObj);
+		auto navyObject = commonItems::convert8859Object(unused, theStream);
+		V2Army* navy = new V2Army(navyObject->getLeaves()[0]);
 		armies.push_back(navy);
 
 		// get transported armies
-		for (auto armyObj: navyObj->getValue("army"))
+		for (auto armyObj: navyObject->getValue("army"))
 		{
 			V2Army* army = new V2Army(armyObj);
 			armies.push_back(army);
 		}
-	}
-}
-
-
-void V2Country::readInLeaders(shared_ptr<Object> countryObj)
-{
-	for (auto leaderObj: countryObj->getValue("leader"))
+	});
+	registerKeyword(std::regex("leader"), [this](const std::string& unused, std::istream& theStream)
 	{
-		V2Leader* leader = new V2Leader(leaderObj);
+		auto leaderObject = commonItems::convert8859Object(unused, theStream);
+		V2Leader* leader = new V2Leader(leaderObject->getLeaves()[0]);
 		leaders.push_back(leader);
-	}
-}
-
-
-void V2Country::readInStates(shared_ptr<Object> countryObj)
-{
-	for (auto stateObj: countryObj->getValue("state"))
+	});
+	registerKeyword(std::regex("state"), [this](const std::string& unused, std::istream& theStream)
 	{
-		createNewState(stateObj);
-	}
+		auto stateObject = commonItems::convert8859Object(unused, theStream);
+		Vic2State* newState = new Vic2State(stateObject->getLeaves()[0], tag);
+		states.push_back(newState);
+	});
+	registerKeyword(std::regex("[A-Za-z0-9_]+"), commonItems::ignoreItem);
+
+	parseStream(theStream);
 }
 
 
-void V2Country::createNewState(shared_ptr<Object> stateObj)
-{
-	Vic2State* newState = new Vic2State(stateObj, tag);
-	states.push_back(newState);
-}
-
-
-void V2Country::eatCountry(V2Country* target)
+void Vic2::Country::eatCountry(Vic2::Country* target)
 {
 	if (target->tag == tag)
 	{
@@ -329,7 +254,7 @@ void V2Country::eatCountry(V2Country* target)
 }
 
 
-void V2Country::putProvincesInStates()
+void Vic2::Country::putProvincesInStates()
 {
 	for (auto state : states)
 	{
@@ -348,7 +273,7 @@ void V2Country::putProvincesInStates()
 }
 
 
-void V2Country::determineEmployedWorkers()
+void Vic2::Country::determineEmployedWorkers()
 {
 	for (auto state : states)
 	{
@@ -357,7 +282,7 @@ void V2Country::determineEmployedWorkers()
 }
 
 
-void V2Country::setLocalisationNames()
+void Vic2::Country::setLocalisationNames()
 {
 	if (domainName != "")
 	{
@@ -371,7 +296,7 @@ void V2Country::setLocalisationNames()
 }
 
 
-void V2Country::setLocalisationName(const string& language, const string& name)
+void Vic2::Country::setLocalisationName(const string& language, const string& name)
 {
 	if (domainName != "")
 	{
@@ -384,7 +309,7 @@ void V2Country::setLocalisationName(const string& language, const string& name)
 }
 
 
-void V2Country::setLocalisationAdjectives()
+void Vic2::Country::setLocalisationAdjectives()
 {
 	auto adjectiveInAllLanguages = V2Localisations::GetTextInEachLanguage(tag + "_ADJ");
 	for (auto adjectiveinLanguage : adjectiveInAllLanguages)
@@ -394,7 +319,7 @@ void V2Country::setLocalisationAdjectives()
 }
 
 
-void V2Country::handleMissingCulture()
+void Vic2::Country::handleMissingCulture()
 {
 	if (primaryCulture == "")
 	{
@@ -413,7 +338,7 @@ void V2Country::handleMissingCulture()
 }
 
 
-map<string, int> V2Country::determineCultureSizes()
+map<string, int> Vic2::Country::determineCultureSizes()
 {
 	map<string, int> cultureSizes;
 
@@ -436,7 +361,7 @@ map<string, int> V2Country::determineCultureSizes()
 }
 
 
-string V2Country::selectLargestCulture(const map<string, int>& cultureSizes)
+string Vic2::Country::selectLargestCulture(const map<string, int>& cultureSizes)
 {
 	string largestCulture;
 	int largestCultureSize = 0;
@@ -453,7 +378,7 @@ string V2Country::selectLargestCulture(const map<string, int>& cultureSizes)
 }
 
 
-void V2Country::setLocalisationAdjective(const string& language, const string& adjective)
+void Vic2::Country::setLocalisationAdjective(const string& language, const string& adjective)
 {
 	if (domainAdjective != "") // Domains have their adjective set from domain_region
 	{
@@ -466,7 +391,7 @@ void V2Country::setLocalisationAdjective(const string& language, const string& a
 }
 
 
-optional<string> V2Country::getReform(const string& reform) const
+optional<string> Vic2::Country::getReform(const string& reform) const
 {
 	map<string, string>::const_iterator itr = reformsArray.find(reform);
 	if (itr == reformsArray.end())
@@ -478,7 +403,7 @@ optional<string> V2Country::getReform(const string& reform) const
 }
 
 
-optional<string> V2Country::getName(const string& language) const
+optional<string> Vic2::Country::getName(const string& language) const
 {
 	map<string, string>::const_iterator findIter = namesByLanguage.find(language);
 	if (findIter != namesByLanguage.end())
@@ -492,7 +417,7 @@ optional<string> V2Country::getName(const string& language) const
 }
 
 
-optional<string> V2Country::getAdjective(const string& language) const
+optional<string> Vic2::Country::getAdjective(const string& language) const
 {
 	map<string, string>::const_iterator findIter = adjectivesByLanguage.find(language);
 	if (findIter != adjectivesByLanguage.end())
@@ -506,7 +431,7 @@ optional<string> V2Country::getAdjective(const string& language) const
 }
 
 
-double V2Country::getUpperHousePercentage(const string& ideology) const
+double Vic2::Country::getUpperHousePercentage(const string& ideology) const
 {
 	map<string, double>::const_iterator itr = upperHouseComposition.find(ideology);
 	if (itr == upperHouseComposition.end())
@@ -518,7 +443,7 @@ double V2Country::getUpperHousePercentage(const string& ideology) const
 }
 
 
-long V2Country::getEmployedWorkers() const
+long Vic2::Country::getEmployedWorkers() const
 {
 	long employedWorkers = 0;
 	for (auto state : states)
@@ -530,7 +455,7 @@ long V2Country::getEmployedWorkers() const
 }
 
 
-optional<const V2Party> V2Country::getRulingParty(const vector<V2Party>& allParties) const
+optional<const V2Party> Vic2::Country::getRulingParty(const vector<V2Party>& allParties) const
 {
 	if ((rulingPartyID <= allParties.size()) && (rulingPartyID > 0))
 	{
@@ -543,7 +468,7 @@ optional<const V2Party> V2Country::getRulingParty(const vector<V2Party>& allPart
 }
 
 
-set<V2Party, function<bool (const V2Party&, const V2Party&)>> V2Country::getActiveParties(const vector<V2Party>& allParties) const
+set<V2Party, function<bool (const V2Party&, const V2Party&)>> Vic2::Country::getActiveParties(const vector<V2Party>& allParties) const
 {
 	set<V2Party, function<bool (const V2Party&, const V2Party&)>> activeParties([](const V2Party& first, const V2Party& second)
 		{ return first.getName() < second.getName(); }
@@ -565,7 +490,7 @@ set<V2Party, function<bool (const V2Party&, const V2Party&)>> V2Country::getActi
 }
 
 
-bool V2Country::hasCoreOnCapital() const
+bool Vic2::Country::hasCoreOnCapital() const
 {
 	for (auto core: cores)
 	{
@@ -578,7 +503,7 @@ bool V2Country::hasCoreOnCapital() const
 	return false;
 }
 
-vector<string> V2Country::getShipNames(string category) const
+vector<string> Vic2::Country::getShipNames(string category) const
 {
 	auto foundShipNames = shipNames.find(category);
 	if (foundShipNames == shipNames.end())
@@ -589,7 +514,7 @@ vector<string> V2Country::getShipNames(string category) const
 }
 
 
-double V2Country::getAverageMilitancy() const
+double Vic2::Country::getAverageMilitancy() const
 {
 	int totalPopulation = 0;
 	double totalMilitancy = 0.0;
@@ -608,7 +533,7 @@ double V2Country::getAverageMilitancy() const
 }
 
 
-float V2Country::getAverageIssueSupport(const std::string& issueName) const
+float Vic2::Country::getAverageIssueSupport(const std::string& issueName) const
 {
 	int totalPopulation = 0;
 	float totalSupport = 0.0;

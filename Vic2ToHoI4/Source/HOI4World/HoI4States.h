@@ -36,11 +36,11 @@ using namespace std;
 
 
 class HoI4State;
-class V2Country;
 class V2Province;
 class Vic2State;
 namespace Vic2
 {
+class Country;
 class World;
 }
 
@@ -62,9 +62,9 @@ class HoI4States
 
 		void determineOwnersAndCores();
 		optional<vector<int>> retrieveSourceProvinceNums(int provNum) const;
-		map<const V2Country*, pair<int, int>> determinePotentialOwners(const vector<int>& sourceProvinceNums) const;
-		const V2Country* selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const;
-		vector<string> determineCores(const vector<int>& sourceProvinces, const V2Country* oldOwner) const;
+		map<const Vic2::Country*, pair<int, int>> determinePotentialOwners(const vector<int>& sourceProvinceNums) const;
+		const Vic2::Country* selectProvinceOwner(const map<const Vic2::Country*, pair<int, int>>& potentialOwners) const;
+		vector<string> determineCores(const vector<int>& sourceProvinces, const Vic2::Country* oldOwner) const;
 
 		void createStates();
 		void createMatchingHoI4State(const Vic2State* vic2State, const string& stateOwner);

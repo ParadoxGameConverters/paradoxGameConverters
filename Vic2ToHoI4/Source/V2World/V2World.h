@@ -35,11 +35,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-class V2Country;
-
 namespace Vic2
 {
 
+class Country;
 class Diplomacy;
 class Province;
 
@@ -47,12 +46,12 @@ class Province;
 class World: commonItems::parser
 {
 	public:
-		explicit World(const string& filename);
+		explicit World(const std::string& filename);
 
-		std::optional<const Vic2::Province*> getProvince(int provNum) const;
+		std::optional<const Province*> getProvince(int provNum) const;
 		
-		std::map<std::string, V2Country*> getCountries() const { return countries; }
-		const Vic2::Diplomacy* getDiplomacy() const { return diplomacy; }
+		std::map<std::string, Country*> getCountries() const { return countries; }
+		const Diplomacy* getDiplomacy() const { return diplomacy; }
 		std::vector<std::string> getGreatPowers() const	{ return greatPowers; }
 		std::vector<V2Party> getParties() const { return parties; }
 		auto getProvinces() const { return provinces; }
@@ -69,7 +68,7 @@ class World: commonItems::parser
 		void setProvinceOwners();
 		void addProvinceCoreInfoToCountries();
 		void removeSimpleLandlessNations();
-		bool shouldCoreBeRemoved(const Vic2::Province* core, const V2Country* country) const;
+		bool shouldCoreBeRemoved(const Province* core, const Country* country) const;
 		void determineEmployedWorkers();
 		void removeEmptyNations();
 		void determinePartialStates();
@@ -83,17 +82,17 @@ class World: commonItems::parser
 		bool processCountriesDotTxt(const std::string& countryListFile, const std::string& mod);
 		bool shouldLineBeSkipped(const std::string& line) const;
 		std::string extractCountryFileName(const std::string& countryFileLine) const;
-		shared_ptr<Object> readCountryFile(const std::string& countryFileName, const std::string& mod) const;
+		std::shared_ptr<Object> readCountryFile(const std::string& countryFileName, const std::string& mod) const;
 		void readCountryColor(std::shared_ptr<Object> countryData, const std::string& line);
 		void readShipNames(std::shared_ptr<Object> countryData, const std::string& line);
 		void inputPartyInformation(const std::vector<std::shared_ptr<Object>>& leaves);
 
-		std::optional<V2Country*> getCountry(const std::string& tag) const;
+		std::optional<Country*> getCountry(const std::string& tag) const;
 
 
-		std::map<int, Vic2::Province*> provinces;
-		std::map<std::string, V2Country*> countries;
-		const Vic2::Diplomacy* diplomacy = nullptr;
+		std::map<int, Province*> provinces;
+		std::map<std::string, Country*> countries;
+		const Diplomacy* diplomacy = nullptr;
 		std::vector<V2Party> parties;
 		std::vector<std::string> greatPowers;
 };
