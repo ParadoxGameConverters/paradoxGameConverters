@@ -28,7 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Object.h"
 #include <memory>
-using namespace std;
 
 
 
@@ -36,20 +35,20 @@ class V2Party
 {
 	public:
 		V2Party() = default;
-		V2Party(shared_ptr<Object> party_obj);
+		V2Party(std::shared_ptr<Object> party_obj);
 
-		string getName() const { return name; }
-		string getIdeology() const { return ideology; }
-		string getWarPolicy() const { return warPolicy; }
+		std::string getName() const { return name; }
+		std::string getIdeology() const { return ideology; }
+		std::string getWarPolicy() const { return warPolicy; }
 
 	private:
-		string name;
-		string ideology;
-		string economic_policy;
-		string trade_policy;
-		string religious_policy;
-		string citizenship_policy;
-		string warPolicy;
+		std::string name;
+		std::string ideology;
+		std::string economic_policy;
+		std::string trade_policy;
+		std::string religious_policy;
+		std::string citizenship_policy;
+		std::string warPolicy;
 };
 
 

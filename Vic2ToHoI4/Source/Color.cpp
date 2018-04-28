@@ -39,7 +39,7 @@ Color::Color(const red r, const green g, const blue b)
 {}
 
 
-Color::Color(shared_ptr<Object> colorObject)
+Color::Color(std::shared_ptr<Object> colorObject)
 : initialized(false), c({ 0, 0, 0 })
 {
 	initialized = (colorObject->numTokens() >= 3);
@@ -58,9 +58,9 @@ void Color::RandomlyFlunctuate(const int stdDev)
 {
 	// All three color components will go up or down by the some amount (according to stdDev), 
 	// and then each is tweaked a bit more (with a much smaller standard deviation).
-	static mt19937 generator(static_cast<unsigned int>(chrono::system_clock::now().time_since_epoch().count()));
-	const double allChange = normal_distribution<double>(0.0, stdDev)(generator);	// the amount the colors all change by
-	normal_distribution<double> distribution(0.0, stdDev / 4.0);
+	static std::mt19937 generator(static_cast<unsigned int>(std::chrono::system_clock::now().time_since_epoch().count()));
+	const double allChange = std::normal_distribution<double>(0.0, stdDev)(generator);	// the amount the colors all change by
+	std::normal_distribution<double> distribution(0.0, stdDev / 4.0);
 	for (auto& component : c)	// the component under consideration
 	{
 		component += static_cast<int>(allChange + distribution(generator) + 0.5);
@@ -76,7 +76,7 @@ void Color::RandomlyFlunctuate(const int stdDev)
 }
 
 
-ostream& ConverterColor::operator<<(ostream& out, const Color& color)
+std::ostream& ConverterColor::operator<<(std::ostream& out, const Color& color)
 {
 	out << color.c[0] << ' ' << color.c[1] << ' ' << color.c[2];
 	return out;

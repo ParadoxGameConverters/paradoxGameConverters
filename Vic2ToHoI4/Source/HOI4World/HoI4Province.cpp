@@ -33,7 +33,7 @@ using namespace std;
 
 
 
-HoI4Province::HoI4Province(const string& Owner, int State):
+HoI4Province::HoI4Province(const std::string& Owner, int State):
 	filenames(),
 	coastal(false),
 	num(0),

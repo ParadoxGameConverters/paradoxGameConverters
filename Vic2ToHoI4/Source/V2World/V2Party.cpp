@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Party::V2Party(shared_ptr<Object> party_obj):
+V2Party::V2Party(std::shared_ptr<Object> party_obj):
 	name(party_obj->safeGetString("name")),
 	ideology(party_obj->safeGetString("ideology")),
 	economic_policy(party_obj->safeGetString("economic_policy")),
