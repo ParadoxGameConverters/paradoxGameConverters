@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4State.h"
 #include "HoI4States.h"
 #include "../Mappers/V2Localisations.h"
-#include "../V2World/V2Country.h"
+#include "../V2World/Country.h"
 #include "../V2World/Vic2State.h"
 #include "../Configuration.h"
 #include "Log.h"

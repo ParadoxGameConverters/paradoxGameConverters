@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../Configuration.h"
 #include "../V2World/V2World.h"
-#include "../V2World/V2Country.h"
+#include "../V2World/Country.h"
 
 
 

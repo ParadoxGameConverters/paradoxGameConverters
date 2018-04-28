@@ -21,7 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "V2Country.h"
+#include "Country.h"
 #include "Log.h"
 #include "../Mappers/CultureGroupMapper.h"
 #include "../Mappers/InventionsMapper.h"
