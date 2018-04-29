@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParserUTF8.h"
 #include "ParserHelpers.h"
 #include "Issues.h"
-#include "V2Country.h"
+#include "Country.h"
 #include "Diplomacy.h"
 #include "V2Party.h"
 #include "Province.h"
