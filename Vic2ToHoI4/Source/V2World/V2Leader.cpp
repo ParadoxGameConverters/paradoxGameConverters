@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,28 +22,54 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Leader.h"
+#include "parserHelpers.h"
 
 
 
-V2Leader::V2Leader(shared_ptr<Object> obj):
-	name(obj->safeGetString("name")),
-	type(obj->safeGetString("type")),
-	personality(obj->safeGetString("personality")),
-	background(obj->safeGetString("background")),
-	prestige(obj->safeGetFloat("prestige"))
+Vic2::Leader::Leader(std::istream& theStream)
 {
-	if (name[0] == '\"')
+	registerKeyword(std::regex("name"), [this](const std::string& unused, std::istream& theStream)
 	{
-		name	= name.substr(1, name.length() - 2);
-	}
+		commonItems::singleString nameString(theStream);
+		name = nameString.getString();
+		if (name[0] == '\"')
+		{
+			name	= name.substr(1, name.length() - 2);
+		}
+	});
+	registerKeyword(std::regex("type"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleString typeString(theStream);
+		type = typeString.getString();
+		if (type[0] == '\"')
+		{
+			type	= type.substr(1, type.length() - 2);
+		}
+	});
+	registerKeyword(std::regex("personality"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleString personalityString(theStream);
+		personality = personalityString.getString();
+		if (personality[0] == '\"')
+		{
+			personality	= personality.substr(1, personality.length() - 2);
+		}
+	});
+	registerKeyword(std::regex("background"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleString backgroundString(theStream);
+		background = backgroundString.getString();
+		if (background[0] == '\"')
+		{
+			background	= background.substr(1, background.length() - 2);
+		}
+	});
+	registerKeyword(std::regex("prestige"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleDouble prestigeString(theStream);
+		prestige = prestigeString.getDouble();
+	});
+	registerKeyword(std::regex("[A-Za-z0-9_]+"), commonItems::ignoreItem);
 
-	if (personality[0] == '\"')
-	{
-		personality	= personality.substr(1, personality.length() - 2);
-	}
-
-	if (background[0] == '\"')
-	{
-		background	= background.substr(1, background.length() - 2);
-	}
+	parseStream(theStream);
 }

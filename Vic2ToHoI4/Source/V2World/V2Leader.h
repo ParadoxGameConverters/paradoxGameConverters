@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -20,38 +20,43 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
-#ifndef V2_LEADER_H_
-#define V2_LEADER_H_
+#ifndef VIC2_LEADER_H_
+#define VIC2_LEADER_H_
 
 
 
+#include "newParser.h"
 #include <string>
-#include "Object.h"
-using namespace std;
 
 
-class V2Leader
+
+namespace Vic2
+{
+
+class Leader: commonItems::parser
 {
 	public:
-		explicit V2Leader(shared_ptr<Object> obj);
+		explicit Leader(std::istream& theStream);
 
-		string getName() const { return name; }
-		string getType() const { return type; }
+		std::string getName() const { return name; }
+		std::string getType() const { return type; }
 		double getPrestige() const { return prestige; }
-		string getPersonality() const { return personality; }
-		string getBackground() const { return background; }
+		std::string getPersonality() const { return personality; }
+		std::string getBackground() const { return background; }
 
 	private:
-		V2Leader(const V2Leader&) = delete;
-		V2Leader& operator=(const V2Leader&) = delete;
+		Leader(const Leader&) = delete;
+		Leader& operator=(const Leader&) = delete;
 
-		string name;
-		string type;
-		string personality;
-		string background;
-		double prestige;
+		std::string name = "";
+		std::string type = "";
+		std::string personality = "";
+		std::string background = "";
+		double prestige = 0.0;
 };
 
+}
 
 
-#endif // V2LEADER_H_
+
+#endif // VIC2_LEADER_H_

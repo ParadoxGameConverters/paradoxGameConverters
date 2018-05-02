@@ -198,8 +198,7 @@ Vic2::Country::Country(const std::string& theTag, std::istream& theStream):
 	});
 	registerKeyword(std::regex("leader"), [this](const std::string& unused, std::istream& theStream)
 	{
-		auto leaderObject = commonItems::convert8859Object(unused, theStream);
-		V2Leader* leader = new V2Leader(leaderObject->getLeaves()[0]);
+		Leader* leader = new Leader(theStream);
 		leaders.push_back(leader);
 	});
 	registerKeyword(std::regex("state"), [this](const std::string& unused, std::istream& theStream)
