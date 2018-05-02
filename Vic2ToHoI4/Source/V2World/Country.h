@@ -127,7 +127,7 @@ class Country: commonItems::parser
 		std::vector<Vic2State*> states;
 		std::map<int, Province*> provinces;
 		std::vector<Province*> cores;
-		int capital;
+		int capital = 0;
 
 		std::string primaryCulture = "";
 		std::string primaryCultureGroup = "";
@@ -160,7 +160,7 @@ class Country: commonItems::parser
 		std::map<std::string, std::string> adjectivesByLanguage;
 		std::map<std::string, std::vector<std::string> > shipNames;
 
-		bool human;
+		bool human = false;
 };
 
 }
