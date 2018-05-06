@@ -36,7 +36,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4State.h"
 #include "../Color.h"
 #include "Date.h"
-#include "../V2World/V2Army.h"
+#include "../V2World/Army.h"
 #include "../V2World/V2Party.h"
 #include <optional>
 #include <set>

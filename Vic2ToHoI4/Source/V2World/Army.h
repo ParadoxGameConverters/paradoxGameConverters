@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,65 +21,71 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef V2ARMY_H_
-#define V2ARMY_H_
+#ifndef VIC2_ARMY_H_
+#define VIC2_ARMY_H_
 
 
 
 #include <vector>
 #include <string>
-#include "Object.h"
-using namespace std;
+#include "newParser.h"
 
 
 
-class V2Regiment // also Ship
+namespace Vic2
+{
+
+class Regiment: commonItems::parser // also Ship
 {
 	public:
-		explicit V2Regiment(shared_ptr<Object> obj);
+		explicit Regiment(std::istream& theStream);
 
-		string getName() const { return name; }
-		string getType() const { return type; }
+		std::string getName() const { return name; }
+		std::string getType() const { return type; }
 		double getStrength() const { return strength; }
 		double getOrganization() const { return organization; }
 		double getExperience() const { return experience; }
 
 	private:
-		V2Regiment(const V2Regiment&) = delete;
-		V2Regiment& operator=(const V2Regiment&) = delete;
+		Regiment(const Regiment&) = delete;
+		Regiment& operator=(const Regiment&) = delete;
 
-		string name;
-		string type;
-		double strength;
-		double organization;
-		double experience;
+		std::string name = "";
+		std::string type = "";
+		double strength = 0.0;
+		double organization = 0.0;
+		double experience = 0.0;
 };
 
 
-class V2Army // also Navy
+class Army: commonItems::parser // also Navy
 {
 	public:
-		explicit V2Army(shared_ptr<Object> obj);
+		explicit Army(const std::string& type, std::istream& theStream);
 
-		string getName() const { return name; }
+		std::string getName() const { return name; }
 		bool isNavy() const { return navy; }
 		double getSupplies() const { return supplies; }
-		int isAtSea() const { return at_sea; }
+		int isAtSea() const { return atSea; }
 		int getLocation() const { return location; }
-		vector<V2Regiment*> getRegiments() const { return regiments; }
+		std::vector<Regiment*> getRegiments() const { return regiments; }
+		std::vector<Army*> getTransportedArmies() const { return transportedArmies; }
 
 	private:
-		V2Army(const V2Army&) = delete;
-		V2Army& operator=(const V2Army&) = delete;
+		Army(const Army&) = delete;
+		Army& operator=(const Army&) = delete;
 
-		string name;
-		int location;
-		vector<V2Regiment*> regiments;
-		double supplies;
-		int at_sea;
-		bool navy;
+		std::string name = "";
+		int location = -1;
+		std::vector<Regiment*> regiments;
+		double supplies = 0.0;
+		int atSea = 0;
+		bool navy = false;
+		std::vector<Army*> transportedArmies;
 };
 
+}
 
 
-#endif // V2ARMY_H_
+
+#endif // VIC2_ARMY_H_

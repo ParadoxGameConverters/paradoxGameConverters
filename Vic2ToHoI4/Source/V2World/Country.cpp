@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/InventionsMapper.h"
 #include "../Mappers/ReformMapper.h"
 #include "../Mappers/V2Localisations.h"
-#include "V2Army.h"
+#include "Army.h"
 #include "Leader.h"
 #include "V2Party.h"
 #include "Pop.h"
@@ -175,23 +175,19 @@ Vic2::Country::Country(const std::string& theTag, std::istream& theStream):
 		Relations* rel = new Relations(countryTag, theStream);
 		relations.insert(make_pair(rel->getTag(), rel));
 	});
-	registerKeyword(std::regex("army"), [this](const std::string& unused, std::istream& theStream)
+	registerKeyword(std::regex("army"), [this](const std::string& type, std::istream& theStream)
 	{
-		auto armyObject = commonItems::convert8859Object(unused, theStream);
-		V2Army* army = new V2Army(armyObject->getLeaves()[0]);
+		Army* army = new Army(type, theStream);
 		armies.push_back(army);
 	});
-	registerKeyword(std::regex("navy"), [this](const std::string& unused, std::istream& theStream)
+	registerKeyword(std::regex("navy"), [this](const std::string& type, std::istream& theStream)
 	{
-		auto navyObject = commonItems::convert8859Object(unused, theStream);
-		V2Army* navy = new V2Army(navyObject->getLeaves()[0]);
+		Army* navy = new Army(type, theStream);
 		armies.push_back(navy);
 
-		// get transported armies
-		for (auto armyObj: navyObject->getValue("army"))
+		for (auto transportedArmy: navy->getTransportedArmies())
 		{
-			V2Army* army = new V2Army(armyObj);
-			armies.push_back(army);
+			armies.push_back(transportedArmy);
 		}
 	});
 	registerKeyword(std::regex("leader"), [this](const std::string& unused, std::istream& theStream)

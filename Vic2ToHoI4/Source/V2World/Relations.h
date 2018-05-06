@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef V2RELATIONS_H_
-#define V2RELATIONS_H_
+#ifndef VIC2_RELATIONS_H_
+#define VIC2_RELATIONS_H_
 
 
 
@@ -66,4 +66,4 @@ class Relations: commonItems::parser
 
 
 
-#endif // V2RELATIONS_H_
+#endif // VIC2_RELATIONS_H_

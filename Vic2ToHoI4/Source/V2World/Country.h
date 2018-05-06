@@ -40,7 +40,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-class V2Army;
 class Vic2State;
 
 
@@ -48,6 +47,7 @@ class Vic2State;
 namespace Vic2
 {
 
+class Army;
 class Leader;
 class Province;
 class Relations;
@@ -85,7 +85,7 @@ class Country: commonItems::parser
 		int getCapital() const { return capital; }
 		std::set<std::string> getTechs() const { return techs; }
 		const ConverterColor::Color& getColor() const { return color; }
-		std::vector<const V2Army*> getArmies() const { return armies; }
+		std::vector<const Army*> getArmies() const { return armies; }
 		std::vector<const Leader*> getLeaders() const { return leaders; }
 		double getRevanchism() const { return revanchism; }
 		double getWarExhaustion() const { return warExhaustion; }
@@ -140,7 +140,7 @@ class Country: commonItems::parser
 		bool greatNation = false;
 		bool civilized = false;
 
-		std::vector<const V2Army*> armies;
+		std::vector<const Army*> armies;
 		std::vector<const Leader*> leaders;
 
 		double revanchism = 0.0;
