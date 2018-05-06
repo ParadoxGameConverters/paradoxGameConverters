@@ -33,8 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Pop.h"
 #include "Province.h"
 #include "Relations.h"
-#include "Vic2State.h"
-#include "NewParserToOldParserConverters.h"
+#include "State.h"
 #include "ParserHelpers.h"
 #include <functional>
 
@@ -197,8 +196,7 @@ Vic2::Country::Country(const std::string& theTag, std::istream& theStream):
 	});
 	registerKeyword(std::regex("state"), [this](const std::string& unused, std::istream& theStream)
 	{
-		auto stateObject = commonItems::convert8859Object(unused, theStream);
-		Vic2State* newState = new Vic2State(stateObject->getLeaves()[0], tag);
+		State* newState = new State(theStream, tag);
 		states.push_back(newState);
 	});
 	registerKeyword(std::regex("[A-Za-z0-9_]+"), commonItems::ignoreItem);

@@ -33,7 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/Country.h"
 #include "../V2World/Province.h"
-#include "../V2World/Vic2State.h"
+#include "../V2World/State.h"
 #include "../V2World/V2World.h"
 #include <fstream>
 
@@ -241,7 +241,7 @@ void HoI4States::createStates()
 			}
 		}
 
-		Vic2State* newState = new Vic2State(stateProvinces);
+		Vic2::State* newState = new Vic2::State(stateProvinces);
 		createMatchingHoI4State(newState, "");
 	}
 
@@ -250,7 +250,7 @@ void HoI4States::createStates()
 }
 
 
-void HoI4States::createMatchingHoI4State(const Vic2State* vic2State, const string& stateOwner)
+void HoI4States::createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner)
 {
 	unordered_set<int> passableProvinces;
 	unordered_set<int> impassableProvinces;
@@ -294,7 +294,7 @@ void HoI4States::createMatchingHoI4State(const Vic2State* vic2State, const strin
 }
 
 
-unordered_set<int> HoI4States::getProvincesInState(const Vic2State* vic2State, const string& owner)
+unordered_set<int> HoI4States::getProvincesInState(const Vic2::State* vic2State, const string& owner)
 {
 	unordered_set<int> provinces;
 	for (auto vic2ProvinceNum: vic2State->getProvinceNums())

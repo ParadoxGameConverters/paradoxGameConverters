@@ -21,22 +21,21 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef VIC2STATE_H_
-#define VIC2STATE_H_
+#ifndef VIC2_STATE_H_
+#define VIC2_STATE_H_
 
 
 
-#include "../Mappers/Mapper.h"
-#include "Object.h"
+#include "newParser.h"
 #include <set>
 #include <vector>
-using namespace std;
+
 
 
 namespace Vic2
 {
+
 class Province;
-}
 
 
 
@@ -50,11 +49,11 @@ typedef struct
 
 
 
-class Vic2State
+class State: commonItems::parser
 {
 	public:
-		Vic2State(shared_ptr<Object> stateObj, const string& ownerTag);
-		Vic2State(std::set<std::pair<int, Vic2::Province*>> theProvinces);
+		State(std::istream& theStream, const std::string& ownerTag);
+		State(std::set<std::pair<int, Province*>> theProvinces);
 
 		void determineEmployedWorkers();
 		void determineIfPartialState();
@@ -62,23 +61,20 @@ class Vic2State
 		int getPopulation() const;
 		int getAverageRailLevel() const;
 
-		void addProvince(const Vic2::Province* province) { provinces.insert(province); }
+		void addProvince(const Province* province) { provinces.insert(province); }
 
-		std::set<const Vic2::Province*> getProvinces() const { return provinces; }
-		set<int> getProvinceNums() const { return provinceNums; }
-		string getOwner() const { return owner; }
-		string getStateID() const { return stateID; }
+		std::set<const Province*> getProvinces() const { return provinces; }
+		std::set<int> getProvinceNums() const { return provinceNums; }
+		std::string getOwner() const { return owner; }
+		std::string getStateID() const { return stateID; }
 		bool isPartialState() const { return partialState; }
 		int getEmployedWorkers() const { return employedWorkers; }
 
 	private:
-		Vic2State(const Vic2State&) = delete;
-		Vic2State& operator=(const Vic2State&) = delete;
+		State(const State&) = delete;
+		State& operator=(const State&) = delete;
 
-		void addProvinceNums(shared_ptr<Object> stateObj);
 		void setID();
-
-		void setFactoryLevel(shared_ptr<Object> stateObj);
 
 		workerStruct countEmployedWorkers() const;
 		workerStruct limitWorkersByFactoryLevels(const workerStruct& workers) const;
@@ -86,17 +82,19 @@ class Vic2State
 		bool ownerHasNoCores() const;
 
 
-		const string owner = "";
-		string stateID = "";
+		const std::string owner = "";
+		std::string stateID = "";
 		bool partialState = false;
 
-		set<int> provinceNums;
-		std::set<const Vic2::Province*> provinces;
+		std::set<int> provinceNums;
+		std::set<const Province*> provinces;
 
 		int factoryLevel = 0;
 		int employedWorkers = 0;
 };
 
+}
 
 
-#endif // VIC2STATE_H_
+
+#endif // VIC2_STATE_H_

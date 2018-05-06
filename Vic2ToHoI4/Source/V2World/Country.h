@@ -40,10 +40,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-class Vic2State;
-
-
-
 namespace Vic2
 {
 
@@ -51,6 +47,7 @@ class Army;
 class Leader;
 class Province;
 class Relations;
+class State;
 
 
 class Country: commonItems::parser
@@ -73,7 +70,7 @@ class Country: commonItems::parser
 		void handleMissingCulture();
 
 		std::map<std::string, const Relations*> getRelations() const { return relations; }
-		std::vector<Vic2State*> getStates() const { return states; }
+		std::vector<State*> getStates() const { return states; }
 		std::string getTag() const { return tag; }
 		std::string getPrimaryCulture() const { return primaryCulture; }
 		std::string getPrimaryCultureGroup() const { return primaryCultureGroup; }
@@ -124,7 +121,7 @@ class Country: commonItems::parser
 		std::string tag = "";
 		ConverterColor::Color color;
 
-		std::vector<Vic2State*> states;
+		std::vector<State*> states;
 		std::map<int, Province*> provinces;
 		std::vector<Province*> cores;
 		int capital = 0;

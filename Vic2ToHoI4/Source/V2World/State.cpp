@@ -21,25 +21,38 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Vic2State.h"
+#include "State.h"
+#include "Building.h"
 #include "Country.h"
 #include "Province.h"
 #include "V2World.h"
 #include "../Mappers/StateMapper.h"
 #include "Log.h"
+#include "ParserHelpers.h"
 
 
 
-Vic2State::Vic2State(shared_ptr<Object> stateObj, const string& ownerTag):
+Vic2::State::State(std::istream& theStream, const string& ownerTag):
 	owner(ownerTag)
 {
-	addProvinceNums(stateObj);
+	registerKeyword(std::regex("provinces"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::intList provinceList(theStream);
+		for (auto province: provinceList.getInts())
+		{
+			provinceNums.insert(province);
+		}
+	});
+	registerKeyword(std::regex("state_buildings"), [this](const std::string& unused, std::istream& theStream){
+		Building theBuilding(theStream);
+		factoryLevel += theBuilding.getLevel();
+	});
+
+	parseStream(theStream);
 	setID();
-	setFactoryLevel(stateObj);
 }
 
 
-Vic2State::Vic2State(std::set<std::pair<int, Vic2::Province*>> theProvinces)
+Vic2::State::State(std::set<std::pair<int, Vic2::Province*>> theProvinces)
 {
 	for (auto province: theProvinces)
 	{
@@ -51,16 +64,7 @@ Vic2State::Vic2State(std::set<std::pair<int, Vic2::Province*>> theProvinces)
 }
 
 
-void Vic2State::addProvinceNums(shared_ptr<Object> stateObj)
-{
-	for (auto provinceItr: stateObj->safeGetTokens("provinces"))
-	{
-		provinceNums.insert(stoi(provinceItr));
-	}
-}
-
-
-void Vic2State::setID()
+void Vic2::State::setID()
 {
 	auto stateIDMapping = stateMapper::getStateIdMapping().find(*provinceNums.begin());
 	if (stateIDMapping != stateMapper::getStateIdMapping().end())
@@ -74,16 +78,7 @@ void Vic2State::setID()
 }
 
 
-void Vic2State::setFactoryLevel(shared_ptr<Object> stateObj)
-{
-	for (auto buildingObj: stateObj->getValue("state_buildings"))
-	{
-		factoryLevel += buildingObj->safeGetInt("level");
-	}
-}
-
-
-void Vic2State::determineEmployedWorkers()
+void Vic2::State::determineEmployedWorkers()
 {
 	workerStruct workers = countEmployedWorkers();
 	workers = limitWorkersByFactoryLevels(workers);
@@ -91,7 +86,7 @@ void Vic2State::determineEmployedWorkers()
 }
 
 
-workerStruct Vic2State::countEmployedWorkers() const
+Vic2::workerStruct Vic2::State::countEmployedWorkers() const
 {
 	workerStruct workers;
 
@@ -107,7 +102,7 @@ workerStruct Vic2State::countEmployedWorkers() const
 }
 
 
-workerStruct Vic2State::limitWorkersByFactoryLevels(const workerStruct& workers) const
+Vic2::workerStruct Vic2::State::limitWorkersByFactoryLevels(const workerStruct& workers) const
 {
 	workerStruct newWorkers;
 	if ((workers.craftsmen + workers.clerks) > (factoryLevel * 10000))
@@ -125,7 +120,7 @@ workerStruct Vic2State::limitWorkersByFactoryLevels(const workerStruct& workers)
 }
 
 
-int Vic2State::determineEmployedWorkersScore(const workerStruct& workers) const
+int Vic2::State::determineEmployedWorkersScore(const workerStruct& workers) const
 {
 	int employedWorkerScore = workers.craftsmen + (workers.clerks * 2) + static_cast<int>(workers.artisans * 0.5) + (workers.capitalists * 2);
 	if (ownerHasNoCores())
@@ -137,7 +132,7 @@ int Vic2State::determineEmployedWorkersScore(const workerStruct& workers) const
 }
 
 
-bool Vic2State::ownerHasNoCores() const
+bool Vic2::State::ownerHasNoCores() const
 {
 	for (auto province: provinces)
 	{
@@ -154,7 +149,7 @@ bool Vic2State::ownerHasNoCores() const
 }
 
 
-void Vic2State::determineIfPartialState()
+void Vic2::State::determineIfPartialState()
 {
 	if (provinces.size() > 0)
 	{
@@ -171,7 +166,7 @@ void Vic2State::determineIfPartialState()
 }
 
 
-int Vic2State::getPopulation() const
+int Vic2::State::getPopulation() const
 {
 	int population = 0;
 	for (auto province: provinces)
@@ -183,7 +178,7 @@ int Vic2State::getPopulation() const
 }
 
 
-int Vic2State::getAverageRailLevel() const
+int Vic2::State::getAverageRailLevel() const
 {
 	int totalRailLevel = 0;
 	for (auto province: provinces)

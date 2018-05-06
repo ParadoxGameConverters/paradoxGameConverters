@@ -30,13 +30,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/StateCategoryMapper.h"
 #include "../Mappers/StateMapper.h"
 #include "../V2World/Province.h"
-#include "../V2World/Vic2State.h"
+#include "../V2World/State.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 
 
 
-HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _ownerTag):
+HoI4State::HoI4State(const Vic2::State* _sourceState, int _ID, const string& _ownerTag):
 	sourceState(_sourceState),
 	ID(_ID),
 	provinces(),

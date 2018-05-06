@@ -37,15 +37,15 @@ using namespace std;
 namespace Vic2
 {
 class Province;
+class State;
 }
-class Vic2State;
 
 
 
 class HoI4State
 {
 	public:
-		HoI4State(const Vic2State* sourceState, int _ID, const string& _ownerTag);
+		HoI4State(const Vic2::State* sourceState, int _ID, const string& _ownerTag);
 
 		void output(const string& filename) const;
 
@@ -62,7 +62,7 @@ class HoI4State
 		void addNavalBase(int level, int location);
 		void addCores(const vector<string>& newCores);
 
-		const Vic2State* getSourceState() const { return sourceState; }
+		const Vic2::State* getSourceState() const { return sourceState; }
 		set<int>	getProvinces() const { return provinces; }
 		string getOwner() const { return ownerTag; }
 		set<string> getCores() const { return cores; }
@@ -102,7 +102,7 @@ class HoI4State
 		bool isProvinceInState(int provinceNum);
 		void addDebugVPs();
 
-		const Vic2State* sourceState;
+		const Vic2::State* sourceState;
 
 		int ID;
 		set<int> provinces;
