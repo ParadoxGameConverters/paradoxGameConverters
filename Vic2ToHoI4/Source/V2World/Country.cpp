@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ReformMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "V2Army.h"
-#include "V2Leader.h"
+#include "Leader.h"
 #include "V2Party.h"
 #include "Pop.h"
 #include "Province.h"

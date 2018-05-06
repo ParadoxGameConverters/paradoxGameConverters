@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 #include <vector>
 #include "../Mappers/Mapper.h"
-#include "../V2World/V2Leader.h"
+#include "../V2World/Leader.h"
 using namespace std;
 
 
