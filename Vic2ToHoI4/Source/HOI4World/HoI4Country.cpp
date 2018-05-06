@@ -35,7 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/NamesMapper.h"
 #include "../Mappers/GraphicsMapper.h"
 #include "../Mappers/V2Localisations.h"
-#include "../V2World/V2Relations.h"
+#include "../V2World/Relations.h"
 #include "../V2World/V2Party.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "OSCompatibilityLayer.h"

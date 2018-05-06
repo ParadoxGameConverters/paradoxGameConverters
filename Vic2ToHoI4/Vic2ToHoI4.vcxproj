@@ -183,9 +183,9 @@
     <ClCompile Include="Source\V2World\Leader.cpp" />
     <ClCompile Include="Source\V2World\Pop.cpp" />
     <ClCompile Include="Source\V2World\Province.cpp" />
+    <ClCompile Include="Source\V2World\Relations.cpp" />
     <ClCompile Include="Source\V2World\V2Army.cpp" />
     <ClCompile Include="Source\V2World\V2Party.cpp" />
-    <ClCompile Include="Source\V2World\V2Relations.cpp" />
     <ClCompile Include="Source\V2World\V2World.cpp" />
     <ClCompile Include="Source\V2World\Vic2State.cpp" />
   </ItemGroup>
@@ -257,9 +257,9 @@
     <ClInclude Include="Source\V2World\Leader.h" />
     <ClInclude Include="Source\V2World\Pop.h" />
     <ClInclude Include="Source\V2World\Province.h" />
+    <ClInclude Include="Source\V2World\Relations.h" />
     <ClInclude Include="Source\V2World\V2Army.h" />
     <ClInclude Include="Source\V2World\V2Party.h" />
-    <ClInclude Include="Source\V2World\V2Relations.h" />
     <ClInclude Include="Source\V2World\V2World.h" />
     <ClInclude Include="Source\V2World\Vic2State.h" />
   </ItemGroup>

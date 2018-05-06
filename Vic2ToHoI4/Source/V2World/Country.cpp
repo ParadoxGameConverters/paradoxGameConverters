@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Party.h"
 #include "Pop.h"
 #include "Province.h"
-#include "V2Relations.h"
+#include "Relations.h"
 #include "Vic2State.h"
 #include "NewParserToOldParserConverters.h"
 #include "ParserHelpers.h"
@@ -167,14 +167,12 @@ Vic2::Country::Country(const std::string& theTag, std::istream& theStream):
 	});
 	registerKeyword(std::regex("[A-Z]{3}"), [this](const std::string& countryTag, std::istream& theStream)
 	{
-		auto relationsObject = commonItems::convert8859Object(countryTag, theStream);
-		V2Relations* rel = new V2Relations(relationsObject->getLeaves()[0]);
+		Relations* rel = new Relations(countryTag, theStream);
 		relations.insert(make_pair(rel->getTag(), rel));
 	});
 	registerKeyword(std::regex("[A-Z][0-9]{2}"), [this](const std::string& countryTag, std::istream& theStream)
 	{
-		auto relationsObject = commonItems::convert8859Object(countryTag, theStream);
-		V2Relations* rel = new V2Relations(relationsObject->getLeaves()[0]);
+		Relations* rel = new Relations(countryTag, theStream);
 		relations.insert(make_pair(rel->getTag(), rel));
 	});
 	registerKeyword(std::regex("army"), [this](const std::string& unused, std::istream& theStream)

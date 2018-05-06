@@ -27,17 +27,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Date.h"
+#include "newParser.h"
 
 
 
-class Object;
+namespace Vic2
+{
 
-
-
-class V2Relations
+class Relations: commonItems::parser
 {
 	public:
-		explicit V2Relations(std::shared_ptr<Object> relationsObj);
+		explicit Relations(const std::string& theTag, std::istream& theStream);
 
 		std::string getTag() const { return tag; }
 		int getRelations() const { return value; }
@@ -49,22 +49,20 @@ class V2Relations
 		const date getTruceUntil() const { return truceUntil; }
 
 	private:
-		V2Relations(const V2Relations&) = delete;
-		V2Relations& operator=(const V2Relations&) = delete;
+		Relations(const Relations&) = delete;
+		Relations& operator=(const Relations&) = delete;
 
-		void setLastDiplomat(std::shared_ptr<Object> relationsObj);
-		void setLastWar(std::shared_ptr<Object> relationsObj);
-		void setTruce(std::shared_ptr<Object> relationsObj);
+		std::string tag = "";
+		int value = 0;
+		int level = 2;
 
-		std::string tag;
-		int value;
-		int level;
-
-		bool militaryAccess;
+		bool militaryAccess = false;
 		date lastSentDiplomat;
 		date lastWar;
 		date truceUntil;
 };
+
+}
 
 
 

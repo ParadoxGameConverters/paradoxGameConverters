@@ -28,7 +28,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Date.h"
 
-class V2Relations;
+
+namespace Vic2
+{
+
+class Relations;
+
+}
 
 
 
@@ -36,7 +42,7 @@ class HoI4Relations
 {
 	public:
 		explicit HoI4Relations(const std::string& newTag);
-		HoI4Relations(const std::string& newTag, const V2Relations* oldRelations);
+		HoI4Relations(const std::string& newTag, const Vic2::Relations* oldRelations);
 
 		std::string	getTag()				const { return tag; };
 		int		getRelations()		const { return value; };

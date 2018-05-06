@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Relations.h"
-#include "../V2World/V2Relations.h"
+#include "../V2World/Relations.h"
 
 
 
@@ -39,7 +39,7 @@ HoI4Relations::HoI4Relations(const std::string& newTag):
 }
 
 
-HoI4Relations::HoI4Relations(const std::string& newTag, const V2Relations* oldRelations):
+HoI4Relations::HoI4Relations(const std::string& newTag, const Vic2::Relations* oldRelations):
 	tag(newTag),
 	value(oldRelations->getRelations()),
 	militaryAccess(oldRelations->hasMilitaryAccess()),

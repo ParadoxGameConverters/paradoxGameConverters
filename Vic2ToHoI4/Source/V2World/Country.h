@@ -41,7 +41,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 class V2Army;
-class V2Relations;
 class Vic2State;
 
 
@@ -51,6 +50,7 @@ namespace Vic2
 
 class Leader;
 class Province;
+class Relations;
 
 
 class Country: commonItems::parser
@@ -72,7 +72,7 @@ class Country: commonItems::parser
 		void setLocalisationAdjectives();
 		void handleMissingCulture();
 
-		std::map<std::string, const V2Relations*> getRelations() const { return relations; }
+		std::map<std::string, const Relations*> getRelations() const { return relations; }
 		std::vector<Vic2State*> getStates() const { return states; }
 		std::string getTag() const { return tag; }
 		std::string getPrimaryCulture() const { return primaryCulture; }
@@ -136,7 +136,7 @@ class Country: commonItems::parser
 		std::set<std::string> techs;
 		std::set<std::string> inventions;
 
-		std::map<std::string, const V2Relations*> relations;
+		std::map<std::string, const Relations*> relations;
 		bool greatNation = false;
 		bool civilized = false;
 
