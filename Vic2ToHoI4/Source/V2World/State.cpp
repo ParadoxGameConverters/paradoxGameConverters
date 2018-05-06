@@ -46,6 +46,7 @@ Vic2::State::State(std::istream& theStream, const string& ownerTag):
 		Building theBuilding(theStream);
 		factoryLevel += theBuilding.getLevel();
 	});
+	registerKeyword(std::regex("[A-Za-z0-9_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
 	setID();
