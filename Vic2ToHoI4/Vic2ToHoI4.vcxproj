@@ -166,6 +166,7 @@
     <ClCompile Include="Source\Mappers\ImpassableProvinceMapper.cpp" />
     <ClCompile Include="Source\Mappers\InventionsMapper.cpp" />
     <ClCompile Include="Source\Mappers\Mapper.cpp" />
+    <ClCompile Include="Source\Mappers\MergeRules.cpp" />
     <ClCompile Include="Source\Mappers\NamesMapper.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceDefinitions.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="Source\Mappers\GraphicsMapper.h" />
     <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h" />
     <ClInclude Include="Source\Mappers\InventionsMapper.h" />
+    <ClInclude Include="Source\Mappers\MergeRules.h" />
     <ClInclude Include="Source\Mappers\NamesMapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceDefinitions.h" />
     <ClInclude Include="Source\Mappers\CountryMapping.h" />

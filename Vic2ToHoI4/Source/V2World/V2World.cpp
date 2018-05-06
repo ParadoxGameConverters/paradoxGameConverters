@@ -24,7 +24,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2World.h"
 #include <fstream>
 #include "Log.h"
-#include "NewParserToOldParserConverters.h"
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParser8859_15.h"
 #include "ParadoxParserUTF8.h"
@@ -36,6 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Province.h"
 #include "State.h"
 #include "../Mappers/CountryMapping.h"
+#include "../Mappers/MergeRules.h"
 #include "../Mappers/ProvinceMapper.h"
 
 
@@ -415,47 +415,10 @@ void Vic2::World::inputPartyInformation(const vector<shared_ptr<Object>>& leaves
 void Vic2::World::overallMergeNations()
 {
 	LOG(LogLevel::Info) << "Merging nations";
-	auto mergeObj = parser_UTF8::doParseFile("merge_nations.txt");
-	if (mergeObj)
+	MergeRules theMergeRules;
+	for (auto rule: theMergeRules.getRules())
 	{
-		auto rules = mergeObj->safeGetObject("merge_nations");	// all merging rules
-		if (rules == nullptr)
-		{
-			LOG(LogLevel::Debug) << "No nations have merging requested (skipping)";
-			return;
-		}
-
-		for (auto rule: rules->getLeaves())
-		{
-			vector<shared_ptr<Object>> thisMerge = rule->getLeaves();	// the current merge rule
-			string masterTag;										// the nation to merge into
-			vector<string> slaveTags;								// the nations that will be merged into the master
-			bool enabled = false;									// whether or not this rule is enabled
-			for (auto item: thisMerge)
-			{
-				if (item->getKey() == "merge" && item->getLeaf() == "yes")
-				{
-					enabled = true;
-				}
-				else if (item->getKey() == "master")
-				{
-					masterTag = item->getLeaf();
-				}
-				else if (item->getKey() == "slave")
-				{
-					slaveTags.push_back(item->getLeaf());
-				}
-			}
-			if (enabled)
-			{
-				mergeNations(masterTag, slaveTags);
-			}
-		}
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Could not parse file merge_nations.txt";
-		exit(-1);
+		mergeNations(rule.first, rule.second);
 	}
 }
 
@@ -472,6 +435,7 @@ void Vic2::World::mergeNations(const string& masterTag, const vector<string>& sl
 			{
 				(*master)->eatCountry(*slave);
 			}
+			countries.erase(slaveTag);
 		}
 	}
 }
