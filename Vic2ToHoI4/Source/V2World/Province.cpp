@@ -154,10 +154,13 @@ void Vic2::Province::setCores(const std::map<std::string, Vic2::Country*>& count
 {
 	for (auto coreString: coreStrings)
 	{
-		auto countryItr = countries.find(coreString);
-		if (countryItr != countries.end())
+		if (auto countryItr = countries.find(coreString); countryItr != countries.end())
 		{
 			cores.insert(countryItr->second);
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Trying to set " << coreString << " as core of " << number << ", but country does not exist.";
 		}
 	}
 }

@@ -125,11 +125,19 @@ void Vic2::World::setProvinceOwners()
 {
 	for (auto province: provinces)
 	{
-		auto country = countries.find(province.second->getOwnerString());
-		if (country != countries.end())
+		if (province.second->getOwnerString() == "")
+		{
+			continue;
+		}
+
+		if (auto country = countries.find(province.second->getOwnerString()); country != countries.end())
 		{
 			country->second->addProvince(province);
 			province.second->setOwner(country->second);
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Trying to set " << province.second->getOwnerString() << " as owner of " << province.first << ", but country does not exist.";
 		}
 	}
 	for (auto country: countries)
