@@ -24,7 +24,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Diplomacy.h"
 #include "Agreement.h"
 #include "Log.h"
-#include "NewParserToOldParserConverters.h"
 #include "ParserHelpers.h"
 
 
