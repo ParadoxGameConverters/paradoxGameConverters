@@ -53,55 +53,22 @@ Vic2::Pop::Pop(const std::string& typeString, std::istream& theStream):
 	});
 	registerKeyword(std::regex("issues"), [this](const std::string& unused, std::istream& theStream)
 	{
-		auto equals = getNextToken(theStream);
-		auto openBrace = getNextToken(theStream);
+		auto equals = getNextTokenWithoutMatching(theStream);
+		auto openBrace = getNextTokenWithoutMatching(theStream);
 
-		auto possibleIssue = getNextToken(theStream);
+		auto possibleIssue = getNextTokenWithoutMatching(theStream);
 		while (possibleIssue != "}")
 		{
-			auto equals = getNextToken(theStream);
-			auto issueSupport = getNextToken(theStream);
+			auto equals = getNextTokenWithoutMatching(theStream);
+			auto issueSupport = getNextTokenWithoutMatching(theStream);
 
 			std::string issueName = issuesInstance.getIssueName(std::stoi(*possibleIssue));
 			popIssues.insert(std::make_pair(issueName, std::stof(*issueSupport)));
 
-			possibleIssue = getNextToken(theStream);
+			possibleIssue = getNextTokenWithoutMatching(theStream);
 		}
 	});
-
-	registerKeyword(std::regex("id"), commonItems::ignoreString);
-	registerKeyword(std::regex("money"), commonItems::ignoreString);
-	registerKeyword(std::regex("bank"), commonItems::ignoreString);
-	registerKeyword(std::regex("con_factor"), commonItems::ignoreString);
-	registerKeyword(std::regex("demoted"), commonItems::ignoreString);
-	registerKeyword(std::regex("luxury_needs"), commonItems::ignoreString);
-	registerKeyword(std::regex("everyday_needs"), commonItems::ignoreString);
-	registerKeyword(std::regex("life_needs"), commonItems::ignoreString);
-	registerKeyword(std::regex("random"), commonItems::ignoreString);
-	registerKeyword(std::regex("movement_issue"), commonItems::ignoreString);
-	registerKeyword(std::regex("production_type"), commonItems::ignoreString);
-	registerKeyword(std::regex("last_spending"), commonItems::ignoreString);
-	registerKeyword(std::regex("current_producing"), commonItems::ignoreString);
-	registerKeyword(std::regex("percent_afforded"), commonItems::ignoreString);
-	registerKeyword(std::regex("percent_sold_domestic"), commonItems::ignoreString);
-	registerKeyword(std::regex("percent_sold_export"), commonItems::ignoreString);
-	registerKeyword(std::regex("leftover"), commonItems::ignoreString);
-	registerKeyword(std::regex("throttle"), commonItems::ignoreString);
-	registerKeyword(std::regex("needs_cost"), commonItems::ignoreString);
-	registerKeyword(std::regex("production_income"), commonItems::ignoreString);
-	registerKeyword(std::regex("promoted"), commonItems::ignoreString);
-	registerKeyword(std::regex("days_of_loss"), commonItems::ignoreString);
-	registerKeyword(std::regex("converted"), commonItems::ignoreString);
-	registerKeyword(std::regex("local_migration"), commonItems::ignoreString);
-	registerKeyword(std::regex("colonial_migration"), commonItems::ignoreString);
-	registerKeyword(std::regex("external_migration"), commonItems::ignoreString);
-	registerKeyword(std::regex("movement_tag"), commonItems::ignoreString);
-	registerKeyword(std::regex("assimilated"), commonItems::ignoreString);
-	registerKeyword(std::regex("ideology"), commonItems::ignoreObject);
-	registerKeyword(std::regex("stockpile"), commonItems::ignoreObject);
-	registerKeyword(std::regex("need"), commonItems::ignoreObject);
-	registerKeyword(std::regex("size_changes"), commonItems::ignoreObject);
-	registerKeyword(std::regex("faction"), commonItems::ignoreObject);
+	registerKeyword(std::regex("id"), commonItems::ignoreItem);
 	registerKeyword(std::regex("[a-z\\_]+"), [this](const std::string& cultureString, std::istream& theStream)
 	{
 		if (culture == "no_culture")
@@ -112,9 +79,10 @@ Vic2::Pop::Pop(const std::string& typeString, std::istream& theStream):
 		}
 		else
 		{
-			LOG(LogLevel::Debug) << "Unknown token while parsing pop: " << cultureString;
+			commonItems::ignoreItem(cultureString, theStream);
 		}
 	});
+	registerKeyword(std::regex("[A-Za-z0-9\\_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
 }
