@@ -626,6 +626,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, ve
 		newFocus->available += "		}";
 		focuses.push_back(newFocus);
 		HoI4Localisation::copyFocusLocalisations("WarPlan", newFocus->id);
+		HoI4Localisation::updateLocalisationWithCountry(newFocus->id, "$TARGET", country->getTag() + "_neutrality");
 
 		newFocus = loadedFocuses.find("Embargo")->second.makeCustomizedCopy(Home->getTag());
 		newFocus->id += country->getTag();
@@ -655,6 +656,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, ve
 		newFocus->completionReward += "		}";
 		focuses.push_back(newFocus);
 		HoI4Localisation::copyFocusLocalisations("Embargo", newFocus->id);
+		HoI4Localisation::updateLocalisationWithCountry(newFocus->id, "$TARGET", country->getTag() + "_neutrality");
 
 		newFocus = loadedFocuses.find("WAR")->second.makeCustomizedCopy(Home->getTag());
 		newFocus->id += country->getTag();
@@ -690,6 +692,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, ve
 		newFocus->completionReward += "		}";
 		focuses.push_back(newFocus);
 		HoI4Localisation::copyFocusLocalisations("WAR", newFocus->id);
+		HoI4Localisation::updateLocalisationWithCountry(newFocus->id, "$TARGET", country->getTag() + "_neutrality");
 
 		relavtivePos += 4;
 	}

@@ -566,6 +566,31 @@ void HoI4Localisation::AddPoliticalPartyLocalisation(const string& Vic2Key, cons
 }
 
 
+void HoI4Localisation::UpdateLocalisationWithCountry(const std::string& key, const std::string& oldText, const std::string& newTextLocalisationKey)
+{
+	for (auto localisationsInLanguage: newFocuses)
+	{
+		std::string newText = "";
+		if (auto countriesInLanguage = countryLocalisations.find(localisationsInLanguage.first); countriesInLanguage != countryLocalisations.end())
+		{
+			if (auto countryText = countriesInLanguage->second.find(newTextLocalisationKey); countryText != countriesInLanguage->second.end())
+			{
+				newText = countryText->second;
+			}
+		}
+
+		if (auto focusesInLanguage = newFocuses.find(localisationsInLanguage.first); focusesInLanguage != newFocuses.end())
+		{
+			if (auto focusText = focusesInLanguage->second.find(key); focusText != focusesInLanguage->second.end())
+			{
+				auto position = focusText->second.find(oldText);
+				focusText->second.replace(position, oldText.size(), newText);
+			}
+		}
+	}
+}
+
+
 void HoI4Localisation::Output() const
 {
 	LOG(LogLevel::Debug) << "Writing localisations";
