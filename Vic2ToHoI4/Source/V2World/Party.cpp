@@ -56,6 +56,7 @@ Vic2::Party::Party(std::istream& theStream)
 		commonItems::singleString policyString(theStream);
 		warPolicy = policyString.getString();
 	});
+	registerKeyword(std::regex("[A-Za-z0-9\\_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
 }
