@@ -1304,13 +1304,18 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<Ho
 			newFocus->id = "War" + target->getTag() + country->getTag();
 			newFocus->icon = "GFX_goal_generic_major_war";
 			newFocus->text = "War with " + targetName;//change to faction name later
-			newFocus->available = "			has_war = no\n";
-			newFocus->available += "			date > " + startDate.toString();
+			newFocus->available = "= {\n";
+			newFocus->available += "			has_war = no\n";
+			newFocus->available += "			date > " + startDate.toString() + "\n";
+			newFocus->available += "		}";
 			newFocus->xPos = 24;
 			newFocus->yPos = 0;
 			newFocus->cost = 10;
-			newFocus->bypass += "          has_war_with = " + target->getTag() + "\n";
-			newFocus->aiWillDo = "			factor = " + to_string(10 - numWarsWithNeighbors * 5) + "\n";
+			newFocus->bypass += "= {\n";
+			newFocus->bypass += "			has_war_with = " + target->getTag() + "\n";
+			newFocus->bypass += "		}";
+			newFocus->aiWillDo = "= {\n";
+			newFocus->aiWillDo += "			factor = " + to_string(10 - numWarsWithNeighbors * 5) + "\n";
 			newFocus->aiWillDo += "			modifier = {\n";
 			newFocus->aiWillDo += "				factor = 0\n";
 			newFocus->aiWillDo += "				strength_ratio = { tag = " + target->getTag() + " ratio < 0.8 }\n";
@@ -1331,11 +1336,15 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<Ho
 				newFocus->aiWillDo += "				}\n";
 				newFocus->aiWillDo += "			}";
 			}
+			newFocus->aiWillDo += "\n";
+			newFocus->aiWillDo += "		}";
+			newFocus->completionReward += "= {\n";
 			newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 			newFocus->completionReward += "			create_wargoal = {\n";
 			newFocus->completionReward += "				type = annex_everything\n";
 			newFocus->completionReward += "				target = " + target->getTag() + "\n";
-			newFocus->completionReward += "			}";
+			newFocus->completionReward += "			}\n";
+			newFocus->completionReward += "		}";
 			newFocuses.push_back(newFocus);
 
 			numWarsWithNeighbors++;
@@ -1607,12 +1616,15 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::addGreatPowerWars(shared_ptr<HoI
 			newFocus->id       = "War" + target->getTag() + country->getTag();
 			newFocus->icon     = "GFX_goal_generic_major_war";
 			newFocus->text     = "War with " + targetName;//change to faction name later
-			newFocus->available = "			has_war = no\n";
-			newFocus->available += "			date > 1939.1.1";
+			newFocus->available += "= {\n";
+			newFocus->available += "			has_war = no\n";
+			newFocus->available += "			date > 1939.1.1\n";
+			newFocus->available += "		}";
 			newFocus->xPos     = 31 + numWarsWithGreatPowers * 2;
 			newFocus->yPos     = 5;
 			newFocus->cost     = 10;
-			newFocus->aiWillDo = "			factor = " + to_string(10 - numWarsWithGreatPowers * 5) + "\n";
+			newFocus->aiWillDo += "= {\n";
+			newFocus->aiWillDo += "			factor = " + to_string(10 - numWarsWithGreatPowers * 5) + "\n";
 			newFocus->aiWillDo += "			modifier = {\n";
 			newFocus->aiWillDo += "				factor = 0\n";
 			newFocus->aiWillDo += "				strength_ratio = { tag = " + target->getTag() + " ratio < 0.8 }\n";
@@ -1633,12 +1645,18 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::addGreatPowerWars(shared_ptr<HoI
 				newFocus->aiWillDo += "				}\n";
 				newFocus->aiWillDo += "			}";
 			}
+			newFocus->aiWillDo += "\n";
+			newFocus->aiWillDo += "		}";
+			newFocus->bypass += "= {\n";
 			newFocus->bypass += " 		has_war_with = " + target->getTag() + "\n";
+			newFocus->bypass += " 	}";
+			newFocus->completionReward += "= {\n";
 			newFocus->completionReward += "			add_named_threat = { threat = 5 name = " + newFocus->id + " }\n";
 			newFocus->completionReward += "			declare_war_on = {\n";
 			newFocus->completionReward += "				type = annex_everything\n";
 			newFocus->completionReward += "				target = " + target->getTag() + "\n";
-			newFocus->completionReward += "			}";
+			newFocus->completionReward += "			}\n";
+			newFocus->completionReward += "		}";
 			FocusTree->addFocus(newFocus);
 
 			numWarsWithGreatPowers++;

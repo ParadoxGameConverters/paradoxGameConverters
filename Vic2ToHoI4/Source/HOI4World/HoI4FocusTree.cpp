@@ -329,7 +329,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	if (majorIdeologies.count("democratic") == 0)
 	{
 		newFocus->prerequisites.clear();
-		newFocus->prerequisites.push_back("focus = deterrence");
+		newFocus->prerequisites.push_back("= { focus = deterrence }");
 	}
 	focuses.push_back(newFocus);
 
@@ -337,7 +337,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	if (numCollectovistIdeologies == 0)
 	{
 		newFocus->prerequisites.clear();
-		newFocus->prerequisites.push_back("focus = why_we_fight");
+		newFocus->prerequisites.push_back("= { focus = why_we_fight }");
 	}
 	newFocus->xPos = numCollectovistIdeologies;
 	focuses.push_back(newFocus);
@@ -742,14 +742,18 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 	newFocus->id = "ColonialArmy" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_allies_build_infantry";
 	newFocus->text += "Establish Colonial Army";
-	newFocus->prerequisites.push_back("focus = StrengthenColonies" + Home->getTag());
+	newFocus->prerequisites.push_back("= { focus = StrengthenColonies" + Home->getTag() + " }");
 	newFocus->xPos = nextFreeColumn + 4;
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
+	newFocus->aiWillDo += "= {\n";
 	newFocus->aiWillDo += "			factor = 10\n";
 	newFocus->aiWillDo += "			modifier = {\n";
-	newFocus->aiWillDo += "			}";
-	newFocus->completionReward += "			add_ideas = militarism_focus";
+	newFocus->aiWillDo += "			}\n";
+	newFocus->aiWillDo += "		}";
+	newFocus->completionReward += "= {\n";
+	newFocus->completionReward += "			add_ideas = militarism_focus\n";
+	newFocus->completionReward += "		}";
 	focuses.push_back(newFocus);
 
 	//establish protectorate
@@ -773,8 +777,10 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 		newFocus->id = "Protectorate" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
 		newFocus->text += "Establish Protectorate over " + protectorateCountryName;
-		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
-		newFocus->prerequisites.push_back("focus = ColonialArmy" + Home->getTag());
+		newFocus->available += "= {\n";
+		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }\n";
+		newFocus->available += "		}";
+		newFocus->prerequisites.push_back("= { focus = ColonialArmy" + Home->getTag() + " }");
 		newFocus->xPos = nextFreeColumn + 4;
 		newFocus->yPos = 3;
 		newFocus->cost = 10;
@@ -822,8 +828,10 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 		newFocus->id = "Protectorate" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
 		newFocus->text += "Establish Protectorate over " + protectorateCountryName;
-		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
-		newFocus->prerequisites.push_back("focus = Protectorate" + Home->getTag() + targetColonies.front()->getTag());
+		newFocus->available += "= {\n";
+		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }\n";
+		newFocus->available += "		}";
+		newFocus->prerequisites.push_back("= { focus = Protectorate" + Home->getTag() + targetColonies.front()->getTag() + " }");
 		newFocus->xPos = nextFreeColumn + 4;
 		newFocus->yPos = 4;
 		newFocus->cost = 10;
@@ -857,7 +865,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 	newFocus->id = "TradeEmpire" + Home->getTag();
 	newFocus->icon = "GFX_goal_anschluss";
 	newFocus->text += "Fund the " + homeCountryAdjective + " Colonial Trade Corporation";
-	newFocus->prerequisites.push_back("focus = ColonialHwy" + Home->getTag() + " focus = ResourceFac" + Home->getTag());
+	newFocus->prerequisites.push_back("= { focus = ColonialHwy" + Home->getTag() + " focus = ResourceFac" + Home->getTag() + " }");
 	newFocus->xPos = nextFreeColumn + 1;
 	newFocus->yPos = 4;
 	newFocus->cost = 10;
@@ -908,7 +916,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 	newFocus->id = "IndHome" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_production";
 	newFocus->text += "Fund Industrial Improvement";
-	newFocus->prerequisites.push_back("focus = StrengthenHome" + Home->getTag());
+	newFocus->prerequisites.push_back("= { focus = StrengthenHome" + Home->getTag() + " }");
 	newFocus->xPos = nextFreeColumn + 7;
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
@@ -930,7 +938,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 	newFocus->id = "NationalHwy" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_construct_infrastructure";
 	newFocus->text += "National Highway";
-	newFocus->prerequisites.push_back("focus = IndHome" + Home->getTag());
+	newFocus->prerequisites.push_back("= { focus = IndHome" + Home->getTag() + " }");
 	newFocus->xPos = nextFreeColumn + 6;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -1038,7 +1046,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 	newFocus->id = "NatCollege" + Home->getTag();
 	newFocus->icon = "GFX_goal_anschluss";
 	newFocus->text += "Establish National College";
-	newFocus->prerequisites.push_back("focus = IndHome" + Home->getTag());
+	newFocus->prerequisites.push_back("= { focus = IndHome" + Home->getTag() + " }");
 	newFocus->xPos = nextFreeColumn + 8;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -1055,8 +1063,8 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 	newFocus->id = "MilitaryBuildup" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_construct_mil_factory";
 	newFocus->text += "Military Buildup";
-	newFocus->prerequisites.push_back("focus = NatCollege" + Home->getTag());
-	newFocus->prerequisites.push_back("focus = NationalHwy" + Home->getTag());
+	newFocus->prerequisites.push_back("= { focus = NatCollege" + Home->getTag() + " }");
+	newFocus->prerequisites.push_back("= { focus = NationalHwy" + Home->getTag() + " }");
 	newFocus->xPos = nextFreeColumn + 9;
 	newFocus->yPos = 4;
 	newFocus->cost = 10;
@@ -1164,7 +1172,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 	newFocus->id = "PrepTheBorder" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_defence";
 	newFocus->text += "Prepare the Border";
-	newFocus->prerequisites.push_back("focus = StrengthenHome" + Home->getTag());
+	newFocus->prerequisites.push_back("= { focus = StrengthenHome" + Home->getTag() + " }");
 	newFocus->xPos = nextFreeColumn + 10;
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
@@ -1183,7 +1191,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 	newFocus->id = "NatSpirit" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_political_pressure";
 	newFocus->text += "Promote Nationalistic Spirit";
-	newFocus->prerequisites.push_back("focus = PrepTheBorder" + Home->getTag());
+	newFocus->prerequisites.push_back("= { focus = PrepTheBorder" + Home->getTag() + " }");
 	newFocus->xPos = nextFreeColumn + 10;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -1218,8 +1226,10 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 		newFocus->id = "Annex" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
 		newFocus->text += "Conquer " + targetCountryName;
-		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
-		newFocus->prerequisites.push_back("focus = PrepTheBorder" + Home->getTag());
+		newFocus->available += "= {\n";
+		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }\n";
+		newFocus->available += "		}";
+		newFocus->prerequisites.push_back("= { focus = PrepTheBorder" + Home->getTag() + " }");
 		newFocus->xPos = nextFreeColumn + 12;
 		newFocus->yPos = 3;
 		newFocus->cost = 10;
@@ -1267,8 +1277,10 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 		newFocus->id = "Annex" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
 		newFocus->text += "Conquer " + targetCountryName;
-		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
-		newFocus->prerequisites.push_back("focus = NatSpirit" + Home->getTag());
+		newFocus->available += "= {\n";
+		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }\n";
+		newFocus->available += "		}";
+		newFocus->prerequisites.push_back("= { focus = NatSpirit" + Home->getTag() + " }");
 		newFocus->xPos = nextFreeColumn + 10;
 		newFocus->yPos = 4;
 		newFocus->cost = 10;
@@ -1337,7 +1349,7 @@ void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const v
 				newFocus->id = "Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag();
 				newFocus->icon = "GFX_goal_generic_propaganda";
 				newFocus->text = "Influence " + coupCountryName;
-				newFocus->prerequisites.push_back("focus = Home_of_Revolution" + Home->getTag());
+				newFocus->prerequisites.push_back("= { focus = Home_of_Revolution" + Home->getTag() + " }");
 				newFocus->xPos = nextFreeColumn + i * 2;
 				newFocus->yPos = 1;
 				newFocus->cost = 10;
@@ -1380,7 +1392,7 @@ void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const v
 				newFocus->id = "Coup_" + coupTargets[i]->getTag() + "_" + Home->getTag();
 				newFocus->icon = "GFX_goal_generic_demand_territory";
 				newFocus->text = "Civil War in " + coupCountryName;
-				newFocus->prerequisites.push_back("focus = Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag());
+				newFocus->prerequisites.push_back("= { focus = Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag() + " }");
 				newFocus->available = "			" + coupTargets[i]->getTag() + " = { communism > 0.5 }";
 				newFocus->xPos = nextFreeColumn + i * 2;
 				newFocus->yPos = 2;
@@ -1434,7 +1446,7 @@ void HoI4FocusTree::addCommunistWarBranch(shared_ptr<HoI4Country> Home, const ve
 		newFocus->id = "Inter_Com_Pres" + Home->getTag();
 		newFocus->icon = "GFX_goal_generic_dangerous_deal";
 		newFocus->text = "International Communist Pressure";//change to faction name later
-		newFocus->prerequisites.push_back("focus = StrengthCom" + Home->getTag());
+		newFocus->prerequisites.push_back("= { focus = StrengthCom" + Home->getTag() + " }");
 		newFocus->available = "= {\n";
 		newFocus->available = "			date > 1937.1.1\n";
 		newFocus->available = "		}";
@@ -1473,7 +1485,7 @@ void HoI4FocusTree::addCommunistWarBranch(shared_ptr<HoI4Country> Home, const ve
 				newFocus->id = "War" + warTargets[i]->getTag() + Home->getTag();
 				newFocus->icon = "GFX_goal_generic_major_war";
 				newFocus->text = "War with " + warTargetCountryName;//change to faction name later
-				newFocus->prerequisites.push_back("focus = Inter_Com_Pres" + Home->getTag());
+				newFocus->prerequisites.push_back("= { focus = Inter_Com_Pres" + Home->getTag() + " }");
 				newFocus->available += "= {\n";
 				newFocus->available += "			date > 1938." + to_string(v1) + "." + to_string(v2) + "\n";
 				newFocus->available += "		}";
@@ -1550,7 +1562,7 @@ void HoI4FocusTree::addFascistAnnexationBranch(shared_ptr<HoI4Country> Home, con
 		newFocus->id = "mil_march" + Home->getTag();
 		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
 		newFocus->text = "Establish Military March Day";
-		newFocus->prerequisites.push_back("focus = The_third_way" + Home->getTag());
+		newFocus->prerequisites.push_back("= { focus = The_third_way" + Home->getTag() + " }");
 		newFocus->xPos = nextFreeColumn + annexationTargets.size() - 1;
 		newFocus->yPos = 1;
 		newFocus->cost = 10;
@@ -1599,7 +1611,7 @@ void HoI4FocusTree::addFascistAnnexationBranch(shared_ptr<HoI4Country> Home, con
 				newFocus->available += "			is_puppet = no\n";
 				newFocus->available += "			date > 1937." + to_string(v1 + 5) + "." + to_string(v2 + 5) + "\n";
 				newFocus->available += "		}";
-				newFocus->prerequisites.push_back("focus = mil_march" + Home->getTag());
+				newFocus->prerequisites.push_back("= { focus = mil_march" + Home->getTag() + " }");
 				newFocus->xPos = nextFreeColumn + i * 2;
 				newFocus->yPos = 2;
 				newFocus->cost = 10;
@@ -1651,7 +1663,7 @@ void HoI4FocusTree::addFascistSudetenBranch(shared_ptr<HoI4Country> Home, const 
 			{
 				if (i < sudetenTargets.size())
 				{
-//					newFocus->prerequisites.push_back("focus = " + Home->getTag() + "_anschluss_" + sudetenTargets[i]->getTag());
+//					newFocus->prerequisites.push_back("= { focus = " + Home->getTag() + "_anschluss_" + sudetenTargets[i]->getTag() + " }");
 				}
 			}
 			newFocus->xPos = nextFreeColumn + sudetenTargets.size() - 1;
@@ -1689,7 +1701,7 @@ void HoI4FocusTree::addFascistSudetenBranch(shared_ptr<HoI4Country> Home, const 
 				newFocus->id = Home->getTag() + "_sudeten_" + sudetenTargets[i]->getTag();
 				newFocus->icon = "GFX_goal_anschluss";
 				newFocus->text = "Demand Territory from " + sudetenTargetCountryName;
-				newFocus->prerequisites.push_back("focus = expand_the_reich" + Home->getTag());
+				newFocus->prerequisites.push_back("= { focus = expand_the_reich" + Home->getTag() + " }");
 				newFocus->available = "= {\n";
 				newFocus->available += "			is_puppet = no\n";
 				newFocus->available += "			date > 1938." + to_string(v1) + "." + to_string(v2) + "\n";
@@ -1727,7 +1739,7 @@ void HoI4FocusTree::addFascistSudetenBranch(shared_ptr<HoI4Country> Home, const 
 				newFocus->icon = "GFX_goal_generic_territory_or_war";
 				newFocus->text = "Fate of " + sudetenTargetCountryName;
 				newFocus->available = sudetenTargets[i]->getTag() + " = { is_in_faction = no }";
-				newFocus->prerequisites.push_back("focus =  " + Home->getTag() + "_sudeten_" + sudetenTargets[i]->getTag());
+				newFocus->prerequisites.push_back("= { focus =  " + Home->getTag() + "_sudeten_" + sudetenTargets[i]->getTag() + " }");
 				newFocus->available = "			is_puppet = no";
 				newFocus->xPos = nextFreeColumn + 2 * i;
 				newFocus->yPos = 2;
@@ -1805,7 +1817,7 @@ void HoI4FocusTree::addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<sh
 		newFocus->id = "Alliance_" + newAlly->getTag() + Home->getTag();
 		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
 		newFocus->text = "Alliance with " + allyCountryName;
-		newFocus->prerequisites.push_back("focus = " + ideologyShort + "_Summit" + Home->getTag());
+		newFocus->prerequisites.push_back("= { focus = " + ideologyShort + "_Summit" + Home->getTag() + " }");
 		newFocus->xPos = nextFreeColumn + i * 2;
 		newFocus->yPos = 1;
 		newFocus->cost = 10;
@@ -1854,7 +1866,7 @@ void HoI4FocusTree::addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<sh
 			y2 = 2;
 			for (unsigned int i2 = 0; i2 < newAllies.size(); i2++)
 			{
-				prereq += " focus = Alliance_" + newAllies[i2]->getTag() + Home->getTag();
+				prereq += "= { focus = Alliance_" + newAllies[i2]->getTag() + Home->getTag() + " }";
 			}
 		}
 		int v1 = rand() % 12 + 1;
