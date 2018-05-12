@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/V2Localisations.h"
 #include "Army.h"
 #include "Leader.h"
-#include "V2Party.h"
+#include "Party.h"
 #include "Pop.h"
 #include "Province.h"
 #include "Relations.h"
@@ -446,7 +446,7 @@ long Vic2::Country::getEmployedWorkers() const
 }
 
 
-optional<const V2Party> Vic2::Country::getRulingParty(const vector<V2Party>& allParties) const
+optional<const Vic2::Party> Vic2::Country::getRulingParty(const vector<Vic2::Party>& allParties) const
 {
 	if ((rulingPartyID <= allParties.size()) && (rulingPartyID > 0))
 	{
@@ -459,9 +459,9 @@ optional<const V2Party> Vic2::Country::getRulingParty(const vector<V2Party>& all
 }
 
 
-set<V2Party, function<bool (const V2Party&, const V2Party&)>> Vic2::Country::getActiveParties(const vector<V2Party>& allParties) const
+set<Vic2::Party, function<bool (const Vic2::Party&, const Vic2::Party&)>> Vic2::Country::getActiveParties(const vector<Vic2::Party>& allParties) const
 {
-	set<V2Party, function<bool (const V2Party&, const V2Party&)>> activeParties([](const V2Party& first, const V2Party& second)
+	set<Vic2::Party, function<bool (const Vic2::Party&, const Vic2::Party&)>> activeParties([](const Vic2::Party& first, const Vic2::Party& second)
 		{ return first.getName() < second.getName(); }
 	);
 

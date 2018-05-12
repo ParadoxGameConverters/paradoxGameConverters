@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OSCompatibilityLayer.h"
 #include "../Configuration.h"
 #include "../V2World/Diplomacy.h"
-#include "../V2World/V2Party.h"
+#include "../V2World/Party.h"
 #include "HoI4Advisor.h"
 #include "HoI4Agreement.h"
 #include "HoI4Buildings.h"

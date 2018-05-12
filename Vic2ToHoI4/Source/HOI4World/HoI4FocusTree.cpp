@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Focus.h"
 #include "HoI4Localisation.h"
 #include "../Configuration.h"
-#include "../V2World/V2Party.h"
+#include "../V2World/Party.h"
 #include "Log.h"
 #include "Object.h"
 #include "OSCompatibilityLayer.h"

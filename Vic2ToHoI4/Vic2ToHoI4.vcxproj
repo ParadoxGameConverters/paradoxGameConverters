@@ -185,11 +185,11 @@
     <ClCompile Include="Source\V2World\Diplomacy.cpp" />
     <ClCompile Include="Source\V2World\Issues.cpp" />
     <ClCompile Include="Source\V2World\Leader.cpp" />
+    <ClCompile Include="Source\V2World\Party.cpp" />
     <ClCompile Include="Source\V2World\Pop.cpp" />
     <ClCompile Include="Source\V2World\Province.cpp" />
     <ClCompile Include="Source\V2World\Relations.cpp" />
     <ClCompile Include="Source\V2World\State.cpp" />
-    <ClCompile Include="Source\V2World\V2Party.cpp" />
     <ClCompile Include="Source\V2World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -262,11 +262,11 @@
     <ClInclude Include="Source\V2World\Diplomacy.h" />
     <ClInclude Include="Source\V2World\Issues.h" />
     <ClInclude Include="Source\V2World\Leader.h" />
+    <ClInclude Include="Source\V2World\Party.h" />
     <ClInclude Include="Source\V2World\Pop.h" />
     <ClInclude Include="Source\V2World\Province.h" />
     <ClInclude Include="Source\V2World\Relations.h" />
     <ClInclude Include="Source\V2World\State.h" />
-    <ClInclude Include="Source\V2World\V2Party.h" />
     <ClInclude Include="Source\V2World\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

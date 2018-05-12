@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "ParserHelpers.h"
-#include "../V2World/V2Party.h"
+#include "../V2World/Party.h"
 #include <fstream>
 
 
@@ -1137,7 +1137,7 @@ void HoI4::Events::createWarJustificationEvents(const std::set<std::string>& maj
 }
 
 
-void HoI4::Events::addPartyChoiceEvent(const std::string& countryTag, const std::set<V2Party, std::function<bool (const V2Party&, const V2Party&)>>& parties, HoI4OnActions* onActions, const set<string>& majorIdeologies)
+void HoI4::Events::addPartyChoiceEvent(const std::string& countryTag, const std::set<Vic2::Party, std::function<bool (const Vic2::Party&, const Vic2::Party&)>>& parties, HoI4OnActions* onActions, const set<string>& majorIdeologies)
 {
 	Event partyChoiceEvent;
 

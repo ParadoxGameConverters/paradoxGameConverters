@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Country.h"
 #include "Diplomacy.h"
 #include "Issues.h"
-#include "V2Party.h"
+#include "Party.h"
 #include "Province.h"
 #include "State.h"
 #include "../Mappers/CountryMapping.h"

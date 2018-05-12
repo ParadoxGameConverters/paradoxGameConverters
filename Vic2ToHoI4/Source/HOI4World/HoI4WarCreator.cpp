@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceDefinitions.h"
 #include "../Mappers/ProvinceNeighborMapper.h"
 #include "../Mappers/StateMapper.h"
-#include "../V2World/V2Party.h"
+#include "../V2World/Party.h"
 
 
 
@@ -272,7 +272,7 @@ vector<shared_ptr<HoI4Country>> HoI4WarCreator::findEvilCountries() const
 			evilness += 3;
 		if (country.second->getGovernmentIdeology() == "anarcho_liberal")
 			evilness += 3;
-		const V2Party countryrulingparty = country.second->getRulingParty();
+		auto countryrulingparty = country.second->getRulingParty();
 	
 		if (countryrulingparty.getWarPolicy() == "jingoism")
 			evilness += 3;

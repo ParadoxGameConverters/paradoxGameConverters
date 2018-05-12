@@ -34,7 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/Country.h"
 #include "../V2World/Province.h"
 #include "../V2World/State.h"
-#include "../V2World/V2World.h"
+#include "../V2World/World.h"
 #include <fstream>
 
 

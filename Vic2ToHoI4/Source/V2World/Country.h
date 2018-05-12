@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../Color.h"
 #include "Date.h"
-#include "V2Party.h"
+#include "Party.h"
 #include "newParser.h"
 #include <functional>
 #include <map>
@@ -101,8 +101,8 @@ class Country: commonItems::parser
 		std::optional<std::string> getAdjective(const std::string& language) const;
 		double getUpperHousePercentage(const std::string& ideology) const;
 		long getEmployedWorkers() const;
-		std::optional<const V2Party> getRulingParty(const std::vector<V2Party>& allParties) const;
-		std::set<V2Party, std::function<bool (const V2Party&, const V2Party&)>> getActiveParties(const std::vector<V2Party>& allParties) const;
+		std::optional<const Vic2::Party> getRulingParty(const std::vector<Vic2::Party>& allParties) const;
+		std::set<Vic2::Party, std::function<bool (const Vic2::Party&, const Vic2::Party&)>> getActiveParties(const std::vector<Vic2::Party>& allParties) const;
 		bool hasCoreOnCapital() const;
 		std::vector<std::string> getShipNames(std::string category) const;
 		double getAverageMilitancy() const;

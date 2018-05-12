@@ -56,8 +56,8 @@ Vic2::commonCountryData::commonCountryData(const std::string& filename, const st
 		}
 	});
 	registerKeyword(std::regex("party"), [this](const std::string& unused, std::istream& theStream){
-		auto partyObj = commonItems::convert8859Object(unused, theStream);
-		parties.push_back(partyObj->getLeaves()[0]);
+		auto party = Party(theStream);
+		parties.emplace_back(party);
 	});
 	registerKeyword(std::regex("[A-Za-z0-9\\_]+"), commonItems::ignoreItem);
 

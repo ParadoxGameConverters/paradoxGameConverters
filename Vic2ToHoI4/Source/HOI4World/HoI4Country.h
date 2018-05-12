@@ -37,7 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Color.h"
 #include "Date.h"
 #include "../V2World/Army.h"
-#include "../V2World/V2Party.h"
+#include "../V2World/Party.h"
 #include <optional>
 #include <set>
 #include <vector>
@@ -112,8 +112,8 @@ class HoI4Country
 		HoI4State* getCapitalState() const { return capitalState; }
 		int											getCapitalStateNum() const { return capitalStateNum; }
 		const string									getSphereLeader() const { return sphereLeader; }
-		const V2Party getRulingParty() const { return rulingParty; }
-		set<V2Party, function<bool (const V2Party&, const V2Party&)>> getParties() const { return parties; }
+		const Vic2::Party getRulingParty() const { return rulingParty; }
+		set<Vic2::Party, function<bool (const Vic2::Party&, const Vic2::Party&)>> getParties() const { return parties; }
 		map<int, HoI4State*> getStates() const { return states; }
 		bool isInFaction() const { return faction != nullptr; }
 		bool isCivilized() const { return civilized; }
@@ -180,8 +180,8 @@ class HoI4Country
 
 		string governmentIdeology;
 		string leaderIdeology;
-		V2Party rulingParty;
-		set<V2Party, function<bool (const V2Party&, const V2Party&)>> parties;
+		Vic2::Party rulingParty;
+		set<Vic2::Party, function<bool (const Vic2::Party&, const Vic2::Party&)>> parties;
 		map<string, int> ideologySupport;
 		date lastElection;
 

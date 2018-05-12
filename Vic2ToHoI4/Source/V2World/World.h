@@ -27,7 +27,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "newParser.h"
-#include "V2Party.h"
+#include "Party.h"
+#include <map>
 #include <optional>
 #include <string>
 #include <vector>
@@ -39,6 +40,7 @@ namespace Vic2
 
 class Country;
 class Diplomacy;
+class Party;
 class Province;
 
 
@@ -52,7 +54,7 @@ class World: commonItems::parser
 		std::map<std::string, Country*> getCountries() const { return countries; }
 		const Diplomacy* getDiplomacy() const { return diplomacy; }
 		std::vector<std::string> getGreatPowers() const	{ return greatPowers; }
-		std::vector<V2Party> getParties() const { return parties; }
+		std::vector<Party> getParties() const { return parties; }
 		auto getProvinces() const { return provinces; }
 
 	private:
@@ -88,7 +90,7 @@ class World: commonItems::parser
 		std::map<int, Province*> provinces;
 		std::map<std::string, Country*> countries;
 		const Diplomacy* diplomacy = nullptr;
-		std::vector<V2Party> parties;
+		std::vector<Party> parties;
 		std::vector<std::string> greatPowers;
 };
 

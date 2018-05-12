@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "newParser.h"
-#include "V2Party.h"
+#include "Party.h"
 #include "../Color.h"
 #include <map>
 #include <string>
@@ -50,7 +50,7 @@ class commonCountryData: commonItems::parser
 	private:
 		ConverterColor::Color theColor;
 		std::map<std::string, std::vector<std::string>> unitNames;
-		std::vector<V2Party> parties;
+		std::vector<Party> parties;
 };
 
 }

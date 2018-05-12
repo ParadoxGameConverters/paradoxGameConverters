@@ -26,30 +26,35 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Object.h"
+#include "newParser.h"
 #include <memory>
 
 
 
-class V2Party
+namespace Vic2
+{
+
+class Party: commonItems::parser
 {
 	public:
-		V2Party() = default;
-		V2Party(std::shared_ptr<Object> party_obj);
+		Party() = default;
+		Party(std::istream& theStream);
 
 		std::string getName() const { return name; }
 		std::string getIdeology() const { return ideology; }
 		std::string getWarPolicy() const { return warPolicy; }
 
 	private:
-		std::string name;
-		std::string ideology;
-		std::string economic_policy;
-		std::string trade_policy;
-		std::string religious_policy;
-		std::string citizenship_policy;
-		std::string warPolicy;
+		std::string name = "";
+		std::string ideology = "conservative";
+		std::string economic_policy = "interventionism";
+		std::string trade_policy = "protectionism";
+		std::string religious_policy = "moralism";
+		std::string citizenship_policy = "residency";
+		std::string warPolicy = "pro_military";
 };
+
+}
 
 
 
