@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Flags.h"
 #include "Log.h"
 #include "HOI4World/HoI4World.h"
-#include "V2World/V2World.h"
+#include "V2World/World.h"
 #include "OSCompatibilityLayer.h"
 
 

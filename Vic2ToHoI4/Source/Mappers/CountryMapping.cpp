@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sstream>
 #include <utility>
 #include "ParadoxParserUTF8.h"
-#include "../V2World/V2World.h"
+#include "../V2World/World.h"
 #include "../HOI4World/HoI4World.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"

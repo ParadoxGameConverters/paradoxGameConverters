@@ -30,9 +30,6 @@
     <ClCompile Include="Source\V2World\V2Party.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\V2World\V2World.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\HOI4World\HoI4Army.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
@@ -227,6 +224,12 @@
     <ClCompile Include="Source\Mappers\MergeRules.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\V2World\CommonCountryData.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\World.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -242,9 +245,6 @@
       <Filter>CommonItems</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Party.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2World.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Army.h">
@@ -440,6 +440,12 @@
     </ClInclude>
     <ClInclude Include="Source\Mappers\MergeRules.h">
       <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\CommonCountryData.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\World.h">
+      <Filter>Vic2World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

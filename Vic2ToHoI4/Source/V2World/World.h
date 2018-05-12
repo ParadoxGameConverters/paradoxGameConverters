@@ -26,7 +26,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Object.h"
 #include "newParser.h"
 #include "V2Party.h"
 #include <optional>
@@ -82,10 +81,6 @@ class World: commonItems::parser
 		bool processCountriesDotTxt(const std::string& countryListFile, const std::string& mod);
 		bool shouldLineBeSkipped(const std::string& line) const;
 		std::string extractCountryFileName(const std::string& countryFileLine) const;
-		std::shared_ptr<Object> readCountryFile(const std::string& countryFileName, const std::string& mod) const;
-		void readCountryColor(std::shared_ptr<Object> countryData, const std::string& line);
-		void readShipNames(std::shared_ptr<Object> countryData, const std::string& line);
-		void inputPartyInformation(const std::vector<std::shared_ptr<Object>>& leaves);
 
 		std::optional<Country*> getCountry(const std::string& tag) const;
 

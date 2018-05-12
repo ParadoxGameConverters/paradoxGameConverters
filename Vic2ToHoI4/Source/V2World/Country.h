@@ -60,7 +60,7 @@ class Country: commonItems::parser
 		void setAsGreatNation() { greatNation = true; }
 		void addCore(Province* core) { cores.push_back(core); }
 		void replaceCores(std::vector<Province*> newCores) { cores.swap(newCores); }
-		void setShipNames(std::string category, std::vector<std::string> newShipNames) { shipNames[category] = newShipNames; }
+		void setShipNames(std::map<std::string, std::vector<std::string>> newShipNames) { shipNames = newShipNames; }
 
 		void eatCountry(Country* target);
 		void putProvincesInStates();

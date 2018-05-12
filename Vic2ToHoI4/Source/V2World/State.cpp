@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Building.h"
 #include "Country.h"
 #include "Province.h"
-#include "V2World.h"
+#include "World.h"
 #include "../Mappers/StateMapper.h"
 #include "Log.h"
 #include "ParserHelpers.h"

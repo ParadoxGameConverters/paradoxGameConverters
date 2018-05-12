@@ -119,8 +119,8 @@ commonItems::intList::intList(std::istream& theStream):
 commonItems::singleInt::singleInt(std::istream& theStream):
 	theInt()
 {
-	auto equals = getNextToken(theStream);
-	auto token = *getNextToken(theStream);
+	auto equals = getNextTokenWithoutMatching(theStream);
+	auto token = *getNextTokenWithoutMatching(theStream);
 	if (token.substr(0,1) == "\"")
 	{
 		token = token.substr(1, token.length() - 2);
@@ -136,7 +136,7 @@ commonItems::singleInt::singleInt(std::istream& theStream):
 	}
 }
 
-#pragma optimize("",off)
+
 commonItems::doubleList::doubleList(std::istream& theStream):
 	doubles()
 {
@@ -154,13 +154,13 @@ commonItems::doubleList::doubleList(std::istream& theStream):
 
 	parseStream(theStream);
 }
-#pragma optimize("",on)
+
 
 commonItems::singleDouble::singleDouble(std::istream& theStream):
 	theDouble()
 {
-	auto equals = getNextToken(theStream);
-	auto token = *getNextToken(theStream);
+	auto equals = getNextTokenWithoutMatching(theStream);
+	auto token = *getNextTokenWithoutMatching(theStream);
 	if (token.substr(0,1) == "\"")
 	{
 		token = token.substr(1, token.length() - 2);
@@ -180,7 +180,7 @@ commonItems::singleDouble::singleDouble(std::istream& theStream):
 commonItems::stringList::stringList(std::istream& theStream):
 	strings()
 {
-	std::string iso8859_15("[\\w\\x20\\x27\\x2C-\\x2E\\x3A\\x3F\\x60\\x8A\\x92\\x9A\\x9E\\xA0\\xA6\\xA8\\xB4\\xB8\\xBC-\\xBE\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\xFF\\xED]+");
+	std::string iso8859_15("[\\w\\x20\\x27\\x2C-\\x2E\\x3A\\x3F\\x60\\x8A\\x8E\\x92\\x9A\\x9E\\xA0\\xA6\\xA8\\xAA\\xB4\\xB8\\xBC-\\xBE\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\xFF\\xED]+");
 	registerKeyword(std::regex(iso8859_15), [this](const std::string& theString, std::istream& theStream)
 	{
 		strings.push_back(theString);
@@ -199,8 +199,12 @@ commonItems::stringList::stringList(std::istream& theStream):
 commonItems::singleString::singleString(std::istream& theStream):
 	theString()
 {
-	auto equals = getNextToken(theStream);
-	theString = *getNextToken(theStream);
+	auto equals = getNextTokenWithoutMatching(theStream);
+	theString = *getNextTokenWithoutMatching(theStream);
+	if (theString.substr(0,1) == "\"")
+	{
+		theString = theString.substr(1, theString.size() - 2);
+	}
 }
 
 

@@ -180,6 +180,7 @@
     <ClCompile Include="Source\V2World\Agreement.cpp" />
     <ClCompile Include="Source\V2World\Army.cpp" />
     <ClCompile Include="Source\V2World\Building.cpp" />
+    <ClCompile Include="Source\V2World\CommonCountryData.cpp" />
     <ClCompile Include="Source\V2World\Country.cpp" />
     <ClCompile Include="Source\V2World\Diplomacy.cpp" />
     <ClCompile Include="Source\V2World\Issues.cpp" />
@@ -189,7 +190,7 @@
     <ClCompile Include="Source\V2World\Relations.cpp" />
     <ClCompile Include="Source\V2World\State.cpp" />
     <ClCompile Include="Source\V2World\V2Party.cpp" />
-    <ClCompile Include="Source\V2World\V2World.cpp" />
+    <ClCompile Include="Source\V2World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\CardinalToOrdinal.h" />
@@ -256,6 +257,7 @@
     <ClInclude Include="Source\V2World\Agreement.h" />
     <ClInclude Include="Source\V2World\Army.h" />
     <ClInclude Include="Source\V2World\Building.h" />
+    <ClInclude Include="Source\V2World\CommonCountryData.h" />
     <ClInclude Include="Source\V2World\Country.h" />
     <ClInclude Include="Source\V2World\Diplomacy.h" />
     <ClInclude Include="Source\V2World\Issues.h" />
@@ -265,7 +267,7 @@
     <ClInclude Include="Source\V2World\Relations.h" />
     <ClInclude Include="Source\V2World\State.h" />
     <ClInclude Include="Source\V2World\V2Party.h" />
-    <ClInclude Include="Source\V2World\V2World.h" />
+    <ClInclude Include="Source\V2World\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

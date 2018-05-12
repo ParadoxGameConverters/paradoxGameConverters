@@ -21,16 +21,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "V2World.h"
+#include "World.h"
 #include <fstream>
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParser8859_15.h"
 #include "ParadoxParserUTF8.h"
 #include "ParserHelpers.h"
-#include "Issues.h"
+#include "CommonCountryData.h"
 #include "Country.h"
 #include "Diplomacy.h"
+#include "Issues.h"
 #include "V2Party.h"
 #include "Province.h"
 #include "State.h"
@@ -295,15 +296,18 @@ bool Vic2::World::processCountriesDotTxt(const string& countryListFile, const st
 			continue;
 		}
 
+		string tag = line.substr(0, 3);
 		string countryFileName = extractCountryFileName(line);
-		shared_ptr<Object> countryData = readCountryFile(countryFileName, mod);
-		if (countryData == nullptr)
+		commonCountryData countryData(countryFileName, mod);
+		if (countries.find(tag) != countries.end())
 		{
-			continue;
+			countries[tag]->setColor(countryData.getColor());
+			countries[tag]->setShipNames(countryData.getUnitNames());
 		}
-		readCountryColor(countryData, line);
-		readShipNames(countryData, line);
-		inputPartyInformation(countryData->getLeaves());
+		for (auto party: countryData.getParties())
+		{
+			parties.emplace_back(party);
+		}
 	}
 
 	V2CountriesInput.close();
@@ -325,90 +329,6 @@ string Vic2::World::extractCountryFileName(const string& countryFileLine) const
 	countryFileName = countryFileLine.substr(start, size);
 
 	return countryFileName;
-}
-
-
-std::shared_ptr<Object> Vic2::World::readCountryFile(const string& countryFileName, const string& mod) const
-{
-	shared_ptr<Object> countryData = nullptr;
-	if (mod != "")
-	{
-		string file = Configuration::getV2Path() + "/mod/" + mod + "/common/countries/" + countryFileName;
-		if (Utils::DoesFileExist(file))
-		{
-			countryData = parser_8859_15::doParseFile(file);
-			if (!countryData)
-			{
-				LOG(LogLevel::Warning) << "Could not parse file " << file;
-			}
-		}
-	}
-	if (!countryData)
-	{
-		string file = Configuration::getV2Path() +  "/common/countries/" + countryFileName;
-		if (Utils::DoesFileExist(file))
-		{
-			countryData = parser_8859_15::doParseFile(file);
-			if (!countryData)
-			{
-				LOG(LogLevel::Warning) << "Could not parse file " << file;
-			}
-		}
-		else
-		{
-			LOG(LogLevel::Debug) << "Could not find file V2 " << file << " - skipping";
-		}
-	}
-
-	return countryData;
-}
-
-
-void Vic2::World::readCountryColor(shared_ptr<Object> countryData, const string& line)
-{
-	string tag = line.substr(0, 3);
-	auto rgb = countryData->safeGetTokens("color");
-	if (rgb.size() == 3)
-	{
-		if (countries.find(tag) != countries.end())
-		{
-			countries[tag]->setColor(ConverterColor::Color(stoi(rgb[0]), stoi(rgb[1]), stoi(rgb[2])));
-		}
-	}
-}
-
-
-void Vic2::World::readShipNames(shared_ptr<Object> countryData, const string& line)
-{
-	string tag = line.substr(0, 3);
-	if (countries.find(tag) == countries.end()) return;
-
-	auto leaves = countryData->getLeaves();
-	for (auto leaf : leaves)
-	{
-		string key = leaf->getKey();
-		if (key == "unit_names")
-		{
-			auto unitTypes = leaf->getLeaves();
-			for (auto unitType : unitTypes)
-			{
-				countries[tag]->setShipNames(unitType->getKey(), unitType->getTokens());
-			}
-		}
-	}
-}
-
-
-void Vic2::World::inputPartyInformation(const vector<shared_ptr<Object>>& leaves)
-{
-	for (auto leaf: leaves)
-	{
-		string key = leaf->getKey();
-		if (key == "party")
-		{
-			parties.emplace_back(leaf);
-		}
-	}
 }
 
 
