@@ -173,7 +173,7 @@ focus = {
 			threat > 10 # determined in code from Vic2 war policy
 		}
 		completion_reward = {
-			add_national_unity = 0.05
+			add_stability = 0.05
 		}
 		ai_will_do = {
 			factor = 10
@@ -300,7 +300,7 @@ focus = {
 		y = 0
 		cost = 10
 		completion_reward = {
-			add_national_unity = 0.05
+			add_stability = 0.05
 		}
 		ai_will_do = {
 			factor = 10
