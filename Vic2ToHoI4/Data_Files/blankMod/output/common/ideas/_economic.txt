@@ -148,8 +148,8 @@ ideas = {
 				OR = {
 					has_government = fascism
 					has_government = communism
-					has_government = autocratic
-					has_government = syndicalism
+					has_government = absolutist
+					has_government = radical
 					custom_trigger_tooltip = { tooltip = or_clarification_tooltip always = no }
 					AND = {
 						has_war = yes
