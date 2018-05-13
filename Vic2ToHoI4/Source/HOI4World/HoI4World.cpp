@@ -1685,11 +1685,11 @@ void HoI4World::outputCommonCountries() const
 		exit(-1);
 	}
 
-	for (auto countryItr: countries)
+	for (auto country: countries)
 	{
-		if (countryItr.second->getCapitalStateNum() != 0)
+		if (country.second->getCapitalStateNum() != 0)
 		{
-			countryItr.second->outputToCommonCountriesFile(allCountriesFile);
+			country.second->outputToCommonCountriesFile(allCountriesFile);
 		}
 	}
 
@@ -1714,11 +1714,11 @@ void HoI4World::outputColorsfile() const
 	}
 
 	output << "#reload countrycolors\n";
-	for (auto countryItr: countries)
+	for (auto country: countries)
 	{
-		if (countryItr.second->getCapitalStateNum() != 0)
+		if (country.second->getCapitalStateNum() != 0)
 		{
-			countryItr.second->outputColors(output);
+			country.second->outputColors(output);
 		}
 	}
 
@@ -1739,7 +1739,10 @@ void HoI4World::outputNames() const
 
 	for (auto country: countries)
 	{
-		country.second->outputToNamesFiles(namesFile);
+		if (country.second->getCapitalStateNum() != 0)
+		{
+			country.second->outputToNamesFiles(namesFile);
+		}
 	}
 }
 
@@ -1756,7 +1759,10 @@ void HoI4World::outputUnitNames() const
 
 	for (auto country : countries)
 	{
-		country.second->outputToUnitNamesFiles(namesFile);
+		if (country.second->getCapitalStateNum() != 0)
+		{
+			country.second->outputToUnitNamesFiles(namesFile);
+		}
 	}
 }
 
@@ -1849,7 +1855,10 @@ void HoI4World::outputCountries() const
 
 	for (auto country: countries)
 	{
-		country.second->output(getActiveIdeologicalAdvisors(), divisionTemplates);
+		if (country.second->getCapitalStateNum() != 0)
+		{
+			country.second->output(getActiveIdeologicalAdvisors(), divisionTemplates);
+		}
 	}
 
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/interface/converter_ideas.gfx");
@@ -1862,7 +1871,10 @@ void HoI4World::outputCountries() const
 	ideasFile << "spriteTypes = {\n";
 	for (auto country: countries)
 	{
-		country.second->outputIdeaGraphics(ideasFile);
+		if (country.second->getCapitalStateNum() != 0)
+		{
+			country.second->outputIdeaGraphics(ideasFile);
+		}
 	}
 	ideasFile << "\n";
 	ideasFile << "}\n";
