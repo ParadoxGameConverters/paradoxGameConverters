@@ -158,6 +158,7 @@
     <ClCompile Include="Source\HOI4World\HOI4Version.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4WarCreator.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4World.cpp" />
+    <ClCompile Include="Source\HOI4World\IdeologicalAdvisors.cpp" />
     <ClCompile Include="Source\Mappers\CoastalHoI4Provinces.cpp" />
     <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
     <ClCompile Include="Source\Mappers\CultureGroupMapper.cpp" />
@@ -236,6 +237,7 @@
     <ClInclude Include="Source\HOI4World\HOI4Version.h" />
     <ClInclude Include="Source\HOI4World\HoI4WarCreator.h" />
     <ClInclude Include="Source\HOI4World\HoI4World.h" />
+    <ClInclude Include="Source\HOI4World\IdeologicalAdvisors.h" />
     <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h" />
     <ClInclude Include="Source\Mappers\GraphicsMapper.h" />
     <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h" />

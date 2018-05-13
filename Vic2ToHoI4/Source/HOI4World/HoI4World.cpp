@@ -37,6 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Events.h"
 #include "HoI4Faction.h"
 #include "HoI4FocusTree.h"
+#include "IdeologicalAdvisors.h"
 #include "HOI4Ideology.h"
 #include "HoI4Localisation.h"
 #include "HoI4OnActions.h"
@@ -272,17 +273,8 @@ void HoI4World::importLeaderTraits()
 
 void HoI4World::importIdeologicalMinisters()
 {
-	auto fileObject = parser_UTF8::doParseFile("ideologicalAdvisors.txt");
-	if (fileObject)
-	{
-		auto ideologyObjects = fileObject->getLeaves();
-		for (auto ideologyObject: ideologyObjects)
-		{
-			string ideaName = ideologyObject->getKey();
-			HoI4Advisor* newAdvisor = new HoI4Advisor(ideologyObject->getLeaves()[0]);
-			ideologicalAdvisors.insert(make_pair(ideaName, newAdvisor));
-		}
-	}
+	HoI4::IdeologicalAdvisors theAdvisors;
+	ideologicalAdvisors.swap(theAdvisors.takeAdvisors());
 }
 
 
