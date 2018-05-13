@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../V2World/Diplomacy.h"
 #include "../V2World/Party.h"
-#include "HoI4Advisor.h"
+#include "Advisor.h"
 #include "HoI4Agreement.h"
 #include "HoI4Buildings.h"
 #include "HoI4Country.h"
@@ -1845,11 +1845,12 @@ void HoI4World::outputCountries() const
 		exit(-1);
 	}
 
+	auto activeIdeologicalAdvisors = getActiveIdeologicalAdvisors();
 	for (auto country: countries)
 	{
 		if (country.second->getCapitalStateNum() != 0)
 		{
-			country.second->output(getActiveIdeologicalAdvisors(), divisionTemplates);
+			country.second->output(activeIdeologicalAdvisors, divisionTemplates);
 		}
 	}
 
@@ -1873,9 +1874,9 @@ void HoI4World::outputCountries() const
 }
 
 
-set<const HoI4Advisor*, advisorCompare> HoI4World::getActiveIdeologicalAdvisors() const
+set<const HoI4::Advisor*, HoI4::advisorCompare> HoI4World::getActiveIdeologicalAdvisors() const
 {
-	set<const HoI4Advisor*, advisorCompare> theAdvisors;
+	set<const HoI4::Advisor*, HoI4::advisorCompare> theAdvisors;
 	for (auto ideology: majorIdeologies)
 	{
 		auto ideologicalAdvisor = ideologicalAdvisors.find(ideology);

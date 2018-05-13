@@ -158,9 +158,6 @@
     <ClCompile Include="Source\HOI4World\HOI4Ideology.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\HOI4World\HoI4Advisor.cpp">
-      <Filter>HoI4World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\InventionsMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -231,6 +228,9 @@
       <Filter>Vic2World</Filter>
     </ClCompile>
     <ClCompile Include="Source\HOI4World\IdeologicalAdvisors.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Advisor.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
   </ItemGroup>
@@ -378,9 +378,6 @@
     <ClInclude Include="Source\HOI4World\HOI4Ideology.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\HOI4World\HoI4Advisor.h">
-      <Filter>HoI4World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\InventionsMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -451,6 +448,9 @@
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\IdeologicalAdvisors.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Advisor.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>

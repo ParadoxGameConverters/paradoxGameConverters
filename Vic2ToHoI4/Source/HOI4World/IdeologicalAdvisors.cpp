@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "IdeologicalAdvisors.h"
-#include "HoI4Advisor.h"
+#include "Advisor.h"
 #include "NewParserToOldParserConverters.h"
 
 
@@ -30,8 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 HoI4::IdeologicalAdvisors::IdeologicalAdvisors()
 {
 	registerKeyword(std::regex("[a-z]+"), [this](const std::string& ideology, std::istream& theStream){
-		auto ideologyObject = commonItems::convertUTF8Object(ideology, theStream);
-		HoI4Advisor* newAdvisor = new HoI4Advisor(ideologyObject->getLeaves()[0]->getLeaves()[0]);
+		Advisor* newAdvisor = new Advisor(ideology, theStream);
 		theAdvisors.insert(make_pair(ideology, newAdvisor));
 	});
 

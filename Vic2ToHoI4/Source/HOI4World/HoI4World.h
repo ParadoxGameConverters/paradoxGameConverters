@@ -37,7 +37,6 @@ using namespace std;
 
 
 
-class HoI4Advisor;
 class HoI4Buildings;
 class HoI4Country;
 class HoI4Diplomacy;
@@ -53,17 +52,16 @@ class HoI4SupplyZones;
 class HoI4UnitMap;
 namespace HoI4
 {
+class Advisor;
 class decisions;
 class Events;
+struct advisorCompare;
 }
 namespace Vic2
 {
 class Country;
 class World;
 }
-
-
-struct advisorCompare;
 
 
 
@@ -183,7 +181,7 @@ class HoI4World
 		void outputMap() const;
 		void outputGenericFocusTree() const;
 		void outputCountries() const;
-		set<const HoI4Advisor*, advisorCompare> getActiveIdeologicalAdvisors() const;
+		set<const HoI4::Advisor*, HoI4::advisorCompare> getActiveIdeologicalAdvisors() const;
 		void outputRelations() const;
 		void outputIdeologies() const;
 		void outputLeaderTraits() const;
@@ -213,7 +211,7 @@ class HoI4World
 		map<string, HoI4Ideology*> ideologies;
 		set<string> majorIdeologies;
 		map<string, vector<shared_ptr<Object>>> ideologicalLeaderTraits;
-		map<string, HoI4Advisor*> ideologicalAdvisors;
+		map<std::string, HoI4::Advisor*> ideologicalAdvisors;
 		map<string, vector<shared_ptr<Object>>> ideologicalIdeas;
 		
 		vector<shared_ptr<HoI4Faction>> factions;

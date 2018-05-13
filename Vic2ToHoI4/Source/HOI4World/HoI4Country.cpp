@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Country.h"
-#include "HoI4Advisor.h"
+#include "Advisor.h"
 #include "HoI4World.h"
 #include "Log.h"
 #include "ParadoxParserUTF8.h"
@@ -1286,7 +1286,7 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const optional<vector<stri
 }
 
 
-void HoI4Country::output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const
+void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const
 {
 	if (capitalStateNum != 0)
 	{
@@ -1747,7 +1747,7 @@ void HoI4Country::outputCommonCountryFile() const
 }
 
 
-void HoI4Country::outputIdeas(const set<const HoI4Advisor*, advisorCompare>& ideologicalAdvisors) const
+void HoI4Country::outputIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const
 {
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/" + tag + ".txt");
 	if (!ideasFile.is_open())

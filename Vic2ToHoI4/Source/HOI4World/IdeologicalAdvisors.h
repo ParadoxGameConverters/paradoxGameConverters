@@ -30,12 +30,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 
 
-class HoI4Advisor;
-
-
 
 namespace HoI4
 {
+class Advisor;
 
 class IdeologicalAdvisors: commonItems::parser
 {
@@ -45,7 +43,7 @@ class IdeologicalAdvisors: commonItems::parser
 		auto takeAdvisors() { return std::move(theAdvisors); }
 
 	private:
-		std::map<std::string, HoI4Advisor*> theAdvisors;
+		std::map<std::string, HoI4::Advisor*> theAdvisors;
 };
 
 }

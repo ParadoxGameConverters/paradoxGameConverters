@@ -49,10 +49,14 @@ namespace Vic2
 {
 class Country;
 }
-class HoI4Advisor;
 class HoI4Faction;
 class HoI4World;
+
+namespace HoI4
+{
+class Advisor;
 struct advisorCompare;
+}
 
 
 
@@ -82,7 +86,7 @@ class HoI4Country
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
 		void outputToUnitNamesFiles(ofstream& unitNamesFile) const;
-		void output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const;
+		void output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const;
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(const string& SphereLeader) { sphereLeader == SphereLeader; }
@@ -168,7 +172,7 @@ class HoI4Country
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOBLine(ofstream& output) const;
 		void outputCommonCountryFile() const;
-		void outputIdeas(const set<const HoI4Advisor*, advisorCompare>& ideologicalAdvisors) const;
+		void outputIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const;
 		void outputUnitType(ofstream& unitNamesFile, string sourceUnitType, string destUnitType, string defaultName) const;
 
 

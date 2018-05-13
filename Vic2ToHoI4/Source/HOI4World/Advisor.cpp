@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,33 +21,46 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "HoI4Advisor.h"
-#include "Object.h"
+#include "Advisor.h"
+#include "NewParserToOldParserConverters.h"
+#include "ParserHelpers.h"
 
 
 
-HoI4Advisor::HoI4Advisor(shared_ptr<Object> object):
-	trait(object->safeGetString("traits")),
-	picture(object->safeGetString("picture")),
-	event(""),
-	ideology(object->getKey())
+HoI4::Advisor::Advisor(const std::string& ideology, std::istream& theStream):
+	ideology(ideology)
 {
-	auto onAddObj = object->safeGetObject("on_add");
-	if (onAddObj != nullptr)
-	{
+	registerKeyword(std::regex("traits"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringList traitString(theStream);
+		traits = traitString.getStrings();
+	});
+	registerKeyword(std::regex("picture"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString pictureString(theStream);
+		picture = pictureString.getString();
+	});
+	registerKeyword(std::regex("on_add"), [this](const std::string& unused, std::istream& theStream){
+		auto onAddObj = commonItems::convertUTF8Object(unused, theStream);
 		auto eventObjs = onAddObj->getLeaves();
 		event = eventObjs[0]->getLeaf();
-	}
+	});
+	registerKeyword(std::regex("[A-Za-z0-9_]+"), commonItems::ignoreItem);
+
+	parseStream(theStream);
 }
 
 
-void HoI4Advisor::output(ofstream& output, const string& tag) const
+void HoI4::Advisor::output(std::ofstream& output, const std::string& tag) const
 {
 	output << "\t\t" << tag << "_" << ideology << "_advisor = {\n";
 	output << "\t\t\tallowed = {\n";
 	output << "\t\t\t\toriginal_tag = \"" << tag << "\"\n";
 	output << "\t\t\t}\n";
-	output << "\t\t\ttraits = { " << trait << " }\n";
+	output << "\t\t\ttraits = { ";
+	for (auto trait: traits)
+	{
+		output << trait << " ";
+	}
+	output << "}\n";
 	if (event != "")
 	{
 		output << "\t\t\ton_add = {\n";
