@@ -46,7 +46,7 @@
 						<friendlyName>HoI4 Version</friendlyName>
 						<description>If manually entering the HoI4 version, set this to the desired version</description>
 						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-						<value>1.4.2</value>
+						<value>1.5.3</value>
 					</preference>
 					<preference>
 						<name>industrial_shape_factor</name>
