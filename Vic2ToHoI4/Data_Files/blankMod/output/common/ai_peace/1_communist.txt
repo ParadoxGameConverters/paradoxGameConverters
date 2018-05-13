@@ -408,7 +408,7 @@ communist_peace = {
 			factor = -1
 
 			FROM = {
-				has_government = communist
+				has_government = communism
 			}
 		}
 	}
