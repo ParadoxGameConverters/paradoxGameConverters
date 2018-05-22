@@ -215,7 +215,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 		int relativePosition = 1 - numCollectovistIdeologies;
 		if (majorIdeologies.count("fascism") > 0)
 		{
-			addFascistGenericFocuses(relativePosition);
+			addFascistGenericFocuses(relativePosition, majorIdeologies);
 			if (ideolgicalFanaticsmPrereqs.size() > 0)
 			{
 				ideolgicalFanaticsmPrereqs += " ";
@@ -444,7 +444,7 @@ void HoI4FocusTree::determineMutualExclusions(const set<string>& majorIdeologies
 }
 
 
-void HoI4FocusTree::addFascistGenericFocuses(int relativePosition)
+void HoI4FocusTree::addFascistGenericFocuses(int relativePosition, const std::set<std::string>& majorIdeologies)
 {
 	shared_ptr<HoI4Focus> newFocus = make_shared<HoI4Focus>(loadedFocuses.find("nationalism_focus")->second);
 	newFocus->mutuallyExclusive = "= { " + fascistMutualExlusions + " }";
@@ -455,6 +455,19 @@ void HoI4FocusTree::addFascistGenericFocuses(int relativePosition)
 	focuses.push_back(newFocus);
 
 	newFocus = make_shared<HoI4Focus>(loadedFocuses.find("military_youth")->second);
+	newFocus->completionReward  = "= {\n";
+	newFocus->completionReward += "			add_ideas = military_youth_focus\n";
+	for (auto ideology: majorIdeologies)
+	{
+		newFocus->completionReward += "			if = {\n";
+		newFocus->completionReward += "				limit = { has_government = " + ideology + " }\n";
+		newFocus->completionReward += "				add_popularity = {\n";
+		newFocus->completionReward += "					ideology = " + ideology + "\n";
+		newFocus->completionReward += "					popularity = 0.2\n";
+		newFocus->completionReward += "				}\n";
+		newFocus->completionReward += "			}\n";
+	}
+	newFocus->completionReward  += "		}";
 	focuses.push_back(newFocus);
 
 	newFocus = make_shared<HoI4Focus>(loadedFocuses.find("paramilitarism")->second);

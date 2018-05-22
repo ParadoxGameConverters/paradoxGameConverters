@@ -75,7 +75,7 @@ class HoI4FocusTree: commonItems::parser
 
 		int calculateNumCollectovistIdeologies(const std::set<std::string>& majorIdeologies);
 		void determineMutualExclusions(const std::set<std::string>& majorIdeologies);
-		void addFascistGenericFocuses(int relativePosition);
+		void addFascistGenericFocuses(int relativePosition, const std::set<std::string>& majorIdeologies);
 		void addCommunistGenericFocuses(int relativePosition);
 		void addAbsolutistGenericFocuses(int relativePosition);
 		void addRadicalGenericFocuses(int relativePosition);
