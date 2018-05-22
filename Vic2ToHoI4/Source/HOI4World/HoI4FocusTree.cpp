@@ -1328,18 +1328,7 @@ void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const v
 	if (coupTargets.size() > 0)
 	{
 		//Focus to increase Comm support and prereq for coupTargets
-		shared_ptr<HoI4Focus> newFocus = make_shared<HoI4Focus>();
-		newFocus->id = "Home_of_Revolution" + Home->getTag();
-		newFocus->icon = "GFX_goal_support_communism";
-		newFocus->text = "Home of the Revolution";
-		newFocus->xPos = nextFreeColumn + coupTargets.size() - 1;
-		newFocus->yPos = 0;
-		newFocus->cost = 10;
-		newFocus->aiWillDo = "			factor = 5";
-		//FIXME 
-		//Need to get Drift Defense to work
-		//newFocus->completionReward += "			drift_defence_factor = 0.5\n";
-		newFocus->completionReward += "			add_ideas = communist_influence";
+		shared_ptr<HoI4Focus> newFocus = loadedFocuses.find("Home_of_Revolution")->second.makeCustomizedCopy(Home->getTag());
 		focuses.push_back(newFocus);
 
 		for (unsigned int i = 0; i < 2; i++)
@@ -1358,17 +1347,9 @@ void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const v
 					coupCountryName = "";
 				}
 
-				newFocus = make_shared<HoI4Focus>();
+				newFocus = loadedFocuses.find("Influence_")->second.makeCustomizedCopy(Home->getTag());
 				newFocus->id = "Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag();
-				newFocus->icon = "GFX_goal_generic_propaganda";
 				newFocus->text = "Influence " + coupCountryName;
-				newFocus->prerequisites.push_back("= { focus = Home_of_Revolution" + Home->getTag() + " }");
-				newFocus->xPos = nextFreeColumn + i * 2;
-				newFocus->yPos = 1;
-				newFocus->cost = 10;
-				newFocus->aiWillDo += "= {\n";
-				newFocus->aiWillDo += "			factor = 5\n";
-				newFocus->aiWillDo += "		}";
 				newFocus->completionReward += "= {\n";
 				newFocus->completionReward += "			" + coupTargets[i]->getTag() + " = {\n";
 				newFocus->completionReward += "				if = {\n";
@@ -1401,18 +1382,12 @@ void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const v
 				focuses.push_back(newFocus);
 
 				//Civil War
-				newFocus = make_shared<HoI4Focus>();
+				newFocus = loadedFocuses.find("Coup_")->second.makeCustomizedCopy(Home->getTag());
 				newFocus->id = "Coup_" + coupTargets[i]->getTag() + "_" + Home->getTag();
-				newFocus->icon = "GFX_goal_generic_demand_territory";
 				newFocus->text = "Civil War in " + coupCountryName;
 				newFocus->prerequisites.push_back("= { focus = Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag() + " }");
+				newFocus->relativePositionId = "Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag();
 				newFocus->available = "			" + coupTargets[i]->getTag() + " = { communism > 0.5 }";
-				newFocus->xPos = nextFreeColumn + i * 2;
-				newFocus->yPos = 2;
-				newFocus->cost = 10;
-				newFocus->aiWillDo += "= {\n";
-				newFocus->aiWillDo += "			factor = 5\n";
-				newFocus->aiWillDo += "		}";
 				newFocus->completionReward += "= {\n";
 				newFocus->completionReward += "			" + coupTargets[i]->getTag() + " = {\n";
 				newFocus->completionReward += "				start_civil_war = {\n";

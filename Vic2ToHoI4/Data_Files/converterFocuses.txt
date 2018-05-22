@@ -577,3 +577,42 @@ focus = {
 			}
 		}
 	}
+
+	focus = {
+		id = Home_of_Revolution
+		icon = GFX_goal_support_communism
+		text = "Home of the Revolution"
+		x = 24
+		y = 0
+		cost = 10
+		completion_reward = {
+			add_ideas = communist_influence
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = Influence_
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = Home_of_Revolution }
+		x = 0
+		y = 1
+		relative_position_id = Home_of_Revolution
+		cost = 10
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = Coup_
+		icon = GFX_goal_generic_demand_territory
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 5
+		}
+	}
