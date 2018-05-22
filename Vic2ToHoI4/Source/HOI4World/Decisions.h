@@ -49,6 +49,8 @@ namespace HoI4
 			void replaceDecision(decision theDecision) { std::replace(theDecisions.begin(), theDecisions.end(), theDecision, theDecision); }
 			void addDecision(decision& theDecision) { theDecisions.push_back(theDecision); }
 
+			void updatePoliticalDecisions(const std::set<std::string>& majorIdeologies);
+
 			friend std::ostream& operator<<(std::ostream& outStream, const decisionsCategory& outCategory);
 			friend bool operator==(const decisionsCategory& categoryOne, const decisionsCategory& categoryTwo);
 

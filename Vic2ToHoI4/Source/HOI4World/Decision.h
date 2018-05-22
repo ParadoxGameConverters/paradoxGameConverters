@@ -41,7 +41,10 @@ namespace HoI4
 			std::string getName() const { return name; }
 			std::string getTimeoutEffect() const { return timeoutEffect; }
 
+			void setAvailable(const std::string& newAvailable) { available = newAvailable; }
+			void setCompleteEffect(const std::string& newEffect) { completeEffect = newEffect; }
 			void setTimeoutEffect(const std::string& newEffect) { timeoutEffect = newEffect; }
+			void setModifier(const std::string& newModifier) { modifier = newModifier; }
 
 			friend std::ostream& operator<<(std::ostream& outStream, const HoI4::decision& outDecision);
 			friend bool operator==(const HoI4::decision& decisionOne, const HoI4::decision& decisionTwo);

@@ -41,6 +41,127 @@ HoI4::decisionsCategory::decisionsCategory(const std::string& categoryName, std:
 }
 
 
+void HoI4::decisionsCategory::updatePoliticalDecisions(const std::set<std::string>& majorIdeologies)
+{
+	std::for_each(theDecisions.begin(), theDecisions.end(), [majorIdeologies](auto& theDecision){
+		if (theDecision.getName().substr(0, 28) == "open_up_political_discourse_")
+		{
+			std::string available = "= {\n";
+			for (auto ideology: majorIdeologies)
+			{
+				available += "			" + ideology + " < 0.9\n";
+			}
+			available += "		}";
+			theDecision.setAvailable(available);
+		}
+		if (theDecision.getName().substr(0, 21) == "discredit_government_")
+		{
+			std::string decisionIdeology = theDecision.getName().substr(21, theDecision.getName().length());
+			std::string available = "= {\n";
+			for (auto ideology: majorIdeologies)
+			{
+				available += "			" + ideology + " < 0.8\n";
+			}
+			available += "			has_idea_with_trait = " + decisionIdeology + "_minister\n";
+			available += "		}";
+			theDecision.setAvailable(available);
+			std::string completeEffect = "= {\n";
+			completeEffect += "			add_stability = -0.010\n";
+			for (auto ideology: majorIdeologies)
+			{
+				if (ideology == decisionIdeology)
+				{
+					continue;
+				}
+				completeEffect += "			if = {\n";
+				completeEffect += "				limit = {\n";
+				completeEffect += "					has_government = " + ideology + "\n";
+				completeEffect += "				}\n";
+				completeEffect += "				add_popularity = {\n";
+				completeEffect += "					ideology = " + ideology + "\n";
+				completeEffect += "					popularity = -0.1\n";
+				completeEffect += "				}\n";
+				completeEffect += "			}\n";
+			}
+			completeEffect += "		}";
+			theDecision.setCompleteEffect(completeEffect);
+		}
+		if (theDecision.getName().substr(0, 27) == "institute_press_censorship_")
+		{
+			std::string decisionIdeology = theDecision.getName().substr(27, theDecision.getName().length());
+			decisionIdeology = decisionIdeology.substr(0, decisionIdeology.find_last_of('_'));
+			std::string modifier = "= {\n";
+			for (auto ideology: majorIdeologies)
+			{
+				if (ideology == decisionIdeology)
+				{
+					modifier += "			" + ideology + "_drift = 0.03\n";
+				}
+				else
+				{
+					modifier += "			" + ideology + "_drift = -0.01\n";
+				}
+			}
+			modifier += "		}";
+			theDecision.setModifier(modifier);
+		}
+		if (theDecision.getName().substr(0, 11) == "ignite_the_")
+		{
+			std::string decisionIdeology = theDecision.getName().substr(11, theDecision.getName().length());
+			decisionIdeology = decisionIdeology.substr(0, decisionIdeology.find_first_of('_'));
+			std::string completeEffect = "= {\n";
+			for (auto ideology: majorIdeologies)
+			{
+				if (ideology == decisionIdeology)
+				{
+					continue;
+				}
+				completeEffect += "			if = {\n";
+				completeEffect += "				limit = {\n";
+				completeEffect += "					has_government = " + ideology + "\n";
+				completeEffect += "				}\n";
+				completeEffect += "				set_variable = {\n";
+				completeEffect += "					var = civil_war_size_var\n";
+				completeEffect += "					value = party_popularity@" + ideology + "\n";
+				completeEffect += "				}\n";
+				completeEffect += "			}\n";
+			}
+			completeEffect += "			subtract_from_variable = {\n";
+			completeEffect += "				var = civil_war_size_var\n";
+			completeEffect += "				value = army_support_var\n";
+			completeEffect += "			}\n";
+			completeEffect += "			if = {\n";
+			completeEffect += "				limit = {\n";
+			completeEffect += "					check_variable = {\n";
+			completeEffect += "						var = civil_war_size_var\n";
+			completeEffect += "						value = 0.3\n";
+			completeEffect += "						compare = less_than\n";
+			completeEffect += "					}\n";
+			completeEffect += "				}\n";
+			completeEffect += "				set_variable = {\n";
+			completeEffect += "					var = civil_war_size_var\n";
+			completeEffect += "					value = 0.3\n";
+			completeEffect += "				}\n";
+			completeEffect += "			}\n";
+			completeEffect += "			start_civil_war = {\n";
+			completeEffect += "				ruling_party = " + decisionIdeology + "\n";
+			completeEffect += "				ideology = ROOT\n";
+			completeEffect += "				size = civil_war_size_var\n";
+			completeEffect += "				keep_unit_leaders_trigger = {\n";
+			completeEffect += "					has_trait = hidden_sympathies\n";
+			completeEffect += "				}\n";
+			completeEffect += "			}\n";
+			completeEffect += "			clr_country_flag = preparation_for_" + decisionIdeology + "_civil_war\n";
+			completeEffect += "			clr_country_flag = military_support_for_" + decisionIdeology + "_civil_war\n";
+			completeEffect += "			clr_country_flag = civil_support_for_" + decisionIdeology + "_civil_war\n";
+			completeEffect += "			set_country_flag = ideology_civil_war\n";
+			completeEffect += "		}";
+			theDecision.setCompleteEffect(completeEffect);
+		}
+	});
+}
+
+
 std::ostream& HoI4::operator<<(std::ostream& outStream, const decisionsCategory& outCategory)
 {
 	outStream << outCategory.name << " = {\n";
@@ -233,6 +354,11 @@ void HoI4::decisions::updatePoliticalDecisions(const std::set<std::string>& majo
 			}
 		});
 	});
+
+	for (auto& decisionsByIdeology: politicalDecisions)
+	{
+		decisionsByIdeology.updatePoliticalDecisions(majorIdeologies);
+	}
 }
 
 
