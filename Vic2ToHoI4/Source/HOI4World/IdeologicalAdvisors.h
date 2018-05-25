@@ -40,7 +40,7 @@ class IdeologicalAdvisors: commonItems::parser
 	public:
 		IdeologicalAdvisors();
 
-		auto takeAdvisors() { return std::move(theAdvisors); }
+		auto getAdvisors() { return theAdvisors; }
 
 	private:
 		std::map<std::string, HoI4::Advisor*> theAdvisors;
