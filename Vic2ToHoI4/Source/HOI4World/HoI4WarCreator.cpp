@@ -22,8 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4WarCreator.h"
-#include "Log.h"
-#include "HoI4Events.h"
+#include "Events.h"
 #include "HoI4Faction.h"
 #include "HoI4Focus.h"
 #include "HoI4World.h"
@@ -31,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceNeighborMapper.h"
 #include "../Mappers/StateMapper.h"
 #include "../V2World/Party.h"
+#include "Log.h"
 
 
 

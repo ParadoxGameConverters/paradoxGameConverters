@@ -47,7 +47,7 @@ namespace HoI4
 	class Events: commonItems::parser
 	{
 		public:
-			Events();
+			Events() = default;
 
 			void output() const;
 			void createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::shared_ptr<HoI4Country> newAlly);
@@ -81,14 +81,14 @@ namespace HoI4
 			std::string getIdeologicalPicture(const std::string& ideology) const;
 
 			std::vector<Event> newsEvents;
-			int newsEventNumber;
+			int newsEventNumber = 237;
 			std::vector<Event> nationalFocusEvents;
-			int nationalFocusEventNumber;
+			int nationalFocusEventNumber = 0;
 			std::vector<Event> politicalEvents;
-			int politicalEventNumber;
+			int politicalEventNumber = 1;
 			std::vector<Event> warJustificationEvents;
 			std::vector<Event> electionEvents;
-			int electionEventNumber;
+			int electionEventNumber = 4;
 			std::map<std::string, Event> stabilityEvents;
 			std::map<std::string, Event> strikesEvents;
 			std::map<std::string, Event> mutinyEvents;

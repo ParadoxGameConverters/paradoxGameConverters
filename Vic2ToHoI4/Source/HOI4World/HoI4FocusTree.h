@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define HOI4_FOCUS_TREE
 
 #include "HoI4World.h"
-#include "HoI4Events.h"
+#include "Events.h"
 #include "newParser.h"
 #include <memory>
 #include <set>

@@ -34,7 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "Decisions.h"
 #include "HoI4Diplomacy.h"
-#include "HoI4Events.h"
+#include "Events.h"
 #include "HoI4Faction.h"
 #include "HoI4FocusTree.h"
 #include "IdeologicalAdvisors.h"

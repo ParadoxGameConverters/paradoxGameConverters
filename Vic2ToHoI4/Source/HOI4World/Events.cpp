@@ -21,7 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "HoI4Events.h"
+#include "Events.h"
 #include "HoI4Country.h"
 #include "HoI4Faction.h"
 #include "HoI4Localisation.h"
@@ -33,20 +33,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/Party.h"
 #include <fstream>
 
-
-
-HoI4::Events::Events():
-	newsEvents(),
-	newsEventNumber(237),
-	nationalFocusEvents(),
-	nationalFocusEventNumber(0),
-	politicalEvents(),
-	politicalEventNumber(1),
-	warJustificationEvents(),
-	electionEvents(),
-	electionEventNumber(4)
-{
-}
 
 
 void HoI4::Events::output() const
@@ -1102,6 +1088,60 @@ std::string HoI4::Events::getIdeologicalPicture(const std::string& ideology) con
 
 void HoI4::Events::createWarJustificationEvents(const std::set<std::string>& majorIdeologies)
 {
+	int i = 1;
+	for (auto majorIdeology: majorIdeologies)
+	{
+		for (auto majorIdeology2: majorIdeologies)
+		{
+			Event warJustification;
+			warJustification.type = "country_event";
+			warJustification.id = "war_justification." + std::to_string(i);
+			warJustification.title = "war_justification." + std::to_string(i) + ".t";
+			warJustification.descriptions.push_back("desc = war_justification." + std::to_string(i) + ".d");
+			warJustification.picture = "GFX_report_event_iww_demonstration";
+			warJustification.majorEvent = false;
+			warJustification.triggeredOnly = true;
+			warJustification.trigger = "= {\n";
+			warJustification.trigger += "		has_government = " + majorIdeology + "\n";
+			warJustification.trigger += "		FROM = { has_government = " + majorIdeology2 + " }\n";
+			warJustification.trigger += "		NOT = { has_country_flag = war_justification_last_event_political }\n";
+			warJustification.trigger += "	}";
+			std::string option = "= {\n";
+			option += "		name = war_justification." + std::to_string(i) + ".a\n";
+			option += "		FROM = { country_event = { id = war_justification." + std::to_string(i + 200) + " } }\n";
+			option += "		set_country_flag = war_justification_last_event_political\n";
+			option += "		clr_country_flag = war_justification_last_event_generic\n";
+			option += "		clr_country_flag = war_justification_last_event_neighbor\n";
+			option += "		clr_country_flag = war_justification_last_event_mobilized\n";
+			option += "		clr_country_flag = war_justification_last_event_borderthreat\n";
+			option += "	}";
+			warJustification.options.push_back(option);
+			warJustificationEvents.push_back(warJustification);
+			HoI4Localisation::copyEventLocalisations("war_justification." + majorIdeology + majorIdeology2 + ".t", "war_justification." + std::to_string(i) + ".t");
+			HoI4Localisation::copyEventLocalisations("war_justification." + majorIdeology + majorIdeology2 + ".d", "war_justification." + std::to_string(i) + ".d");
+			HoI4Localisation::copyEventLocalisations("war_justification." + majorIdeology + majorIdeology2 + ".a", "war_justification." + std::to_string(i) + ".a");
+
+			Event warJustification2;
+			warJustification2.type = "country_event";
+			warJustification2.id = "war_justification." + std::to_string(200 + i);
+			warJustification2.title = "war_justification." + std::to_string(200 + i) + ".t";
+			warJustification2.descriptions.push_back("desc = war_justification." + std::to_string(200 + i) + ".d");
+			warJustification2.picture = "GFX_report_event_iww_demonstration";
+			warJustification2.majorEvent = false;
+			warJustification2.triggeredOnly = true;
+			std::string option2 = "= {\n";
+			option2 += "		name = war_justification." + std::to_string(200 + i) + ".a\n";
+			option2 += "	}";
+			warJustification2.options.push_back(option2);
+			warJustificationEvents.push_back(warJustification2);
+			HoI4Localisation::copyEventLocalisations("war_justification." + majorIdeology + majorIdeology2 + "200.t", "war_justification." + std::to_string(200 + i) + ".t");
+			HoI4Localisation::copyEventLocalisations("war_justification." + majorIdeology + majorIdeology2 + "200.d", "war_justification." + std::to_string(200 + i) + ".d");
+			HoI4Localisation::copyEventLocalisations("war_justification." + majorIdeology + majorIdeology2 + "200.a", "war_justification." + std::to_string(200 + i) + ".a");
+
+			i++;
+		}
+	}
+
 	Event wargoalExpired;
 	wargoalExpired.type = "country_event";
 	wargoalExpired.id = "war_justification.301";
