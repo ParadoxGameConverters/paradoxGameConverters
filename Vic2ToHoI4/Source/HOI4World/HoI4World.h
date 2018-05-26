@@ -55,6 +55,7 @@ namespace HoI4
 class Advisor;
 class decisions;
 class Events;
+class Ideas;
 struct advisorCompare;
 }
 namespace Vic2
@@ -102,8 +103,6 @@ class HoI4World
 		void convertGovernments();
 
 		void convertParties();
-
-		void importIdeologicalIdeas();
 
 		void identifyMajorIdeologies();
 		void addNeutrality();
@@ -185,7 +184,7 @@ class HoI4World
 		void outputRelations() const;
 		void outputIdeologies() const;
 		void outputLeaderTraits() const;
-		void outputIdeologicalIdeas() const;
+		void outputIdeas() const;
 		void outputScriptedTriggers() const;
 		void outputOnActions() const;
 		void outputBookmarks() const;
@@ -195,30 +194,30 @@ class HoI4World
 		int getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);*/
 
 
-		const Vic2::World* sourceWorld;
+		const Vic2::World* sourceWorld = nullptr;
 
-		HoI4States* states;
+		HoI4States* states = nullptr;
 		//map<int, HoI4Province*> provinces;
 
-		HoI4SupplyZones* supplyZones;
+		HoI4SupplyZones* supplyZones = nullptr;
 		map<int, HoI4StrategicRegion*> strategicRegions;
-		HoI4Buildings* buildings;
+		HoI4Buildings* buildings = nullptr;
 
 		map<string, shared_ptr<HoI4Country>> countries;
 		map<string, shared_ptr<HoI4Country>> landedCountries;
 		vector<shared_ptr<HoI4Country>> greatPowers;
 
 		map<string, HoI4Ideology*> ideologies;
-		set<string> majorIdeologies;
+		std::set<std::string> majorIdeologies;
 		map<string, vector<shared_ptr<Object>>> ideologicalLeaderTraits;
 		map<std::string, HoI4::Advisor*> ideologicalAdvisors;
-		map<string, vector<shared_ptr<Object>>> ideologicalIdeas;
+		std::unique_ptr<HoI4::Ideas> theIdeas = nullptr;
 		
 		vector<shared_ptr<HoI4Faction>> factions;
-		HoI4Diplomacy* diplomacy;
+		HoI4Diplomacy* diplomacy = nullptr;
 		std::unique_ptr<HoI4::decisions> decisions;
-		HoI4::Events* events;
-		HoI4OnActions* onActions;
+		HoI4::Events* events = nullptr;
+		HoI4OnActions* onActions = nullptr;
 
 		vector<HoI4DivisionTemplateType> divisionTemplates;
 

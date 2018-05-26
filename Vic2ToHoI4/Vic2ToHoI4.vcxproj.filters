@@ -233,6 +233,15 @@
     <ClCompile Include="Source\HOI4World\Events.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HOI4World\Ideas.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Idea.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\IdeaGroup.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -451,6 +460,15 @@
       <Filter>HoI4World</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\Events.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Ideas.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Idea.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\IdeaGroup.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>

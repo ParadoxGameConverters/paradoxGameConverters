@@ -37,6 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Events.h"
 #include "HoI4Faction.h"
 #include "HoI4FocusTree.h"
+#include "Ideas.h"
 #include "IdeologicalAdvisors.h"
 #include "HOI4Ideology.h"
 #include "HoI4Localisation.h"
@@ -57,23 +58,12 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	sourceWorld(_sourceWorld),
 	states(new HoI4States(sourceWorld)),
 	supplyZones(new HoI4SupplyZones),
-	strategicRegions(),
 	buildings(new HoI4Buildings(states->getProvinceToStateIDMap())),
-	countries(),
-	landedCountries(),
-	greatPowers(),
-	ideologies(),
-	majorIdeologies(),
-	ideologicalLeaderTraits(),
-	ideologicalAdvisors(),
-	ideologicalIdeas(),
-	factions(),
+	theIdeas(std::make_unique<HoI4::Ideas>()),
 	decisions(make_unique<HoI4::decisions>()),
 	diplomacy(new HoI4Diplomacy),
 	events(new HoI4::Events),
-	onActions(new HoI4OnActions),
-	divisionTemplates(),
-	leaderTraits()
+	onActions(new HoI4OnActions)
 {
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 
@@ -93,7 +83,6 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	determineGreatPowers();
 	importIdeologies();
 	importLeaderTraits();
-	importIdeologicalIdeas();
 	convertGovernments();
 	identifyMajorIdeologies();
 	importIdeologicalMinisters();
@@ -293,21 +282,6 @@ void HoI4World::convertParties()
 	for (auto country: countries)
 	{
 		country.second->convertParties(majorIdeologies);
-	}
-}
-
-
-void HoI4World::importIdeologicalIdeas()
-{
-	auto fileObject = parser_UTF8::doParseFile("ideologicalIdeas.txt");
-	if (fileObject)
-	{
-		auto ideologyObjects = fileObject->getLeaves();
-		for (auto ideologyObject: ideologyObjects)
-		{
-			string ideaName = ideologyObject->getKey();
-			ideologicalIdeas.insert(make_pair(ideaName, ideologyObject->getLeaves()));
-		}
 	}
 }
 
@@ -1656,7 +1630,7 @@ void HoI4World::output() const
 	decisions->output();
 	outputIdeologies();
 	outputLeaderTraits();
-	outputIdeologicalIdeas();
+	outputIdeas();
 	outputScriptedTriggers();
 	outputBookmarks();
 }
@@ -1987,26 +1961,9 @@ void HoI4World::outputLeaderTraits() const
 }
 
 
-void HoI4World::outputIdeologicalIdeas() const
+void HoI4World::outputIdeas() const
 {
-	ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/convertedIdeas.txt");
-	ideasFile << "ideas = {\n";
-	ideasFile << "\tcountry = {\n";
-	for (auto majorIdeology: majorIdeologies)
-	{
-		auto ideologicalIdea = ideologicalIdeas.find(majorIdeology);
-		if (ideologicalIdea != ideologicalIdeas.end())
-		{
-			for (auto idea: ideologicalIdea->second)
-			{
-				ideasFile << *idea;
-				ideasFile << "\n";
-			}
-		}
-	}
-	ideasFile << "\t}\n";
-	ideasFile << "}";
-	ideasFile.close();
+	theIdeas->output(majorIdeologies);
 }
 
 
