@@ -274,7 +274,8 @@ void HoI4World::importLeaderTraits()
 void HoI4World::importIdeologicalMinisters()
 {
 	HoI4::IdeologicalAdvisors theAdvisors;
-	ideologicalAdvisors.swap(theAdvisors.getAdvisors());
+	auto theAcutalAdvisors = theAdvisors.getAdvisors();
+	ideologicalAdvisors.swap(theAcutalAdvisors);
 }
 
 
