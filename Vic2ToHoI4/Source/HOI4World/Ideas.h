@@ -44,6 +44,8 @@ class Ideas: commonItems::parser
 	public:
 		Ideas();
 
+		void updateIdeas(std::set<std::string> majorIdeologies);
+
 		void output(std::set<std::string> majorIdeologies) const;
 
 	private:

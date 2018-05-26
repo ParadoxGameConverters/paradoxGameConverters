@@ -66,6 +66,73 @@ void HoI4::Ideas::importManpowerIdeas()
 }
 
 
+void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
+{
+	auto serviceByRequirement = manpowerIdeas->getIdea("service_by_requirement");
+	if (serviceByRequirement)
+	{
+		std::string available = "= {\n";
+		available += "				#has_manpower_for_recruit_change_to =  { value = 0.1 group = mobilization_laws }\n";
+		available += "				OR = {\n";
+		for (auto ideology: majorIdeologies)
+		{
+			if ((ideology != "neutrality") && (ideology != "democratic"))
+			{
+				available += "					has_government = " + ideology + "\n";
+			}
+		}
+		available += "					AND = {\n";
+		available += "						has_war = yes\n";
+		available += "						enemies_strength_ratio > 0.6\n";
+		available += "						#any_enemy_country = {\n";
+		available += "						#	strength_ratio = {\n";
+		available += "						#		tag = ROOT \n";
+		available += "						#		ratio > 0.6\n";
+		available += "						#	}\n";
+		available += "						#}\n";
+		available += "					}\n";
+		available += "				}\n";
+		available += "				OR = {\n";
+		available += "					has_war_support > 0.6\n";
+		available += "					surrender_progress > 0\n";
+		available += "				}\n";
+		available += "			}\n";
+		serviceByRequirement->setAvailable(available);
+		manpowerIdeas->replaceIdea(*serviceByRequirement);
+	}
+
+	auto extensiveConscription = manpowerIdeas->getIdea("extensive_conscription");
+	if (extensiveConscription)
+	{
+		std::string available = "= {\n";
+		available += "				#has_manpower_for_recruit_change_to = { value = 0.05 group = mobilization_laws }\n";
+		available += "				OR = {\n";
+		for (auto ideology: majorIdeologies)
+		{
+			if ((ideology != "neutrality") && (ideology != "democratic"))
+			{
+				available += "					has_government = " + ideology + "\n";
+			}
+		}
+		available += "					AND = {\n";
+		available += "						has_war = yes\n";
+		available += "						enemies_strength_ratio > 0.5\n";
+		available += "						#any_enemy_country = {\n";
+		available += "						#	strength_ratio = {\n";
+		available += "						#		tag = ROOT \n";
+		available += "						#		ratio > 0.5\n";
+		available += "						#	}\n";
+		available += "						#}\n";
+		available += "					}\n";
+		available += "				}\n";
+		available += "				has_war_support > 0.2\n";
+		available += "			}\n";
+		extensiveConscription->setAvailable(available);
+		manpowerIdeas->replaceIdea(*extensiveConscription);
+	}
+}
+
+
 void HoI4::Ideas::output(std::set<std::string> majorIdeologies) const
 {
 	outputIdeologicalIdeas(majorIdeologies);

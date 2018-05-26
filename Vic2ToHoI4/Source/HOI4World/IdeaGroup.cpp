@@ -42,6 +42,26 @@ HoI4::IdeaGroup::IdeaGroup(const std::string& ideaGroupName, std::istream& theSt
 }
 
 
+std::optional<HoI4::Idea> HoI4::IdeaGroup::getIdea(const std::string& ideaName)
+{
+	for (auto idea: ideas)
+	{
+		if (idea.getName() == ideaName)
+		{
+			return idea;
+		}
+	}
+
+	return {};
+}
+
+
+void HoI4::IdeaGroup::replaceIdea(Idea newIdea)
+{
+	std::replace_if(ideas.begin(), ideas.end(), [newIdea](const Idea& theIdea){ return theIdea.getName() == newIdea.getName(); }, newIdea);
+}
+
+
 std::ostream& HoI4::operator<<(std::ostream& outStream, const HoI4::IdeaGroup& outIdeaGroup)
 {
 	outStream << "	" << outIdeaGroup.name << " = {\n";

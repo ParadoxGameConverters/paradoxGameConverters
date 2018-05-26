@@ -91,6 +91,7 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	events->createWarJustificationEvents(majorIdeologies);
 	addCountryElectionEvents(majorIdeologies);
 	events->createStabilityEvents(majorIdeologies);
+	theIdeas->updateIdeas(majorIdeologies);
 	decisions->updateDecisions(majorIdeologies);
 	addNeutrality();
 	convertIdeologySupport();

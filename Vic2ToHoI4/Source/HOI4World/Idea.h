@@ -39,6 +39,10 @@ class Idea: commonItems::parser
 
 		friend std::ostream& operator<<(std::ostream& outStream, const HoI4::Idea& outIdea);
 
+		std::string getName() const { return name; }
+
+		void setAvailable(const std::string& newAvailable) { available = newAvailable; }
+
 	private:
 		std::string name;
 

@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "newParser.h"
 #include "Idea.h"
+#include <optional>
 #include <vector>
 
 
@@ -38,6 +39,9 @@ class IdeaGroup: commonItems::parser
 {
 	public:
 		IdeaGroup(const std::string& ideaGroupName, std::istream& theStream);
+
+		std::optional<Idea> getIdea(const std::string& ideaName);
+		void replaceIdea(Idea newIdea);
 
 		friend std::ostream& operator<<(std::ostream& outStream, const HoI4::IdeaGroup& outIdeaGroup);
 
