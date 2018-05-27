@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4States.h"
+#include "Ideas.h"
 #include "../Mappers/Mapper.h"
 #include <map>
 #include <optional>
@@ -55,7 +56,6 @@ namespace HoI4
 class Advisor;
 class decisions;
 class Events;
-class Ideas;
 struct advisorCompare;
 }
 namespace Vic2
@@ -211,7 +211,7 @@ class HoI4World
 		std::set<std::string> majorIdeologies;
 		map<string, vector<shared_ptr<Object>>> ideologicalLeaderTraits;
 		map<std::string, HoI4::Advisor*> ideologicalAdvisors;
-		std::unique_ptr<HoI4::Ideas> theIdeas = nullptr;
+		std::unique_ptr<HoI4::Ideas> theIdeas;
 		
 		vector<shared_ptr<HoI4Faction>> factions;
 		HoI4Diplomacy* diplomacy = nullptr;

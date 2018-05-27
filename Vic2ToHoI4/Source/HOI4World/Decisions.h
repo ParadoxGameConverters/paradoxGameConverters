@@ -38,50 +38,55 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 namespace HoI4
 {
-	class decisionsCategory: commonItems::parser
-	{
-		public:
-			decisionsCategory(const std::string& categoryName, std::istream& theStream);
 
-			std::vector<decision> getDecisions() const { return theDecisions; }
-			std::string getName() const { return name; }
+class decisionsCategory: commonItems::parser
+{
+	public:
+		decisionsCategory(const std::string& categoryName, std::istream& theStream);
 
-			void replaceDecision(decision theDecision) { std::replace(theDecisions.begin(), theDecisions.end(), theDecision, theDecision); }
-			void addDecision(decision& theDecision) { theDecisions.push_back(theDecision); }
+		std::vector<decision> getDecisions() const { return theDecisions; }
+		std::string getName() const { return name; }
 
-			void updatePoliticalDecisions(const std::set<std::string>& majorIdeologies);
+		void replaceDecision(decision theDecision) { std::replace(theDecisions.begin(), theDecisions.end(), theDecision, theDecision); }
+		void addDecision(decision& theDecision) { theDecisions.push_back(theDecision); }
 
-			friend std::ostream& operator<<(std::ostream& outStream, const decisionsCategory& outCategory);
-			friend bool operator==(const decisionsCategory& categoryOne, const decisionsCategory& categoryTwo);
+		void updatePoliticalDecisions(const std::set<std::string>& majorIdeologies);
 
-		private:
-			std::string name = "";
-			std::vector<decision> theDecisions;
-	};
+		friend std::ostream& operator<<(std::ostream& outStream, const decisionsCategory& outCategory);
+		friend bool operator==(const decisionsCategory& categoryOne, const decisionsCategory& categoryTwo);
+
+	private:
+		std::string name = "";
+		std::vector<decision> theDecisions;
+};
+
+std::ostream& operator<<(std::ostream& outStream, const decisionsCategory& outCategory);
+bool operator==(const decisionsCategory& categoryOne, const decisionsCategory& categoryTwo);
 
 
-	class decisions: commonItems::parser
-	{
-		public:
-			decisions();
+class decisions: commonItems::parser
+{
+	public:
+		decisions();
 
-			void updateDecisions(const std::set<std::string>& majorIdeologies);
+		void updateDecisions(const std::set<std::string>& majorIdeologies);
 
-			void output();
+		void output();
 
-		private:
-			void updateStabilityDecisions(const std::set<std::string>& majorIdeologies);
-			bool stabilityDecisionToUpdate(const std::string& decisionName);
-			std::pair<std::string, std::string> determineIdeologiesForStabilityDecisions(const std::set<std::string>& majorIdeologies);
-			std::string updateTimeoutEffect(std::string& originalEffect, const std::pair<std::string, std::string>& ideologiesForStabilityDecisions);
+	private:
+		void updateStabilityDecisions(const std::set<std::string>& majorIdeologies);
+		bool stabilityDecisionToUpdate(const std::string& decisionName);
+		std::pair<std::string, std::string> determineIdeologiesForStabilityDecisions(const std::set<std::string>& majorIdeologies);
+		std::string updateTimeoutEffect(std::string& originalEffect, const std::pair<std::string, std::string>& ideologiesForStabilityDecisions);
 
-			void updatePoliticalDecisions(const std::set<std::string>& majorIdeologies);
+		void updatePoliticalDecisions(const std::set<std::string>& majorIdeologies);
 
-			std::vector<decisionsCategory> stabilityDecisions;
-			std::vector<decisionsCategory> politicalDecisions;
+		std::vector<decisionsCategory> stabilityDecisions;
+		std::vector<decisionsCategory> politicalDecisions;
 
-			std::multimap<std::string, decisionsCategory> ideologicalDecisions;
-	};
+		std::multimap<std::string, decisionsCategory> ideologicalDecisions;
+};
+
 }
 
 

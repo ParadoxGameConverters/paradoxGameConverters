@@ -35,31 +35,35 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 namespace HoI4
 {
-	class Event: commonItems::parser
-	{
-		public:
-			Event() = default;
-			Event(std::istream& theStream);
-			Event(const Event&) = default;
 
-			friend std::ofstream& operator << (std::ofstream& out, const Event& theEvent);
+class Event: commonItems::parser
+{
+	public:
+		Event() = default;
+		Event(std::istream& theStream);
+		Event(const Event&) = default;
 
-			std::string type = "";
-			std::string id = "";
-			std::string title = "";
-			std::vector<std::string> descriptions;
-			std::string picture = "";
-			bool majorEvent = false;
-			bool triggeredOnly = false;
-			bool hidden = false;
-			std::string trigger = "";
-			std::string meanTimeToHappen = "";
-			std::string immediate = "";
-			std::vector<std::string> options;
+		friend std::ofstream& operator << (std::ofstream& out, const Event& theEvent);
 
-		private:
-			Event& operator=(const Event&) = delete;
-	};
+		std::string type = "";
+		std::string id = "";
+		std::string title = "";
+		std::vector<std::string> descriptions;
+		std::string picture = "";
+		bool majorEvent = false;
+		bool triggeredOnly = false;
+		bool hidden = false;
+		std::string trigger = "";
+		std::string meanTimeToHappen = "";
+		std::string immediate = "";
+		std::vector<std::string> options;
+
+	private:
+		Event& operator=(const Event&) = delete;
+};
+
+std::ofstream& operator << (std::ofstream& out, const Event& theEvent);
+
 }
 
 

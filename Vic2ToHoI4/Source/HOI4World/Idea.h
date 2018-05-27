@@ -67,6 +67,8 @@ class Idea: commonItems::parser
 		std::optional<bool> cancelIfInvalid;
 };
 
+std::ostream& operator<<(std::ostream& outStream, const HoI4::Idea& outIdea);
+
 }
 
 

@@ -55,6 +55,8 @@ class IdeaGroup: commonItems::parser
 		std::vector<Idea> ideas;
 };
 
+std::ostream& operator<<(std::ostream& outStream, const HoI4::IdeaGroup& outIdeaGroup);
+
 }
 
 
