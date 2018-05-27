@@ -45,6 +45,14 @@ HoI4::Idea::Idea(const std::string& ideaName, std::istream& theStream):
 		commonItems::stringOfItem allowedString(theStream);
 		allowed = allowedString.getString();
 	});
+	registerKeyword(std::regex("allowed_civil_war"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringOfItem allowedString(theStream);
+		allowedCivilWar = allowedString.getString();
+	});
+	registerKeyword(std::regex("cancel"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringOfItem cancelString(theStream);
+		cancel = cancelString.getString();
+	});
 	registerKeyword(std::regex("available"), [this](const std::string& unused, std::istream& theStream){
 		commonItems::stringOfItem availableString(theStream);
 		available = availableString.getString();
@@ -53,9 +61,25 @@ HoI4::Idea::Idea(const std::string& ideaName, std::istream& theStream):
 		commonItems::stringOfItem aiWillDoString(theStream);
 		aiWillDo = aiWillDoString.getString();
 	});
+	registerKeyword(std::regex("picture"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringOfItem pictureString(theStream);
+		picture = pictureString.getString();
+	});
 	registerKeyword(std::regex("modifier"), [this](const std::string& unused, std::istream& theStream){
 		commonItems::stringOfItem modifierString(theStream);
 		modifier = modifierString.getString();
+	});
+	registerKeyword(std::regex("research_bonus"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringOfItem researchBonusString(theStream);
+		researchBonus = researchBonusString.getString();
+	});
+	registerKeyword(std::regex("equipment_bonus"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringOfItem bonusString(theStream);
+		equipmentBonus = bonusString.getString();
+	});
+	registerKeyword(std::regex("traits"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringOfItem traitsString(theStream);
+		traits = traitsString.getString();
 	});
 	registerKeyword(std::regex("on_add"), [this](const std::string& unused, std::istream& theStream){
 		commonItems::stringOfItem onAddString(theStream);
@@ -97,6 +121,14 @@ std::ostream& HoI4::operator<<(std::ostream& outStream, const HoI4::Idea& outIde
 	{
 		outStream << "			allowed " << outIdea.allowed << "\n";
 	}
+	if (outIdea.allowedCivilWar != "")
+	{
+		outStream << "			allowed_civil_war " << outIdea.allowedCivilWar << "\n";
+	}
+	if (outIdea.cancel != "")
+	{
+		outStream << "			cancel " << outIdea.cancel << "\n";
+	}
 	if (outIdea.available != "")
 	{
 		outStream << "			available " << outIdea.available << "\n";
@@ -105,9 +137,25 @@ std::ostream& HoI4::operator<<(std::ostream& outStream, const HoI4::Idea& outIde
 	{
 		outStream << "			ai_will_do " << outIdea.aiWillDo << "\n";
 	}
+	if (outIdea.picture != "")
+	{
+		outStream << "			picture " << outIdea.picture << "\n";
+	}
 	if (outIdea.modifier != "")
 	{
 		outStream << "			modifier " << outIdea.modifier << "\n";
+	}
+	if (outIdea.researchBonus != "")
+	{
+		outStream << "			research_bonus " << outIdea.researchBonus << "\n";
+	}
+	if (outIdea.equipmentBonus != "")
+	{
+		outStream << "			equipment_bonus " << outIdea.equipmentBonus << "\n";
+	}
+	if (outIdea.traits != "")
+	{
+		outStream << "			traits " << outIdea.traits << "\n";
 	}
 	if (outIdea.onAdd != "")
 	{
@@ -123,11 +171,14 @@ std::ostream& HoI4::operator<<(std::ostream& outStream, const HoI4::Idea& outIde
 	}
 	if (outIdea.cancelIfInvalid)
 	{
-		outStream << "			cancel_if_invalid = yes\n";
-	}
-	else
-	{
-		outStream << "			cancel_if_invalid = no\n";
+		if (*outIdea.cancelIfInvalid)
+		{
+			outStream << "			cancel_if_invalid = yes\n";
+		}
+		else
+		{
+			outStream << "			cancel_if_invalid = no\n";
+		}
 	}
 	outStream << "		}\n";
 

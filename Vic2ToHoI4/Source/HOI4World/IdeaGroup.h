@@ -40,6 +40,7 @@ class IdeaGroup: commonItems::parser
 	public:
 		IdeaGroup(const std::string& ideaGroupName, std::istream& theStream);
 
+		std::string getName() const { return name; }
 		std::optional<Idea> getIdea(const std::string& ideaName);
 		void replaceIdea(Idea newIdea);
 
@@ -49,6 +50,7 @@ class IdeaGroup: commonItems::parser
 		std::string name;
 
 		bool law = false;
+		bool designer = false;
 
 		std::vector<Idea> ideas;
 };

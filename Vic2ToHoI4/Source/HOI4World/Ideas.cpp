@@ -54,18 +54,7 @@ void HoI4::Ideas::importIdeologicalIdeas()
 void HoI4::Ideas::importGeneralIdeas()
 {
 	registerKeyword(std::regex("[a-zA-Z_]+"), [this](const std::string& ideaGroupName, std::istream& theStream){
-		if (ideaGroupName == "mobilization_laws")
-		{
-			manpowerIdeas = std::make_unique<IdeaGroup>(ideaGroupName, theStream);
-		}
-		else if (ideaGroupName == "economy")
-		{
-			economicIdeas = std::make_unique<IdeaGroup>(ideaGroupName, theStream);
-		}
-		else if (ideaGroupName == "trade_laws")
-		{
-			tradeIdeas = std::make_unique<IdeaGroup>(ideaGroupName, theStream);
-		}
+		generalIdeas.push_back(std::make_unique<IdeaGroup>(ideaGroupName, theStream));
 	});
 
 	parseFile("converterIdeas.txt");
@@ -74,7 +63,8 @@ void HoI4::Ideas::importGeneralIdeas()
 
 void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
 {
-	auto serviceByRequirement = manpowerIdeas->getIdea("service_by_requirement");
+	auto foundGroup = std::find_if(generalIdeas.begin(), generalIdeas.end(), [](auto& theGroup){ return (theGroup->getName() == "mobilization_laws"); });
+	auto serviceByRequirement = (*foundGroup)->getIdea("service_by_requirement");
 	if (serviceByRequirement)
 	{
 		std::string available = "= {\n";
@@ -102,12 +92,12 @@ void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
 		available += "					has_war_support > 0.6\n";
 		available += "					surrender_progress > 0\n";
 		available += "				}\n";
-		available += "			}\n";
+		available += "			}";
 		serviceByRequirement->setAvailable(available);
-		manpowerIdeas->replaceIdea(*serviceByRequirement);
+		(*foundGroup)->replaceIdea(*serviceByRequirement);
 	}
 
-	auto extensiveConscription = manpowerIdeas->getIdea("extensive_conscription");
+	auto extensiveConscription = (*foundGroup)->getIdea("extensive_conscription");
 	if (extensiveConscription)
 	{
 		std::string available = "= {\n";
@@ -132,12 +122,13 @@ void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
 		available += "					}\n";
 		available += "				}\n";
 		available += "				has_war_support > 0.2\n";
-		available += "			}\n";
+		available += "			}";
 		extensiveConscription->setAvailable(available);
-		manpowerIdeas->replaceIdea(*extensiveConscription);
+		(*foundGroup)->replaceIdea(*extensiveConscription);
 	}
 
-	auto warEconomy = economicIdeas->getIdea("war_economy");
+	foundGroup = std::find_if(generalIdeas.begin(), generalIdeas.end(), [](auto& theGroup){ return (theGroup->getName() == "economy"); });
+	auto warEconomy = (*foundGroup)->getIdea("war_economy");
 	if (warEconomy)
 	{
 		std::string available = "= {\n";
@@ -161,12 +152,13 @@ void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
 		available += "						}\n";
 		available += "					}\n";
 		available += "				}\n";
-		available += "			}\n";
+		available += "			}";
 		warEconomy->setAvailable(available);
-		economicIdeas->replaceIdea(*warEconomy);
+		(*foundGroup)->replaceIdea(*warEconomy);
 	}
 
-	auto closedEconomy = tradeIdeas->getIdea("closed_economy");
+	foundGroup = std::find_if(generalIdeas.begin(), generalIdeas.end(), [](auto& theGroup){ return (theGroup->getName() == "trade_laws"); });
+	auto closedEconomy = (*foundGroup)->getIdea("closed_economy");
 	if (closedEconomy)
 	{
 		std::string available = "= {\n";
@@ -184,9 +176,9 @@ void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
 		available += "					has_idea = war_economy\n";
 		available += "					has_idea = tot_economic_mobilisation\n";
 		available += "				}\n";
-		available += "			}\n";
+		available += "			}";
 		closedEconomy->setAvailable(available);
-		tradeIdeas->replaceIdea(*closedEconomy);
+		(*foundGroup)->replaceIdea(*closedEconomy);
 	}
 }
 
@@ -194,8 +186,7 @@ void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
 void HoI4::Ideas::output(std::set<std::string> majorIdeologies) const
 {
 	outputIdeologicalIdeas(majorIdeologies);
-	outputManpowerIdeas();
-	outputEconomicIdeas();
+	outputGeneralIdeas();
 }
 
 
@@ -222,21 +213,43 @@ void HoI4::Ideas::outputIdeologicalIdeas(std::set<std::string> majorIdeologies) 
 }
 
 
-void HoI4::Ideas::outputManpowerIdeas() const
+void HoI4::Ideas::outputGeneralIdeas() const
 {
-	std::ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/_manpower.txt");
-	ideasFile << "ideas = {\n";
-	ideasFile << *manpowerIdeas;
-	ideasFile << "}";
+	auto manpowerFile = openIdeaFile("output/" + Configuration::getOutputName() + "/common/ideas/_manpower.txt");
+	auto economicFile = openIdeaFile("output/" + Configuration::getOutputName() + "/common/ideas/_economic.txt");
+	auto genericFile = openIdeaFile("output/" + Configuration::getOutputName() + "/common/ideas/zzz_generic.txt");
+
+	std::for_each(generalIdeas.begin(), generalIdeas.end(), [&manpowerFile, &economicFile, &genericFile](auto& theGroup){
+		if (theGroup->getName() == "mobilization_laws")
+		{
+			manpowerFile << *theGroup;
+		}
+		else if ((theGroup->getName() == "economy") || (theGroup->getName() == "trade_laws"))
+		{
+			economicFile << *theGroup;
+		}
+		else
+		{
+			genericFile << *theGroup;
+		}
+	});
+
+	closeIdeaFile(manpowerFile);
+	closeIdeaFile(economicFile);
+	closeIdeaFile(genericFile);
 }
 
 
-void HoI4::Ideas::outputEconomicIdeas() const
+std::ofstream HoI4::Ideas::openIdeaFile(const std::string& fileName) const
 {
-	std::ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/_economic.txt");
-	ideasFile << "ideas = {\n";
-	ideasFile << *economicIdeas;
-	ideasFile << "\n";
-	ideasFile << *tradeIdeas;
-	ideasFile << "}";
+	std::ofstream theFile(fileName);
+	theFile << "ideas = {\n";
+	return theFile;
+}
+
+
+void HoI4::Ideas::closeIdeaFile(std::ofstream& fileStream) const
+{
+	fileStream << "}";
+	fileStream.close();
 }

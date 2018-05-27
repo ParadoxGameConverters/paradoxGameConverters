@@ -53,13 +53,13 @@ class Ideas: commonItems::parser
 		void importGeneralIdeas();
 
 		void outputIdeologicalIdeas(std::set<std::string> majorIdeologies) const;
-		void outputManpowerIdeas() const;
-		void outputEconomicIdeas() const;
+		void outputGeneralIdeas() const;
+
+		std::ofstream openIdeaFile(const std::string& fileName) const;
+		void closeIdeaFile(std::ofstream& fileStream) const;
 
 		std::map<std::string, std::vector<std::shared_ptr<Object>>> ideologicalIdeas;
-		std::unique_ptr<IdeaGroup> manpowerIdeas;
-		std::unique_ptr<IdeaGroup> economicIdeas;
-		std::unique_ptr<IdeaGroup> tradeIdeas;
+		std::vector<std::unique_ptr<IdeaGroup>> generalIdeas;
 };
 
 }

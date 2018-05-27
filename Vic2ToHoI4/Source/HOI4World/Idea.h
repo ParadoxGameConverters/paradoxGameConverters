@@ -51,14 +51,20 @@ class Idea: commonItems::parser
 		std::optional<int> level;
 
 		std::string allowed;
+		std::string allowedCivilWar;
+		std::string cancel;
 		std::string available;
 		std::string aiWillDo;
+		std::string picture;
 		std::string modifier;
+		std::string researchBonus;
+		std::string equipmentBonus;
+		std::string traits;
 		std::string onAdd;
 		std::string allowedToRemove;
 
 		bool isDefault = false;
-		bool cancelIfInvalid = false;
+		std::optional<bool> cancelIfInvalid;
 };
 
 }

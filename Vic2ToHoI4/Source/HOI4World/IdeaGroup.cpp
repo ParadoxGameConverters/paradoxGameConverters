@@ -33,6 +33,10 @@ HoI4::IdeaGroup::IdeaGroup(const std::string& ideaGroupName, std::istream& theSt
 		commonItems::singleString lawString(theStream);
 		law = (lawString.getString() == "yes");
 	});
+	registerKeyword(std::regex("designer"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString designerString(theStream);
+		designer = (designerString.getString() == "yes");
+	});
 	registerKeyword(std::regex("[a-zA-Z0-9\\_]+"), [this](const std::string& ideaName, std::istream& theStream){
 		Idea newIdea(ideaName, theStream);
 		ideas.push_back(newIdea);
@@ -69,10 +73,16 @@ std::ostream& HoI4::operator<<(std::ostream& outStream, const HoI4::IdeaGroup& o
 	{
 		outStream << "		law = yes\n";
 	}
+	if (outIdeaGroup.designer)
+	{
+		outStream << "		designer = yes\n";
+	}
 	for (auto idea: outIdeaGroup.ideas)
 	{
 		outStream << "\n";
 		outStream << idea;
 	}
 	outStream << "	}\n";
+
+	return outStream;
 }
