@@ -56,6 +56,7 @@ class Idea: commonItems::parser
 		std::string available;
 		std::string aiWillDo;
 		std::string picture;
+		std::string rule;
 		std::string modifier;
 		std::string researchBonus;
 		std::string equipmentBonus;

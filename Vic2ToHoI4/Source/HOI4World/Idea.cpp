@@ -65,6 +65,10 @@ HoI4::Idea::Idea(const std::string& ideaName, std::istream& theStream):
 		commonItems::stringOfItem pictureString(theStream);
 		picture = pictureString.getString();
 	});
+	registerKeyword(std::regex("rule"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringOfItem ruleString(theStream);
+		rule = ruleString.getString();
+	});
 	registerKeyword(std::regex("modifier"), [this](const std::string& unused, std::istream& theStream){
 		commonItems::stringOfItem modifierString(theStream);
 		modifier = modifierString.getString();
@@ -140,6 +144,10 @@ std::ostream& HoI4::operator<<(std::ostream& outStream, const HoI4::Idea& outIde
 	if (outIdea.picture != "")
 	{
 		outStream << "			picture " << outIdea.picture << "\n";
+	}
+	if (outIdea.rule != "")
+	{
+		outStream << "			rule " << outIdea.rule << "\n";
 	}
 	if (outIdea.modifier != "")
 	{
