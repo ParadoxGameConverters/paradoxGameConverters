@@ -136,6 +136,58 @@ void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
 		extensiveConscription->setAvailable(available);
 		manpowerIdeas->replaceIdea(*extensiveConscription);
 	}
+
+	auto warEconomy = economicIdeas->getIdea("war_economy");
+	if (warEconomy)
+	{
+		std::string available = "= {\n";
+		available += "				has_war_support > 0.5\n";
+		available += "				OR = {\n";
+		for (auto ideology: majorIdeologies)
+		{
+			if ((ideology != "neutrality") && (ideology != "democratic"))
+			{
+				available += "					has_government = " + ideology + "\n";
+			}
+		}
+		available += "					custom_trigger_tooltip = { tooltip = or_clarification_tooltip always = no }\n";
+		available += "					AND = {\n";
+		available += "						has_war = yes\n";
+		available += "						any_enemy_country = {\n";
+		available += "							ic_ratio = { \n";
+		available += "								tag = ROOT \n";
+		available += "								ratio > 0.4\n";
+		available += "							}\n";
+		available += "						}\n";
+		available += "					}\n";
+		available += "				}\n";
+		available += "			}\n";
+		warEconomy->setAvailable(available);
+		economicIdeas->replaceIdea(*warEconomy);
+	}
+
+	auto closedEconomy = tradeIdeas->getIdea("closed_economy");
+	if (closedEconomy)
+	{
+		std::string available = "= {\n";
+		available += "				has_war = yes\n";
+		available += "				OR = {\n";
+		for (auto ideology: majorIdeologies)
+		{
+			if ((ideology != "neutrality") && (ideology != "democratic"))
+			{
+				available += "					has_government = " + ideology + "\n";
+			}
+		}
+		available += "				}\n";
+		available += "				OR = {\n";
+		available += "					has_idea = war_economy\n";
+		available += "					has_idea = tot_economic_mobilisation\n";
+		available += "				}\n";
+		available += "			}\n";
+		closedEconomy->setAvailable(available);
+		tradeIdeas->replaceIdea(*closedEconomy);
+	}
 }
 
 
