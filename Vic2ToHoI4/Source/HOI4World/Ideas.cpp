@@ -180,6 +180,61 @@ void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
 		closedEconomy->setAvailable(available);
 		(*foundGroup)->replaceIdea(*closedEconomy);
 	}
+
+	foundGroup = std::find_if(generalIdeas.begin(), generalIdeas.end(), [](auto& theGroup){ return (theGroup->getName() == "country"); });
+	auto militaryYouthFocus = (*foundGroup)->getIdea("military_youth_focus");
+	if (militaryYouthFocus)
+	{
+		std::string allowedCivilWar = "= {\n";
+		allowedCivilWar += "				OR = {\n";
+		for (auto ideology: majorIdeologies)
+		{
+			if ((ideology != "neutrality") && (ideology != "democratic"))
+			{
+				allowedCivilWar += "					has_government = " + ideology + "\n";
+			}
+		}
+		allowedCivilWar += "				}\n";
+		allowedCivilWar += "			}";
+		militaryYouthFocus->setAllowedCivilWar(allowedCivilWar);
+		(*foundGroup)->replaceIdea(*militaryYouthFocus);
+	}
+
+	auto paramilitarismFocus = (*foundGroup)->getIdea("paramilitarism_focus");
+	if (paramilitarismFocus)
+	{
+		std::string allowedCivilWar = "= {\n";
+		allowedCivilWar += "				OR = {\n";
+		for (auto ideology: majorIdeologies)
+		{
+			if ((ideology != "neutrality") && (ideology != "democratic"))
+			{
+				allowedCivilWar += "					has_government = " + ideology + "\n";
+			}
+		}
+		allowedCivilWar += "				}\n";
+		allowedCivilWar += "			}";
+		paramilitarismFocus->setAllowedCivilWar(allowedCivilWar);
+		(*foundGroup)->replaceIdea(*paramilitarismFocus);
+	}
+
+	auto indoctrinationFocus = (*foundGroup)->getIdea("indoctrination_focus");
+	if (indoctrinationFocus)
+	{
+		std::string allowedCivilWar = "= {\n";
+		allowedCivilWar += "				OR = {\n";
+		for (auto ideology: majorIdeologies)
+		{
+			if ((ideology != "neutrality") && (ideology != "democratic"))
+			{
+				allowedCivilWar += "					has_government = " + ideology + "\n";
+			}
+		}
+		allowedCivilWar += "				}\n";
+		allowedCivilWar += "			}";
+		indoctrinationFocus->setAllowedCivilWar(allowedCivilWar);
+		(*foundGroup)->replaceIdea(*indoctrinationFocus);
+	}
 }
 
 
