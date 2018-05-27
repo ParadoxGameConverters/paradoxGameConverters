@@ -241,7 +241,7 @@
  government_contested.a:0 "To nie najlepszy moment na kryzys zaufania."
  government_contested.b:0 "Niech scena polityczna ulegnie zmianie, by ludzie pozostali zjednoczeni."
  party_choice.t:0 "Wybory - [GetYear] r."
-  party_choice.d:0 "Nadszedł dzień wyborów. Która partia będzie kontrolować rząd?"
+ party_choice.d:0 "Nadszedł dzień wyborów. Która partia będzie kontrolować rząd?"
  war_justification.fascismneutrality.t:0 "[Root.GetLeader] Mówi przeciwko [From.GetName]"
  war_justification.fascismneutrality.d:1 "'Czy [From.GetName] należy do [From.GetAdjective]? Zadajmy sobie lepsze pytanie: czy przyszłość należy do [From.GetAdjective], czy też należy do [Root.GetNameDef]? '.  \n\n  [Root.GetLeader] dzisiejsze przemówienie zasugerowało, że [Root.GetName ] jest na drodze do wojny. Napięcia polityczne budują się przez ostatni miesiąc i wydaje się, że ludzie [Root.GetAdjective] zamierzają zaakceptować, że wojna jest nieunikniona."
  war_justification.fascismneutrality.a:0 "Przyszłość należy do [Root.GetName]!"

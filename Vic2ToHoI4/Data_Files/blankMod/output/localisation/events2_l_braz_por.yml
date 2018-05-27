@@ -241,7 +241,7 @@
  government_contested.a:0 "A crise de confiança é um infortúnio."
  government_contested.b:0 "Deixemos que o cenário político mude para manter o povo unido."
  party_choice.t:0 "Eleição de [GetYear]"
-  party_choice.d:0 "O dia da eleição chegou. Qual partido irá controlar o governo?"
+ party_choice.d:0 "O dia da eleição chegou. Qual partido irá controlar o governo?"
  war_justification.fascismneutrality.t:0 "[Root.GetLeader] fala contra [From.GetName]"
  war_justification.fascismneutrality.d:1 "'[From.GetName] pertence ao [From.GetAdjective]? Vamos nos fazer uma pergunta melhor: o futuro pertence ao [From.GetAdjective] ou pertence ao [Root.GetNameDef]?  \n\n  [Root.GetLeader] fala hoje sugeriu que [Root.GetName] está no caminho para a guerra. As tensões políticas vêm aumentando no último mês e parece que as pessoas [Root.GetAdjective] estão aceitando que a guerra é inevitável."
  war_justification.fascismneutrality.a:0 "O futuro pertence a [Root.GetName]!"

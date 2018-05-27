@@ -241,7 +241,7 @@
  government_contested.a:0 "Diese Vertrauenskrise ist höchst bedauerlich."
  government_contested.b:0 "Soll die politische Landschaft sich wandeln, um die Einheit unter den Menschen zu gewährleisten."
  party_choice.t:0 "Wahl [GetYear]"
-  party_choice.d:0 "Der Tag der Wahl ist angekommen. Welche Partei wird die Regierung kontrollieren?"
+ party_choice.d:0 "Der Tag der Wahl ist angekommen. Welche Partei wird die Regierung kontrollieren?"
  war_justification.fascismneutrality.t:0 "[Root.GetLeader] spricht gegen [From.GetName]"
  war_justification.fascismneutrality.d:1 "Gehört [From.GetName] zum [From.GetAdjective]? Stellen wir uns eine bessere Frage: Gehört die Zukunft zu [From.GetAdjective] oder gehört sie zu [Root.GetNameDef]? ' \n\n  [Root.GetLeader]' s Rede schlug heute vor, dass [Root.GetName ] ist auf dem Weg in den Krieg. Politische Spannungen haben sich im letzten Monat aufgebaut und es scheint, dass die [Root.GetAdjective] Leute akzeptieren, dass ein Krieg unvermeidlich ist."
  war_justification.fascismneutrality.a:0 "Die Zukunft gehört [Root.GetName]!"

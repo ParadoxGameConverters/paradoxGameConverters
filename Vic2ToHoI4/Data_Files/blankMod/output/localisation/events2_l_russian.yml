@@ -241,7 +241,7 @@
  government_contested.a:0 "Этот кризис доверия очень неудачен."
  government_contested.b:0 "Пусть политический ландшафт сдвинется, чтобы объединить людей"
  party_choice.t:0 "Выборы [GetYear] г."
-  party_choice.d:0 "День выборов прибыл. Какая партия будет контролировать правительство?"
+ party_choice.d:0 "День выборов прибыл. Какая партия будет контролировать правительство?"
  war_justification.fascismneutrality.t:0 "[Root.GetLeader] Говорит против [From.GetName]"
  war_justification.fascismneutrality.d:1 "'[From.GetName] принадлежит [From.GetAdjective]? Давайте зададим себе лучший вопрос: будущее относится к [From.GetAdjective] или относится к речью [Root.GetNameDef]?  \n\n  [Root.GetLeader] сегодня предложило, чтобы [Root.GetName ] находится на пути к войне. За прошедший месяц нарастала политическая напряженность, и кажется, что [Root.GetAdjective] люди приходят, чтобы признать, что война неизбежна."
  war_justification.fascismneutrality.a:0 "Будущее принадлежит [Root.GetName]!"
