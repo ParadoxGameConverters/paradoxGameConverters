@@ -41,6 +41,10 @@ HoI4::Idea::Idea(const std::string& ideaName, std::istream& theStream):
 		commonItems::singleInt levelString(theStream);
 		level = levelString.getInt();
 	});
+	registerKeyword(std::regex("allowed"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringOfItem allowedString(theStream);
+		allowed = allowedString.getString();
+	});
 	registerKeyword(std::regex("available"), [this](const std::string& unused, std::istream& theStream){
 		commonItems::stringOfItem availableString(theStream);
 		available = availableString.getString();
@@ -52,6 +56,14 @@ HoI4::Idea::Idea(const std::string& ideaName, std::istream& theStream):
 	registerKeyword(std::regex("modifier"), [this](const std::string& unused, std::istream& theStream){
 		commonItems::stringOfItem modifierString(theStream);
 		modifier = modifierString.getString();
+	});
+	registerKeyword(std::regex("on_add"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringOfItem onAddString(theStream);
+		onAdd = onAddString.getString();
+	});
+	registerKeyword(std::regex("allowed_to_remove"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringOfItem allowedString(theStream);
+		allowedToRemove = allowedString.getString();
 	});
 	registerKeyword(std::regex("default"), [this](const std::string& unused, std::istream& theStream){
 		commonItems::singleString defaultString(theStream);
@@ -69,10 +81,26 @@ HoI4::Idea::Idea(const std::string& ideaName, std::istream& theStream):
 std::ostream& HoI4::operator<<(std::ostream& outStream, const HoI4::Idea& outIdea)
 {
 	outStream << "		" << outIdea.name << " = {\n";
-	outStream << "			cost = " << outIdea.cost << "\n";
-	outStream << "			removal_cost = " << outIdea.removalCost << "\n";
-	outStream << "			level = " << outIdea.level << "\n";
-	outStream << "			available " << outIdea.available << "\n";
+	if (outIdea.cost)
+	{
+		outStream << "			cost = " << *(outIdea.cost) << "\n";
+	}
+	if (outIdea.removalCost)
+	{
+		outStream << "			removal_cost = " << *(outIdea.removalCost) << "\n";
+	}
+	if (outIdea.level)
+	{
+		outStream << "			level = " << *(outIdea.level) << "\n";
+	}
+	if (outIdea.allowed != "")
+	{
+		outStream << "			allowed " << outIdea.allowed << "\n";
+	}
+	if (outIdea.available != "")
+	{
+		outStream << "			available " << outIdea.available << "\n";
+	}
 	if (outIdea.aiWillDo != "")
 	{
 		outStream << "			ai_will_do " << outIdea.aiWillDo << "\n";
@@ -80,6 +108,14 @@ std::ostream& HoI4::operator<<(std::ostream& outStream, const HoI4::Idea& outIde
 	if (outIdea.modifier != "")
 	{
 		outStream << "			modifier " << outIdea.modifier << "\n";
+	}
+	if (outIdea.onAdd != "")
+	{
+		outStream << "			on_add " << outIdea.onAdd << "\n";
+	}
+	if (outIdea.allowedToRemove != "")
+	{
+		outStream << "			allowed_to_remove " << outIdea.allowedToRemove << "\n";
 	}
 	if (outIdea.isDefault)
 	{

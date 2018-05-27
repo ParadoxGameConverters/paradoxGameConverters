@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 HoI4::Ideas::Ideas()
 {
 	importIdeologicalIdeas();
-	importManpowerIdeas();
+	importGeneralIdeas();
 }
 
 
@@ -51,18 +51,24 @@ void HoI4::Ideas::importIdeologicalIdeas()
 }
 
 
-void HoI4::Ideas::importManpowerIdeas()
+void HoI4::Ideas::importGeneralIdeas()
 {
-	registerKeyword(std::regex("ideas"), [this](const std::string& unused, std::istream& theStream){
-		auto equals = getNextTokenWithoutMatching(theStream);
-		auto leftBrace = getNextTokenWithoutMatching(theStream);
-	});
-	registerKeyword(std::regex("\\}"), [this](const std::string& unused, std::istream& theStream){});
-	registerKeyword(std::regex("[a-zA-Z_]+"), [this](const std::string& ideaGroupname, std::istream& theStream){
-		manpowerIdeas = std::make_unique<IdeaGroup>(ideaGroupname, theStream);
+	registerKeyword(std::regex("[a-zA-Z_]+"), [this](const std::string& ideaGroupName, std::istream& theStream){
+		if (ideaGroupName == "mobilization_laws")
+		{
+			manpowerIdeas = std::make_unique<IdeaGroup>(ideaGroupName, theStream);
+		}
+		else if (ideaGroupName == "economy")
+		{
+			economicIdeas = std::make_unique<IdeaGroup>(ideaGroupName, theStream);
+		}
+		else if (ideaGroupName == "trade_laws")
+		{
+			tradeIdeas = std::make_unique<IdeaGroup>(ideaGroupName, theStream);
+		}
 	});
 
-	parseFile("manpowerIdeas.txt");
+	parseFile("converterIdeas.txt");
 }
 
 
@@ -137,6 +143,7 @@ void HoI4::Ideas::output(std::set<std::string> majorIdeologies) const
 {
 	outputIdeologicalIdeas(majorIdeologies);
 	outputManpowerIdeas();
+	outputEconomicIdeas();
 }
 
 
@@ -168,5 +175,16 @@ void HoI4::Ideas::outputManpowerIdeas() const
 	std::ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/_manpower.txt");
 	ideasFile << "ideas = {\n";
 	ideasFile << *manpowerIdeas;
+	ideasFile << "}";
+}
+
+
+void HoI4::Ideas::outputEconomicIdeas() const
+{
+	std::ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/_economic.txt");
+	ideasFile << "ideas = {\n";
+	ideasFile << *economicIdeas;
+	ideasFile << "\n";
+	ideasFile << *tradeIdeas;
 	ideasFile << "}";
 }

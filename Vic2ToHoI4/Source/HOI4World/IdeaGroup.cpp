@@ -33,7 +33,7 @@ HoI4::IdeaGroup::IdeaGroup(const std::string& ideaGroupName, std::istream& theSt
 		commonItems::singleString lawString(theStream);
 		law = (lawString.getString() == "yes");
 	});
-	registerKeyword(std::regex("[a-zA-Z0-9_]+"), [this](const std::string& ideaName, std::istream& theStream){
+	registerKeyword(std::regex("[a-zA-Z0-9\\_]+"), [this](const std::string& ideaName, std::istream& theStream){
 		Idea newIdea(ideaName, theStream);
 		ideas.push_back(newIdea);
 	});

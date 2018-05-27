@@ -26,7 +26,7 @@ cp "Data_Files/converterLeaderTraits.txt" "Release-Linux/converterLeaderTraits.t
 cp "Data_Files/ideologicalAdvisors.txt" "Release-Linux/ideologicalAdvisors.txt"
 cp "Data_Files/ideologicalDecisions.txt" "Release-Linux/ideologicalDecisions.txt"
 cp "Data_Files/ideologicalIdeas.txt" "Release-Linux/ideologicalIdeas.txt"
-cp "Data_Files/manpowerIdeas.txt" "Release-Linux/manpowerIdeas.txt"
+cp "Data_Files/converterIdeas.txt" "Release-Linux/converterIdeas.txt"
 cp "Data_Files/converterFocuses.txt" "Release-Linux/converterFocuses.txt"
 
 # **Copy flags**

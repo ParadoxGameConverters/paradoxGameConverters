@@ -46,13 +46,16 @@ class Idea: commonItems::parser
 	private:
 		std::string name;
 
-		int cost = 0;
-		int removalCost = -1;
-		int level = 0;
+		std::optional<int> cost;
+		std::optional<int> removalCost;
+		std::optional<int> level;
 
+		std::string allowed;
 		std::string available;
 		std::string aiWillDo;
 		std::string modifier;
+		std::string onAdd;
+		std::string allowedToRemove;
 
 		bool isDefault = false;
 		bool cancelIfInvalid = false;

@@ -50,13 +50,16 @@ class Ideas: commonItems::parser
 
 	private:
 		void importIdeologicalIdeas();
-		void importManpowerIdeas();
+		void importGeneralIdeas();
 
 		void outputIdeologicalIdeas(std::set<std::string> majorIdeologies) const;
 		void outputManpowerIdeas() const;
+		void outputEconomicIdeas() const;
 
 		std::map<std::string, std::vector<std::shared_ptr<Object>>> ideologicalIdeas;
 		std::unique_ptr<IdeaGroup> manpowerIdeas;
+		std::unique_ptr<IdeaGroup> economicIdeas;
+		std::unique_ptr<IdeaGroup> tradeIdeas;
 };
 
 }
