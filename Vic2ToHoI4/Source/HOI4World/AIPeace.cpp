@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "AIPeace.h"
-#include "parserHelpers.h"
+#include "ParserHelpers.h"
 
 
 
