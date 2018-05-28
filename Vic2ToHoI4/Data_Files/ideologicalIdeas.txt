@@ -1,4 +1,25 @@
 fascism = {
+	militarism_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = fascism
+			}
+			
+			removal_cost = -1
+
+			picture = generic_manpower_bonus
+	
+			modifier = {
+				conscription = 0.05
+				enemy_partisan_effect = -0.1
+			}
+		}
+
 		fascism_banned = {
 
 			picture = generic_fascism_banned
@@ -240,13 +261,36 @@ communism = {
 }
 
 democratic = {
+		liberty_ethos_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+			
+			removal_cost = -1
+
+			picture = generic_democratic_drift_bonus
+	
+			modifier = {
+				trade_opinion_factor = 0.2
+			}
+		}
+
 		collectivist_ethos_focus_democratic = {
 			allowed = {
 				always = no
 			}
 
 			allowed_civil_war = {
-				has_government = communism
+				AND = {
+					NOT = { has_government = democratic }
+					NOT = { has_government = neutrality }
+				}
 			}
 		
 			removal_cost = -1
@@ -299,6 +343,46 @@ democratic = {
 }
 
 absolutist = {
+		royal_dictatorship_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = absolutist
+			}
+			
+			removal_cost = -1
+
+			picture = generic_intel_bonus
+	
+			modifier = {
+				drift_defence_factor = 0.2
+			}
+		}
+
+		historical_claims_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = absolutist
+			}
+			
+			removal_cost = -1
+
+			picture = Generic_constitutional_guarantee
+	
+			modifier = {
+				justify_war_goal_time = -0.5
+				take_states_cost_factor = 0.5
+			}
+		}
 		absolutist_defeated = {
 			removal_cost = -1
 
@@ -469,6 +553,66 @@ radical = {
 				factor = 0
 			}
 		}
+		
+		private_channels_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = radical
+			}
+			
+			removal_cost = -1
+
+			picture = can_wartime_prices_and_trade_board
+	
+			modifier = {
+				trade_opinion_factor = 0.2
+			}
+		}
+
+		hardfought_market_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = radical
+			}
+			
+			removal_cost = -1
+
+			picture = generic_license_production
+	
+			modifier = {
+				production_factory_max_efficiency_factor = 0.05
+			}
+		}
+		
+		army_provides_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = radical
+			}
+			
+			removal_cost = -1
+
+			picture = generic_manpower_bonus
+	
+			modifier = {
+				conscription = 0.025
+			}
+		}
 }
 
 neutrality = {
@@ -478,7 +622,10 @@ neutrality = {
 			}
 
 			allowed_civil_war = {
-				has_government = communism
+				AND = {
+					NOT = { has_government = democratic }
+					NOT = { has_government = neutrality }
+				}
 			}
 		
 			removal_cost = -1

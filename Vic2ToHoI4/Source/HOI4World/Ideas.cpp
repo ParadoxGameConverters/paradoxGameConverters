@@ -181,6 +181,46 @@ void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
 		(*foundGroup)->replaceIdea(*closedEconomy);
 	}
 
+	auto limitedExports = (*foundGroup)->getIdea("limited_exports");
+	if (limitedExports)
+	{
+		std::string available = "= {\n";
+		if (majorIdeologies.count("democratic") > 0)
+		{
+			available += "				OR = {\n";
+			available += "					AND = {\n";
+			available += "						has_government = democratic\n";
+			available += "						has_war = yes\n";
+			available += "						any_enemy_country = {\n";
+			available += "							ic_ratio = { \n";
+			available += "								tag = ROOT \n";
+			available += "								ratio > 0.2\n";
+			available += "							}\n";
+			available += "						}\n";
+			available += "					}\n";
+			available += "					AND = {\n";
+			available += "						NOT = { has_government = democratic }\n";
+			available += "						OR = {\n";
+			available += "							has_idea = partial_economic_mobilisation\n";
+			available += "							has_idea = war_economy\n";
+			available += "							has_idea = tot_economic_mobilisation\n";
+			available += "						}\n";
+			available += "					}\n";
+			available += "				}\n";
+		}
+		else
+		{
+			available += "				OR = {\n";
+			available += "					has_idea = partial_economic_mobilisation\n";
+			available += "					has_idea = war_economy\n";
+			available += "					has_idea = tot_economic_mobilisation\n";
+			available += "				}\n";
+		}
+		available += "			}";
+		limitedExports->setAvailable(available);
+		(*foundGroup)->replaceIdea(*limitedExports);
+	}
+
 	foundGroup = std::find_if(generalIdeas.begin(), generalIdeas.end(), [](auto& theGroup){ return (theGroup->getName() == "country"); });
 	auto militaryYouthFocus = (*foundGroup)->getIdea("military_youth_focus");
 	if (militaryYouthFocus)

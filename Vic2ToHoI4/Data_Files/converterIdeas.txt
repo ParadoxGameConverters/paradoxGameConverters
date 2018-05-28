@@ -82,8 +82,7 @@
 			available = {
 				#has_manpower_for_recruit_change_to = { value = 0.05 group = mobilization_laws }
 				OR = {
-					has_government = fascism
-					has_government = communism
+					# ideologies added in code
 					AND = {
 						has_war = yes
 						enemies_strength_ratio > 0.5
@@ -128,8 +127,7 @@
 			available = {
 				#has_manpower_for_recruit_change_to =  { value = 0.1 group = mobilization_laws }
 				OR = {
-					has_government = fascism
-					has_government = communism
+					#ideologies set in code
 					AND = {
 						has_war = yes
 						enemies_strength_ratio > 0.6
@@ -427,10 +425,7 @@
 			available = {
 				has_war_support > 0.5
 				OR = {
-					has_government = fascism
-					has_government = communism
-					has_government = absolutist
-					has_government = radical
+					# ideologies set in code
 					custom_trigger_tooltip = { tooltip = or_clarification_tooltip always = no }
 					AND = {
 						has_war = yes
@@ -566,26 +561,7 @@
 			
 			
 			available = {
-				OR = {
-					AND = {
-						has_government = democratic
-						has_war = yes
-						any_enemy_country = {
-							ic_ratio = { 
-								tag = ROOT 
-								ratio > 0.2
-							}
-						}
-					}
-					AND = {
-						NOT = { has_government = democratic }
-						OR = {
-							has_idea = partial_economic_mobilisation
-							has_idea = war_economy
-							has_idea = tot_economic_mobilisation
-						}
-					}
-				}
+				# set in code to account for the existence of democratic ideology
 			}
 		
 			cost = 150
@@ -628,8 +604,7 @@
 			available = {
 				has_war = yes
 				OR = { 
-					has_government = fascism
-					has_government = communism
+					# ideologies added in code
 				}
 				OR = {
 					has_idea = war_economy
@@ -812,47 +787,6 @@
 			}
 		}
 	
-		liberty_ethos_focus = {
-			
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = democratic
-			}
-			
-			removal_cost = -1
-
-			picture = generic_democratic_drift_bonus
-	
-			modifier = {
-				trade_opinion_factor = 0.2
-			}
-		}
-	
-		militarism_focus = {
-			
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = fascism
-			}
-			
-			removal_cost = -1
-
-			picture = generic_manpower_bonus
-	
-			modifier = {
-				conscription = 0.05
-				enemy_partisan_effect = -0.1
-			}
-		}
-	
 		military_youth_focus = {
 			
 			
@@ -862,8 +796,7 @@
 
 			allowed_civil_war = {
 				OR = {
-					has_government = communism
-					has_government = fascism
+					#ideologies added in code
 				}
 			}
 			
@@ -885,8 +818,7 @@
 
 			allowed_civil_war = {
 				OR = {
-					has_government = communism
-					has_government = fascism
+					# ideologies added in code
 				}
 			}
 			
@@ -908,8 +840,7 @@
 
 			allowed_civil_war = {
 				OR = {
-					has_government = communism
-					has_government = fascism
+					# ideologies added in code
 				}
 			}
 			
@@ -945,107 +876,6 @@
 				war_support_factor = 0.05
 				army_core_attack_factor = 0.1
 				army_core_defence_factor = 0.1
-			}
-		}
-		
-		royal_dictatorship_focus = {
-			
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = absolutist
-			}
-			
-			removal_cost = -1
-
-			picture = generic_intel_bonus
-	
-			modifier = {
-				drift_defence_factor = 0.2
-			}
-		}
-
-		historical_claims_focus = {
-			
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = absolutist
-			}
-			
-			removal_cost = -1
-
-			picture = Generic_constitutional_guarantee
-	
-			modifier = {
-				justify_war_goal_time = -0.5
-				take_states_cost_factor = 0.5
-			}
-		}
-		
-		private_channels_focus = {
-			
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = radical
-			}
-			
-			removal_cost = -1
-
-			picture = can_wartime_prices_and_trade_board
-	
-			modifier = {
-				trade_opinion_factor = 0.2
-			}
-		}
-
-		hardfought_market_focus = {
-			
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = radical
-			}
-			
-			removal_cost = -1
-
-			picture = generic_license_production
-	
-			modifier = {
-				production_factory_max_efficiency_factor = 0.05
-			}
-		}
-		
-		army_provides_focus = {
-			
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = radical
-			}
-			
-			removal_cost = -1
-
-			picture = generic_manpower_bonus
-	
-			modifier = {
-				conscription = 0.025
 			}
 		}
 		

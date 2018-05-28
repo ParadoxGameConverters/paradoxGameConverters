@@ -94,5 +94,14 @@ void HoI4::AIPeaces::output(std::set<std::string> majorIdeologies)
 			}
 			outFile.close();
 		}
+		else if (thePeace.getName() == "democratic_peace")
+		{
+			std::ofstream outFile("output/" + Configuration::getOutputName() + "/common/ai_peace/1_democratic.txt");
+			if (majorIdeologies.count("democratic") > 0)
+			{
+				outFile << thePeace;
+			}
+			outFile.close();
+		}
 	});
 }
