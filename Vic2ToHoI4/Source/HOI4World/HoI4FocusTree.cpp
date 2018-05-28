@@ -1291,7 +1291,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 		newFocus->icon = "GFX_goal_generic_major_war";
 		newFocus->text += "Conquer " + targetCountryName;
 		newFocus->available += "= {\n";
-		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }\n";
+		newFocus->available += "			\"" + target->getTag() + "\" = { is_in_faction = no }\n";
 		newFocus->available += "		}";
 		newFocus->prerequisites.push_back("= { focus = NatSpirit" + Home->getTag() + " }");
 		newFocus->xPos = nextFreeColumn + 10;
@@ -1387,7 +1387,9 @@ void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const v
 				newFocus->text = "Civil War in " + coupCountryName;
 				newFocus->prerequisites.push_back("= { focus = Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag() + " }");
 				newFocus->relativePositionId = "Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag();
-				newFocus->available = "			" + coupTargets[i]->getTag() + " = { communism > 0.5 }";
+				newFocus->available = "= {\n";
+				newFocus->available += "			" + coupTargets[i]->getTag() + " = { communism > 0.5 }\n";
+				newFocus->available += "		}";
 				newFocus->completionReward += "= {\n";
 				newFocus->completionReward += "			" + coupTargets[i]->getTag() + " = {\n";
 				newFocus->completionReward += "				start_civil_war = {\n";
@@ -1420,7 +1422,7 @@ void HoI4FocusTree::addCommunistWarBranch(shared_ptr<HoI4Country> Home, const ve
 		newFocus->aiWillDo += "= {\n";
 		newFocus->aiWillDo += "			factor = 5\n";
 		newFocus->aiWillDo += "		}";
-		newFocus->completionReward += "={\n";
+		newFocus->completionReward += "= {\n";
 		newFocus->completionReward += "			army_experience = 20\n";
 		newFocus->completionReward += "			add_tech_bonus = {\n";
 		newFocus->completionReward += "				bonus = 0.5\n";
@@ -1436,8 +1438,8 @@ void HoI4FocusTree::addCommunistWarBranch(shared_ptr<HoI4Country> Home, const ve
 		newFocus->text = "International Communist Pressure";//change to faction name later
 		newFocus->prerequisites.push_back("= { focus = StrengthCom" + Home->getTag() + " }");
 		newFocus->available = "= {\n";
-		newFocus->available = "			date > 1937.1.1\n";
-		newFocus->available = "		}";
+		newFocus->available += "			date > 1937.1.1\n";
+		newFocus->available += "		}";
 		newFocus->xPos = nextFreeColumn + warTargets.size() - 1;
 		newFocus->yPos = 1;
 		newFocus->cost = 10;
@@ -1849,21 +1851,20 @@ void HoI4FocusTree::addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<sh
 		string prereq = "";
 		int y2 = 1;
 		//figuring out location of WG
+		shared_ptr<HoI4Focus> newFocus = make_shared<HoI4Focus>();
 		if (newAllies.size() > 0)
 		{
 			y2 = 2;
 			for (unsigned int i2 = 0; i2 < newAllies.size(); i2++)
 			{
-				prereq += "= { focus = Alliance_" + newAllies[i2]->getTag() + Home->getTag() + " }";
+				newFocus->prerequisites.push_back("= { focus = Alliance_" + newAllies[i2]->getTag() + Home->getTag() + " }");
 			}
 		}
 		int v1 = rand() % 12 + 1;
 		int v2 = rand() % 12 + 1;
-		shared_ptr<HoI4Focus> newFocus = make_shared<HoI4Focus>();
 		newFocus->id = "War" + GC->getTag() + Home->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
 		newFocus->text = "War with " + warTargetCountryName;//change to faction name later
-		newFocus->prerequisites.push_back(prereq);
 		newFocus->available += "= {\n";
 		newFocus->available += "			has_war = no\n";
 		newFocus->available += "			date > 1939." + to_string(v1) + "." + to_string(v2) + "\n";

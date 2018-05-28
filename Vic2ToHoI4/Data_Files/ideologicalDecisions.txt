@@ -1,7 +1,7 @@
 fascism = {
 
 fascism_on_the_rise = {
-	prepare_for_fascist_civil_war = {
+	prepare_for_fascism_civil_war = {
 
 		icon = generic_prepare_civil_war
 
@@ -10,8 +10,8 @@ fascism_on_the_rise = {
 		}
 
 		visible = {
-			NOT = { has_country_flag = preparation_for_fascist_civil_war }
-			has_idea_with_trait = fascist_demagogue
+			NOT = { has_country_flag = preparation_for_fascism_civil_war }
+			has_idea_with_trait = fascism_demagogue
 			NOT = { has_government = fascism }
 		}
 		
@@ -20,7 +20,7 @@ fascism_on_the_rise = {
 		cost = 50
 		
 		complete_effect = {
-			set_country_flag = preparation_for_fascist_civil_war
+			set_country_flag = preparation_for_fascism_civil_war
 		}
 		
 		ai_will_do = {
@@ -34,10 +34,10 @@ fascism_on_the_rise = {
 
 		visible = {
 			OR = {
-				has_country_flag = preparation_for_fascist_civil_war
+				has_country_flag = preparation_for_fascism_civil_war
 				has_country_flag = open_up_political_discourse_fascism
 			}
-			has_idea_with_trait = fascist_demagogue
+			has_idea_with_trait = fascism_demagogue
 			NOT = { has_government = fascism }
 		}
 
@@ -64,13 +64,13 @@ fascism_on_the_rise = {
 		}
 	}
 	
-	army_support_for_fascist_civil_war = {
+	army_support_for_fascism_civil_war = {
 
 		icon = generic_army_support
 
 		visible = {
-			has_country_flag = preparation_for_fascist_civil_war
-			has_idea_with_trait = fascist_demagogue
+			has_country_flag = preparation_for_fascism_civil_war
+			has_idea_with_trait = fascism_demagogue
 			NOT = { has_government = fascism }
 		}
 
@@ -103,7 +103,7 @@ fascism_on_the_rise = {
 				}
 				add_to_variable = { var = army_support_var value = 0.1 } 
 			}
-			set_country_flag = military_support_for_fascist_civil_war
+			set_country_flag = military_support_for_fascism_civil_war
 			custom_effect_tooltip = army_support_TT
 		}
 		
@@ -115,17 +115,17 @@ fascism_on_the_rise = {
 		}
 	}
 
-	ensure_general_loyalty_for_fascist_civil_war = {
+	ensure_general_loyalty_for_fascism_civil_war = {
 
 		icon = generic_army_support
 
 		available = {
-			has_country_flag = military_support_for_fascist_civil_war
+			has_country_flag = military_support_for_fascism_civil_war
 		}
 
 		visible = {
-			has_country_flag = preparation_for_fascist_civil_war
-			has_idea_with_trait = fascist_demagogue
+			has_country_flag = preparation_for_fascism_civil_war
+			has_idea_with_trait = fascism_demagogue
 			any_army_leader = {
 				is_field_marshal = no
 				NOT = { has_trait = hidden_sympathies }
@@ -146,17 +146,17 @@ fascism_on_the_rise = {
 		}
 	}
 
-	ensure_marshal_loyalty_for_fascist_civil_war = {
+	ensure_marshal_loyalty_for_fascism_civil_war = {
 
 		icon = generic_army_support
 
 		available = {
-			has_country_flag = military_support_for_fascist_civil_war
+			has_country_flag = military_support_for_fascism_civil_war
 		}
 
 		visible = {
-			has_country_flag = preparation_for_fascist_civil_war
-			has_idea_with_trait = fascist_demagogue
+			has_country_flag = preparation_for_fascism_civil_war
+			has_idea_with_trait = fascism_demagogue
 			any_army_leader = {
 				NOT = { has_trait = hidden_sympathies }
 			}
@@ -180,20 +180,20 @@ fascism_on_the_rise = {
 		}
 	}
 
-	siphon_equipment_stockpiles_for_fascist_civil_war = {
+	siphon_equipment_stockpiles_for_fascism_civil_war = {
 
 		icon = generic_prepare_civil_war
 
 		available = {
-			has_country_flag = military_support_for_fascist_civil_war
+			has_country_flag = military_support_for_fascism_civil_war
 			has_equipment = { infantry_equipment > 1000 }
 			command_power > 2
 		}
 
 		visible = {
-			has_country_flag = preparation_for_fascist_civil_war
-			has_country_flag = military_support_for_fascist_civil_war
-			has_idea_with_trait = fascist_demagogue
+			has_country_flag = preparation_for_fascism_civil_war
+			has_country_flag = military_support_for_fascism_civil_war
+			has_idea_with_trait = fascism_demagogue
 			NOT = { has_government = fascism }
 		}
 	
@@ -215,18 +215,18 @@ fascism_on_the_rise = {
 		}
 	}
 
-	formulate_surprise_attack_plan_for_fascist_civil_war = {
+	formulate_surprise_attack_plan_for_fascism_civil_war = {
 
 		icon = generic_army_support
 
 		available = {
-			has_country_flag = military_support_for_fascist_civil_war
+			has_country_flag = military_support_for_fascism_civil_war
 			command_power > 2
 		}
 
 		visible = {
-			has_country_flag = preparation_for_fascist_civil_war
-			has_idea_with_trait = fascist_demagogue
+			has_country_flag = preparation_for_fascism_civil_war
+			has_idea_with_trait = fascism_demagogue
 			NOT = { has_government = fascism }
 		}
 	
@@ -254,7 +254,7 @@ fascism_on_the_rise = {
 		}
 
 		visible = {
-			has_country_flag = preparation_for_fascist_civil_war
+			has_country_flag = preparation_for_fascism_civil_war
 			has_idea_with_trait = fascism_minister
 			NOT = { has_government = fascism }
 		}
@@ -309,7 +309,7 @@ fascism_on_the_rise = {
 		}
 
 		visible = {
-			has_idea_with_trait = fascist_demagogue
+			has_idea_with_trait = fascism_demagogue
 			NOT = { has_country_flag = open_up_political_discourse_fascism }
 			NOT = { has_government = fascism }
 		}
@@ -361,7 +361,7 @@ fascism_on_the_rise = {
 		}
 	}
 	
-	hold_the_fascist_national_referendum = {
+	hold_the_fascism_national_referendum = {
 
 		icon = generic_political_discourse
 
@@ -400,7 +400,7 @@ fascism_on_the_rise = {
 }
 
 political_actions = {
-	anti_fascist_raids = {
+	anti_fascism_raids = {
 
     	icon = generic_civil_support
 
@@ -432,7 +432,7 @@ political_actions = {
 		}
     }
 
-	ban_fascist_party = {
+	ban_fascism_party = {
 
 		icon = generic_civil_support
 
@@ -477,12 +477,12 @@ political_actions = {
 					value = 0.66
 				}				
 			}
-			custom_effect_tooltip = ban_fascist_party_tt
+			custom_effect_tooltip = ban_fascism_party_tt
 			add_stability = ban_ideology_var
 		}
 	}
 
-	institute_press_censorship_fascist_state = {
+	institute_press_censorship_fascism_state = {
 
 		icon = generic_political_discourse
 
@@ -1011,7 +1011,7 @@ political_actions = {
 
 communism = {
 communism_on_the_rise = {
-	prepare_for_communist_civil_war = {
+	prepare_for_communism_civil_war = {
 
 		icon = generic_prepare_civil_war
 
@@ -1021,7 +1021,7 @@ communism_on_the_rise = {
 
 		visible = {
 			NOT = { has_country_flag = preparation_for_communism_civil_war }
-			has_idea_with_trait = communist_revolutionary
+			has_idea_with_trait = communism_revolutionary
 			NOT = { has_government = communism }
 		}
 		
@@ -1030,7 +1030,7 @@ communism_on_the_rise = {
 		cost = 50
 		
 		complete_effect = {
-			set_country_flag = preparation_for_communist_civil_war
+			set_country_flag = preparation_for_communism_civil_war
 		}
 		
 		ai_will_do = {
@@ -1038,16 +1038,16 @@ communism_on_the_rise = {
 		}
 	}
 	
-	expand_civil_communist_support = {
+	expand_civil_communism_support = {
 
 		icon = generic_civil_support
 
 		visible = {
 			OR = {
-				has_country_flag = preparation_for_communist_civil_war
+				has_country_flag = preparation_for_communism_civil_war
 				has_country_flag = open_up_political_discourse_communism
 			}
-			has_idea_with_trait = communist_revolutionary
+			has_idea_with_trait = communism_revolutionary
 			NOT = { has_government = communism }
 		}
 
@@ -1074,13 +1074,13 @@ communism_on_the_rise = {
 		}
 	}
 	
-	army_support_for_communist_civil_war = {
+	army_support_for_communism_civil_war = {
 
 		icon = generic_army_support
 
 		visible = {
-			has_country_flag = preparation_for_communist_civil_war
-			has_idea_with_trait = communist_revolutionary
+			has_country_flag = preparation_for_communism_civil_war
+			has_idea_with_trait = communism_revolutionary
 			NOT = { has_government = communism }
 		}
 
@@ -1113,7 +1113,7 @@ communism_on_the_rise = {
 				}
 				add_to_variable = { var = army_support_var value = 0.1 } 
 			}
-			set_country_flag = military_support_for_communist_civil_war
+			set_country_flag = military_support_for_communism_civil_war
 		}
 		
 		complete_effect = {
@@ -1124,18 +1124,18 @@ communism_on_the_rise = {
 		}
 	}
 
-	ensure_general_loyalty_for_communist_civil_war = {
+	ensure_general_loyalty_for_communism_civil_war = {
 
 		icon = generic_army_support
 
 		available = {
-			has_country_flag = military_support_for_communist_civil_war
+			has_country_flag = military_support_for_communism_civil_war
 			command_power > 2
 		}
 
 		visible = {
-			has_country_flag = preparation_for_communist_civil_war
-			has_idea_with_trait = communist_revolutionary
+			has_country_flag = preparation_for_communism_civil_war
+			has_idea_with_trait = communism_revolutionary
 			any_army_leader = {
 				is_field_marshal = no
 				NOT = { has_trait = hidden_sympathies }
@@ -1156,18 +1156,18 @@ communism_on_the_rise = {
 		}
 	}
 
-	ensure_marshal_loyalty_for_communist_civil_war = {
+	ensure_marshal_loyalty_for_communism_civil_war = {
 
 		icon = generic_army_support
 
 		available = {
-			has_country_flag = military_support_for_communist_civil_war
+			has_country_flag = military_support_for_communism_civil_war
 			command_power > 2
 		}
 
 		visible = {
-			has_country_flag = preparation_for_communist_civil_war
-			has_idea_with_trait = communist_revolutionary
+			has_country_flag = preparation_for_communism_civil_war
+			has_idea_with_trait = communism_revolutionary
 			any_army_leader = {
 				NOT = { has_trait = hidden_sympathies }
 			}
@@ -1191,20 +1191,20 @@ communism_on_the_rise = {
 		}
 	}
 
-	siphon_equipment_stockpiles_for_communist_civil_war = {
+	siphon_equipment_stockpiles_for_communism_civil_war = {
 
 		icon = generic_prepare_civil_war
 
 		available = {
-			has_country_flag = military_support_for_communist_civil_war
+			has_country_flag = military_support_for_communism_civil_war
 			has_equipment = { infantry_equipment > 1000 }
 			command_power > 2
 		}
 
 		visible = {
-			has_country_flag = preparation_for_communist_civil_war
-			has_country_flag = military_support_for_communist_civil_war
-			has_idea_with_trait = communist_revolutionary
+			has_country_flag = preparation_for_communism_civil_war
+			has_country_flag = military_support_for_communism_civil_war
+			has_idea_with_trait = communism_revolutionary
 			NOT = { has_government = communism }
 		}
 	
@@ -1226,18 +1226,18 @@ communism_on_the_rise = {
 		}
 	}
 
-	formulate_surprise_attack_plan_for_communist_civil_war = {
+	formulate_surprise_attack_plan_for_communism_civil_war = {
 
 		icon = generic_army_support
 
 		available = {
-			has_country_flag = military_support_for_communist_civil_war
+			has_country_flag = military_support_for_communism_civil_war
 			command_power > 2
 		}
 
 		visible = {
-			has_country_flag = preparation_for_communist_civil_war
-			has_idea_with_trait = communist_revolutionary
+			has_country_flag = preparation_for_communism_civil_war
+			has_idea_with_trait = communism_revolutionary
 			NOT = { has_government = communism }
 		}
 	
@@ -1256,7 +1256,7 @@ communism_on_the_rise = {
 		}
 	}
 	
-	ignite_the_communist_civil_war = {
+	ignite_the_communism_civil_war = {
 
 		icon = generic_ignite_civil_war
 
@@ -1265,8 +1265,8 @@ communism_on_the_rise = {
 		}
 
 		visible = {
-			has_country_flag = preparation_for_communist_civil_war
-			has_idea_with_trait = communist_revolutionary
+			has_country_flag = preparation_for_communism_civil_war
+			has_idea_with_trait = communism_revolutionary
 			NOT = { has_government = communism }
 		}
 	
@@ -1311,7 +1311,7 @@ communism_on_the_rise = {
 		}
 	}
 
-	open_up_political_discourse_communist = {
+	open_up_political_discourse_communism = {
 
 		icon = generic_political_discourse
 
@@ -1320,7 +1320,7 @@ communism_on_the_rise = {
 		}
 
 		visible = {
-			has_idea_with_trait = communist_revolutionary
+			has_idea_with_trait = communism_revolutionary
 			NOT = { has_government = communism }
 		}
 		
@@ -1333,7 +1333,7 @@ communism_on_the_rise = {
 		cost = 75
 		
 		complete_effect = {
-			set_country_flag = open_up_political_discourse_communist
+			set_country_flag = open_up_political_discourse_communism
 		}
 		
 		ai_will_do = {
@@ -1350,7 +1350,7 @@ communism_on_the_rise = {
 		}
 
 		visible = {
-			has_country_flag = open_up_political_discourse_communist
+			has_country_flag = open_up_political_discourse_communism
 			NOT = { has_government = communism }
 		}
 		
@@ -1371,7 +1371,7 @@ communism_on_the_rise = {
 		}
 	}
 	
-	hold_the_communist_national_referendum = {
+	hold_the_communism_national_referendum = {
 
 		icon = generic_political_discourse
 
@@ -1383,7 +1383,7 @@ communism_on_the_rise = {
 			NOT = { has_government = communism }
 			OR = {
 				communism > 0.6
-				has_country_flag = open_up_political_discourse_communist
+				has_country_flag = open_up_political_discourse_communism
 			}
 		}
 		
@@ -1411,7 +1411,7 @@ communism_on_the_rise = {
 
 political_actions = 
 {
-	anti_communist_raids = {
+	anti_communism_raids = {
 
     	icon = generic_civil_support
 
@@ -1443,7 +1443,7 @@ political_actions =
 		}
     }
 	
-	ban_communist_party = {
+	ban_communism_party = {
 
 		icon = generic_civil_support
 
@@ -1488,7 +1488,7 @@ political_actions =
 					value = 0.66
 				}				
 			}
-			custom_effect_tooltip = ban_communist_party_tt
+			custom_effect_tooltip = ban_communism_party_tt
 			add_stability = ban_ideology_var
 		}
 		
@@ -1497,7 +1497,7 @@ political_actions =
 		}
 	}
 	
-	institute_press_censorship_communist_state = {
+	institute_press_censorship_communism_state = {
 
 		icon = generic_political_discourse
 
