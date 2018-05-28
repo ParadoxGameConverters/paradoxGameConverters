@@ -116,6 +116,19 @@ void HoI4OnActions::output(const std::set<std::string>& majorIdeologies) const
 		onActionsFile << "	}\n";
 	}
 
+	onActionsFile << "	on_justifying_wargoal_pulse = {\n";
+	onActionsFile << "		random_events = {\n";
+	for (unsigned int i = 1; i < (majorIdeologies.size() * majorIdeologies.size()); i++)
+	{
+		onActionsFile << "			100 = war_justification." << i << "\n";
+	}
+	onActionsFile << "			100 = war_justification.37\n";
+	onActionsFile << "			100 = war_justification.38\n";
+	onActionsFile << "			100 = war_justification.39\n";
+	onActionsFile << "			17000 = 0\n";
+	onActionsFile << "		}\n";
+	onActionsFile << "	}\n";
+
 	onActionsFile << "	on_startup = {\n";
 	onActionsFile << "		effect = {\n";
 	onActionsFile << "			set_province_name = { id = 587 name = \"Köln\"} #Cologne\n";

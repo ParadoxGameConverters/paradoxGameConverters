@@ -44,29 +44,6 @@ on_actions = {
 	# triggered daily, so make sure there is a sink somewhere not firing events
 	# country, FROM = target nation
 	on_justifying_wargoal_pulse = {
-
-		random_events = {
-			100 = war_justification.1
-			100 = war_justification.2
-			100 = war_justification.3
-			100 = war_justification.4
-			100 = war_justification.5
-			100 = war_justification.6
-			100 = war_justification.7
-			100 = war_justification.8
-			100 = war_justification.9
-			100 = war_justification.10
-			100 = war_justification.11
-			100 = war_justification.12
-			100 = war_justification.13
-			100 = war_justification.14
-			100 = war_justification.15
-			100 = war_justification.16
-			100 = war_justification.17
-			100 = war_justification.18
-			100 = war_justification.19
-			17000 = 0
-		}
 	}
 
 	on_wargoal_expire = {
