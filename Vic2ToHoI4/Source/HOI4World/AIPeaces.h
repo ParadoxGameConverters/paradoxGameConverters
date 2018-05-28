@@ -44,7 +44,7 @@ class AIPeaces: commonItems::parser
 
 		void updateAIPeaces(std::set<std::string> majorIdeologies);
 
-		void output();
+		void output(std::set<std::string> majorIdeologies);
 
 	private:
 		std::vector<AIPeace> thePeaces;

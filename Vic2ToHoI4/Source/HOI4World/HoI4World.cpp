@@ -1631,7 +1631,7 @@ void HoI4World::output() const
 	events->output();
 	onActions->output(majorIdeologies);
 	decisions->output();
-	peaces->output();
+	peaces->output(majorIdeologies);
 	outputIdeologies();
 	outputLeaderTraits();
 	outputIdeas();

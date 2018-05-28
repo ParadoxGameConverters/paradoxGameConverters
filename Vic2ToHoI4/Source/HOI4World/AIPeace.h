@@ -41,6 +41,8 @@ class AIPeace: commonItems::parser
 
 		std::string getName() const { return name; }
 
+		void replaceEnable(const std::string& newEnable) { enable = newEnable; }
+
 		friend std::ostream& operator<<(std::ostream& outStream, const HoI4::AIPeace& outPeace);
 
 	private:
