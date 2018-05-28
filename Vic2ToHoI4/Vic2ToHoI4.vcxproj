@@ -131,6 +131,8 @@
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\Flags.cpp" />
     <ClCompile Include="Source\HOI4World\Advisor.cpp" />
+    <ClCompile Include="Source\HOI4World\AIPeace.cpp" />
+    <ClCompile Include="Source\HOI4World\AIPeaces.cpp" />
     <ClCompile Include="Source\HOI4World\Decision.cpp" />
     <ClCompile Include="Source\HOI4World\Decisions.cpp" />
     <ClCompile Include="Source\HOI4World\Events.cpp" />
@@ -212,6 +214,8 @@
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\Flags.h" />
     <ClInclude Include="Source\HOI4World\Advisor.h" />
+    <ClInclude Include="Source\HOI4World\AIPeace.h" />
+    <ClInclude Include="Source\HOI4World\AIPeaces.h" />
     <ClInclude Include="Source\HOI4World\Decision.h" />
     <ClInclude Include="Source\HOI4World\Decisions.h" />
     <ClInclude Include="Source\HOI4World\Events.h" />

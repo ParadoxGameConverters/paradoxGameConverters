@@ -61,6 +61,7 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	buildings(new HoI4Buildings(states->getProvinceToStateIDMap())),
 	theIdeas(std::make_unique<HoI4::Ideas>()),
 	decisions(make_unique<HoI4::decisions>()),
+	peaces(make_unique<HoI4::AIPeaces>()),
 	diplomacy(new HoI4Diplomacy),
 	events(new HoI4::Events),
 	onActions(new HoI4OnActions)
@@ -93,6 +94,7 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	events->createStabilityEvents(majorIdeologies);
 	theIdeas->updateIdeas(majorIdeologies);
 	decisions->updateDecisions(majorIdeologies);
+	peaces->updateAIPeaces(majorIdeologies);
 	addNeutrality();
 	convertIdeologySupport();
 	convertCapitalVPs();
@@ -1629,6 +1631,7 @@ void HoI4World::output() const
 	events->output();
 	onActions->output(majorIdeologies);
 	decisions->output();
+	peaces->output();
 	outputIdeologies();
 	outputLeaderTraits();
 	outputIdeas();

@@ -28,6 +28,7 @@ cp "Data_Files/ideologicalDecisions.txt" "Release-Linux/ideologicalDecisions.txt
 cp "Data_Files/ideologicalIdeas.txt" "Release-Linux/ideologicalIdeas.txt"
 cp "Data_Files/converterIdeas.txt" "Release-Linux/converterIdeas.txt"
 cp "Data_Files/converterFocuses.txt" "Release-Linux/converterFocuses.txt"
+cp "Data_Files/ai_peaces.txt" "release/ai_peaces.txt"
 
 # **Copy flags**
 rm -r "Release-Linux/flags"

@@ -26,8 +26,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "HoI4States.h"
+#include "AIPeaces.h"
 #include "Ideas.h"
+#include "HoI4States.h"
 #include "../Mappers/Mapper.h"
 #include <map>
 #include <optional>
@@ -216,6 +217,7 @@ class HoI4World
 		vector<shared_ptr<HoI4Faction>> factions;
 		HoI4Diplomacy* diplomacy = nullptr;
 		std::unique_ptr<HoI4::decisions> decisions;
+		std::unique_ptr<HoI4::AIPeaces> peaces;
 		HoI4::Events* events = nullptr;
 		HoI4OnActions* onActions = nullptr;
 
