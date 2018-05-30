@@ -51,7 +51,6 @@ HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
 	genericFocusTree->addGenericFocusTree(world->getMajorIdeologies());
 
 	determineProvinceOwners();
-	fillCountryProvinces();
 	addAllTargetsToWorldTargetMap();
 	double worldStrength = calculateWorldStrength(AILog);
 
@@ -293,26 +292,6 @@ vector<shared_ptr<HoI4Country>> HoI4WarCreator::findEvilCountries() const
 	}
 
 	return countriesEvilnessSorted;
-}
-
-
-void HoI4WarCreator::fillCountryProvinces()
-{
-	LOG(LogLevel::Info) << "Filling Map Information";
-
-	for (auto country : theWorld->getCountries())
-	{
-		country.second->setProvinceCount(0);
-	}
-	for (auto state : theWorld->getStates())
-	{
-		auto ownercountry = theWorld->getCountries().find(state.second->getOwner());
-		for (auto prov : state.second->getProvinces())
-		{
-			//fix later
-			ownercountry->second->setProvinceCount(ownercountry->second->getProvinceCount() + 1);
-		}
-	}
 }
 
 

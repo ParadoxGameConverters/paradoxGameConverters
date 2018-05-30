@@ -1065,6 +1065,7 @@ void HoI4Country::addState(HoI4State* _state)
 	for (const auto province: _state->getProvinces())
 	{
 		addProvince(province);
+		provinceCount++;
 	}
 }
 

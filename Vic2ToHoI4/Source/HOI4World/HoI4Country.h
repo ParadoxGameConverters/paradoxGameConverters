@@ -216,7 +216,7 @@ class HoI4Country
 		vector<int>							brigs;
 		int									convoys;
 		
-		int provinceCount;
+		int provinceCount = 0;
 		long armyStrength;
 		double militaryFactories;
 		double civilianFactories;

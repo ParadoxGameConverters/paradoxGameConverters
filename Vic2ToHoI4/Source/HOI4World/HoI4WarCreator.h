@@ -48,7 +48,6 @@ class HoI4WarCreator
 		HoI4WarCreator& operator=(const HoI4WarCreator&) = delete;
 
 		void determineProvinceOwners();
-		void fillCountryProvinces();
 		void addAllTargetsToWorldTargetMap();
 		void addTargetsToWorldTargetMap(shared_ptr<HoI4Country> country);
 		map<double, shared_ptr<HoI4Country>> getDistancesToGreatPowers(shared_ptr<HoI4Country> country);
