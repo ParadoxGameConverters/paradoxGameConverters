@@ -1686,14 +1686,122 @@ void HoI4Country::outputOOB(const vector<HoI4DivisionTemplateType>& divisionTemp
 	}
 	output << "### No BHU air forces ###\n";
 	output << "instant_effect = {\n";
+	if (technologies.find("infantry_weapons1") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = infantry_equipment_1\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 5\n";
+		output << "\t\tprogress = 0.88\n";
+		output << "\t\tefficiency = 100\n";
+		output << "\t}\n";
+	}
+	else
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = infantry_equipment_0\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 5\n";
+		output << "\t\tprogress = 0.88\n";
+		output << "\t\tefficiency = 100\n";
+		output << "\t}\n";
+	}
+	if (technologies.find("gw_artillery") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = artillery_equipment_1\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 2\n";
+		output << "\t\tprogress = 0.88\n";
+		output << "\t\tefficiency = 100\n";
+		output << "\t}\n";
+	}
+	if (technologies.find("fighter1") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = fighter_equipment_1\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 5\n";
+		output << "\t\tprogress = 0.88\n";
+		output << "\t\tefficiency = 100\n";
+		output << "\t}\n";
+	}
+	else if (technologies.find("early_fighter") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = fighter_equipment_0\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 5\n";
+		output << "\t\tprogress = 0.88\n";
+		output << "\t\tefficiency = 100\n";
+		output << "\t}\n";
+	}
+	if (technologies.find("basic_destroyer") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = destroyer_2\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 3\n";
+		output << "\t\tprogress = 0.25\n";
+		output << "\t\tamount = 10\n";
+		output << "\t}\n";
+	}
+	else if (technologies.find("early_destroyer") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = destroyer_1\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 3\n";
+		output << "\t\tprogress = 0.25\n";
+		output << "\t\tamount = 10\n";
+		output << "\t}\n";
+	}
+	if (technologies.find("basic_battleship") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = battleship_2\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 8\n";
+		output << "\t\tprogress = 0.25\n";
+		output << "\t\tamount = 3\n";
+		output << "\t}\n";
+	}
+	else if (technologies.find("early_battleship") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = battleship_1\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 8\n";
+		output << "\t\tprogress = 0.25\n";
+		output << "\t\tamount = 3\n";
+		output << "\t}\n";
+	}
 	output << "\tadd_equipment_production = {\n";
 	output << "\t\tequipment = {\n";
-	output << "\t\t\ttype = infantry_equipment_0\n";
+	output << "\t\t\ttype = convoy_1\n";
 	output << "\t\t\tcreator = \"" << tag << "\"\n";
 	output << "\t\t}\n";
-	output << "\t\trequested_factories = 1\n";
-	output << "\t\tprogress = 0.88\n";
-	output << "\t\tefficiency = 100\n";
+	output << "\t\trequested_factories = 10\n";
+	output << "\t\tprogress = 0.50\n";
+	output << "\t\tamount = 100\n";
 	output << "\t}\n";
 	output << "}\n";
 	output << "units = {\n";
