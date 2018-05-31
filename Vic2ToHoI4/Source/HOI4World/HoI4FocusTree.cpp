@@ -587,20 +587,20 @@ void HoI4FocusTree::addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, ve
 
 	shared_ptr<HoI4Focus> newFocus = loadedFocuses.find("WarProp")->second.makeCustomizedCopy(Home->getTag());
 	newFocus->available = "= {\n";
-	newFocus->available += "			threat > " + to_string(0.20 * WTModifier) + "\n";
+	newFocus->available += "			threat > " + to_string(0.20 * WTModifier / 1000) + "\n";
 	newFocus->available += "		}";
 	newFocus->xPos = nextFreeColumn + (CountriesToContain.size() * 2) - 1;
 	focuses.push_back(newFocus);
 
 	newFocus = loadedFocuses.find("PrepInter")->second.makeCustomizedCopy(Home->getTag());
 	newFocus->available = "= {\n";
-	newFocus->available += "			threat > " + to_string(0.30 * WTModifier) + "\n";
+	newFocus->available += "			threat > " + to_string(0.30 * WTModifier / 1000) + "\n";
 	newFocus->available += "		}";
 	focuses.push_back(newFocus);
 
 	newFocus = loadedFocuses.find("Lim")->second.makeCustomizedCopy(Home->getTag());
 	newFocus->available = "= {\n";
-	newFocus->available += "			threat > " + to_string(50 * WTModifier) + "\n";
+	newFocus->available += "			threat > " + to_string(0.50 * WTModifier / 1000) + "\n";
 	newFocus->available += "		}";
 	focuses.push_back(newFocus);
 
