@@ -80,7 +80,7 @@ void V2Localisations::ReadFromFile(const string& fileName)
 }
 
 
-const string languages[] = { "english", "french", "german", "polish", "spanish", "italian", "swedish", "czech", "hungarian", "dutch", "portugese", "russian", "finnish" };
+const string languages[] = { "english", "french", "german", "polish", "spanish", "italian", "swedish", "czech", "hungarian", "dutch", "braz_por", "russian", "finnish" };
 void V2Localisations::processLine(string line)
 {
 	int division = line.find_first_of(';');
@@ -147,7 +147,7 @@ string V2Localisations::replaceBadCharacters(string localisation)
 	int apostrophe = localisation.find_first_of("");	// character may not display, but is present
 	while (apostrophe != string::npos)
 	{
-		localisation.replace(apostrophe, 1, "'");
+		localisation.replace(apostrophe, 1, "’");
 		apostrophe = localisation.find_first_of("");	// character may not display, but is present
 	}
 
