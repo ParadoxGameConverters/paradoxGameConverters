@@ -62,6 +62,16 @@ continent = {
 					"gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" 
 			}
 		}
+		radical = {
+				male = { 
+					"gfx/leaders/Europe/Portrait_Europe_Generic_2.dds" 
+			}
+		}
+		absolutist = {
+				male = { 
+					"gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" 
+			}
+		}
 	}
 
 }
@@ -103,6 +113,16 @@ continent = {
 			}
 		}
 		neutrality = {
+				male = { 
+					"gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" 
+			}
+		}
+		radical = {
+				male = { 
+					"gfx/leaders/Europe/Portrait_Europe_Generic_2.dds" 
+			}
+		}
+		absolutist = {
 				male = { 
 					"gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" 
 			}
@@ -152,6 +172,16 @@ continent = {
 					"gfx/leaders/South America/Portrait_South_America_Generic_3.dds" 
 			}
 		}
+		radical = {
+				male = { 
+					"gfx/leaders/South America/Portrait_South_America_Generic_2.dds" 
+			}
+		}
+		absolutist = {
+				male = { 
+					"gfx/leaders/South America/Portrait_South_America_Generic_3.dds" 
+			}
+		}
 	}
 
 }
@@ -197,6 +227,16 @@ continent = {
 					"gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" 
 			}
 		}
+		radical = {
+				male = { 
+					"gfx/leaders/Europe/Portrait_Europe_Generic_2.dds" 
+			}
+		}
+		absolutist = {
+				male = { 
+					"gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" 
+			}
+		}
 	}
 
 }
@@ -236,6 +276,16 @@ continent = {
 			}
 		}
 		neutrality = {
+				male = { 
+					"gfx/leaders/Africa/Portrait_Africa_Generic_3.dds" 
+			}
+		}
+		radical = {
+				male = { 
+					"gfx/leaders/Africa/Portrait_Africa_Generic_2.dds" 
+			}
+		}
+		absolutist = {
 				male = { 
 					"gfx/leaders/Africa/Portrait_Africa_Generic_3.dds" 
 			}
@@ -286,6 +336,16 @@ continent = {
 					"gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" 
 			}
 		}
+		radical = {
+				male = { 
+					"gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" 
+			}
+		}
+		absolutist = {
+				male = { 
+					"gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" 
+			}
+		}
 	}	
 
 }
@@ -325,6 +385,16 @@ continent = {
 			}
 		}
 		neutrality = {
+				male = { 
+					"gfx/leaders/SAU/Portrait_Arabia_Generic_1.dds" 
+			}
+		}
+		radical = {
+				male = { 
+					"gfx/leaders/SAU/Portrait_Arabia_Generic_1.dds"
+			}
+		}
+		absolutist = {
 				male = { 
 					"gfx/leaders/SAU/Portrait_Arabia_Generic_1.dds" 
 			}
