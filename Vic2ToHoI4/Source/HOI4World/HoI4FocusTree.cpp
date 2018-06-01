@@ -269,7 +269,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	}
 	if (majorIdeologies.count("democratic") == 0)
 	{
-		newFocus->available += "= {\n";
+		newFocus->available = "= {\n";
 		newFocus->available += "			has_government = neutrality\n";
 		newFocus->available += "		}";
 	}
