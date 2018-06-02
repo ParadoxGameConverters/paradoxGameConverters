@@ -1282,7 +1282,7 @@
 			}
 
 			allowed_civil_war = {
-				has_government = democratic
+				always = yes
 			}
 			
 			removal_cost = -1
@@ -1291,6 +1291,27 @@
 	
 			modifier = {
 				trade_opinion_factor = 0.2
+			}
+		}
+		
+		militarism_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			removal_cost = -1
+
+			picture = generic_manpower_bonus
+	
+			modifier = {
+				conscription = 0.05
+				enemy_partisan_effect = -0.1
 			}
 		}
 	}
