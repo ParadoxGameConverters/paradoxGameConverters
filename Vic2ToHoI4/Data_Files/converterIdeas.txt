@@ -648,7 +648,7 @@
 		}
 	}
 
-		hidden_ideas = {
+	hidden_ideas = {
 
 		idea_continuous_naval_production = {
 			allowed = {
@@ -1273,6 +1273,26 @@
 				army_core_attack_factor = 0.25 
 			}
 		}	
+		
+		liberty_ethos_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+			
+			removal_cost = -1
+
+			picture = generic_democratic_drift_bonus
+	
+			modifier = {
+				trade_opinion_factor = 0.2
+			}
+		}
 	}
 
 	# TECHNOLOGY
