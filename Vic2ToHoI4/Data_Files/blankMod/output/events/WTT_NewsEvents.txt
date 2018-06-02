@@ -2,38 +2,7 @@
 
 
 #ID wtt_news.30+: China
-# German Civil War
-news_event = {
-	id = wtt_news.1
-	title = wtt_news.1.t
-	desc = wtt_news.1.desc
-	picture = GFX_news_event_ger_civil_war
-	
-	major = yes
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = wtt_news.1.a
-		trigger = {
-			original_tag = GER
-		}
-	}
-	option = {
-		name = wtt_news.1.b
-		trigger = { 
-			NOT = { original_tag = GER }
-			has_government = fascism
-		}
-	}
-	option = {
-		name = wtt_news.1.c
-		trigger = { 
-			NOT = { original_tag = GER }
-			NOT = { has_government = fascism }
-		}
-	}
-}
+
 
 # Netherlands refuses to let Kaiser go, danger of war
 news_event = {
@@ -722,69 +691,6 @@ news_event = {
 			NOT = {
 				original_tag = GER
 				original_tag = SOV
-			}
-		}
-	}
-}
-
-# News event for Phillipine Independence
-news_event = {
-	id = wtt_news.27
-	title = wtt_news.27.t
-	desc = wtt_news.27.desc
-	picture = GFX_news_event_japanese_parade
-
-	is_triggered_only = yes
-	
-	option = {
-		name = wtt_news.27.a
-		trigger = {
-			OR = {
-				original_tag = JAP
-				AND = {
-					original_tag = MAN
-					has_government = fascism
-				}
-			}
-		}
-	}
-	option = {
-		name = wtt_news.27.b
-		trigger = {
-			original_tag = SOV
-		}
-	}
-	option = {
-		name = wtt_news.27.c
-		trigger = {
-			OR = {
-				original_tag = HOL
-				original_tag = ENG
-				original_tag = USA
-				original_tag = CHI
-				original_tag = AST
-				original_tag = NZL
-				original_tag = RAJ
-			}
-		}
-	}
-	option = {
-		name = wtt_news.27.d
-		trigger = {
-			NOT = {
-				original_tag = JAP
-				original_tag = SOV
-				original_tag = HOL
-				original_tag = ENG
-				original_tag = USA
-				original_tag = CHI
-				original_tag = AST
-				original_tag = NZL
-				original_tag = RAJ
-				AND = {
-					original_tag = MAN
-					has_government = fascism
-				}
 			}
 		}
 	}
