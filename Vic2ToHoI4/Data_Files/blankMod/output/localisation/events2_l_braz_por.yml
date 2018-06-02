@@ -1,4 +1,4 @@
-l_braz_por:
+﻿l_braz_por:
  communism_on_the_rise.t:0 "O aumento do Comunismo"
  communism_on_the_rise.d:0 ""Enquanto trabalhadores se levantam contra seus opressores ao redor do mundo, aqueles que afirmam ter atingido consciência de classe em [Root.GetName] aguardam sentados por uma mudança que venha de dentro de um sistema político tão corrupto do qual apenas a revolução poderia nos salvar!"\n\nEntão falem novas vozes no movimento comunista [Root.GetAdjective]. Se referindo ao governo de [Root.GetRulingParty] como ditadura dos burgueses, eles começaram afirmar que ela deve ser destituída por quaisquer meios necessários. Se esses meios virão de fora ou de dentro ainda veremos."
  communism_on_the_rise.a:0 "Pode haver aqueles no próprio governo que apoiem essas ideias."

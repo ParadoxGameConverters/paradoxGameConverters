@@ -1,4 +1,4 @@
-l_english:
+﻿l_english:
  communism_on_the_rise.t:0 "Communism on the Rise"
  communism_on_the_rise.d:0 "'While workers rise up against their oppressors around the world, those who claim to have achieved class consciousness in [Root.GetName] sit idly by and wait for change to come from within a political system so thoroughly corrupt, only revolution could save us from it!'\n\nSo speak new voices in the [Root.GetAdjective] communist movement. Referring to the rule of [Root.GetRulingParty] as a dictatorship of the bourgeois, they have begun calling for it to be brought out of power by any means necessary. Whether those means will come from within or without remains to be seen."
  communism_on_the_rise.a:0 "There may be those in the government itself who support such ideas."
