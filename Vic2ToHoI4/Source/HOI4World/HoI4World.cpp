@@ -90,6 +90,7 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	convertParties();
 	events->createPoliticalEvents(majorIdeologies);
 	events->createWarJustificationEvents(majorIdeologies);
+	events->importElectionEvents(majorIdeologies);
 	addCountryElectionEvents(majorIdeologies);
 	events->createStabilityEvents(majorIdeologies);
 	theIdeas->updateIdeas(majorIdeologies);

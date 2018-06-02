@@ -40,7 +40,7 @@ class Event: commonItems::parser
 {
 	public:
 		Event() = default;
-		Event(std::istream& theStream);
+		Event(const std::string& type, std::istream& theStream);
 		Event(const Event&) = default;
 
 		friend std::ofstream& operator << (std::ofstream& out, const Event& theEvent);

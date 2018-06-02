@@ -21,12 +21,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "HoI4Event.h"
+#include "Event.h"
 #include "ParserHelpers.h"
 
 
 
-HoI4::Event::Event(std::istream& theStream)
+HoI4::Event::Event(const std::string& theType, std::istream& theStream):
+	type(theType)
 {
 	registerKeyword(std::regex("id"), [this](const std::string& unused, std::istream& theStream)
 		{

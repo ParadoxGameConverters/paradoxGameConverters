@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "HoI4Event.h"
+#include "Event.h"
 #include "../V2World/Party.h"
 #include "newParser.h"
 #include <functional>
@@ -56,6 +56,7 @@ namespace HoI4
 			void createTradeEvent(std::shared_ptr<HoI4Country> leader, std::shared_ptr<HoI4Country> GC);
 			void createPoliticalEvents(const std::set<std::string>& majorIdeologies);
 			void createWarJustificationEvents(const std::set<std::string>& majorIdeologies);
+			void importElectionEvents(const std::set<std::string>& majorIdeologies);
 			void addPartyChoiceEvent(const std::string& countryTag, const std::set<Vic2::Party, std::function<bool (const Vic2::Party&, const Vic2::Party&)>>& parties, HoI4OnActions* onActions, const std::set<std::string>& majorIdeologies);
 			void createStabilityEvents(const std::set<std::string>& majorIdeologies);
 

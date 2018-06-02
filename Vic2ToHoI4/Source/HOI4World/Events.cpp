@@ -34,7 +34,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 
 
-
 void HoI4::Events::output() const
 {
 	std::string eventpath = "output/" + Configuration::getOutputName() + "/events";
@@ -137,12 +136,14 @@ void HoI4::Events::outputWarJustificationEvents() const
 
 void HoI4::Events::outputElectionEvents() const
 {
-	std::ofstream outElectionEvents("output/" + Configuration::getOutputName() + "/events/ElectionEvents.txt", std::ios_base::app);
+	std::ofstream outElectionEvents("output/" + Configuration::getOutputName() + "/events/ElectionEvents.txt");
 	if (!outElectionEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open ElectionEvents.txt";
 		exit(-1);
 	}
+
+	outElectionEvents << "add_namespace = election\n\n";
 
 	for (auto& theEvent: electionEvents)
 	{
@@ -1177,6 +1178,22 @@ void HoI4::Events::createWarJustificationEvents(const std::set<std::string>& maj
 }
 
 
+void HoI4::Events::importElectionEvents(const std::set<std::string>& majorIdeologies)
+{
+	clearRegisteredKeywords();
+	registerKeyword(std::regex("country_event"), [this, majorIdeologies](const std::string& type, std::istream& theStream){
+		Event electionEvent(type, theStream);
+		if ((majorIdeologies.count("democratic") > 0) || (electionEvent.id != "election.3"))
+		{
+			electionEvents.push_back(electionEvent);
+		}
+	});
+	registerKeyword(std::regex("[A-Za-z0-9\\_]+"), commonItems::ignoreItem);
+
+	parseFile("blankmod/output/events/ElectionEvents.txt");
+}
+
+
 void HoI4::Events::addPartyChoiceEvent(const std::string& countryTag, const std::set<Vic2::Party, std::function<bool (const Vic2::Party&, const Vic2::Party&)>>& parties, HoI4OnActions* onActions, const set<string>& majorIdeologies)
 {
 	Event partyChoiceEvent;
@@ -1240,11 +1257,11 @@ void HoI4::Events::addPartyChoiceEvent(const std::string& countryTag, const std:
 
 void HoI4::Events::createStabilityEvents(const std::set<std::string>& majorIdeologies)
 {
+	clearRegisteredKeywords();
 	registerKeyword(std::regex("add_namespace"), commonItems::ignoreString);
 	registerKeyword(std::regex("country_event"), [this](const std::string& type, std::istream& theStream)
 		{
-			Event newEvent(theStream);
-			newEvent.type = type;
+			Event newEvent(type, theStream);
 			if (newEvent.id.substr(0, 9) == "stability")
 			{
 				stabilityEvents.insert(make_pair(newEvent.id, newEvent));

@@ -135,6 +135,7 @@
     <ClCompile Include="Source\HOI4World\AIPeaces.cpp" />
     <ClCompile Include="Source\HOI4World\Decision.cpp" />
     <ClCompile Include="Source\HOI4World\Decisions.cpp" />
+    <ClCompile Include="Source\HOI4World\Event.cpp" />
     <ClCompile Include="Source\HOI4World\Events.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Agreement.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Airforce.cpp" />
@@ -142,7 +143,6 @@
     <ClCompile Include="Source\HOI4World\HoI4Buildings.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Country.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Diplomacy.cpp" />
-    <ClCompile Include="Source\HOI4World\HoI4Event.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Focus.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4FocusTree.cpp" />
     <ClCompile Include="Source\HOI4World\HOI4Ideology.cpp" />
@@ -218,6 +218,7 @@
     <ClInclude Include="Source\HOI4World\AIPeaces.h" />
     <ClInclude Include="Source\HOI4World\Decision.h" />
     <ClInclude Include="Source\HOI4World\Decisions.h" />
+    <ClInclude Include="Source\HOI4World\Event.h" />
     <ClInclude Include="Source\HOI4World\Events.h" />
     <ClInclude Include="Source\HOI4World\HoI4Agreement.h" />
     <ClInclude Include="Source\HOI4World\HoI4Airforce.h" />
@@ -225,7 +226,6 @@
     <ClInclude Include="Source\HOI4World\HoI4Buildings.h" />
     <ClInclude Include="Source\HOI4World\HoI4Country.h" />
     <ClInclude Include="Source\HOI4World\HoI4Diplomacy.h" />
-    <ClInclude Include="Source\HOI4World\HoI4Event.h" />
     <ClInclude Include="Source\HOI4World\HoI4Faction.h" />
     <ClInclude Include="Source\HOI4World\HoI4Focus.h" />
     <ClInclude Include="Source\HOI4World\HoI4FocusTree.h" />
