@@ -126,6 +126,11 @@ Vic2::Province::Province(const std::string& numberString, std::istream& theStrea
 		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
 		pops.push_back(pop);
 	});
+	registerKeyword(std::regex("serfs"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
 
 	// ignored items
 	registerKeyword(std::regex("name"), commonItems::ignoreItem);
