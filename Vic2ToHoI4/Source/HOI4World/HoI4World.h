@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "AIPeaces.h"
 #include "Ideas.h"
+#include "OnActions.h"
 #include "HoI4States.h"
 #include "../Mappers/Mapper.h"
 #include <map>
@@ -45,24 +46,31 @@ class HoI4Diplomacy;
 class HoI4DivisionTemplateType;
 class HoI4Faction;
 class HoI4Ideology;
-class HoI4OnActions;
 class HoI4Province;
 class HoI4State;
 class HoI4States;
 class HoI4StrategicRegion;
 class HoI4SupplyZones;
 class HoI4UnitMap;
+
+
 namespace HoI4
 {
+
 class Advisor;
 class decisions;
 class Events;
 struct advisorCompare;
+
 }
+
+
 namespace Vic2
 {
+
 class Country;
 class World;
+
 }
 
 
@@ -187,7 +195,6 @@ class HoI4World
 		void outputLeaderTraits() const;
 		void outputIdeas() const;
 		void outputScriptedTriggers() const;
-		void outputOnActions() const;
 		void outputBookmarks() const;
 
 		/*vector<int> getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
@@ -219,7 +226,7 @@ class HoI4World
 		std::unique_ptr<HoI4::decisions> decisions;
 		std::unique_ptr<HoI4::AIPeaces> peaces;
 		HoI4::Events* events = nullptr;
-		HoI4OnActions* onActions = nullptr;
+		std::unique_ptr<HoI4::OnActions> onActions;
 
 		vector<HoI4DivisionTemplateType> divisionTemplates;
 

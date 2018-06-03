@@ -155,9 +155,6 @@
     <ClCompile Include="Source\Mappers\InventionsMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\HOI4World\HoI4OnActions.cpp">
-      <Filter>HoI4World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\ImpassableProvinceMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -246,6 +243,9 @@
       <Filter>HoI4World</Filter>
     </ClCompile>
     <ClCompile Include="Source\HOI4World\Event.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\OnActions.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
   </ItemGroup>
@@ -390,9 +390,6 @@
     <ClInclude Include="Source\Mappers\InventionsMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\HOI4World\HoI4OnActions.h">
-      <Filter>HoI4World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -481,6 +478,9 @@
       <Filter>HoI4World</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\Event.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\OnActions.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>

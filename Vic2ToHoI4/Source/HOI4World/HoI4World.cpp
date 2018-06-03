@@ -41,7 +41,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "IdeologicalAdvisors.h"
 #include "HOI4Ideology.h"
 #include "HoI4Localisation.h"
-#include "HoI4OnActions.h"
 #include "HoI4Province.h"
 #include "HoI4State.h"
 #include "HoI4StrategicRegion.h"
@@ -64,7 +63,7 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	peaces(make_unique<HoI4::AIPeaces>()),
 	diplomacy(new HoI4Diplomacy),
 	events(new HoI4::Events),
-	onActions(new HoI4OnActions)
+	onActions(make_unique<HoI4::OnActions>())
 {
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 
@@ -90,7 +89,7 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	convertParties();
 	events->createPoliticalEvents(majorIdeologies);
 	events->createWarJustificationEvents(majorIdeologies);
-	events->importElectionEvents(majorIdeologies);
+	events->importElectionEvents(majorIdeologies, *onActions);
 	addCountryElectionEvents(majorIdeologies);
 	events->createStabilityEvents(majorIdeologies);
 	theIdeas->updateIdeas(majorIdeologies);
@@ -1600,7 +1599,7 @@ void HoI4World::addCountryElectionEvents(const set<string>& majorIdeologies)
 {
 	for (auto country: countries)
 	{
-		events->addPartyChoiceEvent(country.first, country.second->getParties(), onActions, majorIdeologies);
+		events->addPartyChoiceEvent(country.first, country.second->getParties(), *onActions, majorIdeologies);
 	}
 }
 

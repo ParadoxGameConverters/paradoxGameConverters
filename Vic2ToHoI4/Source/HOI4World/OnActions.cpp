@@ -21,19 +21,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "HoI4OnActions.h"
+#include "OnActions.h"
 #include "Log.h"
 #include "../Configuration.h"
 #include <fstream>
 
 
 
-HoI4OnActions::HoI4OnActions(): electionEvents{ "election.2", "election.3" }
+HoI4::OnActions::OnActions(): electionEvents{ "election.2" }
 {
 }
 
 
-void HoI4OnActions::output(const std::set<std::string>& majorIdeologies) const
+void HoI4::OnActions::output(const std::set<std::string>& majorIdeologies) const
 {
 	std::ofstream onActionsFile("output/" + Configuration::getOutputName() + "/common/on_actions/99_converter_on_actions.txt");
 	if (!onActionsFile.is_open())

@@ -38,62 +38,65 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 class HoI4Country;
-class HoI4OnActions;
 
 
 
 namespace HoI4
 {
-	class Events: commonItems::parser
-	{
-		public:
-			Events() = default;
 
-			void output() const;
-			void createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::shared_ptr<HoI4Country> newAlly);
-			void createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed);
-			void createSudetenEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed, const std::vector<int>& claimedStates);
-			void createTradeEvent(std::shared_ptr<HoI4Country> leader, std::shared_ptr<HoI4Country> GC);
-			void createPoliticalEvents(const std::set<std::string>& majorIdeologies);
-			void createWarJustificationEvents(const std::set<std::string>& majorIdeologies);
-			void importElectionEvents(const std::set<std::string>& majorIdeologies);
-			void addPartyChoiceEvent(const std::string& countryTag, const std::set<Vic2::Party, std::function<bool (const Vic2::Party&, const Vic2::Party&)>>& parties, HoI4OnActions* onActions, const std::set<std::string>& majorIdeologies);
-			void createStabilityEvents(const std::set<std::string>& majorIdeologies);
+	class OnActions;
 
-			int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
+class Events: commonItems::parser
+{
+	public:
+		Events() = default;
+
+		void output() const;
+		void createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::shared_ptr<HoI4Country> newAlly);
+		void createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed);
+		void createSudetenEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed, const std::vector<int>& claimedStates);
+		void createTradeEvent(std::shared_ptr<HoI4Country> leader, std::shared_ptr<HoI4Country> GC);
+		void createPoliticalEvents(const std::set<std::string>& majorIdeologies);
+		void createWarJustificationEvents(const std::set<std::string>& majorIdeologies);
+		void importElectionEvents(const std::set<std::string>& majorIdeologies, HoI4::OnActions& onActions);
+		void addPartyChoiceEvent(const std::string& countryTag, const std::set<Vic2::Party, std::function<bool (const Vic2::Party&, const Vic2::Party&)>>& parties, HoI4::OnActions& onActions, const std::set<std::string>& majorIdeologies);
+		void createStabilityEvents(const std::set<std::string>& majorIdeologies);
+
+		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 
 
-		private:
-			Events(const Events&) = delete;
-			Events& operator=(const Events&) = delete;
+	private:
+		Events(const Events&) = delete;
+		Events& operator=(const Events&) = delete;
 
-			void outputNationalFocusEvents() const;
-			void outputNewsEvents() const;
-			void outputPoliticalEvents() const;
-			void outputWarJustificationEvents() const;
-			void outputElectionEvents() const;
-			void outputStabilityEvents() const;
+		void outputNationalFocusEvents() const;
+		void outputNewsEvents() const;
+		void outputPoliticalEvents() const;
+		void outputWarJustificationEvents() const;
+		void outputElectionEvents() const;
+		void outputStabilityEvents() const;
 
-			void addMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
-			void addDemocraticMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
-			void addFiftyPercentEvents(const std::set<std::string>& majorIdeologies);
-			void addRevolutionEvents(const std::set<std::string>& majorIdeologies);
-			void addSuppressedEvents(const std::set<std::string>& majorIdeologies);
-			std::string getIdeologicalPicture(const std::string& ideology) const;
+		void addMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
+		void addDemocraticMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
+		void addFiftyPercentEvents(const std::set<std::string>& majorIdeologies);
+		void addRevolutionEvents(const std::set<std::string>& majorIdeologies);
+		void addSuppressedEvents(const std::set<std::string>& majorIdeologies);
+		std::string getIdeologicalPicture(const std::string& ideology) const;
 
-			std::vector<Event> newsEvents;
-			int newsEventNumber = 237;
-			std::vector<Event> nationalFocusEvents;
-			int nationalFocusEventNumber = 0;
-			std::vector<Event> politicalEvents;
-			int politicalEventNumber = 1;
-			std::vector<Event> warJustificationEvents;
-			std::vector<Event> electionEvents;
-			int electionEventNumber = 4;
-			std::map<std::string, Event> stabilityEvents;
-			std::map<std::string, Event> strikesEvents;
-			std::map<std::string, Event> mutinyEvents;
-	};
+		std::vector<Event> newsEvents;
+		int newsEventNumber = 237;
+		std::vector<Event> nationalFocusEvents;
+		int nationalFocusEventNumber = 0;
+		std::vector<Event> politicalEvents;
+		int politicalEventNumber = 1;
+		std::vector<Event> warJustificationEvents;
+		std::vector<Event> electionEvents;
+		int electionEventNumber = 4;
+		std::map<std::string, Event> stabilityEvents;
+		std::map<std::string, Event> strikesEvents;
+		std::map<std::string, Event> mutinyEvents;
+};
+
 }
 
 

@@ -32,21 +32,26 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-class HoI4OnActions
+namespace HoI4
+{
+
+class OnActions
 {
 	public:
-		HoI4OnActions();
+		OnActions();
 
 		void output(const std::set<std::string>& majorIdeologies) const;
 
 		void addElectionEvent(std::string electionEvent) { electionEvents.push_back(electionEvent); }
 
 	private:
-		HoI4OnActions(const HoI4OnActions&) = delete;
-		HoI4OnActions& operator=(const HoI4OnActions&) = delete;
+		OnActions(const OnActions&) = delete;
+		OnActions& operator=(const OnActions&) = delete;
 
 		std::vector<std::string> electionEvents;
 };
+
+}
 
 
 

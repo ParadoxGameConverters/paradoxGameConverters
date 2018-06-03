@@ -25,13 +25,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "HoI4Faction.h"
 #include "HoI4Localisation.h"
-#include "HoI4OnActions.h"
+#include "OnActions.h"
 #include "../Configuration.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "ParserHelpers.h"
 #include "../V2World/Party.h"
 #include <fstream>
+
 
 
 void HoI4::Events::output() const
@@ -143,6 +144,7 @@ void HoI4::Events::outputElectionEvents() const
 		exit(-1);
 	}
 
+	outElectionEvents << "\xEF\xBB\xBF";
 	outElectionEvents << "add_namespace = election\n\n";
 
 	for (auto& theEvent: electionEvents)
@@ -1178,7 +1180,7 @@ void HoI4::Events::createWarJustificationEvents(const std::set<std::string>& maj
 }
 
 
-void HoI4::Events::importElectionEvents(const std::set<std::string>& majorIdeologies)
+void HoI4::Events::importElectionEvents(const std::set<std::string>& majorIdeologies, HoI4::OnActions& onActions)
 {
 	clearRegisteredKeywords();
 	registerKeyword(std::regex("country_event"), [this, majorIdeologies](const std::string& type, std::istream& theStream){
@@ -1191,10 +1193,15 @@ void HoI4::Events::importElectionEvents(const std::set<std::string>& majorIdeolo
 	registerKeyword(std::regex("[A-Za-z0-9\\_]+"), commonItems::ignoreItem);
 
 	parseFile("blankmod/output/events/ElectionEvents.txt");
+
+	if (majorIdeologies.count("democratic") > 0)
+	{
+		onActions.addElectionEvent("election.3");
+	}
 }
 
 
-void HoI4::Events::addPartyChoiceEvent(const std::string& countryTag, const std::set<Vic2::Party, std::function<bool (const Vic2::Party&, const Vic2::Party&)>>& parties, HoI4OnActions* onActions, const set<string>& majorIdeologies)
+void HoI4::Events::addPartyChoiceEvent(const std::string& countryTag, const std::set<Vic2::Party, std::function<bool (const Vic2::Party&, const Vic2::Party&)>>& parties, HoI4::OnActions& onActions, const set<string>& majorIdeologies)
 {
 	Event partyChoiceEvent;
 
@@ -1249,7 +1256,7 @@ void HoI4::Events::addPartyChoiceEvent(const std::string& countryTag, const std:
 		}
 	}
 
-	onActions->addElectionEvent(partyChoiceEvent.id);
+	onActions.addElectionEvent(partyChoiceEvent.id);
 	electionEvents.push_back(partyChoiceEvent);
 	electionEventNumber++;
 }
@@ -1278,6 +1285,28 @@ void HoI4::Events::createStabilityEvents(const std::set<std::string>& majorIdeol
 	);
 
 	parseFile(Configuration::getHoI4Path() + "/events/stability_events.txt");
+
+	if (majorIdeologies.count("democratic") == 0)
+	{
+		auto lowStabilitySelector = stabilityEvents.find("stability.3");
+		lowStabilitySelector->second.meanTimeToHappen = "= {\n";
+		lowStabilitySelector->second.meanTimeToHappen += "		days = 360\n";
+		lowStabilitySelector->second.meanTimeToHappen += "		modifier = {\n";
+		lowStabilitySelector->second.meanTimeToHappen += "			factor = 0.75\n";
+		lowStabilitySelector->second.meanTimeToHappen += "			OR = {\n";
+		lowStabilitySelector->second.meanTimeToHappen += "				has_stability < 0.4\n";
+		lowStabilitySelector->second.meanTimeToHappen += "				has_war_support < 0.4\n";
+		lowStabilitySelector->second.meanTimeToHappen += "			}\n";
+		lowStabilitySelector->second.meanTimeToHappen += "		}\n";
+		lowStabilitySelector->second.meanTimeToHappen += "		modifier = {\n";
+		lowStabilitySelector->second.meanTimeToHappen += "			factor = 0.75\n";
+		lowStabilitySelector->second.meanTimeToHappen += "			OR = {\n";
+		lowStabilitySelector->second.meanTimeToHappen += "				has_stability < 0.2\n";
+		lowStabilitySelector->second.meanTimeToHappen += "				has_war_support < 0.2\n";
+		lowStabilitySelector->second.meanTimeToHappen += "			}\n";
+		lowStabilitySelector->second.meanTimeToHappen += "		}\n";
+		lowStabilitySelector->second.meanTimeToHappen += "	}";
+	}
 
 	auto conscriptionRebellion = stabilityEvents.find("stability.33");
 	conscriptionRebellion->second.options.clear();
