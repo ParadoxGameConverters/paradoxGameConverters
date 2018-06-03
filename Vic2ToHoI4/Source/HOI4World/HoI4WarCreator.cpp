@@ -56,7 +56,7 @@ HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
 
 	set<shared_ptr<HoI4Faction>> factionsAtWar;
 	LOG(LogLevel::Info) << "Generating major wars";
-	generateMajorWars(AILog, factionsAtWar, world);
+	generateMajorWars(AILog, factionsAtWar, world->getMajorIdeologies(), world);
 	LOG(LogLevel::Info) << "Generating additional wars";
 	generateAdditionalWars(AILog, factionsAtWar, worldStrength);
 
@@ -153,7 +153,7 @@ double HoI4WarCreator::calculateWorldStrength(ofstream& AILog) const
 }
 
 
-void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, const HoI4World* world)
+void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, const std::set<std::string>& majorIdeologies, const HoI4World* world)
 {
 	if (Configuration::getDebug())
 	{
@@ -172,7 +172,7 @@ void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Facti
 			}
 			else if (country.second->getGovernmentIdeology() == "communism")
 			{
-				newFactionsAtWar = communistWarCreator(country.second, AILog);
+				newFactionsAtWar = communistWarCreator(country.second, majorIdeologies, AILog);
 			}
 			else if (country.second->getGovernmentIdeology() == "absolutist")
 			{
@@ -961,7 +961,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4C
 }
 
 
-vector<shared_ptr<HoI4Faction>> HoI4WarCreator::communistWarCreator(shared_ptr<HoI4Country> Leader, ofstream& AILog)
+vector<shared_ptr<HoI4Faction>> HoI4WarCreator::communistWarCreator(shared_ptr<HoI4Country> Leader, const std::set<std::string>& majorIdeologies, ofstream& AILog)
 {
 	vector<shared_ptr<HoI4Faction>> CountriesAtWar;
 	//communism still needs great country war events
@@ -1141,7 +1141,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::communistWarCreator(shared_ptr<H
 	}
 
 	auto FocusTree = genericFocusTree->makeCustomizedCopy(*Leader);
-	FocusTree->addCommunistCoupBranch(Leader, forcedtakeover);
+	FocusTree->addCommunistCoupBranch(Leader, forcedtakeover, majorIdeologies);
 	FocusTree->addCommunistWarBranch(Leader, TargetsByTech, theWorld->getEvents());
 	FocusTree->addGPWarBranch(Leader, newAllies, GCTargets, "Communist", theWorld->getEvents());
 	Leader->addNationalFocus(FocusTree);
@@ -1290,7 +1290,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<Ho
 			newFocus->xPos = 24;
 			newFocus->yPos = 0;
 			newFocus->cost = 10;
-			newFocus->bypass += "= {\n";
+			newFocus->bypass = "= {\n";
 			newFocus->bypass += "			has_war_with = " + target->getTag() + "\n";
 			newFocus->bypass += "		}";
 			newFocus->aiWillDo = "= {\n";
@@ -1595,14 +1595,14 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::addGreatPowerWars(shared_ptr<HoI
 			newFocus->id       = "War" + target->getTag() + country->getTag();
 			newFocus->icon     = "GFX_goal_generic_major_war";
 			newFocus->text     = "War with " + targetName;//change to faction name later
-			newFocus->available += "= {\n";
+			newFocus->available = "= {\n";
 			newFocus->available += "			has_war = no\n";
 			newFocus->available += "			date > 1939.1.1\n";
 			newFocus->available += "		}";
 			newFocus->xPos     = 31 + numWarsWithGreatPowers * 2;
 			newFocus->yPos     = 5;
 			newFocus->cost     = 10;
-			newFocus->aiWillDo += "= {\n";
+			newFocus->aiWillDo = "= {\n";
 			newFocus->aiWillDo += "			factor = " + to_string(10 - numWarsWithGreatPowers * 5) + "\n";
 			newFocus->aiWillDo += "			modifier = {\n";
 			newFocus->aiWillDo += "				factor = 0\n";

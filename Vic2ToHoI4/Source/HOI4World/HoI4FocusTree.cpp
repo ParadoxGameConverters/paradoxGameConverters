@@ -1323,7 +1323,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 	}
 }
 
-void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& coupTargets)
+void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& coupTargets, const std::set<std::string>& majorIdeologies)
 {
 	if (coupTargets.size() > 0)
 	{
@@ -1352,30 +1352,39 @@ void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const v
 				newFocus->text = "Influence " + coupCountryName;
 				newFocus->completionReward += "= {\n";
 				newFocus->completionReward += "			" + coupTargets[i]->getTag() + " = {\n";
-				newFocus->completionReward += "				if = {\n";
-				newFocus->completionReward += "					limit = {\n";
-				newFocus->completionReward += "						" + Home->getTag() + " = {\n";
-				newFocus->completionReward += "							has_government = fascism\n";
-				newFocus->completionReward += "						}\n";
-				newFocus->completionReward += "					}\n";
-				newFocus->completionReward += "					add_ideas = fascist_influence\n";
-				newFocus->completionReward += "				}\n";
-				newFocus->completionReward += "				if = {\n";
-				newFocus->completionReward += "					limit = {\n";
-				newFocus->completionReward += "						" + Home->getTag() + " = {\n";
-				newFocus->completionReward += "							has_government = communism\n";
-				newFocus->completionReward += "						}\n";
-				newFocus->completionReward += "					}\n";
-				newFocus->completionReward += "					add_ideas = communist_influence\n";
-				newFocus->completionReward += "				}\n";
-				newFocus->completionReward += "				if = {\n";
-				newFocus->completionReward += "					limit = {\n";
-				newFocus->completionReward += "						" + Home->getTag() + " = {\n";
-				newFocus->completionReward += "							has_government = democratic\n";
-				newFocus->completionReward += "						}\n";
-				newFocus->completionReward += "					}\n";
-				newFocus->completionReward += "					add_ideas = democratic_influence\n";
-				newFocus->completionReward += "				}\n";
+				if (majorIdeologies.count("fascism") > 0)
+				{
+					newFocus->completionReward += "				if = {\n";
+					newFocus->completionReward += "					limit = {\n";
+					newFocus->completionReward += "						" + Home->getTag() + " = {\n";
+					newFocus->completionReward += "							has_government = fascism\n";
+					newFocus->completionReward += "						}\n";
+					newFocus->completionReward += "					}\n";
+					newFocus->completionReward += "					add_ideas = fascist_influence\n";
+					newFocus->completionReward += "				}\n";
+				}
+				if (majorIdeologies.count("communism") > 0)
+				{
+					newFocus->completionReward += "				if = {\n";
+					newFocus->completionReward += "					limit = {\n";
+					newFocus->completionReward += "						" + Home->getTag() + " = {\n";
+					newFocus->completionReward += "							has_government = communism\n";
+					newFocus->completionReward += "						}\n";
+					newFocus->completionReward += "					}\n";
+					newFocus->completionReward += "					add_ideas = communist_influence\n";
+					newFocus->completionReward += "				}\n";
+				}
+				if (majorIdeologies.count("democratic") > 0)
+				{
+					newFocus->completionReward += "				if = {\n";
+					newFocus->completionReward += "					limit = {\n";
+					newFocus->completionReward += "						" + Home->getTag() + " = {\n";
+					newFocus->completionReward += "							has_government = democratic\n";
+					newFocus->completionReward += "						}\n";
+					newFocus->completionReward += "					}\n";
+					newFocus->completionReward += "					add_ideas = democratic_influence\n";
+					newFocus->completionReward += "				}\n";
+				}
 				newFocus->completionReward += "				country_event = { id = generic.1 }\n";
 				newFocus->completionReward += "			}\n";
 				newFocus->completionReward += "		}";
@@ -1476,16 +1485,16 @@ void HoI4FocusTree::addCommunistWarBranch(shared_ptr<HoI4Country> Home, const ve
 				newFocus->icon = "GFX_goal_generic_major_war";
 				newFocus->text = "War with " + warTargetCountryName;//change to faction name later
 				newFocus->prerequisites.push_back("= { focus = Inter_Com_Pres" + Home->getTag() + " }");
-				newFocus->available += "= {\n";
+				newFocus->available = "= {\n";
 				newFocus->available += "			date > 1938." + to_string(v1) + "." + to_string(v2) + "\n";
 				newFocus->available += "		}";
 				newFocus->xPos = nextFreeColumn + i * 2;
 				newFocus->yPos = 2;
 				newFocus->cost = 10;
-				newFocus->bypass += "= {\n";
+				newFocus->bypass = "= {\n";
 				newFocus->bypass += "					has_war_with = " + warTargets[i]->getTag() + "\n";
 				newFocus->bypass += "				}";
-				newFocus->aiWillDo += "= {\n";
+				newFocus->aiWillDo = "= {\n";
 				newFocus->aiWillDo += "			factor = 5\n";
 				newFocus->aiWillDo += "			modifier = {\n";
 				newFocus->aiWillDo += "				factor = 0\n";
@@ -1865,17 +1874,17 @@ void HoI4FocusTree::addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<sh
 		newFocus->id = "War" + GC->getTag() + Home->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
 		newFocus->text = "War with " + warTargetCountryName;//change to faction name later
-		newFocus->available += "= {\n";
+		newFocus->available = "= {\n";
 		newFocus->available += "			has_war = no\n";
 		newFocus->available += "			date > 1939." + to_string(v1) + "." + to_string(v2) + "\n";
 		newFocus->available += "		}";
 		newFocus->xPos = nextFreeColumn + i * 2;
 		newFocus->yPos = y2;
 		newFocus->cost = 10;
-		newFocus->bypass += "= {\n";
+		newFocus->bypass = "= {\n";
 		newFocus->bypass += "		   has_war_with = " + GC->getTag() + "\n";
 		newFocus->bypass += "		}";
-		newFocus->aiWillDo += "= {\n";
+		newFocus->aiWillDo = "= {\n";
 		newFocus->aiWillDo += "			factor = " + to_string(10 - GCTargets.size() * 5) + "\n";
 		newFocus->aiWillDo += "			modifier = {\n";
 		newFocus->aiWillDo += "					factor = 0\n";
@@ -1899,7 +1908,7 @@ void HoI4FocusTree::addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<sh
 			newFocus->aiWillDo += "				}\n";
 			newFocus->aiWillDo += "			}";
 		}
-		newFocus->aiWillDo = "\n";
+		newFocus->aiWillDo += "\n";
 		newFocus->aiWillDo += "		}";
 		newFocus->completionReward += "= {\n";
 		newFocus->completionReward += "			add_named_threat = { threat = 5 name = " + newFocus->id + " }\n";
