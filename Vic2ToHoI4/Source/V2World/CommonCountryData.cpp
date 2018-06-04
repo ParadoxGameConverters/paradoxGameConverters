@@ -23,7 +23,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "CommonCountryData.h"
 #include "ParserHelpers.h"
-#include "NewParserToOldParserConverters.h"
 #include "../Color.h"
 #include "../Configuration.h"
 #include "OSCompatibilityLayer.h"

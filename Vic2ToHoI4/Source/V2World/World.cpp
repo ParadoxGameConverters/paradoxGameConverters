@@ -25,8 +25,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
-#include "ParadoxParser8859_15.h"
-#include "ParadoxParserUTF8.h"
 #include "ParserHelpers.h"
 #include "CommonCountryData.h"
 #include "Country.h"
