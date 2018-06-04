@@ -4,7 +4,7 @@ These tools allow games from various Paradox Interactive games to be continued i
 
 | Converter | Status | Current Release |  
 |-------|--------|------|
-| VicToHoI4 | [![Vic2 To HoI4 Build status](https://ci.appveyor.com/api/projects/status/j2n0rpj731ce3akg/branch/Vic2ToHoI4?svg=true)](https://ci.appveyor.com/project/Idhrendur/paradoxgameconverters/branch/Vic2ToHoI4) | 0.2F
+| VicToHoI4 | [![Vic2 To HoI4 Build status](https://ci.appveyor.com/api/projects/status/j2n0rpj731ce3akg/branch/Vic2ToHoI4?svg=true)](https://ci.appveyor.com/project/Idhrendur/paradoxgameconverters/branch/Vic2ToHoI4) | 0.2G
 | EU4ToVic2 | [![Build status](https://ci.appveyor.com/api/projects/status/jq0iuaxoj94rbcjj/branch/EU4toV2?svg=true)](https://ci.appveyor.com/project/Idhrendur/paradoxgameconverters-cwkoa/branch/EU4toV2) | 1.0H
 
 ## Vic2 to HoI4
