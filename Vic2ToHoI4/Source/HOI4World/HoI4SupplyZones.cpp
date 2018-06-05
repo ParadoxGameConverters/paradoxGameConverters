@@ -45,7 +45,7 @@ HoI4SupplyZones::HoI4SupplyZones():
 	importStates();
 
 	set<string> supplyZonesFiles;
-	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/map/supplyareas", supplyZonesFiles);
+	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/map/supplyareas", supplyZonesFiles);
 	for (auto supplyZonesFile: supplyZonesFiles)
 	{
 		importSupplyZone(supplyZonesFile);
@@ -56,12 +56,12 @@ HoI4SupplyZones::HoI4SupplyZones():
 void HoI4SupplyZones::importStates()
 {
 	set<string> statesFiles;
-	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/history/states", statesFiles);
+	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/history/states", statesFiles);
 	for (auto stateFile: statesFiles)
 	{
 		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
 
-		auto fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFile);
+		auto fileObj = parser_UTF8::doParseFile(theConfiguration.getHoI4Path() + "/history/states/" + stateFile);
 		if (fileObj)
 		{
 			auto stateObj = fileObj->safeGetObject("state");
@@ -78,7 +78,7 @@ void HoI4SupplyZones::importStates()
 		}
 		else
 		{
-			LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFile;
+			LOG(LogLevel::Error) << "Could not parse " << theConfiguration.getHoI4Path() << "/history/states/" << stateFile;
 			exit(-1);
 		}
 	}
@@ -90,7 +90,7 @@ void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile)
 	int num = stoi(supplyZonesFile.substr(0, supplyZonesFile.find_first_of('-')));
 	supplyZonesFilenames.insert(make_pair(num, supplyZonesFile));
 
-	auto fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/supplyareas/" + supplyZonesFile);
+	auto fileObj = parser_UTF8::doParseFile(theConfiguration.getHoI4Path() + "/map/supplyareas/" + supplyZonesFile);
 	if (fileObj)
 	{
 		auto supplyAreaObj = fileObj->safeGetObject("supply_area");
@@ -104,7 +104,7 @@ void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile)
 	}
 	else
 	{
-		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/map/supplyareas/" << supplyZonesFile;
+		LOG(LogLevel::Error) << "Could not parse " << theConfiguration.getHoI4Path() << "/map/supplyareas/" << supplyZonesFile;
 		exit(-1);
 	}
 }
@@ -125,9 +125,9 @@ void HoI4SupplyZones::mapProvincesToSupplyZone(int ID, shared_ptr<Object> supply
 
 void HoI4SupplyZones::output()
 {
-	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/map/supplyareas"))
+	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/map/supplyareas"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/map/supplyareas";
+		LOG(LogLevel::Error) << "Could not create \"output/" + theConfiguration.getOutputName() + "/map/supplyareas";
 		exit(-1);
 	}
 

@@ -47,11 +47,11 @@ reformMapper::reformMapper():
 	reformsInitialized(false)
 {
 	LOG(LogLevel::Info) << "Parsing governments reforms";
-	for (auto itr : Configuration::getVic2Mods())
+	for (auto itr : theConfiguration.getVic2Mods())
 	{
-		if (Utils::DoesFileExist(Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"))
+		if (Utils::DoesFileExist(theConfiguration.getVic2Path() + "/mod/" + itr + "/common/issues.txt"))
 		{
-			auto obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"));
+			auto obj = parser_8859_15::doParseFile((theConfiguration.getVic2Path() + "/mod/" + itr + "/common/issues.txt"));
 			if (obj)
 			{
 				initReforms(obj);
@@ -61,14 +61,14 @@ reformMapper::reformMapper():
 	}
 	if (!reformsInitialized)
 	{
-		auto obj = parser_8859_15::doParseFile(Configuration::getV2Path() + "/common/issues.txt");
+		auto obj = parser_8859_15::doParseFile(theConfiguration.getVic2Path() + "/common/issues.txt");
 		if (obj)
 		{
 			initReforms(obj);
 		}
 		else
 		{
-			LOG(LogLevel::Error) << "Could not parse " << Configuration::getV2Path() << "/common/issues.txt";
+			LOG(LogLevel::Error) << "Could not parse " << theConfiguration.getVic2Path() << "/common/issues.txt";
 			exit(-1);
 		}
 	}

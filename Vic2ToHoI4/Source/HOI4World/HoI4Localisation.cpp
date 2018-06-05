@@ -59,20 +59,20 @@ HoI4Localisation::HoI4Localisation():
 void HoI4Localisation::importLocalisations()
 {
 	set<string> filenames;
-	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/localisation", filenames);
+	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/localisation", filenames);
 	for (auto filename: filenames)
 	{
 		if (filename.substr(0, 5) == "focus")
 		{
-			importFocusLocalisations(Configuration::getHoI4Path() + "/localisation/" + filename);
+			importFocusLocalisations(theConfiguration.getHoI4Path() + "/localisation/" + filename);
 		}
 		else if (filename.substr(0, 5) == "ideas")
 		{
-			importGenericIdeaLocalisations(Configuration::getHoI4Path() + "/localisation/" + filename);
+			importGenericIdeaLocalisations(theConfiguration.getHoI4Path() + "/localisation/" + filename);
 		}
 		else if (filename.substr(0, 6) == "events")
 		{
-			importEventLocalisations(Configuration::getHoI4Path() + "/localisation/" + filename);
+			importEventLocalisations(theConfiguration.getHoI4Path() + "/localisation/" + filename);
 		}
 	}
 
@@ -360,7 +360,7 @@ void HoI4Localisation::AddStateLocalisations(const HoI4States* states)
 			}
 		}
 
-		if (Configuration::getDebug())
+		if (theConfiguration.getDebug())
 		{
 			addDebugLocalisations(state);
 		}
@@ -594,7 +594,7 @@ void HoI4Localisation::UpdateLocalisationWithCountry(const std::string& key, con
 void HoI4Localisation::Output() const
 {
 	LOG(LogLevel::Debug) << "Writing localisations";
-	string localisationPath = "output/" + Configuration::getOutputName() + "/localisation";
+	string localisationPath = "output/" + theConfiguration.getOutputName() + "/localisation";
 	if (!Utils::TryCreateFolder(localisationPath))
 	{
 		LOG(LogLevel::Error) << "Could not create localisation folder";

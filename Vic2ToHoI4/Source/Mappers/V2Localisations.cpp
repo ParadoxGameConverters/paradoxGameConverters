@@ -40,12 +40,12 @@ V2Localisations::V2Localisations():
 {
 	LOG(LogLevel::Info) << "Reading localisation";
 
-	ReadFromAllFilesInFolder(Configuration::getV2Path() + "/localisation");
+	ReadFromAllFilesInFolder(theConfiguration.getVic2Path() + "/localisation");
 
-	for (auto mod: Configuration::getVic2Mods())
+	for (auto mod: theConfiguration.getVic2Mods())
 	{
 		LOG(LogLevel::Debug) << "Reading mod localisation";
-		ReadFromAllFilesInFolder(Configuration::getV2Path() + "/mod/" + mod + "/localisation");
+		ReadFromAllFilesInFolder(theConfiguration.getVic2Path() + "/mod/" + mod + "/localisation");
 	}
 }
 

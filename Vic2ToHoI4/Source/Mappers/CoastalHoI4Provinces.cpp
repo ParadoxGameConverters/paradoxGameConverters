@@ -70,10 +70,10 @@ coastalHoI4ProvincesMapper::coastalHoI4ProvincesMapper():
 
 map<int, province> coastalHoI4ProvincesMapper::getProvinces() const
 {
-	ifstream provinceDefinitions(Configuration::getHoI4Path() + "/map/definition.csv");
+	ifstream provinceDefinitions(theConfiguration.getHoI4Path() + "/map/definition.csv");
 	if (!provinceDefinitions.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
+		LOG(LogLevel::Error) << "Could not open " << theConfiguration.getHoI4Path() << "/map/definition.csv";
 		exit(-1);
 	}
 

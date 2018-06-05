@@ -63,11 +63,11 @@ HoI4State::HoI4State(const Vic2::State* _sourceState, int _ID, const string& _ow
 
 void HoI4State::output(const string& _filename) const
 {
-	string filename("output/" + Configuration::getOutputName() + "/history/states/" + _filename);
+	string filename("output/" + theConfiguration.getOutputName() + "/history/states/" + _filename);
 	ofstream out(filename);
 	if (!out.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open \"output/" + Configuration::getOutputName() + "/history/states/" + _filename;
+		LOG(LogLevel::Error) << "Could not open \"output/" + theConfiguration.getOutputName() + "/history/states/" + _filename;
 		exit(-1);
 	}
 
@@ -98,7 +98,7 @@ void HoI4State::output(const string& _filename) const
 	}
 	if ((victoryPointValue > 0) && (victoryPointPosition != 0))
 	{
-		if (Configuration::getDebug())
+		if (theConfiguration.getDebug())
 		{
 			for (auto VP: debugVictoryPoints)
 			{
@@ -278,7 +278,7 @@ void HoI4State::tryToCreateVP()
 
 	if (!VPCreated)
 	{
-		if (Configuration::getDebug() && !sourceState->isPartialState() && !impassable && !hadImpassablePart)
+		if (theConfiguration.getDebug() && !sourceState->isPartialState() && !impassable && !hadImpassablePart)
 		{
 			LOG(LogLevel::Warning) << "Could not initially create VP for state " << ID << ", but state is not split.";
 		}
@@ -360,7 +360,7 @@ void HoI4State::addManpower()
 
 		if (provinceIsInState)
 		{
-			manpower += static_cast<int>(sourceProvince->getTotalPopulation() * 4 * Configuration::getManpowerFactor());
+			manpower += static_cast<int>(sourceProvince->getTotalPopulation() * 4 * theConfiguration.getManpowerFactor());
 		}
 	}
 }

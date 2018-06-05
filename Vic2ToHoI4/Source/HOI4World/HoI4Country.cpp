@@ -169,7 +169,7 @@ void HoI4Country::determineFilename()
 	auto possibleFilename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
 	if (!possibleFilename)
 	{
-		possibleFilename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
+		possibleFilename = Utils::GetFileFromTag(theConfiguration.getHoI4Path() + "/history/countries/", tag);
 	}
 
 	if (possibleFilename)
@@ -275,7 +275,7 @@ void HoI4Country::convertLaws()
 		leaders.push_back(newLeader);
 	}
 
-	Configuration::setLeaderIDForNextCountry();
+	theConfiguration.setLeaderIDForNextCountry();
 }*/
 
 
@@ -372,11 +372,11 @@ void HoI4Country::initFromHistory()
 	}
 	else
 	{
-		possibleFilename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
+		possibleFilename = Utils::GetFileFromTag(theConfiguration.getHoI4Path() + "/history/countries/", tag);
 		if (possibleFilename)
 		{
 			filename = *possibleFilename;
-			fullFilename = Configuration::getHoI4Path() + "/history/countries/" + filename;
+			fullFilename = theConfiguration.getHoI4Path() + "/history/countries/" + filename;
 		}
 		else
 		{
@@ -606,7 +606,7 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, 
 	int cavalryBrigades = 0;
 	int cavalrySupportBrigades = 0;
 	int mountainBrigades = 0;
-	const double adjustment = 0.1 * Configuration::getForceMultiplier();
+	const double adjustment = 0.1 * theConfiguration.getForceMultiplier();
 
 	map<int, double> locations;
 	int totalRegiments = 0;
@@ -1298,7 +1298,7 @@ void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& 
 
 		if (nationalFocus != nullptr)
 		{
-			nationalFocus->output("output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountry->getTag() + "_NF.txt");
+			nationalFocus->output("output/" + theConfiguration.getOutputName() + "/common/national_focus/" + srcCountry->getTag() + "_NF.txt");
 		}
 	}
 }
@@ -1306,10 +1306,10 @@ void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& 
 
 void HoI4Country::outputHistory() const
 {
-	ofstream output("output/" + Configuration::getOutputName() + "/history/countries/" + Utils::normalizeUTF8Path(filename));
+	ofstream output("output/" + theConfiguration.getOutputName() + "/history/countries/" + Utils::normalizeUTF8Path(filename));
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/history/countries/" << Utils::normalizeUTF8Path(filename);
+		Log(LogLevel::Error) << "Could not open output/" << theConfiguration.getOutputName() << "/history/countries/" << Utils::normalizeUTF8Path(filename);
 		exit(-1);
 	}
 	output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
@@ -1659,10 +1659,10 @@ void HoI4Country::outputCountryLeader(ofstream& output) const
 
 void HoI4Country::outputOOB(const vector<HoI4DivisionTemplateType>& divisionTemplates) const
 {
-	ofstream output("output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt");
+	ofstream output("output/" + theConfiguration.getOutputName() + "/history/units/" + tag + "_OOB.txt");
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/history/units/" << tag << "_OOB.txt";
+		Log(LogLevel::Error) << "Could not open output/" << theConfiguration.getOutputName() << "/history/units/" << tag << "_OOB.txt";
 		exit(-1);
 	}
 	output << "\xEF\xBB\xBF";	// add the BOM to make HoI4 happy
@@ -1838,10 +1838,10 @@ void HoI4Country::outputOOB(const vector<HoI4DivisionTemplateType>& divisionTemp
 
 void HoI4Country::outputCommonCountryFile() const
 {
-	ofstream output("output/" + Configuration::getOutputName() + "/common/countries/" + Utils::normalizeUTF8Path(commonCountryFile));
+	ofstream output("output/" + theConfiguration.getOutputName() + "/common/countries/" + Utils::normalizeUTF8Path(commonCountryFile));
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open " << "output/" << Configuration::getOutputName() << "/common/countries/" << Utils::normalizeUTF8Path(commonCountryFile);
+		Log(LogLevel::Error) << "Could not open " << "output/" << theConfiguration.getOutputName() << "/common/countries/" << Utils::normalizeUTF8Path(commonCountryFile);
 		exit(-1);
 	}
 
@@ -1858,10 +1858,10 @@ void HoI4Country::outputCommonCountryFile() const
 
 void HoI4Country::outputIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const
 {
-	ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/" + tag + ".txt");
+	ofstream ideasFile("output/" + theConfiguration.getOutputName() + "/common/ideas/" + tag + ".txt");
 	if (!ideasFile.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/common/ideas/" << tag << ".txt";
+		LOG(LogLevel::Error) << "Could not open output/" << theConfiguration.getOutputName() << "/common/ideas/" << tag << ".txt";
 		exit(-1);
 	}
 

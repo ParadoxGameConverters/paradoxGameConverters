@@ -42,16 +42,16 @@ inventionsMapper::inventionsMapper()
 
 string inventionsMapper::getInventionPath()
 {
-	for (auto mod: Configuration::getVic2Mods())
+	for (auto mod: theConfiguration.getVic2Mods())
 	{
-		string possiblePath = Configuration::getV2Path() + "/mod/" + mod + "/inventions/";
+		string possiblePath = theConfiguration.getVic2Path() + "/mod/" + mod + "/inventions/";
 		if (Utils::doesFolderExist(possiblePath))
 		{
 			return possiblePath;
 		}
 	}
 
-	return Configuration::getV2Path() + "/inventions/";
+	return theConfiguration.getVic2Path() + "/inventions/";
 }
 
 

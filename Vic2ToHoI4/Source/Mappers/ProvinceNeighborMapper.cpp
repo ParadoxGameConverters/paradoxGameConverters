@@ -36,11 +36,11 @@ provinceNeighborMapper* provinceNeighborMapper::instance = nullptr;
 provinceNeighborMapper::provinceNeighborMapper():
 	provinceNeighbors(),
 	borders(),
-	provinceMap(Configuration::getHoI4Path() + "/map/provinces.bmp")
+	provinceMap(theConfiguration.getHoI4Path() + "/map/provinces.bmp")
 {
 	if (!provinceMap)
 	{
-		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/provinces.bmp";
+		LOG(LogLevel::Error) << "Could not open " << theConfiguration.getHoI4Path() << "/map/provinces.bmp";
 	}
 
 	unsigned int height = provinceMap.height();

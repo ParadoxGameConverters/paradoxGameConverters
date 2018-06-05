@@ -364,11 +364,11 @@ void HoI4::decisions::updatePoliticalDecisions(const std::set<std::string>& majo
 
 void HoI4::decisions::output()
 {
-	std::ofstream outStream("output/" + Configuration::getOutputName() + "/common/decisions/stability_war_support.txt");
+	std::ofstream outStream("output/" + theConfiguration.getOutputName() + "/common/decisions/stability_war_support.txt");
 	std::for_each(stabilityDecisions.begin(), stabilityDecisions.end(), [&outStream](auto category) { outStream << category; });
 	outStream.close();
 
-	outStream.open("output/" + Configuration::getOutputName() + "/common/decisions/political_decisions.txt");
+	outStream.open("output/" + theConfiguration.getOutputName() + "/common/decisions/political_decisions.txt");
 	std::for_each(politicalDecisions.begin(), politicalDecisions.end(), [&outStream](auto category) { outStream << category; });
 	outStream.close();
 }

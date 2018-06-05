@@ -83,10 +83,10 @@ HoI4Buildings::HoI4Buildings(const map<int, int>& provinceToStateIDMap):
 
 void HoI4Buildings::importDefaultBuildings()
 {
-	ifstream buildingsFile(Configuration::getHoI4Path() + "/map/buildings.txt");
+	ifstream buildingsFile(theConfiguration.getHoI4Path() + "/map/buildings.txt");
 	if (!buildingsFile.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/buildings.txt";
+		LOG(LogLevel::Error) << "Could not open " << theConfiguration.getHoI4Path() << "/map/buildings.txt";
 		exit(-1);
 	}
 
@@ -173,7 +173,7 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 			position.zCoordinate = possiblePosition->second;
 			position.rotation = 0.0;
 
-			if (Configuration::getDebug())
+			if (theConfiguration.getDebug())
 			{
 				LOG(LogLevel::Warning) << "The naval base from " << province.first << " to " << connectingSeaProvince << " at (" << position.xCoordinate << ", " << position.zCoordinate << ") did not have a location in default HoI4.";
 			}
@@ -187,10 +187,10 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 
 void HoI4Buildings::output() const
 {
-	ofstream out("output/" + Configuration::getOutputName() + "/map/buildings.txt");
+	ofstream out("output/" + theConfiguration.getOutputName() + "/map/buildings.txt");
 	if (!out.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/map/buildings.txt";
+		LOG(LogLevel::Error) << "Could not open output/" << theConfiguration.getOutputName() << "/map/buildings.txt";
 		exit(-1);
 	}
 

@@ -42,11 +42,11 @@ stateMapper::stateMapper():
 	LOG(LogLevel::Info) << "Importing Vic2 states";
 	bool stateMapInitialized = false;
 
-	for (auto itr: Configuration::getVic2Mods())
+	for (auto itr: theConfiguration.getVic2Mods())
 	{
-		if (Utils::DoesFileExist(Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"))
+		if (Utils::DoesFileExist(theConfiguration.getVic2Path() + "/mod/" + itr + "/map/region.txt"))
 		{
-			auto parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"));
+			auto parsedMappingsFile = parser_8859_15::doParseFile((theConfiguration.getVic2Path() + "/mod/" + itr + "/map/region.txt"));
 			if (parsedMappingsFile)
 			{
 				initStateMap(parsedMappingsFile);
@@ -57,14 +57,14 @@ stateMapper::stateMapper():
 	}
 	if (!stateMapInitialized)
 	{
-		auto parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/map/region.txt"));
+		auto parsedMappingsFile = parser_8859_15::doParseFile((theConfiguration.getVic2Path() + "/map/region.txt"));
 		if (parsedMappingsFile)
 		{
 			initStateMap(parsedMappingsFile);
 		}
 		else
 		{
-			LOG(LogLevel::Error) << "Could not import " << Configuration::getV2Path() << "/map/region.txt";
+			LOG(LogLevel::Error) << "Could not import " << theConfiguration.getVic2Path() << "/map/region.txt";
 			exit(-1);
 		}
 	}

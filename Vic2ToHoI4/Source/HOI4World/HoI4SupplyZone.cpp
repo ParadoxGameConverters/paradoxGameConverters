@@ -38,7 +38,7 @@ HoI4SupplyZone::HoI4SupplyZone(int _ID, int _value):
 
 void HoI4SupplyZone::output(const string& _filename) const
 {
-	string filename("output/" + Configuration::getOutputName() + "/map/supplyareas/" + _filename);
+	string filename("output/" + theConfiguration.getOutputName() + "/map/supplyareas/" + _filename);
 	ofstream out(filename);
 	if (!out.is_open())
 	{

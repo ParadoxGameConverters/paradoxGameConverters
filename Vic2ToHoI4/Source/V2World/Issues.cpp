@@ -82,7 +82,7 @@ void Vic2::issues::instantiate()
 		}
 	});
 
-	parseFile(Configuration::getV2Path() + "/common/issues.txt");
+	parseFile(theConfiguration.getVic2Path() + "/common/issues.txt");
 }
 
 

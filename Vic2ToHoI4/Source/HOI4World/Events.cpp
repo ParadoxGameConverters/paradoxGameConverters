@@ -37,10 +37,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 void HoI4::Events::output() const
 {
-	std::string eventpath = "output/" + Configuration::getOutputName() + "/events";
+	std::string eventpath = "output/" + theConfiguration.getOutputName() + "/events";
 	if (!Utils::TryCreateFolder(eventpath))
 	{
-		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/events\"";
+		LOG(LogLevel::Error) << "Could not create \"output/" + theConfiguration.getOutputName() + "/events\"";
 		exit(-1);
 	}
 
@@ -55,7 +55,7 @@ void HoI4::Events::output() const
 
 void HoI4::Events::outputNationalFocusEvents() const
 {
-	std::ofstream outEvents("output/" + Configuration::getOutputName() + "/events/NF_events.txt");
+	std::ofstream outEvents("output/" + theConfiguration.getOutputName() + "/events/NF_events.txt");
 	if (!outEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create NF_events.txt";
@@ -76,7 +76,7 @@ void HoI4::Events::outputNationalFocusEvents() const
 
 void HoI4::Events::outputNewsEvents() const
 {
-	std::ofstream outNewsEvents("output/" + Configuration::getOutputName() + "/events/newsEvents.txt");
+	std::ofstream outNewsEvents("output/" + theConfiguration.getOutputName() + "/events/newsEvents.txt");
 	if (!outNewsEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create newsEvents.txt";
@@ -97,7 +97,7 @@ void HoI4::Events::outputNewsEvents() const
 
 void HoI4::Events::outputPoliticalEvents() const
 {
-	std::ofstream outPoliticalEvents("output/" + Configuration::getOutputName() + "/events/converterPoliticalEvents.txt");
+	std::ofstream outPoliticalEvents("output/" + theConfiguration.getOutputName() + "/events/converterPoliticalEvents.txt");
 	if (!outPoliticalEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create converterPoliticalEvents.txt";
@@ -118,7 +118,7 @@ void HoI4::Events::outputPoliticalEvents() const
 
 void HoI4::Events::outputWarJustificationEvents() const
 {
-	std::ofstream outWarJustificationEvents("output/" + Configuration::getOutputName() + "/events/WarJustification.txt", std::ios_base::app);
+	std::ofstream outWarJustificationEvents("output/" + theConfiguration.getOutputName() + "/events/WarJustification.txt", std::ios_base::app);
 	if (!outWarJustificationEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open WarJustification.txt";
@@ -137,7 +137,7 @@ void HoI4::Events::outputWarJustificationEvents() const
 
 void HoI4::Events::outputElectionEvents() const
 {
-	std::ofstream outElectionEvents("output/" + Configuration::getOutputName() + "/events/ElectionEvents.txt");
+	std::ofstream outElectionEvents("output/" + theConfiguration.getOutputName() + "/events/ElectionEvents.txt");
 	if (!outElectionEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open ElectionEvents.txt";
@@ -159,7 +159,7 @@ void HoI4::Events::outputElectionEvents() const
 
 void HoI4::Events::outputStabilityEvents() const
 {
-	std::ofstream outStabilityEvents("output/" + Configuration::getOutputName() + "/events/stability_events.txt");
+	std::ofstream outStabilityEvents("output/" + theConfiguration.getOutputName() + "/events/stability_events.txt");
 	if (!outStabilityEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open StabilityEvents.txt";
@@ -1284,7 +1284,7 @@ void HoI4::Events::createStabilityEvents(const std::set<std::string>& majorIdeol
 		}
 	);
 
-	parseFile(Configuration::getHoI4Path() + "/events/stability_events.txt");
+	parseFile(theConfiguration.getHoI4Path() + "/events/stability_events.txt");
 
 	if (majorIdeologies.count("democratic") == 0)
 	{

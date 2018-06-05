@@ -362,7 +362,7 @@ void HoI4FocusTree::confirmLoadedFocuses()
 			}
 		);
 
-		parseFile(Configuration::getHoI4Path() + "/common/national_focus/generic.txt");
+		parseFile(theConfiguration.getHoI4Path() + "/common/national_focus/generic.txt");
 		parseFile("converterFocuses.txt");
 	}
 }

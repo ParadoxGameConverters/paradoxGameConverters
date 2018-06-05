@@ -38,12 +38,12 @@ impassableProvinceMapper::impassableProvinceMapper()
 	LOG(LogLevel::Info) << "Finding impassable provinces";
 
 	std::set<std::string> statesFiles;
-	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/history/states", statesFiles);
+	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/history/states", statesFiles);
 	for (auto stateFile: statesFiles)
 	{
 		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
 
-		auto fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFile);
+		auto fileObj = parser_UTF8::doParseFile(theConfiguration.getHoI4Path() + "/history/states/" + stateFile);
 		if (fileObj)
 		{
 			auto stateObj = fileObj->safeGetObject("state");
@@ -61,7 +61,7 @@ impassableProvinceMapper::impassableProvinceMapper()
 		}
 		else
 		{
-			LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFile;
+			LOG(LogLevel::Error) << "Could not parse " << theConfiguration.getHoI4Path() << "/history/states/" << stateFile;
 			exit(-1);
 		}
 	}

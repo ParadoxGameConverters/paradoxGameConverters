@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, const string& _country, const string& _type, leaderTraitsMap& _traitsMap, vector<string>& portraits):
-	ID(Configuration::getNextLeaderID()),
+	ID(theConfiguration.getNextLeaderID()),
 	name(firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()]),
 	country(_country),
 	type(_type),
@@ -56,7 +56,7 @@ HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, co
 
 
 HoI4Leader::HoI4Leader(Vic2::Leader* srcLeader, const string& _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits):
-	ID(Configuration::getNextLeaderID()),
+	ID(theConfiguration.getNextLeaderID()),
 	name(srcLeader->getName()),
 	country(_country),
 	type(""),

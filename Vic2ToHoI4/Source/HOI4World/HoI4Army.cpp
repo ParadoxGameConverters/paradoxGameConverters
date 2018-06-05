@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 //HoI4RegimentType::HoI4RegimentType(string type)
 //{
-//	/*string	filename	= Configuration::getHoI4Path() + "/tfh/units/" + type + ".txt";
+//	/*string	filename	= theConfiguration.getHoI4Path() + "/tfh/units/" + type + ".txt";
 //	auto	obj		= parser_UTF8::doParseFile(filename);
 //	obj					= obj->getLeaves()[0];
 //	name					= obj->getKey();

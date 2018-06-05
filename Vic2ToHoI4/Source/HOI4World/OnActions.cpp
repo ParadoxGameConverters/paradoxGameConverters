@@ -35,7 +35,7 @@ HoI4::OnActions::OnActions(): electionEvents{ "election.2" }
 
 void HoI4::OnActions::output(const std::set<std::string>& majorIdeologies) const
 {
-	std::ofstream onActionsFile("output/" + Configuration::getOutputName() + "/common/on_actions/99_converter_on_actions.txt");
+	std::ofstream onActionsFile("output/" + theConfiguration.getOutputName() + "/common/on_actions/99_converter_on_actions.txt");
 	if (!onActionsFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create NF_events.txt";

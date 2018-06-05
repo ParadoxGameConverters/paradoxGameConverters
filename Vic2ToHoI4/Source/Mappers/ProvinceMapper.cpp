@@ -133,10 +133,10 @@ void provinceMapper::insertIntoVic2ToHoI4ProvinceMap(const vector<int>& Vic2Nums
 
 void provinceMapper::checkAllHoI4ProvinesMapped() const
 {
-	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
+	ifstream definitions(theConfiguration.getHoI4Path() + "/map/definition.csv");
 	if (!definitions.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
+		LOG(LogLevel::Error) << "Could not open " << theConfiguration.getHoI4Path() << "/map/definition.csv";
 		exit(-1);
 	}
 
@@ -189,7 +189,7 @@ vector<shared_ptr<Object>> provinceMapper::getCorrectMappingVersion(const vector
 	for (auto version: versions)
 	{
 		HoI4::Version currentVersion(version->getKey());
-		if (Configuration::getHOI4Version() >= currentVersion)
+		if (theConfiguration.getHOI4Version() >= currentVersion)
 		{
 			LOG(LogLevel::Debug) << "Using version " << version->getKey() << " mappings";
 			return version->getLeaves();

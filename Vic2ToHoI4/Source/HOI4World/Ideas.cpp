@@ -287,7 +287,7 @@ void HoI4::Ideas::output(std::set<std::string> majorIdeologies) const
 
 void HoI4::Ideas::outputIdeologicalIdeas(std::set<std::string> majorIdeologies) const
 {
-	std::ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/convertedIdeas.txt");
+	std::ofstream ideasFile("output/" + theConfiguration.getOutputName() + "/common/ideas/convertedIdeas.txt");
 	ideasFile << "ideas = {\n";
 	ideasFile << "\tcountry = {\n";
 	for (auto majorIdeology: majorIdeologies)
@@ -310,9 +310,9 @@ void HoI4::Ideas::outputIdeologicalIdeas(std::set<std::string> majorIdeologies) 
 
 void HoI4::Ideas::outputGeneralIdeas() const
 {
-	auto manpowerFile = openIdeaFile("output/" + Configuration::getOutputName() + "/common/ideas/_manpower.txt");
-	auto economicFile = openIdeaFile("output/" + Configuration::getOutputName() + "/common/ideas/_economic.txt");
-	auto genericFile = openIdeaFile("output/" + Configuration::getOutputName() + "/common/ideas/zzz_generic.txt");
+	auto manpowerFile = openIdeaFile("output/" + theConfiguration.getOutputName() + "/common/ideas/_manpower.txt");
+	auto economicFile = openIdeaFile("output/" + theConfiguration.getOutputName() + "/common/ideas/_economic.txt");
+	auto genericFile = openIdeaFile("output/" + theConfiguration.getOutputName() + "/common/ideas/zzz_generic.txt");
 
 	std::for_each(generalIdeas.begin(), generalIdeas.end(), [&manpowerFile, &economicFile, &genericFile](auto& theGroup){
 		if (theGroup->getName() == "mobilization_laws")

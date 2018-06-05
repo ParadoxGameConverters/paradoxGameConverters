@@ -84,7 +84,7 @@ Vic2::World::World(const string& filename)
 	setGreatPowerStatus(GPIndexes, tagsInOrder);
 	setProvinceOwners();
 	addProvinceCoreInfoToCountries();
-	if (Configuration::getRemoveCores())
+	if (theConfiguration.getRemoveCores())
 	{
 		removeSimpleLandlessNations();
 	}
@@ -259,18 +259,18 @@ void Vic2::World::readCountryFiles()
 {
 	bool countriesDotTxtRead = false;
 
-	for (auto vic2Mod: Configuration::getVic2Mods())
+	for (auto vic2Mod: theConfiguration.getVic2Mods())
 	{
-		if (processCountriesDotTxt(Configuration::getV2Path() + "/mod/" + vic2Mod + "/common/countries.txt", vic2Mod))
+		if (processCountriesDotTxt(theConfiguration.getVic2Path() + "/mod/" + vic2Mod + "/common/countries.txt", vic2Mod))
 		{
 			countriesDotTxtRead = true;
 		}
 	}
 	if (!countriesDotTxtRead)
 	{
-		if (!processCountriesDotTxt(Configuration::getV2Path() + "/common/countries.txt", ""))
+		if (!processCountriesDotTxt(theConfiguration.getVic2Path() + "/common/countries.txt", ""))
 		{
-			LOG(LogLevel::Error) << "Could not open " << Configuration::getV2Path() + "/common/countries.txt";
+			LOG(LogLevel::Error) << "Could not open " << theConfiguration.getVic2Path() + "/common/countries.txt";
 			exit(-1);
 		}
 	}

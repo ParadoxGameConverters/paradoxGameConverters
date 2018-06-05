@@ -37,10 +37,10 @@ provinceDefinitions::provinceDefinitions():
 	landProvinces(),
 	colorToProvinceMap()
 {
-	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
+	ifstream definitions(theConfiguration.getHoI4Path() + "/map/definition.csv");
 	if (!definitions.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
+		LOG(LogLevel::Error) << "Could not open " << theConfiguration.getHoI4Path() << "/map/definition.csv";
 		exit(-1);
 	}
 

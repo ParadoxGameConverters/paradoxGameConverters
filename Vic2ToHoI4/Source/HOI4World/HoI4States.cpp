@@ -393,9 +393,9 @@ void HoI4States::output() const
 {
 	LOG(LogLevel::Debug) << "Writing states";
 
-	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/history/states"))
+	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/history/states"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/history/states";
+		LOG(LogLevel::Error) << "Could not create \"output/" + theConfiguration.getOutputName() + "/history/states";
 		exit(-1);
 	}
 	for (auto state: states)

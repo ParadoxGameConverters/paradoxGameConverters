@@ -37,13 +37,13 @@ cultureGroupMapper::cultureGroupMapper():
 {
 	LOG(LogLevel::Info) << "Determining culture groups";
 
-	for (auto mod: Configuration::getVic2Mods())
+	for (auto mod: theConfiguration.getVic2Mods())
 	{
 		LOG(LogLevel::Debug) << "Reading mod cultures from " << mod;
-		processVic2CulturesFile((Configuration::getV2Path() + "/mod/" + mod + "/common/cultures.txt"));
+		processVic2CulturesFile((theConfiguration.getVic2Path() + "/mod/" + mod + "/common/cultures.txt"));
 	}
 
-	processVic2CulturesFile((Configuration::getV2Path() + "/common/cultures.txt"));
+	processVic2CulturesFile((theConfiguration.getVic2Path() + "/common/cultures.txt"));
 }
 
 

@@ -36,7 +36,7 @@ stateCategoryMapper* stateCategoryMapper::instance;
 stateCategoryMapper::stateCategoryMapper():
 	stateCategories()
 {
-	readCategoriesFromDirectory(Configuration::getHoI4Path() + "/common/state_category");
+	readCategoriesFromDirectory(theConfiguration.getHoI4Path() + "/common/state_category");
 }
 
 
@@ -46,7 +46,7 @@ void stateCategoryMapper::readCategoriesFromDirectory(const string& directory)
 	Utils::GetAllFilesInFolder(directory, categoryFiles);
 	for (auto file: categoryFiles)
 	{
-		readCategoriesFromFile(Configuration::getHoI4Path() + "/common/state_category/" + file);
+		readCategoriesFromFile(theConfiguration.getHoI4Path() + "/common/state_category/" + file);
 	}
 }
 

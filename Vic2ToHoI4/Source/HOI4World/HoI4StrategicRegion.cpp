@@ -37,7 +37,7 @@ HoI4StrategicRegion::HoI4StrategicRegion(const string& _filename):
 	newProvinces(),
 	weatherObj()
 {
-	auto fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/strategicregions/" + filename);
+	auto fileObj = parser_UTF8::doParseFile(theConfiguration.getHoI4Path() + "/map/strategicregions/" + filename);
 	if (fileObj)
 	{
 		auto regionObj = fileObj->safeGetObject("strategic_region");
@@ -55,7 +55,7 @@ HoI4StrategicRegion::HoI4StrategicRegion(const string& _filename):
 	}
 	else
 	{
-		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/map/strategicregions/" << filename;
+		LOG(LogLevel::Error) << "Could not parse " << theConfiguration.getHoI4Path() << "/map/strategicregions/" << filename;
 	}
 }
 

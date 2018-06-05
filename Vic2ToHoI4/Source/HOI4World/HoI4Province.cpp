@@ -119,9 +119,9 @@ void HoI4Province::output() const
 	for (auto filename: filenames)
 	{
 		FILE* output;
-		if (fopen_s(&output, ("output/" + Configuration::getOutputName() + "/history/provinces/" + filename.first).c_str(), "w") != 0)
+		if (fopen_s(&output, ("output/" + theConfiguration.getOutputName() + "/history/provinces/" + filename.first).c_str(), "w") != 0)
 		{
-			LOG(LogLevel::Error) << "Could not create province history file output/" << Configuration::getOutputName() << "/history/provinces/" << filename.first << " - " << Utils::GetLastErrorString();
+			LOG(LogLevel::Error) << "Could not create province history file output/" << theConfiguration.getOutputName() << "/history/provinces/" << filename.first << " - " << Utils::GetLastErrorString();
 			exit(-1);
 		}
 		if (owner != "")
