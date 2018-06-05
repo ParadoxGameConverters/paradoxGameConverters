@@ -130,23 +130,27 @@ void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Co
 	lastElection = srcCountry->getLastElection();
 	initIdeas();
 
-	stability = 0.5; //0.70 + (srcCountry->getRevanchism() / 5.0) - (srcCountry->getWarExhaustion() / 100.0 / 2.5);
-	LOG(LogLevel::Debug) << "stability," << tag << "," << stability;
+	stability = 0.6;
+	warSupport = 0.6;
 
-	warSupport = 0.5;
 	if (srcCountry->getProvinces().size() > 0)
 	{
+		/*stability -= (srcCountry->getAverageMilitancy() / 10 / 1.5);
+		if (stability < 0.15)
+		{
+			stability = 0.15;
+		}
+		LOG(LogLevel::Debug) << "stability," << tag << "," << stability;
+		*/
 		float warAttitude = srcCountry->getAverageIssueSupport("jingoism");
 		warAttitude += srcCountry->getAverageIssueSupport("pro_military") / 2;
 		warAttitude -= srcCountry->getAverageIssueSupport("anti_military") / 2;
 		warAttitude -= srcCountry->getAverageIssueSupport("pacifism");
-		if (warAttitude > 0)
+		warSupport += warAttitude * 0.00375;
+		warSupport += (srcCountry->getRevanchism() / 5.0) - (srcCountry->getWarExhaustion() / 100.0 / 2.5);
+		if (warSupport < 0.15)
 		{
-			warSupport += warAttitude * 0.00375;
-		}
-		else
-		{
-			warSupport = 0.1;
+			warSupport = 0.15;
 		}
 	}
 
@@ -1614,7 +1618,7 @@ void HoI4Country::outputStability(ofstream& output) const
 {
 	if (states.size() > 0)
 	{
-		output << "set_stability = " << stability << "\n";
+		output << "set_stability = 0." << int(stability * 100) << "\n";
 	}
 }
 
@@ -1623,7 +1627,7 @@ void HoI4Country::outputWarSupport(ofstream& output) const
 {
 	if (states.size() > 0)
 	{
-		output << "set_war_support = " << warSupport << "\n";
+		output << "set_war_support = 0." << int(warSupport * 100) << "\n";
 	}
 }
 
