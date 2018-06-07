@@ -1329,6 +1329,8 @@ void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const v
 	{
 		//Focus to increase Comm support and prereq for coupTargets
 		shared_ptr<HoI4Focus> newFocus = loadedFocuses.find("Home_of_Revolution")->second.makeCustomizedCopy(Home->getTag());
+		newFocus->xPos = nextFreeColumn + coupTargets.size() - 1;
+		newFocus->yPos = 0;
 		focuses.push_back(newFocus);
 
 		for (unsigned int i = 0; i < 2; i++)
@@ -1350,6 +1352,8 @@ void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const v
 				newFocus = loadedFocuses.find("Influence_")->second.makeCustomizedCopy(Home->getTag());
 				newFocus->id = "Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag();
 				newFocus->text = "Influence " + coupCountryName;
+				newFocus->xPos = nextFreeColumn + i * 2;
+				newFocus->yPos = 1;
 				newFocus->completionReward += "= {\n";
 				newFocus->completionReward += "			" + coupTargets[i]->getTag() + " = {\n";
 				if (majorIdeologies.count("fascism") > 0)
@@ -1396,6 +1400,8 @@ void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const v
 				newFocus->text = "Civil War in " + coupCountryName;
 				newFocus->prerequisites.push_back("= { focus = Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag() + " }");
 				newFocus->relativePositionId = "Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag();
+				newFocus->xPos = 0;
+				newFocus->yPos = 1;
 				newFocus->available = "= {\n";
 				newFocus->available += "			" + coupTargets[i]->getTag() + " = { communism > 0.5 }\n";
 				newFocus->available += "		}";
@@ -1421,40 +1427,15 @@ void HoI4FocusTree::addCommunistWarBranch(shared_ptr<HoI4Country> Home, const ve
 	{
 
 		//Strengthen Commintern
-		shared_ptr<HoI4Focus> newFocus = make_shared<HoI4Focus>();
-		newFocus->id = "StrengthCom" + Home->getTag();
-		newFocus->icon = "GFX_goal_support_communism";
-		newFocus->text = "Strengthen The Comintern";//change to faction name later
+		shared_ptr<HoI4Focus> newFocus = loadedFocuses.find("StrengthCom")->second.makeCustomizedCopy(Home->getTag());
 		newFocus->xPos = nextFreeColumn + warTargets.size() - 1;
 		newFocus->yPos = 0;
-		newFocus->cost = 10;
-		newFocus->aiWillDo += "= {\n";
-		newFocus->aiWillDo += "			factor = 5\n";
-		newFocus->aiWillDo += "		}";
-		newFocus->completionReward += "= {\n";
-		newFocus->completionReward += "			army_experience = 20\n";
-		newFocus->completionReward += "			add_tech_bonus = {\n";
-		newFocus->completionReward += "				bonus = 0.5\n";
-		newFocus->completionReward += "				uses = 2\n";
-		newFocus->completionReward += "				category = land_doctrine\n";
-		newFocus->completionReward += "			}\n";
-		newFocus->completionReward += "		}";
 		focuses.push_back(newFocus);
 
-		newFocus = make_shared<HoI4Focus>();
-		newFocus->id = "Inter_Com_Pres" + Home->getTag();
-		newFocus->icon = "GFX_goal_generic_dangerous_deal";
-		newFocus->text = "International Communist Pressure";//change to faction name later
-		newFocus->prerequisites.push_back("= { focus = StrengthCom" + Home->getTag() + " }");
-		newFocus->available = "= {\n";
-		newFocus->available += "			date > 1937.1.1\n";
-		newFocus->available += "		}";
-		newFocus->xPos = nextFreeColumn + warTargets.size() - 1;
+		newFocus = loadedFocuses.find("Inter_Com_Pres")->second.makeCustomizedCopy(Home->getTag());
+		newFocus->relativePositionId = "StrengthCom" + Home->getTag();
+		newFocus->xPos = 0;
 		newFocus->yPos = 1;
-		newFocus->cost = 10;
-		newFocus->aiWillDo += "= {\n";
-		newFocus->aiWillDo += "			factor = 5\n";
-		newFocus->aiWillDo += "		}";
 		newFocus->completionReward += "= {\n";
 		newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }\n";
 		newFocus->completionReward += "		}";
@@ -1480,17 +1461,14 @@ void HoI4FocusTree::addCommunistWarBranch(shared_ptr<HoI4Country> Home, const ve
 
 				int v1 = rand() % 12 + 1;
 				int v2 = rand() % 12 + 1;
-				newFocus = make_shared<HoI4Focus>();
+				newFocus = loadedFocuses.find("War")->second.makeCustomizedCopy(Home->getTag());
 				newFocus->id = "War" + warTargets[i]->getTag() + Home->getTag();
-				newFocus->icon = "GFX_goal_generic_major_war";
 				newFocus->text = "War with " + warTargetCountryName;//change to faction name later
-				newFocus->prerequisites.push_back("= { focus = Inter_Com_Pres" + Home->getTag() + " }");
 				newFocus->available = "= {\n";
 				newFocus->available += "			date > 1938." + to_string(v1) + "." + to_string(v2) + "\n";
 				newFocus->available += "		}";
 				newFocus->xPos = nextFreeColumn + i * 2;
 				newFocus->yPos = 2;
-				newFocus->cost = 10;
 				newFocus->bypass = "= {\n";
 				newFocus->bypass += "					has_war_with = " + warTargets[i]->getTag() + "\n";
 				newFocus->bypass += "				}";
