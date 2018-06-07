@@ -582,8 +582,6 @@ focus = {
 		id = Home_of_Revolution
 		icon = GFX_goal_support_communism
 		text = "Home of the Revolution"
-		x = 24
-		y = 0
 		cost = 10
 		completion_reward = {
 			add_ideas = communist_influence
@@ -597,9 +595,6 @@ focus = {
 		id = Influence_
 		icon = GFX_goal_generic_propaganda
 		prerequisite = { focus = Home_of_Revolution }
-		x = 0
-		y = 1
-		relative_position_id = Home_of_Revolution
 		cost = 10
 		ai_will_do = {
 			factor = 5
@@ -609,10 +604,48 @@ focus = {
 	focus = {
 		id = Coup_
 		icon = GFX_goal_generic_demand_territory
-		x = 0
-		y = 1
 		cost = 10
 		ai_will_do = {
 			factor = 5
 		}
+	}
+
+	focus = {
+		id = StrengthCom
+		icon = GFX_goal_support_communism
+		text = "Strengthen The Comintern"
+		cost = 10
+		completion_reward = {
+			army_experience = 20
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	
+	focus = {
+		id = Inter_Com_Pres
+		icon = GFX_goal_generic_dangerous_deal
+		text = "International Communist Pressure"
+		prerequisite = { focus = StrengthCom }
+		cost = 10
+		available = {
+			date > 1937.1.1
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = War
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = Inter_Com_Pres }
+		cost = 10
 	}
