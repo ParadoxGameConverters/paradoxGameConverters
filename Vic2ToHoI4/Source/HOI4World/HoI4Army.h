@@ -54,7 +54,7 @@ class RegimentType
 };
 
 
-std::ostream& HoI4::operator << (std::ostream& out, const HoI4::RegimentType& regiment);
+std::ostream& operator << (std::ostream& out, const RegimentType& regiment);
 
 
 class DivisionTemplateType
