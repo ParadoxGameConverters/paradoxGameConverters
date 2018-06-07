@@ -52,15 +52,18 @@ class Configuration: commonItems::parser
 		std::string getHoI4DocumentsPath() const { return HoI4DocumentsPath; }
 		std::string getVic2Path() const { return Vic2Path; }
 		std::vector<std::string> getVic2Mods() const { return Vic2Mods; }
-  		double getForceMultiplier() const { return forceMultiplier; }
 		std::string getOutputName() const { return outputName; }
+
+		double getForceMultiplier() const { return forceMultiplier; }
 		double getManpowerFactor() const { return manpowerFactor; }
 		double getIndustrialShapeFactor() const { return industrialShapeFactor; }
 		double getIcFactor() const { return icFactor; }
 		ideologyOptions getIdeologiesOptions() const { return ideologiesOptions; }
-		bool getDebug() const { return debug; }
 		bool getRemoveCores() const { return removeCores; }
+		bool getCreateFactions() const { return createFactions; }
 		HoI4::Version getHOI4Version() const { return version; }
+
+		bool getDebug() const { return debug; }
 
 		int getNextLeaderID() { return leaderID++; }
 
@@ -87,16 +90,15 @@ class Configuration: commonItems::parser
 		double manpowerFactor = 0.0;
 		double industrialShapeFactor = 0.0;
 		double icFactor = 0.0;
-
 		ideologyOptions ideologiesOptions = ideologyOptions::keep_major;
+		bool removeCores = true;
+		bool createFactions = true;
+		HoI4::Version version;
 
 		bool debug = false;
-		bool removeCores = true;
 
 		unsigned int leaderID = 1000;
 		unsigned int leaderIDCountryIdx = 1;
-
-		HoI4::Version version;
 };
 
 

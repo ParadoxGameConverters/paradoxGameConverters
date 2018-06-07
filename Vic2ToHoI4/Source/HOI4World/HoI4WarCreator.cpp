@@ -832,12 +832,15 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4C
 
 	//events for allies
 	auto newAllies = GetMorePossibleAllies(Leader);
-	if (newAllies.size() > 0 && Leader->getFaction() == nullptr)
+	if (theConfiguration.getCreateFactions())
 	{
-		vector<shared_ptr<HoI4Country>> self;
-		self.push_back(Leader);
-		auto newFaction = make_shared<HoI4Faction>(Leader, self);
-		Leader->setFaction(newFaction);
+		if (newAllies.size() > 0 && Leader->getFaction() == nullptr)
+		{
+			vector<shared_ptr<HoI4Country>> self;
+			self.push_back(Leader);
+			auto newFaction = make_shared<HoI4Faction>(Leader, self);
+			Leader->setFaction(newFaction);
+		}
 	}
 
 	vector<shared_ptr<HoI4Faction>> FactionsAttackingMe;
@@ -904,14 +907,17 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4C
 							}
 						}
 					}
-					if (GC->getFaction() == nullptr)
+					if (theConfiguration.getCreateFactions())
 					{
-						vector<shared_ptr<HoI4Country>> self;
-						self.push_back(GC);
-						auto newFaction = make_shared<HoI4Faction>(GC, self);
-						GC->setFaction(newFaction);
+						if (GC->getFaction() == nullptr)
+						{
+							vector<shared_ptr<HoI4Country>> self;
+							self.push_back(GC);
+							auto newFaction = make_shared<HoI4Faction>(GC, self);
+							GC->setFaction(newFaction);
+						}
+						theWorld->getEvents()->createFactionEvents(Leader, GC);
 					}
-					theWorld->getEvents()->createFactionEvents(Leader, GC);
 					newAllies.push_back(GC);
 					maxGCAlliance++;
 				}

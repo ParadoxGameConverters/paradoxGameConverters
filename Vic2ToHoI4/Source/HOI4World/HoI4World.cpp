@@ -99,7 +99,10 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	convertIdeologySupport();
 	convertCapitalVPs();
 	convertAirBases();
-	createFactions();
+	if (theConfiguration.getCreateFactions())
+	{
+		createFactions();
+	}
 
 	HoI4WarCreator warCreator(this);
 

@@ -129,19 +129,24 @@ void Configuration::instantiate(std::istream& theStream)
 		}
 	});
 	registerKeyword(std::regex("remove_cores"), [this](const std::string& unused, std::istream& theStream){
-		commonItems::singleString debugString(theStream);
-		if (debugString.getString() == "false")
+		commonItems::singleString removecoreString(theStream);
+		if (removecoreString.getString() == "false")
 		{
 			removeCores = false;
 		}
 	});
-
+	registerKeyword(std::regex("create_factions"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString createFactionsString(theStream);
+		if (createFactionsString.getString() == "no")
+		{
+			createFactions = false;
+		}
+	});
 	std::string versionMethod;
 	registerKeyword(std::regex("HoI4VersionMethod"), [&versionMethod](const std::string& unused, std::istream& theStream){
 		commonItems::singleString versionMethodString(theStream);
 		versionMethod = versionMethodString.getString();
 	});
-
 	std::string manualVersionString;
 	registerKeyword(std::regex("HoI4Version"), [&manualVersionString](const std::string& unused, std::istream& theStream){
 		commonItems::singleString versionString(theStream);

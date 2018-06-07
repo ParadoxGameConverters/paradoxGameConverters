@@ -129,6 +129,25 @@
 						</entryOptions>
 					</preference>
 					<preference>
+						<name>create_factions</name>
+						<friendlyName>Create Factions</friendlyName>
+						<description>Whether or not to create factions</description>
+						<entryOptions>
+							<entryOption>
+								<name>yes</name>
+								<friendlyName>Yes</friendlyName>
+								<description>Create factions</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>no</name>
+								<friendlyName>no</friendlyName>
+								<description>Do not create factions</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+						</entryOptions>
+					</preference>
+					<preference>
 						<name>debug</name>
 						<friendlyName>Debug?</friendlyName>
 						<description>Whether or not to output a debug mod</description>
