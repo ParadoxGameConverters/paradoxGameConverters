@@ -43,7 +43,6 @@ using namespace std;
 class HoI4Buildings;
 class HoI4Country;
 class HoI4Diplomacy;
-class HoI4DivisionTemplateType;
 class HoI4Faction;
 class HoI4Ideology;
 class HoI4Province;
@@ -51,7 +50,6 @@ class HoI4State;
 class HoI4States;
 class HoI4StrategicRegion;
 class HoI4SupplyZones;
-class HoI4UnitMap;
 
 
 namespace HoI4
@@ -59,7 +57,9 @@ namespace HoI4
 
 class Advisor;
 class decisions;
+class DivisionTemplateType;
 class Events;
+class UnitMap;
 struct advisorCompare;
 
 }
@@ -152,12 +152,12 @@ class HoI4World
 		void addTechs(shared_ptr<HoI4Country> countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
 		void addResearchBonuses(shared_ptr<HoI4Country> countryaddBonuses, const string& oldTech, const map<string, vector<pair<string, int>>>& researchBonusMap);
 
-		map<string, HoI4UnitMap> importUnitMap() const;
-		vector<HoI4DivisionTemplateType> importDivisionTemplates() const;
+		map<string, HoI4::UnitMap> importUnitMap() const;
+		vector<HoI4::DivisionTemplateType> importDivisionTemplates() const;
 		void convertMilitaries();
-		void convertArmies(const map<string, HoI4UnitMap>& unitMap, const vector<HoI4DivisionTemplateType>& divisionTemplates);
-		void convertNavies(const map<string, HoI4UnitMap>& unitMap);
-		void convertAirforces(const map<string, HoI4UnitMap>& unitMap);
+		void convertArmies(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates);
+		void convertNavies(const map<string, HoI4::UnitMap>& unitMap);
+		void convertAirforces(const map<string, HoI4::UnitMap>& unitMap);
 
 		void determineGreatPowers();
 
@@ -228,7 +228,7 @@ class HoI4World
 		HoI4::Events* events = nullptr;
 		std::unique_ptr<HoI4::OnActions> onActions;
 
-		vector<HoI4DivisionTemplateType> divisionTemplates;
+		vector<HoI4::DivisionTemplateType> divisionTemplates;
 
 		leaderTraitsMap leaderTraits;
 };

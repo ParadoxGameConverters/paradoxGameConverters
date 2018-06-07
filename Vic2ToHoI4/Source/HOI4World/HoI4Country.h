@@ -71,10 +71,10 @@ class HoI4Country
 		void convertGovernment(const Vic2::World& _srcWorld);
 		void convertParties(const set<string>& majorIdeologies);
 		void convertIdeologySupport(const set<string>& majorIdeologies);
-		void		convertNavy(const map<string, HoI4UnitMap>& unitMap);
-		void		convertConvoys(const map<string, HoI4UnitMap>& unitMap);
-		void		convertAirforce(const map<string, HoI4UnitMap>& unitMap);
-		void		convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, const vector<HoI4DivisionTemplateType>& divisionTemplates);		
+		void convertNavy(const map<string, HoI4::UnitMap>& unitMap);
+		void convertConvoys(const map<string, HoI4::UnitMap>& unitMap);
+		void convertAirforce(const map<string, HoI4::UnitMap>& unitMap);
+		void convertArmyDivisions(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates);
 		void		setTechnology(const string& tech, int level);
 		void		setResearchBonus(const string& tech, int bonus);
 		void addState(HoI4State* _state);
@@ -86,7 +86,7 @@ class HoI4Country
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
 		void outputToUnitNamesFiles(ofstream& unitNamesFile) const;
-		void output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const;
+		void output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4::DivisionTemplateType>& divisionTemplates) const;
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(const string& SphereLeader) { sphereLeader == SphereLeader; }
@@ -156,7 +156,7 @@ class HoI4Country
 		void outputCapital(ofstream& output) const;
 		void outputResearchSlots(ofstream& output) const;
 		void outputThreat(ofstream& output) const;
-		void outputOOB(const vector<HoI4DivisionTemplateType>& divisionTemplates) const;
+		void outputOOB(const vector<HoI4::DivisionTemplateType>& divisionTemplates) const;
 		void outputTechnology(ofstream& output) const;
 		void outputResearchBonuses(ofstream& output) const;
 		void outputConvoys(ofstream& output) const;
@@ -231,7 +231,7 @@ class HoI4Country
 		bool greatPower;
 
 		// military stuff
-		vector<HoI4DivisionType>				divisions;
+		vector<HoI4::DivisionType>				divisions;
 		vector<HoI4Ship>							ships;
 		vector<HoI4Airplane>						planes;
 		int											navalLocation;

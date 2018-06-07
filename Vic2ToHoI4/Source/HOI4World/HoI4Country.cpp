@@ -439,7 +439,7 @@ void HoI4Country::convertIdeologySupport(const set<string>& majorIdeologies)
 }
 
 
-void HoI4Country::convertNavy(const map<string, HoI4UnitMap>& unitMap)
+void HoI4Country::convertNavy(const map<string, HoI4::UnitMap>& unitMap)
 {
 	for (auto army : srcCountry->getArmies())
 	{
@@ -449,7 +449,7 @@ void HoI4Country::convertNavy(const map<string, HoI4UnitMap>& unitMap)
 			
 			if (unitMap.count(type) > 0)
 			{
-				HoI4UnitMap unitInfo = unitMap.at(type);
+				HoI4::UnitMap unitInfo = unitMap.at(type);
 
 				if (unitInfo.getCategory() == "naval") {
 					// Ships get mapped
@@ -478,7 +478,7 @@ void HoI4Country::convertNavy(const map<string, HoI4UnitMap>& unitMap)
 	}
 }
 
-void HoI4Country::convertConvoys(const map<string, HoI4UnitMap>& unitMap)
+void HoI4Country::convertConvoys(const map<string, HoI4::UnitMap>& unitMap)
 {
 	for (auto army : srcCountry->getArmies())
 	{
@@ -488,7 +488,7 @@ void HoI4Country::convertConvoys(const map<string, HoI4UnitMap>& unitMap)
 
 			if (unitMap.count(type) > 0)
 			{
-				HoI4UnitMap unitInfo = unitMap.at(type);
+				HoI4::UnitMap unitInfo = unitMap.at(type);
 
 				if (unitInfo.getCategory() == "convoy") {
 					// Convoys get placed in national stockpile
@@ -503,7 +503,7 @@ void HoI4Country::convertConvoys(const map<string, HoI4UnitMap>& unitMap)
 	}
 }
 
-void HoI4Country::convertAirforce(const map<string, HoI4UnitMap>& unitMap)
+void HoI4Country::convertAirforce(const map<string, HoI4::UnitMap>& unitMap)
 {
 	for (auto army : srcCountry->getArmies())
 	{
@@ -513,7 +513,7 @@ void HoI4Country::convertAirforce(const map<string, HoI4UnitMap>& unitMap)
 
 			if (unitMap.count(type) > 0)
 			{
-				HoI4UnitMap unitInfo = unitMap.at(type);
+				HoI4::UnitMap unitInfo = unitMap.at(type);
 
 				if (unitInfo.getCategory() == "air") {
 					// Air units get placed in national stockpile
@@ -528,7 +528,7 @@ void HoI4Country::convertAirforce(const map<string, HoI4UnitMap>& unitMap)
 	}	
 }
 
-void HoI4Country::convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, const vector<HoI4DivisionTemplateType>& divisionTemplates)
+void HoI4Country::convertArmyDivisions(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates)
 {
 	map<string, int> BattalionsAndCompanies;
 
@@ -540,7 +540,7 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, 
 
 			if (unitMap.count(type) > 0)
 			{
-				HoI4UnitMap unitInfo = unitMap.at(type);
+				HoI4::UnitMap unitInfo = unitMap.at(type);
 
 				if (unitInfo.getCategory() == "land") {
 					// Calculate how many Battalions and Companies are available after mapping Vic2 armies
@@ -581,7 +581,7 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, 
 		// Create new divisions as long as sufficient units exist, otherwise move on to next template
 		while (sufficientUnits == true) 
 		{
-			HoI4DivisionType newDivision(to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), capitalState->getVPLocation());
+			HoI4::DivisionType newDivision(to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), capitalState->getVPLocation());
 			divisionCounter = divisionCounter + 1;
 			divisions.push_back(newDivision);
 
@@ -1291,7 +1291,7 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const optional<vector<stri
 }
 
 
-void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const
+void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4::DivisionTemplateType>& divisionTemplates) const
 {
 	if (capitalStateNum != 0)
 	{
@@ -1661,7 +1661,7 @@ void HoI4Country::outputCountryLeader(ofstream& output) const
 }
 
 
-void HoI4Country::outputOOB(const vector<HoI4DivisionTemplateType>& divisionTemplates) const
+void HoI4Country::outputOOB(const vector<HoI4::DivisionTemplateType>& divisionTemplates) const
 {
 	ofstream output("output/" + theConfiguration.getOutputName() + "/history/units/" + tag + "_OOB.txt");
 	if (!output.is_open())
