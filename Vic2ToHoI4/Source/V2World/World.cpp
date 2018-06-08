@@ -33,6 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Party.h"
 #include "Province.h"
 #include "State.h"
+#include "StateDefinitions.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/MergeRules.h"
 #include "../Mappers/ProvinceMapper.h"
@@ -42,6 +43,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 Vic2::World::World(const string& filename)
 {
 	Vic2::issuesInstance.instantiate();
+	Vic2::theStateDefinitions.initialize();
 
 	std::vector<int> GPIndexes;
 	registerKeyword(std::regex("great_nations"), [&GPIndexes, this](const std::string& unused, std::istream& theStream)

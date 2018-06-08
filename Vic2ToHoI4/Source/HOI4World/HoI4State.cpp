@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CoastalHoI4Provinces.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "../Mappers/StateCategoryMapper.h"
-#include "../Mappers/StateMapper.h"
+#include "../V2World/StateDefinitions.h"
 #include "../V2World/Province.h"
 #include "../V2World/State.h"
 #include "Log.h"
@@ -270,7 +270,7 @@ void HoI4State::tryToCreateVP()
 {
 	bool VPCreated = false;
 
-	auto vic2CapitalProvince = stateMapper::getCapitalProvince(sourceState->getStateID());
+	auto vic2CapitalProvince = sourceState->getCapitalProvince();
 	if (vic2CapitalProvince)
 	{
 		VPCreated = assignVPFromVic2Province(*vic2CapitalProvince);

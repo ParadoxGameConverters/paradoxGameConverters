@@ -101,9 +101,6 @@
     <ClCompile Include="Source\Mappers\CountryMapping.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\StateMapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\V2Localisations.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -248,6 +245,9 @@
     <ClCompile Include="Source\HOI4World\OnActions.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\V2World\StateDefinitions.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -330,9 +330,6 @@
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\CountryMapping.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mappers\StateMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\V2Localisations.h">
@@ -482,6 +479,9 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\OnActions.h">
       <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\StateDefinitions.h">
+      <Filter>Vic2World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

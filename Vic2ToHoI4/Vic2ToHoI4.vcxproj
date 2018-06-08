@@ -179,7 +179,6 @@
     <ClCompile Include="Source\Mappers\ProvinceNeighborMapper.cpp" />
     <ClCompile Include="Source\Mappers\ReformMapper.cpp" />
     <ClCompile Include="Source\Mappers\StateCategoryMapper.cpp" />
-    <ClCompile Include="Source\Mappers\StateMapper.cpp" />
     <ClCompile Include="Source\Mappers\V2Localisations.cpp" />
     <ClCompile Include="Source\targa.cpp" />
     <ClCompile Include="Source\V2toHOI4Converter.cpp" />
@@ -196,6 +195,7 @@
     <ClCompile Include="Source\V2World\Province.cpp" />
     <ClCompile Include="Source\V2World\Relations.cpp" />
     <ClCompile Include="Source\V2World\State.cpp" />
+    <ClCompile Include="Source\V2World\StateDefinitions.cpp" />
     <ClCompile Include="Source\V2World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -262,7 +262,6 @@
     <ClInclude Include="Source\Mappers\ProvinceNeighborMapper.h" />
     <ClInclude Include="Source\Mappers\ReformMapper.h" />
     <ClInclude Include="Source\Mappers\StateCategoryMapper.h" />
-    <ClInclude Include="Source\Mappers\StateMapper.h" />
     <ClInclude Include="Source\Mappers\V2Localisations.h" />
     <ClInclude Include="Source\Mappers\CultureGroupMapper.h" />
     <ClInclude Include="Source\targa.h" />
@@ -279,6 +278,7 @@
     <ClInclude Include="Source\V2World\Province.h" />
     <ClInclude Include="Source\V2World\Relations.h" />
     <ClInclude Include="Source\V2World\State.h" />
+    <ClInclude Include="Source\V2World\StateDefinitions.h" />
     <ClInclude Include="Source\V2World\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

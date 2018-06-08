@@ -29,11 +29,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/ImpassableProvinceMapper.h"
 #include "../Mappers/ProvinceDefinitions.h"
-#include "../Mappers/StateMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/Country.h"
 #include "../V2World/Province.h"
 #include "../V2World/State.h"
+#include "../V2World/StateDefinitions.h"
 #include "../V2World/World.h"
 #include <fstream>
 
@@ -220,18 +220,17 @@ void HoI4States::createStates()
 		}
 	}
 
-	auto stateMapping = stateMapper::getStateMapping();
 	while (unownedProvinces.size() > 0)
 	{
 		std::set<std::pair<int, Vic2::Province*>> stateProvinces;
 
-		auto stateProvinceNums = stateMapping.find(unownedProvinces.begin()->first);
-		if (stateProvinceNums == stateMapping.end())
+		auto stateProvinceNums = Vic2::theStateDefinitions.getAllProvinces(unownedProvinces.begin()->first);
+		if (stateProvinceNums.size() == 0)
 		{
 			unownedProvinces.erase(unownedProvinces.begin());
 			continue;
 		}
-		for (auto provinceNum: stateProvinceNums->second)
+		for (auto provinceNum: stateProvinceNums)
 		{
 			auto province = unownedProvinces.find(provinceNum);
 			if (province != unownedProvinces.end())

@@ -28,7 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4World.h"
 #include "../Mappers/ProvinceDefinitions.h"
 #include "../Mappers/ProvinceNeighborMapper.h"
-#include "../Mappers/StateMapper.h"
 #include "../V2World/Party.h"
 #include "Log.h"
 
