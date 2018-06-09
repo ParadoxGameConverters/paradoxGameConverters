@@ -106,6 +106,7 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 
 	HoI4WarCreator warCreator(this);
 
+	addFocusTrees();
 	adjustResearchFocuses();
 }
 
@@ -1589,11 +1590,23 @@ bool HoI4World::governmentsAllowFaction(const string& leaderIdeology, const stri
 }
 
 
+void HoI4World::addFocusTrees()
+{
+	for (auto country: countries)
+	{
+		if (country.second->isGreatPower() || (country.second->getStrengthOverTime(3) > 4500))
+		{
+			country.second->addGenericFocusTree(majorIdeologies);
+		}
+	}
+}
+
+
 void HoI4World::adjustResearchFocuses()
 {
 	for (auto country: countries)
 	{
-		country.second->adjustResearchFocuses(majorIdeologies);
+		country.second->adjustResearchFocuses();
 	}
 }
 

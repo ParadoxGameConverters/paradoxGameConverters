@@ -81,7 +81,8 @@ class HoI4Country
 		void calculateIndustry();
 		void reportIndustry(ofstream& out);
 		void addVPsToCapital(int VPs);
-		void adjustResearchFocuses(const set<string>& majorIdeologies);
+		void addGenericFocusTree(const set<string>& majorIdeologies);
+		void adjustResearchFocuses();
 		void outputToCommonCountriesFile(ofstream& countriesFile) const;
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;

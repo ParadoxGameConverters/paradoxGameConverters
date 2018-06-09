@@ -1147,17 +1147,21 @@ void HoI4Country::addVPsToCapital(int VPs)
 }
 
 
-void HoI4Country::adjustResearchFocuses(const set<string>& majorIdeologies)
+void HoI4Country::addGenericFocusTree(const set<string>& majorIdeologies)
 {
-	if (greatPower)
+	if (!nationalFocus)
 	{
-		if (!nationalFocus)
-		{
-			HoI4FocusTree genericNationalFocus(*this);
-			genericNationalFocus.addGenericFocusTree(majorIdeologies);
-			nationalFocus = genericNationalFocus.makeCustomizedCopy(*this);
-		}
+		HoI4FocusTree genericNationalFocus(*this);
+		genericNationalFocus.addGenericFocusTree(majorIdeologies);
+		nationalFocus = genericNationalFocus.makeCustomizedCopy(*this);
+	}
+}
 
+
+void HoI4Country::adjustResearchFocuses()
+{
+	if (greatPower && (nationalFocus != nullptr))
+	{
 		nationalFocus->removeFocus("extra_tech_slot_2" + tag);
 	}
 }
