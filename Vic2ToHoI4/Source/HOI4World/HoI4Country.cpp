@@ -1302,7 +1302,7 @@ void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& 
 		outputHistory();
 		outputOOB(divisionTemplates);
 		outputCommonCountryFile();
-		outputIdeas(ideologicalMinisters);
+		outputAdvisorIdeas(ideologicalMinisters);
 
 		if (nationalFocus != nullptr)
 		{
@@ -1613,6 +1613,7 @@ void HoI4Country::outputIdeas(ofstream& output) const
 	output << "\t" << mobilizationLaw << "\n";
 	output << "\t" << economicLaw << "\n";
 	output << "\t" << tradeLaw << "\n";
+	output << "\tculture_" << srcCountry->getPrimaryCulture() << "\n";
 
 	output << "}\n";
 }
@@ -1864,7 +1865,7 @@ void HoI4Country::outputCommonCountryFile() const
 }
 
 
-void HoI4Country::outputIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const
+void HoI4Country::outputAdvisorIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const
 {
 	ofstream ideasFile("output/" + theConfiguration.getOutputName() + "/common/ideas/" + tag + ".txt");
 	if (!ideasFile.is_open())

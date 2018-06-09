@@ -173,7 +173,7 @@ class HoI4Country
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOBLine(ofstream& output) const;
 		void outputCommonCountryFile() const;
-		void outputIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const;
+		void outputAdvisorIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const;
 		void outputUnitType(ofstream& unitNamesFile, string sourceUnitType, string destUnitType, string defaultName) const;
 
 
