@@ -34,22 +34,25 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 using namespace std;
 
 
-
-class V2Province;
-class Vic2State;
+namespace Vic2
+{
+class Province;
+class State;
+}
 
 
 
 class HoI4State
 {
 	public:
-		HoI4State(const Vic2State* sourceState, int _ID, const string& _ownerTag);
+		HoI4State(const Vic2::State* sourceState, int _ID, const string& _ownerTag);
 
 		void output(const string& filename) const;
 
 		void addProvince(int province) { provinces.insert(province); }
 		void setAsCapitalState() { capitalState = true; civFactories++; }
 		void makeImpassable() { impassable = true; }
+		void markHadImpassablePart() { hadImpassablePart = true; }
 		void addResource(const string& resource, double amount)	{ resources[resource] += amount; }
 		void addAirBase(int newAirBase) { airbaseLevel += newAirBase; if (airbaseLevel > 10) airbaseLevel = 10; }
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
@@ -59,7 +62,7 @@ class HoI4State
 		void addNavalBase(int level, int location);
 		void addCores(const vector<string>& newCores);
 
-		const Vic2State* getSourceState() const { return sourceState; }
+		const Vic2::State* getSourceState() const { return sourceState; }
 		set<int>	getProvinces() const { return provinces; }
 		string getOwner() const { return ownerTag; }
 		set<string> getCores() const { return cores; }
@@ -91,15 +94,15 @@ class HoI4State
 		void setIndustry(int factories);
 		bool amICoastal();
 
-		int determineNavalBaseLevel(const V2Province* sourceProvince);
-		optional<int> determineNavalBaseLocation(const V2Province* sourceProvince);
+		int determineNavalBaseLevel(const Vic2::Province* sourceProvince);
+		optional<int> determineNavalBaseLocation(const Vic2::Province* sourceProvince);
 
 		bool assignVPFromVic2Province(int Vic2ProvinceNumber);
 		void assignVP(int location);
 		bool isProvinceInState(int provinceNum);
 		void addDebugVPs();
 
-		const Vic2State* sourceState;
+		const Vic2::State* sourceState;
 
 		int ID;
 		set<int> provinces;
@@ -107,6 +110,7 @@ class HoI4State
 		set<string> cores;
 		bool capitalState;
 		bool impassable;
+		bool hadImpassablePart;
 
 		int manpower;
 

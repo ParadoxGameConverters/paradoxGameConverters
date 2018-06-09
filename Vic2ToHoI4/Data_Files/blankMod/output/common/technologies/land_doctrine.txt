@@ -19,7 +19,7 @@ technologies = {
 		org_loss_when_moving = -0.1
 
 		doctrine = yes	
-		research_cost = 3
+		research_cost = 1.5
 
 		folder = {
 			name = land_doctrine_folder
@@ -664,7 +664,7 @@ technologies = {
 		enable_tactic = tactic_barrage
 			
 		doctrine = yes	
-		research_cost = 3
+		research_cost = 1.5
 		
 		categories = {
 			land_doctrine
@@ -1111,10 +1111,12 @@ technologies = {
 			concentrated_fire_plans
 		}
 
-		category_army = {
+		category_all_infantry = { 
+			soft_attack = 0.05 
+		}
+		category_artillery = { 
 			soft_attack = 0.05
 		}
-		
 		path = {
 			leads_to_tech = forward_observers 
 			research_cost_coeff = 1
@@ -1228,11 +1230,14 @@ technologies = {
 	
 	shock_and_awe = {
 
-		category_army = { 
-			soft_attack = 0.1 
-			hard_attack = 0.1 
+		category_all_infantry = { 
+			soft_attack = 0.05 
+			hard_attack = 0.05
 		}
-		
+		category_artillery = { 
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
 		enable_tactic = tactic_breakthrough
 				
 		doctrine = yes	
@@ -1273,7 +1278,7 @@ technologies = {
 		}
 
 		doctrine = yes	
-		research_cost = 3
+		research_cost = 1.5
 		
 		categories = {
 			land_doctrine
@@ -1305,7 +1310,7 @@ technologies = {
 		}
 		
 		#planning max bonus increase
-		max_planning = 0.3
+		max_planning = 0.1
 
 		doctrine = yes	
 		research_cost = 3
@@ -1460,7 +1465,7 @@ technologies = {
 	
 	assault_concentration = {
 	
-		max_planning = 0.2
+		max_planning = 0.1
 
 		enable_tactic = tactic_overwhelming_fire
 		
@@ -1574,7 +1579,6 @@ technologies = {
 	central_planning = {
 
 		max_planning = 0.1
-		planning_speed = 0.1
 		
 		
 		path = {
@@ -1876,7 +1880,7 @@ technologies = {
 		minimum_training_level = -0.1		
 
 		doctrine = yes	
-		research_cost = 3
+		research_cost = 1.5
 		
 		categories = {
 			land_doctrine
@@ -2053,7 +2057,8 @@ technologies = {
 	operational_concentration = {
 
 		max_planning = 0.10
-		
+		land_reinforce_rate = 0.05
+
 		enable_tactic = tactic_elastic_defense
 		
 		path = {
@@ -2214,6 +2219,7 @@ technologies = {
 	continuous_offensive = {
 
 		org_loss_when_moving = -0.25
+		land_reinforce_rate = 0.05
 		
 		enable_tactic = tactic_backhand_blow
 
@@ -2289,8 +2295,7 @@ technologies = {
 		infantry = {
 			default_morale = 0.30
 		}
-		
-		
+		land_reinforce_rate = 0.05		
 		
 		path = {
 			leads_to_tech = large_front_offensive
@@ -2360,14 +2365,13 @@ technologies = {
 	
 	human_wave_offensive = {
 
-
 		conscription = 0.05
 				
 		infantry = {
 			combat_width = -0.4
 		}
 
-		
+		land_reinforce_rate = 0.15		
 		
 		path = {
 			leads_to_tech = guerilla_warfare

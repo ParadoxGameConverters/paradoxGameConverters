@@ -33,7 +33,7 @@ using namespace std;
 
 
 
-HoI4Province::HoI4Province(const string& Owner, int State):
+HoI4Province::HoI4Province(const std::string& Owner, int State):
 	filenames(),
 	coastal(false),
 	num(0),
@@ -182,7 +182,7 @@ void HoI4Province::output() const
 }
 
 
-void HoI4Province::convertFromOldProvince(const V2Province* oldProvince)
+void HoI4Province::convertFromOldProvince(const Vic2::Province* oldProvince)
 {
 }
 

@@ -170,9 +170,11 @@
     <ClCompile Include="..\common_items\Date.cpp" />
     <ClCompile Include="..\common_items\Log.cpp" />
     <ClCompile Include="..\common_items\newParser.cpp" />
+    <ClCompile Include="..\common_items\NewParserToOldParserConverters.cpp" />
     <ClCompile Include="..\common_items\Object.cpp" />
     <ClCompile Include="..\common_items\ParadoxParser8859_15.cpp" />
     <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp" />
+    <ClCompile Include="..\common_items\ParserHelpers.cpp" />
     <ClCompile Include="..\common_items\WinUtils.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\EU4toV2Converter.cpp" />
@@ -241,10 +243,12 @@
     <ClInclude Include="..\common_items\Date.h" />
     <ClInclude Include="..\common_items\Log.h" />
     <ClInclude Include="..\common_items\newParser.h" />
+    <ClInclude Include="..\common_items\NewParserToOldParserConverters.h" />
     <ClInclude Include="..\common_items\Object.h" />
     <ClInclude Include="..\common_items\OSCompatibilityLayer.h" />
     <ClInclude Include="..\common_items\ParadoxParser8859_15.h" />
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
+    <ClInclude Include="..\common_items\ParserHelpers.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\CustomFlagMapper.h" />
     <ClInclude Include="Source\EU4World\Areas.h" />

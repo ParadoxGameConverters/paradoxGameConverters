@@ -29,7 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <array>
 #include <iostream>
 #include <memory>
-using namespace::std;
 
 
 
@@ -62,7 +61,7 @@ namespace ConverterColor
 		public:
 			Color();
 			explicit Color(red r, green g, blue b);
-			explicit Color(shared_ptr<Object> colorObject);
+			explicit Color(std::shared_ptr<Object> colorObject);
 			Color(const Color&) = default;
 			Color& operator=(const Color&) = default;
 
@@ -70,7 +69,7 @@ namespace ConverterColor
 			// with a normal distribution of the given standard deviation.
 			void RandomlyFlunctuate(int stdDev);
 
-			friend ostream& operator<<(ostream&, const Color&);
+			friend std::ostream& operator<<(std::ostream&, const Color&);
 
 			void GetRGB(red& r, green& g, blue& b) const;
 
@@ -83,10 +82,10 @@ namespace ConverterColor
 
 		private:
 			bool initialized;
-			array<int, 3> c;
+			std::array<int, 3> c;
 	};
 
-	ostream& operator<<(ostream& out, const Color& color);
+	std::ostream& operator<<(std::ostream& out, const Color& color);
 }
 
 

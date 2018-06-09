@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,44 +28,44 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <string>
 #include <vector>
-#include "Object.h"
-using namespace std;
+#include "newParser.h"
 
 
 
-class HoI4Focus
+class HoI4Focus: commonItems::parser
 {
 	public:
-		HoI4Focus();
-		explicit HoI4Focus(shared_ptr<Object> obj);
+		HoI4Focus() = default;
+		explicit HoI4Focus(std::istream& theStream);
 		HoI4Focus(const HoI4Focus&) = default;
 
-		friend ostream& operator << (ostream& output, const HoI4Focus& focus);
+		friend std::ostream& operator << (std::ostream& output, const HoI4Focus& focus);
 
-		shared_ptr<HoI4Focus> makeCustomizedCopy(const string& country) const;
+		std::shared_ptr<HoI4Focus> makeCustomizedCopy(const std::string& country) const;
 
-		string id;
-		string icon;
-		string text;
-		vector<string> prerequisites;
-		string mutuallyExclusive;
-		string bypass;
-		int xPos;
-		int yPos;
-		int cost;
-		bool availableIfCapitulated;
-		string available;
-		string cancelIfInvalid;
-		string continueIfInvalid;
-		string completeTooltip;
-		string completionReward;
-		string aiWillDo;
+		std::string id;
+		std::string icon;
+		std::string text;
+		std::vector<std::string> prerequisites;
+		std::string mutuallyExclusive;
+		std::string bypass;
+		int xPos = 0;
+		int yPos = 0;
+		std::string relativePositionId;
+		int cost = 0;
+		bool availableIfCapitulated = false;
+		std::string available;
+		std::string cancelIfInvalid;
+		std::string continueIfInvalid;
+		std::string completeTooltip;
+		std::string completionReward;
+		std::string aiWillDo;
 
 	private:
 		HoI4Focus& operator=(const HoI4Focus&) = delete;
 
-		void customizeMutualExclusion(shared_ptr<HoI4Focus> newFocus, const string& country) const;
-		void customizePrerequisite(shared_ptr<HoI4Focus> newFocus, string& prerequisite, const string& country) const;
+		void customizeMutualExclusion(std::shared_ptr<HoI4Focus> newFocus, const std::string& country) const;
+		void customizePrerequisite(std::shared_ptr<HoI4Focus> newFocus, std::string& prerequisite, const std::string& country) const;
 };
 
 

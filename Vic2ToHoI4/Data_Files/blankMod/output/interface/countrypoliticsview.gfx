@@ -94,6 +94,21 @@ spriteTypes = {
 		textureFile = "gfx/interface/autonomy/autonomy_satellite.dds"
 	}
 	
+	spriteType = {
+		name = "GFX_autonomy_wtt_imperial_associate_icon"
+		textureFile = "gfx/interface/autonomy/autonomy_imperial_associate.dds"
+	}
+
+	spriteType = {
+		name = "GFX_autonomy_wtt_imperial_subject_icon"
+		textureFile = "gfx/interface/autonomy/autonomy_imperial_associate.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_autonomy_wtt_imperial_protectorate_icon"
+		textureFile = "gfx/interface/autonomy/autonomy_imperial_protectorate.dds"
+	}
+	
 	#-------------
 
 	spriteType = {
@@ -414,6 +429,11 @@ spriteTypes = {
 		name = "GFX_pol_leader_frame"
 		textureFile = "gfx//interface//pol_leader_frame.dds"
 	}
+	
+	spriteType = {
+		name = "GFX_event_leader_frame"
+		textureFile = "gfx//interface//event_leader_frame.dds"
+	}
 
 	spriteType = {
 		name = "GFX_pol_goal_bg"
@@ -446,6 +466,12 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_leader_unknown"
 		textureFile = "gfx/leaders/leader_unknown.dds"
+		legacy_lazy_load = no
+	}
+	
+	spriteType = {
+		name = "GFX_leader_marshal_unknown"
+		textureFile = "gfx/leaders/leader_marshal_unknown.dds"
 		legacy_lazy_load = no
 	}
 

@@ -36,17 +36,20 @@ using namespace std;
 
 
 class HoI4State;
-class V2Country;
 class V2Province;
-class Vic2State;
-class V2World;
+namespace Vic2
+{
+class Country;
+class State;
+class World;
+}
 
 
 
 class HoI4States
 {
 	public:
-		explicit HoI4States(const V2World* _sourceWorld);
+		explicit HoI4States(const Vic2::World* _sourceWorld);
 
 		const map<int, HoI4State*>& getStates() const { return states; }
 		const map<int, int>& getProvinceToStateIDMap() const { return provinceToStateIDMap; }
@@ -59,13 +62,13 @@ class HoI4States
 
 		void determineOwnersAndCores();
 		optional<vector<int>> retrieveSourceProvinceNums(int provNum) const;
-		map<const V2Country*, pair<int, int>> determinePotentialOwners(const vector<int>& sourceProvinceNums) const;
-		const V2Country* selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const;
-		vector<string> determineCores(const vector<int>& sourceProvinces, const V2Country* oldOwner) const;
+		map<const Vic2::Country*, pair<int, int>> determinePotentialOwners(const vector<int>& sourceProvinceNums) const;
+		const Vic2::Country* selectProvinceOwner(const map<const Vic2::Country*, pair<int, int>>& potentialOwners) const;
+		vector<string> determineCores(const vector<int>& sourceProvinces, const Vic2::Country* oldOwner) const;
 
 		void createStates();
-		void createMatchingHoI4State(const Vic2State* vic2State, const string& stateOwner);
-		unordered_set<int> getProvincesInState(const Vic2State* vic2State, const string& owner);
+		void createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner);
+		unordered_set<int> getProvincesInState(const Vic2::State* vic2State, const string& owner);
 		void addProvincesAndCoresToNewState(HoI4State* newState, unordered_set<int> provinces);
 		bool isProvinceValid(int provNum) const;
 		bool isProvinceOwnedByCountry(int provNum, const string& stateOwner) const;
@@ -73,7 +76,7 @@ class HoI4States
 		unsigned int getTotalManpower() const;
 
 
-		const V2World* sourceWorld;
+		const Vic2::World* sourceWorld;
 		map<int, string> ownersMap;
 		map<int, vector<string>> coresMap;
 		set<int> assignedProvinces;

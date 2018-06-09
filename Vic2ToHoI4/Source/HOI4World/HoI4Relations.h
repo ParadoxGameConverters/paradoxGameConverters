@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,17 +28,23 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Date.h"
 
-class V2Relations;
+
+namespace Vic2
+{
+
+class Relations;
+
+}
 
 
 
 class HoI4Relations
 {
 	public:
-		explicit HoI4Relations(const string& newTag);
-		HoI4Relations(const string& newTag, const V2Relations* oldRelations);
+		explicit HoI4Relations(const std::string& newTag);
+		HoI4Relations(const std::string& newTag, const Vic2::Relations* oldRelations);
 
-		string	getTag()				const { return tag; };
+		std::string	getTag()				const { return tag; };
 		int		getRelations()		const { return value; };
 		bool		getGuarantee()		const { return guarantee; };
 		bool		getSphereLeader()		const { return sphereLeader; };
@@ -50,7 +56,7 @@ class HoI4Relations
 		HoI4Relations(const HoI4Relations&) = delete;
 		HoI4Relations& operator=(const HoI4Relations&) = delete;
 
-		string	tag;
+		std::string	tag;
 		int		value;
 		bool		militaryAccess;
 		date		lastSendDiplomat;

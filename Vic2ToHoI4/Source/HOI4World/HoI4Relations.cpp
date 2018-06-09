@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,11 +22,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Relations.h"
-#include "../V2World/V2Relations.h"
+#include "../V2World/Relations.h"
 
 
 
-HoI4Relations::HoI4Relations(const string& newTag):
+HoI4Relations::HoI4Relations(const std::string& newTag):
 	tag(newTag),
 	value(0),
 	militaryAccess(false),
@@ -39,7 +39,7 @@ HoI4Relations::HoI4Relations(const string& newTag):
 }
 
 
-HoI4Relations::HoI4Relations(const string& newTag, const V2Relations* oldRelations):
+HoI4Relations::HoI4Relations(const std::string& newTag, const Vic2::Relations* oldRelations):
 	tag(newTag),
 	value(oldRelations->getRelations()),
 	militaryAccess(oldRelations->hasMilitaryAccess()),

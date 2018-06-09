@@ -1,164 +1,122 @@
 radical = {
-	# POLITICAL	
-	radical = {
+	allowed = {
 		
-		allowed = {
-			
-			NOT = {
-				has_available_idea_with_traits = { idea = radical_minister limit = 1 }
-			}
+		NOT = {
+			has_available_idea_with_traits = { idea = radical_minister limit = 1 }
 		}
-		
-		picture = generic_goods_red_bonus
-		
-		traits = { radical_minister }
+	}
 
-		on_add = {
-			country_event = conv.political.radical.
-		}
+	picture = generic_goods_red_bonus
 
-		do_effect = {
-			NOT = {
-				has_government = radical
-			}
-		}
+	traits = { radical_minister }
 
-		ai_will_do = {
-			factor = 0
+	do_effect = {
+		NOT = {
+			has_government = radical
 		}
+	}
+
+	ai_will_do = {
+		factor = 0
 	}
 }
 
 neutrality = {
-	neutrality = {
+	allowed = {
 		
-		allowed = {
-			
-			NOT = {
-				has_available_idea_with_traits = { idea = neutrality_minister limit = 1 }
-			}
+		NOT = {
+			has_available_idea_with_traits = { idea = neutrality_minister limit = 1 }
 		}
-		
-		picture = neutral_foreign_policy
-		
-		traits = { neutrality_minister }
+	}
 
-		ai_will_do = {
-			factor = 1
-		}
+	picture = neutral_foreign_policy
+
+	traits = { neutrality_minister }
+
+	ai_will_do = {
+		factor = 1
 	}
 }
 
 absolutist = {
-	absolutist = {
+	allowed = {
 		
-		allowed = {
-			
-			NOT = {
-				has_available_idea_with_traits = { idea = absolutist_minister limit = 1 }
-			}
-		}
-		
-		traits = { absolutist_minister }
-		
-		picture = triumphant_will
-
-		on_add = {
-			country_event = conv.political.absolutist.
-		}
-
-		do_effect = {
-			NOT = {
-				has_government = absolutist
-			}
-		}
-
-		ai_will_do = {
-			factor = 0
+		NOT = {
+			has_available_idea_with_traits = { idea = absolutist_minister limit = 1 }
 		}
 	}
+
+	traits = { absolutist_minister }
+
+	picture = triumphant_will
+
+	do_effect = {
+		NOT = {
+			has_government = absolutist
+		}
+	}
+
+	ai_will_do = {
+		factor = 0
+	}
 }
-	
+
 communism = {
-	communist = {
-		
-		allowed = {
-			NOT = {
-				has_available_idea_with_traits = { idea = communism_minister limit = 1 }
-			}
+	allowed = {
+		NOT = {
+			has_available_idea_with_traits = { idea = communism_minister limit = 1 }
 		}
-		
-		traits = { communism_minister }
+	}
 
-		on_add = {
-			country_event = conv.political.communist.
-		}
+	traits = { communism_minister }
 
-		do_effect = {
-			NOT = {
-				has_government = communism
-			}
+	do_effect = {
+		NOT = {
+			has_government = communism
 		}
+	}
 
-		ai_will_do = {
-			factor = 0
-		}
+	ai_will_do = {
+		factor = 0
 	}
 }
 
-democratic = {		
-	democratic = {
-		
-		allowed = {
-			NOT = {
-				has_available_idea_with_traits = { idea = democratic_minister limit = 1 }
-			}
+democratic = {
+	allowed = {
+		NOT = {
+			has_available_idea_with_traits = { idea = democratic_minister limit = 1 }
 		}
-		
+	}
 
-		
-		traits = { democratic_minister }
+	traits = { democratic_minister }
 
-		on_add = {
-			country_event = conv.political.democratic.
+	do_effect = {
+		NOT = {
+			has_government = democratic
 		}
+	}
 
-		do_effect = {
-			NOT = {
-				has_government = democratic
-			}
-		}
-
-		ai_will_do = {
-			factor = 0
-		}
+	ai_will_do = {
+		factor = 0
 	}
 }
 
 fascism = {
-	fascist = {
-		
-		allowed = {
-			NOT = {
-				has_available_idea_with_traits = { idea = fascism_minister limit = 1 }
-			}
+	allowed = {
+		NOT = {
+			has_available_idea_with_traits = { idea = fascism_minister limit = 1 }
 		}
-		
-		
-		traits = { fascism_minister }
+	}
 
-		on_add = {
-			country_event = conv.political.fascist.
-		}
+	traits = { fascism_minister }
 
-		do_effect = {
-			NOT = {
-				has_government = fascism
-			}
+	do_effect = {
+		NOT = {
+			has_government = fascism
 		}
+	}
 
-		ai_will_do = {
-			factor = 0
-		}
+	ai_will_do = {
+		factor = 0
 	}
 }

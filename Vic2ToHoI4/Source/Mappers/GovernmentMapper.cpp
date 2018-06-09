@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "GovernmentMapper.h"
-#include "../V2World/V2Country.h"
+#include "../V2World/Country.h"
 #include "Log.h"
 #include "Object.h"
 #include "ParadoxParserUTF8.h"
@@ -129,7 +129,7 @@ void governmentMapper::importPartyMappings(shared_ptr<Object> obj)
 }
 
 
-string governmentMapper::GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology) const
+string governmentMapper::GetIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology) const
 {
 	string ideology = "neutrality";
 	for (auto mapping: governmentMap)
@@ -146,7 +146,7 @@ string governmentMapper::GetIdeologyForCountry(const V2Country* country, const s
 }
 
 
-string governmentMapper::GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology) const
+string governmentMapper::GetLeaderIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology) const
 {
 	string ideology = "neutrality";
 	for (auto mapping: governmentMap)
@@ -163,7 +163,7 @@ string governmentMapper::GetLeaderIdeologyForCountry(const V2Country* country, c
 }
 
 
-string governmentMapper::GetExistingIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const
+string governmentMapper::GetExistingIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const
 {
 	string ideology = "neutrality";
 	for (auto mapping: governmentMap)
@@ -180,7 +180,7 @@ string governmentMapper::GetExistingIdeologyForCountry(const V2Country* country,
 }
 
 
-string governmentMapper::GetExistingLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const
+string governmentMapper::GetExistingLeaderIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const
 {
 	string ideology = "neutrality";
 	for (auto mapping: governmentMap)

@@ -63,18 +63,19 @@ armor_generic = {
 			0.00 #-- suppression
 			0.00 #-- suppression_factor
 			0.01 #-- experience_loss_factor
+			0.00 #-- equipment_capture_factor
 			#-- Air Values
 			0.02 #-- air_attack
 			#-- Common Values
 			30.00 #-- max_organisation
 			0.80 #-- max_strength
-			0.00 #-- build_cost_ic
 			2.0 #-- maximum_speed
 			0.20 #-- armor_value
 			0.05 #-- ap_attack
 			0.10 #-- reliability
 			0.10 #-- reliability_factor
 			0.00 #-- weight
+			0.00 #-- build_cost_ic
 		}
 		
 		target_template = {
@@ -138,18 +139,19 @@ armor_generic = {
 			0.00 #-- suppression
 			0.00 #-- suppression_factor
 			0.01 #-- experience_loss_factor
+			0.00 #-- equipment_capture_factor
 			#-- Air Values
 			0.02 #-- air_attack
 			#-- Common Values
 			10.00 #-- max_organisation
 			0.80 #-- max_strength
-			0.00 #-- build_cost_ic
 			0.0 #-- maximum_speed
 			0.20 #-- armor_value
 			0.05 #-- ap_attack
 			0.10 #-- reliability
 			0.10 #-- reliability_factor
 			0.00 #-- weight
+			0.00 #-- build_cost_ic
 		}
 
 		target_template = {
@@ -223,18 +225,19 @@ armor_generic = {
 			0.00 #-- suppression
 			0.00 #-- suppression_factor
 			0.01 #-- experience_loss_factor
+			0.00 #-- equipment_capture_factor
 			#-- Air Values
 			0.02 #-- air_attack
 			#-- Common Values
 			50.00 #-- max_organisation
 			0.80 #-- max_strength
-			0.00 #-- build_cost_ic
 			1.0 #-- maximum_speed
 			10.0 #-- armor_value
 			0.05 #-- ap_attack
 			0.10 #-- reliability
 			0.10 #-- reliability_factor
 			0.00 #-- weight
+			0.00 #-- build_cost_ic
 		}
 		
 
@@ -305,18 +308,19 @@ armor_generic = {
 			0.00 #-- suppression
 			0.00 #-- suppression_factor
 			0.01 #-- experience_loss_factor
+			0.00 #-- equipment_capture_factor
 			#-- Air Values
 			0.02 #-- air_attack
 			#-- Common Values
 			50.00 #-- max_organisation
 			0.80 #-- max_strength
-			0.00 #-- build_cost_ic
 			10.0 #-- maximum_speed
 			0.20 #-- armor_value
 			0.05 #-- ap_attack
 			0.10 #-- reliability
 			0.10 #-- reliability_factor
 			0.00 #-- weight
+			0.00 #-- build_cost_ic
 		}
 
 		target_template = {
@@ -402,18 +406,104 @@ garrison_generic = {
 			0.00 #-- suppression
 			0.00 #-- suppression_factor
 			0.00 #-- experience_loss_factor
+			0.00 #-- equipment_capture_factor
 			#-- Air Values
 			0.00 #-- air_attack
 			#-- Common Values
 			0.60 #-- max_organisation
 			0.40 #-- max_strength
-			0.00 #-- build_cost_ic
 			0.00 #-- maximum_speed
 			0.00 #-- armor_value
 			0.20 #-- ap_attack
 			0.00 #-- reliability
 			0.00 #-- reliability_factor
 			0.00 #-- weight
+			0.00 #-- build_cost_ic
+		}
+		
+		target_template = {
+			weight = 0.9
+			match_value = 3000.0
+			
+			support = { 
+				engineer = 1
+			}
+			
+			regiments = {
+				infantry = 4
+			}
+		}
+		
+		allowed_types = {
+			infantry
+			engineer
+		}
+	}
+}
+
+suppression_generic = {
+	
+	roles = {
+		suppression
+	}
+	
+	upgrade_prio = {
+		factor = 1
+
+		modifier = {
+			factor = 20
+			has_war = yes
+		}
+	}
+	
+	match_to_count = 0.60
+
+	suppression_generic = {
+	
+		reinforce_prio = 0
+		custom_icon = 13
+	
+		upgrade_prio = {
+			factor = 2
+
+			modifier = {
+				factor = 1
+			}
+		}
+		
+		target_width = 6.0
+		width_weight = 1.0
+		column_swap_factor = 0.5
+		
+		stat_weights = {
+			0.00 #-- default_morale
+			0.00 #-- defense
+			0.00 #-- breakthrough
+			0.00 #-- hardness
+			4.00 #-- soft_attack
+			0.00 #-- hard_attack
+			0.00 #-- recon
+			3.00 #-- entrenchment
+			0.00 #-- initiative
+			0.00 #-- casualty_trickleback
+			0.00 #-- supply_consumption_factor
+			0.00 #-- supply_consumption
+			10.00 #-- suppression
+			0.00 #-- suppression_factor
+			0.00 #-- experience_loss_factor
+			0.00 #-- equipment_capture_factor
+			#-- Air Values
+			0.00 #-- air_attack
+			#-- Common Values
+			0.60 #-- max_organisation
+			0.40 #-- max_strength
+			0.00 #-- maximum_speed
+			0.00 #-- armor_value
+			0.20 #-- ap_attack
+			0.00 #-- reliability
+			0.00 #-- reliability_factor
+			0.00 #-- weight
+			0.00 #-- build_cost_ic
 		}
 		
 		target_template = {
@@ -425,12 +515,12 @@ garrison_generic = {
 			}
 			
 			regiments = {
-				infantry = 3
+				cavalry = 3
 			}
 		}
 		
 		allowed_types = {
-			infantry
+			cavalry
 			military_police
 		}
 	}
@@ -482,18 +572,19 @@ infantry_generic = {
 			0.00 #-- suppression
 			0.00 #-- suppression_factor
 			0.00 #-- experience_loss_factor
+			0.00 #-- equipment_capture_factor
 			#-- Air Values
 			0.00 #-- air_attack
 			#-- Common Values
 			0.60 #-- max_organisation
 			0.40 #-- max_strength
-			0.00 #-- build_cost_ic
 			0.00 #-- maximum_speed
 			0.00 #-- armor_value
 			0.20 #-- ap_attack
 			0.00 #-- reliability
 			0.00 #-- reliability_factor
 			0.00 #-- weight
+			0.00 #-- build_cost_ic
 		}
 		
 		target_template = {
@@ -526,7 +617,116 @@ infantry_generic = {
 			artillery_brigade
 		}
 	}
+}
+
+infantry_big_generic = {
+
+	roles = {
+		infantry
+	}
 	
+	upgrade_prio = {
+		factor = 20
+
+		modifier = {
+			factor = 0
+
+			OR = {
+				date < 1938.1.1
+				stockpile_ratio = { 
+	  				archetype = infantry_equipment
+	  				ratio < 4
+	  			}
+	  		}
+		}
+	}
+
+	match_to_count = 0.10
+	
+	infantry_default = {
+	
+		upgrade_prio = {
+			factor = 20
+
+			modifier = {
+				factor = 0
+
+				OR = {
+					date < 1938.1.1
+					stockpile_ratio = { 
+		  				archetype = infantry_equipment
+		  				ratio < 4
+		  			}
+		  		}
+			}
+		}
+		
+		target_width = 40.0
+		width_weight = 1.5
+		column_swap_factor = 0.5
+		
+		stat_weights = {
+			0.00 #-- default_morale
+			0.00 #-- defense
+			1.00 #-- breakthrough
+			0.00 #-- hardness
+			4.00 #-- soft_attack
+			0.00 #-- hard_attack
+			0.00 #-- recon
+			1.00 #-- entrenchment
+			0.00 #-- initiative
+			0.00 #-- casualty_trickleback
+			0.00 #-- supply_consumption_factor
+			0.00 #-- supply_consumption
+			0.00 #-- suppression
+			0.00 #-- suppression_factor
+			0.00 #-- experience_loss_factor
+			0.00 #-- equipment_capture_factor
+			#-- Air Values
+			0.00 #-- air_attack
+			#-- Common Values
+			0.60 #-- max_organisation
+			0.40 #-- max_strength
+			0.00 #-- maximum_speed
+			0.00 #-- armor_value
+			0.20 #-- ap_attack
+			0.00 #-- reliability
+			0.00 #-- reliability_factor
+			0.00 #-- weight
+			0.00 #-- build_cost_ic
+		}
+		
+		target_template = {
+			weight = 0.9
+			match_value = 5000.0
+			
+			support = {
+				engineer = 1
+				anti_tank = 1
+				recon = 1
+				signal_company = 1
+				logistics_company = 1
+			}
+			
+			regiments = {
+				infantry = 14
+				artillery_brigade = 4
+			}
+		}
+		
+		allowed_types = {
+			infantry		
+			engineer
+			recon
+			field_hospital
+			logistics_company
+			anti_tank
+			artillery
+			rocket_artillery
+			artillery_brigade
+			signal_company
+		}
+	}
 }
 
 mountaineers_generic = {
@@ -578,18 +778,19 @@ mountaineers_generic = {
 			0 #-- suppression
 			0 #-- suppression_factor
 			0 #-- experience_loss_factor
+			0 #-- equipment_capture_factor
 			#-- Air Values
 			0 #-- air_attack
 			#-- Common Values
 			1 #-- max_organisation
 			1 #-- max_strength
-			-0.1 #-- build_cost_ic
 			0 #-- maximum_speed
 			0 #-- armor_value
 			0 #-- ap_attack
 			0 #-- reliability
 			0 #-- reliability_factor
 			0 #-- weight
+			-0.1 #-- build_cost_ic
 		}
 
 		target_template = {
@@ -670,18 +871,19 @@ marines_generic = {
 			0.00 #-- suppression
 			0.00 #-- suppression_factor
 			0.00 #-- experience_loss_factor
+			0.00 #-- equipment_capture_factor
 			#-- Air Values
 			0.00 #-- air_attack
 			#-- Common Values
 			0.60 #-- max_organisation
 			0.40 #-- max_strength
-			-0.1 #-- build_cost_ic
 			0.00 #-- maximum_speed
 			0.05 #-- armor_value
 			0.00 #-- ap_attack
 			0.00 #-- reliability
 			0.00 #-- reliability_factor
 			-0.2 #-- weight
+			-0.1 #-- build_cost_ic
 		}
 
 		target_template = {
@@ -757,18 +959,19 @@ paratrooper_generic = {
 			0.01 #-- suppression
 			0.01 #-- suppression_factor
 			0.05 #-- experience_loss_factor
+			0.00 #-- equipment_capture_factor
 			#-- Air Values
 			0.01 #-- air_attack
 			#-- Common Values
 			0.6 #-- max_organisation
 			0.4 #-- max_strength
-			-0.1 #-- build_cost_ic
 			0.00 #-- maximum_speed
 			0.00 #-- armor_value
 			0.20 #-- ap_attack
 			0.00 #-- reliability
 			0.00 #-- reliability_factor
 			-1.0 #-- weight
+			-0.1 #-- build_cost_ic
 		}
 
 		target_template = {

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,35 +21,38 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4VERSION_H_
-#define HOI4VERSION_H_
+#ifndef HOI4_VERSION_H_
+#define HOI4_VERSION_H_
 
 
 
-#include "Object.h"
 #include <string>
-using namespace std;
 
 
 
-class HOI4Version
+namespace HoI4 {
+
+class Version
 {
 	public:
-		HOI4Version();
-		explicit HOI4Version(shared_ptr<Object> obj);
-		explicit HOI4Version(string version);
-		HOI4Version(const HOI4Version&) = default;
-		HOI4Version& operator=(const HOI4Version&) = default;
-		bool operator >= (const HOI4Version& rhs) const;
+		Version() = default;
+		explicit Version(std::string version);
+		Version(const Version&) = default;
+		Version& operator=(const Version&) = default;
+		bool operator >= (const Version& rhs) const;
 
-		friend ostream& operator << (ostream& out, const HOI4Version& version);
+		friend std::ostream& operator << (std::ostream& out, const Version& version);
 
 	private:
-		int first;
-		int second;
-		int third;
+		int first = 1;
+		int second = 5;
+		int third = 3;
 };
 
+
+std::ostream& operator << (std::ostream& out, const Version& version);
+
+}
 
 
 #endif // HOI4VERSION_H_

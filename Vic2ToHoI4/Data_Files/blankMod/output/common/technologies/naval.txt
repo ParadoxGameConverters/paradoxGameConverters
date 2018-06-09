@@ -952,5 +952,21 @@ technologies = {
 			ss_tech
 		}
 	}
+
+	######## JAPAN FOCUS TREE UNLOCK ########
+	torpedo_cruiser = {
+
+		enable_equipments = { 
+			torpedo_cruiser
+		}
+
+		research_cost = 1
+		start_year = 1936
+
+		# only from focus!!! #####
+		allow = {
+			always = no
+		}
+	}
 	
 }

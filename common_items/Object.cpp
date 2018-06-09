@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -62,7 +62,7 @@ Object::~Object()
 }
 
 
-Object::Object(shared_ptr<Object> other):
+Object::Object(std::shared_ptr<Object> other):
 	key(other->key),
 	strVal(other->strVal),
 	objects(),
@@ -77,21 +77,21 @@ Object::Object(shared_ptr<Object> other):
 }
 
 
-void Object::setValue(const string& val)
+void Object::setValue(const std::string& val)
 {
 	strVal = val;
 	leaf = true;
 }
 
 
-void Object::setValue(shared_ptr<Object> val)
+void Object::setValue(std::shared_ptr<Object> val)
 {
 	objects.push_back(val);
 	leaf = false;
 }
 
 
-void Object::unsetValue(const string& val)
+void Object::unsetValue(const std::string& val)
 {
 	for (auto i: objects)
 	{
@@ -105,21 +105,21 @@ void Object::unsetValue(const string& val)
 }
 
 
-void Object::setLeaf(string key, string val)
+void Object::setLeaf(std::string key, std::string val)
 {
-	shared_ptr<Object> leaf = make_shared<Object>(key);
+	std::shared_ptr<Object> leaf = std::make_shared<Object>(key);
 	leaf->setValue(val);
 	setValue(leaf);
 }
 
 
-void Object::setValue(const vector<shared_ptr<Object>>& val)
+void Object::setValue(const std::vector<std::shared_ptr<Object>>& val)
 {
 	objects = val;
 }
 
 
-void Object::addToList(string val)
+void Object::addToList(std::string val)
 {
 	isObjList = true;
 	if (strVal.size() > 0)
@@ -136,7 +136,7 @@ void Object::addToList(string val)
 }
 
 
-void Object::addToList(vector<string>::iterator begin, vector<string>::iterator end)
+void Object::addToList(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end)
 {
 	isObjList = true;
 	for (auto itr = begin; itr != end; ++itr)
@@ -156,9 +156,9 @@ void Object::addToList(vector<string>::iterator begin, vector<string>::iterator 
 }
 
 
-vector<shared_ptr<Object>> Object::getValue(const string& key) const
+std::vector<std::shared_ptr<Object>> Object::getValue(const std::string& key) const
 {
-	vector<shared_ptr<Object>> ret;
+	std::vector<std::shared_ptr<Object>> ret;
 
 	for (auto i: objects)
 	{
@@ -172,7 +172,7 @@ vector<shared_ptr<Object>> Object::getValue(const string& key) const
 }
 
 
-optional<string> Object::getToken(const int index)
+std::optional<std::string> Object::getToken(const int index)
 {
 	if (!isObjList)
 	{
@@ -200,12 +200,12 @@ int Object::numTokens()
 }
 
 
-vector<string> Object::getKeys()
+std::vector<std::string> Object::getKeys()
 {
-	vector<string> ret;	// the keys to return
+	std::vector<std::string> ret;	// the keys to return
 	for (auto i: objects)
 	{
-		string curr = i->getKey();	// the current key
+		std::string curr = i->getKey();	// the current key
 		if (find(ret.begin(), ret.end(), curr) != ret.end())
 		{
 			continue;
@@ -216,9 +216,9 @@ vector<string> Object::getKeys()
 }
 
 
-optional<string> Object::getLeaf(const string& leaf) const
+std::optional<std::string> Object::getLeaf(const std::string& leaf) const
 {
-	vector<shared_ptr<Object>> leaves = getValue(leaf); // the objects to return
+	std::vector<std::shared_ptr<Object>> leaves = getValue(leaf); // the objects to return
 	if (0 == leaves.size())
 	{
 		LOG(LogLevel::Warning) << "Error: Cannot find leaf " << leaf << " in object\n" << *this;
@@ -228,7 +228,7 @@ optional<string> Object::getLeaf(const string& leaf) const
 }
 
 
-ostream& operator<< (ostream& os, const Object& obj)
+std::ostream& operator<< (std::ostream& os, const Object& obj)
 {
 	static int indent = 0; // the level of indentation to output to
 	for (int i = 0; i < indent; i++)
@@ -276,16 +276,16 @@ void Object::keyCount()
 {
 	if (leaf)
 	{
-		cout << key << " : 1\n";
+		std::cout << key << " : 1\n";
 		return;
 	}
 
-	map<string, int> refCount;	// the count of the references
+	std::map<std::string, int> refCount;	// the count of the references
 	keyCount(refCount);
-	vector<pair<string, int> > sortedCount; // an organized container for the counts
+	std::vector<std::pair<std::string, int> > sortedCount; // an organized container for the counts
 	for (auto i: refCount)
 	{
-		pair<string, int> curr(i.first, i.second);
+		std::pair<std::string, int> curr(i.first, i.second);
 		if (2 > curr.second)
 		{
 			continue;
@@ -309,12 +309,12 @@ void Object::keyCount()
 
 	for (auto j: sortedCount)
 	{
-		cout << j.first << " : " << j.second << "\n";
+		std::cout << j.first << " : " << j.second << "\n";
 	}
 }
 
 
-void Object::keyCount(map<string, int>& counter)
+void Object::keyCount(std::map<std::string, int>& counter)
 {
 	for (auto i: objects)
 	{
@@ -332,14 +332,14 @@ void Object::printTopLevel()
 {
 	for (auto i: objects)
 	{
-		cout << i->key << endl;
+		std::cout << i->key << std::endl;
 	}
 }
 
 
-void Object::removeObject(shared_ptr<Object> target)
+void Object::removeObject(std::shared_ptr<Object> target)
 {
-	vector<shared_ptr<Object>>::iterator pos = find(objects.begin(), objects.end(), target);	// the position of the object to be removed
+	std::vector<std::shared_ptr<Object>>::iterator pos = find(objects.begin(), objects.end(), target);	// the position of the object to be removed
 	if (pos == objects.end())
 	{
 		return;
@@ -348,15 +348,15 @@ void Object::removeObject(shared_ptr<Object> target)
 }
 
 
-void Object::addObject(shared_ptr<Object> target)
+void Object::addObject(std::shared_ptr<Object> target)
 {
 	objects.push_back(target);
 }
 
 
-void Object::addObjectAfter(shared_ptr<Object> target, const string& key)
+void Object::addObjectAfter(std::shared_ptr<Object> target, const std::string& key)
 {
-	vector<shared_ptr<Object>>::iterator i;
+	std::vector<std::shared_ptr<Object>>::iterator i;
 
 	for (auto i = objects.begin(); i != objects.end(); ++i)
 	{
@@ -375,48 +375,48 @@ void Object::addObjectAfter(shared_ptr<Object> target, const string& key)
 
 
 
-shared_ptr<Object> br;	// the branch being set
-void setVal(string name, const string& val, shared_ptr<Object> branch)
+std::shared_ptr<Object> br;	// the branch being set
+void setVal(std::string name, const std::string& val, std::shared_ptr<Object> branch)
 {
 	if ((branch) && (br != branch))
 	{
 		br = branch;
 	}
-	shared_ptr<Object> b = make_shared<Object>(name);
+	std::shared_ptr<Object> b = std::make_shared<Object>(name);
 	b->setValue(val);
 	br->setValue(b);
 }
 
 
-void setInt(string name, const int val, shared_ptr<Object> branch)
+void setInt(std::string name, const int val, std::shared_ptr<Object> branch)
 {
 	if ((branch) && (br != branch))
 	{
 		br = branch;
 	}
 
-	string str = to_string(val);
-	shared_ptr<Object> b = make_shared<Object>(name);
+	std::string str = std::to_string(val);
+	std::shared_ptr<Object> b = std::make_shared<Object>(name);
 	b->setValue(str);
 	br->setValue(b);
 }
 
 
-void setFlt(string name, const double val, shared_ptr<Object> branch)
+void setFlt(std::string name, const double val, std::shared_ptr<Object> branch)
 {
 	if ((branch) && (br != branch))
 	{
 		br = branch;
 	}
 
-	string str = to_string(val);
-	shared_ptr<Object> b = make_shared<Object>(name);
+	std::string str = std::to_string(val);
+	std::shared_ptr<Object> b = std::make_shared<Object>(name);
 	b->setValue(str);
 	br->setValue(b);
 }
 
 
-double Object::safeGetFloat(const string& k, const double def)
+double Object::safeGetFloat(const std::string& k, const double def)
 {
 	objvec vec = getValue(k);	// the objects with the keys to be returned
 	if (0 == vec.size()) return def;
@@ -424,7 +424,7 @@ double Object::safeGetFloat(const string& k, const double def)
 }
 
 
-string Object::safeGetString(const string& k, string def)
+std::string Object::safeGetString(const std::string& k, std::string def)
 {
 	objvec vec = getValue(k);	// the objects with the strings to be returned
 	if (0 == vec.size())
@@ -435,7 +435,7 @@ string Object::safeGetString(const string& k, string def)
 }
 
 
-int Object::safeGetInt(const string& k, const int def)
+int Object::safeGetInt(const std::string& k, const int def)
 {
 	objvec vec = getValue(k);	// the objects with the ints to be returned
 	if (0 == vec.size())
@@ -446,7 +446,7 @@ int Object::safeGetInt(const string& k, const int def)
 }
 
 
-shared_ptr<Object> Object::safeGetObject(const string& k, shared_ptr<Object> def)
+std::shared_ptr<Object> Object::safeGetObject(const std::string& k, std::shared_ptr<Object> def)
 {
 	objvec vec = getValue(k);	// the objects with the objects to be returned 
 	if (0 == vec.size())
@@ -457,7 +457,7 @@ shared_ptr<Object> Object::safeGetObject(const string& k, shared_ptr<Object> def
 }
 
 
-vector<string> Object::safeGetTokens(const string& k)
+std::vector<std::string> Object::safeGetTokens(const std::string& k)
 {
 	auto obj = safeGetObject(k);
 	if (obj)
@@ -466,15 +466,15 @@ vector<string> Object::safeGetTokens(const string& k)
 	}
 	else
 	{
-		vector<string> noTokens;
+		std::vector<std::string> noTokens;
 		return noTokens;
 	}
 }
 
 
-string Object::toString() const
+std::string Object::toString() const
 {
-	ostringstream outputStringStream;
+	std::ostringstream outputStringStream;
 	outputStringStream << *(this);
 	return outputStringStream.str();
 }

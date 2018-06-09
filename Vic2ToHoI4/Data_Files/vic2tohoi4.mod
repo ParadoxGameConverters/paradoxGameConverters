@@ -4,6 +4,6 @@ tags={
 	"Alternative History"
 	"Utilities"
 }
-picture="Converter.png"
+picture="converter.png"
 remote_file_id="733122837"
-supported_version="1.4.*"
+supported_version="1.5.*"

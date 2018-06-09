@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Object.h"
 #include "ParadoxParser8859_15.h"
 #include "ParadoxParserUTF8.h"
-#include "../V2World/V2World.h"
+#include "../V2World/World.h"
 #include <algorithm>
 
 

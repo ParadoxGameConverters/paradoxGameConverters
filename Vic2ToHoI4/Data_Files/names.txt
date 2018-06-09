@@ -1,4 +1,4 @@
-﻿# Copyright (c) 2017 The Paradox Game Converters Project
+# Copyright (c) 2017 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -41,6 +41,10 @@ south_german = {
 	callsigns = { "Bubi" "Assi" "The Black Devil" "The Blond Knight Of Germany" "Dolfo" "Fighter of Libau" "Petit Rouge" "Pritzl" "The Red Baron" "The Red Battle-flyer" "The Red knight" "Reeste" }
 	car_companies = { Steyr-Daimler-Puch }
 	weapon_companies = { Hirtenberger }
+	industry_companies = { "IG Farben" Krupp }
+	electronic_companies = { Siemens }
+	naval_companies = { Germaniawerft "Blohm & Voss" }
+	aircraft_companies = { Messerschmitt Junkers "Focke Wulf" Heinkel Dornier }
 }
 
 german = {
@@ -80,7 +84,7 @@ anglo_saxon = {
 	female_names = { Elizabeth Anne }
 	callsigns = { Stubborn Arrow "The King" Eagle Hangover Striker Chase "One Wing" Pickle Thief Thunder Lightning Storm Target Hawk Fox Dog Sparrow Sunrise "Night Owl" Butcher Cocky Hawkeye Killer Mick Brandy "The Baron" }
 	industry_companies = { AIOC }
-	electronic_companies = { "English Electric" }
+	electronic_companies = { "Anglish Electric" }
 	car_companies = { Vickers-Armstrong }
 	naval_companies = { "Yarrow Shipbuilders" "Harland & Wolff" "Cammell Laird" "John Brown & Company" }
 	weapon_companies = { "RSAF Enfield" Vauxhall "Royal Arsenal" }
@@ -89,6 +93,59 @@ anglo_saxon = {
 
 russian = {
 	female_names = { Jelena Ludmila }
+	female_surnames = { Aleksseyeva Antonova Azarova Badanova Brusilova Budonnaya Chibisova Denikina
+			Dragomirova Frolova Golivina Grishina Gurkova Ivanova Koneva Konstantinova Kornilova
+			Kolchakova Kuropatkina Lazareva Makarova Men'shikova Nakhimova Nebogatova
+			Nikolayevicha Ostrovskaya Pavlova Putyatina Romanova Rozhestvenskaya Skobeleva
+			Shuvalova Surkova Tukhachevskaya Yegorova Yudenicha Vorontsova Voroshilova Zavoyko }
+	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
+	industry_companies = { "Stalingrad Tractor Factory" }
+	electronic_companies = { "Leningrad Industrial Institute" }
+	car_companies = { "Morozov Design Bureau" "Astrov Design Bureau" OKMO }
+	naval_companies = { "Nevskoye Design Bureau" }
+	weapon_companies = { "Grabin Design Bureau" "Tula Arms Plant" GAZ }
+	aircraft_companies = { "MiG Design Bureau" "Ilyushin Design Bureau" "Tupolev Design Bureau" "Yakovlev Design Bureau" }
+}
+
+novvymir = {
+	female_names = { Jelena Ludmila }
+	female_surnames = { Aleksseyeva Antonova Azarova Badanova Brusilova Budonnaya Chibisova Denikina
+			Dragomirova Frolova Golivina Grishina Gurkova Ivanova Koneva Konstantinova Kornilova
+			Kolchakova Kuropatkina Lazareva Makarova Men'shikova Nakhimova Nebogatova
+			Nikolayevicha Ostrovskaya Pavlova Putyatina Romanova Rozhestvenskaya Skobeleva
+			Shuvalova Surkova Tukhachevskaya Yegorova Yudenicha Vorontsova Voroshilova Zavoyko }
+	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
+	industry_companies = { "Stalingrad Tractor Factory" }
+	electronic_companies = { "Leningrad Industrial Institute" }
+	car_companies = { "Morozov Design Bureau" "Astrov Design Bureau" OKMO }
+	naval_companies = { "Nevskoye Design Bureau" }
+	weapon_companies = { "Grabin Design Bureau" "Tula Arms Plant" GAZ }
+	aircraft_companies = { "MiG Design Bureau" "Ilyushin Design Bureau" "Tupolev Design Bureau" "Yakovlev Design Bureau" }
+}
+
+yuzhny = {
+	female_names = { Jelena Ludmila }
+	female_surnames = { Aleksseyeva Antonova Azarova Badanova Brusilova Budonnaya Chibisova Denikina
+			Dragomirova Frolova Golivina Grishina Gurkova Ivanova Koneva Konstantinova Kornilova
+			Kolchakova Kuropatkina Lazareva Makarova Men'shikova Nakhimova Nebogatova
+			Nikolayevicha Ostrovskaya Pavlova Putyatina Romanova Rozhestvenskaya Skobeleva
+			Shuvalova Surkova Tukhachevskaya Yegorova Yudenicha Vorontsova Voroshilova Zavoyko }
+	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
+	industry_companies = { "Stalingrad Tractor Factory" }
+	electronic_companies = { "Leningrad Industrial Institute" }
+	car_companies = { "Morozov Design Bureau" "Astrov Design Bureau" OKMO }
+	naval_companies = { "Nevskoye Design Bureau" }
+	weapon_companies = { "Grabin Design Bureau" "Tula Arms Plant" GAZ }
+	aircraft_companies = { "MiG Design Bureau" "Ilyushin Design Bureau" "Tupolev Design Bureau" "Yakovlev Design Bureau" }
+}
+
+smugly = {
+	female_names = { Jelena Ludmila }
+	female_surnames = { Aleksseyeva Antonova Azarova Badanova Brusilova Budonnaya Chibisova Denikina
+			Dragomirova Frolova Golivina Grishina Gurkova Ivanova Koneva Konstantinova Kornilova
+			Kolchakova Kuropatkina Lazareva Makarova Men'shikova Nakhimova Nebogatova
+			Nikolayevicha Ostrovskaya Pavlova Putyatina Romanova Rozhestvenskaya Skobeleva
+			Shuvalova Surkova Tukhachevskaya Yegorova Yudenicha Vorontsova Voroshilova Zavoyko }
 	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
 	industry_companies = { "Stalingrad Tractor Factory" }
 	electronic_companies = { "Leningrad Industrial Institute" }
@@ -100,11 +157,18 @@ russian = {
 
 byelorussian = {
 	female_names = { Jelena Ludmila }
+	female_surnames = { Alieksiejeva "Bułak-Bałachowicza" Čybisova Dienykina Drahomyrova Holivina Hurkova
+			Ivanova Kalinoŭska Kornjlova Kolčaka Kuropatkina Lukašenka Mienšikova Nachimova
+			Niebohatova Nikolajeviča Pavlova Putiatina Rožjestvienska Skobielieva Suchoja
+			Tuchačjeŭska Jehorova Voroncova Žaŭryda }
 	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
 }
 
 ukrainian = {
 	female_names = { Jelena Ludmila }
+	female_surnames = { Bezruchka Chernyakhovsʹkaya Dyachenka Hamula Hrihoriyeva Hrekova Ivanenka Ivanova
+			Krapustiansʹkaya Kondratenka Leshchenka Leshchinskaya "Omelyanovych-Pavlenkova"
+			Paskevycha Petlyura Radchenka Shevchenka Skoropadsʹkaya Stefaniva Tymoshenka Vitovsʹkaya }
 	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
 }
 
@@ -269,12 +333,25 @@ norwegian = {
 }
 
 finnish = {
-	female_names = { Anna }
+	female_names = { Maria Helena Anneli Johanna Kaarina Marjatta Hannele Kristiina Liisa Emilia Elina Annikki Tuulikki Maarit Sofia Susanna Leena Katariina Anna Marja Sinikkka Inkeri Riitta Kyllikki Aino Tuula Anne Päivi Orvokki Ritva
+			Tellervo Maija Pirjo Karoliina Pauliina Minna Sari Irmeli Eeva Tiina Laura Elisabet Marika Pirkko Eveliina Tarja Anja Satu Mari Seija Hanna Eila Marita Heidi Sirpa Raija Annika Irene Sisko Jaana Anita Sanna Eija Kirsi
+			Ilona Marianne Julia Merja Katriina Amanda Ulla Sirkka Paula Kaisa Marketta Terttu Anni Marjaana Tuulia Elisabeth Matilda Elisa Linnea Jenni Helmi Olivia Katja Hilkka Mirjami Heli Aurora Iida Kirsti Raili Emma Mirja
+			Nina Katri }
 	naval_companies = { "Crichton-Vulcan OY" }
 	aircraft_companies = { "Valtion lentokonetehdas" }
 }
 sami = {
-	female_names = { Anna }
+	female_names = { Maria Helena Anneli Johanna Kaarina Marjatta Hannele Kristiina Liisa Emilia Elina Annikki Tuulikki Maarit Sofia Susanna Leena Katariina Anna Marja Sinikkka Inkeri Riitta Kyllikki Aino Tuula Anne Päivi Orvokki Ritva
+			Tellervo Maija Pirjo Karoliina Pauliina Minna Sari Irmeli Eeva Tiina Laura Elisabet Marika Pirkko Eveliina Tarja Anja Satu Mari Seija Hanna Eila Marita Heidi Sirpa Raija Annika Irene Sisko Jaana Anita Sanna Eija Kirsi
+			Ilona Marianne Julia Merja Katriina Amanda Ulla Sirkka Paula Kaisa Marketta Terttu Anni Marjaana Tuulia Elisabeth Matilda Elisa Linnea Jenni Helmi Olivia Katja Hilkka Mirjami Heli Aurora Iida Kirsti Raili Emma Mirja
+			Nina Katri }
+}
+ugrian = {
+	female_names = { Maria Helena Anneli Johanna Kaarina Marjatta Hannele Kristiina Liisa Emilia Elina Annikki Tuulikki Maarit Sofia Susanna Leena Katariina Anna Marja Sinikkka Inkeri Riitta Kyllikki Aino Tuula Anne Päivi Orvokki Ritva
+			Tellervo Maija Pirjo Karoliina Pauliina Minna Sari Irmeli Eeva Tiina Laura Elisabet Marika Pirkko Eveliina Tarja Anja Satu Mari Seija Hanna Eila Marita Heidi Sirpa Raija Annika Irene Sisko Jaana Anita Sanna Eija Kirsi
+			Ilona Marianne Julia Merja Katriina Amanda Ulla Sirkka Paula Kaisa Marketta Terttu Anni Marjaana Tuulia Elisabeth Matilda Elisa Linnea Jenni Helmi Olivia Katja Hilkka Mirjami Heli Aurora Iida Kirsti Raili Emma Mirja
+			Nina Katri }
+	female_surnames = { Kokko Likhacheva Mamina Minina Sibiriaka Tikhanova Zubova }
 }
 
 danish = {
@@ -282,14 +359,25 @@ danish = {
 	naval_companies = { "Burmeister & Wain" }
 	weapon_companies = { DISA }
 	aircraft_companies = { "HTK Orlogsvaerftet" }
+	car_companies = { "Atlas Maskinfabrik AS" }
+	electronic_companies = { "Bang & Olufsen" }
+	industry_companies = { "De Forenede Automobilfabriker" }
 }
 
 icelandic = {
 	female_names = { Árný Arnfrithur Bjarnhildur Boghildur Dómhildur Drótt Freydís Gunnrún Rafney }
+	female_surnames = { Arnórsdóttir Ásgeirsdóttir Benediktsdóttir Bjarnadóttir Björnsdóttir Eggersdóttir Eldjárnsdóttir Hafsteinsdóttir Hansdóttir
+		Hermannsdóttir Johánesdóttir Jónsdóttir Magnúsdóttir Stefánsdóttir Steinþosdóttir Þórdarson Þórhallson Þorláksdóttir Þursdóttir }
 }
 
 lithuanian = {
-	female_names = { Birute Morta }
+	female_names = { Agnė Aldona Anastasija Aurelija Austėja Birutė Daiva Danutė Donata Edita Elena Elzė Ernesta Gabija Gertrüda Gintarė Ieva Inga Irma Janina Jolanta Julija Kamilė Katrė Kristina Laimutė Lilija Liucija Margarita Marijona
+			Miglė Monika Odeta Paulina Regina Rozė Sandra Silvija Smiltė Solveiga Tatjana Urtė Valerija Viktorija Viltautė Violeta Vitalija Zydrė }
+	female_surnames = { Adamkienė Almenienė Avizienienė Baltrušaitienė Brazauskienė Basanavičiienė Birutienė Brazdžiūnienė Būgienė Čiurlionienė
+		Danauskienė Daukantienė Dobkevičiienė Dubeneckienė Dvarionienė Galdikienė Griniienė Griškevičiienė Ivanauskienė Jablonskienė
+		Jucienė Krupavičiienė Landsbergienė Lozoraitienė Merkienė Paksienė Paleckienė Paulauskienė Petrauskienė Piskarkienė
+		Poželienė Radvilienė Šabaniauskienė Šacienė Simonavičiienė Širvydienė Šleževičiienė Semtonienė Sniečkienė Stauaitienė
+		Straižienė Stulginkienė Švedienė Terleckienė Urbšienė Vagnoriienė Valeškienė Voldemarienė Žemaitienė Zuokienė }
 	aircraft_companies = { ANBO }
 }
 
@@ -323,14 +411,84 @@ romanian = {
 
 slovak = {
 	female_names = { "Maria" "Anna" "Hana" "Božena" "Alžbeta" "Marta" }
+	female_surnames = { Áchimová Bázlicová Bellová Benešová Blahová Čatlošová Cikkerová Clementisová Daxnerová Dubčeková
+                Figuš-Bystrá Frešová Gojdičová Golianová Hlinková Hodžová Hopková Hurbanová Hurban-Vajanská Husáková
+                Ivanková Kafendová Kardošová Kočaková Kupkovičová Machová Macudzinsková Malárová Malovecová Markovičová
+                Masaryková Mórová Moysesová Rázusová Roháčeková Rudnaová Selepčénová Sidorová Škultéty-Gábrišová Šmiková
+                Sokolová Štefániková Suchoňová Švermová Tisová Trčková Tuková Turanecová Viestová Zochová }
 }
 
 polish = {
 	female_names = { "Zofia" "Wiktoria" "Natalia" "Renata" "Elżbieta" }
+	female_surnames = { Bemowa Bór-Komorowska Brzóska Chałasińska Chłapowska Chłopicka Chrzanowska Dąbrowska Dembińska Fabryva
+		Hauke-Boaskowa Iszikowska Jasińska Klicka Konopczyńska Krukowiecka Kruszewska Langiewiczowa Madalinska Mierosławska
+		Mikołajczykowa Mokronowska Niepokólczycka Ostrowska Pacowa Pilsudska Poniatowska Potocka Prądzyńska Radziwiłłowa
+		Rokossowska Rola-Zymierska Rómmelowa Rózicka Rybinska Rydz-Śmigła Sanguszkowa Skrzynecka Sołtykowa Sowińska
+		Taczanowska Trauguttowa Wawrzecka Wieniawa-Długoszowska Wybicka Wysocka Zajączekowa Załuska Zamoyska Żeligowska }
 	industry_companies = { PKP }
 	electronic_companies = { AVA }
 	car_companies = { PZinż }
 	naval_companies = { "Stocznia Gdynia" }
+	weapon_companies = { FB LRL SMPA }
+	aircraft_companies = { PWS PZL }
+}
+
+nowyswiat = {
+	female_names = { "Zofia" "Wiktoria" "Natalia" "Renata" "Elżbieta" }
+	female_surnames = { Bemowa Bór-Komorowska Brzóska Chałasińska Chłapowska Chłopicka Chrzanowska Dąbrowska Dembińska Fabryva
+		Hauke-Boaskowa Iszikowska Jasińska Klicka Konopczyńska Krukowiecka Kruszewska Langiewiczowa Madalinska Mierosławska
+		Mikołajczykowa Mokronowska Niepokólczycka Ostrowska Pacowa Pilsudska Poniatowska Potocka Prądzyńska Radziwiłłowa
+		Rokossowska Rola-Zymierska Rómmelowa Rózicka Rybinska Rydz-Śmigła Sanguszkowa Skrzynecka Sołtykowa Sowińska
+		Taczanowska Trauguttowa Wawrzecka Wieniawa-Długoszowska Wybicka Wysocka Zajączekowa Załuska Zamoyska Żeligowska }
+	industry_companies = { PKP }
+	electronic_companies = { AVA }
+	car_companies = { PZinż }
+	naval_companies = { "Stocznia Nowyświat" }
+	weapon_companies = { FB LRL SMPA }
+	aircraft_companies = { PWS PZL }
+}
+
+poludniowy = {
+	female_names = { "Zofia" "Wiktoria" "Natalia" "Renata" "Elżbieta" }
+	female_surnames = { Bemowa Bór-Komorowska Brzóska Chałasińska Chłapowska Chłopicka Chrzanowska Dąbrowska Dembińska Fabryva
+		Hauke-Boaskowa Iszikowska Jasińska Klicka Konopczyńska Krukowiecka Kruszewska Langiewiczowa Madalinska Mierosławska
+		Mikołajczykowa Mokronowska Niepokólczycka Ostrowska Pacowa Pilsudska Poniatowska Potocka Prądzyńska Radziwiłłowa
+		Rokossowska Rola-Zymierska Rómmelowa Rózicka Rybinska Rydz-Śmigła Sanguszkowa Skrzynecka Sołtykowa Sowińska
+		Taczanowska Trauguttowa Wawrzecka Wieniawa-Długoszowska Wybicka Wysocka Zajączekowa Załuska Zamoyska Żeligowska }
+	industry_companies = { PKP }
+	electronic_companies = { AVA }
+	car_companies = { PZinż }
+	naval_companies = { "Stocznia Południowy" }
+	weapon_companies = { FB LRL SMPA }
+	aircraft_companies = { PWS PZL }
+}
+
+czarny = {
+	female_names = { "Zofia" "Wiktoria" "Natalia" "Renata" "Elżbieta" }
+	female_surnames = { Bemowa Bór-Komorowska Brzóska Chałasińska Chłapowska Chłopicka Chrzanowska Dąbrowska Dembińska Fabryva
+		Hauke-Boaskowa Iszikowska Jasińska Klicka Konopczyńska Krukowiecka Kruszewska Langiewiczowa Madalinska Mierosławska
+		Mikołajczykowa Mokronowska Niepokólczycka Ostrowska Pacowa Pilsudska Poniatowska Potocka Prądzyńska Radziwiłłowa
+		Rokossowska Rola-Zymierska Rómmelowa Rózicka Rybinska Rydz-Śmigła Sanguszkowa Skrzynecka Sołtykowa Sowińska
+		Taczanowska Trauguttowa Wawrzecka Wieniawa-Długoszowska Wybicka Wysocka Zajączekowa Załuska Zamoyska Żeligowska }
+	industry_companies = { PKP }
+	electronic_companies = { AVA }
+	car_companies = { PZinż }
+	naval_companies = { "Stocznia Czarny" }
+	weapon_companies = { FB LRL SMPA }
+	aircraft_companies = { PWS PZL }
+}
+
+western_slavic = {
+	female_names = { "Zofia" "Wiktoria" "Natalia" "Renata" "Elżbieta" }
+	female_surnames = { Bemowa Bór-Komorowska Brzóska Chałasińska Chłapowska Chłopicka Chrzanowska Dąbrowska Dembińska Fabryva
+		Hauke-Boaskowa Iszikowska Jasińska Klicka Konopczyńska Krukowiecka Kruszewska Langiewiczowa Madalinska Mierosławska
+		Mikołajczykowa Mokronowska Niepokólczycka Ostrowska Pacowa Pilsudska Poniatowska Potocka Prądzyńska Radziwiłłowa
+		Rokossowska Rola-Zymierska Rómmelowa Rózicka Rybinska Rydz-Śmigła Sanguszkowa Skrzynecka Sołtykowa Sowińska
+		Taczanowska Trauguttowa Wawrzecka Wieniawa-Długoszowska Wybicka Wysocka Zajączekowa Załuska Zamoyska Żeligowska }
+	industry_companies = { PKP }
+	electronic_companies = { AVA }
+	car_companies = { PZinż }
+	naval_companies = { "Stocznia Przemyśl" }
 	weapon_companies = { FB LRL SMPA }
 	aircraft_companies = { PWS PZL }
 }
@@ -367,12 +525,62 @@ boer = {
 
 czech = {
 	female_names = { "Marie" "Anna" "Hana" "Božena" "Alžběta" "Marta" }
-	industry_companies = { Skoda }
+	female_surnames = { Albertová Balabánová Baschová Breisková Čelovská Dvoráková Fibichová Gajdová Gellnerová Háleková
+                Hrdličková Jirečková Kadlecová Kafková Kollerová Křížkovská Kucerová Kucharová Ledererová Makosková 
+                Miková Morávecová Němečková Neruda Nováčková Novotná Popperová Radecká Rokytanská Šafáriková
+                Šafráneková Schacková Schubertová Škodová Skuherská Smetanová Šnejdárek Suková Svobodová Syrová 
+                Tomášková Tylová Vitáseková "von Mittrowitz-Nettolitzková" Voříšeková Wankelová Weberová Zíbrtová Zívrová Zoubeková }
+	industry_companies = { Škoda }
 	electronic_companies = { Elektra }
-	car_companies = { CKD Tatra "Skoda Armor" }
-	naval_companies = { "Skoda Shipyards" }
-	weapon_companies = { "Zbrojovka Brno" "Skoda Artillery" Praga }
+	car_companies = { CKD Tatra "Škoda Armor" }
+	naval_companies = { "Škoda Shipyards" }
+	weapon_companies = { "Zbrojovka Brno" "Škoda Artillery" Praga }
 	aircraft_companies = { CKD-Praga Avia Aero LETOV }
+}
+
+novysvet = {
+	female_names = { "Marie" "Anna" "Hana" "Božena" "Alžběta" "Marta" }
+	female_surnames = { Albertová Balabánová Baschová Breisková Čelovská Dvoráková Fibichová Gajdová Gellnerová Háleková
+                Hrdličková Jirečková Kadlecová Kafková Kollerová Křížkovská Kucerová Kucharová Ledererová Makosková 
+                Miková Morávecová Němečková Neruda Nováčková Novotná Popperová Radecká Rokytanská Šafáriková
+                Šafráneková Schacková Schubertová Škodová Skuherská Smetanová Šnejdárek Suková Svobodová Syrová 
+                Tomášková Tylová Vitáseková "von Mittrowitz-Nettolitzková" Voříšeková Wankelová Weberová Zíbrtová Zívrová Zoubeková }
+	industry_companies = { Škoda }
+	electronic_companies = { Elektra }
+	car_companies = { CKD Tatra "Škoda Armor" }
+	naval_companies = { "Škoda Shipyards" }
+	weapon_companies = { "Zbrojovka Brno" "Škoda Artillery" Novysvet }
+	aircraft_companies = { CKD-Novysvet Avia Aero LETOV }
+}
+
+jizni = {
+	female_names = { "Marie" "Anna" "Hana" "Božena" "Alžběta" "Marta" }
+	female_surnames = { Albertová Balabánová Baschová Breisková Čelovská Dvoráková Fibichová Gajdová Gellnerová Háleková
+                Hrdličková Jirečková Kadlecová Kafková Kollerová Křížkovská Kucerová Kucharová Ledererová Makosková 
+                Miková Morávecová Němečková Neruda Nováčková Novotná Popperová Radecká Rokytanská Šafáriková
+                Šafráneková Schacková Schubertová Škodová Skuherská Smetanová Šnejdárek Suková Svobodová Syrová 
+                Tomášková Tylová Vitáseková "von Mittrowitz-Nettolitzková" Voříšeková Wankelová Weberová Zíbrtová Zívrová Zoubeková }
+	industry_companies = { Škoda }
+	electronic_companies = { Elektra }
+	car_companies = { CKD Tatra "Škoda Armor" }
+	naval_companies = { "Škoda Shipyards" }
+	weapon_companies = { "Zbrojovka Brno" "Škoda Artillery" Jižni }
+	aircraft_companies = { CKD-Jižni Avia Aero LETOV }
+}
+
+hnedy = {
+	female_names = { "Marie" "Anna" "Hana" "Božena" "Alžběta" "Marta" }
+	female_surnames = { Albertová Balabánová Baschová Breisková Čelovská Dvoráková Fibichová Gajdová Gellnerová Háleková
+                Hrdličková Jirečková Kadlecová Kafková Kollerová Křížkovská Kucerová Kucharová Ledererová Makosková 
+                Miková Morávecová Němečková Neruda Nováčková Novotná Popperová Radecká Rokytanská Šafáriková
+                Šafráneková Schacková Schubertová Škodová Skuherská Smetanová Šnejdárek Suková Svobodová Syrová 
+                Tomášková Tylová Vitáseková "von Mittrowitz-Nettolitzková" Voříšeková Wankelová Weberová Zíbrtová Zívrová Zoubeková }
+	industry_companies = { Škoda }
+	electronic_companies = { Elektra }
+	car_companies = { CKD Tatra "Škoda Armor" }
+	naval_companies = { "Škoda Shipyards" }
+	weapon_companies = { "Zbrojovka Brno" "Škoda Artillery" Hnědý }
+	aircraft_companies = { CKD-Hnědý Avia Aero LETOV }
 }
 
 persian = {
@@ -394,7 +602,10 @@ bengali = {
 	female_names = { Indira }
 	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
 	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
-	aircraft_companies = { "Hindustan Aircraft Corporation" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" "Indian National Airways" }
+	industry_companies = { "Bengalese Steel Mills" "Bengal Ordnance Factories" }
+	electronic_companies = { "Premier Automobiles Limited" "Chittaranjan Locomotive Works" }
+	naval_companies = { "Khulna Shipyard" }
 }
 
 bihari = {
@@ -523,7 +734,36 @@ north_andean = {
 #Industry-only names
 
 bulgarian = {
+	female_names = { Anna Amaka Desi Elena Evgeniya Hirstiana Ina Kaloyana Katerina Katrin Lucy Magdalena Maria Mihaela Nina Ralitsa Reneta Stella Sylvie Vania }
+	female_surnames = { Agura Balabanova Balkanska Battemberga Blaskova Boyadžieva Bradistilova Carakcieva Daskalova Dikova
+		Dimitrieva Draganova Ficeva Georgieva Hesapčieva Ilyeva Ivanova Kirkova Kovaceva Krayonska
+		Kutinceva Lazarova Lukova Marinkova Marinova Mutkorova Naydenova Nazlamova Nikiforova Nikolaeva
+		Pakoska Petroska Radeva Saksokoburggotska Savoska Sirakoska Solaroska Stoyanoska Teneva Todoroska
+		Tsakleva Valkoska Valnaroska Vasileva Vazoska Velčeva Veselinova Zafiroska Žekoska Zlatareva Zlateva }
 	aircraft_companies = { DAR }
+	car_companies = { BDŽ }
+	industry_companies = { "Petrol AD" "VMZ Sopot" }
+	aircraft_companies = { "Daržava Aeroplanna Rabotilnica" "Kaproni Bulgarski" }
+}
+
+macedonian = {
+	female_names = { Adrijana Aleksandra Anamarija Angel Angelina Beti Bisera Blagica Blaguna Dafina Dana Daniela Despina Divna Doroteja Dzvezda Elena Emilija Evdokija Filimena Galena Gorica Grozdana Ilina Irina Iskra Ivana Jaga Jagoda
+			Jasna Jordana Jovanka Julijana Karolina Katina Klimentina Lidija Ljuba Ljubica Maja Marija Marina Melanija Mihaila Mila Milica Mira Miroslava Nada Natalija Nedelka Nikolina Olgica Paraskeva Rada Rosa Rozalija Ruža
+			Sara Serafima Simona Snežana Sonja Suzana Tamara Tatjana Teodosija Todorka Trendafilka Vana Varvara Vasilija Vaska Veronika Vta Violeta Zaharinka Živka Zoja Zorica }
+	female_surnames = { Agura Balabanova Balkanska Battemberga Blaskova Bojadžieva Bradistilova Carakcieva Daskalova Dikova
+		Dimitrieva Draganova Ficeva Georgieva Hesapčieva Iljeva Ivanova Kirkova Kovaceva Krajonska
+		Kutinceva Lazarova Lukova Marinkova Marinova Mutkorova Najdenova Nazlamova Nikiforova Nikolaeva
+		Pakoska Petroska Radeva Saksokoburggotska Savoska Sirakoska Solaroska Stojanoska Teneva Todoroska
+		Tsakleva Valkoska Valnaroska Vasileva Vazoska Velčeva Veselinova Zafiroska Žekoska Zlatareva Zlateva
+		Adžiќa Aranǵeloviќa Belimarkoviќa Blaznacaca Bojoviќa Božanoviќa Božinoviќa Brankoviќa Damjaniќa Dapčeviќa
+		Dragutinoviќa Grujiќa Hadžiliќa Horvatoviќa Isakoviќa Jankoviќa Jokiќa Jovanoviќa Kadijeviќa Karaģorģeviќa
+		Lešjanina Ljubičiќa Mariќa Mihailoviќa Milutinoviќa Miloradoviќa Mišiќa Nada Nediќa Novaka
+		Obrenoviќa Ojdaniќa Paniќa Paskaša Pavkoviќa Pešiќa Petroviќa Popoviќa Putnika Raduloviќa
+		Rašiќa Šijana Simoviќa Sokoloviќa Stepanoviќa Vasiljeviќa Veriќa Vojvodiќa Vukotiќa Živkoviќa }
+	aircraft_companies = { DAR }
+	car_companies = { BDŽ }
+	industry_companies = { "Petrol AD" "VMZ Sopot" }
+	aircraft_companies = { "Daržava Aeroplanna Rabotilnica" "Kaproni Bulgarski" }
 }
 
 anglo_canadian = {
@@ -590,8 +830,47 @@ yue = {
 }
 
 greek = {
+	female_names = { Maria Eleni Aiketerine Baslikike Sofia Aggeliki Georgia Anastasia Evangelia Demetra Eirene Anna Panagiota Ioanna Konstantina Despoina Calliope Alexandra Kyriake Paraskevi }
+	female_surnames = { Charalámpi Christáki-Zográfo Dagli Dousmani Foúmi Gonatá Chatzianésti Kallérgi Kanári Katsimiro
+		Kolokotróni Kondýli Kountourióti Kriezí Makriiánni Máno Mavrokordáto Mavrovounióti Metaxá Moúsko
+		Níder Othonaío Paláska Pan'galo Papadiamantópoulo Papadópoulo Papágo Papoúla Parakevópoulo Plapoúta
+		Plastíra Sapountzáki Saráfi Smolénski Sofoúli Soútso Spyromílio Staïkópoulo Stanota "ti Elládas"
+		Trikoúpi Tsakalóto Tsolákoglou Typáldos-Alfonsáto Tzavéla Vásso Venizélo Voúlgari Zaḯmi Zymvrakáki }
 	aircraft_companies = { GNAF }
 	naval_companies = { "Royal Hellenic Naval Shipyard" }
+}
+
+neokosmi = {
+	female_names = { Maria Eleni Aiketerine Baslikike Sofia Aggeliki Georgia Anastasia Evangelia Demetra Eirene Anna Panagiota Ioanna Konstantina Despoina Calliope Alexandra Kyriake Paraskevi }
+	female_surnames = { Charalámpi Christáki-Zográfo Dagli Dousmani Foúmi Gonatá Chatzianésti Kallérgi Kanári Katsimiro
+		Kolokotróni Kondýli Kountourióti Kriezí Makriiánni Máno Mavrokordáto Mavrovounióti Metaxá Moúsko
+		Níder Othonaío Paláska Pan'galo Papadiamantópoulo Papadópoulo Papágo Papoúla Parakevópoulo Plapoúta
+		Plastíra Sapountzáki Saráfi Smolénski Sofoúli Soútso Spyromílio Staïkópoulo Stanota "ti Elládas"
+		Trikoúpi Tsakalóto Tsolákoglou Typáldos-Alfonsáto Tzavéla Vásso Venizélo Voúlgari Zaḯmi Zymvrakáki }
+	aircraft_companies = { GNAF }
+	naval_companies = { "Royal Neocosmian Naval Shipyard" }
+}
+
+notios = {
+	female_names = { Maria Eleni Aiketerine Baslikike Sofia Aggeliki Georgia Anastasia Evangelia Demetra Eirene Anna Panagiota Ioanna Konstantina Despoina Calliope Alexandra Kyriake Paraskevi }
+	female_surnames = { Charalámpi Christáki-Zográfo Dagli Dousmani Foúmi Gonatá Chatzianésti Kallérgi Kanári Katsimiro
+		Kolokotróni Kondýli Kountourióti Kriezí Makriiánni Máno Mavrokordáto Mavrovounióti Metaxá Moúsko
+		Níder Othonaío Paláska Pan'galo Papadiamantópoulo Papadópoulo Papágo Papoúla Parakevópoulo Plapoúta
+		Plastíra Sapountzáki Saráfi Smolénski Sofoúli Soútso Spyromílio Staïkópoulo Stanota "ti Elládas"
+		Trikoúpi Tsakalóto Tsolákoglou Typáldos-Alfonsáto Tzavéla Vásso Venizélo Voúlgari Zaḯmi Zymvrakáki }
+	aircraft_companies = { GNAF }
+	naval_companies = { "Royal Notian Naval Shipyard" }
+}
+
+mavro = {
+	female_names = { Maria Eleni Aiketerine Baslikike Sofia Aggeliki Georgia Anastasia Evangelia Demetra Eirene Anna Panagiota Ioanna Konstantina Despoina Calliope Alexandra Kyriake Paraskevi }
+	female_surnames = { Charalámpi Christáki-Zográfo Dagli Dousmani Foúmi Gonatá Chatzianésti Kallérgi Kanári Katsimiro
+		Kolokotróni Kondýli Kountourióti Kriezí Makriiánni Máno Mavrokordáto Mavrovounióti Metaxá Moúsko
+		Níder Othonaío Paláska Pan'galo Papadiamantópoulo Papadópoulo Papágo Papoúla Parakevópoulo Plapoúta
+		Plastíra Sapountzáki Saráfi Smolénski Sofoúli Soútso Spyromílio Staïkópoulo Stanota "ti Elládas"
+		Trikoúpi Tsakalóto Tsolákoglou Typáldos-Alfonsáto Tzavéla Vásso Venizélo Voúlgari Zaḯmi Zymvrakáki }
+	aircraft_companies = { GNAF }
+	naval_companies = { "Royal Mavric Naval Shipyard" }
 }
 
 mexican = {
@@ -623,13 +902,16 @@ turkish = {
 	aircraft_companies = { THK KTF }
 }
 
-croatian = {
-	naval_companies = { "Jadransko Brodogradiliste" }
+croat = {
+	naval_companies = { "Jadransko Brodogradiliste" Brodosplit }
 	weapon_companies = { "Zastava Arms" }
-	aircraft_companies = { Ikarus Rogozarski Zmaj }
+	aircraft_companies = { Ikarus Rogozarski Zmaj "Aviatik Kroatien-Slawonien" }
+	electronic_companies = { "Ganz Kroatien-Slawonien" "Končar Elektroindustrija" }
+	industry_companies = { INA "Prva Hrvatska Trvonica Rublja" "TŽV Gredelj" }
+	car_companies = { TAZ }
 }
 
-serbian = {
+serb = {
 	naval_companies = { "Jadransko Brodogradiliste" }
 	weapon_companies = { "Zastava Arms" }
 	aircraft_companies = { Ikarus Rogozarski Zmaj }
@@ -643,8 +925,11 @@ slovene = {
 
 bosniak = {
 	naval_companies = { "Jadransko Brodogradiliste" }
-	weapon_companies = { "Zastava Arms" }
-	aircraft_companies = { Ikarus Rogozarski Zmaj }
+	weapon_companies = { "Zastava Arms" IGMAN }
+	aircraft_companies = { Ikarus Rogozarski Zmaj "Aviatik Bosnia" }
+	industry_companies = { Aluminij "BNT Tvornica" }
+	electronic_companies = { "Energopetrol" "Bosanske Drzave Željeznice" }
+	naval_companies = { "Ganz Danubius" }
 }
 
 aborigine = {
@@ -679,4 +964,769 @@ afro_antillean = {
 	naval_companies = { "Ciramar Shipyards" }
 	industry_companies = { "Grupo Estrella" }
 	electronic_companies = { Handxom Sûrtab }
+}
+afar = {
+	female_names = { Aasha Adey Alaso Ambro Amburo Asha Asli Astur Awa Awrala Ayaan Barni Basr Beydaan
+	Billan Canab Cawo Deeqa Delombira Dobira Faadumo Fathia Fawzia Geesi Haweeya Hibaaq
+	Hodan Hoodo Iftiin Jiinow Khadra Ladan Leyla Laila Libin Luula Magol Maka Mariam
+	Mulki Nasteexo Sagal Sahra Sufia Ubah Ubax Waris Xalwo }
+	callsigns = { Tsige Barré Bol Deng Abdelrashid Semer Yagoub Leta Lemn Teka }
+	car_companies = { "Kuta Tama" }
+	weapon_companies = { "Mesariya Tama" }
+	aircraft_companies = { "Kimmiro Tama" }
+	naval_companies = { "Caxa Tama" }
+	industry_companies = { "Abiyya Tama" }
+	electronic_companies = { "Elekitiriki Tama" }
+}
+africaine = {
+	female_names = { Stéphanie Fabiola Esther Tamara Roseline Cassandra Farah Lovelie Darline Samentha Vanessa Nadège Rachelle Judith Manoucheca Mardochée Beatrice Fabienne Mirlande Natacha Wideline Johanne Madeleine }
+	callsigns = { Ludovic Phillipe Raymond Eberle Nicolas Alix Tuskegee }
+	industry_companies = { "Société du Oubangi-Chari" }
+	electronic_companies = { "Éléctricité Uni de l'Afrique" }
+	car_companies = { "Rénault-Congo" }
+	naval_companies = { "Société des Forges et Chantiers" }
+	weapon_companies = { "La Guillotine" }
+	aircraft_companies = { "Aéromobiles du Zaïre" }
+}
+african_minor = {
+	female_names = { Nia Cadence Hanna Nala Zahra }
+	callsigns = { "The Black" "Nigg**" "Slave-owner" }
+	car_companies = { "Magari na Magari" }
+	weapon_companies = { "Bunduki kwa mtu Yeyote" }
+	aircraft_companies = { "Sisi ni Ndege" }
+	naval_companies = { "Utoaji wa Afrika" }
+	industry_companies = { "Kazi Kazi Kazi" }
+	electronic_companies = { "Uzalishaji wa Umeme" }
+}
+africano = {
+	female_names = { Maria Anna }
+	callsigns = { "il Nero" "duca d'Etiopia" "l'Uomo Nero" }
+	car_companies = { "FIAT-Abyssinia" }
+	weapon_companies = { "al-Baratta" }
+	aircraft_companies = { Maky Safuya-Markaty }
+	naval_companies = { "Cantieri Riuniti d'Africa" }
+	industry_companies = { "Siderurgia Nerone" }
+	electronic_companies = { "Ruota Blu" }
+}
+afro_brazilian = {
+	female_names = { Aldara Alduara Aldonça Aldonza Beatriz Beatrice Berengária Berengaria Branca Blanche
+			Constance Dórdia Elvira Elvira Estevainha Stephania Fruilhe Fronilde Gontinha Gontroda 
+			Guiomar Inês Agnes Joana Joan Leonor Eleanor Mafalda Matilda Margarida Margaret Maria 
+			Marinha Marine Mor Mayor Ouroana Sancha Sancha Teresa Teresa Urraca Urraca Gotruda Constança }
+	callsigns = { Álvares "Ayres Gomes"
+	"Borges do Canto"
+	"da Costa" "da Silva" "de Amorim" "de Melo"
+	"de Mendonça" "dos Reis" "dos Santos"
+	"Freire de Andrade"
+	Gonzaga
+	Lopes
+	Maciel Melo
+	Nascimento "Nunes Viana"
+	Peixoto
+	Rolim
+	"Santos Pedroso"
+	Tavares Torres
+	Veiga Vieira
+	Xavier }
+	car_companies = { "Fábrica Nacional de Motores" }
+	weapon_companies = { IMBEL Taurus }
+	aircraft_companies = { "Companhia Aeronáutica Paulista" }
+	naval_companies = { "Arsenal de Marinha do Rio de Janeiro" }
+	industry_companies = { "Companhia Siderúrgica Nacional" }
+	electronic_companies = { Ultra "Estrada de Ferro Central do Brasil" }
+}
+afro_caribbean = {
+	female_names = { Stéphanie Fabiola Esther Tamara Roseline Cassandra Farah Lovelie Darline Samentha Vanessa Nadège Rachelle Judith Manoucheca Mardochée Beatrice Fabienne Mirlande Natacha Wideline Johanne Madeleine }
+	callsigns = { Ludovic Phillipe Raymond Eberle Nicolas Alix Tuskegee }
+	weapon_companies = { "Armería San Cristóbal Weapon Factory" }
+	aircraft_companies = { Aerodomca "Aerolíneas Mas" "Servicios Aéreos Profesionales" "Air Haïti" }
+	naval_companies = { "Ciramar Shipyards" }
+	industry_companies = { "Grupo Estrella" }
+	electronic_companies = { Handxom Sûrtab }
+}
+afro_caribeno = {
+	female_names = { Stéphanie Fabiola Esther Tamara Roseline Cassandra Farah Lovelie Darline Samentha Vanessa Nadège Rachelle Judith Manoucheca Mardochée Beatrice Fabienne Mirlande Natacha Wideline Johanne Madeleine }
+	callsigns = { Ludovic Phillipe Raymond Eberle Nicolas Alix Tuskegee }
+	weapon_companies = { "Armería San Cristóbal Weapon Factory" }
+	aircraft_companies = { Aerodomca "Aerolíneas Mas" "Servicios Aéreos Profesionales" "Air Haïti" }
+	naval_companies = { "Ciramar Shipyards" }
+	industry_companies = { "Grupo Estrella" }
+	electronic_companies = { Handxom Sûrtab }
+}
+aimara = {
+	female_names = { Axomamma Cavillaca Kantuta Nina Ana Maiara }
+	callsigns = { Anquimarca Apo Atahualpa Apaza Auqui-Huaman
+	Canchari Chalcuchima Challco Chiaquitinta Chilche Colla-Topa Curiatao Cusi 
+	Guacra Guaritito Guaritopa
+	Huachuri Huaman Huascar Huaypalcon
+	Illaquita Inquill
+	Llicllic
+	Maila Maras Marcavilca Mayta 
+	Ninancoro
+	Ozcoc
+	Parinango Paucar Paullu Pomacapi Puma Pusca Puyu-Vilca
+	Quilaco Quingallumbo Quintiraura Quisquis Quizo
+	Rimac Ronpa
+	Sahuaraura Sotaurco
+	Tanqui Tucuycuyche Tupac-Amaru
+	Yupanqui }
+	car_companies = { "Karru Irnaqiri" }
+	weapon_companies = { "Ch'axwa Irnaqiri" }
+	aircraft_companies = { "Latajamach'iwa Irnaqiri" }
+	naval_companies = { "Lamara Irnaqiri" }
+	industry_companies = { "Quri Irnaqiri" }
+	electronic_companies = { "Qhana Irnaqiri" }
+}
+akan = {
+	female_names = { Nia Cadence Hanna Nala Zahra }
+	callsigns = { "The Black" "Nigg**" "Slave-owner" }
+	car_companies = { "Magari na Magari" }
+	weapon_companies = { "Bunduki kwa mtu Yeyote" }
+	aircraft_companies = { "Sisi ni Ndege" }
+	naval_companies = { "Utoaji wa Afrika" }
+	industry_companies = { "Kazi Kazi Kazi" }
+	electronic_companies = { "Uzalishaji wa Umeme" }
+}
+alan = {
+	female_names = { Agunda Allæ Elenæ Lira Rukhsana Zalina }
+	female_surnames = { Andiyeva Ashuraliyeva Basieva Bazayeva Bestayeva Chibirova Dina Dudarova Dzhanayeva Fadzayeva Farnieva Gabulova Gassieva Gazyumova Gurieva Khapova Khetagurova Kokoity Kusova Nyxas Pagayeva Pliyeva Sanakoyeva Tibilova Tokataya Torchinova Toshinoraya Valiyeva Zangieva Zazirova }
+	callsigns = { "the Alan" "the Ossetian" "the Caucasian" }
+	car_companies = { "Mashinæ Kuystuarzag" }
+	weapon_companies = { "Hæst Kuystuarzag" }
+	aircraft_companies = { "Hædtæhæg Kuystuarzag" }
+	naval_companies = { "Dendzhyz Kuystuarzag" }
+	industry_companies = { "Bolat Kuystuarzag" }
+	electronic_companies = { "Elektrondyh Kuystuarzag" }
+}
+albanian = {
+	female_names = { Gjylo Afërdita Blerta Bora Dafina Dardana Era Fatmire Flutura Gentiana Jehona Lindita Lule Luljeta Pranvera Shpresa 
+			Shqipe Teuta Venera Vera Vesa Yllka }
+	callsigns = { "the Albanian" "the Kosovar" "Serbian nightmare" }
+	car_companies = { "Industrinë e Makinave" }
+	weapon_companies = { "Armët Bashkuara" }
+	aircraft_companies = { "Linjat Ajrore të Ballkanit" }
+	naval_companies = { "Dërgesat e Durrës" }
+	industry_companies = { "Metal Punon" }
+	electronic_companies = { "Bubullimë Zot" }
+}
+amazonian = {
+	female_names = { Aldara Alduara Aldonça Aldonza Beatriz Beatrice Berengária Berengaria Branca Blanche
+			Constance Dórdia Elvira Elvira Estevainha Stephania Fruilhe Fronilde Gontinha Gontroda 
+			Guiomar Inês Agnes Joana Joan Leonor Eleanor Mafalda Matilda Margarida Margaret Maria 
+			Marinha Marine Mor Mayor Ouroana Sancha Sancha Teresa Teresa Urraca Urraca Gotruda Constança }
+	callsigns = { Álvares "Ayres Gomes"
+	"Borges do Canto"
+	"da Costa" "da Silva" "de Amorim" "de Melo"
+	"de Mendonça" "dos Reis" "dos Santos"
+	"Freire de Andrade"
+	Gonzaga
+	Lopes
+	Maciel Melo
+	Nascimento "Nunes Viana"
+	Peixoto
+	Rolim
+	"Santos Pedroso"
+	Tavares Torres
+	Veiga Vieira
+	Xavier }
+	car_companies = { Busscar }
+	weapon_companies = { Embraco }
+	aircraft_companies = { Embraer }
+	naval_companies = { Sabesp }
+	industry_companies = { "WEG Industries" }
+	electronic_companies = { Bravox }
+}
+americano = {
+	female_names = { María Juána }
+	callsigns = { "Ganso" "Hielo" "Disidente" "Apolo" "Bestia" "Boom-Boom" "Tejón" "Ladrillo" "Cajún" "Desafiador" "Chip" "Águila" "Fantasma" "Halcón" "Mandíbula" "Moisés" "Perro Rabioso" }
+	industry_companies = { "Petróleo Estándar de California" }
+	electronic_companies = { "Energía General" }
+	car_companies = { Marmon-Arenque Chrysler "Departimento Artillería del Ejército" }
+	naval_companies = { "Patio Naval Norfolk" "Patio Naval Brooklyn" "Empresa Barcos Eléctricos" "Newport Construcciones Navales" }
+	weapon_companies = { "Arsenal Campo Primavera" "Compañía de Motor Vado" "Arsenal Isla Piedra" }
+	aircraft_companies = { "Aviación América del Norte" Campana "Bloqueador de Atención" "Empresa de Aeronaves Douglas" Boeing "Aeronaves Consolidadas" Grumman }
+}
+amerikaner = {
+	female_names = { Maria Johanna }
+	callsigns = { "Gans" "Eisman" "Außenseiter" "Apollo" "Tier" "Boom-Boom" "Dachs" "Backstein" "Cajun" "Herausforderer" "Chip" "Adler" "Geist" "Falke" "Kiefer" "Moses" "Tollwütiger Hund" }
+	industry_companies = { "Standard Öl von Kalifornien" }
+	electronic_companies = { "Elektrizität Allgemeine" }
+	car_companies = { Marmon-Herringssohn Chrysler "Armee-Ordnungsabteilung" }
+	naval_companies = { "Marine-Hof Norfolk" "Marine-Hof Brooklyn" "Elektrische Bootsgesellschaft" "Newport Nachrichten Schiffbauen" }
+	weapon_companies = { "Frühlingsfeld Rüstkammer" "Phord Motorunternehmen" "Rockinsel Arsenal" }
+	aircraft_companies = { "Nordamerikanische Luftfahrt" Glocke "Sperrenbeachtung" "Flugzeugfirma Douglas" Boeing "Konsolidierte Flugzeuge" Grumman }
+}
+amhara = {
+	female_names = { Habesha Abeba Abrihet Adanech Adina Alaworld Alitash Amhara Ayana Bathsheba Bekele Belkis Berhane Berta 
+			Cheren China Debre Debtera Desse }
+	callsigns = { "Darod" "Marisid" "Muqurrid" "Pakhoras" "Ramlid" "Sebsibeid" "Kebedeid" "Bekeleid" 
+			"Abateid" "Sabraid" "Astatkeid" "Habeshid" "Dubé" "Gobena" "Selassie" "Zagwe" "Dengel" "Sehul" 
+			"Daw" "Alwa" "Dahnay" "Gideon" "Assabi" "Afari" "Tamirat" "Mengesha" "Teka" "Getachew" "Na'akuelo" "Yostos" 
+			"Merkourios" "Shamumun" "Desta" }
+	car_companies = { "Yemekina Inidusitiriwochi" }
+	weapon_companies = { "Lemanimi T'iyiti" }
+	aircraft_companies = { "Semayi T'eferiwochi" }
+	naval_companies = { "Ye'Otoma Merikebochi" }
+	industry_companies = { "Bireti Sira" }
+	electronic_companies = { "Yemoti Redifi T'igenawochi" }
+}
+andalucian = {
+	female_names = { Aliya Fahima Haifa Abda Ahu Aiza Aliyah Butayna Daniyah Dima Fahra Fahriya Fatima Gamila Ghada Habiba Huda 
+			Ibtisam Isra Karima Kera Khadija Layla Maha Malika Mariam Maria Munya Munia Nadia Naila Nur Rafiqa Rahat 
+			Raisa Randa Safiya Salma Shakira Suraya Tahira Tarifa Thashim Umm Wahida Yasmin Zahida Zahra }
+	callsigns = { "Ibn Abd al-Rahman" "Ibn Abbad" "Ibn Abd Allah" "Ibn Abi Hafs" "Ibn al-Azafi" "Ibn Ali"
+	"Ibn Hakan" "Ibn Hammud" "Ibn Hisam" "Ibn Husayn"
+	"Ibn Idris" "Ibn Ishaq" "Ibn Isma'il"
+	"Ibn Marwan" "Ibn Muhammad" "Ibn Nasr" "Ibn Qasim" "Ibn Sa'd" "Ibn Sulayman"
+	"Ibn Umar" "Ibn Ummay" "Ibn Utman" "Ibn Ya'far" "Ibn Yahyà" "Ibn Yusuf" }
+	car_companies = { "Industrias dal Autumubil" }
+	weapon_companies = { "Bbistolas bbara tudus" }
+	aircraft_companies = { "Makinas vuladuras" }
+	naval_companies = { "Navas Granadan" }
+	industry_companies = { "Trabahos da Matal" }
+	electronic_companies = { "Industria Truenus" }
+}
+anglo_african = {
+	female_names = { Elizabeth Anne }
+	callsigns = { Stubborn Arrow "The King" Eagle Hangover Striker Chase "One Wing" Pickle Thief Thunder Lightning Storm Target Hawk Fox Dog Sparrow Sunrise "Night Owl" Butcher Cocky Hawkeye Killer Mick Brandy "The Baron" }
+	industry_companies = { AIOC }
+	electronic_companies = { "English Electric" }
+	car_companies = { Vickers-Armstrong }
+	naval_companies = { "Yarrow Shipbuilders" "Harland & Wolff" "Cammell Laird" "John Brown & Company" }
+	weapon_companies = { "RSAF Enfield" Vauxhall "Royal Arsenal" }
+	aircraft_companies = { Supermarine "Hawker Aircraft" "De Havilland" Avro "Fairey Aviation" }
+}
+araucanian = {
+	female_names = { Suyai Yaima Collipal Curipan Cuyen Calfuray Cayfutray Ilchahueque Ipi Kuyen Lefitray Leflay Llanquipan 
+			Llanquiray Manque Millaray Peyeche Piro Pitrel Quetroman Quimey Quintruy Quintuqueo Rayen Saqui Somoche }
+	callsigns = { Abajino
+	Araucanía
+	Choll-Choll 
+	Lonko
+	Picunche
+	Promaucae
+	Toqui
+	Nguluche
+	Huilliche
+	Lafquenche }
+	car_companies = { AWTU }
+	weapon_companies = { Weychan }
+	aircraft_companies = { Müpün }
+	naval_companies = { Lafken }
+	industry_companies = { Mupiln }
+	electronic_companies = { Lighuen }
+}
+armenian = {
+	female_names = { Aghavni Alitz Alice Almasd Anahid Anna Anna Anoush Arda Arevig Arin Baydzar Berjanoush Berjouhi 
+			Datevig Dalita Eliz Eloise Gadar Gorandoukht Gorandukht Hasmig Houri Hranoush Hripsimeh 		
+			Keghanoush Keran Khorishah Kohar Latavri Leyli Lousin Mara Margarid Margaret Maria Maria 
+			Mariyam Mariam Meghranoush Nane Nazani Ovsanna Pounig Razmouhi Rita Satenik Satinik Seta Siran 
+			Sirvart Srpouhi Shoushanig Takouhi Tamar Tamar Vartanoush Vartouhi Vosgi Yeva Zabel Elizabeth  }
+	callsigns = { Adamian Adomian
+	Aghajanian Altounyan 
+	Apkarian Bagian
+	Babaian Babikian
+	Chobanian Bhobanyan
+	Damadian Eskandarian
+	Kapikian Kazanjian Kebabian
+	Kevorkian Khachikyan
+	Khatchaturian Kirlian
+	Mergelyan Orbeli
+	Pogosyan Sadian Simjian 
+	Sevanian Meymarian Shahinian }
+	car_companies = { Avtomek'enaner }
+	weapon_companies = { "Hrats'anner bolori Hamar" }
+	aircraft_companies = { "T'rrch'vogh Mek'enaner" }
+	naval_companies = { "Gharabaghyan Navahangistnery" }
+	industry_companies = { "Zangezur Copper and Molybdenum Combine" }
+	electronic_companies = { "Jahel Asttso" }
+}
+ashkenazi = {
+	female_names = { Adena Adi Adva Ahuva Alexandra Aliza Alte Arieh Asher Basia Boaz Chanah Cypros Danya Dara Dina Doris Dov Dvora Elisheva Esther 
+			Galia Galit Leah Liat Liora Machla Mariamne Marni Maya Meital Menahem Milka Naamah Nahal Nava Nissa Orah Orit Osher Rachel Raisa 
+			Rivka Salampsio Sarah Shayna Tamar Tirtza Yael Yocheved }
+	callsigns = { "the Jew" "the Prophet" "the Crucifixer" "Israel" "Kohen" }
+	car_companies = { "Mashin Indastriz" }
+	weapon_companies = { "Musket Produktsye" }
+	aircraft_companies = { "Flyendik Mlakhim" }
+	naval_companies = { "Jonas Toyve" }
+	industry_companies = { "Ayzn aun Shtol" }
+	electronic_companies = { "Bloy Leyts" }
+}
+asian_minor = {
+	female_names = { Aimi Asami Asuka }
+	callsigns = { Viper Lightning Devil Dragon Fury Bat Beer Sake Demon Dirty Lance Panther Shogun Vampire "War Lord" }
+	industry_companies = { Kawasaki "Idemitsu Kosan" }
+	electronic_companies = { Sumitomo }
+	car_companies = { "Asian Army Arsenal" }
+	naval_companies = { "Asian Naval Arsenal" }
+	weapon_companies = { "Capital Arsenal" Nissan }
+	aircraft_companies = { Mitsubishi Aichi Nakajima Yokosuka }
+}
+assyrian = {
+	female_names = { Nana Allatu Belit Zirrabanit Tiamat }
+	callsigns = { "Tower-Builder" "the Arab" "the Persian" "the Kurd" "Lion of the Rivers" }
+	car_companies = { "Radita Qarqara" }
+	weapon_companies = { "Qraba Qarqara" }
+	aircraft_companies = { "Parrakhuta Qarqara" }
+	naval_companies = { "Iamma Qarqara" }
+	industry_companies = { "Burdja Biniana" }
+	electronic_companies = { "Bahro Mitaivdanuta" }
+}
+australiano = {
+	female_names = { Maria Anna }
+	callsigns = { "Sottosopra" "l'Australiano" }
+	car_companies = { "FIAT-Sydney" }
+	weapon_companies = { Buratta }
+	aircraft_companies = { Makey Suvoyuh-Marquetty }
+	naval_companies = { "Cantieri Riuniti d'Australia" }
+	industry_companies = { "Siderurgia della Regina" }
+	electronic_companies = { "Angelo del Tuono" }
+}
+australienne = {
+	female_names = { Stéphanie Fabiola Esther Tamara Roseline Cassandra Farah Lovelie Darline Samentha Vanessa Nadège Rachelle Judith Manoucheca Mardochée Beatrice Fabienne Mirlande Natacha Wideline Johanne Madeleine }
+	callsigns = { Ludovic Phillipe Raymond Eberle Nicolas Alix Tuskegee }
+	industry_companies = { "Société de l'Australie" }
+	electronic_companies = { "Éléctricité Uni de l'Australie" }
+	car_companies = { "Rénault-Sydney" }
+	naval_companies = { "Société des Forges et Chantiers" }
+	weapon_companies = { "La Guillotine" }
+	aircraft_companies = { "Aéromobiles du Pacifique" }
+}
+azande = {
+	female_names = { Nia Cadence Hanna Nala Zahra }
+	callsigns = { "The Black" "Nigg**" "Slave-owner" }
+	car_companies = { "Magari na Magari" }
+	weapon_companies = { "Bunduki kwa mtu Yeyote" }
+	aircraft_companies = { "Sisi ni Ndege" }
+	naval_companies = { "Utoaji wa Afrika" }
+	industry_companies = { "Kazi Kazi Kazi" }
+	electronic_companies = { "Uzalishaji wa Umeme" }
+}
+azerbaijani = {
+	female_names = { Malahat Amsha Asiya Faghira Habiba Hanifa Jahaira Kamala Layla Maryam Nafisa Nyawela Parand 
+			Aaliyah Aamina Aamira Aaqila Aarifa Aazzi Adelah Adela Adiba Adilah Adilia Adiva Adjan Aeesha 
+			Adila Ikram }
+	callsigns = { Sabiri
+	Jalili
+	Azizi
+	Shahy
+	Daei
+	Qazai
+	Dalwand
+	Ahrari
+	Fatemi
+	Sabet
+	Ansari }
+	car_companies = { "Avtomobil Sënayesi" }
+	weapon_companies = { "Rus Silahlari" }
+	aircraft_companies = { "Çin Tëyyarëlëri" }
+	naval_companies = { "Qazaxistan Gëmilëri" }
+	industry_companies = { "Osmanli Metallari" }
+	electronic_companies = { "Kazak Mavi Ishiqlar" }
+}
+baganda = {
+	female_names = { Nyiramavugo Kanjogera Nyirarukangaga Balambi Bawedde Sikyayinza Nakamu }
+	callsigns = { Ngonge
+	Nkima
+	Kkobe
+	Ffumbe
+	Kuria
+	Mamba
+	Ndiga
+	Ngeye
+	Lugave
+	Mbogo
+	Ngabi
+	Nsenene
+	Mpindi }
+	car_companies = { "Makanika Uganda" }
+	weapon_companies = { "Mukozi wa Gavumenti" }
+	aircraft_companies = { "Yinginiya" }
+	naval_companies = { "Kuwuga" }
+	industry_companies = { "Mpulira Empewo" }
+	electronic_companies = { "Kulaba Tivvi" }
+}
+baguirmi = {
+	female_names = { Nia Cadence Hanna Nala Zahra }
+	callsigns = { "The Black" "the Chad" "Slave-owner" }
+	car_companies = { "Magari na Magari" }
+	weapon_companies = { "Bunduki kwa mtu Yeyote" }
+	aircraft_companies = { "Sisi ni Ndege" }
+	naval_companies = { "Utoaji wa Afrika" }
+	industry_companies = { "Kazi Kazi Kazi" }
+	electronic_companies = { "Uzalishaji wa Umeme" }
+}
+bai = {
+	female_names = { Heying Chunmei Tianhui Kon Mao Yuying Yuantong Yanxiang Xiurong Shouying Fuyuan Luzhen Ruirong Suzhen }
+	callsigns = { Viper Lightning Devil Dragon Fury Bat Beer Sake Demon Dirty Lance Panther Shogun Vampire "War Lord" }
+	industry_companies = { Kawasaki "Idemitsu Kosan" }
+	electronic_companies = { Sumitomo }
+	car_companies = { "Asian Army Arsenal" }
+	naval_companies = { "Asian Naval Arsenal" }
+	weapon_companies = { "Capital Arsenal" Nissan }
+	aircraft_companies = { Mitsubishi Aichi Nakajima Yokosuka }
+}
+bakongo = {
+	female_names = { Nia Cadence Hanna Nala Zahra }
+	callsigns = { "The Black" "the Kongo" "Slave-owner" }
+	car_companies = { "Magari na Magari" }
+	weapon_companies = { "Bunduki kwa mtu Yeyote" }
+	aircraft_companies = { "Sisi ni Ndege" }
+	naval_companies = { "Utoaji wa Afrika" }
+	industry_companies = { "Kazi Kazi Kazi" }
+	electronic_companies = { "Uzalishaji wa Umeme" }
+}
+baluchi = {
+	female_names = { Adan Adar Ara Ardil Arezo Arezu Ariyan Arêz Arîman Arîn Asan Asteng Asê Avan Azadî Azrîn Aštî 
+			Badil Bahar Balnexšîn Banê Barîn Bawan Baziyan Bazê Befraw Befrîn Begîxan Belalûk Belqis
+			Belîcan Benav Benaz Berbijîn Berdar Berdil Bersîn Berîcan Bexšîn Beyan Beybîn Beybûn Bezîn 
+			Bihar Bijîn Bilêse Binar Binav Binefš Binevš Biyan Biškoj Biškurîn Bohar Bênaz Bêrîcan Bêrîvan 
+			Burandoxt Pourandokht
+			Dengîn Derav Derzîn Desmal Devken Dilar Dilaram Dilare Dilawaz Dilber Dilcan Dildar Dilgerm 
+			Dilistan Dilkanî Dilnaz Dilvîn Dilxoš Dilxweš Diyarî Doman Dêrsim Dîlan Dîristan Esmercan 
+			Esmerxan Khonza Ashraf Khanam Nur Khair Bibi
+			Estêre Evîn Ewrîn Eyšan Ezcan Felek Fener Ferašîn Firmêsk Fîdan Gazî Gelavêj Gerdengaz Gozel 
+			Gozê Grîvan Guhtem Gulbehar Golbahar Gulšen Gulnar Gulnaz Golnaz Gêlas Helez Heliz Helvîn 
+			Hemayîl 
+			Kejê Keser Kevok Kevî Kewser Kezîzer Koçer Leylê Leymîn Lezîn Lolav Lorkê Lorî Lorîcan Lorîn 
+			Lêlav Lêvken Lîlyan Lîza Maša Mebest Mehrîban Mehrîcan Mehrîvan
+			Mejbîr Mendal Mercam Merîvan Mirarîxan Miryem Mariam Mizgîn Muhabad Mêmê Mêrdîn Mêxek Mîdya 
+			Mîran Narîman Narîncan Navbihar Nawxoš Naz Nazdar Nazenîn Nazgul Nazgol Nazik Naznaz Nazê Nermê 
+			Nermîn Nesrîn Newbohar Nexšîn
+			Nešmîl Nešmîn Norcan Nêrgiz Nêrîn Nêzîk Nîdar Nîgar Nîroj Nîšan Nîštîman Perjîn Pervîn Perwane 
+			Parvaneh Perwîn Perçem Perî Perîgul Perînaz Perîxan Perîšan Pexšan Peyman Pirjîn Piršeng 
+			Piršing Pore Poršeng Pêlîn Pîroz Pîšeng 
+			Rana Rengîn Rewša Rewšen Rihan Rindê Rojhelat Rojê Ronahî Ronak Rondik Rêjîn Rêzan Rîhan Rîken 
+			Rûciwan Rûgeš Rûken Rûzerîn Sarê Serbar Sercan Serferaz Serfiraz Sergul Serçinar Seyran Xatûn 
+			Xêlîcan Xonçe Ghoncheh Zernîšan Zerya Zerê Zerî Zerîxan Zeytîn Zeytûn Zilfê Zoya Zozan Zêrîn 
+			Zîlan Zînet Zînê Šana Šanaz Šayan Šehrîban Šelal Šemam Šengê Šepal Šepirze Šermîn Ševba Ševîn 
+			Šêlaz Šîlan Šînî Šîwen }
+	callsigns = { Jamot
+	Bugti
+	Zikri
+	Ghilzai
+	Barakzay
+	Bozdar
+	Mirrani
+	Mihrabanid
+	Khokhar
+	Rind
+	Shar
+	Lashari
+	Lund
+	Hooth
+	Korai
+	Jatoi
+	Nausherwani }
+	car_companies = { "Karen aur Tank" }
+	weapon_companies = { "Bartanwi Gun" }
+	aircraft_companies = { "Hum Parwaaz Karte Hain" }
+	naval_companies = { "Meri Kashtiyan" }
+	industry_companies = { "Guldan Iron" }
+	electronic_companies = { "Thndr Kraftng" }
+}
+bambara = {
+	female_names = { Nia Cadence Hanna Nala Zahra }
+	callsigns = { "The Black" "the Mali" "Slave-owner" }
+	car_companies = { "Magari na Magari" }
+	weapon_companies = { "Bunduki kwa mtu Yeyote" }
+	aircraft_companies = { "Sisi ni Ndege" }
+	naval_companies = { "Utoaji wa Afrika" }
+	industry_companies = { "Kazi Kazi Kazi" }
+	electronic_companies = { "Uzalishaji wa Umeme" }
+}
+basque = {
+	female_names = { Juana Catalina Leonor Blanca
+			Aines Agnes Aldontza Aldonza Andregoto Antsa Sancha Belaskita Berengaria Berengaria Blanka 
+			Blanche Elbira Elvira Eliza Emili Emily Estefania Stephania Joana Joan Konstantzia Constance 
+			Maior Mayor Maria Maria Mentzia Mencia Munia Munia Nuña Oneka Oneka Oria Plazentzia 
+			Teresa Teresa Toda Toda Urraka Urraca Ximena Ximena Plaisance }
+	callsigns = { "de Aguirre" "de Albret" "de Antillón" "de Aranda" "de Armendariz" "de Azagra" "de Azpilcueta"
+	"de Beaumont" "de Beortegui" Bergera "de Borbón" "de Carranza"	Elizalde
+	"de Garay" "de Goñi" Goyeneche "de Heredia" "de Hijar"
+	"de Jaso" "Jiménez de Rada" Jimeno "de Landívar" Navarro
+	Palafox "Pérez de Zabalza" "de Salazar" "de Uribe" "de Ursúa"
+	"de Yanguas" "de Zárate" }
+	car_companies = { "Autoak eta Tankeak" }
+	weapon_companies = { "Kataluniako Pistolak" }
+	aircraft_companies = { "Hegan Egiten" }
+	naval_companies = { "Frantziako Itsasontziak" }
+	industry_companies = { "Burdinazko Gaztelania" }
+	electronic_companies = { "Portugesa Argia" }
+}
+bedouin = {
+	female_names = { Nadiyya Adila Amsha Asiya Faghira Habiba Hanifa Jahaira Kamala Layla Maryam Nafisa Nyawela Parand 
+			Parween Paymaneh Paywand Qamara Rafiqa Rasa Rashida Reshawna
+			Saaman Sabba Saghar Sahba Sajida Samira Semeah Setara Shahrbano Shahzadah Shameem Shararah 
+			Sheeftah Sheeva Shogofa Shokouh Shola Sholah Simin Souzan
+			Taliba Tanaz Taneen Yagana Yakta Yasmin Zaynab }
+	callsigns = { "Ibn Abd al-Rahman" "Ibn Abbad" "Ibn Abd Allah" "Ibn Abi Hafs" "Ibn al-Azafi" "Ibn Ali"
+	"Ibn Hakan" "Ibn Hammud" "Ibn Hisam" "Ibn Husayn"
+	"Ibn Idris" "Ibn Ishaq" "Ibn Isma'il"
+	"Ibn Marwan" "Ibn Muhammad" "Ibn Nasr" "Ibn Qasim" "Ibn Sa'd" "Ibn Sulayman"
+	"Ibn Umar" "Ibn Ummay" "Ibn Utman" "Ibn Ya'far" "Ibn Yahyà" "Ibn Yusuf" }
+	car_companies = { "Al-Sayarat Wal-dabbabat" }
+	weapon_companies = { "Al-Farisiat al-Banadiq" }
+	aircraft_companies = { "Tayaran" }
+	naval_companies = { "Al-Zawariq al-Faransia" }
+	industry_companies = { "al-Hadid al-Earabiu" }
+	electronic_companies = { "Daw Yahudiun" }
+}
+beja = {
+	female_names = { Agathe Alethia Anthelia Athanasia Chaelsoñoja Chrissa Christina Douriko Egaloskoura Eikkir 
+		Eionmnne Eionñoka Eitou Elisabeth Elizabeth Eirena Eirene Eirota Eirotatouññlki
+		Entaeiri Eôneille Ephannê Epimachosi Eudosia Eudoxia Eulabia Eusebia Eustephanou Fatima 
+		Genseoua Hellene Helen Hemene Iannia Joan Iêsousyko Ioustina Justina Kel Kerike Kersiami Kettoudi
+		Keudonia Kurake Kyriake Maraña Maria Maria Mariam Maria Mariane Marianou Michaêliko Michaela 
+		Ñašša Ñeššadena Ñejin Ñilesa Ñojjl Ñoltou Ñonne Ñonnen Ñouddl Ñssitkitol Ouarenô Patrikia 
+		Patricia Pelagia Gulzar Maram
+		Penatti Pesanthia Petronia Prisisilla Priscilla Rahimah Sophia Sousanna Staurophania Theobronia 
+		Theodorake Theodosia Theognosta Theophania Theophilia Theipisthe Theozia Zerebekka }
+	callsigns = { Tsige Barré Bol Deng Abdelrashid Semer Yagoub Leta Lemn Teka }
+	car_companies = { "Kuta Tama" }
+	weapon_companies = { "Mesariya Tama" }
+	aircraft_companies = { "Kimmiro Tama" }
+	naval_companies = { "Caxa Tama" }
+	industry_companies = { "Abiyya Tama" }
+	electronic_companies = { "Elekitiriki Tama" }
+}
+berber = {
+	female_names = { Randa Tabassum 	Dema Dimah Dinara Dua Durra Durriyya Edza Eleonorka Eleanor Faghissa Fahriya Fariza Fedada 
+			Tazenkwedt Tazirit Tazrurt Tella Temzi Tfit Tigmi Tikinas Tilelli Timmi Tinhinan Tintadefi 
+			Tintifawin Tinzert Tisent Tislit Titbirt Titrit Tizemt Tiziri Triya Tudert Tuh'r'ict Tureght  }
+	callsigns = { "al-Ilighi" "al-Tadsi" "Zayyanid" }
+	car_companies = { "Al-Sayarat Wal-dabbabat" }
+	weapon_companies = { "Al-Farisiat al-Banadiq" }
+	aircraft_companies = { "Tayaran" }
+	naval_companies = { "Al-Zawariq al-Faransia" }
+	industry_companies = { "al-Hadid al-Earabiu" }
+	electronic_companies = { "Daw Yahudiun" }
+}
+bornean = {
+	female_names = { "Rim" Merenui Metetini Miri Moea Moeata Moerani Mohea Nanihi Nu’utea Orama Poe Pear Poehina Poenui Poerava Puaiti 
+			Puatea Puaura Ra’ihau Ra’imere Ra’inui Ranitea Rarahu Raunui Raurii Tahiata Taiana Taina Tania Taurua Tautiare Tehani 
+			Tehea Teora Tera Tevai Titaina Titaua Tuianu Tumata Unutea Urarii Vaea Vaiana Vaianu Vaiata Vaihere Vaimiti Vairea 
+			Vaite Vaitiare }
+	callsigns = { Burnei Kutai Sibu Kuching }
+	car_companies = { "Kereta dan Tangki" }
+	weapon_companies = { "Guns Filipina" }
+	aircraft_companies = { "Terbang" }
+	naval_companies = { "Bot Belanda" }
+	industry_companies = { "Besi Melayu" }
+	electronic_companies = { "Cahaya Cina" }
+}
+brazilian = {
+	female_names = { Aldara Alduara Aldonça Aldonza Beatriz Beatrice Berengária Berengaria Branca Blanche
+			Constance Dórdia Elvira Elvira Estevainha Stephania Fruilhe Fronilde Gontinha Gontroda 
+			Guiomar Inês Agnes Joana Joan Leonor Eleanor Mafalda Matilda Margarida Margaret Maria 
+			Marinha Marine Mor Mayor Ouroana Sancha Sancha Teresa Teresa Urraca Urraca Gotruda Constança }
+	callsigns = { Álvares "Ayres Gomes"
+	"Borges do Canto"
+	"da Costa" "da Silva" "de Amorim" "de Melo"
+	"de Mendonça" "dos Reis" "dos Santos"
+	"Freire de Andrade"
+	Gonzaga
+	Lopes
+	Maciel Melo
+	Nascimento "Nunes Viana"
+	Peixoto
+	Rolim
+	"Santos Pedroso"
+	Tavares Torres
+	Veiga Vieira
+	Xavier }
+	car_companies = { "Fábrica Nacional de Motores" }
+	weapon_companies = { IMBEL Taurus }
+	aircraft_companies = { "Companhia Aeronáutica Paulista" }
+	naval_companies = { "Arsenal de Marinha do Rio de Janeiro" }
+	industry_companies = { "Companhia Siderúrgica Nacional" }
+	electronic_companies = { Ultra "Estrada de Ferro Central do Brasil" }
+}
+burmese = {
+	female_names = { "Yaza Dewi" "Atula Thiri" "Khin Myo Sit" "Khin Myat Hset" "Khin Ma Lat" }
+	callsigns = { Taungu Ava Pagan Prome "Myede Mong" Sagaing Kyaukse Pinya Myinsaing Konbaung }
+	car_companies = { "Karr Myarr Nhaint t Intkarr" }
+	weapon_companies = { "Hpilaitpine Gans" }
+	aircraft_companies = { "Pyaan" }
+	naval_companies = { "Daat hk Yalhaay" }
+	industry_companies = { "M Layysan" }
+	electronic_companies = { "Tarote Aalainn" }
+}
+caddoan = {
+	female_names = { Zacado Tstakurriwax Tstaka Tstarahuxtu Tsaktahiraas Tskusaski Tstaruri'u Tstapittarius }
+	callsigns = { "Redskin" "the American" "the Indian" }
+	car_companies = { Siqua }
+	weapon_companies = { Danawa }
+	aircraft_companies = { Tsisqua }
+	naval_companies = { Amequohi }
+	industry_companies = { Talugisgi }
+	electronic_companies = { Galisgi }
+}
+caribeno = {
+	female_names = { Andrea Aniana Florinda Josefina Julia "María Teresa" Mechi Minerva Nuria Patria Rita Salomé }
+	callsigns = { Ludovic Phillipe Raymond Eberle Nicolas Alix Tuskegee }
+	weapon_companies = { "Armería San Cristóbal Weapon Factory" }
+	aircraft_companies = { Aerodomca "Aerolíneas Mas" "Servicios Aéreos Profesionales" "Air Haïti" }
+	naval_companies = { "Ciramar Shipyards" }
+	industry_companies = { "Grupo Estrella" }
+	electronic_companies = { Handxom Sûrtab }
+}
+carribean = {
+	female_names = { Andrea Aniana Florinda Josefina Julia "María Teresa" Mechi Minerva Nuria Patria Rita Salomé }
+	callsigns = { Ludovic Phillipe Raymond Eberle Nicolas Alix Tuskegee }
+	weapon_companies = { "Armería San Cristóbal Weapon Factory" }
+	aircraft_companies = { Aerodomca "Aerolíneas Mas" "Servicios Aéreos Profesionales" "Air Haïti" }
+	naval_companies = { "Ciramar Shipyards" }
+	industry_companies = { "Grupo Estrella" }
+	electronic_companies = { Handxom Sûrtab }
+}
+cat = {
+	female_names = { Missy Kitty Mittens Ginger Princess Bella }
+	callsigns = { "Bay Cat" "Marbled Cat" Caracal Serval Ocelot Margay Lynx Bobcat Cheetah Cougar }
+	weapon_companies = { "Ye Claws of Mister Mittens" }
+	aircraft_companies = { "NYAN Inc." }
+	naval_companies = { "Tuna Masters" }
+	industry_companies = { "Garfield's Legacy" }
+	electronic_companies = { "Hair & Counter-Hair" }
+}
+catalan = {
+	female_names = { Àgata Àgueda Aina Anna Antònia Caterina Cecília Cristina Dolors Francesca Genoveva Isabel Joana Justina Laia  Montserrat Núria Octàvia Prudència Roberta Rodolfa }
+	callsigns = { "L'Espanyol" "Creu d'Aragó" "El Puidgemont" }
+	weapon_companies = { "Rifles de Déu" }
+	aircraft_companies = { "Bombaders Bascos" }
+	naval_companies = { "Moll de Barcelona" }
+	industry_companies = { "Unió de Fàbriques Catalanes" }
+	electronic_companies = { "Llamp de Castella" }
+}
+central_algonquian = {
+	female_names = { Torotiy Meriy Elin Ashenee Astina Echa Kiche Kika Mati Matisa Matisoon Nichena Osceola Pamoon Paniya  }
+	callsigns = { Kanata "Awîyak Kamamâhtâwisit" "Kisemanito" }
+	weapon_companies = { "Âkayâsimowin Atoskewin" }
+	aircraft_companies = { "Pîwâpiskwastotin Atoskewin" }
+	naval_companies = { "Kihcikamiy Atoskewin" }
+	industry_companies = { "Kisoskahkow Atoskewin" }
+	electronic_companies = { "Pisastewikosiwin Atoskewin" }
+}
+central_american = {
+	female_names = { Aldonza Aldonza Anderquina Beatriz Beatrice Berenguela Berengaria Blanca Blanche Constanza 
+			Constance Elvira Elvira Estefanía Stephania Fronilda Fronilde Gontroda Gotruda Inés Agnes 
+			Elisabeth Jimena Ximena Juana Joan Leonor Eleanor Mafalda Matilda María Maria Marina Marine 
+			Mayor Mayor Mencía Mencia Milia Emily Sancha Sancha Teresa Teresa Toda Toda Urraca Urraca
+			Isabel }
+	callsigns = { "Guatemala" "Salvador" "Honduras" "Nicaragua" "Costarrica" "Los Altos" "Mosquito" }
+	weapon_companies = { "De Arcabuces" }
+	aircraft_companies = { "Aire de Guatemala" }
+	naval_companies = { "El Canal" }
+	industry_companies = { "Chimeneas Humeantes" }
+	electronic_companies = { "Corredor de los Dioses" }
+}
+chacoan = {
+	female_names = { Suyai Yaima Collipal Curipan Cuyen Calfuray Cayfutray Ilchahueque Ipi Kuyen Lefitray Leflay Llanquipan 
+			Llanquiray Manque Millaray Peyeche Piro Pitrel Quetroman Quimey Quintruy Quintuqueo Rayen Saqui Somoche }
+	callsigns = { Wichí Chorote Nivaclé Maká }
+	weapon_companies = { "Arcabuces" }
+	aircraft_companies = { "Aves" }
+	naval_companies = { "Océano" }
+	industry_companies = { "Albañíl" }
+	electronic_companies = { "Electricidad" }
+}
+cherokee = {
+	female_names = { Asmita Nanyehi Cuhtahlatah Sequoya Adsila Amadahy Awenasa Awinita Ayita Galilahi Leotie Usdi Galilani Hialeah 
+			Immookalee Tayanita Sequoia Ahyoka Ama Galilani Ghigau Hiawassee Immokalee Inola Knasgowa Nanye-hi Ninovan 
+			Salali Tsistunagiska Tsula Tayanita Yona }
+	callsigns = { "Sequoyah" "Oklahoma" "Keetoowah" "Tsalagi" }
+	weapon_companies = { Digotlvsgi }
+	aircraft_companies = { Ahlawitdisgi }
+	naval_companies = { Aisvi }
+	industry_companies = { Digalvwisdanedi }
+	electronic_companies = { Anagalisgi }
+}
+chewa = {
+	female_names = { Achieng Nuru }
+	callsigns = { Malawi Wakuda Moto Mulungu }
+	weapon_companies = { "Malo Osungira Zitsulo" }
+	aircraft_companies = { "Mapiko a Mulungu" }
+	naval_companies = { "Akuba Kumpoto" }
+	industry_companies = { "Makala & Makala" }
+	electronic_companies = { "Wizara wa Mphezi" }
+}
+chibchan = {
+	female_names = { Chia China Axomamma Cavillaca Kantuta Nina Ana Maiara }
+	callsigns = { Muisca Quito Miskito }
+	weapon_companies = { "Muysca Gata" }
+	aircraft_companies = { "Muysca Sua" }
+	naval_companies = { "Muysca Sie" }
+	industry_companies = { "Cha Quye" }
+	electronic_companies = { "Chia Sua" }
+}
+crni = {
+	female_names = { Agata Agatha Barbara Branimira Desislava Dubravka Elena Helen Hicela Jelena Karolina 
+			Lovorka Marija Maria Milka Neda Radica Zdenka Andjela Antonija
+			Bastina Biljana Bistrina Bojana Casna Chasna Dejana Dragana Dragoslava Duga Dusica Gordana 
+			Grana Grubana Jagoda Jovana Jovanka Karika
+			Ljubica Luka Majka Malina Medeni Meki Milinka Miljana Miriti Mirjana Mudary Mudra Nada 
+			Namena Nadanje Keratza Branka Mirna }
+	callsigns = { Crn Slovene Bošnjak Hrvat Srbin Bugarski Austrijanac }
+	weapon_companies = { "Srprska Artiljerijska Polja" }
+	aircraft_companies = { "Bač Gavrila Principa" }
+	naval_companies = { "Nile Dunavski Unija" }
+	industry_companies = { "Pruski Ugalj - Južo Od." }
+	electronic_companies = { "Točkovi Sahare" }
+}
+czarny = {
+	female_names = { "Zofia" "Wiktoria" "Natalia" "Renata" "Elżbieta" }
+	callsigns = { Polak Czarny Niemiecki Rosyjski Litewski Sejm }
+	weapon_companies = { "Uskrzydleni Huzarzy Kongo" }
+	aircraft_companies = { "Lotniczy Afrykanin Rzeczpospolita" }
+	naval_companies = { "Od Kurlandii po Nil" }
+	industry_companies = { "Niemieckich Obozów Koncentracyjnych" }
+	electronic_companies = { "Sowiecka Błysawica - Poł. Krak." }
+}
+north_caucasian = {
+	female_names = { Abidat Aizaant Amanat Aset Aysha Chovka Elbika Fariza Kesira Khafsat Khazbika Kulsum Maryat Medni Nurbika Qoqa Raykhanat Rezeda Rovzan Ruvayda Sakinat Shovda Taymaskha Xava Yakhiyta Zakhira Zalina Zamira Zargan
+			Zaynap Zelimat Zulay Zulikha }
+	female_surnames = {	Mollaha Beyeha Abdulayeva Abdurakhmanova Akhmadova Alieva Aslanbekova Barayeva Basayeva Dudayeva Dudina Džabrailova Džokharova Elmurzaeva Ibragimova Isaeva Kadyrova Khasanova Kurbanova Magomedova Maskhadova Mayrbekova Murtazalieva Musaeva Otarsultanova
+			Sadulaeva Sagaipova Šapieva Šišhani Taymaskhanova Tsarnaeva Umarova Vagabova Vakhaeva Varayeva Yamadaeva Yandarbieva Zelimkhanova }
+}
+uzbek = {
+	female_names = { Sabina Leyla Ramilya Ruxana Selcen Ýlayda Nazrienne Kyu Gultakin }
+	female_surnames = { Bahadur Bukharaya Khanin Abdulayeva Abdulina Abdullayeva Abdulova Babayeva Burkhanova Ibragimova Karimova Nabiyeva
+			Niyazova Yo'ldosheva Ivanova Kirkiž Gikalova Zelenskaya Ikramova Yakovleva Yusupova Mukhitdinova
+			Kamolova Rashidova Usmonxo'jayeva Nišonova Mirziyoyeva }
+}
+kazak = {
+	female_names = { Aiday Aiman Aina Aliya Anar Anara Anargul Aruzhan Ayaulym Ayna Aynur Bibigul Gulnar Gulnara Gulnaz Inkar Inzhu Madina Saltanat Sezim Zhuldyz }
+	female_surnames = { Beyeha Khanin "Konanbai uli" "Kutebar uli" "Muhammad uli" "Qasim uli" 
+			Abdulayeva Abdulina Abdullayeva Abdulova Aitmukhambetova Aliyeva Aronova Bayžanova Ibragimova
+			Karimova Kedryuka Nabiyeva Niyazova Usenova Žakiyanova Nazarbayeva }
+}
+kirgiz = {
+	female_names = { Adilet Adylet Aidana Aijan Altynai Altynay Anara Assel Ayday Bakyt Bermet Bubusara Burul Cholpon Damira Dinara Elmira Elzada Erkingul Gulayim Gulara Gulmira Gulnara Gulzada Gulzura Jamilya Jyrgal Nurlan Okeana Tazagul
+			Ulara Zamira Zhyldyz Zhyrgal }
+	female_surnames = { Beyeha Abdulayeva Abdulina Abdullayeva Abdulova Aytmatova Bayžanova Bešimova Ibragimova
+			Nogoyeva Usenova Abdrakhmanova Isakeyeva Uzyukova Šubrikova Kulkova Šakhraya Belotskaya }
+}
+tajik = {
+	female_names = { Sabina Leyla Ramilya Ruxana Selcen Ýlayda Nazrienne Kyu Gultakin }
+	female_surnames = { Khanin Abdulayeva Abdulina Abdullayeva Abdulova Ibragimova Karimova Nabiyeva Niyazov
+			Makhamova Rahmona }
+}
+turkmen = {
+	female_names = { Sabina Leyla Ramilya Ruxana Selcen Ýlayda Nazrienne Kyu Gultakin }
+	female_surnames = { Beyeha Khanin Abdulayeva Abdulina Abdullayeva Abdulova Garayeva Ibragimova Muhadowa Niyazov
+			Mežlauka Paskutskaya Aronštama Popoka Mukhamedova Chubina Fonina Batyrova Babayeva
+			Karayeva Ovezova Gapurowa }
+}
+tatar = {
+	female_names = { Aiday Aiman Aina Aliya Anar Anara Anargul Aruzhan Ayaulym Ayna Aynur Bibigul Gulnar Gulnara Gulnaz Inkar Inzhu Madina Saltanat Sezim Zhuldyz }
+	female_surnames = { Amirkhanova Faysiyova Gizzatova Ibragimova Kamalova Khusainova Tinchurina Tukaya Yanbayeva }
+}
+siberian = {
+	female_names = { Aiday Aiman Aina Aliya Anar Anara Anargul Aruzhan Ayaulym Ayna Aynur Bibigul Gulnar Gulnara Gulnaz Inkar Inzhu Madina Saltanat Sezim Zhuldyz }
+	female_surnames = { Shaimieva Bilyaletdinova Shchapova Yadrintseva Krakovetskaya Kolchaka Potanina Shashkova }
+}
+yakut = {
+	female_names = { Aiday Aiman Aina Aliya Anar Anara Anargul Aruzhan Ayaulym Ayna Aynur Bibigul Gulnar Gulnara Gulnaz Inkar Inzhu Madina Saltanat Sezim Zhuldyz }
+	female_surnames = { Okhlopkova Shishigina Shtyrova Ondarova Sivtseva }
 }

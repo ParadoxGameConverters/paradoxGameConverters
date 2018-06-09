@@ -36,8 +36,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4State.h"
 #include "../Color.h"
 #include "Date.h"
-#include "../V2World/V2Army.h"
-#include "../V2World/V2Party.h"
+#include "../V2World/Army.h"
+#include "../V2World/Party.h"
 #include <optional>
 #include <set>
 #include <vector>
@@ -45,11 +45,18 @@ using namespace std;
 
 
 
-class V2Country;
-class HoI4Advisor;
+namespace Vic2
+{
+class Country;
+}
 class HoI4Faction;
 class HoI4World;
+
+namespace HoI4
+{
+class Advisor;
 struct advisorCompare;
+}
 
 
 
@@ -58,10 +65,10 @@ class HoI4Country
 	public:
 		HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld);
 
-		void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states);
+		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states);
 		void initFromHistory();
 		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies);
-		void convertGovernment(const V2World& _srcWorld);
+		void convertGovernment(const Vic2::World& _srcWorld);
 		void convertParties(const set<string>& majorIdeologies);
 		void convertIdeologySupport(const set<string>& majorIdeologies);
 		void		convertNavy(const map<string, HoI4UnitMap>& unitMap);
@@ -79,7 +86,7 @@ class HoI4Country
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
 		void outputToUnitNamesFiles(ofstream& unitNamesFile) const;
-		void output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const;
+		void output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const;
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(const string& SphereLeader) { sphereLeader == SphereLeader; }
@@ -97,7 +104,7 @@ class HoI4Country
 		const map<string, HoI4Relations*>&	getRelations() const { return relations; }
 		set<int>									getProvinces() const { return provinces; }
 		string										getTag() const { return tag; }
-		const V2Country*							getSourceCountry() const { return srcCountry; }
+		const Vic2::Country*							getSourceCountry() const { return srcCountry; }
 		shared_ptr<const HoI4Faction> getFaction() const { return faction; }
 		string getGovernmentIdeology() const { return governmentIdeology; }
 		map<string, int> getIdeologySupport() const { return ideologySupport; }
@@ -109,8 +116,8 @@ class HoI4Country
 		HoI4State* getCapitalState() const { return capitalState; }
 		int											getCapitalStateNum() const { return capitalStateNum; }
 		const string									getSphereLeader() const { return sphereLeader; }
-		const V2Party getRulingParty() const { return rulingParty; }
-		set<V2Party, function<bool (const V2Party&, const V2Party&)>> getParties() const { return parties; }
+		const Vic2::Party getRulingParty() const { return rulingParty; }
+		set<Vic2::Party, function<bool (const Vic2::Party&, const Vic2::Party&)>> getParties() const { return parties; }
 		map<int, HoI4State*> getStates() const { return states; }
 		bool isInFaction() const { return faction != nullptr; }
 		bool isCivilized() const { return civilized; }
@@ -160,24 +167,25 @@ class HoI4Country
 		bool areElectionsAllowed(void) const;
 		void outputFactions(ofstream& output) const;
 		void outputIdeas(ofstream& output) const;
-		void outputNationalUnity(ofstream& output) const;
+		void outputStability(ofstream& output) const;
+		void outputWarSupport(ofstream& output) const;
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOBLine(ofstream& output) const;
 		void outputCommonCountryFile() const;
-		void outputIdeas(const set<const HoI4Advisor*, advisorCompare>& ideologicalAdvisors) const;
+		void outputIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const;
 		void outputUnitType(ofstream& unitNamesFile, string sourceUnitType, string destUnitType, string defaultName) const;
 
 
 		const HoI4World* theWorld;
-		const V2Country* srcCountry;
+		const Vic2::Country* srcCountry;
 		string filename;
 
 		bool human;
 
 		string governmentIdeology;
 		string leaderIdeology;
-		V2Party rulingParty;
-		set<V2Party, function<bool (const V2Party&, const V2Party&)>> parties;
+		Vic2::Party rulingParty;
+		set<Vic2::Party, function<bool (const Vic2::Party&, const Vic2::Party&)>> parties;
 		map<string, int> ideologySupport;
 		date lastElection;
 
@@ -192,7 +200,8 @@ class HoI4Country
 		map<string, int>					researchBonuses;
 		map<string, HoI4Relations*>	relations;
 		ConverterColor::Color color;
-		double								nationalUnity;
+		double stability = 0.50;
+		double warSupport = 0.50;
 		shared_ptr<const HoI4Faction>	faction;
 		bool									factionLeader;
 		set<string>							allies;
@@ -207,7 +216,7 @@ class HoI4Country
 		vector<int>							brigs;
 		int									convoys;
 		
-		int provinceCount;
+		int provinceCount = 0;
 		long armyStrength;
 		double militaryFactories;
 		double civilianFactories;

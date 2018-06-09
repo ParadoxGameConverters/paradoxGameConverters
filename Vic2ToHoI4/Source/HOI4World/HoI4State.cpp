@@ -29,14 +29,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceMapper.h"
 #include "../Mappers/StateCategoryMapper.h"
 #include "../Mappers/StateMapper.h"
-#include "../V2World/V2Province.h"
-#include "../V2World/Vic2State.h"
+#include "../V2World/Province.h"
+#include "../V2World/State.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 
 
 
-HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _ownerTag):
+HoI4State::HoI4State(const Vic2::State* _sourceState, int _ID, const string& _ownerTag):
 	sourceState(_sourceState),
 	ID(_ID),
 	provinces(),
@@ -44,6 +44,7 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _owne
 	cores(),
 	capitalState(false),
 	impassable(false),
+	hadImpassablePart(false),
 	manpower(0),
 	civFactories(0),
 	milFactories(0),
@@ -91,7 +92,10 @@ void HoI4State::output(const string& _filename) const
 	}
 	out << "\n";
 	out << "\thistory={\n";
-	out << "\t\towner = " << ownerTag << "\n";
+	if (ownerTag != "")
+	{
+		out << "\t\towner = " << ownerTag << "\n";
+	}
 	if ((victoryPointValue > 0) && (victoryPointPosition != 0))
 	{
 		if (Configuration::getDebug())
@@ -166,7 +170,7 @@ void HoI4State::convertNavalBases()
 }
 
 
-int HoI4State::determineNavalBaseLevel(const V2Province* sourceProvince)
+int HoI4State::determineNavalBaseLevel(const Vic2::Province* sourceProvince)
 {
 	int navalBaseLevel = sourceProvince->getNavalBaseLevel() * 2;
 	if (navalBaseLevel > 10)
@@ -178,7 +182,7 @@ int HoI4State::determineNavalBaseLevel(const V2Province* sourceProvince)
 }
 
 
-optional<int> HoI4State::determineNavalBaseLocation(const V2Province* sourceProvince)
+optional<int> HoI4State::determineNavalBaseLocation(const Vic2::Province* sourceProvince)
 {
 	auto provinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvince->getNumber());
 	if (provinceMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
@@ -274,9 +278,9 @@ void HoI4State::tryToCreateVP()
 
 	if (!VPCreated)
 	{
-		if (Configuration::getDebug() && !sourceState->isPartialState() && !impassable)
+		if (Configuration::getDebug() && !sourceState->isPartialState() && !impassable && !hadImpassablePart)
 		{
-			LOG(LogLevel::Warning) << "Could not initially create VP for state " << ID << ", but state is not split (or was the passable part of a partially passable state).";
+			LOG(LogLevel::Warning) << "Could not initially create VP for state " << ID << ", but state is not split.";
 		}
 		for (auto province: sourceState->getProvinces())
 		{

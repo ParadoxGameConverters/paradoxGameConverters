@@ -27,33 +27,6 @@
     <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
-    <ClCompile Include="Source\V2World\V2Army.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2Country.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2Diplomacy.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2Leader.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2Party.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2Pop.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2Province.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2Relations.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2World.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\HOI4World\HoI4Army.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
@@ -113,12 +86,6 @@
     <ClCompile Include="Source\HOI4World\HoI4Airforce.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\V2World\Vic2State.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\Vic2Agreement.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -141,12 +108,6 @@
       <Filter>Mappers</Filter>
     </ClCompile>
     <ClCompile Include="Source\HOI4World\HOI4Version.cpp">
-      <Filter>HoI4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\HOI4World\HoI4Event.cpp">
-      <Filter>HoI4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\HOI4World\HoI4Events.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
     <ClCompile Include="Source\HOI4World\HoI4FocusTree.cpp">
@@ -191,17 +152,101 @@
     <ClCompile Include="Source\HOI4World\HOI4Ideology.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\HOI4World\HoI4Advisor.cpp">
-      <Filter>HoI4World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\InventionsMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\HOI4World\HoI4OnActions.cpp">
-      <Filter>HoI4World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\ImpassableProvinceMapper.cpp">
       <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\newParser.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Issues.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Decisions.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Decision.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\NewParserToOldParserConverters.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\ParserHelpers.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Province.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Pop.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Diplomacy.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Agreement.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Country.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Leader.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Relations.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Army.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\State.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Building.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\MergeRules.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\CommonCountryData.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\World.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Party.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\IdeologicalAdvisors.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Advisor.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Events.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Ideas.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Idea.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\IdeaGroup.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\AIPeaces.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\AIPeace.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Event.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\OnActions.cpp">
+      <Filter>HoI4World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,33 +261,6 @@
     </ClInclude>
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h">
       <Filter>CommonItems</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Army.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Country.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Diplomacy.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Leader.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Party.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Pop.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Province.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Relations.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2World.h">
-      <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Army.h">
       <Filter>HoI4World</Filter>
@@ -270,9 +288,6 @@
     </ClInclude>
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
-    <ClInclude Include="Source\V2World\Vic2State.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4State.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
@@ -302,9 +317,6 @@
     <ClInclude Include="Source\HOI4World\HoI4Airforce.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\V2World\Vic2Agreement.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\GovernmentMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -327,12 +339,6 @@
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HOI4Version.h">
-      <Filter>HoI4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\HOI4World\HoI4Event.h">
-      <Filter>HoI4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\HOI4World\HoI4Events.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Faction.h">
@@ -381,20 +387,101 @@
     <ClInclude Include="Source\HOI4World\HOI4Ideology.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\HOI4World\HoI4Advisor.h">
-      <Filter>HoI4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Rgo.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\InventionsMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\HOI4World\HoI4OnActions.h">
-      <Filter>HoI4World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h">
       <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\newParser.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Issues.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Decision.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Decisions.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\NewParserToOldParserConverters.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\ParserHelpers.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Province.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Pop.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Diplomacy.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Agreement.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Country.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Leader.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Relations.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Army.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Building.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\State.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\MergeRules.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\CommonCountryData.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\World.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Party.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\IdeologicalAdvisors.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Advisor.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Events.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Ideas.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Idea.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\IdeaGroup.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\AIPeaces.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\AIPeace.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Event.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\OnActions.h">
+      <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

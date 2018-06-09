@@ -126,6 +126,23 @@ default_unit_production = {
 	}
 }
 
+default_pp_spend_amount = {
+	enable = {
+		always = yes
+	}
+	
+	ai_strategy = {
+		type = pp_spend_amount
+		id = idea
+		value = 100
+	}
+	
+	ai_strategy = {
+		type = pp_spend_amount
+		id = decision
+		value = 100
+	}
+}
 
 default_paratroopers_production = {
 	enable = {
@@ -144,18 +161,24 @@ default_paratroopers_production = {
 
 default_garrison_production = {
 	enable = {
-		ai_wants_divisions >  12 #Massively decreasing the amount of paratroopers the AI wants
+		ai_wants_divisions >  12 #Massively decreasing the amount of garrison and suppression the AI wants
 		is_major = yes
 	}
 	abort = {
-		ai_wants_divisions < 13 #Massively decreasing the amount of paratroopers the AI wants
+		ai_wants_divisions < 13 #Massively decreasing the amount of garrison and suppression the AI wants
 		is_major = no
 	}
 
 	ai_strategy = {
 		type = role_ratio
 		id = garrison
-		value = 7
+		value = 5
+	}
+	
+	ai_strategy = {
+		type = role_ratio
+		id = suppression
+		value = 2
 	}
 }
 
@@ -371,7 +394,7 @@ default_stockpile_management = {
 	}
 
 	ai_strategy = {
-		type = equipment_stockpile
+		type = equipment_stockpile_surplus_ratio
 		value = 35 # double base stockpile #from 25 to 35
 	}
 }
@@ -502,3 +525,30 @@ save_admiral_pp_for_later = {
 		value = -100
 	}
 }
+
+do_not_waste_pp_if_saving_for_manpower_laws = {
+
+	enable = {
+		manpower_per_military_factory < 500
+		has_war = yes
+	}
+	abort = {
+		OR = {
+			manpower_per_military_factory > 500
+			has_war = no
+		}
+	}
+
+	ai_strategy = {
+		type = pp_spend_priority
+		id = relation
+		value = -9999
+	}
+
+	ai_strategy = {
+		type = pp_spend_priority
+		id = guarantee
+		value = -9999
+	}
+}
+

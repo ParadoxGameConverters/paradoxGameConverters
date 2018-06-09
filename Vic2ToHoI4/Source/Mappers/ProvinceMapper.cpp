@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -188,7 +188,7 @@ vector<shared_ptr<Object>> provinceMapper::getCorrectMappingVersion(const vector
 {
 	for (auto version: versions)
 	{
-		HOI4Version currentVersion(version->getKey());
+		HoI4::Version currentVersion(version->getKey());
 		if (Configuration::getHOI4Version() >= currentVersion)
 		{
 			LOG(LogLevel::Debug) << "Using version " << version->getKey() << " mappings";

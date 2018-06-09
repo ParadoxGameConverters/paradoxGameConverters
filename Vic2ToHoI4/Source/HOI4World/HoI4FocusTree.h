@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,63 +25,70 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define HOI4_FOCUS_TREE
 
 #include "HoI4World.h"
-#include "HoI4Events.h"
+#include "Events.h"
+#include "newParser.h"
+#include <memory>
+#include <set>
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
 class HoI4Country;
 class HoI4Focus;
-class HoI4Events;
+namespace HoI4
+{
+	class Events;
+}
 
 
 
-class HoI4FocusTree
+class HoI4FocusTree: commonItems::parser
 {
 	public:
-		HoI4FocusTree();
+		HoI4FocusTree() = default;
 		explicit HoI4FocusTree(const HoI4Country& country);
 
 		shared_ptr<HoI4FocusTree> makeCustomizedCopy(const HoI4Country& country) const;
-		void setNextFreeColumn(int newFreeColumn) { nextFreeColumn = newFreeColumn; };
+		void setNextFreeColumn(int newFreeColumn) { nextFreeColumn = newFreeColumn; }
 
-		void addGenericFocusTree(const set<string>& majorIdeologies);
+		void addGenericFocusTree(const std::set<std::string>& majorIdeologies);
 
-		void addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, vector<shared_ptr<HoI4Country>>& CountriesToContain);
-		void addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> country, const vector<shared_ptr<HoI4Country>>& targetColonies, const vector<shared_ptr<HoI4Country>>& annexationTargets);
-		void addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& coupTargets);
-		void addCommunistWarBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& warTargets, HoI4Events* events);
-		void addFascistAnnexationBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& annexationTargets, HoI4Events* events);
-		void addFascistSudetenBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& sudetenTargets, const vector<vector<int>>& demandedStates, const HoI4World* world);
-		void addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& newAllies, const vector<shared_ptr<HoI4Country>>& GCTargets, const string& ideology, HoI4Events* events);
-		void removeFocus(const string& id);
+		void addDemocracyNationalFocuses(std::shared_ptr<HoI4Country> Home, std::vector<std::shared_ptr<HoI4Country>>& CountriesToContain);
+		void addAbsolutistEmpireNationalFocuses(std::shared_ptr<HoI4Country> country, const std::vector<std::shared_ptr<HoI4Country>>& targetColonies, const std::vector<std::shared_ptr<HoI4Country>>& annexationTargets);
+		void addCommunistCoupBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& coupTargets, const std::set<std::string>& majorIdeologies);
+		void addCommunistWarBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& warTargets, HoI4::Events* events);
+		void addFascistAnnexationBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& annexationTargets, HoI4::Events* events);
+		void addFascistSudetenBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& sudetenTargets, const std::vector<std::vector<int>>& demandedStates, const HoI4World* world);
+		void addGPWarBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& newAllies, const std::vector<std::shared_ptr<HoI4Country>>& GCTargets, const std::string& ideology, HoI4::Events* events);
+		void removeFocus(const std::string& id);
 
-		void output(const string& filename) const;
+		void output(const std::string& filename) const;
 
-		void addFocus(shared_ptr<HoI4Focus> newFocus) { focuses.push_back(newFocus); }
+		void addFocus(std::shared_ptr<HoI4Focus> newFocus) { focuses.push_back(newFocus); }
 
 	private:
 		HoI4FocusTree(const HoI4FocusTree&) = delete;
 		HoI4FocusTree& operator=(const HoI4FocusTree&) = delete;
 
-		int calculateNumCollectovistIdeologies(const set<string>& majorIdeologies);
-		void determineMutualExclusions(const set<string>& majorIdeologies);
-		void addFascistGenericFocuses();
-		void addCommunistGenericFocuses();
-		void addAbsolutistGenericFocuses();
-		void addRadicalGenericFocuses();
+		void confirmLoadedFocuses();
 
-		string srcCountryTag;
-		string dstCountryTag;
-		vector<shared_ptr<HoI4Focus>> focuses;
-		int nextFreeColumn;
+		int calculateNumCollectovistIdeologies(const std::set<std::string>& majorIdeologies);
+		void determineMutualExclusions(const std::set<std::string>& majorIdeologies);
+		void addFascistGenericFocuses(int relativePosition, const std::set<std::string>& majorIdeologies);
+		void addCommunistGenericFocuses(int relativePosition);
+		void addAbsolutistGenericFocuses(int relativePosition);
+		void addRadicalGenericFocuses(int relativePosition);
 
-		string fascistMutualExlusions;
-		string communistMutualExclusions;
-		string absolutistMutualExlusions;
-		string radicalMutualExclusions;
+		std::string srcCountryTag = "";
+		std::string dstCountryTag = "";
+		std::vector<std::shared_ptr<HoI4Focus>> focuses;
+		int nextFreeColumn = 0;
+
+		std::string fascistMutualExlusions = "";
+		std::string communistMutualExclusions = "";
+		std::string absolutistMutualExlusions = "";
+		std::string radicalMutualExclusions = "";
 };
 
 

@@ -1,0 +1,52 @@
+on_actions = {
+	#ROOT is new controller #FROM is old controller #FROM.FROM is state ID
+	on_state_control_changed = {
+		effect = {
+		}
+	}
+
+	#FROM is war target
+	on_declare_war = {
+		effect = {
+		}
+	}
+	#FROM is faction leader on join faction requests.
+	on_offer_join_faction = {
+		effect = {
+		}
+	}
+
+	on_leave_faction = {
+		effect = {
+		}
+	}
+
+	#ROOT is subject FROM is overlord
+	on_subject_annexed = {
+		effect = {
+		}
+	}
+
+	on_nuke_drop = {
+		effect = {			
+		}
+	}
+
+	#ROOT is winner #FROM gets annexed - For civil wars on_civil_war_end is also fired
+	on_annex = {
+		effect = {
+		}
+	}
+
+	#ROOT is winner #FROM gets annexed - This will also fire on_annex
+	on_civil_war_end = {
+		effect = {
+		}
+	}
+
+	#ROOT is winner #FROM is loser
+	on_peaceconference_ended = {
+		effect = {
+		}
+	}
+}

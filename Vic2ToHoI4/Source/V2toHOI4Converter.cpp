@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Flags.h"
 #include "Log.h"
 #include "HOI4World/HoI4World.h"
-#include "V2World/V2World.h"
+#include "V2World/World.h"
 #include "OSCompatibilityLayer.h"
 
 
@@ -38,7 +38,7 @@ int main(const int argc, const char* argv[])
 {
 	try
 	{
-		LOG(LogLevel::Info) << "Converter version 0.2F";
+		LOG(LogLevel::Info) << "Converter version 0.2G";
 		LOG(LogLevel::Info) << "Built on " << __DATE__ << " at " << __TIME__;
 		LOG(LogLevel::Info) << "Current directory is " << Utils::getCurrentDirectory();
 
@@ -78,7 +78,7 @@ void ConvertV2ToHoI4(const string& V2SaveFileName)
 	checkMods();
 	getOutputName(V2SaveFileName);
 
-	V2World sourceWorld(V2SaveFileName);
+	Vic2::World sourceWorld(V2SaveFileName);
 	HoI4World destWorld(&sourceWorld);
 
 	output(destWorld);
@@ -171,8 +171,8 @@ void createModFile()
 		exit(-1);
 	}
 
-	HOI4Version versionThatWantsBOM("1.3.3");
-	HOI4Version thisVersion = Configuration::getHOI4Version();
+	HoI4::Version versionThatWantsBOM("1.3.3");
+	HoI4::Version thisVersion = Configuration::getHOI4Version();
 	if (thisVersion >= versionThatWantsBOM)
 	{
 		modFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy

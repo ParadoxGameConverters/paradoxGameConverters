@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,6 +26,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "AIPeaces.h"
+#include "Ideas.h"
+#include "OnActions.h"
 #include "HoI4States.h"
 #include "../Mappers/Mapper.h"
 #include <map>
@@ -37,33 +40,46 @@ using namespace std;
 
 
 
-class HoI4Advisor;
 class HoI4Buildings;
 class HoI4Country;
 class HoI4Diplomacy;
 class HoI4DivisionTemplateType;
-class HoI4Events;
 class HoI4Faction;
 class HoI4Ideology;
-class HoI4OnActions;
 class HoI4Province;
 class HoI4State;
 class HoI4States;
 class HoI4StrategicRegion;
 class HoI4SupplyZones;
 class HoI4UnitMap;
-class V2Country;
-class V2World;
 
 
+namespace HoI4
+{
+
+class Advisor;
+class decisions;
+class Events;
 struct advisorCompare;
+
+}
+
+
+namespace Vic2
+{
+
+class Country;
+class World;
+
+}
 
 
 
 class HoI4World
 {
 	public:
-		explicit HoI4World(const V2World* sourceWorld);
+		explicit HoI4World(const Vic2::World* sourceWorld);
+		~HoI4World();
 
 		void output() const;
 
@@ -72,7 +88,7 @@ class HoI4World
 		map<int, HoI4State*> getStates() const { return states->getStates(); }
 		const map<int, int>& getProvinceToStateIDMap() const { return states->getProvinceToStateIDMap(); }
 		vector<shared_ptr<HoI4Faction>> getFactions() const { return factions; }
-		HoI4Events* getEvents() const { return events; }
+		HoI4::Events* getEvents() const { return events; }
 		set<string> getMajorIdeologies() const { return majorIdeologies; }
 
 		shared_ptr<HoI4Country> findCountry(const string& countryTag);
@@ -84,7 +100,7 @@ class HoI4World
 		void convertNavalBases();
 
 		void convertCountries();
-		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void convertCountry(pair<string, Vic2::Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 
 		void importIdeologies();
 		void importIdeologyFile(const string& filename);
@@ -96,8 +112,6 @@ class HoI4World
 		void convertGovernments();
 
 		void convertParties();
-
-		void importIdeologicalIdeas();
 
 		void identifyMajorIdeologies();
 		void addNeutrality();
@@ -175,42 +189,44 @@ class HoI4World
 		void outputMap() const;
 		void outputGenericFocusTree() const;
 		void outputCountries() const;
-		set<const HoI4Advisor*, advisorCompare> getActiveIdeologicalAdvisors() const;
+		set<const HoI4::Advisor*, HoI4::advisorCompare> getActiveIdeologicalAdvisors() const;
 		void outputRelations() const;
 		void outputIdeologies() const;
 		void outputLeaderTraits() const;
-		void outputIdeologicalIdeas() const;
+		void outputIdeas() const;
 		void outputScriptedTriggers() const;
-		void outputOnActions() const;
+		void outputBookmarks() const;
 
 		/*vector<int> getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		vector<int> getPortProvinces(const vector<int>& locationCandidates);
 		int getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);*/
 
 
-		const V2World* sourceWorld;
+		const Vic2::World* sourceWorld = nullptr;
 
-		HoI4States* states;
+		HoI4States* states = nullptr;
 		//map<int, HoI4Province*> provinces;
 
-		HoI4SupplyZones* supplyZones;
+		HoI4SupplyZones* supplyZones = nullptr;
 		map<int, HoI4StrategicRegion*> strategicRegions;
-		HoI4Buildings* buildings;
+		HoI4Buildings* buildings = nullptr;
 
 		map<string, shared_ptr<HoI4Country>> countries;
 		map<string, shared_ptr<HoI4Country>> landedCountries;
 		vector<shared_ptr<HoI4Country>> greatPowers;
 
 		map<string, HoI4Ideology*> ideologies;
-		set<string> majorIdeologies;
+		std::set<std::string> majorIdeologies;
 		map<string, vector<shared_ptr<Object>>> ideologicalLeaderTraits;
-		map<string, HoI4Advisor*> ideologicalAdvisors;
-		map<string, vector<shared_ptr<Object>>> ideologicalIdeas;
+		map<std::string, HoI4::Advisor*> ideologicalAdvisors;
+		std::unique_ptr<HoI4::Ideas> theIdeas;
 		
 		vector<shared_ptr<HoI4Faction>> factions;
-		HoI4Diplomacy* diplomacy;
-		HoI4Events* events;
-		HoI4OnActions* onActions;
+		HoI4Diplomacy* diplomacy = nullptr;
+		std::unique_ptr<HoI4::decisions> decisions;
+		std::unique_ptr<HoI4::AIPeaces> peaces;
+		HoI4::Events* events = nullptr;
+		std::unique_ptr<HoI4::OnActions> onActions;
 
 		vector<HoI4DivisionTemplateType> divisionTemplates;
 

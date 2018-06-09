@@ -26,19 +26,21 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Configuration.h"
-#include "../V2World/V2Diplomacy.h"
-#include "../V2World/V2Party.h"
-#include "HoI4Advisor.h"
+#include "../V2World/Diplomacy.h"
+#include "../V2World/Party.h"
+#include "Advisor.h"
 #include "HoI4Agreement.h"
 #include "HoI4Buildings.h"
 #include "HoI4Country.h"
+#include "Decisions.h"
 #include "HoI4Diplomacy.h"
-#include "HoI4Events.h"
+#include "Events.h"
 #include "HoI4Faction.h"
 #include "HoI4FocusTree.h"
+#include "Ideas.h"
+#include "IdeologicalAdvisors.h"
 #include "HOI4Ideology.h"
 #include "HoI4Localisation.h"
-#include "HoI4OnActions.h"
 #include "HoI4Province.h"
 #include "HoI4State.h"
 #include "HoI4StrategicRegion.h"
@@ -51,26 +53,17 @@ using namespace std;
 
 
 
-HoI4World::HoI4World(const V2World* _sourceWorld):
+HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	sourceWorld(_sourceWorld),
 	states(new HoI4States(sourceWorld)),
 	supplyZones(new HoI4SupplyZones),
-	strategicRegions(),
 	buildings(new HoI4Buildings(states->getProvinceToStateIDMap())),
-	countries(),
-	landedCountries(),
-	greatPowers(),
-	ideologies(),
-	majorIdeologies(),
-	ideologicalLeaderTraits(),
-	ideologicalAdvisors(),
-	ideologicalIdeas(),
-	factions(),
+	theIdeas(std::make_unique<HoI4::Ideas>()),
+	decisions(make_unique<HoI4::decisions>()),
+	peaces(make_unique<HoI4::AIPeaces>()),
 	diplomacy(new HoI4Diplomacy),
-	events(new HoI4Events),
-	onActions(new HoI4OnActions),
-	divisionTemplates(),
-	leaderTraits()
+	events(new HoI4::Events),
+	onActions(make_unique<HoI4::OnActions>())
 {
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 
@@ -90,15 +83,18 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	determineGreatPowers();
 	importIdeologies();
 	importLeaderTraits();
-	importIdeologicalIdeas();
 	convertGovernments();
 	identifyMajorIdeologies();
 	importIdeologicalMinisters();
 	convertParties();
 	events->createPoliticalEvents(majorIdeologies);
 	events->createWarJustificationEvents(majorIdeologies);
-	events->createElectionEvents(majorIdeologies, onActions);
+	events->importElectionEvents(majorIdeologies, *onActions);
 	addCountryElectionEvents(majorIdeologies);
+	events->createStabilityEvents(majorIdeologies);
+	theIdeas->updateIdeas(majorIdeologies);
+	decisions->updateDecisions(majorIdeologies);
+	peaces->updateAIPeaces(majorIdeologies);
 	addNeutrality();
 	convertIdeologySupport();
 	convertCapitalVPs();
@@ -109,6 +105,9 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 
 	adjustResearchFocuses();
 }
+
+
+HoI4World::~HoI4World() = default;
 
 
 shared_ptr<HoI4Country> HoI4World::findCountry(const string& countryTag)
@@ -155,7 +154,7 @@ void HoI4World::convertCountries()
 }
 
 
-void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4World::convertCountry(pair<string, Vic2::Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	// don't convert rebels
 	if (country.first == "REB")
@@ -266,32 +265,9 @@ void HoI4World::importLeaderTraits()
 
 void HoI4World::importIdeologicalMinisters()
 {
-	auto fileObject = parser_UTF8::doParseFile("ideologicalAdvisors.txt");
-	if (fileObject)
-	{
-		auto ideologyObjects = fileObject->getLeaves();
-		for (auto ideologyObject: ideologyObjects)
-		{
-			string ideaName = ideologyObject->getKey();
-			HoI4Advisor* newAdvisor = new HoI4Advisor(ideologyObject->getLeaves()[0]);
-			ideologicalAdvisors.insert(make_pair(ideaName, newAdvisor));
-		}
-
-		int ministerEventNum = 1;
-		for (auto ideology: majorIdeologies)
-		{
-			if (ideology == "neutrality")
-			{
-				continue;
-			}
-			auto advisor = ideologicalAdvisors.find(ideology);
-			if (advisor != ideologicalAdvisors.end())
-			{
-				advisor->second->addEventNum(ministerEventNum);
-			}
-			ministerEventNum += 6;
-		}
-	}
+	HoI4::IdeologicalAdvisors theAdvisors;
+	auto theAcutalAdvisors = theAdvisors.getAdvisors();
+	ideologicalAdvisors.swap(theAcutalAdvisors);
 }
 
 
@@ -309,21 +285,6 @@ void HoI4World::convertParties()
 	for (auto country: countries)
 	{
 		country.second->convertParties(majorIdeologies);
-	}
-}
-
-
-void HoI4World::importIdeologicalIdeas()
-{
-	auto fileObject = parser_UTF8::doParseFile("ideologicalIdeas.txt");
-	if (fileObject)
-	{
-		auto ideologyObjects = fileObject->getLeaves();
-		for (auto ideologyObject: ideologyObjects)
-		{
-			string ideaName = ideologyObject->getKey();
-			ideologicalIdeas.insert(make_pair(ideaName, ideologyObject->getLeaves()));
-		}
 	}
 }
 
@@ -499,7 +460,7 @@ double HoI4World::getWorldwideWorkerFactoryRatio(const map<string, double>& work
 	}
 
 	int defaultFactories = 1189;
-	HOI4Version onePointFour("1.4.0");
+	HoI4::Version onePointFour("1.4.0");
 	if (Configuration::getHOI4Version() >= onePointFour)
 	{
 		defaultFactories = 1201;
@@ -930,7 +891,7 @@ void HoI4World::convertTechs()
 
 	for (auto dstCountry : countries)
 	{
-		const V2Country* sourceCountry = dstCountry.second->getSourceCountry();
+		const Vic2::Country* sourceCountry = dstCountry.second->getSourceCountry();
 
 		for (auto technology : sourceCountry->getTechs())
 		{
@@ -1638,7 +1599,7 @@ void HoI4World::addCountryElectionEvents(const set<string>& majorIdeologies)
 {
 	for (auto country: countries)
 	{
-		events->addPartyChoiceEvent(country.first, country.second->getParties(), onActions, majorIdeologies);
+		events->addPartyChoiceEvent(country.first, country.second->getParties(), *onActions, majorIdeologies);
 	}
 }
 
@@ -1666,13 +1627,16 @@ void HoI4World::output() const
 	outputGenericFocusTree();
 	outputCountries();
 	buildings->output();
+	decisions->output();
 	events->output();
-	onActions->output();
+	onActions->output(majorIdeologies);
+	decisions->output();
+	peaces->output(majorIdeologies);
 	outputIdeologies();
 	outputLeaderTraits();
-	outputIdeologicalIdeas();
+	outputIdeas();
 	outputScriptedTriggers();
-	outputOnActions();
+	outputBookmarks();
 }
 
 
@@ -1692,11 +1656,11 @@ void HoI4World::outputCommonCountries() const
 		exit(-1);
 	}
 
-	for (auto countryItr: countries)
+	for (auto country: countries)
 	{
-		if (countryItr.second->getCapitalStateNum() != 0)
+		if (country.second->getCapitalStateNum() != 0)
 		{
-			countryItr.second->outputToCommonCountriesFile(allCountriesFile);
+			country.second->outputToCommonCountriesFile(allCountriesFile);
 		}
 	}
 
@@ -1721,11 +1685,11 @@ void HoI4World::outputColorsfile() const
 	}
 
 	output << "#reload countrycolors\n";
-	for (auto countryItr: countries)
+	for (auto country: countries)
 	{
-		if (countryItr.second->getCapitalStateNum() != 0)
+		if (country.second->getCapitalStateNum() != 0)
 		{
-			countryItr.second->outputColors(output);
+			country.second->outputColors(output);
 		}
 	}
 
@@ -1746,7 +1710,10 @@ void HoI4World::outputNames() const
 
 	for (auto country: countries)
 	{
-		country.second->outputToNamesFiles(namesFile);
+		if (country.second->getCapitalStateNum() != 0)
+		{
+			country.second->outputToNamesFiles(namesFile);
+		}
 	}
 }
 
@@ -1763,7 +1730,10 @@ void HoI4World::outputUnitNames() const
 
 	for (auto country : countries)
 	{
-		country.second->outputToUnitNamesFiles(namesFile);
+		if (country.second->getCapitalStateNum() != 0)
+		{
+			country.second->outputToUnitNamesFiles(namesFile);
+		}
 	}
 }
 
@@ -1854,9 +1824,13 @@ void HoI4World::outputCountries() const
 		exit(-1);
 	}
 
+	auto activeIdeologicalAdvisors = getActiveIdeologicalAdvisors();
 	for (auto country: countries)
 	{
-		country.second->output(getActiveIdeologicalAdvisors(), divisionTemplates);
+		if (country.second->getCapitalStateNum() != 0)
+		{
+			country.second->output(activeIdeologicalAdvisors, divisionTemplates);
+		}
 	}
 
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/interface/converter_ideas.gfx");
@@ -1869,16 +1843,19 @@ void HoI4World::outputCountries() const
 	ideasFile << "spriteTypes = {\n";
 	for (auto country: countries)
 	{
-		country.second->outputIdeaGraphics(ideasFile);
+		if (country.second->getCapitalStateNum() != 0)
+		{
+			country.second->outputIdeaGraphics(ideasFile);
+		}
 	}
 	ideasFile << "\n";
 	ideasFile << "}\n";
 }
 
 
-set<const HoI4Advisor*, advisorCompare> HoI4World::getActiveIdeologicalAdvisors() const
+set<const HoI4::Advisor*, HoI4::advisorCompare> HoI4World::getActiveIdeologicalAdvisors() const
 {
-	set<const HoI4Advisor*, advisorCompare> theAdvisors;
+	set<const HoI4::Advisor*, HoI4::advisorCompare> theAdvisors;
 	for (auto ideology: majorIdeologies)
 	{
 		auto ideologicalAdvisor = ideologicalAdvisors.find(ideology);
@@ -1988,32 +1965,16 @@ void HoI4World::outputLeaderTraits() const
 }
 
 
-void HoI4World::outputIdeologicalIdeas() const
+void HoI4World::outputIdeas() const
 {
-	ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/convertedIdeas.txt");
-	ideasFile << "ideas = {\n";
-	ideasFile << "\tcountry = {\n";
-	for (auto majorIdeology: majorIdeologies)
-	{
-		auto ideologicalIdea = ideologicalIdeas.find(majorIdeology);
-		if (ideologicalIdea != ideologicalIdeas.end())
-		{
-			for (auto idea: ideologicalIdea->second)
-			{
-				ideasFile << *idea;
-				ideasFile << "\n";
-			}
-		}
-	}
-	ideasFile << "\t}\n";
-	ideasFile << "}";
-	ideasFile.close();
+	theIdeas->output(majorIdeologies);
 }
 
 
 void HoI4World::outputScriptedTriggers() const
 {
 	ofstream triggersFile("output/" + Configuration::getOutputName() + "/common/scripted_triggers/convertedTriggers.txt");
+
 	triggersFile << "can_lose_democracy_support = {\n";
 	for (auto ideology: majorIdeologies)
 	{
@@ -2027,85 +1988,119 @@ void HoI4World::outputScriptedTriggers() const
 		}
 	}
 	triggersFile << "}\n";
-	triggersFile.close();
-}
 
-
-void HoI4World::outputOnActions() const
-{
-	ofstream onActionsFile("output/" + Configuration::getOutputName() + "/common/on_actions/01_on_actions.txt");
-	onActionsFile << "on_actions = {\n";
-	onActionsFile << "	on_government_change = {\n";
-	onActionsFile << "		effect = {\n";
-	for (auto ideology: majorIdeologies)
+	triggersFile << "has_unsupported_manpower_law = {\n";
+	triggersFile << "	if = {\n";
+	triggersFile << "		limit = {\n";
+	triggersFile << "			has_idea = limited_conscription\n";
+	triggersFile << "		}\n";
+	triggersFile << "		has_idea = limited_conscription\n";
+	triggersFile << "		has_war_support < 0.1\n";
+	triggersFile << "	}\n";
+	triggersFile << "	else_if = {\n";
+	triggersFile << "		limit = {\n";
+	triggersFile << "			has_idea = extensive_conscription\n";
+	triggersFile << "		}\n";
+	triggersFile << "		has_idea = extensive_conscription\n";
+	triggersFile << "		has_war_support < 0.2\n";
+	for (auto majorIdeology: majorIdeologies)
 	{
-		if ((ideology == "democratic") || (ideology == "neutrality"))
+		if ((majorIdeology == "democratic") || (majorIdeology == "neutrality"))
+		{
+			 continue;
+		}
+
+		triggersFile << "		NOT = { has_government = " << majorIdeology << " }\n";
+	}
+	triggersFile << "	}\n";
+	triggersFile << "	else_if = {\n";
+	triggersFile << "		limit = {\n";
+	triggersFile << "			has_idea = service_by_requirement\n";
+	triggersFile << "		}\n";
+	triggersFile << "		has_idea = service_by_requirement\n";
+	triggersFile << "		has_war_support < 0.6\n";
+	for (auto majorIdeology: majorIdeologies)
+	{
+		if ((majorIdeology == "democratic") || (majorIdeology == "neutrality"))
 		{
 			continue;
 		}
 
-		onActionsFile << "			if = {\n";
-		onActionsFile << "				limit = { has_government = " + ideology + " }\n";
-		onActionsFile << "				if = {\n";
-		onActionsFile << "					limit = { has_idea = " + ideology + "_partisans_recruiting }\n";
-		onActionsFile << "					remove_ideas = " + ideology + "_partisans_recruiting\n";
-		onActionsFile << "				}\n";
-		onActionsFile << "				if = {\n";
-		onActionsFile << "					limit = { has_idea = " + ideology + "_revolutionaries }\n";
-		onActionsFile << "					remove_ideas = " + ideology + "_revolutionaries\n";
-		onActionsFile << "				}\n";
-		onActionsFile << "				if = {\n";
-		onActionsFile << "					limit = { has_idea = " + ideology + "_defeated }\n";
-		onActionsFile << "					remove_ideas = " + ideology + "_defeated\n";
-		onActionsFile << "				}\n";
-		onActionsFile << "			}\n";
+		triggersFile << "		NOT = { has_government = " << majorIdeology << " }\n";
 	}
-	if (majorIdeologies.count("democratic") > 0)
-	{
-		onActionsFile << "			if = {\n";
-		onActionsFile << "				limit = { has_government = democratic }\n";
-		onActionsFile << "				if = {\n";
-		onActionsFile << "					limit = { has_idea = democratic_opposition_voicing_protests }\n";
-		onActionsFile << "					remove_ideas = democratic_opposition_voicing_protests\n";
-		onActionsFile << "				}\n";
-		onActionsFile << "				if = {\n";
-		onActionsFile << "					limit = { has_idea = democratic_revolutionaries }\n";
-		onActionsFile << "					remove_ideas = democratic_revolutionaries\n";
-		onActionsFile << "				}\n";
-		onActionsFile << "				if = {\n";
-		onActionsFile << "					limit = { has_idea = reign_of_terror }\n";
-		onActionsFile << "					remove_ideas = reign_of_terror\n";
-		onActionsFile << "				}\n";
-		onActionsFile << "			}\n";
-	}
-	onActionsFile << "		}\n";
-	onActionsFile << "	}\n";
+	triggersFile << "	}\n";
+	triggersFile << "	else_if = {\n";
+	triggersFile << "		limit = {\n";
+	triggersFile << "			has_idea = all_adults_serve\n";
+	triggersFile << "		}\n";
+	triggersFile << "		has_idea = all_adults_serve\n";
+	triggersFile << "	}\n";
+	triggersFile << "	else_if = {\n";
+	triggersFile << "		limit = {\n";
+	triggersFile << "			has_idea = scraping_the_barrel\n";
+	triggersFile << "		}\n";
+	triggersFile << "		has_idea = scraping_the_barrel\n";
+	triggersFile << "	}\n";
+	triggersFile << "	else = {\n";
+	triggersFile << "		always = no\n";
+	triggersFile << "	}\n";
+	triggersFile << "}\n";
 
-	onActionsFile << "	on_startup = {\n";
-	onActionsFile << "		effect = {\n";
-	onActionsFile << "			set_province_name = { id = 587 name = \"Köln\"} #Cologne\n";
-	onActionsFile << "			set_province_name = { id = 957 name = \"Vladivostok\"} #Haishenwai\n";
-	onActionsFile << "			set_province_name = { id = 1025 name = \"Kokura\"} #Fukuoka\n";
-	onActionsFile << "			set_province_name = { id = 1047 name = \"Guangzhou\"} #Canton\n";
-	onActionsFile << "			set_province_name = { id = 1182 name = \"Tokyo\"} #Edo\n";
-	onActionsFile << "			set_province_name = { id = 1440 name = \"San Juan\"} #Puerto Rico\n";
-	onActionsFile << "			set_province_name = { id = 1843 name = \"Miami\"} #Tampa\n";
-	onActionsFile << "			set_province_name = { id = 3151 name = \"Leningrad\"} #Saint Petersburg\n";
-	onActionsFile << "			set_province_name = { id = 3152 name = \"Tallinn\"} #Reval\n";
-	onActionsFile << "			set_province_name = { id = 3529 name = \"Stalingrad\"} #Tsaritsyn\n";
-	onActionsFile << "			set_province_name = { id = 4180 name = \"Honolulu\"} #Hawaii\n";
-	onActionsFile << "			set_province_name = { id = 4268 name = \"Nouméa\"} #New Caledonia\n";
-	onActionsFile << "			set_province_name = { id = 4333 name = \"Astana\"} #Qaraganda\n";
-	onActionsFile << "			set_province_name = { id = 4709 name = \"Ürümqi\"} #Díhuà\n";
-	onActionsFile << "			set_province_name = { id = 4801 name = \"Ulaanbaatar\"} #Urga\n";
-	onActionsFile << "			set_province_name = { id = 6115 name = \"Oslo\"} #Christiania\n";
-	onActionsFile << "			set_province_name = { id = 7371 name = \"Kuching\"} #Brunei\n";
-	onActionsFile << "			set_province_name = { id = 11437 name = \"Dnipropetrovsk\"} #Ekaterinoslav\n";
-	onActionsFile << "			set_province_name = { id = 12674 name = \"Reykjavik\"} #Iceland\n";
-	onActionsFile << "		}\n";
-	onActionsFile << "	}\n";
-	onActionsFile << "}\n";
-	onActionsFile.close();
+	triggersFile.close();
+}
+
+
+void HoI4World::outputBookmarks() const
+{
+	ofstream bookmarkFile("output/" + Configuration::getOutputName() + "/common/bookmarks/the_gathering_storm.txt");
+
+	bookmarkFile << "bookmarks = {\n";
+	bookmarkFile << "	bookmark = {\n";
+	bookmarkFile << "		name = ""GATHERING_STORM_NAME""\n";
+	bookmarkFile << "		desc = ""GATHERING_STORM_DESC""\n";
+	bookmarkFile << "		date = 1936.1.1.12\n";
+	bookmarkFile << "		picture = ""GFX_select_date_1936""\n";
+	bookmarkFile << "		default_country = \"---\"\n";
+	bookmarkFile << "		default = yes\n";
+
+	for (auto greatPower : greatPowers)
+	{
+		//Vic2 Great powers become majors in bookmark
+		bookmarkFile << "		" + greatPower->getTag() + "= {\n";
+		bookmarkFile << "			history = \"OTHER_GATHERING_STORM_DESC\"\n";
+		bookmarkFile << "			ideology = " + greatPower->getGovernmentIdeology() + "\n";
+		bookmarkFile << "			ideas = { great_power }\n";
+		bookmarkFile << "		}\n";
+	}
+	
+	bookmarkFile << "		\"---\"= {\n";
+	bookmarkFile << "			history = \"OTHER_GATHERING_STORM_DESC\"\n";
+	bookmarkFile << "		}\n";
+
+	for (auto country : countries)
+	{
+		if (country.second->isGreatPower() != true)
+		{
+			if (country.second->getStrengthOverTime(3) > 4500)
+			{
+				//add minor countries to the bookmark, only those with custom focustree are visible due to Hoi4 limitations
+				//Bookmark window has room for 22 minor countries, going over this seems to not cause any issues however
+				bookmarkFile << "		" + country.second->getTag() + " = {\n";
+				bookmarkFile << "			minor = yes\n";
+				bookmarkFile << "			history = \"OTHER_GATHERING_STORM_DESC\"\n";
+				bookmarkFile << "			ideology = " + country.second->getGovernmentIdeology() + "\n";
+				bookmarkFile << "			ideas = { }\n";
+				bookmarkFile << "		}\n";
+			}
+		}
+	}
+
+	bookmarkFile << "effect = {\n";
+	bookmarkFile << "randomize_weather = 22345 # <-Obligatory in every bookmark !\n";
+	bookmarkFile << "#123 = { rain_light = yes }\n";
+	bookmarkFile << "	}\n";
+	bookmarkFile << "}\n";
+	bookmarkFile.close();
 }
 
 

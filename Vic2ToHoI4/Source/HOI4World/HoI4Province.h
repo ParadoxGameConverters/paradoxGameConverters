@@ -27,24 +27,24 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "../Configuration.h"
-#include "../V2World/V2World.h"
-#include "../V2World/V2Country.h"
+#include "../V2World/World.h"
+#include "../V2World/Country.h"
 
 
 
 class HoI4Province
 {
 	public:
-		HoI4Province(const string& Owner, int State);
+		HoI4Province(const std::string& Owner, int State);
 		void output() const;
-		void convertFromOldProvince(const V2Province* oldProvince);
-		void addCore(const string& core);
-		void addFilename(const string& _filename);
+		void convertFromOldProvince(const Vic2::Province* oldProvince);
+		void addCore(const std::string& core);
+		void addFilename(const std::string& _filename);
 
 		void clearCores()										{ cores.clear(); }
 		void setCoastal(bool _coastal)					{ coastal = _coastal; }
-		void setName(const string& _name)							{ name = _name; }
-		void setOwner(const string& _owner)						{ owner = _owner; }
+		void setName(const std::string& _name)							{ name = _name; }
+		void setOwner(const std::string& _owner)						{ owner = _owner; }
 		void addManpower(double newManpower)			{ manpower += newManpower; }
 		void setManpower(double newManpower)			{ manpower = newManpower; }
 		void addLeadership(double newLeadership)		{ leadership += newLeadership; }
@@ -55,9 +55,9 @@ class HoI4Province
 		void setPoints(int newPoints)						{ points = newPoints; }
 		void addPoints(int newPoints)						{ points += newPoints; }
 		void setnum(int number)						{ num = number; }
-		string	getOwner()				const { return owner; }
+		std::string	getOwner()				const { return owner; }
 		int		getNum()					const { return num; }
-		string	getName()				const { return name; }
+		std::string	getName()				const { return name; }
 		bool		hasNavalBase()			const { return (naval_base > 0); }
 		bool		isLand()					const { return is_land; }
 		int		getAirBase()			const { return air_base; }
@@ -67,7 +67,7 @@ class HoI4Province
 		double	getRawIndustry()		const { return rawIndustry; }
 		int		getActualIndustry()	const { return industry; }
 		
-		vector<string>	getCores() const	{ return cores; }
+		std::vector<std::string>	getCores() const	{ return cores; }
 
 		void		requireNavalBase(int min);
 		void		requireAirBase(int min);
@@ -78,12 +78,12 @@ class HoI4Province
 		HoI4Province(const HoI4Province&) = delete;
 		HoI4Province& operator=(const HoI4Province&) = delete;
 
-		map<string, string>	filenames;
+		std::map<std::string, std::string>	filenames;
 		bool						coastal;
 		int						num;
-		string					name;
-		string					owner;
-		vector<string>			cores;
+		std::string					name;
+		std::string					owner;
+		std::vector<std::string>			cores;
 		bool						is_land;
 
 		int				points;

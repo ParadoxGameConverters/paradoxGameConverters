@@ -57,7 +57,7 @@ guiTypes = {
 			size = { width = 245 height = 79 }
 			clipping = yes
 			verticalScrollbar = "right_vertical_slider"
-			margin = { top = 3 bottom = 2}
+			margin = { top = 3 bottom = 2 }
 			background = {
 				name = "Background"		
 				spriteType ="GFX_pol_piechart_bg"
@@ -1058,7 +1058,7 @@ guiTypes = {
 		buttonType = {
 			name = "release"
 			position = { x = 323 y = 36 }
-			quadTextureSprite = "GFX_sort_173"
+			quadTextureSprite = "GFX_sort_button_171x35"
 	 		buttonFont = "hoi_18mbs"
 			Orientation = "UPPER_LEFT"
 			buttonText = "RELEASE"

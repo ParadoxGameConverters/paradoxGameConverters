@@ -48,18 +48,17 @@ class HoI4WarCreator
 		HoI4WarCreator& operator=(const HoI4WarCreator&) = delete;
 
 		void determineProvinceOwners();
-		void fillCountryProvinces();
 		void addAllTargetsToWorldTargetMap();
 		void addTargetsToWorldTargetMap(shared_ptr<HoI4Country> country);
 		map<double, shared_ptr<HoI4Country>> getDistancesToGreatPowers(shared_ptr<HoI4Country> country);
 		double calculateWorldStrength(ofstream& AILog) const;
-		void generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, const HoI4World* world);
+		void generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, const std::set<std::string>& majorIdeologies, const HoI4World* world);
 		double calculatePercentOfWorldAtWar(ofstream& AILog, const set<shared_ptr<HoI4Faction>>& factionsAtWar, double worldStrength) const;
 		void generateAdditionalWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, double worldStrength);
 		bool isImportantCountry(shared_ptr<HoI4Country> country);
 
 		vector<shared_ptr<HoI4Faction>> fascistWarMaker(shared_ptr<HoI4Country> country, ofstream& AILog, const HoI4World *world);
-		vector<shared_ptr<HoI4Faction>> communistWarCreator(shared_ptr<HoI4Country> country, ofstream& AILog);
+		vector<shared_ptr<HoI4Faction>> communistWarCreator(shared_ptr<HoI4Country> country, const std::set<std::string>& majorIdeologies, ofstream& AILog);
 		vector<shared_ptr<HoI4Faction>> democracyWarCreator(shared_ptr<HoI4Country> country);
 		vector<shared_ptr<HoI4Faction>> absolutistWarCreator(shared_ptr<HoI4Country> country);
 		vector<shared_ptr<HoI4Faction>> neighborWarCreator(shared_ptr<HoI4Country> country, ofstream& AILog);

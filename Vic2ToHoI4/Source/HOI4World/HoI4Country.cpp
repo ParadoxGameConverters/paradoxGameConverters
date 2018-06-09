@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Country.h"
-#include "HoI4Advisor.h"
+#include "Advisor.h"
 #include "HoI4World.h"
 #include "Log.h"
 #include "ParadoxParserUTF8.h"
@@ -35,8 +35,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/NamesMapper.h"
 #include "../Mappers/GraphicsMapper.h"
 #include "../Mappers/V2Localisations.h"
-#include "../V2World/V2Relations.h"
-#include "../V2World/V2Party.h"
+#include "../V2World/Relations.h"
+#include "../V2World/Party.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "OSCompatibilityLayer.h"
 #include <algorithm>
@@ -66,7 +66,6 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 	researchBonuses(),
 	relations(),
 	color(),
-	nationalUnity(0.70),
 	faction(nullptr),
 	factionLeader(false),
 	allies(),
@@ -100,7 +99,7 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 }
 
 
-void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states)
+void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states)
 {
 	srcCountry = _srcCountry;
 
@@ -131,7 +130,25 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	lastElection = srcCountry->getLastElection();
 	initIdeas();
 
-	nationalUnity = 0.70 + (srcCountry->getRevanchism() / 5.0) - (srcCountry->getWarExhaustion() / 100.0 / 2.5);
+	stability = 0.5; //0.70 + (srcCountry->getRevanchism() / 5.0) - (srcCountry->getWarExhaustion() / 100.0 / 2.5);
+	LOG(LogLevel::Debug) << "stability," << tag << "," << stability;
+
+	warSupport = 0.5;
+	if (srcCountry->getProvinces().size() > 0)
+	{
+		float warAttitude = srcCountry->getAverageIssueSupport("jingoism");
+		warAttitude += srcCountry->getAverageIssueSupport("pro_military") / 2;
+		warAttitude -= srcCountry->getAverageIssueSupport("anti_military") / 2;
+		warAttitude -= srcCountry->getAverageIssueSupport("pacifism");
+		if (warAttitude > 0)
+		{
+			warSupport += warAttitude * 0.00375;
+		}
+		else
+		{
+			warSupport = 0.1;
+		}
+	}
 
 	convertLaws();
 	//convertLeaders(portraitMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
@@ -166,7 +183,7 @@ void HoI4Country::determineFilename()
 }
 
 
-void HoI4Country::convertGovernment(const V2World& sourceWorld)
+void HoI4Country::convertGovernment(const Vic2::World& sourceWorld)
 {
 	auto possibleRulingParty = srcCountry->getRulingParty(sourceWorld.getParties());
 	if (!possibleRulingParty)
@@ -1048,6 +1065,7 @@ void HoI4Country::addState(HoI4State* _state)
 	for (const auto province: _state->getProvinces())
 	{
 		addProvince(province);
+		provinceCount++;
 	}
 }
 
@@ -1269,7 +1287,7 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const optional<vector<stri
 }
 
 
-void HoI4Country::output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const
+void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const
 {
 	if (capitalStateNum != 0)
 	{
@@ -1309,7 +1327,8 @@ void HoI4Country::outputHistory() const
 	outputRelations(output);
 	outputFactions(output);
 	outputIdeas(output);
-	outputNationalUnity(output);
+	outputStability(output);
+	outputWarSupport(output);
 	outputCountryLeader(output);
 
 	output.close();
@@ -1384,7 +1403,7 @@ void HoI4Country::outputResearchBonuses(ofstream& output) const
 	output << "# Research Bonuses\n";
 	for (auto researchBonus : researchBonuses)
 	{
-		output << "add_tech_bonus = { bonus = " << float(researchBonus.second / 100) << " uses = 1 category = " << researchBonus.first << " }\n";
+		output << "add_tech_bonus = { bonus = 0." << float(researchBonus.second) << " uses = 1 category = " << researchBonus.first << " name = doctrine_bonus }\n";
 	}
 }
 
@@ -1591,11 +1610,20 @@ void HoI4Country::outputIdeas(ofstream& output) const
 }
 
 
-void HoI4Country::outputNationalUnity(ofstream& output) const
+void HoI4Country::outputStability(ofstream& output) const
 {
 	if (states.size() > 0)
 	{
-		output << "set_national_unity = " << nationalUnity << "\n";
+		output << "set_stability = " << stability << "\n";
+	}
+}
+
+
+void HoI4Country::outputWarSupport(ofstream& output) const
+{
+	if (states.size() > 0)
+	{
+		output << "set_war_support = " << warSupport << "\n";
 	}
 }
 
@@ -1658,14 +1686,122 @@ void HoI4Country::outputOOB(const vector<HoI4DivisionTemplateType>& divisionTemp
 	}
 	output << "### No BHU air forces ###\n";
 	output << "instant_effect = {\n";
+	if (technologies.find("infantry_weapons1") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = infantry_equipment_1\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 5\n";
+		output << "\t\tprogress = 0.88\n";
+		output << "\t\tefficiency = 100\n";
+		output << "\t}\n";
+	}
+	else
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = infantry_equipment_0\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 5\n";
+		output << "\t\tprogress = 0.88\n";
+		output << "\t\tefficiency = 100\n";
+		output << "\t}\n";
+	}
+	if (technologies.find("gw_artillery") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = artillery_equipment_1\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 2\n";
+		output << "\t\tprogress = 0.88\n";
+		output << "\t\tefficiency = 100\n";
+		output << "\t}\n";
+	}
+	if (technologies.find("fighter1") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = fighter_equipment_1\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 5\n";
+		output << "\t\tprogress = 0.88\n";
+		output << "\t\tefficiency = 100\n";
+		output << "\t}\n";
+	}
+	else if (technologies.find("early_fighter") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = fighter_equipment_0\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 5\n";
+		output << "\t\tprogress = 0.88\n";
+		output << "\t\tefficiency = 100\n";
+		output << "\t}\n";
+	}
+	if (technologies.find("basic_destroyer") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = destroyer_2\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 3\n";
+		output << "\t\tprogress = 0.25\n";
+		output << "\t\tamount = 10\n";
+		output << "\t}\n";
+	}
+	else if (technologies.find("early_destroyer") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = destroyer_1\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 3\n";
+		output << "\t\tprogress = 0.25\n";
+		output << "\t\tamount = 10\n";
+		output << "\t}\n";
+	}
+	if (technologies.find("basic_battleship") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = battleship_2\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 8\n";
+		output << "\t\tprogress = 0.25\n";
+		output << "\t\tamount = 3\n";
+		output << "\t}\n";
+	}
+	else if (technologies.find("early_battleship") != technologies.end())
+	{
+		output << "\tadd_equipment_production = {\n";
+		output << "\t\tequipment = {\n";
+		output << "\t\t\ttype = battleship_1\n";
+		output << "\t\t\tcreator = \"" << tag << "\"\n";
+		output << "\t\t}\n";
+		output << "\t\trequested_factories = 8\n";
+		output << "\t\tprogress = 0.25\n";
+		output << "\t\tamount = 3\n";
+		output << "\t}\n";
+	}
 	output << "\tadd_equipment_production = {\n";
 	output << "\t\tequipment = {\n";
-	output << "\t\t\ttype = infantry_equipment_0\n";
+	output << "\t\t\ttype = convoy_1\n";
 	output << "\t\t\tcreator = \"" << tag << "\"\n";
 	output << "\t\t}\n";
-	output << "\t\trequested_factories = 1\n";
-	output << "\t\tprogress = 0.88\n";
-	output << "\t\tefficiency = 100\n";
+	output << "\t\trequested_factories = 10\n";
+	output << "\t\tprogress = 0.50\n";
+	output << "\t\tamount = 100\n";
 	output << "\t}\n";
 	output << "}\n";
 	output << "units = {\n";
@@ -1720,7 +1856,7 @@ void HoI4Country::outputCommonCountryFile() const
 }
 
 
-void HoI4Country::outputIdeas(const set<const HoI4Advisor*, advisorCompare>& ideologicalAdvisors) const
+void HoI4Country::outputIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const
 {
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/" + tag + ".txt");
 	if (!ideasFile.is_open())

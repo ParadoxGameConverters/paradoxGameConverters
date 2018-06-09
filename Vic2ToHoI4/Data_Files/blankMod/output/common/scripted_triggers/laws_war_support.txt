@@ -1,0 +1,33 @@
+has_unsupported_economic_law = {
+	if = {
+		limit = {
+			has_idea = low_economic_mobilisation
+		}
+		has_idea = low_economic_mobilisation
+		has_war_support < 0.15
+	}
+	else_if = {
+		limit = {
+			has_idea = partial_economic_mobilisation
+		}
+		has_idea = partial_economic_mobilisation
+		has_war_support < 0.25
+	}
+	else_if = {
+		limit = {
+			has_idea = war_economy
+		}
+		has_idea = war_economy
+		has_war_support < 0.5
+	}
+	else_if = {
+		limit = {
+			has_idea = tot_economic_mobilisation
+		}
+		has_idea = tot_economic_mobilisation
+		has_war_support < 0.8
+	}
+	else = {
+		always = no
+	}
+}

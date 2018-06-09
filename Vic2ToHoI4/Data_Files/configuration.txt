@@ -1,4 +1,4 @@
-# Copyright (c) 2017 The Paradox Game Converters Project
+# Copyright (c) 2018 The Paradox Game Converters Project
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -34,13 +34,13 @@ configuration =
 	Vic2Mods = { }
 
 	# HoI4 Version Method: The method the converter uses to set the HoI4 version
-	#	Hard Coded (1.4.2)	 - Use the HoI4 version hard coded into the converter (1.4.2)
+	#	Hard Coded (1.5.3)	 - Use the HoI4 version hard coded into the converter (1.4.2)
 	#	Automatic	 - Attempt to automatically detect the installed HoI4 version
 	#	Manual Entry	 - Manually enter the HoI4 version
 	HoI4VersionMethod = "hardcoded"
 
 	# HoI4 Version: If manually entering the HoI4 version, set this to the desired version
-	HoI4Version = "1.4.2"
+	HoI4Version = "1.5.3"
 
 	# Industrial shape factor: How much to balance countries' industry to each other. 1.0 = fully balanced, 0.0 = no balancing
 	industrial_shape_factor = "0.0"

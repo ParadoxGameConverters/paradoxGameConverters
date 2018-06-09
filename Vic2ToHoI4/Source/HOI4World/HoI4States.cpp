@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,16 +29,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/ImpassableProvinceMapper.h"
 #include "../Mappers/ProvinceDefinitions.h"
+#include "../Mappers/StateMapper.h"
 #include "../Mappers/V2Localisations.h"
-#include "../V2World/V2Country.h"
-#include "../V2World/V2Province.h"
-#include "../V2World/Vic2State.h"
-#include "../V2World/V2World.h"
+#include "../V2World/Country.h"
+#include "../V2World/Province.h"
+#include "../V2World/State.h"
+#include "../V2World/World.h"
 #include <fstream>
 
 
 
-HoI4States::HoI4States(const V2World* _sourceWorld):
+HoI4States::HoI4States(const Vic2::World* _sourceWorld):
 	sourceWorld(_sourceWorld),
 	ownersMap(),
 	coresMap(),
@@ -60,9 +61,10 @@ void HoI4States::determineOwnersAndCores()
 		auto sourceProvinceNums = retrieveSourceProvinceNums(provinceNumber);
 		if (sourceProvinceNums)
 		{
-			map<const V2Country*, pair<int, int>> potentialOwners = determinePotentialOwners(*sourceProvinceNums);
+			auto potentialOwners = determinePotentialOwners(*sourceProvinceNums);
 			if (potentialOwners.size() == 0)
 			{
+				ownersMap.insert(make_pair(provinceNumber, ""));
 				continue;
 			}
 			auto oldOwner = selectProvinceOwner(potentialOwners);
@@ -102,9 +104,9 @@ optional<vector<int>> HoI4States::retrieveSourceProvinceNums(int provNum) const
 }
 
 
-map<const V2Country*, pair<int, int>> HoI4States::determinePotentialOwners(const vector<int>& sourceProvinceNums) const
+map<const Vic2::Country*, pair<int, int>> HoI4States::determinePotentialOwners(const vector<int>& sourceProvinceNums) const
 {
-	map<const V2Country*, pair<int, int>> potentialOwners;
+	map<const Vic2::Country*, pair<int, int>> potentialOwners;
 
 	for (auto srcProvNum: sourceProvinceNums)
 	{
@@ -114,7 +116,7 @@ map<const V2Country*, pair<int, int>> HoI4States::determinePotentialOwners(const
 			LOG(LogLevel::Warning) << "Old province " << srcProvNum << " does not exist (bad mapping?)";
 			continue;
 		}
-		const V2Country* owner = (*srcProvince)->getOwner();
+		auto owner = (*srcProvince)->getOwner();
 		if (owner == nullptr)
 		{
 			continue;
@@ -132,9 +134,9 @@ map<const V2Country*, pair<int, int>> HoI4States::determinePotentialOwners(const
 }
 
 
-const V2Country* HoI4States::selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const
+const Vic2::Country* HoI4States::selectProvinceOwner(const map<const Vic2::Country*, pair<int, int>>& potentialOwners) const
 {
-	const V2Country* oldOwner = nullptr;
+	const Vic2::Country* oldOwner = nullptr;
 	for (auto potentialOwner: potentialOwners)
 	{
 		// I am the new owner if there is no current owner, or I have more provinces than the current owner,
@@ -155,7 +157,7 @@ const V2Country* HoI4States::selectProvinceOwner(const map<const V2Country*, pai
 }
 
 
-vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, const V2Country* Vic2Owner) const
+vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, const Vic2::Country* Vic2Owner) const
 {
 	vector<string> cores;
 
@@ -191,6 +193,8 @@ vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, co
 
 void HoI4States::createStates()
 {
+	std::set<int> ownedProvinces;
+
 	for (auto country: sourceWorld->getCountries())
 	{
 		for (auto vic2State: country.second->getStates())
@@ -199,8 +203,46 @@ void HoI4States::createStates()
 			if (possibleHoI4Owner)
 			{
 				createMatchingHoI4State(vic2State, *possibleHoI4Owner);
+				for (auto province: vic2State->getProvinces())
+				{
+					ownedProvinces.insert(province->getNumber());
+				}
 			}
 		}
+	}
+
+	std::map<int, Vic2::Province*> unownedProvinces;
+	for (auto vic2Province: sourceWorld->getProvinces())
+	{
+		if (ownedProvinces.count(vic2Province.first) == 0)
+		{
+			unownedProvinces.insert(vic2Province);
+		}
+	}
+
+	auto stateMapping = stateMapper::getStateMapping();
+	while (unownedProvinces.size() > 0)
+	{
+		std::set<std::pair<int, Vic2::Province*>> stateProvinces;
+
+		auto stateProvinceNums = stateMapping.find(unownedProvinces.begin()->first);
+		if (stateProvinceNums == stateMapping.end())
+		{
+			unownedProvinces.erase(unownedProvinces.begin());
+			continue;
+		}
+		for (auto provinceNum: stateProvinceNums->second)
+		{
+			auto province = unownedProvinces.find(provinceNum);
+			if (province != unownedProvinces.end())
+			{
+				stateProvinces.insert(*province);
+				unownedProvinces.erase(province);
+			}
+		}
+
+		Vic2::State* newState = new Vic2::State(stateProvinces);
+		createMatchingHoI4State(newState, "");
 	}
 
 	unsigned int manpower = getTotalManpower();
@@ -208,7 +250,7 @@ void HoI4States::createStates()
 }
 
 
-void HoI4States::createMatchingHoI4State(const Vic2State* vic2State, const string& stateOwner)
+void HoI4States::createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner)
 {
 	unordered_set<int> passableProvinces;
 	unordered_set<int> impassableProvinces;
@@ -231,6 +273,10 @@ void HoI4States::createMatchingHoI4State(const Vic2State* vic2State, const strin
 		addProvincesAndCoresToNewState(newState, passableProvinces);
 		newState->tryToCreateVP();
 		newState->addManpower();
+		if (impassableProvinces.size() > 0)
+		{
+			newState->markHadImpassablePart();
+		}
 		states.insert(make_pair(nextStateID, newState));
 		nextStateID++;
 	}
@@ -248,7 +294,7 @@ void HoI4States::createMatchingHoI4State(const Vic2State* vic2State, const strin
 }
 
 
-unordered_set<int> HoI4States::getProvincesInState(const Vic2State* vic2State, const string& owner)
+unordered_set<int> HoI4States::getProvincesInState(const Vic2::State* vic2State, const string& owner)
 {
 	unordered_set<int> provinces;
 	for (auto vic2ProvinceNum: vic2State->getProvinceNums())
@@ -282,7 +328,11 @@ void HoI4States::addProvincesAndCoresToNewState(HoI4State* newState, unordered_s
 	{
 		newState->addProvince(province);
 		provinceToStateIDMap.insert(make_pair(province, newState->getID()));
-		newState->addCores(coresMap.find(province)->second);
+		auto coresMapping = coresMap.find(province);
+		if (coresMapping != coresMap.end())
+		{
+			newState->addCores(coresMap.find(province)->second);
+		}
 	}
 }
 

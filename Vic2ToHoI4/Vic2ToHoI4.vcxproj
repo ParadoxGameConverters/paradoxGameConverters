@@ -69,7 +69,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(BOOST_INCLUDE); $(DEVIL_SDK_INCLUDE)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(BOOST_INCLUDE)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <EnablePREfast>false</EnablePREfast>
     </ClCompile>
@@ -120,29 +120,35 @@
     <ClCompile Include="..\common_items\CommonUtils.cpp" />
     <ClCompile Include="..\common_items\Date.cpp" />
     <ClCompile Include="..\common_items\Log.cpp" />
+    <ClCompile Include="..\common_items\newParser.cpp" />
+    <ClCompile Include="..\common_items\NewParserToOldParserConverters.cpp" />
     <ClCompile Include="..\common_items\Object.cpp" />
     <ClCompile Include="..\common_items\ParadoxParser8859_15.cpp" />
     <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp" />
+    <ClCompile Include="..\common_items\ParserHelpers.cpp" />
     <ClCompile Include="..\common_items\WinUtils.cpp" />
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\Flags.cpp" />
-    <ClCompile Include="Source\HOI4World\HoI4Advisor.cpp" />
+    <ClCompile Include="Source\HOI4World\Advisor.cpp" />
+    <ClCompile Include="Source\HOI4World\AIPeace.cpp" />
+    <ClCompile Include="Source\HOI4World\AIPeaces.cpp" />
+    <ClCompile Include="Source\HOI4World\Decision.cpp" />
+    <ClCompile Include="Source\HOI4World\Decisions.cpp" />
+    <ClCompile Include="Source\HOI4World\Event.cpp" />
+    <ClCompile Include="Source\HOI4World\Events.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Agreement.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Airforce.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Army.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Buildings.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Country.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Diplomacy.cpp" />
-    <ClCompile Include="Source\HOI4World\HoI4Event.cpp" />
-    <ClCompile Include="Source\HOI4World\HoI4Events.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Focus.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4FocusTree.cpp" />
     <ClCompile Include="Source\HOI4World\HOI4Ideology.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Leader.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Localisation.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Navy.cpp" />
-    <ClCompile Include="Source\HOI4World\HoI4OnActions.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Province.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Relations.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4State.cpp" />
@@ -153,6 +159,11 @@
     <ClCompile Include="Source\HOI4World\HOI4Version.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4WarCreator.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4World.cpp" />
+    <ClCompile Include="Source\HOI4World\Idea.cpp" />
+    <ClCompile Include="Source\HOI4World\IdeaGroup.cpp" />
+    <ClCompile Include="Source\HOI4World\Ideas.cpp" />
+    <ClCompile Include="Source\HOI4World\IdeologicalAdvisors.cpp" />
+    <ClCompile Include="Source\HOI4World\OnActions.cpp" />
     <ClCompile Include="Source\Mappers\CoastalHoI4Provinces.cpp" />
     <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
     <ClCompile Include="Source\Mappers\CultureGroupMapper.cpp" />
@@ -161,6 +172,7 @@
     <ClCompile Include="Source\Mappers\ImpassableProvinceMapper.cpp" />
     <ClCompile Include="Source\Mappers\InventionsMapper.cpp" />
     <ClCompile Include="Source\Mappers\Mapper.cpp" />
+    <ClCompile Include="Source\Mappers\MergeRules.cpp" />
     <ClCompile Include="Source\Mappers\NamesMapper.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceDefinitions.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp" />
@@ -171,39 +183,49 @@
     <ClCompile Include="Source\Mappers\V2Localisations.cpp" />
     <ClCompile Include="Source\targa.cpp" />
     <ClCompile Include="Source\V2toHOI4Converter.cpp" />
-    <ClCompile Include="Source\V2World\V2Army.cpp" />
-    <ClCompile Include="Source\V2World\V2Country.cpp" />
-    <ClCompile Include="Source\V2World\V2Diplomacy.cpp" />
-    <ClCompile Include="Source\V2World\V2Leader.cpp" />
-    <ClCompile Include="Source\V2World\V2Party.cpp" />
-    <ClCompile Include="Source\V2World\V2Pop.cpp" />
-    <ClCompile Include="Source\V2World\V2Province.cpp" />
-    <ClCompile Include="Source\V2World\V2Relations.cpp" />
-    <ClCompile Include="Source\V2World\V2World.cpp" />
-    <ClCompile Include="Source\V2World\Vic2Agreement.cpp" />
-    <ClCompile Include="Source\V2World\Vic2State.cpp" />
+    <ClCompile Include="Source\V2World\Agreement.cpp" />
+    <ClCompile Include="Source\V2World\Army.cpp" />
+    <ClCompile Include="Source\V2World\Building.cpp" />
+    <ClCompile Include="Source\V2World\CommonCountryData.cpp" />
+    <ClCompile Include="Source\V2World\Country.cpp" />
+    <ClCompile Include="Source\V2World\Diplomacy.cpp" />
+    <ClCompile Include="Source\V2World\Issues.cpp" />
+    <ClCompile Include="Source\V2World\Leader.cpp" />
+    <ClCompile Include="Source\V2World\Party.cpp" />
+    <ClCompile Include="Source\V2World\Pop.cpp" />
+    <ClCompile Include="Source\V2World\Province.cpp" />
+    <ClCompile Include="Source\V2World\Relations.cpp" />
+    <ClCompile Include="Source\V2World\State.cpp" />
+    <ClCompile Include="Source\V2World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\CardinalToOrdinal.h" />
     <ClInclude Include="..\common_items\Date.h" />
     <ClInclude Include="..\common_items\Log.h" />
+    <ClInclude Include="..\common_items\newParser.h" />
+    <ClInclude Include="..\common_items\NewParserToOldParserConverters.h" />
     <ClInclude Include="..\common_items\Object.h" />
     <ClInclude Include="..\common_items\OSCompatibilityLayer.h" />
     <ClInclude Include="..\common_items\ParadoxParser8859_15.h" />
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
+    <ClInclude Include="..\common_items\ParserHelpers.h" />
     <ClInclude Include="Source\bitmap_image.hpp" />
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\Flags.h" />
-    <ClInclude Include="Source\HOI4World\HoI4Advisor.h" />
+    <ClInclude Include="Source\HOI4World\Advisor.h" />
+    <ClInclude Include="Source\HOI4World\AIPeace.h" />
+    <ClInclude Include="Source\HOI4World\AIPeaces.h" />
+    <ClInclude Include="Source\HOI4World\Decision.h" />
+    <ClInclude Include="Source\HOI4World\Decisions.h" />
+    <ClInclude Include="Source\HOI4World\Event.h" />
+    <ClInclude Include="Source\HOI4World\Events.h" />
     <ClInclude Include="Source\HOI4World\HoI4Agreement.h" />
     <ClInclude Include="Source\HOI4World\HoI4Airforce.h" />
     <ClInclude Include="Source\HOI4World\HoI4Army.h" />
     <ClInclude Include="Source\HOI4World\HoI4Buildings.h" />
     <ClInclude Include="Source\HOI4World\HoI4Country.h" />
     <ClInclude Include="Source\HOI4World\HoI4Diplomacy.h" />
-    <ClInclude Include="Source\HOI4World\HoI4Event.h" />
-    <ClInclude Include="Source\HOI4World\HoI4Events.h" />
     <ClInclude Include="Source\HOI4World\HoI4Faction.h" />
     <ClInclude Include="Source\HOI4World\HoI4Focus.h" />
     <ClInclude Include="Source\HOI4World\HoI4FocusTree.h" />
@@ -211,7 +233,6 @@
     <ClInclude Include="Source\HOI4World\HoI4Leader.h" />
     <ClInclude Include="Source\HOI4World\HoI4Localisation.h" />
     <ClInclude Include="Source\HOI4World\HoI4Navy.h" />
-    <ClInclude Include="Source\HOI4World\HoI4OnActions.h" />
     <ClInclude Include="Source\HOI4World\HoI4Province.h" />
     <ClInclude Include="Source\HOI4World\HoI4Relations.h" />
     <ClInclude Include="Source\HOI4World\HoI4State.h" />
@@ -222,10 +243,16 @@
     <ClInclude Include="Source\HOI4World\HOI4Version.h" />
     <ClInclude Include="Source\HOI4World\HoI4WarCreator.h" />
     <ClInclude Include="Source\HOI4World\HoI4World.h" />
+    <ClInclude Include="Source\HOI4World\Idea.h" />
+    <ClInclude Include="Source\HOI4World\IdeaGroup.h" />
+    <ClInclude Include="Source\HOI4World\Ideas.h" />
+    <ClInclude Include="Source\HOI4World\IdeologicalAdvisors.h" />
+    <ClInclude Include="Source\HOI4World\OnActions.h" />
     <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h" />
     <ClInclude Include="Source\Mappers\GraphicsMapper.h" />
     <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h" />
     <ClInclude Include="Source\Mappers\InventionsMapper.h" />
+    <ClInclude Include="Source\Mappers\MergeRules.h" />
     <ClInclude Include="Source\Mappers\NamesMapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceDefinitions.h" />
     <ClInclude Include="Source\Mappers\CountryMapping.h" />
@@ -239,18 +266,20 @@
     <ClInclude Include="Source\Mappers\V2Localisations.h" />
     <ClInclude Include="Source\Mappers\CultureGroupMapper.h" />
     <ClInclude Include="Source\targa.h" />
-    <ClInclude Include="Source\V2World\Vic2Agreement.h" />
-    <ClInclude Include="Source\V2World\V2Army.h" />
-    <ClInclude Include="Source\V2World\V2Country.h" />
-    <ClInclude Include="Source\V2World\V2Diplomacy.h" />
-    <ClInclude Include="Source\V2World\V2Leader.h" />
-    <ClInclude Include="Source\V2World\V2Party.h" />
-    <ClInclude Include="Source\V2World\V2Pop.h" />
-    <ClInclude Include="Source\V2World\V2Province.h" />
-    <ClInclude Include="Source\V2World\V2Rgo.h" />
-    <ClInclude Include="Source\V2World\V2Relations.h" />
-    <ClInclude Include="Source\V2World\V2World.h" />
-    <ClInclude Include="Source\V2World\Vic2State.h" />
+    <ClInclude Include="Source\V2World\Agreement.h" />
+    <ClInclude Include="Source\V2World\Army.h" />
+    <ClInclude Include="Source\V2World\Building.h" />
+    <ClInclude Include="Source\V2World\CommonCountryData.h" />
+    <ClInclude Include="Source\V2World\Country.h" />
+    <ClInclude Include="Source\V2World\Diplomacy.h" />
+    <ClInclude Include="Source\V2World\Issues.h" />
+    <ClInclude Include="Source\V2World\Leader.h" />
+    <ClInclude Include="Source\V2World\Party.h" />
+    <ClInclude Include="Source\V2World\Pop.h" />
+    <ClInclude Include="Source\V2World\Province.h" />
+    <ClInclude Include="Source\V2World\Relations.h" />
+    <ClInclude Include="Source\V2World\State.h" />
+    <ClInclude Include="Source\V2World\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

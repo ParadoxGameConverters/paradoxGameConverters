@@ -35,14 +35,17 @@ using namespace std;
 
 
 class Object;
-class V2World;
+namespace Vic2
+{
+class World;
+}
 
 
 
 class CountryMapper
 {
 	public:
-		static void createMappings(const V2World* srcWorld)
+		static void createMappings(const Vic2::World* srcWorld)
 		{
 			getInstance()->CreateMappings(srcWorld);
 		}
@@ -77,7 +80,7 @@ class CountryMapper
 		vector<shared_ptr<Object>> getRules() const;
 		void importRule(shared_ptr<Object> rule);
 
-		void CreateMappings(const V2World* srcWorld);
+		void CreateMappings(const Vic2::World* srcWorld);
 		void resetMappingData();
 		void makeOneMapping(const string& Vic2Tag);
 		bool mapToFirstUnusedVic2Tag(const vector<string>& possibleVic2Tags, const string& EU4Tag);

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,7 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <iostream>
 #include <memory>
 #include <string>
-using namespace std;
 
 
 
@@ -41,9 +40,9 @@ struct date
 {
 	public:
 		date() : year(1), month(1), day(1) {};
-		explicit date(string _init);
+		explicit date(std::string _init);
 		date(const date& _init);
-		explicit date(const shared_ptr<Object> _init);
+		explicit date(const std::shared_ptr<Object> _init);
 
 		const date& operator=(const date& _rhs);
 		bool operator==(const date& _rhs) const;
@@ -53,7 +52,7 @@ struct date
 		bool operator<=(const date& _rhs) const;
 		bool operator>=(const date& _rhs) const;
 
-		friend ostream& operator<<(ostream&, const date&);
+		friend std::ostream& operator<<(std::ostream&, const date&);
 	
 		float diffInYears(const date& _rhs) const;
 
@@ -61,7 +60,7 @@ struct date
 		void subtractYears(const int _years);
 
 		bool isSet() const;
-		string toString() const;
+		std::string toString() const;
 
 	private:
 		int calculateDayInYear() const;

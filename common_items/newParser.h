@@ -33,7 +33,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <regex>
 #include <string>
 #include <utility>
-#include "Object.h"
 
 
 
@@ -54,6 +53,8 @@ namespace commonItems
 			void parseStream(std::istream& theStream);
 			void parseFile(const std::string& filename);
 
+			void clearRegisteredKeywords() { registeredKeywords.clear(); }
+
 			std::optional<std::string> getNextToken(std::istream& theStream);
 			std::optional<std::string> getNextTokenWithoutMatching(std::istream& theStream);
 
@@ -61,77 +62,6 @@ namespace commonItems
 			std::list<std::pair<std::regex, parsingFunction>> registeredKeywords;
 			std::string nextToken;
 			int braceDepth;
-	};
-
-
-	void ignoreItem(const std::string& unused, std::istream& theStream);
-	void ignoreObject(const std::string& unused, std::istream& theStream);
-	void ignoreString(const std::string& unused, std::istream& theStream);
-
-	std::shared_ptr<Object> convert8859Object(const std::string& top, std::istream& theStream);
-	std::shared_ptr<Object> convertUTF8Object(const std::string& top, std::istream& theStream);
-
-	std::shared_ptr<Object> convert8859String(const std::string& top, std::istream& theStream);
-	std::shared_ptr<Object> convertUTF8String(const std::string& top, std::istream& theStream);
-
-
-	class intList: commonItems::parser
-	{
-		public:
-			intList(std::istream& theStream);
-
-			std::vector<int> getInts() const { return ints; }
-
-		private:
-			std::vector<int> ints;
-	};
-
-
-	class singleInt: commonItems::parser
-	{
-		public:
-			singleInt(std::istream& theStream);
-
-		int getInt() const { return theInt; }
-
-		private:
-			int theInt;
-	};
-
-
-	class singleDouble: commonItems::parser
-	{
-		public:
-			singleDouble(std::istream& theStream);
-
-			double getDouble() const { return theDouble; }
-
-		private:
-			double theDouble;
-	};
-
-
-	class stringList: commonItems::parser
-	{
-		public:
-			stringList(std::istream& theStream);
-
-			std::vector<std::string> getStrings() const { return strings; }
-
-		private:
-			std::vector<std::string> strings;
-	};
-
-
-	class singleString: commonItems::parser
-	{
-		public:
-			singleString(std::istream& theStream);
-
-			std::string getString() const { return theString; }
-
-		private:
-			std::string theString;
 	};
 }
 

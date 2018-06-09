@@ -55,7 +55,7 @@ HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, co
 }
 
 
-HoI4Leader::HoI4Leader(V2Leader* srcLeader, const string& _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits):
+HoI4Leader::HoI4Leader(Vic2::Leader* srcLeader, const string& _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits):
 	ID(Configuration::getNextLeaderID()),
 	name(srcLeader->getName()),
 	country(_country),

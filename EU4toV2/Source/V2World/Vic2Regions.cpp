@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Vic2Regions.h"
 #include "../Configuration.h"
 #include "OSCompatibilityLayer.h"
+#include "ParserHelpers.h"
 #include <algorithm>
 
 

@@ -23,7 +23,11 @@ copy "Data_Files\cultureGroupToGraphics.txt" "release\cultureGroupToGraphics.txt
 copy "Data_Files\converterIdeologies.txt" "release\converterIdeologies.txt"
 copy "Data_Files\converterLeaderTraits.txt" "release\converterLeaderTraits.txt"
 copy "Data_Files\ideologicalAdvisors.txt" "release\ideologicalAdvisors.txt"
+copy "Data_Files\ideologicalDecisions.txt" "release\ideologicalDecisions.txt"
 copy "Data_Files\ideologicalIdeas.txt" "release\ideologicalIdeas.txt"
+copy "Data_Files\converterIdeas.txt" "release\converterIdeas.txt"
+copy "Data_Files\converterFocuses.txt" "release\converterFocuses.txt"
+copy "Data_Files\ai_peaces.txt" "release\ai_peaces.txt"
 
 rem **Copy flags**
 del "Release\flags" /Q /S /F

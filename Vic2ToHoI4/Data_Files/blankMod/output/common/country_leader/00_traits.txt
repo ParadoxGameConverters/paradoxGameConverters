@@ -18,6 +18,15 @@ leader_traits = {
 			factor = 1
 		}
 	}
+
+	emperor_showa = {
+		random = no
+		stability_factor = 0.6 #FOR THE EMPERAH
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
 	
 	ww_one_trauma = {
 		random = no
@@ -49,7 +58,7 @@ leader_traits = {
 	inexperienced_imperialist = {
 		random = no
 		political_power_factor = -0.3
-		unity_factor = 0.05
+		stability_factor = 0.05
 		justify_war_goal_time = -0.25
 		
 		ai_will_do = {
@@ -80,6 +89,11 @@ leader_traits = {
 		ai_will_do = {
 			factor = 1
 		}
+	}
+
+	generallissimo = {
+		random = no
+		defensive_war_stability_factor = 0.4
 	}
 	
 	
@@ -171,6 +185,30 @@ leader_traits = {
 		}
 	}
 
+	first_lady = {
+		random = no
+		sprite = 12
+
+		war_support_factor = 0.05
+		stability_factor = 0.05
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	dealbroker = {
+		random = yes
+
+		trade_laws_cost_factor = -0.25
+		mobilization_laws_cost_factor = -0.25
+		economy_cost_factor = -0.25
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
 	cornered_fox = {
 		random = no
 		army_defence_factor = 0.15
@@ -221,18 +259,86 @@ leader_traits = {
 
 	hedonist = {
 		random = no
-		unity_factor = -0.05
+		stability_factor = -0.05
 
 		ai_will_do = {
 			factor = 1
 		}
+	}
+	appeaser = {
+		random = yes
+		war_support_factor = -0.1
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	popular_figurehead2 = {
+		sprite = 13
+		stability_factor = 0.05
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	great_war_hero = {
+		war_support_factor = 0.05
+		stability_factor = 0.05
+		army_core_attack_factor = 0.2
+		army_core_defence_factor = 0.2
+	}
+
+	imperial_connections = {
+		random = no
+		political_advisor_cost_factor = -0.25
+		trade_laws_cost_factor = -0.25
+		mobilization_laws_cost_factor = -0.25
+		economy_cost_factor = -0.25
+		high_command_cost_factor = -0.25
+		air_chief_cost_factor = -0.25
+		army_chief_cost_factor = -0.25
+		navy_chief_cost_factor = -0.25
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	kaiserin_of_the_people = {
+		stability_weekly = 0.001
+		stability_factor = 0.05
+		war_support_factor = 0.05
+		army_core_defence_factor = 0.1
+		political_power_factor = 0.15
+	}
+
+	victoria_iii = {
+		stability_factor = 0.05
+	}
+
+	nationalist_symbol = {
+		war_support_factor = 0.05
+		stability_factor = 0.05
+		army_core_attack_factor = 0.1
+		army_core_defence_factor = 0.1
 	}
 	
 	### IDEA TRAITS ###
 	
 	popular_figurehead = {
 		sprite = 13
-		unity_factor = 0.15 
+		stability_factor = 0.15 
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	propaganda_expert = {
+		sprite = 13
+		war_support_factor = 0.10 
 		
 		ai_will_do = {
 			factor = 1
@@ -332,6 +438,16 @@ leader_traits = {
 		
 		ai_will_do = {
 			factor = 1
+		}
+	}
+
+	financial_expert = {
+		sprite = 10
+		random = yes
+		consumer_goods_factor = -0.05
+		
+		ai_will_do = {
+			factor = 2
 		}
 	}
 	
@@ -541,6 +657,22 @@ leader_traits = {
 			factor = 1
 		}
 	}
+
+	light_aircraft_manufacturer_2 = {
+		random = no
+		equipment_bonus = {
+			fighter_equipment = {
+				air_agility = 0.2 maximum_speed = 0.1
+			}
+			cv_fighter_equipment = {
+				air_agility = 0.2 maximum_speed = 0.1
+			}
+		}
+		
+		ai_will_do = {
+			factor = 2
+		}
+	}
 	
 	
 	CAS_manufacturer = {
@@ -563,6 +695,26 @@ leader_traits = {
 		random = no
 		equipment_bonus = {
 			heavy_fighter_equipment = {
+				reliability = 0.2
+			}
+			tac_bomber_equipment = {
+				reliability = 0.2
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	fuel_efficient_aircraft_manufacturer = { 
+		random = no
+		equipment_bonus = {
+			fighter_equipment = {
+				air_range = 0.1
+			}
+			heavy_fighter_equipment = {
+				air_range = 0.1
 				reliability = 0.2
 			}
 			tac_bomber_equipment = {
@@ -703,6 +855,24 @@ leader_traits = {
 			factor = 1
 		}
 	}
+		
+	battlefleet_designer = { #armored carriers, slightly buffed cap ships
+		random = no
+		equipment_bonus = {
+			capital_ship = {
+				armor_value = 0.15 
+				attack = 0.15
+			}
+			screen_ship = {
+				torpedo_attack = 0.25
+				sub_detection = -0.25
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
 	
 	raiding_fleet_naval_manufacturer = {
 		random = no
@@ -804,6 +974,16 @@ leader_traits = {
 	
 	industrial_concern = {
 		random = no
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	construction_company = {
+		random = no
+
+		production_speed_infrastructure_factor = 0.1
 		
 		ai_will_do = {
 			factor = 1
@@ -1201,6 +1381,8 @@ leader_traits = {
 		cavalry_defence_factor = 0.05
 		motorized_attack_factor = 0.05
 		motorized_defence_factor = 0.05
+		mechanized_attack_factor = 0.05
+		mechanized_defence_factor = 0.05
 		
 		ai_will_do = {
 			factor = 1
@@ -1212,7 +1394,9 @@ leader_traits = {
 		cavalry_attack_factor = 0.1
 		cavalry_defence_factor = 0.1
 		motorized_attack_factor = 0.1
-		motorized_defence_factor =0.1
+		motorized_defence_factor = 0.1
+		mechanized_attack_factor = 0.1
+		mechanized_defence_factor = 0.1
 		
 		ai_will_do = {
 			factor = 2
@@ -1225,6 +1409,8 @@ leader_traits = {
 		cavalry_defence_factor = 0.15
 		motorized_attack_factor = 0.15
 		motorized_defence_factor = 0.15
+		mechanized_attack_factor = 0.15
+		mechanized_defence_factor = 0.15
 		
 		ai_will_do = {
 			factor = 3
@@ -1732,7 +1918,7 @@ leader_traits = {
 	navy_chief_naval_aviation_1 = {
 		sprite = 1
 		navy_carrier_air_attack_factor = 0.03
-		navy_carrier_air_targetting_factor 0.03
+		navy_carrier_air_targetting_factor = 0.03
 		navy_carrier_air_agility_factor = 0.04
 		
 		ai_will_do = {
@@ -1743,7 +1929,7 @@ leader_traits = {
 	navy_chief_naval_aviation_2 = {
 		sprite = 1
 		navy_carrier_air_attack_factor = 0.06
-		navy_carrier_air_targetting_factor 0.07
+		navy_carrier_air_targetting_factor = 0.07
 		navy_carrier_air_agility_factor = 0.08
 		
 		ai_will_do = {
@@ -1754,7 +1940,7 @@ leader_traits = {
 	navy_chief_naval_aviation_3 = {
 		sprite = 1
 		navy_carrier_air_attack_factor = 0.1
-		navy_carrier_air_targetting_factor 0.12
+		navy_carrier_air_targetting_factor = 0.12
 		navy_carrier_air_agility_factor = 0.15
 		
 		ai_will_do = {
