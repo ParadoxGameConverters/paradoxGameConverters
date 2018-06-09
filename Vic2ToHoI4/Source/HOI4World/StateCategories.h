@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,51 +21,36 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef STATE_CATEGORY_MAPPER_H_
-#define STATE_CATEGORY_MAPPER_H_
+#ifndef HOI4_STATE_CATEGORIES_H_
+#define HOI4_STATE_CATEGORIES_H_
 
 
 
+#include "newParser.h"
 #include <map>
 #include <string>
-using namespace std;
 
 
 
-class stateCategoryMapper
+namespace HoI4
+{
+
+class stateCategories: commonItems::parser
 {
 	public:
-		static map<int, string> getStateCategories()
-		{
-			return getInstance()->GetStateCategories();
-		}
+		stateCategories();
+
+		std::string getBestCategory(int numBuildingSlots) const;
+
 	private:
-		static stateCategoryMapper* instance;
-		static stateCategoryMapper* getInstance()
-		{
-			if (instance == nullptr)
-			{
-				instance = new stateCategoryMapper();
-			}
+		stateCategories(const stateCategories&) = delete;
+		stateCategories& operator=(const stateCategories&) = delete;
 
-			return instance;
-		}
-		stateCategoryMapper();
-		void readCategoriesFromDirectory(const string& directory);
-		void readCategoriesFromFile(const string& file);
-
-		stateCategoryMapper(const stateCategoryMapper&) = delete;
-		stateCategoryMapper& operator=(const stateCategoryMapper&) = delete;
-
-		map<int, string> GetStateCategories() const
-		{
-			return stateCategories;
-		}
-
-
-		map<int, string> stateCategories;
+		std::map<int, std::string> theCategories;
 };
 
+}
 
 
-#endif // STATE_CATEGORY_MAPPER_H_
+
+#endif // HOI4_STATE_CATEGORIES_H_

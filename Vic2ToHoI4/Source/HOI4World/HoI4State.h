@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -38,6 +38,14 @@ namespace Vic2
 {
 class Province;
 class State;
+}
+
+
+namespace HoI4
+{
+
+class stateCategories;
+
 }
 
 
@@ -81,7 +89,7 @@ class HoI4State
 		void tryToCreateVP();
 		void addManpower();
 
-		void convertIndustry(double workerFactoryRatio);
+		void convertIndustry(double workerFactoryRatio, const HoI4::stateCategories& theStateCategories);
 
 	private:
 		HoI4State(const HoI4State&) = delete;
@@ -89,7 +97,7 @@ class HoI4State
 
 		int determineFactoryNumbers(double workerFactoryRatio);
 		int constrainFactoryNumbers(double rawFactories);
-		void determineCategory(int factories);
+		void determineCategory(int factories, const HoI4::stateCategories& theStateCategories);
 		void setInfrastructure(int factories);
 		void setIndustry(int factories);
 		bool amICoastal();

@@ -22,17 +22,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4State.h"
-#include <fstream>
-#include <random>
+#include "StateCategories.h"
 #include "../Configuration.h"
 #include "../Mappers/CoastalHoI4Provinces.h"
 #include "../Mappers/ProvinceMapper.h"
-#include "../Mappers/StateCategoryMapper.h"
 #include "../V2World/StateDefinitions.h"
 #include "../V2World/Province.h"
 #include "../V2World/State.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include <fstream>
+#include <random>
 
 
 
@@ -366,11 +366,11 @@ void HoI4State::addManpower()
 }
 
 
-void HoI4State::convertIndustry(double workerFactoryRatio)
+void HoI4State::convertIndustry(double workerFactoryRatio, const HoI4::stateCategories& theStateCategories)
 {
 	int factories = determineFactoryNumbers(workerFactoryRatio);
 
-	determineCategory(factories);
+	determineCategory(factories, theStateCategories);
 	setInfrastructure(factories);
 	setIndustry(factories);
 	addVictoryPointValue(factories / 2);
@@ -408,7 +408,7 @@ int HoI4State::constrainFactoryNumbers(double rawFactories)
 }
 
 
-void HoI4State::determineCategory(int factories)
+void HoI4State::determineCategory(int factories, const HoI4::stateCategories& theStateCategories)
 {
 	if (capitalState)
 	{
@@ -422,13 +422,7 @@ void HoI4State::determineCategory(int factories)
 		stateSlots = factories + 2;
 	}
 
-	for (auto possibleCategory: stateCategoryMapper::getStateCategories())
-	{
-		if (stateSlots >= possibleCategory.first)
-		{
-			category = possibleCategory.second;
-		}
-	}
+	category = theStateCategories.getBestCategory(stateSlots);
 }
 
 

@@ -46,6 +46,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4StrategicRegion.h"
 #include "HoI4SupplyZones.h"
 #include "HoI4WarCreator.h"
+#include "StateCategories.h"
 #include "../Mappers/CountryMapping.h"
 #include <fstream>
 using namespace std;
@@ -479,6 +480,8 @@ double HoI4World::getWorldwideWorkerFactoryRatio(const map<string, double>& work
 
 void HoI4World::putIndustryInStates(const map<string, double>& factoryWorkerRatios)
 {
+	HoI4::stateCategories theStateCategories;
+
 	for (auto HoI4State : states->getStates())
 	{
 		auto ratioMapping = factoryWorkerRatios.find(HoI4State.second->getOwner());
@@ -487,7 +490,7 @@ void HoI4World::putIndustryInStates(const map<string, double>& factoryWorkerRati
 			continue;
 		}
 
-		HoI4State.second->convertIndustry(ratioMapping->second);
+		HoI4State.second->convertIndustry(ratioMapping->second, theStateCategories);
 	}
 }
 

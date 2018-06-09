@@ -164,6 +164,7 @@
     <ClCompile Include="Source\HOI4World\Ideas.cpp" />
     <ClCompile Include="Source\HOI4World\IdeologicalAdvisors.cpp" />
     <ClCompile Include="Source\HOI4World\OnActions.cpp" />
+    <ClCompile Include="Source\HOI4World\StateCategories.cpp" />
     <ClCompile Include="Source\Mappers\CoastalHoI4Provinces.cpp" />
     <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
     <ClCompile Include="Source\Mappers\CultureGroupMapper.cpp" />
@@ -178,7 +179,6 @@
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceNeighborMapper.cpp" />
     <ClCompile Include="Source\Mappers\ReformMapper.cpp" />
-    <ClCompile Include="Source\Mappers\StateCategoryMapper.cpp" />
     <ClCompile Include="Source\Mappers\V2Localisations.cpp" />
     <ClCompile Include="Source\targa.cpp" />
     <ClCompile Include="Source\V2toHOI4Converter.cpp" />
@@ -248,6 +248,7 @@
     <ClInclude Include="Source\HOI4World\Ideas.h" />
     <ClInclude Include="Source\HOI4World\IdeologicalAdvisors.h" />
     <ClInclude Include="Source\HOI4World\OnActions.h" />
+    <ClInclude Include="Source\HOI4World\StateCategories.h" />
     <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h" />
     <ClInclude Include="Source\Mappers\GraphicsMapper.h" />
     <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h" />
@@ -261,7 +262,6 @@
     <ClInclude Include="Source\Mappers\ProvinceMapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceNeighborMapper.h" />
     <ClInclude Include="Source\Mappers\ReformMapper.h" />
-    <ClInclude Include="Source\Mappers\StateCategoryMapper.h" />
     <ClInclude Include="Source\Mappers\V2Localisations.h" />
     <ClInclude Include="Source\Mappers\CultureGroupMapper.h" />
     <ClInclude Include="Source\targa.h" />
