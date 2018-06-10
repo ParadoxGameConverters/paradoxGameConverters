@@ -35,7 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParser8859_15.h"
 #include "OSCompatibilityLayer.h"
 #include "../EU4World/CultureGroups.h"
-#include "../EU4World/EU4World.h"
+#include "../EU4World/World.h"
 #include "../EU4World/EU4Country.h"
 #include "../EU4World/EU4Province.h"
 #include "../EU4World/EU4Relations.h"

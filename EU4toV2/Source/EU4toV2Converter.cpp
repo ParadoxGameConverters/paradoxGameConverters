@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Configuration.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
-#include "EU4World/EU4World.h"
+#include "EU4World/World.h"
 #include "V2World/V2World.h"
 
 

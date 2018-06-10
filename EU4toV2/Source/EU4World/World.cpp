@@ -21,7 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "EU4World.h"
+#include "World.h"
 #include <algorithm>
 #include <fstream>
 #include <string>

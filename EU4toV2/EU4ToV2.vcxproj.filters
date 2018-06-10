@@ -31,9 +31,6 @@
     <ClCompile Include="Source\EU4World\EU4Version.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EU4World\EU4World.cpp">
-      <Filter>EU4 World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\V2World\V2Army.cpp">
       <Filter>Vic2 World</Filter>
     </ClCompile>
@@ -196,7 +193,7 @@
     </ClCompile>
     <ClCompile Include="Source\EU4World\CountryHistory.cpp">
       <Filter>EU4 World</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="Source\EU4World\Countries.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>
@@ -211,6 +208,10 @@
     </ClCompile>
     <ClCompile Include="..\common_items\ParserHelpers.cpp">
       <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\CountryHistory.cpp" />
+    <ClCompile Include="Source\EU4World\World.cpp">
+      <Filter>EU4 World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -242,9 +243,6 @@
       <Filter>EU4 World</Filter>
     </ClInclude>
     <ClInclude Include="Source\EU4World\EU4Version.h">
-      <Filter>EU4 World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\EU4World.h">
       <Filter>EU4 World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Army.h">
@@ -402,8 +400,8 @@
       <Filter>EU4 World</Filter>
     </ClInclude>
     <ClInclude Include="Source\EU4World\CountryHistory.h">
-	  <Filter>EU4 World</Filter>
-	</ClInclude>
+      <Filter>EU4 World</Filter>
+    </ClInclude>
     <ClInclude Include="Source\EU4World\Countries.h">
       <Filter>EU4 World</Filter>
     </ClInclude>
@@ -418,6 +416,10 @@
     </ClInclude>
     <ClInclude Include="..\common_items\ParserHelpers.h">
       <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\CountryHistory.h" />
+    <ClInclude Include="Source\EU4World\World.h">
+      <Filter>EU4 World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
