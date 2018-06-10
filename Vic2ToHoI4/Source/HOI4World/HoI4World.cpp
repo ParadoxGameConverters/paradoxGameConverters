@@ -212,6 +212,7 @@ void HoI4World::convertCountry(pair<string, Vic2::Country*> country, map<int, in
 	}
 
 	HoI4Localisation::createCountryLocalisations(make_pair(country.first, *possibleHoI4Tag));
+	HoI4Localisation::updateMainCountryLocalisation(destCountry->getTag() + "_" + destCountry->getGovernmentIdeology(), country.first, country.second->getGovernment());
 }
 
 

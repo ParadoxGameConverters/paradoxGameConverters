@@ -279,6 +279,45 @@ void HoI4Localisation::addLocalisation(const string& newKey, languageToLocalisat
 }
 
 
+void HoI4Localisation::UpdateMainCountryLocalisation(const std::string& HoI4Key, const std::string& Vic2Tag, const std::string& Vic2Government)
+{
+	if (!attemptToUpdateMainCountryLocalisation(HoI4Key, Vic2Tag + "_" + Vic2Government))
+	{
+		attemptToUpdateMainCountryLocalisation(HoI4Key, Vic2Tag);
+	}
+	if (!attemptToUpdateMainCountryLocalisation(HoI4Key + "_DEF", Vic2Tag + "_" + Vic2Government))
+	{
+		attemptToUpdateMainCountryLocalisation(HoI4Key + "_DEF", Vic2Tag);
+	}
+	if (!attemptToUpdateMainCountryLocalisation(HoI4Key + "_ADJ", Vic2Tag + "_" + Vic2Government + "_ADJ"))
+	{
+		attemptToUpdateMainCountryLocalisation(HoI4Key + "_ADJ", Vic2Tag + "_ADJ");
+	}
+}
+
+
+bool HoI4Localisation::attemptToUpdateMainCountryLocalisation(const std::string& HoI4Key, const std::string& Vic2Key)
+{
+	if (auto Vic2Text = V2Localisations::GetTextInEachLanguage(Vic2Key); Vic2Text.size() > 0)
+	{
+		for (auto textInLanguage: Vic2Text)
+		{
+			auto HoI4Localisations = getExistingLocalisationsInLanguage(textInLanguage.first);
+			if (auto HoI4Localisation = HoI4Localisations->second.find(HoI4Key); HoI4Localisation != HoI4Localisations->second.end())
+			{
+				HoI4Localisation->second = textInLanguage.second;
+			}
+		}
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
 void HoI4Localisation::AddNonenglishCountryLocalisations()
 {
 	auto englishLocalisations = countryLocalisations.find("english");

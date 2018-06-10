@@ -60,6 +60,11 @@ class HoI4Localisation
 			getInstance()->CreateCountryLocalisations(tags);
 		}
 
+		static void updateMainCountryLocalisation(const std::string& HoI4Key, const std::string& Vic2Tag, const std::string& Vic2Government)
+		{
+			getInstance()->UpdateMainCountryLocalisation(HoI4Key, Vic2Tag, Vic2Government);
+		}
+
 		static void addNonenglishCountryLocalisations()
 		{
 			getInstance()->AddNonenglishCountryLocalisations();
@@ -134,6 +139,9 @@ class HoI4Localisation
 		languageToLocalisationsMap::iterator getExistingLocalisationsInLanguage(const std::string& language);
 		void addLocalisation(const std::string& newKey, languageToLocalisationsMap::iterator& existingLanguage, const std::string& localisation, const std::string& HoI4Suffix);
 		bool addNeutralLocalisation(const std::pair<const std::string&, const std::string&>& tags, const std::pair<const std::string&, const std::string&>& suffixes);
+
+		void UpdateMainCountryLocalisation(const std::string& HoI4Key, const std::string& Vic2Tag, const std::string& Vic2Government);
+		bool attemptToUpdateMainCountryLocalisation(const std::string& HoI4Key, const std::string& Vic2Key);
 
 		void CopyFocusLocalisations(const std::string& oldKey, const std::string& newKey);
 
