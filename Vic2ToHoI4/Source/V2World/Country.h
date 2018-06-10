@@ -87,7 +87,6 @@ class Country: commonItems::parser
 		double getRevanchism() const { return revanchism; }
 		double getWarExhaustion() const { return warExhaustion; }
 		double getBadBoy() const { return badboy; }
-		std::map<std::string, std::string> getAllReforms() const { return reformsArray; }
 		bool isGreatNation() const { return greatNation; }
 		std::map<int, Province*> getProvinces() const { return provinces; }
 		std::vector<Province*> getCores() const { return cores; }
@@ -96,7 +95,6 @@ class Country: commonItems::parser
 		bool isHuman() const { return human; }
 		std::map<std::string, double> getUpperHouseComposition() const { return upperHouseComposition; }
 
-		std::optional<std::string> getReform(const std::string& reform) const;
 		std::optional<std::string> getName(const std::string& language) const;
 		std::optional<std::string> getAdjective(const std::string& language) const;
 		double getUpperHousePercentage(const std::string& ideology) const;
@@ -145,7 +143,6 @@ class Country: commonItems::parser
 		double badboy = 0.0;
 
 		std::string government = "";
-		std::map<std::string, std::string> reformsArray;
 		std::map<std::string, double> upperHouseComposition;
 		unsigned	int rulingPartyID = 0; 	// Bad value, but normal for Rebel faction.
 		std::vector<unsigned int> activePartyIDs;

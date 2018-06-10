@@ -25,7 +25,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "../Mappers/CultureGroupMapper.h"
 #include "../Mappers/InventionsMapper.h"
-#include "../Mappers/ReformMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "Army.h"
 #include "Leader.h"
@@ -146,13 +145,6 @@ Vic2::Country::Country(const std::string& theTag, std::istream& theStream):
 		commonItems::singleInt partyNum(theStream);
 		rulingPartyID = partyNum.getInt();
 	});
-	for (auto reform: reformMapper::getReformTypes())
-	{
-		registerKeyword(std::regex(reform.first), [this](const std::string& reformType, std::istream& theStream){
-			commonItems::singleString reformValue(theStream);
-			reformsArray[reformType] = reformValue.getString();
-		});
-	}
 	registerKeyword(std::regex("upper_house"), [this](const std::string& unused, std::istream& theStream){
 		auto equals = getNextTokenWithoutMatching(theStream);
 		auto openBrace = getNextTokenWithoutMatching(theStream);
@@ -379,18 +371,6 @@ void Vic2::Country::setLocalisationAdjective(const string& language, const strin
 	{
 		adjectivesByLanguage[language] = adjective;
 	}
-}
-
-
-optional<string> Vic2::Country::getReform(const string& reform) const
-{
-	map<string, string>::const_iterator itr = reformsArray.find(reform);
-	if (itr == reformsArray.end())
-	{
-		return {};
-	}
-
-	return itr->second;
 }
 
 
