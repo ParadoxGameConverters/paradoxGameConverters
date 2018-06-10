@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <optional>
 #include <set>
 #include <string>
+#include <unordered_set>
 #include <vector>
 using namespace std;
 
@@ -68,7 +69,7 @@ class HoI4States
 
 		void createStates();
 		void createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner);
-		unordered_set<int> getProvincesInState(const Vic2::State* vic2State, const string& owner);
+		std::unordered_set<int> getProvincesInState(const Vic2::State* vic2State, const string& owner);
 		void addProvincesAndCoresToNewState(HoI4State* newState, unordered_set<int> provinces);
 		bool isProvinceValid(int provNum) const;
 		bool isProvinceOwnedByCountry(int provNum, const string& stateOwner) const;

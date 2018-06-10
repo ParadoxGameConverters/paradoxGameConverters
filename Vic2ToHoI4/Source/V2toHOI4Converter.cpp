@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "HOI4World/HoI4World.h"
 #include "V2World/World.h"
+#include "Mappers/ProvinceMapper.h"
 #include "OSCompatibilityLayer.h"
 
 
@@ -74,9 +75,10 @@ void output(const HoI4World& destWorld);
 void ConvertV2ToHoI4(const string& V2SaveFileName)
 {
 	ConfigurationFile("configuration.txt");
-
 	checkMods();
 	getOutputName(V2SaveFileName);
+
+	theProvinceMapper.initialize();
 
 	Vic2::World sourceWorld(V2SaveFileName);
 	HoI4World destWorld(&sourceWorld);

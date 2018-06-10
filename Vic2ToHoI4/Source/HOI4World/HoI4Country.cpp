@@ -301,17 +301,16 @@ void HoI4Country::convertRelations()
 void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states)
 {
 	int oldCapital = srcCountry->getCapital();
-	auto itr = provinceMapper::getVic2ToHoI4ProvinceMapping().find(oldCapital);
-	if (itr != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+	if (auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(oldCapital))
 	{
-		auto capitalStateMapping = provinceToStateIDMap.find(itr->second[0]);
+		auto capitalStateMapping = provinceToStateIDMap.find((*mapping)[0]);
 		if (capitalStateMapping != provinceToStateIDMap.end() && isStateValidForCapital(capitalStateMapping->second, states))
 		{
 			capitalStateNum = capitalStateMapping->second;
 			capitalState = states.find(capitalStateNum)->second;
 			if (isThisStateOwnedByUs(states.find(capitalStateNum)->second))
 			{
-				setCapitalInCapitalState(itr->second[0]);
+				setCapitalInCapitalState((*mapping)[0]);
 			}
 		}
 		else
@@ -618,10 +617,9 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4::UnitMap>& unitMap
 	{
 		// get the number of source brigades per location
 		int HoI4location = 0;
-		auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(army->getLocation());
-		if (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+		if (auto provMapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(army->getLocation()))
 		{
-			for (auto HoI4ProvNum : provMapping->second)
+			for (auto HoI4ProvNum: *provMapping)
 			{
 				if (HoI4ProvNum != 0 && provinces.find(HoI4ProvNum) != provinces.end())
 				{

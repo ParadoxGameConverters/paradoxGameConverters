@@ -184,10 +184,9 @@ int HoI4State::determineNavalBaseLevel(const Vic2::Province* sourceProvince)
 
 optional<int> HoI4State::determineNavalBaseLocation(const Vic2::Province* sourceProvince)
 {
-	auto provinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvince->getNumber());
-	if (provinceMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+	if (auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(sourceProvince->getNumber()))
 	{
-		for (auto HoI4ProvNum: provinceMapping->second)
+		for (auto HoI4ProvNum: *mapping)
 		{
 			if (coastalHoI4ProvincesMapper::isProvinceCoastal(HoI4ProvNum))
 			{
@@ -220,10 +219,9 @@ void HoI4State::addCores(const vector<string>& newCores)
 
 bool HoI4State::assignVPFromVic2Province(int Vic2ProvinceNumber)
 {
-	auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(Vic2ProvinceNumber);
-	if (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+	if (auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(Vic2ProvinceNumber))
 	{
-		for (auto province: provMapping->second)
+		for (auto province: *mapping)
 		{
 			if (isProvinceInState(province))
 			{
@@ -324,17 +322,14 @@ void HoI4State::addDebugVPs()
 {
 	for (auto sourceProvinceNum: sourceState->getProvinceNums())
 	{
-		auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvinceNum);
-		if (
-				(provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
-				(isProvinceInState(provMapping->second[0]))
-			)
+		auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(sourceProvinceNum);
+		if (mapping && (isProvinceInState((*mapping)[0])))
 		{
-			debugVictoryPoints.insert(provMapping->second[0]);
+			debugVictoryPoints.insert((*mapping)[0]);
 		}
-		for (unsigned int i = 1; i < provMapping->second.size(); i++)
+		for (auto province: *mapping)
 		{
-			secondaryDebugVictoryPoints.insert(provMapping->second[i]);
+			secondaryDebugVictoryPoints.insert(province);
 		}
 	}
 }
@@ -345,10 +340,9 @@ void HoI4State::addManpower()
 	for (auto sourceProvince: sourceState->getProvinces())
 	{
 		bool provinceIsInState = false;
-		auto mapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvince->getNumber());
-		if (mapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+		if (auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(sourceProvince->getNumber()))
 		{
-			for (auto HoI4Province: mapping->second)
+			for (auto HoI4Province: *mapping)
 			{
 				if (isProvinceInState(HoI4Province))
 				{

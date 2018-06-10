@@ -87,19 +87,22 @@ void HoI4States::determineOwnersAndCores()
 
 optional<vector<int>> HoI4States::retrieveSourceProvinceNums(int provNum) const
 {
-	auto provinceLink = provinceMapper::getHoI4ToVic2ProvinceMapping().find(provNum);
-	if ((provinceLink == provinceMapper::getHoI4ToVic2ProvinceMapping().end()) || (provinceLink->second.size() == 0))
+	auto provinceLink = theProvinceMapper.getHoI4ToVic2ProvinceMapping(provNum);
+	if (provinceLink && (provinceLink->size() > 0))
 	{
-		LOG(LogLevel::Warning) << "No source for HoI4 land province " << provNum;
-		return {};
-	}
-	else if (provinceLink->second[0] == 0)
-	{
-		return {};
+		if ((*provinceLink)[0] == 0)
+		{
+			return std::nullopt;
+		}
+		else
+		{
+			return provinceLink;
+		}
 	}
 	else
 	{
-		return provinceLink->second;
+		LOG(LogLevel::Warning) << "No source for HoI4 land province " << provNum;
+		return std::nullopt;
 	}
 }
 
@@ -298,10 +301,9 @@ unordered_set<int> HoI4States::getProvincesInState(const Vic2::State* vic2State,
 	unordered_set<int> provinces;
 	for (auto vic2ProvinceNum: vic2State->getProvinceNums())
 	{
-		auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(vic2ProvinceNum);
-		if (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+		if (auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(vic2ProvinceNum))
 		{
-			for (auto HoI4ProvNum: provMapping->second)
+			for (auto HoI4ProvNum: *mapping)
 			{
 				if (
 						isProvinceValid(HoI4ProvNum) &&

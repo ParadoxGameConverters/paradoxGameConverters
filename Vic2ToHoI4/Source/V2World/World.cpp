@@ -410,10 +410,10 @@ std::optional<const Vic2::Province*> Vic2::World::getProvince(int provNum) const
 
 void Vic2::World::checkAllProvincesMapped() const
 {
-	auto Vic2ToHoI4ProvinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping();
 	for (auto province: provinces)
 	{
-		if (Vic2ToHoI4ProvinceMapping.find(province.first) == Vic2ToHoI4ProvinceMapping.end())
+		auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(province.first);
+		if (!mapping)
 		{
 			LOG(LogLevel::Warning) << "No mapping for Vic2 province " << province.first;
 		}
