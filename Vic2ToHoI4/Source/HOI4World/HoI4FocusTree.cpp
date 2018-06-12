@@ -1472,6 +1472,12 @@ void HoI4FocusTree::addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<sh
 		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
 		newFocus->text = "Alliance with " + allyCountryName;
 		newFocus->prerequisites.push_back("= { focus = " + ideologyShort + "_Summit" + Home->getTag() + " }");
+		newFocus->available = "= {\n";
+		newFocus->available += "		OR = {\n";
+		newFocus->available += "			is_faction_leader = yes\n";
+		newFocus->available += "			is_in_faction = no\n";
+		newFocus->available += "		}";
+		newFocus->available += "		}";
 		newFocus->xPos = nextFreeColumn + i * 2;
 		newFocus->yPos = 1;
 		newFocus->cost = 10;
