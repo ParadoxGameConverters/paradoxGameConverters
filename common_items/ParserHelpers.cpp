@@ -180,15 +180,21 @@ commonItems::singleDouble::singleDouble(std::istream& theStream):
 commonItems::stringList::stringList(std::istream& theStream):
 	strings()
 {
-	std::string iso8859_15("[\\w\\x20\\x27\\x2C-\\x2E\\x3A\\x3F\\x60\\x8A\\x8E\\x92\\x9A\\x9E\\xA0\\xA6\\xA8\\xAA\\xB4\\xB8\\xBC-\\xBE\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\xFF\\xED]+");
-	registerKeyword(std::regex(iso8859_15), [this](const std::string& theString, std::istream& theStream)
+	registerKeyword(std::regex("[^[:s:]^=\\{^\\}^\\\"]+"), [this](const std::string& theString, std::istream& theStream)
 	{
 		strings.push_back(theString);
 	}
 	);
-	registerKeyword(std::regex("\\\"" + iso8859_15 + "\\\""), [this](const std::string& theString, std::istream& theStream)
+	registerKeyword(std::regex("\\\"[^\n^=\\{^\\}^\\\"]+\\\""), [this](const std::string& theString, std::istream& theStream)
 	{
-		strings.push_back(theString);
+		if (theString.substr(0,1) == "\"")
+		{
+			strings.push_back(theString.substr(1, theString.size() - 2));
+		}
+		else
+		{
+			strings.push_back(theString);
+		}
 	}
 	);
 
