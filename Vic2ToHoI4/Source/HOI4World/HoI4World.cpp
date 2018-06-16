@@ -41,6 +41,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "IdeologicalAdvisors.h"
 #include "HOI4Ideology.h"
 #include "HoI4Localisation.h"
+#include "Names.h"
 #include "HoI4Province.h"
 #include "HoI4State.h"
 #include "HoI4StrategicRegion.h"
@@ -203,7 +204,7 @@ void HoI4World::convertCountry(pair<string, Vic2::Country*> country, map<int, in
 		}
 		destCountry = new HoI4Country(*possibleHoI4Tag, countryFileName, this);
 
-		destCountry->initFromV2Country(*sourceWorld, country.second, states->getProvinceToStateIDMap(), states->getStates());
+		destCountry->initFromV2Country(*sourceWorld, country.second, states->getProvinceToStateIDMap(), states->getStates(), theNames);
 		countries.insert(make_pair(*possibleHoI4Tag, destCountry));
 	}
 	else
@@ -1624,7 +1625,7 @@ void HoI4World::addCountryElectionEvents(const set<string>& majorIdeologies)
 }
 
 
-void HoI4World::output() const
+void HoI4World::output()
 {
 	LOG(LogLevel::Info) << "Outputting world";
 
@@ -1732,7 +1733,7 @@ void HoI4World::outputNames() const
 	{
 		if (country.second->getCapitalStateNum() != 0)
 		{
-			country.second->outputToNamesFiles(namesFile);
+			country.second->outputToNamesFiles(namesFile, theNames);
 		}
 	}
 }
@@ -1820,7 +1821,7 @@ void HoI4World::outputGenericFocusTree() const
 }
 
 
-void HoI4World::outputCountries() const
+void HoI4World::outputCountries()
 {
 	LOG(LogLevel::Debug) << "Writing countries";
 	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/history"))
@@ -1849,7 +1850,7 @@ void HoI4World::outputCountries() const
 	{
 		if (country.second->getCapitalStateNum() != 0)
 		{
-			country.second->output(activeIdeologicalAdvisors, divisionTemplates);
+			country.second->output(activeIdeologicalAdvisors, divisionTemplates, theNames);
 		}
 	}
 

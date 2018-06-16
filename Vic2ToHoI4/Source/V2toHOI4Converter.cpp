@@ -71,7 +71,7 @@ int main(const int argc, const char* argv[])
 
 void checkMods();
 void getOutputName(const string& V2SaveFileName);
-void output(const HoI4World& destWorld);
+void output(HoI4World& destWorld);
 void ConvertV2ToHoI4(const string& V2SaveFileName)
 {
 	ConfigurationFile("configuration.txt");
@@ -149,7 +149,7 @@ void getOutputName(const string& V2SaveFileName)
 
 void createModFile();
 void renameOutputFolder();
-void output(const HoI4World& destWorld)
+void output(HoI4World& destWorld)
 {
 	createModFile();
 	renameOutputFolder();

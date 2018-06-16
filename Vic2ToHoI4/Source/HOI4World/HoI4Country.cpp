@@ -30,9 +30,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Focus.h"
 #include "HoI4Leader.h"
 #include "HoI4Localisation.h"
+#include "Names.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/GovernmentMapper.h"
-#include "../Mappers/NamesMapper.h"
 #include "../Mappers/GraphicsMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/Relations.h"
@@ -99,7 +99,7 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 }
 
 
-void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states)
+void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states, HoI4::namesMapper& theNames)
 {
 	srcCountry = _srcCountry;
 
@@ -128,7 +128,7 @@ void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Co
 		graphicalCulture2d = "western_european_2d";
 	}
 	lastElection = srcCountry->getLastElection();
-	initIdeas();
+	initIdeas(theNames);
 
 	stability = 0.6;
 	warSupport = 0.6;
@@ -229,19 +229,19 @@ void HoI4Country::convertParties(const set<string>& majorIdeologies)
 }
 
 
-void HoI4Country::initIdeas()
+void HoI4Country::initIdeas(HoI4::namesMapper& theNames)
 {
-	HoI4Localisation::addIdeaLocalisation(tag + "_tank_manufacturer", namesMapper::getCarCompanyName(srcCountry->getPrimaryCulture()));
-	HoI4Localisation::addIdeaLocalisation(tag + "_motorized_equipment_manufacturer", namesMapper::getCarCompanyName(srcCountry->getPrimaryCulture()));
-	HoI4Localisation::addIdeaLocalisation(tag + "_infantry_equipment_manufacturer", namesMapper::getWeaponCompanyName(srcCountry->getPrimaryCulture()));
-	HoI4Localisation::addIdeaLocalisation(tag + "_artillery_manufacturer", namesMapper::getWeaponCompanyName(srcCountry->getPrimaryCulture()));
-	HoI4Localisation::addIdeaLocalisation(tag + "_light_aircraft_manufacturer", namesMapper::getAircraftCompanyName(srcCountry->getPrimaryCulture()));
-	HoI4Localisation::addIdeaLocalisation(tag + "_medium_aircraft_manufacturer", namesMapper::getAircraftCompanyName(srcCountry->getPrimaryCulture()));
-	HoI4Localisation::addIdeaLocalisation(tag + "_heavy_aircraft_manufacturer", namesMapper::getAircraftCompanyName(srcCountry->getPrimaryCulture()));
-	HoI4Localisation::addIdeaLocalisation(tag + "_naval_aircraft_manufacturer", namesMapper::getAircraftCompanyName(srcCountry->getPrimaryCulture()));
-	HoI4Localisation::addIdeaLocalisation(tag + "_naval_manufacturer", namesMapper::getNavalCompanyName(srcCountry->getPrimaryCulture()));
-	HoI4Localisation::addIdeaLocalisation(tag + "_industrial_concern", namesMapper::getIndustryCompanyName(srcCountry->getPrimaryCulture()));
-	HoI4Localisation::addIdeaLocalisation(tag + "_electronics_concern", namesMapper::getElectronicCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_tank_manufacturer", theNames.takeCarCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_motorized_equipment_manufacturer", theNames.takeCarCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_infantry_equipment_manufacturer", theNames.takeWeaponCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_artillery_manufacturer", theNames.takeWeaponCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_light_aircraft_manufacturer", theNames.takeAircraftCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_medium_aircraft_manufacturer", theNames.takeAircraftCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_heavy_aircraft_manufacturer", theNames.takeAircraftCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_naval_aircraft_manufacturer", theNames.takeAircraftCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_naval_manufacturer", theNames.takeNavalCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_industrial_concern", theNames.takeIndustryCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_electronics_concern", theNames.takeElectronicCompanyName(srcCountry->getPrimaryCulture()));
 }
 
 
@@ -1201,28 +1201,41 @@ void HoI4Country::outputColors(ofstream& out) const
 }
 
 
-void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
+void HoI4Country::outputToNamesFiles(ofstream& namesFile, const HoI4::namesMapper& theNames) const
 {
 	namesFile << tag << " = {\n";
 
 	namesFile << "\tmale = {\n";
 	namesFile << "\t\tnames = {\n";
-	outputNamesSet(namesFile, namesMapper::getMaleNames(srcCountry->getPrimaryCulture()), "\t\t\t");
+	outputNamesSet(namesFile, theNames.getMaleNames(srcCountry->getPrimaryCulture()), "\t\t\t");
 	namesFile << "\t\t}\n";
 	namesFile << "\t}\n";
 
 	namesFile << "\tfemale = {\n";
 	namesFile << "\t\tnames = {\n";
-	outputNamesSet(namesFile, namesMapper::getFemaleNames(srcCountry->getPrimaryCulture()), "\t\t\t");
+	outputNamesSet(namesFile, theNames.getFemaleNames(srcCountry->getPrimaryCulture()), "\t\t\t");
 	namesFile << "\t\t}\n";
 	namesFile << "\t}\n";
 
-	namesFile << "\tsurnames = {\n";
-	outputNamesSet(namesFile, namesMapper::getSurnames(srcCountry->getPrimaryCulture()), "\t\t");
-	namesFile << "\t}\n";
+	if (auto femaleSurnames = theNames.getFemaleSurnames(srcCountry->getPrimaryCulture()); femaleSurnames->size() > 0)
+	{
+		namesFile << "\tfemale_surnames = {\n";
+		outputNamesSet(namesFile, femaleSurnames, "\t\t");
+		namesFile << "\t}\n";
+
+		namesFile << "\tmale_surnames = {\n";
+		outputNamesSet(namesFile, theNames.getSurnames(srcCountry->getPrimaryCulture()), "\t\t");
+		namesFile << "\t}\n";
+	}
+	else
+	{
+		namesFile << "\tsurnames = {\n";
+		outputNamesSet(namesFile, theNames.getSurnames(srcCountry->getPrimaryCulture()), "\t\t");
+		namesFile << "\t}\n";
+	}
 
 	namesFile << "\tcallsigns = {\n";
-	outputNamesSet(namesFile, namesMapper::getCallsigns(srcCountry->getPrimaryCulture()), "\t\t");
+	outputNamesSet(namesFile, theNames.getCallsigns(srcCountry->getPrimaryCulture()), "\t\t");
 	namesFile << "\t}\n";
 
 	namesFile << "}\n";
@@ -1273,7 +1286,7 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const optional<vector<stri
 		for (unsigned int i = 0; i < names->size(); i++)
 		{
 			namesFile << '\"' << (*names)[i] << '\"';
-			if (i == names->size())
+			if ((i + 1) == names->size())
 			{
 				continue;
 			}
@@ -1293,11 +1306,11 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const optional<vector<stri
 }
 
 
-void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4::DivisionTemplateType>& divisionTemplates) const
+void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4::DivisionTemplateType>& divisionTemplates, HoI4::namesMapper& theNames) const
 {
 	if (capitalStateNum != 0)
 	{
-		outputHistory();
+		outputHistory(theNames);
 		outputOOB(divisionTemplates);
 		outputCommonCountryFile();
 		outputAdvisorIdeas(ideologicalMinisters);
@@ -1310,7 +1323,7 @@ void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& 
 }
 
 
-void HoI4Country::outputHistory() const
+void HoI4Country::outputHistory(HoI4::namesMapper& theNames) const
 {
 	ofstream output("output/" + theConfiguration.getOutputName() + "/history/countries/" + Utils::normalizeUTF8Path(filename));
 	if (!output.is_open())
@@ -1335,7 +1348,7 @@ void HoI4Country::outputHistory() const
 	outputIdeas(output);
 	outputStability(output);
 	outputWarSupport(output);
-	outputCountryLeader(output);
+	outputCountryLeader(output, theNames);
 
 	output.close();
 }
@@ -1635,10 +1648,10 @@ void HoI4Country::outputWarSupport(ofstream& output) const
 }
 
 
-void HoI4Country::outputCountryLeader(ofstream& output) const
+void HoI4Country::outputCountryLeader(ofstream& output, HoI4::namesMapper& theNames) const
 {
-	optional<string> firstName = namesMapper::getMaleName(srcCountry->getPrimaryCulture());
-	optional<string> surname = namesMapper::getSurname(srcCountry->getPrimaryCulture());
+	optional<string> firstName = theNames.getMaleName(srcCountry->getPrimaryCulture());
+	optional<string> surname = theNames.getSurname(srcCountry->getPrimaryCulture());
 	string portrait = graphicsMapper::getLeaderPortrait(srcCountry->getPrimaryCultureGroup(), governmentIdeology);
 
 	if (firstName && surname)

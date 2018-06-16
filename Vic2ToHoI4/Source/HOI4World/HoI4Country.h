@@ -55,6 +55,7 @@ class HoI4World;
 namespace HoI4
 {
 class Advisor;
+class namesMapper;
 struct advisorCompare;
 }
 
@@ -65,7 +66,7 @@ class HoI4Country
 	public:
 		HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld);
 
-		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states);
+		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states, HoI4::namesMapper& theNames);
 		void initFromHistory();
 		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies);
 		void convertGovernment(const Vic2::World& _srcWorld);
@@ -85,9 +86,9 @@ class HoI4Country
 		void adjustResearchFocuses();
 		void outputToCommonCountriesFile(ofstream& countriesFile) const;
 		void outputColors(ofstream& out) const;
-		void outputToNamesFiles(ofstream& namesFile) const;
+		void outputToNamesFiles(ofstream& namesFile, const HoI4::namesMapper& theNames) const;
 		void outputToUnitNamesFiles(ofstream& unitNamesFile) const;
-		void output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4::DivisionTemplateType>& divisionTemplates) const;
+		void output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4::DivisionTemplateType>& divisionTemplates, HoI4::namesMapper& theNames) const;
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(const string& SphereLeader) { sphereLeader == SphereLeader; }
@@ -139,7 +140,7 @@ class HoI4Country
 		HoI4Country& operator=(const HoI4Country&) = delete;
 
 		void determineFilename();
-		void initIdeas();
+		void initIdeas(HoI4::namesMapper& theNames);
 		void convertLaws();
 		//void convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 		void convertRelations();
@@ -153,7 +154,7 @@ class HoI4Country
 		void addProvince(int _province);
 
 		void outputNamesSet(ofstream& namesFile, const optional<vector<string>>& names, const string& tabs) const;
-		void outputHistory() const;
+		void outputHistory(HoI4::namesMapper& theNames) const;
 		void outputCapital(ofstream& output) const;
 		void outputResearchSlots(ofstream& output) const;
 		void outputThreat(ofstream& output) const;
@@ -170,7 +171,7 @@ class HoI4Country
 		void outputIdeas(ofstream& output) const;
 		void outputStability(ofstream& output) const;
 		void outputWarSupport(ofstream& output) const;
-		void outputCountryLeader(ofstream& output) const;
+		void outputCountryLeader(ofstream& output, HoI4::namesMapper& theNames) const;
 		void outputOOBLine(ofstream& output) const;
 		void outputCommonCountryFile() const;
 		void outputAdvisorIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const;

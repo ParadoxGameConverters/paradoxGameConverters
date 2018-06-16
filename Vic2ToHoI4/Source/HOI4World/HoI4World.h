@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "AIPeaces.h"
 #include "Ideas.h"
 #include "OnActions.h"
+#include "Names.h"
 #include "HoI4States.h"
 #include "../Mappers/Mapper.h"
 #include <map>
@@ -81,7 +82,7 @@ class HoI4World
 		explicit HoI4World(const Vic2::World* sourceWorld);
 		~HoI4World();
 
-		void output() const;
+		void output();
 
 		map<string, shared_ptr<HoI4Country>> getCountries()	const { return countries; }
 		vector<shared_ptr<HoI4Country>> getGreatPowers() const { return greatPowers; }
@@ -189,7 +190,7 @@ class HoI4World
 		void outputUnitNames() const;
 		void outputMap() const;
 		void outputGenericFocusTree() const;
-		void outputCountries() const;
+		void outputCountries();
 		set<const HoI4::Advisor*, HoI4::advisorCompare> getActiveIdeologicalAdvisors() const;
 		void outputRelations() const;
 		void outputIdeologies() const;
@@ -230,6 +231,8 @@ class HoI4World
 		std::unique_ptr<HoI4::OnActions> onActions;
 
 		vector<HoI4::DivisionTemplateType> divisionTemplates;
+
+		HoI4::namesMapper theNames;
 
 		leaderTraitsMap leaderTraits;
 };
