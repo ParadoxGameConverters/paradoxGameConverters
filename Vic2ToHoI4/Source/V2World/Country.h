@@ -44,6 +44,7 @@ namespace Vic2
 {
 
 class Army;
+class inventions;
 class Leader;
 class Province;
 class Relations;
@@ -53,7 +54,7 @@ class State;
 class Country: commonItems::parser
 {
 	public:
-		explicit Country(const std::string& theTag, std::istream& theStream);
+		explicit Country(const std::string& theTag, std::istream& theStream, const inventions& theInventions);
 
 		void addProvince(const std::pair<const int, Province*>& province) { provinces.insert(province); }
 		void setColor(const ConverterColor::Color& newColor) { color = newColor; }
@@ -76,7 +77,7 @@ class Country: commonItems::parser
 		std::string getPrimaryCultureGroup() const { return primaryCultureGroup; }
 		std::set<std::string> getAcceptedCultures() const { return acceptedCultures; }
 		bool isAnAcceptedCulture(const std::string& culture) const { return (acceptedCultures.count(culture) > 0); }
-		std::set<std::string> getInventions() const { return inventions; }
+		std::set<std::string> getInventions() const { return discoveredInventions; }
 		std::string getGovernment() const { return government; }
 		date getLastElection() const { return lastElection; }
 		int getCapital() const { return capital; }
@@ -129,7 +130,7 @@ class Country: commonItems::parser
 		std::set<std::string> acceptedCultures;
 
 		std::set<std::string> techs;
-		std::set<std::string> inventions;
+		std::set<std::string> discoveredInventions;
 
 		std::map<std::string, const Relations*> relations;
 		bool greatNation = false;

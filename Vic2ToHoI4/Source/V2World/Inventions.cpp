@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,30 +21,26 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "InventionsMapper.h"
+#include "Inventions.h"
 #include "Log.h"
 #include "../Configuration.h"
 #include "OSCompatibilityLayer.h"
-#include "ParadoxParser8859_15.h"
+#include "ParserHelpers.h"
 
 
 
-inventionsMapper* inventionsMapper::instance = nullptr;
-
-
-
-inventionsMapper::inventionsMapper()
+Vic2::inventions::inventions()
 {
-	string path = getInventionPath();
+	std::string path = getInventionPath();
 	generateNums(path);
 }
 
 
-string inventionsMapper::getInventionPath()
+std::string Vic2::inventions::getInventionPath() const
 {
 	for (auto mod: theConfiguration.getVic2Mods())
 	{
-		string possiblePath = theConfiguration.getVic2Path() + "/mod/" + mod + "/inventions/";
+		std::string possiblePath = theConfiguration.getVic2Path() + "/mod/" + mod + "/inventions/";
 		if (Utils::doesFolderExist(possiblePath))
 		{
 			return possiblePath;
@@ -55,9 +51,9 @@ string inventionsMapper::getInventionPath()
 }
 
 
-void inventionsMapper::generateNums(string path)
+void Vic2::inventions::generateNums(std::string path)
 {
-	set<string> techFiles;
+	std::set<std::string> techFiles;
 	Utils::GetAllFilesInFolder(path, techFiles);
 	for (auto fileItr: techFiles)
 	{
@@ -66,28 +62,18 @@ void inventionsMapper::generateNums(string path)
 }
 
 
-void inventionsMapper::processTechFile(string filename)
+void Vic2::inventions::processTechFile(std::string filename)
 {
-	auto obj = parser_8859_15::doParseFile(filename);
-	if (obj)
-	{
-		vector<shared_ptr<Object>> techObjs = obj->getLeaves();
+	registerKeyword(std::regex("[a-zA-Z0-9_\\.\\è\\é\\ö\\ü\\:]+"), [this](const std::string& inventionName, std::istream& theStream){
+		inventionNumsToNames.insert(make_pair(inventionNumsToNames.size() + 1, inventionName));
+		commonItems::ignoreItem(inventionName, theStream);
+	});
 
-		for (auto techObj: techObjs)
-		{
-			string name = techObj->getKey();
-			inventionNumsToNames.insert(make_pair(inventionNumsToNames.size() + 1, name));
-		}
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Could not parse " << filename;
-		exit(-1);
-	}
+	parseFile(filename);
 }
 
 
-optional<string> inventionsMapper::GetInventionName(int inventionNum)
+std::optional<std::string> Vic2::inventions::getInventionName(int inventionNum) const
 {
 	auto inventionName = inventionNumsToNames.find(inventionNum);
 	if (inventionName == inventionNumsToNames.end())

@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Country.h"
 #include "Diplomacy.h"
 #include "Issues.h"
+#include "Inventions.h"
 #include "Party.h"
 #include "Province.h"
 #include "State.h"
@@ -44,6 +45,7 @@ Vic2::World::World(const string& filename)
 {
 	issuesInstance.instantiate();
 	theStateDefinitions.initialize();
+	inventions theInventions;
 
 	std::vector<int> GPIndexes;
 	registerKeyword(std::regex("great_nations"), [&GPIndexes, this](const std::string& unused, std::istream& theStream)
@@ -59,14 +61,14 @@ Vic2::World::World(const string& filename)
 
 	std::vector<std::string> tagsInOrder;
 	tagsInOrder.push_back(""); // REB (first country is index 1
-	registerKeyword(std::regex("[A-Z]{3}"), [&tagsInOrder, this](const std::string& countryTag, std::istream& theStream)
+	registerKeyword(std::regex("[A-Z]{3}"), [&tagsInOrder, &theInventions, this](const std::string& countryTag, std::istream& theStream)
 	{
-		countries[countryTag] = new Country(countryTag, theStream);
+		countries[countryTag] = new Country(countryTag, theStream, theInventions);
 		tagsInOrder.push_back(countryTag);
 	});
-	registerKeyword(std::regex("[A-Z][0-9]{2}"), [&tagsInOrder, this](const std::string& countryTag, std::istream& theStream)
+	registerKeyword(std::regex("[A-Z][0-9]{2}"), [&tagsInOrder, &theInventions, this](const std::string& countryTag, std::istream& theStream)
 	{
-		countries[countryTag] = new Country(countryTag, theStream);
+		countries[countryTag] = new Country(countryTag, theStream, theInventions);
 		tagsInOrder.push_back(countryTag);
 	});
 

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,50 +21,41 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef INVENTIONS_MAPPER_H
-#define INVENTIONS_MAPPER_H
+#ifndef INVENTIONS_H
+#define INVENTIONS_H
 
 
 
-#include <optional>
+#include "newParser.h"
 #include <map>
+#include <optional>
 #include <string>
-using namespace std;
 
 
 
-class inventionsMapper
+namespace Vic2
+{
+
+class inventions: commonItems::parser
 {
 	public:
-		static optional<string> getInventionName(int inventionNum)
-		{
-			return getInstance()->GetInventionName(inventionNum);
-		}
+		inventions();
+
+		std::optional<std::string> getInventionName(int inventionNum) const;
+
 	private:
-		static inventionsMapper* instance;
-		static inventionsMapper* getInstance()
-		{
-			if (instance == nullptr)
-			{
-				instance = new inventionsMapper();
-			}
-			return instance;
-		}
-		inventionsMapper();
+		inventions(const inventions&) = delete;
+		inventions& operator=(const inventions&) = delete;
 
-		inventionsMapper(const inventionsMapper&) = delete;
-		inventionsMapper& operator=(const inventionsMapper&) = delete;
+		std::string getInventionPath() const;
+		void generateNums(std::string path);
+		void processTechFile(std::string filename);
 
-		string getInventionPath();
-		void generateNums(string path);
-		void processTechFile(string filename);
-
-		optional<string> GetInventionName(int inventionNum);
-
-		map<int, string> inventionNumsToNames;
+		std::map<int, std::string> inventionNumsToNames;
 };
 
+}
 
 
 
-#endif // INVENTIONS_MAPPER_H
+#endif // INVENTIONS_H

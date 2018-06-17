@@ -89,9 +89,6 @@
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\Mapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\CoastalHoI4Provinces.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -139,9 +136,6 @@
     </ClCompile>
     <ClCompile Include="Source\HOI4World\HOI4Ideology.cpp">
       <Filter>HoI4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mappers\InventionsMapper.cpp">
-      <Filter>Mappers</Filter>
     </ClCompile>
     <ClCompile Include="Source\Mappers\ImpassableProvinceMapper.cpp">
       <Filter>Mappers</Filter>
@@ -245,6 +239,9 @@
     <ClCompile Include="Source\HOI4World\Names.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\V2World\Inventions.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -317,9 +314,6 @@
     <ClInclude Include="Source\Mappers\GovernmentMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mappers\Mapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -371,9 +365,6 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HOI4Ideology.h">
       <Filter>HoI4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mappers\InventionsMapper.h">
-      <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h">
       <Filter>Mappers</Filter>
@@ -476,6 +467,9 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\Names.h">
       <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Inventions.h">
+      <Filter>Vic2World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

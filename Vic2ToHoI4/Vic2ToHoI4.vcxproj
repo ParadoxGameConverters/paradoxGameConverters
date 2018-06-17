@@ -172,8 +172,6 @@
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp" />
     <ClCompile Include="Source\Mappers\GraphicsMapper.cpp" />
     <ClCompile Include="Source\Mappers\ImpassableProvinceMapper.cpp" />
-    <ClCompile Include="Source\Mappers\InventionsMapper.cpp" />
-    <ClCompile Include="Source\Mappers\Mapper.cpp" />
     <ClCompile Include="Source\Mappers\MergeRules.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceDefinitions.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp" />
@@ -187,6 +185,7 @@
     <ClCompile Include="Source\V2World\CommonCountryData.cpp" />
     <ClCompile Include="Source\V2World\Country.cpp" />
     <ClCompile Include="Source\V2World\Diplomacy.cpp" />
+    <ClCompile Include="Source\V2World\Inventions.cpp" />
     <ClCompile Include="Source\V2World\Issues.cpp" />
     <ClCompile Include="Source\V2World\Leader.cpp" />
     <ClCompile Include="Source\V2World\Party.cpp" />
@@ -252,12 +251,10 @@
     <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h" />
     <ClInclude Include="Source\Mappers\GraphicsMapper.h" />
     <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h" />
-    <ClInclude Include="Source\Mappers\InventionsMapper.h" />
     <ClInclude Include="Source\Mappers\MergeRules.h" />
     <ClInclude Include="Source\Mappers\ProvinceDefinitions.h" />
     <ClInclude Include="Source\Mappers\CountryMapping.h" />
     <ClInclude Include="Source\Mappers\GovernmentMapper.h" />
-    <ClInclude Include="Source\Mappers\Mapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceMapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceNeighborMapper.h" />
     <ClInclude Include="Source\Mappers\V2Localisations.h" />
@@ -269,6 +266,7 @@
     <ClInclude Include="Source\V2World\CommonCountryData.h" />
     <ClInclude Include="Source\V2World\Country.h" />
     <ClInclude Include="Source\V2World\Diplomacy.h" />
+    <ClInclude Include="Source\V2World\Inventions.h" />
     <ClInclude Include="Source\V2World\Issues.h" />
     <ClInclude Include="Source\V2World\Leader.h" />
     <ClInclude Include="Source\V2World\Party.h" />

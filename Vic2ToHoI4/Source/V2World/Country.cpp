@@ -24,9 +24,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Country.h"
 #include "Log.h"
 #include "../Mappers/CultureGroupMapper.h"
-#include "../Mappers/InventionsMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "Army.h"
+#include "Inventions.h"
 #include "Leader.h"
 #include "Party.h"
 #include "Pop.h"
@@ -38,7 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-Vic2::Country::Country(const std::string& theTag, std::istream& theStream):
+Vic2::Country::Country(const std::string& theTag, std::istream& theStream, const inventions& theInventions):
 	tag(theTag)
 {
 	registerKeyword(std::regex("capital"), [this](const std::string& unused, std::istream& theStream){
@@ -122,14 +122,14 @@ Vic2::Country::Country(const std::string& theTag, std::istream& theStream):
 			token = getNextTokenWithoutMatching(theStream);
 		}
 	});
-	registerKeyword(std::regex("active_inventions"), [this](const std::string& unused, std::istream& theStream){
+	registerKeyword(std::regex("active_inventions"), [this, &theInventions](const std::string& unused, std::istream& theStream){
 		commonItems::intList inventionNums(theStream);
 		for (auto inventionNum: inventionNums.getInts())
 		{
-			auto inventionName = inventionsMapper::getInventionName(inventionNum);
+			auto inventionName = theInventions.getInventionName(inventionNum);
 			if (inventionName)
 			{
-				inventions.insert(*inventionName);
+				discoveredInventions.insert(*inventionName);
 			}
 		}
 	});
@@ -222,9 +222,9 @@ void Vic2::Country::eatCountry(Vic2::Country* target)
 		techs.insert(tech);
 	}
 
-	for (auto itr : target->inventions)
+	for (auto itr : target->discoveredInventions)
 	{
-		inventions.insert(itr);
+		discoveredInventions.insert(itr);
 	}
 
 	armies.insert(armies.end(), target->armies.begin(), target->armies.end());
