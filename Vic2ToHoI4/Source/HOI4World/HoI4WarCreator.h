@@ -31,7 +31,10 @@ using namespace std;
 
 
 class HoI4World;
-
+namespace Vic2
+{
+class World;
+}
 
 
 const int maxGCWars = 1;
@@ -77,7 +80,7 @@ class HoI4WarCreator
 		vector<shared_ptr<HoI4Faction>> addGreatPowerWars(shared_ptr<HoI4Country> country, shared_ptr<HoI4FocusTree> FocusTree, vector<shared_ptr<HoI4Country>>& greatPowerTargets);
 		void addTradeEvents(shared_ptr<HoI4Country> country, const vector<shared_ptr<HoI4Country>>& greatPowerTargets);
 
-		void    setSphereLeaders(const V2World* sourceWorld);
+		void    setSphereLeaders(const Vic2::World* sourceWorld);
 		double    GetFactionStrength(const shared_ptr<HoI4Faction> Faction, int years) const;
 		string HowToTakeLand(shared_ptr<HoI4Country> TargetCountry, shared_ptr<HoI4Country> AttackingCountry, double time);
 		vector<shared_ptr<HoI4Country>> GetMorePossibleAllies(shared_ptr<HoI4Country> CountryThatWantsAllies);

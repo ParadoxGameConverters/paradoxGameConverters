@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceDefinitions.h"
 #include "../Mappers/ProvinceNeighborMapper.h"
 #include "../V2World/Party.h"
+#include "../V2World/World.h"
 #include "Log.h"
 
 
@@ -294,7 +295,7 @@ vector<shared_ptr<HoI4Country>> HoI4WarCreator::findEvilCountries() const
 }
 
 
-void HoI4WarCreator::setSphereLeaders(const V2World* sourceWorld)
+void HoI4WarCreator::setSphereLeaders(const Vic2::World* sourceWorld)
 {
 	for (auto greatPower: theWorld->getGreatPowers())
 	{

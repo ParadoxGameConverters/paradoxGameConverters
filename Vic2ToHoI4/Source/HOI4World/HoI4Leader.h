@@ -28,7 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "../Mappers/Mapper.h"
 #include "../V2World/Leader.h"
 using namespace std;
 
@@ -36,8 +35,8 @@ using namespace std;
 class HoI4Leader
 {
 	public:
-		HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, const string& _country, const string& _type, leaderTraitsMap& _traitsMap, vector<string>& portraits);
-		HoI4Leader(Vic2::Leader* srcLeader, const string& _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits);
+		HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, const string& _country, const string& _type, vector<string>& portraits);
+		HoI4Leader(Vic2::Leader* srcLeader, const string& _country, vector<string>& portraits);
 		void output(FILE* output);
 
 		string getType()	const { return type; }

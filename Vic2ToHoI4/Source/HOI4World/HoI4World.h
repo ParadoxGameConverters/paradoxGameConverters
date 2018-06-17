@@ -31,7 +31,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OnActions.h"
 #include "Names.h"
 #include "HoI4States.h"
-#include "../Mappers/Mapper.h"
 #include <map>
 #include <optional>
 #include <set>
@@ -101,7 +100,7 @@ class HoI4World
 		void convertNavalBases();
 
 		void convertCountries();
-		void convertCountry(pair<string, Vic2::Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void convertCountry(pair<string, Vic2::Country*> country);
 
 		void importIdeologies();
 		void importIdeologyFile(const string& filename);
@@ -233,8 +232,6 @@ class HoI4World
 		vector<HoI4::DivisionTemplateType> divisionTemplates;
 
 		HoI4::namesMapper theNames;
-
-		leaderTraitsMap leaderTraits;
 };
 
 

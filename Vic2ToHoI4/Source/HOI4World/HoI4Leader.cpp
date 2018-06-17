@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, const string& _country, const string& _type, leaderTraitsMap& _traitsMap, vector<string>& portraits):
+HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, const string& _country, const string& _type, vector<string>& portraits):
 	ID(theConfiguration.getNextLeaderID()),
 	name(firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()]),
 	country(_country),
@@ -55,7 +55,7 @@ HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, co
 }
 
 
-HoI4Leader::HoI4Leader(Vic2::Leader* srcLeader, const string& _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits):
+HoI4Leader::HoI4Leader(Vic2::Leader* srcLeader, const string& _country, vector<string>& portraits):
 	ID(theConfiguration.getNextLeaderID()),
 	name(srcLeader->getName()),
 	country(_country),
@@ -81,7 +81,7 @@ HoI4Leader::HoI4Leader(Vic2::Leader* srcLeader, const string& _country, personal
 
 	//picture	= portraits[rand() % portraits.size()];
 
-	if (type == "land")
+	/*if (type == "land")
 	{
 		auto possiblePersonalities = landPersonalityMap.find(srcLeader->getPersonality());
 		if ((possiblePersonalities != landPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
@@ -106,7 +106,7 @@ HoI4Leader::HoI4Leader(Vic2::Leader* srcLeader, const string& _country, personal
 		{
 			traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
 		}
-	}
+	}*/
 }
 
 

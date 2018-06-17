@@ -140,27 +140,16 @@ void HoI4World::convertCountries()
 {
 	LOG(LogLevel::Info) << "Converting countries";
 
-	//initLeaderTraitsMap(leaderTraits);
-	personalityMap landPersonalityMap;
-	personalityMap seaPersonalityMap;
-	//initLeaderPersonalityMap(landPersonalityMap, seaPersonalityMap);
-
-	backgroundMap landBackgroundMap;
-	backgroundMap seaBackgroundMap;
-	//initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
-
-	map<int, int> leaderMap;
-
 	for (auto sourceItr : sourceWorld->getCountries())
 	{
-		convertCountry(sourceItr, leaderMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+		convertCountry(sourceItr);
 	}
 
 	HoI4Localisation::addNonenglishCountryLocalisations();
 }
 
 
-void HoI4World::convertCountry(pair<string, Vic2::Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4World::convertCountry(pair<string, Vic2::Country*> country)
 {
 	// don't convert rebels
 	if (country.first == "REB")
