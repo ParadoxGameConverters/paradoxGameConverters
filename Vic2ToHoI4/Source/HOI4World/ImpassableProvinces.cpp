@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,54 +21,39 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "ImpassableProvinceMapper.h"
+#include "ImpassableProvinces.h"
+#include "StateFile.h"
 #include "../Configuration.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
-#include "ParadoxParserUTF8.h"
 
 
 
-impassableProvinceMapper* impassableProvinceMapper::instance = nullptr;
-
-
-
-impassableProvinceMapper::impassableProvinceMapper()
+HoI4::impassableProvinces::impassableProvinces()
 {
+	registerKeyword(std::regex("state"), [this](const std::string& unused, std::istream& theStream){
+		StateFile theState(theStream);
+		if (theState.isImpassable())
+		{
+			for (auto province: theState.getProvinces())
+			{
+				impassibleProvinces.insert(province);
+			}
+		}
+	});
+
 	LOG(LogLevel::Info) << "Finding impassable provinces";
 
 	std::set<std::string> statesFiles;
 	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/history/states", statesFiles);
 	for (auto stateFile: statesFiles)
 	{
-		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
-
-		auto fileObj = parser_UTF8::doParseFile(theConfiguration.getHoI4Path() + "/history/states/" + stateFile);
-		if (fileObj)
-		{
-			auto stateObj = fileObj->safeGetObject("state");
-			auto impassable = stateObj->safeGetString("impassable", "no");
-			if (impassable == "yes")
-			{
-				auto provincesObj = stateObj->safeGetObject("provinces");
-				auto tokens = provincesObj->getTokens();
-
-				for (auto provinceNumString: tokens)
-				{
-					impassibleProvinces.insert(stoi(provinceNumString));
-				}
-			}
-		}
-		else
-		{
-			LOG(LogLevel::Error) << "Could not parse " << theConfiguration.getHoI4Path() << "/history/states/" << stateFile;
-			exit(-1);
-		}
+		parseFile(theConfiguration.getHoI4Path() + "/history/states/" + stateFile);
 	}
 }
 
 
-bool impassableProvinceMapper::IsProvinceImpassable(int provinceNumber) const
+bool HoI4::impassableProvinces::isProvinceImpassable(int provinceNumber) const
 {
 	return (impassibleProvinces.count(provinceNumber) > 0);
 }

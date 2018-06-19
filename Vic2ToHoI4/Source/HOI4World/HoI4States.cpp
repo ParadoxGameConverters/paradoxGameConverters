@@ -22,12 +22,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4States.h"
+#include "ImpassableProvinces.h"
 #include "HoI4State.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include "../Mappers/CountryMapping.h"
-#include "../Mappers/ImpassableProvinceMapper.h"
 #include "../Mappers/ProvinceDefinitions.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/Country.h"
@@ -49,8 +49,10 @@ HoI4States::HoI4States(const Vic2::World* _sourceWorld):
 	nextStateID(1)
 {
 	LOG(LogLevel::Info) << "Converting states";
+	HoI4::impassableProvinces theImpassables;
+
 	determineOwnersAndCores();
-	createStates();
+	createStates(theImpassables);
 }
 
 
@@ -194,7 +196,7 @@ vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, co
 }
 
 
-void HoI4States::createStates()
+void HoI4States::createStates(const HoI4::impassableProvinces& theImpassables)
 {
 	std::set<int> ownedProvinces;
 
@@ -205,7 +207,7 @@ void HoI4States::createStates()
 			auto possibleHoI4Owner = CountryMapper::getHoI4Tag(country.first);
 			if (possibleHoI4Owner)
 			{
-				createMatchingHoI4State(vic2State, *possibleHoI4Owner);
+				createMatchingHoI4State(vic2State, *possibleHoI4Owner, theImpassables);
 				for (auto province: vic2State->getProvinces())
 				{
 					ownedProvinces.insert(province->getNumber());
@@ -244,7 +246,7 @@ void HoI4States::createStates()
 		}
 
 		Vic2::State* newState = new Vic2::State(stateProvinces);
-		createMatchingHoI4State(newState, "");
+		createMatchingHoI4State(newState, "", theImpassables);
 	}
 
 	unsigned int manpower = getTotalManpower();
@@ -252,14 +254,14 @@ void HoI4States::createStates()
 }
 
 
-void HoI4States::createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner)
+void HoI4States::createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner, const HoI4::impassableProvinces& theImpassables)
 {
 	unordered_set<int> passableProvinces;
 	unordered_set<int> impassableProvinces;
 	auto allProvinces = getProvincesInState(vic2State, stateOwner);
 	for (auto province: allProvinces)
 	{
-		if (impassableProvinceMapper::isProvinceImpassable(province))
+		if (theImpassables.isProvinceImpassable(province))
 		{
 			impassableProvinces.insert(province);
 		}

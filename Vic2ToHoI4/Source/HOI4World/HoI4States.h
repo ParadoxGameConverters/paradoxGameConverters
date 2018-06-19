@@ -37,7 +37,10 @@ using namespace std;
 
 
 class HoI4State;
-class V2Province;
+namespace HoI4
+{
+class impassableProvinces;
+}
 namespace Vic2
 {
 class Country;
@@ -67,8 +70,8 @@ class HoI4States
 		const Vic2::Country* selectProvinceOwner(const map<const Vic2::Country*, pair<int, int>>& potentialOwners) const;
 		vector<string> determineCores(const vector<int>& sourceProvinces, const Vic2::Country* oldOwner) const;
 
-		void createStates();
-		void createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner);
+		void createStates(const HoI4::impassableProvinces& theImpassables);
+		void createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner, const HoI4::impassableProvinces& theImpassables);
 		std::unordered_set<int> getProvincesInState(const Vic2::State* vic2State, const string& owner);
 		void addProvincesAndCoresToNewState(HoI4State* newState, unordered_set<int> provinces);
 		bool isProvinceValid(int provNum) const;

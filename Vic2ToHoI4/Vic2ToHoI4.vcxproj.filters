@@ -137,9 +137,6 @@
     <ClCompile Include="Source\HOI4World\HOI4Ideology.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\ImpassableProvinceMapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
     <ClCompile Include="..\common_items\newParser.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
@@ -241,6 +238,12 @@
     </ClCompile>
     <ClCompile Include="Source\V2World\Inventions.cpp">
       <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\ImpassableProvinces.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\StateFile.cpp">
+      <Filter>HoI4World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -366,9 +369,6 @@
     <ClInclude Include="Source\HOI4World\HOI4Ideology.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="..\common_items\newParser.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
@@ -470,6 +470,12 @@
     </ClInclude>
     <ClInclude Include="Source\V2World\Inventions.h">
       <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\ImpassableProvinces.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\StateFile.h">
+      <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

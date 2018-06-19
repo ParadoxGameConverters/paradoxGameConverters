@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,41 +21,33 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef IMPASSABLE_PROVINCE_MAPPER_H
-#define IMPASSABLE_PROVINCE_MAPPER_H
+#ifndef IMPASSABLE_PROVINCES_H
+#define IMPASSABLE_PROVINCES_H
 
 
 
+#include "newParser.h"
 #include <unordered_set>
 
 
 
-class impassableProvinceMapper
+namespace HoI4
+{
+
+class impassableProvinces: commonItems::parser
 {
 	public:
-		static bool isProvinceImpassable(int provinceNumber)
-		{
-			return getInstance()->IsProvinceImpassable(provinceNumber);
-		}
+		impassableProvinces();
+
+		bool isProvinceImpassable(int provinceNumber) const;
 
 	public:
-		static impassableProvinceMapper* instance;
-		static impassableProvinceMapper* getInstance()
-		{
-			if (instance == nullptr)
-			{
-				instance = new impassableProvinceMapper();
-			}
-			return instance;
-		}
-
-		impassableProvinceMapper();
-
-		bool IsProvinceImpassable(int provinceNumber) const;
-
 		std::unordered_set<int> impassibleProvinces;
 };
 
+}
 
-#endif // !IMPASSABLE_PROVINCE_MAPPER_H
+
+
+#endif // IMPASSABLE_PROVINCES_H
 
