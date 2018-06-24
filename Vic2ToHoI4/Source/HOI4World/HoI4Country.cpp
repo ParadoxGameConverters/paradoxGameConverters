@@ -99,7 +99,7 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 }
 
 
-void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states, HoI4::namesMapper& theNames)
+void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics)
 {
 	srcCountry = _srcCountry;
 
@@ -109,7 +109,7 @@ void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Co
 	color = srcCountry->getColor();
 	civilized = srcCountry->isCivilized();
 	threat = srcCountry->getBadBoy() / 10.0;
-	auto possibleGraphicalCulture = graphicsMapper::getGraphicalCulture(srcCountry->getPrimaryCultureGroup());
+	auto possibleGraphicalCulture = theGraphics.getGraphicalCulture(srcCountry->getPrimaryCultureGroup());
 	if (possibleGraphicalCulture)
 	{
 		graphicalCulture = *possibleGraphicalCulture;
@@ -118,7 +118,7 @@ void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Co
 	{
 		graphicalCulture = "western_european_gfx";
 	}
-	auto possibleGraphicalCulture2d = graphicsMapper::get2dGraphicalCulture(srcCountry->getPrimaryCultureGroup());
+	auto possibleGraphicalCulture2d = theGraphics.get2dGraphicalCulture(srcCountry->getPrimaryCultureGroup());
 	if (possibleGraphicalCulture2d)
 	{
 		graphicalCulture2d = *possibleGraphicalCulture2d;
@@ -1306,11 +1306,11 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const optional<vector<stri
 }
 
 
-void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4::DivisionTemplateType>& divisionTemplates, HoI4::namesMapper& theNames) const
+void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4::DivisionTemplateType>& divisionTemplates, HoI4::namesMapper& theNames, graphicsMapper& theGraphics) const
 {
 	if (capitalStateNum != 0)
 	{
-		outputHistory(theNames);
+		outputHistory(theNames, theGraphics);
 		outputOOB(divisionTemplates);
 		outputCommonCountryFile();
 		outputAdvisorIdeas(ideologicalMinisters);
@@ -1323,7 +1323,7 @@ void HoI4Country::output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& 
 }
 
 
-void HoI4Country::outputHistory(HoI4::namesMapper& theNames) const
+void HoI4Country::outputHistory(HoI4::namesMapper& theNames, graphicsMapper& theGraphics) const
 {
 	ofstream output("output/" + theConfiguration.getOutputName() + "/history/countries/" + Utils::normalizeUTF8Path(filename));
 	if (!output.is_open())
@@ -1348,7 +1348,7 @@ void HoI4Country::outputHistory(HoI4::namesMapper& theNames) const
 	outputIdeas(output);
 	outputStability(output);
 	outputWarSupport(output);
-	outputCountryLeader(output, theNames);
+	outputCountryLeader(output, theNames, theGraphics);
 
 	output.close();
 }
@@ -1648,11 +1648,11 @@ void HoI4Country::outputWarSupport(ofstream& output) const
 }
 
 
-void HoI4Country::outputCountryLeader(ofstream& output, HoI4::namesMapper& theNames) const
+void HoI4Country::outputCountryLeader(ofstream& output, HoI4::namesMapper& theNames, graphicsMapper& theGraphics) const
 {
 	optional<string> firstName = theNames.getMaleName(srcCountry->getPrimaryCulture());
 	optional<string> surname = theNames.getSurname(srcCountry->getPrimaryCulture());
-	string portrait = graphicsMapper::getLeaderPortrait(srcCountry->getPrimaryCultureGroup(), governmentIdeology);
+	string portrait = theGraphics.getLeaderPortrait(srcCountry->getPrimaryCultureGroup(), governmentIdeology);
 
 	if (firstName && surname)
 	{
@@ -2094,23 +2094,23 @@ void HoI4Country::outputAdvisorIdeas(const set<const HoI4::Advisor*, HoI4::advis
 }
 
 
-void HoI4Country::outputIdeaGraphics(ofstream& ideasFile) const
+void HoI4Country::outputIdeaGraphics(ofstream& ideasFile, graphicsMapper& graphics) const
 {
 
 	ideasFile << "\tspriteType = {\n";
 	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_communist_advisor\"\n";
-	ideasFile << "\t\ttexturefile = \"" << graphicsMapper::getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "communism") << "\"\n";
+	ideasFile << "\t\ttexturefile = \"" << graphics.getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "communism") << "\"\n";
 	ideasFile << "\t}\n";
 
 
 	ideasFile << "\tspriteType = {\n";
 	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_democratic_advisor\"\n";
-	ideasFile << "\t\ttexturefile = \"" << graphicsMapper::getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "democratic") << "\"\n";
+	ideasFile << "\t\ttexturefile = \"" << graphics.getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "democratic") << "\"\n";
 	ideasFile << "\t}\n";
 
 
 	ideasFile << "\tspriteType = {\n";
 	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_fascist_advisor\"\n";
-	ideasFile << "\t\ttexturefile = \"" << graphicsMapper::getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "fascism") << "\"\n";
+	ideasFile << "\t\ttexturefile = \"" << graphics.getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "fascism") << "\"\n";
 	ideasFile << "\t}\n";
 }

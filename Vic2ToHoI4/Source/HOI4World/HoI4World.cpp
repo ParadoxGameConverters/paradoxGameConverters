@@ -193,7 +193,7 @@ void HoI4World::convertCountry(pair<string, Vic2::Country*> country)
 		}
 		destCountry = new HoI4Country(*possibleHoI4Tag, countryFileName, this);
 
-		destCountry->initFromV2Country(*sourceWorld, country.second, states->getProvinceToStateIDMap(), states->getStates(), theNames);
+		destCountry->initFromV2Country(*sourceWorld, country.second, states->getProvinceToStateIDMap(), states->getStates(), theNames, theGraphics);
 		countries.insert(make_pair(*possibleHoI4Tag, destCountry));
 	}
 	else
@@ -1839,7 +1839,7 @@ void HoI4World::outputCountries()
 	{
 		if (country.second->getCapitalStateNum() != 0)
 		{
-			country.second->output(activeIdeologicalAdvisors, divisionTemplates, theNames);
+			country.second->output(activeIdeologicalAdvisors, divisionTemplates, theNames, theGraphics);
 		}
 	}
 
@@ -1855,7 +1855,7 @@ void HoI4World::outputCountries()
 	{
 		if (country.second->getCapitalStateNum() != 0)
 		{
-			country.second->outputIdeaGraphics(ideasFile);
+			country.second->outputIdeaGraphics(ideasFile, theGraphics);
 		}
 	}
 	ideasFile << "\n";
