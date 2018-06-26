@@ -201,7 +201,7 @@ void HoI4World::convertCountry(pair<string, Vic2::Country*> country)
 		LOG(LogLevel::Warning) << "Could not convert V2 tag " << country.first << " to HoI4";
 	}
 
-	HoI4Localisation::createCountryLocalisations(make_pair(country.first, *possibleHoI4Tag));
+	HoI4Localisation::createCountryLocalisations(make_pair(country.first, *possibleHoI4Tag), governmentMap);
 	HoI4Localisation::updateMainCountryLocalisation(destCountry->getTag() + "_" + destCountry->getGovernmentIdeology(), country.first, country.second->getGovernment());
 }
 
@@ -271,7 +271,7 @@ void HoI4World::convertGovernments()
 {
 	for (auto country: countries)
 	{
-		country.second->convertGovernment(*sourceWorld);
+		country.second->convertGovernment(*sourceWorld, governmentMap);
 	}
 }
 
@@ -280,7 +280,7 @@ void HoI4World::convertParties()
 {
 	for (auto country: countries)
 	{
-		country.second->convertParties(majorIdeologies);
+		country.second->convertParties(majorIdeologies, governmentMap);
 	}
 }
 
@@ -319,7 +319,7 @@ void HoI4World::addNeutrality()
 	{
 		if (majorIdeologies.count(country.second->getGovernmentIdeology()) == 0)
 		{
-			country.second->setGovernmentToExistingIdeology(majorIdeologies, ideologies);
+			country.second->setGovernmentToExistingIdeology(majorIdeologies, ideologies, governmentMap);
 		}
 	}
 }
@@ -329,7 +329,7 @@ void HoI4World::convertIdeologySupport()
 {
 	for (auto country: countries)
 	{
-		country.second->convertIdeologySupport(majorIdeologies);
+		country.second->convertIdeologySupport(majorIdeologies, governmentMap);
 	}
 }
 

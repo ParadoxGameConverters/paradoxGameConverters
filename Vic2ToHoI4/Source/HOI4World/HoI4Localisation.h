@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HoI4LOCALISATION_H_
-#define HoI4LOCALISATION_H_
+#ifndef HOI4LOCALISATION_H_
+#define HOI4LOCALISATION_H_
 
 
 
@@ -37,7 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 class HoI4States;
 class HoI4State;
-struct governmentMapping;
+class governmentMapper;
 
 
 
@@ -55,9 +55,9 @@ class HoI4Localisation
 			getInstance()->AddStateLocalisations(states);
 		}
 
-		static void createCountryLocalisations(const std::pair<const std::string&, const std::string&>& tags)
+		static void createCountryLocalisations(const std::pair<const std::string&, const std::string&>& tags, const governmentMapper& governmentMap)
 		{
-			getInstance()->CreateCountryLocalisations(tags);
+			getInstance()->CreateCountryLocalisations(tags, governmentMap);
 		}
 
 		static void updateMainCountryLocalisation(const std::string& HoI4Key, const std::string& Vic2Tag, const std::string& Vic2Government)
@@ -133,8 +133,8 @@ class HoI4Localisation
 
 		void AddNonenglishCountryLocalisations();
 
-		void CreateCountryLocalisations(const std::pair<const std::string&, const std::string&>& tags);
-		void addLocalisationsForAllGovernments(const std::pair<const std::string&, const std::string&>& tags, const std::pair<const std::string&, const std::string&>& suffixes);
+		void CreateCountryLocalisations(const std::pair<const std::string&, const std::string&>& tags, const governmentMapper& governmentMap);
+		void addLocalisationsForAllGovernments(const std::pair<const std::string&, const std::string&>& tags, const std::pair<const std::string&, const std::string&>& suffixes, const governmentMapper& governmentMap);
 		void addLocalisationsInAllLanguages(const std::string& destTag, const std::pair<const std::string&, const std::string&>& suffixes, const std::string& HoI4GovernmentIdeology, const keyToLocalisationMap& namesInLanguage);
 		languageToLocalisationsMap::iterator getExistingLocalisationsInLanguage(const std::string& language);
 		void addLocalisation(const std::string& newKey, languageToLocalisationsMap::iterator& existingLanguage, const std::string& localisation, const std::string& HoI4Suffix);
@@ -191,4 +191,4 @@ class HoI4Localisation
 
 
 
-#endif // HoI4LOCALISATION_H_
+#endif // HOI4LOCALISATION_H_

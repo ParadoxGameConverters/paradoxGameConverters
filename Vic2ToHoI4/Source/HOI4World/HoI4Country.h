@@ -70,10 +70,10 @@ class HoI4Country
 
 		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics);
 		void initFromHistory();
-		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies);
-		void convertGovernment(const Vic2::World& _srcWorld);
-		void convertParties(const set<string>& majorIdeologies);
-		void convertIdeologySupport(const set<string>& majorIdeologies);
+		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies, const governmentMapper& governmentMap);
+		void convertGovernment(const Vic2::World& _srcWorld, const governmentMapper& governmentMap);
+		void convertParties(const set<string>& majorIdeologies, const governmentMapper& governmentMap);
+		void convertIdeologySupport(const set<string>& majorIdeologies, const governmentMapper& governmentMap);
 		void convertNavy(const map<string, HoI4::UnitMap>& unitMap);
 		void convertConvoys(const map<string, HoI4::UnitMap>& unitMap);
 		void convertAirforce(const map<string, HoI4::UnitMap>& unitMap);

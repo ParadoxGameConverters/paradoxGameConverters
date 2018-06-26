@@ -187,7 +187,7 @@ void HoI4Country::determineFilename()
 }
 
 
-void HoI4Country::convertGovernment(const Vic2::World& sourceWorld)
+void HoI4Country::convertGovernment(const Vic2::World& sourceWorld, const governmentMapper& governmentMap)
 {
 	auto possibleRulingParty = srcCountry->getRulingParty(sourceWorld.getParties());
 	if (!possibleRulingParty)
@@ -201,8 +201,8 @@ void HoI4Country::convertGovernment(const Vic2::World& sourceWorld)
 		rulingParty = *possibleRulingParty;
 	}
 
-	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, rulingParty.getIdeology());
-	leaderIdeology = governmentMapper::getLeaderIdeologyForCountry(srcCountry, rulingParty.getIdeology());
+	governmentIdeology = governmentMap.getIdeologyForCountry(srcCountry, rulingParty.getIdeology());
+	leaderIdeology = governmentMap.getLeaderIdeologyForCountry(srcCountry, rulingParty.getIdeology());
 	parties = srcCountry->getActiveParties(sourceWorld.getParties());
 	for (auto party: parties)
 	{
@@ -213,13 +213,13 @@ void HoI4Country::convertGovernment(const Vic2::World& sourceWorld)
 }
 
 
-void HoI4Country::convertParties(const set<string>& majorIdeologies)
+void HoI4Country::convertParties(const set<string>& majorIdeologies, const governmentMapper& governmentMap)
 {
 	for (auto HoI4Ideology: majorIdeologies)
 	{
 		for (auto party: parties)
 		{
-			if (governmentMapper::getSupportedIdeology(governmentIdeology, party.getIdeology(), majorIdeologies) == HoI4Ideology)
+			if (governmentMap.getSupportedIdeology(governmentIdeology, party.getIdeology(), majorIdeologies) == HoI4Ideology)
 			{
 				HoI4Localisation::addPoliticalPartyLocalisation(party.getName(), tag + "_" + HoI4Ideology + "_party");
 			}
@@ -402,18 +402,18 @@ void HoI4Country::initFromHistory()
 }
 
 
-void HoI4Country::setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies)
+void HoI4Country::setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies, const governmentMapper& governmentMap)
 {
-	governmentIdeology = governmentMapper::getExistingIdeologyForCountry(srcCountry, rulingParty.getIdeology(), majorIdeologies, ideologies);
-	leaderIdeology = governmentMapper::getExistingLeaderIdeologyForCountry(srcCountry, rulingParty.getIdeology(), majorIdeologies, ideologies);
+	governmentIdeology = governmentMap.getExistingIdeologyForCountry(srcCountry, rulingParty.getIdeology(), majorIdeologies, ideologies);
+	leaderIdeology = governmentMap.getExistingLeaderIdeologyForCountry(srcCountry, rulingParty.getIdeology(), majorIdeologies, ideologies);
 }
 
 
-void HoI4Country::convertIdeologySupport(const set<string>& majorIdeologies)
+void HoI4Country::convertIdeologySupport(const set<string>& majorIdeologies, const governmentMapper& governmentMap)
 {
 	for (auto upperHouseIdeology: srcCountry->getUpperHouseComposition())
 	{
-		string ideology = governmentMapper::getSupportedIdeology(governmentIdeology, upperHouseIdeology.first, majorIdeologies);
+		string ideology = governmentMap.getSupportedIdeology(governmentIdeology, upperHouseIdeology.first, majorIdeologies);
 		auto supportItr = ideologySupport.find(ideology);
 		if (supportItr == ideologySupport.end())
 		{

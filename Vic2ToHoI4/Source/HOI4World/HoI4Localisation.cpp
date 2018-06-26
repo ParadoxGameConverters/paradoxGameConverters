@@ -180,10 +180,10 @@ void HoI4Localisation::prepareIdeaLocalisations()
 }
 
 
-void HoI4Localisation::CreateCountryLocalisations(const pair<const string&, const string&>& tags)
+void HoI4Localisation::CreateCountryLocalisations(const pair<const string&, const string&>& tags, const governmentMapper& governmentMap)
 {
-	addLocalisationsForAllGovernments(tags, make_pair(string(""), string("_DEF")));
-	addLocalisationsForAllGovernments(tags, make_pair(string("_ADJ"), string("")));
+	addLocalisationsForAllGovernments(tags, make_pair(string(""), string("_DEF")), governmentMap);
+	addLocalisationsForAllGovernments(tags, make_pair(string("_ADJ"), string("")), governmentMap);
 
 	if (!addNeutralLocalisation(tags, make_pair(string(""), string("_DEF"))))
 	{
@@ -196,9 +196,9 @@ void HoI4Localisation::CreateCountryLocalisations(const pair<const string&, cons
 }
 
 
-void HoI4Localisation::addLocalisationsForAllGovernments(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes)
+void HoI4Localisation::addLocalisationsForAllGovernments(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes, const governmentMapper& governmentMap)
 {
-	for (auto mapping: governmentMapper::getGovernmentMappings())
+	for (auto mapping: governmentMap.getGovernmentMappings())
 	{
 		auto localisationForGovernment = V2Localisations::GetTextInEachLanguage(tags.first + "_" + mapping.vic2Government + suffixes.first);
 		addLocalisationsInAllLanguages(tags.second, suffixes, mapping.HoI4GovernmentIdeology, localisationForGovernment);
