@@ -63,12 +63,12 @@ Vic2::World::World(const string& filename)
 	tagsInOrder.push_back(""); // REB (first country is index 1
 	registerKeyword(std::regex("[A-Z]{3}"), [&tagsInOrder, &theInventions, this](const std::string& countryTag, std::istream& theStream)
 	{
-		countries[countryTag] = new Country(countryTag, theStream, theInventions);
+		countries[countryTag] = new Country(countryTag, theStream, theInventions, theCultureGroups);
 		tagsInOrder.push_back(countryTag);
 	});
 	registerKeyword(std::regex("[A-Z][0-9]{2}"), [&tagsInOrder, &theInventions, this](const std::string& countryTag, std::istream& theStream)
 	{
-		countries[countryTag] = new Country(countryTag, theStream, theInventions);
+		countries[countryTag] = new Country(countryTag, theStream, theInventions, theCultureGroups);
 		tagsInOrder.push_back(countryTag);
 	});
 
@@ -391,7 +391,7 @@ void Vic2::World::handleMissingCountryCultures()
 {
 	for (auto country: countries)
 	{
-		country.second->handleMissingCulture();
+		country.second->handleMissingCulture(theCultureGroups);
 	}
 }
 

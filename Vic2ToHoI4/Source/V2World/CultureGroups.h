@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,49 +21,40 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef CULTUREGROUPMAPPER_H
-#define CULTUREGROUPMAPPER_H
+#ifndef CULTURE_GROUPS_H
+#define CULTURE_GROUPS_H
 
 
 
+#include "newParser.h"
 #include <map>
 #include <optional>
-#include <random>
 #include <string>
-#include <vector>
-using namespace std;
 
 
 
-class cultureGroupMapper
+namespace Vic2
+{
+
+class cultureGroups: commonItems::parser
 {
 	public:
-		static optional<string> getCultureGroup(const string& culture)
-		{
-			return getInstance()->GetCultureGroup(culture);
-		}
+		cultureGroups();
+		~cultureGroups() = default;
+
+		std::optional<std::string> getGroup(const std::string& culture) const;
+
 	private:
-		static cultureGroupMapper* instance;
-		static cultureGroupMapper* getInstance()
-		{
-			if (instance == nullptr)
-			{
-				instance = new cultureGroupMapper;
-			}
-			return instance;
-		}
-		cultureGroupMapper();
-		void processVic2CulturesFile(string culturesFile);
+		void processVic2CulturesFile(std::string culturesFile);
 
-		cultureGroupMapper(const cultureGroupMapper&) = delete;
-		cultureGroupMapper& operator=(const cultureGroupMapper&) = delete;
+		cultureGroups(const cultureGroups&) = delete;
+		cultureGroups& operator=(const cultureGroups&) = delete;
 
-		optional<string> GetCultureGroup(const string& culture) const;
-
-		map<string, string> mappings;
+		std::map<std::string, std::string> mappings;
 };
 
+}
 
 
 
-#endif //CULTUREGROUPMAPPER_H
+#endif // CULTURE_GROUPS_H

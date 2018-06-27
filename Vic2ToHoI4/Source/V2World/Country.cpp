@@ -22,8 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Country.h"
+#include "CultureGroups.h"
 #include "Log.h"
-#include "../Mappers/CultureGroupMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "Army.h"
 #include "Inventions.h"
@@ -38,7 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-Vic2::Country::Country(const std::string& theTag, std::istream& theStream, const inventions& theInventions):
+Vic2::Country::Country(const std::string& theTag, std::istream& theStream, const inventions& theInventions, const cultureGroups& theCultureGroups):
 	tag(theTag)
 {
 	registerKeyword(std::regex("capital"), [this](const std::string& unused, std::istream& theStream){
@@ -81,7 +81,7 @@ Vic2::Country::Country(const std::string& theTag, std::istream& theStream, const
 		commonItems::ignoreItem(unused, theStream);
 		human = true;
 	});
-	registerKeyword(std::regex("primary_culture"), [this](const std::string& unused, std::istream& theStream){
+	registerKeyword(std::regex("primary_culture"), [this, &theCultureGroups](const std::string& unused, std::istream& theStream){
 		commonItems::singleString cultureString(theStream);
 		primaryCulture = cultureString.getString();
 		if (primaryCulture.substr(0,1) == "\"")
@@ -90,7 +90,7 @@ Vic2::Country::Country(const std::string& theTag, std::istream& theStream, const
 		}
 		acceptedCultures.insert(primaryCulture);
 
-		auto cultureGroupOption = cultureGroupMapper::getCultureGroup(primaryCulture);
+		auto cultureGroupOption = theCultureGroups.getGroup(primaryCulture);
 		if (cultureGroupOption)
 		{
 			primaryCultureGroup = *cultureGroupOption;
@@ -302,13 +302,13 @@ void Vic2::Country::setLocalisationAdjectives()
 }
 
 
-void Vic2::Country::handleMissingCulture()
+void Vic2::Country::handleMissingCulture(const cultureGroups& theCultureGroups)
 {
 	if (primaryCulture == "")
 	{
 		auto cultureSizes = determineCultureSizes();
 		primaryCulture = selectLargestCulture(cultureSizes);
-		auto cultureGroupOption = cultureGroupMapper::getCultureGroup(primaryCulture);
+		auto cultureGroupOption = theCultureGroups.getGroup(primaryCulture);
 		if (cultureGroupOption)
 		{
 			primaryCultureGroup = *cultureGroupOption;

@@ -44,6 +44,7 @@ namespace Vic2
 {
 
 class Army;
+class cultureGroups;
 class inventions;
 class Leader;
 class Province;
@@ -54,7 +55,7 @@ class State;
 class Country: commonItems::parser
 {
 	public:
-		explicit Country(const std::string& theTag, std::istream& theStream, const inventions& theInventions);
+		explicit Country(const std::string& theTag, std::istream& theStream, const inventions& theInventions, const cultureGroups& theCultureGroups);
 
 		void addProvince(const std::pair<const int, Province*>& province) { provinces.insert(province); }
 		void setColor(const ConverterColor::Color& newColor) { color = newColor; }
@@ -68,7 +69,7 @@ class Country: commonItems::parser
 		void determineEmployedWorkers();
 		void setLocalisationNames();
 		void setLocalisationAdjectives();
-		void handleMissingCulture();
+		void handleMissingCulture(const cultureGroups& theCultureGroups);
 
 		std::map<std::string, const Relations*> getRelations() const { return relations; }
 		std::vector<State*> getStates() const { return states; }
@@ -126,7 +127,7 @@ class Country: commonItems::parser
 		int capital = 0;
 
 		std::string primaryCulture = "";
-		std::string primaryCultureGroup = "";
+		std::string primaryCultureGroup;
 		std::set<std::string> acceptedCultures;
 
 		std::set<std::string> techs;

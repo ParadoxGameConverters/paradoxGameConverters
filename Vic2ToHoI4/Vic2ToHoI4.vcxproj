@@ -170,7 +170,6 @@
     <ClCompile Include="Source\HOI4World\StateFile.cpp" />
     <ClCompile Include="Source\Mappers\CoastalHoI4Provinces.cpp" />
     <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
-    <ClCompile Include="Source\Mappers\CultureGroupMapper.cpp" />
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp" />
     <ClCompile Include="Source\Mappers\GraphicsMapper.cpp" />
     <ClCompile Include="Source\Mappers\MergeRules.cpp" />
@@ -185,6 +184,7 @@
     <ClCompile Include="Source\V2World\Building.cpp" />
     <ClCompile Include="Source\V2World\CommonCountryData.cpp" />
     <ClCompile Include="Source\V2World\Country.cpp" />
+    <ClCompile Include="Source\V2World\CultureGroups.cpp" />
     <ClCompile Include="Source\V2World\Diplomacy.cpp" />
     <ClCompile Include="Source\V2World\Inventions.cpp" />
     <ClCompile Include="Source\V2World\Issues.cpp" />
@@ -260,13 +260,13 @@
     <ClInclude Include="Source\Mappers\ProvinceMapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceNeighborMapper.h" />
     <ClInclude Include="Source\Mappers\V2Localisations.h" />
-    <ClInclude Include="Source\Mappers\CultureGroupMapper.h" />
     <ClInclude Include="Source\targa.h" />
     <ClInclude Include="Source\V2World\Agreement.h" />
     <ClInclude Include="Source\V2World\Army.h" />
     <ClInclude Include="Source\V2World\Building.h" />
     <ClInclude Include="Source\V2World\CommonCountryData.h" />
     <ClInclude Include="Source\V2World\Country.h" />
+    <ClInclude Include="Source\V2World\CultureGroups.h" />
     <ClInclude Include="Source\V2World\Diplomacy.h" />
     <ClInclude Include="Source\V2World\Inventions.h" />
     <ClInclude Include="Source\V2World\Issues.h" />

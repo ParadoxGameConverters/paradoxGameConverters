@@ -128,9 +128,6 @@
     <ClCompile Include="Source\HOI4World\HoI4Agreement.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\CultureGroupMapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\GraphicsMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -244,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="Source\HOI4World\StateFile.cpp">
       <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\CultureGroups.cpp">
+      <Filter>Vic2World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -360,9 +360,6 @@
     <ClInclude Include="Source\HOI4World\HoI4Agreement.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mappers\CultureGroupMapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\GraphicsMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -476,6 +473,9 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\StateFile.h">
       <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\CultureGroups.h">
+      <Filter>Vic2World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
