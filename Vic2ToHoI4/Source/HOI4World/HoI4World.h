@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OnActions.h"
 #include "Names.h"
 #include "HoI4States.h"
+#include "../Mappers/CountryMapping.h"
 #include "../Mappers/GovernmentMapper.h"
 #include "../Mappers/GraphicsMapper.h"
 #include <map>
@@ -236,6 +237,7 @@ class HoI4World
 		HoI4::namesMapper theNames;
 		graphicsMapper theGraphics;
 		governmentMapper governmentMap;
+		CountryMapper countryMap;
 };
 
 

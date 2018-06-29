@@ -99,7 +99,7 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 }
 
 
-void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics)
+void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics, const CountryMapper& countryMap)
 {
 	srcCountry = _srcCountry;
 
@@ -156,7 +156,7 @@ void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Co
 
 	convertLaws();
 	//convertLeaders(portraitMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
-	convertRelations();
+	convertRelations(countryMap);
 
 	determineCapitalFromVic2(stateMap, states);
 	if (isThisStateOwnedByUs(capitalState))
@@ -283,12 +283,12 @@ void HoI4Country::convertLaws()
 }*/
 
 
-void HoI4Country::convertRelations()
+void HoI4Country::convertRelations(const CountryMapper& countryMap)
 {
 	auto srcRelations = srcCountry->getRelations();
 	for (auto srcRelation: srcRelations)
 	{
-		auto HoI4Tag = CountryMapper::getHoI4Tag(srcRelation.second->getTag());
+		auto HoI4Tag = countryMap.getHoI4Tag(srcRelation.second->getTag());
 		if (HoI4Tag)
 		{
 			auto newRelation = new HoI4Relations(*HoI4Tag, srcRelation.second);

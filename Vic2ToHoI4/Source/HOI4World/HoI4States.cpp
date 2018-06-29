@@ -39,7 +39,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4States::HoI4States(const Vic2::World* _sourceWorld):
+HoI4States::HoI4States(const Vic2::World* _sourceWorld, const CountryMapper& countryMap):
 	sourceWorld(_sourceWorld),
 	ownersMap(),
 	coresMap(),
@@ -51,12 +51,12 @@ HoI4States::HoI4States(const Vic2::World* _sourceWorld):
 	LOG(LogLevel::Info) << "Converting states";
 	HoI4::impassableProvinces theImpassables;
 
-	determineOwnersAndCores();
-	createStates(theImpassables);
+	determineOwnersAndCores(countryMap);
+	createStates(theImpassables, countryMap);
 }
 
 
-void HoI4States::determineOwnersAndCores()
+void HoI4States::determineOwnersAndCores(const CountryMapper& countryMap)
 {
 	for (auto provinceNumber: provinceDefinitions::getLandProvinces())
 	{
@@ -72,7 +72,7 @@ void HoI4States::determineOwnersAndCores()
 			auto oldOwner = selectProvinceOwner(potentialOwners);
 
 
-			auto HoI4Tag = CountryMapper::getHoI4Tag(oldOwner->getTag());
+			auto HoI4Tag = countryMap.getHoI4Tag(oldOwner->getTag());
 			if (!HoI4Tag)
 			{
 				LOG(LogLevel::Warning) << "Could not map states owned by " << oldOwner->getTag() << " in Vic2, as there is no mathcing HoI4 country.";
@@ -80,7 +80,7 @@ void HoI4States::determineOwnersAndCores()
 			}
 			ownersMap.insert(make_pair(provinceNumber, *HoI4Tag));
 
-			vector<string> cores = determineCores(*sourceProvinceNums, oldOwner);
+			vector<string> cores = determineCores(*sourceProvinceNums, oldOwner, countryMap);
 			coresMap.insert(make_pair(provinceNumber, cores));
 		}
 	}
@@ -162,7 +162,7 @@ const Vic2::Country* HoI4States::selectProvinceOwner(const map<const Vic2::Count
 }
 
 
-vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, const Vic2::Country* Vic2Owner) const
+vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, const Vic2::Country* Vic2Owner, const CountryMapper& countryMap) const
 {
 	vector<string> cores;
 
@@ -184,7 +184,7 @@ vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, co
 				continue;
 			}
 
-			auto HoI4CoreTag = CountryMapper::getHoI4Tag(Vic2Core->getTag());
+			auto HoI4CoreTag = countryMap.getHoI4Tag(Vic2Core->getTag());
 			if (HoI4CoreTag)
 			{
 				cores.push_back(*HoI4CoreTag);
@@ -196,7 +196,7 @@ vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, co
 }
 
 
-void HoI4States::createStates(const HoI4::impassableProvinces& theImpassables)
+void HoI4States::createStates(const HoI4::impassableProvinces& theImpassables, const CountryMapper& countryMap)
 {
 	std::set<int> ownedProvinces;
 
@@ -204,7 +204,7 @@ void HoI4States::createStates(const HoI4::impassableProvinces& theImpassables)
 	{
 		for (auto vic2State: country.second->getStates())
 		{
-			auto possibleHoI4Owner = CountryMapper::getHoI4Tag(country.first);
+			auto possibleHoI4Owner = countryMap.getHoI4Tag(country.first);
 			if (possibleHoI4Owner)
 			{
 				createMatchingHoI4State(vic2State, *possibleHoI4Owner, theImpassables);

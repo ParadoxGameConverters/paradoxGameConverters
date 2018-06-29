@@ -68,7 +68,7 @@ class HoI4Country
 	public:
 		HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld);
 
-		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics);
+		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics, const CountryMapper& countryMap);
 		void initFromHistory();
 		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies, const governmentMapper& governmentMap);
 		void convertGovernment(const Vic2::World& _srcWorld, const governmentMapper& governmentMap);
@@ -145,7 +145,7 @@ class HoI4Country
 		void initIdeas(HoI4::namesMapper& theNames);
 		void convertLaws();
 		//void convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
-		void convertRelations();
+		void convertRelations(const CountryMapper& countryMap);
 		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
 		bool isStateValidForCapital(int capitalState, const map<int, HoI4State*>& states);
 		bool isThisStateOwnedByUs(const HoI4State* state) const;

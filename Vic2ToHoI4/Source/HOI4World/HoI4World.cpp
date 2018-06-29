@@ -57,7 +57,8 @@ using namespace std;
 
 HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	sourceWorld(_sourceWorld),
-	states(new HoI4States(sourceWorld)),
+	countryMap(_sourceWorld),
+	states(new HoI4States(sourceWorld, countryMap)),
 	supplyZones(new HoI4SupplyZones),
 	buildings(new HoI4Buildings(states->getProvinceToStateIDMap())),
 	theIdeas(std::make_unique<HoI4::Ideas>()),
@@ -158,7 +159,7 @@ void HoI4World::convertCountry(pair<string, Vic2::Country*> country)
 	}
 
 	HoI4Country* destCountry = nullptr;
-	auto possibleHoI4Tag = CountryMapper::getHoI4Tag(country.first);
+	auto possibleHoI4Tag = countryMap.getHoI4Tag(country.first);
 	if (possibleHoI4Tag)
 	{
 		auto possibleCountryName = country.second->getName("english");
@@ -193,7 +194,7 @@ void HoI4World::convertCountry(pair<string, Vic2::Country*> country)
 		}
 		destCountry = new HoI4Country(*possibleHoI4Tag, countryFileName, this);
 
-		destCountry->initFromV2Country(*sourceWorld, country.second, states->getProvinceToStateIDMap(), states->getStates(), theNames, theGraphics);
+		destCountry->initFromV2Country(*sourceWorld, country.second, states->getProvinceToStateIDMap(), states->getStates(), theNames, theGraphics, countryMap);
 		countries.insert(make_pair(*possibleHoI4Tag, destCountry));
 	}
 	else
@@ -799,12 +800,12 @@ void HoI4World::convertAgreements()
 {
 	for (auto agreement : sourceWorld->getDiplomacy()->getAgreements())
 	{
-		auto possibleHoI4Tag1 = CountryMapper::getHoI4Tag(agreement->getCountry1());
+		auto possibleHoI4Tag1 = countryMap.getHoI4Tag(agreement->getCountry1());
 		if (!possibleHoI4Tag1)
 		{
 			continue;
 		}
-		auto possibleHoI4Tag2 = CountryMapper::getHoI4Tag(agreement->getCountry2());
+		auto possibleHoI4Tag2 = countryMap.getHoI4Tag(agreement->getCountry2());
 		if (!possibleHoI4Tag2)
 		{
 			continue;
@@ -1294,7 +1295,7 @@ void HoI4World::determineGreatPowers()
 {
 	for (auto greatPowerVic2Tag: sourceWorld->getGreatPowers())
 	{
-		auto possibleGreatPowerTag = CountryMapper::getHoI4Tag(greatPowerVic2Tag);
+		auto possibleGreatPowerTag = countryMap.getHoI4Tag(greatPowerVic2Tag);
 		if (possibleGreatPowerTag)
 		{
 			auto greatPower = countries.find(*possibleGreatPowerTag);

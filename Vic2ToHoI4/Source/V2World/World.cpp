@@ -41,7 +41,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-Vic2::World::World(const string& filename)
+Vic2::World::World(const std::string& filename)
 {
 	issuesInstance.instantiate();
 	theStateDefinitions.initialize();
@@ -102,8 +102,6 @@ Vic2::World::World(const string& filename)
 	readCountryFiles();
 	setLocalisations();
 	handleMissingCountryCultures();
-
-	CountryMapper::createMappings(this);
 
 	overallMergeNations();
 	checkAllProvincesMapped();
@@ -233,7 +231,7 @@ void Vic2::World::determineEmployedWorkers()
 
 void Vic2::World::removeEmptyNations()
 {
-	map<string, Country*> newCountries;
+	std::map<std::string, Country*> newCountries;
 
 	for (auto country: countries)
 	{
@@ -281,9 +279,9 @@ void Vic2::World::readCountryFiles()
 }
 
 
-bool Vic2::World::processCountriesDotTxt(const string& countryListFile, const string& mod)
+bool Vic2::World::processCountriesDotTxt(const std::string& countryListFile, const std::string& mod)
 {
-	ifstream V2CountriesInput(countryListFile);
+	std::ifstream V2CountriesInput(countryListFile);
 	if (!V2CountriesInput.is_open())
 	{
 		return false;
@@ -291,15 +289,15 @@ bool Vic2::World::processCountriesDotTxt(const string& countryListFile, const st
 
 	while (!V2CountriesInput.eof())
 	{
-		string line;
+		std::string line;
 		getline(V2CountriesInput, line);
 		if (shouldLineBeSkipped(line))
 		{
 			continue;
 		}
 
-		string tag = line.substr(0, 3);
-		string countryFileName = extractCountryFileName(line);
+		std::string tag = line.substr(0, 3);
+		std::string countryFileName = extractCountryFileName(line);
 		commonCountryData countryData(countryFileName, mod);
 		if (countries.find(tag) != countries.end())
 		{
@@ -317,15 +315,15 @@ bool Vic2::World::processCountriesDotTxt(const string& countryListFile, const st
 }
 
 
-bool Vic2::World::shouldLineBeSkipped(const string& line) const
+bool Vic2::World::shouldLineBeSkipped(const std::string& line) const
 {
 	return ((line[0] == '#') || (line.size() < 3) || (line.substr(0, 12) == "dynamic_tags"));
 }
 
 
-string Vic2::World::extractCountryFileName(const string& countryFileLine) const
+std::string Vic2::World::extractCountryFileName(const std::string& countryFileLine) const
 {
-	string countryFileName;
+	std::string countryFileName;
 	int start = countryFileLine.find_first_of('/');
 	int size = countryFileLine.find_last_of('\"') - start;
 	countryFileName = countryFileLine.substr(start, size);
@@ -345,7 +343,7 @@ void Vic2::World::overallMergeNations()
 }
 
 
-void Vic2::World::mergeNations(const string& masterTag, const vector<string>& slaveTags)
+void Vic2::World::mergeNations(const std::string& masterTag, const std::vector<std::string>& slaveTags)
 {
 	auto master = getCountry(masterTag);
 	if (master)
@@ -363,7 +361,7 @@ void Vic2::World::mergeNations(const string& masterTag, const vector<string>& sl
 }
 
 
-optional<Vic2::Country*> Vic2::World::getCountry(const string& tag) const
+std::optional<Vic2::Country*> Vic2::World::getCountry(const std::string& tag) const
 {
 	auto countryItr = countries.find(tag);
 	if (countryItr != countries.end())
