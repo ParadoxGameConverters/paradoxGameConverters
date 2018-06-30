@@ -49,10 +49,8 @@ class HoI4Diplomacy;
 class HoI4Faction;
 class HoI4Ideology;
 class HoI4Province;
-class HoI4State;
 class HoI4States;
 class HoI4StrategicRegion;
-class HoI4SupplyZones;
 
 
 namespace HoI4
@@ -62,6 +60,8 @@ class Advisor;
 class decisions;
 class DivisionTemplateType;
 class Events;
+class State;
+class SupplyZones;
 class UnitMap;
 struct advisorCompare;
 
@@ -88,7 +88,7 @@ class HoI4World
 
 		map<string, shared_ptr<HoI4Country>> getCountries()	const { return countries; }
 		vector<shared_ptr<HoI4Country>> getGreatPowers() const { return greatPowers; }
-		map<int, HoI4State*> getStates() const { return states->getStates(); }
+		map<int, HoI4::State*> getStates() const { return states->getStates(); }
 		const map<int, int>& getProvinceToStateIDMap() const { return states->getProvinceToStateIDMap(); }
 		vector<shared_ptr<HoI4Faction>> getFactions() const { return factions; }
 		HoI4::Events* getEvents() const { return events; }
@@ -132,7 +132,7 @@ class HoI4World
 		void reportIndustryLevels();
 		void reportCountryIndustry();
 		void reportDefaultIndustry();
-		pair<string, array<int, 3>> getDefaultStateIndustry(const string& stateFilename);
+		pair<string, array<int, 3>> getDefaultStateIndustry(const HoI4::State* state);
 		void reportDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
 
 		void convertResources();
@@ -140,9 +140,9 @@ class HoI4World
 
 		void convertStrategicRegions();
 		map<int, int> importStrategicRegions();
-		map<int, int> determineUsedRegions(const HoI4State* state, map<int, int>& provinceToStrategicRegionMap);
+		map<int, int> determineUsedRegions(const HoI4::State* state, map<int, int>& provinceToStrategicRegionMap);
 		optional<int> determineMostUsedRegion(const map<int, int>& usedRegions) const;
-		void addProvincesToRegion(const HoI4State* state, int regionNum);
+		void addProvincesToRegion(const HoI4::State* state, int regionNum);
 		void addLeftoverProvincesToRegions(const map<int, int>& provinceToStrategicRegionMap);
 
 		void convertDiplomacy();
@@ -215,7 +215,7 @@ class HoI4World
 		HoI4States* states = nullptr;
 		//map<int, HoI4Province*> provinces;
 
-		HoI4SupplyZones* supplyZones = nullptr;
+		HoI4::SupplyZones* supplyZones = nullptr;
 		map<int, HoI4StrategicRegion*> strategicRegions;
 		HoI4Buildings* buildings = nullptr;
 

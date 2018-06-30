@@ -155,7 +155,6 @@
     <ClCompile Include="Source\HOI4World\HoI4States.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4StrategicRegion.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4SupplyZone.cpp" />
-    <ClCompile Include="Source\HOI4World\HoI4SupplyZones.cpp" />
     <ClCompile Include="Source\HOI4World\HOI4Version.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4WarCreator.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4World.cpp" />
@@ -167,7 +166,7 @@
     <ClCompile Include="Source\HOI4World\Names.cpp" />
     <ClCompile Include="Source\HOI4World\OnActions.cpp" />
     <ClCompile Include="Source\HOI4World\StateCategories.cpp" />
-    <ClCompile Include="Source\HOI4World\StateFile.cpp" />
+    <ClCompile Include="Source\HOI4World\SupplyZones.cpp" />
     <ClCompile Include="Source\Mappers\CoastalHoI4Provinces.cpp" />
     <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp" />
@@ -238,7 +237,6 @@
     <ClInclude Include="Source\HOI4World\HoI4States.h" />
     <ClInclude Include="Source\HOI4World\HoI4StrategicRegion.h" />
     <ClInclude Include="Source\HOI4World\HoI4SupplyZone.h" />
-    <ClInclude Include="Source\HOI4World\HoI4SupplyZones.h" />
     <ClInclude Include="Source\HOI4World\HOI4Version.h" />
     <ClInclude Include="Source\HOI4World\HoI4WarCreator.h" />
     <ClInclude Include="Source\HOI4World\HoI4World.h" />
@@ -250,7 +248,7 @@
     <ClInclude Include="Source\HOI4World\Names.h" />
     <ClInclude Include="Source\HOI4World\OnActions.h" />
     <ClInclude Include="Source\HOI4World\StateCategories.h" />
-    <ClInclude Include="Source\HOI4World\StateFile.h" />
+    <ClInclude Include="Source\HOI4World\SupplyZones.h" />
     <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h" />
     <ClInclude Include="Source\Mappers\GraphicsMapper.h" />
     <ClInclude Include="Source\Mappers\MergeRules.h" />

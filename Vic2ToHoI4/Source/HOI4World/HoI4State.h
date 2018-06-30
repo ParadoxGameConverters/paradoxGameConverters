@@ -26,12 +26,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "newParser.h"
 #include <map>
 #include <optional>
 #include <set>
 #include <string>
 #include <vector>
-using namespace std;
 
 
 namespace Vic2
@@ -46,45 +46,44 @@ namespace HoI4
 
 class stateCategories;
 
-}
 
-
-
-class HoI4State
+class State: commonItems::parser
 {
 	public:
-		HoI4State(const Vic2::State* sourceState, int _ID, const string& _ownerTag);
+		State(std::istream& theStream);
+		State(const Vic2::State* sourceState, int _ID, const std::string& _ownerTag);
 
-		void output(const string& filename) const;
+		void output(const std::string& filename) const;
 
 		void addProvince(int province) { provinces.insert(province); }
 		void setAsCapitalState() { capitalState = true; civFactories++; }
 		void makeImpassable() { impassable = true; }
 		void markHadImpassablePart() { hadImpassablePart = true; }
-		void addResource(const string& resource, double amount)	{ resources[resource] += amount; }
+		void addResource(const std::string& resource, double amount)	{ resources[resource] += amount; }
 		void addAirBase(int newAirBase) { airbaseLevel += newAirBase; if (airbaseLevel > 10) airbaseLevel = 10; }
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
 		void setVPLocation(int province) { victoryPointPosition = province; }
 
 		void convertNavalBases();
 		void addNavalBase(int level, int location);
-		void addCores(const vector<string>& newCores);
+		void addCores(const std::vector<std::string>& newCores);
 
 		const Vic2::State* getSourceState() const { return sourceState; }
-		set<int>	getProvinces() const { return provinces; }
-		string getOwner() const { return ownerTag; }
-		set<string> getCores() const { return cores; }
 		int getID() const { return ID; }
+		std::set<int>	getProvinces() const { return provinces; }
+		std::string getOwner() const { return ownerTag; }
+		std::set<std::string> getCores() const { return cores; }
+		bool isImpassable() const { return impassable; }
 		int getDockyards() const { return dockyards; }
 		int getCivFactories() const { return civFactories; }
 		int getMilFactories() const { return milFactories; }
 		int getInfrastructure() const { return infrastructure; }
 		int getManpower() const { return manpower; }
 		int getVPLocation() const { return victoryPointPosition; }
-		set<int> getDebugVPs() const { return debugVictoryPoints; }
-		set<int> getSecondaryDebugVPs() const { return secondaryDebugVictoryPoints; }
+		std::set<int> getDebugVPs() const { return debugVictoryPoints; }
+		std::set<int> getSecondaryDebugVPs() const { return secondaryDebugVictoryPoints; }
 
-		optional<int> getMainNavalLocation() const;
+		std::optional<int> getMainNavalLocation() const;
 
 		void tryToCreateVP();
 		void addManpower();
@@ -92,8 +91,8 @@ class HoI4State
 		void convertIndustry(double workerFactoryRatio, const HoI4::stateCategories& theStateCategories);
 
 	private:
-		HoI4State(const HoI4State&) = delete;
-		HoI4State& operator=(const HoI4State&) = delete;
+		State(const State&) = delete;
+		State& operator=(const State&) = delete;
 
 		int determineFactoryNumbers(double workerFactoryRatio);
 		int constrainFactoryNumbers(double rawFactories);
@@ -103,7 +102,7 @@ class HoI4State
 		bool amICoastal();
 
 		int determineNavalBaseLevel(const Vic2::Province* sourceProvince);
-		optional<int> determineNavalBaseLocation(const Vic2::Province* sourceProvince);
+		std::optional<int> determineNavalBaseLocation(const Vic2::Province* sourceProvince);
 
 		bool assignVPFromVic2Province(int Vic2ProvinceNumber);
 		void assignVP(int location);
@@ -112,33 +111,35 @@ class HoI4State
 
 		const Vic2::State* sourceState;
 
-		int ID;
-		set<int> provinces;
-		string ownerTag;
-		set<string> cores;
-		bool capitalState;
-		bool impassable;
-		bool hadImpassablePart;
+		int ID = 0;
+		std::set<int> provinces;
+		std::string ownerTag;
+		std::set<std::string> cores;
+		bool capitalState = false;
+		bool impassable = false;
+		bool hadImpassablePart = false;
 
-		int manpower;
+		int manpower = 0;
 
-		int civFactories;
-		int milFactories;
-		int dockyards;
-		string category;
-		int infrastructure;
+		int civFactories = 0;
+		int milFactories = 0;
+		int dockyards = 0;
+		std::string category = "pastoral";
+		int infrastructure = 0;
 	
-		vector<pair<int, int>> navalBases;
+		std::vector<std::pair<int, int>> navalBases;
 
-		int airbaseLevel;
+		int airbaseLevel = 0;
 
-		map<string, double> resources;
+		std::map<std::string, double> resources;
 
-		int victoryPointPosition;
-		int victoryPointValue;
-		set<int> debugVictoryPoints;
-		set<int> secondaryDebugVictoryPoints;
+		int victoryPointPosition = 0;
+		int victoryPointValue = 0;
+		std::set<int> debugVictoryPoints;
+		std::set<int> secondaryDebugVictoryPoints;
 };
+
+}
 
 
 

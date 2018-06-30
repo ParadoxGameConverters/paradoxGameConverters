@@ -122,9 +122,6 @@
     <ClCompile Include="Source\Mappers\ProvinceNeighborMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\HOI4World\HoI4SupplyZones.cpp">
-      <Filter>HoI4World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\HOI4World\HoI4Agreement.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
@@ -239,11 +236,11 @@
     <ClCompile Include="Source\HOI4World\ImpassableProvinces.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\HOI4World\StateFile.cpp">
-      <Filter>HoI4World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\V2World\CultureGroups.cpp">
       <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\SupplyZones.cpp">
+      <Filter>HoI4World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -353,9 +350,6 @@
     <ClInclude Include="Source\bitmap_image.hpp" />
     <ClInclude Include="Source\Mappers\ProvinceNeighborMapper.h">
       <Filter>Mappers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\HOI4World\HoI4SupplyZones.h">
-      <Filter>HoI4World</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Agreement.h">
       <Filter>HoI4World</Filter>
@@ -471,11 +465,11 @@
     <ClInclude Include="Source\HOI4World\ImpassableProvinces.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\HOI4World\StateFile.h">
-      <Filter>HoI4World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\V2World\CultureGroups.h">
       <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\SupplyZones.h">
+      <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

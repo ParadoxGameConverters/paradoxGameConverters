@@ -45,9 +45,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Province.h"
 #include "HoI4State.h"
 #include "HoI4StrategicRegion.h"
-#include "HoI4SupplyZones.h"
 #include "HoI4WarCreator.h"
 #include "StateCategories.h"
+#include "SupplyZones.h"
 #include "../Mappers/CountryMapping.h"
 #include <fstream>
 using namespace std;
@@ -59,7 +59,7 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 	sourceWorld(_sourceWorld),
 	countryMap(_sourceWorld),
 	states(new HoI4States(sourceWorld, countryMap)),
-	supplyZones(new HoI4SupplyZones),
+	supplyZones(new HoI4::SupplyZones(states->getDefaultStates())),
 	buildings(new HoI4Buildings(states->getProvinceToStateIDMap())),
 	theIdeas(std::make_unique<HoI4::Ideas>()),
 	decisions(make_unique<HoI4::decisions>()),
@@ -540,11 +540,9 @@ void HoI4World::reportDefaultIndustry()
 {
 	map<string, array<int, 3>> countryIndustry;
 
-	set<string> stateFilenames;
-	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/history/states", stateFilenames);
-	for (auto stateFilename: stateFilenames)
+	for (auto state: states->getDefaultStates())
 	{
-		pair<string, array<int, 3>> stateData = getDefaultStateIndustry(stateFilename);
+		pair<string, array<int, 3>> stateData = getDefaultStateIndustry(state.second);
 
 		auto country = countryIndustry.find(stateData.first);
 		if (country == countryIndustry.end())
@@ -563,36 +561,17 @@ void HoI4World::reportDefaultIndustry()
 }
 
 
-pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(const string& stateFilename)
+pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(const HoI4::State* state)
 {
-	auto fileObj = parser_UTF8::doParseFile(theConfiguration.getHoI4Path() + "/history/states/" + stateFilename);
-	if (fileObj)
-	{
-		auto stateObj = fileObj->safeGetObject("state");
-		auto historyObj = stateObj->safeGetObject("history");
-		auto buildingsObj = historyObj->safeGetObject("buildings");
+	int civilianFactories = state->getCivFactories();
+	int militaryFactories = state->getMilFactories();
+	int dockyards = state->getDockyards();
 
-		int civilianFactories = 0;
-		int militaryFactories = 0;
-		int dockyards = 0;
-		if (buildingsObj != nullptr)
-		{
-			civilianFactories = buildingsObj->safeGetInt("industrial_complex");
-			militaryFactories = buildingsObj->safeGetInt("arms_factory");
-			dockyards = buildingsObj->safeGetInt("dockyard");
-		}
+	string owner = state->getOwner();
 
-		string owner = historyObj->safeGetString("owner");
-
-		array<int, 3> industry = { militaryFactories, civilianFactories, dockyards };
-		pair<string, array<int, 3>> stateData = make_pair(owner, industry);
-		return stateData;
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Could not parse " << theConfiguration.getHoI4Path() << "/history/states/" << stateFilename;
-		exit(-1);
-	}
+	array<int, 3> industry = { militaryFactories, civilianFactories, dockyards };
+	pair<string, array<int, 3>> stateData = make_pair(owner, industry);
+	return stateData;
 }
 
 
@@ -710,7 +689,7 @@ map<int, int> HoI4World::importStrategicRegions()
 }
 
 
-map<int, int> HoI4World::determineUsedRegions(const HoI4State* state, map<int, int>& provinceToStrategicRegionMap)
+map<int, int> HoI4World::determineUsedRegions(const HoI4::State* state, map<int, int>& provinceToStrategicRegionMap)
 {
 	map<int, int> usedRegions;	// region ID -> number of provinces in that region
 
@@ -757,7 +736,7 @@ optional<int> HoI4World::determineMostUsedRegion(const map<int, int>& usedRegion
 }
 
 
-void HoI4World::addProvincesToRegion(const HoI4State* state, int regionNum)
+void HoI4World::addProvincesToRegion(const HoI4::State* state, int regionNum)
 {
 	auto region = strategicRegions.find(regionNum);
 	if (region == strategicRegions.end())

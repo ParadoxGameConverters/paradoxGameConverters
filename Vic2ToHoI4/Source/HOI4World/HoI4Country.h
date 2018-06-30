@@ -68,7 +68,7 @@ class HoI4Country
 	public:
 		HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld);
 
-		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics, const CountryMapper& countryMap);
+		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4::State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics, const CountryMapper& countryMap);
 		void initFromHistory();
 		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies, const governmentMapper& governmentMap);
 		void convertGovernment(const Vic2::World& _srcWorld, const governmentMapper& governmentMap);
@@ -80,7 +80,7 @@ class HoI4Country
 		void convertArmyDivisions(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates);
 		void		setTechnology(const string& tech, int level);
 		void		setResearchBonus(const string& tech, int bonus);
-		void addState(HoI4State* _state);
+		void addState(HoI4::State* _state);
 		void calculateIndustry();
 		void reportIndustry(ofstream& out);
 		void addVPsToCapital(int VPs);
@@ -117,12 +117,12 @@ class HoI4Country
 		const string&								getPuppetmaster() const { return puppetMaster; }
 		const map<string, double>&						getPracticals() const { return practicals; }
 		vector<int>									getBrigs() const { return brigs; }
-		HoI4State* getCapitalState() const { return capitalState; }
+		HoI4::State* getCapitalState() const { return capitalState; }
 		int											getCapitalStateNum() const { return capitalStateNum; }
 		const string									getSphereLeader() const { return sphereLeader; }
 		const Vic2::Party getRulingParty() const { return rulingParty; }
 		set<Vic2::Party, function<bool (const Vic2::Party&, const Vic2::Party&)>> getParties() const { return parties; }
-		map<int, HoI4State*> getStates() const { return states; }
+		map<int, HoI4::State*> getStates() const { return states; }
 		bool isInFaction() const { return faction != nullptr; }
 		bool isCivilized() const { return civilized; }
 
@@ -146,10 +146,10 @@ class HoI4Country
 		void convertLaws();
 		//void convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 		void convertRelations(const CountryMapper& countryMap);
-		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
-		bool isStateValidForCapital(int capitalState, const map<int, HoI4State*>& states);
-		bool isThisStateOwnedByUs(const HoI4State* state) const;
-		bool isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const;
+		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4::State*>& states);
+		bool isStateValidForCapital(int capitalState, const map<int, HoI4::State*>& states);
+		bool isThisStateOwnedByUs(const HoI4::State* state) const;
+		bool isThisStateACoreWhileWeOwnNoStates(const HoI4::State* state) const;
 		void setCapitalInCapitalState(int capitalProvince);
 		void findBestCapital();
 
@@ -196,9 +196,9 @@ class HoI4Country
 		const string						sphereLeader = "";
 		string								tag;
 		set<int>							provinces;
-		map<int, HoI4State*> states;
+		map<int, HoI4::State*> states;
 		int									capitalStateNum;
-		HoI4State*							capitalState;
+		HoI4::State*							capitalState;
 		string								commonCountryFile;
 		map<string, int>					technologies;
 		map<string, int>					researchBonuses;

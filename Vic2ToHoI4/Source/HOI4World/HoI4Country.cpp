@@ -99,7 +99,7 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 }
 
 
-void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics, const CountryMapper& countryMap)
+void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4::State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics, const CountryMapper& countryMap)
 {
 	srcCountry = _srcCountry;
 
@@ -298,7 +298,7 @@ void HoI4Country::convertRelations(const CountryMapper& countryMap)
 }
 
 
-void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states)
+void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4::State*>& states)
 {
 	int oldCapital = srcCountry->getCapital();
 	if (auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(oldCapital))
@@ -321,20 +321,20 @@ void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateI
 }
 
 
-bool HoI4Country::isStateValidForCapital(int stateNum, const map<int, HoI4State*>& states)
+bool HoI4Country::isStateValidForCapital(int stateNum, const map<int, HoI4::State*>& states)
 {
 	auto state = states.find(stateNum)->second;
 	return (isThisStateOwnedByUs(state) || isThisStateACoreWhileWeOwnNoStates(state));
 }
 
 
-bool HoI4Country::isThisStateOwnedByUs(const HoI4State* state) const
+bool HoI4Country::isThisStateOwnedByUs(const HoI4::State* state) const
 {
 	return ((state != nullptr) && (state->getOwner() == tag));
 }
 
 
-bool HoI4Country::isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const
+bool HoI4Country::isThisStateACoreWhileWeOwnNoStates(const HoI4::State* state) const
 {
 	for (auto core: state->getCores())
 	{
@@ -1053,7 +1053,7 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4::UnitMap>& unitMap
 }
 
 
-void HoI4Country::addState(HoI4State* _state)
+void HoI4Country::addState(HoI4::State* _state)
 {
 	states.insert(make_pair(_state->getID(), _state));
 

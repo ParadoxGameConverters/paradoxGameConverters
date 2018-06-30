@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,7 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "HoI4SupplyZones.h"
+#include "SupplyZones.h"
 #include "../Configuration.h"
 #include "HoI4State.h"
 #include "HoI4States.h"
@@ -30,21 +30,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Object.h"
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
-#include <set>
-using namespace std;
 
 
 
-HoI4SupplyZones::HoI4SupplyZones():
+HoI4::SupplyZones::SupplyZones(const std::map<int, HoI4::State*>& defaultStates):
 	defaultStateToProvinceMap(),
 	supplyZonesFilenames(),
 	supplyZones(),
 	provinceToSupplyZoneMap()
 {
 	LOG(LogLevel::Info) << "Importing supply zones";
-	importStates();
+	importStates(defaultStates);
 
-	set<string> supplyZonesFiles;
+	std::set<std::string> supplyZonesFiles;
 	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/map/supplyareas", supplyZonesFiles);
 	for (auto supplyZonesFile: supplyZonesFiles)
 	{
@@ -53,39 +51,16 @@ HoI4SupplyZones::HoI4SupplyZones():
 }
 
 
-void HoI4SupplyZones::importStates()
+void HoI4::SupplyZones::importStates(const std::map<int, HoI4::State*>& defaultStates)
 {
-	set<string> statesFiles;
-	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/history/states", statesFiles);
-	for (auto stateFile: statesFiles)
+	for (auto state: defaultStates)
 	{
-		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
-
-		auto fileObj = parser_UTF8::doParseFile(theConfiguration.getHoI4Path() + "/history/states/" + stateFile);
-		if (fileObj)
-		{
-			auto stateObj = fileObj->safeGetObject("state");
-			auto provincesObj = stateObj->safeGetObject("provinces");
-			auto tokens = provincesObj->getTokens();
-
-			vector<int> provinces;
-			for (auto provinceNumString: tokens)
-			{
-				provinces.push_back(stoi(provinceNumString));
-			}
-
-			defaultStateToProvinceMap.insert(make_pair(num, provinces));
-		}
-		else
-		{
-			LOG(LogLevel::Error) << "Could not parse " << theConfiguration.getHoI4Path() << "/history/states/" << stateFile;
-			exit(-1);
-		}
+		defaultStateToProvinceMap.insert(make_pair(state.first, state.second->getProvinces()));
 	}
 }
 
 
-void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile)
+void HoI4::SupplyZones::importSupplyZone(const std::string& supplyZonesFile)
 {
 	int num = stoi(supplyZonesFile.substr(0, supplyZonesFile.find_first_of('-')));
 	supplyZonesFilenames.insert(make_pair(num, supplyZonesFile));
@@ -110,7 +85,7 @@ void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile)
 }
 
 
-void HoI4SupplyZones::mapProvincesToSupplyZone(int ID, shared_ptr<Object> supplyAreaObj)
+void HoI4::SupplyZones::mapProvincesToSupplyZone(int ID, std::shared_ptr<Object> supplyAreaObj)
 {
 	for (auto idString: supplyAreaObj->safeGetTokens("states"))
 	{
@@ -123,7 +98,7 @@ void HoI4SupplyZones::mapProvincesToSupplyZone(int ID, shared_ptr<Object> supply
 }
 
 
-void HoI4SupplyZones::output()
+void HoI4::SupplyZones::output()
 {
 	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/map/supplyareas"))
 	{
@@ -142,7 +117,7 @@ void HoI4SupplyZones::output()
 }
 
 
-void HoI4SupplyZones::convertSupplyZones(const HoI4States* states)
+void HoI4::SupplyZones::convertSupplyZones(const HoI4States* states)
 {
 	for (auto state: states->getStates())
 	{

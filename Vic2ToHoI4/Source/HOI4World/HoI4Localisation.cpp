@@ -407,7 +407,7 @@ void HoI4Localisation::AddStateLocalisations(const HoI4States* states)
 }
 
 
-void HoI4Localisation::addDebugLocalisations(const pair<const int, HoI4State*>& state)
+void HoI4Localisation::addDebugLocalisations(const pair<const int, HoI4::State*>& state)
 {
 	for (auto VPPositionInHoI4: state.second->getDebugVPs())
 	{
@@ -435,7 +435,7 @@ void HoI4Localisation::addDebugLocalisations(const pair<const int, HoI4State*>& 
 }
 
 
-void HoI4Localisation::addStateLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage)
+void HoI4Localisation::addStateLocalisationForLanguage(const HoI4::State* state, const pair<const string, string>& Vic2NameInLanguage)
 {
 	string key = string("STATE_") + to_string(state->getID());
 
@@ -454,7 +454,7 @@ void HoI4Localisation::addStateLocalisationForLanguage(const HoI4State* state, c
 }
 
 
-void HoI4Localisation::addVPLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage)
+void HoI4Localisation::addVPLocalisationForLanguage(const HoI4::State* state, const pair<const string, string>& Vic2NameInLanguage)
 {
 	getExistingVPLocalisation(Vic2NameInLanguage.first).insert(make_pair("VICTORY_POINTS_" + to_string(state->getVPLocation()),	Vic2NameInLanguage.second));
 }

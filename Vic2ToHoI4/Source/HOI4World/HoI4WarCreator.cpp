@@ -1385,11 +1385,11 @@ vector<int> HoI4WarCreator::sortStatesByCapitalDistance(set<int> stateList, shar
 {
 	multimap<double, int> statesWithDistance;
 	pair<int, int> capitalCoords = getCapitalPosition(country);
-	map<int, HoI4State*> statesMapping = world->getStates();
+	map<int, HoI4::State*> statesMapping = world->getStates();
 
 	for (int stateID : stateList)
 	{
-		HoI4State* stateObj = statesMapping[stateID];
+		HoI4::State* stateObj = statesMapping[stateID];
 		int provCapID = stateObj->getVPLocation();
 		pair<int, int> stateVPCoords = getProvincePosition(provCapID);
 		double distanceSquared = pow(capitalCoords.first - stateVPCoords.first, 2)

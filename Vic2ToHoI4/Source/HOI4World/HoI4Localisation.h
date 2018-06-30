@@ -36,7 +36,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 class HoI4States;
-class HoI4State;
+
+namespace HoI4
+{
+class State;
+}
 class governmentMapper;
 
 
@@ -148,15 +152,15 @@ class HoI4Localisation
 		void CopyEventLocalisations(const std::string& oldKey, const std::string& newKey);
 
 		void AddStateLocalisations(const HoI4States* states);
-		void addStateLocalisationForLanguage(const HoI4State* state, const std::pair<const std::string, std::string>& Vic2NameInLanguage);
-		void addVPLocalisationForLanguage(const HoI4State* state, const std::pair<const std::string, std::string>& Vic2NameInLanguage);
+		void addStateLocalisationForLanguage(const HoI4::State* state, const std::pair<const std::string, std::string>& Vic2NameInLanguage);
+		void addVPLocalisationForLanguage(const HoI4::State* state, const std::pair<const std::string, std::string>& Vic2NameInLanguage);
 		keyToLocalisationMap& getExistingStateLocalisation(const std::string& language);
 		keyToLocalisationMap& getExistingVPLocalisation(const std::string& language);
 		void addLanguageToStateLocalisations(const std::string& language);
 		void addLanguageToVPLocalisations(const std::string& language);
 		void addNonenglishStateLocalisations();
 		void addNonenglishVPLocalisations();
-		void addDebugLocalisations(const std::pair<const int, HoI4State*>& state);
+		void addDebugLocalisations(const std::pair<const int, HoI4::State*>& state);
 
 		void AddEventLocalisation(const std::string& event, const std::string& localisation);
 		void AddEventLocalisationFromVic2(const std::string& Vic2Key, const std::string& HoI4Key);

@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "newParser.h"
+#include <map>
 #include <unordered_set>
 
 
@@ -34,10 +34,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 namespace HoI4
 {
 
-class impassableProvinces: commonItems::parser
+class State;
+
+
+
+class impassableProvinces
 {
 	public:
-		impassableProvinces();
+		impassableProvinces(const std::map<int, HoI4::State*>& states);
 
 		bool isProvinceImpassable(int provinceNumber) const;
 

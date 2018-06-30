@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "../Mappers/ProvinceMapper.h"
+#include "newParser.h"
 #include <map>
 #include <optional>
 #include <set>
@@ -36,11 +37,11 @@ using namespace std;
 
 
 
-class HoI4State;
 class CountryMapper;
 namespace HoI4
 {
 class impassableProvinces;
+class State;
 }
 namespace Vic2
 {
@@ -51,12 +52,13 @@ class World;
 
 
 
-class HoI4States
+class HoI4States: commonItems::parser
 {
 	public:
 		explicit HoI4States(const Vic2::World* _sourceWorld, const CountryMapper& countryMap);
 
-		const map<int, HoI4State*>& getStates() const { return states; }
+		const map<int, HoI4::State*>& getDefaultStates() const { return defaultStates; }
+		const map<int, HoI4::State*>& getStates() const { return states; }
 		const map<int, int>& getProvinceToStateIDMap() const { return provinceToStateIDMap; }
 
 		void output() const;
@@ -74,21 +76,22 @@ class HoI4States
 		void createStates(const HoI4::impassableProvinces& theImpassables, const CountryMapper& countryMap);
 		void createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner, const HoI4::impassableProvinces& theImpassables);
 		std::unordered_set<int> getProvincesInState(const Vic2::State* vic2State, const string& owner);
-		void addProvincesAndCoresToNewState(HoI4State* newState, unordered_set<int> provinces);
+		void addProvincesAndCoresToNewState(HoI4::State* newState, unordered_set<int> provinces);
 		bool isProvinceValid(int provNum) const;
 		bool isProvinceOwnedByCountry(int provNum, const string& stateOwner) const;
 		bool isProvinceNotAlreadyAssigned(int provNum) const;
 		unsigned int getTotalManpower() const;
 
 
-		const Vic2::World* sourceWorld;
+		const Vic2::World* sourceWorld = nullptr;
 		map<int, string> ownersMap;
 		map<int, vector<string>> coresMap;
 		set<int> assignedProvinces;
 
-		map<int, HoI4State*> states;
+		map<int, HoI4::State*> defaultStates;
+		map<int, HoI4::State*> states;
 		map<int, int> provinceToStateIDMap;
-		int nextStateID;
+		int nextStateID = 1;
 };
 
 

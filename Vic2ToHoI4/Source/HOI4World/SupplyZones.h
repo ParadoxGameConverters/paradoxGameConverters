@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,9 +28,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <map>
 #include <memory>
+#include <set>
 #include <string>
-#include <vector>
-using namespace std;
 
 
 
@@ -39,27 +38,35 @@ class HoI4SupplyZone;
 class Object;
 
 
+namespace HoI4
+{
 
-class HoI4SupplyZones
+class State;
+
+
+
+class SupplyZones
 {
 	public:
-		HoI4SupplyZones();
+		SupplyZones(const std::map<int, HoI4::State*>& defaultStates);
 		void output();
 		void convertSupplyZones(const HoI4States* states);
 
 	private:
-		HoI4SupplyZones(const HoI4SupplyZones&) = delete;
-		HoI4SupplyZones& operator=(const HoI4SupplyZones&) = delete;
+		SupplyZones(const SupplyZones&) = delete;
+		SupplyZones& operator=(const SupplyZones&) = delete;
 
-		void importStates();
-		void importSupplyZone(const string& supplyZonesFile);
-		void mapProvincesToSupplyZone(int ID, shared_ptr<Object> supplyAreaObj);
+		void importStates(const std::map<int, HoI4::State*>& defaultStates);
+		void importSupplyZone(const std::string& supplyZonesFile);
+		void mapProvincesToSupplyZone(int ID, std::shared_ptr<Object> supplyAreaObj);
 
-		map<int, vector<int>> defaultStateToProvinceMap;
-		map<int, string> supplyZonesFilenames;
-		map<int, HoI4SupplyZone*> supplyZones;
-		map<int, int> provinceToSupplyZoneMap;
+		std::map<int, std::set<int>> defaultStateToProvinceMap;
+		std::map<int, std::string> supplyZonesFilenames;
+		std::map<int, HoI4SupplyZone*> supplyZones;
+		std::map<int, int> provinceToSupplyZoneMap;
 };
+
+}
 
 
 

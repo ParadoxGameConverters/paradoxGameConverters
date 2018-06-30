@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -31,40 +31,151 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/State.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include "ParserHelpers.h"
 #include <fstream>
 #include <random>
 
 
 
-HoI4State::HoI4State(const Vic2::State* _sourceState, int _ID, const string& _ownerTag):
+class dockyardProvince: commonItems::parser
+{
+	public:
+		dockyardProvince(std::istream& theStream);
+
+		int getDockyards() const { return dockyards; }
+
+	private:
+		int dockyards = 0;
+};
+
+
+dockyardProvince::dockyardProvince(std::istream& theStream)
+{
+	registerKeyword(std::regex("naval_base"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleInt baseInt(theStream);
+		dockyards = baseInt.getInt();
+	});
+	registerKeyword(std::regex("[a-zA-Z0-9_]+"), commonItems::ignoreItem);
+
+	parseStream(theStream);
+}
+
+
+class stateBuildings: commonItems::parser
+{
+	public:
+		stateBuildings(std::istream& theStream);
+
+		int getCivFactories() const { return civFactories; }
+		int getMilFactories() const { return milFactories; }
+		int getDockyards() const { return dockyards; }
+
+	private:
+		int civFactories = 0;
+		int milFactories = 0;
+		int dockyards = 0;
+};
+
+
+stateBuildings::stateBuildings(std::istream& theStream)
+{
+	registerKeyword(std::regex("industrial_complex"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleInt factoryInt(theStream);
+		civFactories = factoryInt.getInt();
+	});
+	registerKeyword(std::regex("arms_factory"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleInt factoryInt(theStream);
+		milFactories = factoryInt.getInt();
+	});
+	registerKeyword(std::regex("\\d+"), [this](const std::string& unused, std::istream& theStream)
+	{
+		dockyardProvince province(theStream);
+		dockyards += province.getDockyards();
+	});
+	registerKeyword(std::regex("[a-zA-Z0-9_]+"), commonItems::ignoreItem);
+
+	parseStream(theStream);
+}
+
+
+class stateHistory: commonItems::parser
+{
+	public:
+		stateHistory(std::istream& theStream);
+
+		int getCivFactories() const { return civFactories; }
+		int getMilFactories() const { return milFactories; }
+		int getDockyards() const { return dockyards; }
+		std::string getOwner() const { return owner; }
+
+	private:
+		int civFactories = 0;
+		int milFactories = 0;
+		int dockyards = 0;
+		std::string owner;
+};
+
+
+stateHistory::stateHistory(std::istream& theStream)
+{
+	registerKeyword(std::regex("owner"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleString ownerString(theStream);
+		owner = ownerString.getString();
+	});
+	registerKeyword(std::regex("buildings"), [this](const std::string& unused, std::istream& theStream)
+	{
+		stateBuildings theBuildings(theStream);
+		civFactories = theBuildings.getCivFactories();
+		milFactories = theBuildings.getMilFactories();
+		dockyards = theBuildings.getDockyards();
+	});
+	registerKeyword(std::regex("[a-zA-Z0-9\\._]+"), commonItems::ignoreItem);
+
+	parseStream(theStream);
+}
+
+
+HoI4::State::State(std::istream& theStream)
+{
+	registerKeyword(std::regex("impassable"), [this](const std::string& unused, std::istream& theStream){
+		impassable = true;
+		commonItems::ignoreItem(unused, theStream);
+	});
+	registerKeyword(std::regex("provinces"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::intList provinceNums(theStream);
+		for (auto province: provinceNums.getInts())
+		{
+			provinces.insert(province);
+		}
+	});
+	registerKeyword(std::regex("history"), [this](const std::string& unused, std::istream& theStream){
+		stateHistory theHistory(theStream);
+		civFactories = theHistory.getCivFactories();
+		milFactories = theHistory.getMilFactories();
+		dockyards = theHistory.getDockyards();
+		ownerTag = theHistory.getOwner();
+	});
+	registerKeyword(std::regex("[a-zA-Z0-9_]+"), commonItems::ignoreItem);
+
+	parseStream(theStream);
+}
+
+
+HoI4::State::State(const Vic2::State* _sourceState, int _ID, const std::string& _ownerTag):
 	sourceState(_sourceState),
 	ID(_ID),
-	provinces(),
-	ownerTag(_ownerTag),
-	cores(),
-	capitalState(false),
-	impassable(false),
-	hadImpassablePart(false),
-	manpower(0),
-	civFactories(0),
-	milFactories(0),
-	dockyards(0),
-	category("pastoral"),
-	infrastructure(0),
-	navalBases(),
-	airbaseLevel(0),
-	resources(),
-	victoryPointPosition(0),
-	victoryPointValue(0),
-	debugVictoryPoints(),
-	secondaryDebugVictoryPoints()
+	ownerTag(_ownerTag)
 {}
 
 
-void HoI4State::output(const string& _filename) const
+void HoI4::State::output(const std::string& _filename) const
 {
-	string filename("output/" + theConfiguration.getOutputName() + "/history/states/" + _filename);
-	ofstream out(filename);
+	std::string filename("output/" + theConfiguration.getOutputName() + "/history/states/" + _filename);
+	std::ofstream out(filename);
 	if (!out.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open \"output/" + theConfiguration.getOutputName() + "/history/states/" + _filename;
@@ -151,7 +262,7 @@ void HoI4State::output(const string& _filename) const
 }
 
 
-void HoI4State::convertNavalBases()
+void HoI4::State::convertNavalBases()
 {
 	for (auto sourceProvince: sourceState->getProvinces())
 	{
@@ -170,7 +281,7 @@ void HoI4State::convertNavalBases()
 }
 
 
-int HoI4State::determineNavalBaseLevel(const Vic2::Province* sourceProvince)
+int HoI4::State::determineNavalBaseLevel(const Vic2::Province* sourceProvince)
 {
 	int navalBaseLevel = sourceProvince->getNavalBaseLevel() * 2;
 	if (navalBaseLevel > 10)
@@ -182,7 +293,7 @@ int HoI4State::determineNavalBaseLevel(const Vic2::Province* sourceProvince)
 }
 
 
-optional<int> HoI4State::determineNavalBaseLocation(const Vic2::Province* sourceProvince)
+std::optional<int> HoI4::State::determineNavalBaseLocation(const Vic2::Province* sourceProvince)
 {
 	if (auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(sourceProvince->getNumber()))
 	{
@@ -199,7 +310,7 @@ optional<int> HoI4State::determineNavalBaseLocation(const Vic2::Province* source
 }
 
 
-void HoI4State::addNavalBase(int level, int location)
+void HoI4::State::addNavalBase(int level, int location)
 {
 	if ((level > 0) && (provinces.find(location) != provinces.end()))
 	{
@@ -208,7 +319,7 @@ void HoI4State::addNavalBase(int level, int location)
 }
 
 
-void HoI4State::addCores(const vector<string>& newCores)
+void HoI4::State::addCores(const std::vector<std::string>& newCores)
 {
 	for (auto newCore: newCores)
 	{
@@ -217,7 +328,7 @@ void HoI4State::addCores(const vector<string>& newCores)
 }
 
 
-bool HoI4State::assignVPFromVic2Province(int Vic2ProvinceNumber)
+bool HoI4::State::assignVPFromVic2Province(int Vic2ProvinceNumber)
 {
 	if (auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(Vic2ProvinceNumber))
 	{
@@ -235,7 +346,7 @@ bool HoI4State::assignVPFromVic2Province(int Vic2ProvinceNumber)
 }
 
 
-void HoI4State::assignVP(int location)
+void HoI4::State::assignVP(int location)
 {
 	victoryPointPosition = location;
 
@@ -247,9 +358,9 @@ void HoI4State::assignVP(int location)
 }
 
 
-optional<int> HoI4State::getMainNavalLocation() const
+std::optional<int> HoI4::State::getMainNavalLocation() const
 {
-	optional<int> mainLocation;
+	std::optional<int> mainLocation;
 	int mainSize = 0;
 	for (auto navalBase: navalBases)
 	{
@@ -264,7 +375,7 @@ optional<int> HoI4State::getMainNavalLocation() const
 }
 
 
-void HoI4State::tryToCreateVP()
+void HoI4::State::tryToCreateVP()
 {
 	bool VPCreated = false;
 
@@ -318,7 +429,7 @@ void HoI4State::tryToCreateVP()
 }
 
 
-void HoI4State::addDebugVPs()
+void HoI4::State::addDebugVPs()
 {
 	for (auto sourceProvinceNum: sourceState->getProvinceNums())
 	{
@@ -335,7 +446,7 @@ void HoI4State::addDebugVPs()
 }
 
 
-void HoI4State::addManpower()
+void HoI4::State::addManpower()
 {
 	for (auto sourceProvince: sourceState->getProvinces())
 	{
@@ -360,7 +471,7 @@ void HoI4State::addManpower()
 }
 
 
-void HoI4State::convertIndustry(double workerFactoryRatio, const HoI4::stateCategories& theStateCategories)
+void HoI4::State::convertIndustry(double workerFactoryRatio, const HoI4::stateCategories& theStateCategories)
 {
 	int factories = determineFactoryNumbers(workerFactoryRatio);
 
@@ -371,7 +482,7 @@ void HoI4State::convertIndustry(double workerFactoryRatio, const HoI4::stateCate
 }
 
 
-int HoI4State::determineFactoryNumbers(double workerFactoryRatio)
+int HoI4::State::determineFactoryNumbers(double workerFactoryRatio)
 {
 	double rawFactories = sourceState->getEmployedWorkers() * workerFactoryRatio;
 	rawFactories = round(rawFactories);
@@ -379,7 +490,7 @@ int HoI4State::determineFactoryNumbers(double workerFactoryRatio)
 }
 
 
-int HoI4State::constrainFactoryNumbers(double rawFactories)
+int HoI4::State::constrainFactoryNumbers(double rawFactories)
 {
 	int factories = static_cast<int>(rawFactories);
 
@@ -402,7 +513,7 @@ int HoI4State::constrainFactoryNumbers(double rawFactories)
 }
 
 
-void HoI4State::determineCategory(int factories, const HoI4::stateCategories& theStateCategories)
+void HoI4::State::determineCategory(int factories, const HoI4::stateCategories& theStateCategories)
 {
 	if (capitalState)
 	{
@@ -420,7 +531,7 @@ void HoI4State::determineCategory(int factories, const HoI4::stateCategories& th
 }
 
 
-void HoI4State::setInfrastructure(int factories)
+void HoI4::State::setInfrastructure(int factories)
 {
 	infrastructure = 3;
 	infrastructure += sourceState->getAverageRailLevel() / 2;
@@ -440,9 +551,9 @@ void HoI4State::setInfrastructure(int factories)
 }
 
 
-static mt19937 randomnessEngine;
-static uniform_int_distribution<> numberDistributor(0, 99);
-void HoI4State::setIndustry(int factories)
+static std::mt19937 randomnessEngine;
+static std::uniform_int_distribution<> numberDistributor(0, 99);
+void HoI4::State::setIndustry(int factories)
 {
 	if (amICoastal())
 	{
@@ -489,7 +600,7 @@ void HoI4State::setIndustry(int factories)
 }
 
 
-bool HoI4State::amICoastal()
+bool HoI4::State::amICoastal()
 {
 	auto coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	for (auto province: provinces)
@@ -505,7 +616,7 @@ bool HoI4State::amICoastal()
 }
 
 
-bool HoI4State::isProvinceInState(int provinceNum)
+bool HoI4::State::isProvinceInState(int provinceNum)
 {
 	return (provinces.count(provinceNum) > 0);
 }

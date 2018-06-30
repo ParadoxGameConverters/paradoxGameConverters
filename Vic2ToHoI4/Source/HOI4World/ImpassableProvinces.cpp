@@ -22,33 +22,25 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "ImpassableProvinces.h"
-#include "StateFile.h"
+#include "HoI4State.h"
 #include "../Configuration.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 
 
 
-HoI4::impassableProvinces::impassableProvinces()
+HoI4::impassableProvinces::impassableProvinces(const std::map<int, HoI4::State*>& states)
 {
-	registerKeyword(std::regex("state"), [this](const std::string& unused, std::istream& theStream){
-		StateFile theState(theStream);
-		if (theState.isImpassable())
+	LOG(LogLevel::Info) << "Finding impassable provinces";
+	for (auto state: states)
+	{
+		if (state.second->isImpassable())
 		{
-			for (auto province: theState.getProvinces())
+			for (auto province: state.second->getProvinces())
 			{
 				impassibleProvinces.insert(province);
 			}
 		}
-	});
-
-	LOG(LogLevel::Info) << "Finding impassable provinces";
-
-	std::set<std::string> statesFiles;
-	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/history/states", statesFiles);
-	for (auto stateFile: statesFiles)
-	{
-		parseFile(theConfiguration.getHoI4Path() + "/history/states/" + stateFile);
 	}
 }
 

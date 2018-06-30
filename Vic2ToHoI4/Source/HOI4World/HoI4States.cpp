@@ -45,11 +45,26 @@ HoI4States::HoI4States(const Vic2::World* _sourceWorld, const CountryMapper& cou
 	coresMap(),
 	assignedProvinces(),
 	states(),
-	provinceToStateIDMap(),
-	nextStateID(1)
+	provinceToStateIDMap()
 {
+	int num;
+
 	LOG(LogLevel::Info) << "Converting states";
-	HoI4::impassableProvinces theImpassables;
+	registerKeyword(std::regex("state"), [this, &num](const std::string& unused, std::istream& theStream){
+		defaultStates.insert(make_pair(num, new HoI4::State(theStream)));
+	});
+
+	LOG(LogLevel::Info) << "Finding impassable provinces";
+
+	std::set<std::string> statesFiles;
+	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/history/states", statesFiles);
+	for (auto stateFile: statesFiles)
+	{
+		num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
+		parseFile(theConfiguration.getHoI4Path() + "/history/states/" + stateFile);
+	}
+
+	HoI4::impassableProvinces theImpassables(defaultStates);
 
 	determineOwnersAndCores(countryMap);
 	createStates(theImpassables, countryMap);
@@ -273,7 +288,7 @@ void HoI4States::createMatchingHoI4State(const Vic2::State* vic2State, const str
 
 	if (passableProvinces.size() > 0)
 	{
-		HoI4State* newState = new HoI4State(vic2State, nextStateID, stateOwner);
+		HoI4::State* newState = new HoI4::State(vic2State, nextStateID, stateOwner);
 		addProvincesAndCoresToNewState(newState, passableProvinces);
 		newState->tryToCreateVP();
 		newState->addManpower();
@@ -287,7 +302,7 @@ void HoI4States::createMatchingHoI4State(const Vic2::State* vic2State, const str
 
 	if (impassableProvinces.size() > 0)
 	{
-		HoI4State* newState = new HoI4State(vic2State, nextStateID, stateOwner);
+		HoI4::State* newState = new HoI4::State(vic2State, nextStateID, stateOwner);
 		addProvincesAndCoresToNewState(newState, impassableProvinces);
 		newState->makeImpassable();
 		newState->tryToCreateVP();
@@ -325,7 +340,7 @@ unordered_set<int> HoI4States::getProvincesInState(const Vic2::State* vic2State,
 }
 
 
-void HoI4States::addProvincesAndCoresToNewState(HoI4State* newState, unordered_set<int> provinces)
+void HoI4States::addProvincesAndCoresToNewState(HoI4::State* newState, unordered_set<int> provinces)
 {
 	for (auto province: provinces)
 	{
