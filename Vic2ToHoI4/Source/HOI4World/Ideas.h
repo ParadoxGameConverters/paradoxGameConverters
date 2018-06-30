@@ -58,7 +58,7 @@ class Ideas: commonItems::parser
 		std::ofstream openIdeaFile(const std::string& fileName) const;
 		void closeIdeaFile(std::ofstream& fileStream) const;
 
-		std::map<std::string, std::vector<std::shared_ptr<Object>>> ideologicalIdeas;
+		std::map<std::string, IdeaGroup> ideologicalIdeas;
 		std::vector<std::unique_ptr<IdeaGroup>> generalIdeas;
 };
 

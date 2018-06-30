@@ -24,7 +24,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Ideas.h"
 #include "IdeaGroup.h"
 #include "../Configuration.h"
-#include "ParadoxParserUTF8.h"
 #include <fstream>
 
 
@@ -38,21 +37,17 @@ HoI4::Ideas::Ideas()
 
 void HoI4::Ideas::importIdeologicalIdeas()
 {
-	auto fileObject = parser_UTF8::doParseFile("ideologicalIdeas.txt");
-	if (fileObject)
-	{
-		auto ideologyObjects = fileObject->getLeaves();
-		for (auto ideologyObject: ideologyObjects)
-		{
-			std::string ideaName = ideologyObject->getKey();
-			ideologicalIdeas.insert(make_pair(ideaName, ideologyObject->getLeaves()));
-		}
-	}
+	registerKeyword(std::regex("[a-zA-Z_]+"), [this](const std::string& ideology, std::istream& theStream){
+		ideologicalIdeas.insert(make_pair(ideology, IdeaGroup(ideology, theStream)));
+	});
+
+	parseFile("ideologicalIdeas.txt");
 }
 
 
 void HoI4::Ideas::importGeneralIdeas()
 {
+	clearRegisteredKeywords();
 	registerKeyword(std::regex("[a-zA-Z_]+"), [this](const std::string& ideaGroupName, std::istream& theStream){
 		generalIdeas.push_back(std::make_unique<IdeaGroup>(ideaGroupName, theStream));
 	});
@@ -295,9 +290,9 @@ void HoI4::Ideas::outputIdeologicalIdeas(std::set<std::string> majorIdeologies) 
 		auto ideologicalIdea = ideologicalIdeas.find(majorIdeology);
 		if (ideologicalIdea != ideologicalIdeas.end())
 		{
-			for (auto idea: ideologicalIdea->second)
+			for (auto idea: ideologicalIdea->second.getIdeas())
 			{
-				ideasFile << *idea;
+				ideasFile << idea;
 				ideasFile << "\n";
 			}
 		}
