@@ -28,9 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../V2World/Party.h"
 #include "Log.h"
-#include "Object.h"
 #include "OSCompatibilityLayer.h"
-#include "ParadoxParserUTF8.h"
 #include "ParserHelpers.h"
 #include <fstream>
 using namespace std;

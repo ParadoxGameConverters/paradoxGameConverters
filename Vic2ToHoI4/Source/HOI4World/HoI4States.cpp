@@ -26,7 +26,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4State.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
-#include "ParadoxParserUTF8.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/ProvinceDefinitions.h"
 #include "../Mappers/V2Localisations.h"
