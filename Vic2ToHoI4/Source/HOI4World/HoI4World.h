@@ -205,6 +205,10 @@ class HoI4World
 		vector<int> getPortProvinces(const vector<int>& locationCandidates);
 		int getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);*/
 
+		HoI4::namesMapper theNames;
+		graphicsMapper theGraphics;
+		governmentMapper governmentMap;
+		CountryMapper countryMap;
 
 		const Vic2::World* sourceWorld = nullptr;
 
@@ -233,11 +237,6 @@ class HoI4World
 		std::unique_ptr<HoI4::OnActions> onActions;
 
 		vector<HoI4::DivisionTemplateType> divisionTemplates;
-
-		HoI4::namesMapper theNames;
-		graphicsMapper theGraphics;
-		governmentMapper governmentMap;
-		CountryMapper countryMap;
 };
 
 
