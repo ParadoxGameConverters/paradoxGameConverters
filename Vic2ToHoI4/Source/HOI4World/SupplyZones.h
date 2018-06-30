@@ -26,8 +26,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "newParser.h"
 #include <map>
-#include <memory>
 #include <set>
 #include <string>
 
@@ -35,7 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 class HoI4States;
 class HoI4SupplyZone;
-class Object;
+
 
 
 namespace HoI4
@@ -45,7 +45,7 @@ class State;
 
 
 
-class SupplyZones
+class SupplyZones: commonItems::parser
 {
 	public:
 		SupplyZones(const std::map<int, HoI4::State*>& defaultStates);
@@ -57,8 +57,6 @@ class SupplyZones
 		SupplyZones& operator=(const SupplyZones&) = delete;
 
 		void importStates(const std::map<int, HoI4::State*>& defaultStates);
-		void importSupplyZone(const std::string& supplyZonesFile);
-		void mapProvincesToSupplyZone(int ID, std::shared_ptr<Object> supplyAreaObj);
 
 		std::map<int, std::set<int>> defaultStateToProvinceMap;
 		std::map<int, std::string> supplyZonesFilenames;
