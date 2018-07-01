@@ -46,6 +46,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4State.h"
 #include "HoI4StrategicRegion.h"
 #include "HoI4WarCreator.h"
+#include "Resources.h"
 #include "StateCategories.h"
 #include "SupplyZones.h"
 #include "../Mappers/CountryMapping.h"
@@ -596,59 +597,18 @@ void HoI4World::reportDefaultIndustry(const map<string, array<int, 3>>& countryI
 
 void HoI4World::convertResources()
 {
-	auto resourceMap = importResourceMap();
+	resources resourceMap;
 
 	for (auto state: states->getStates())
 	{
 		for (auto provinceNumber: state.second->getProvinces())
 		{
-			auto mapping = resourceMap.find(provinceNumber);
-			if (mapping != resourceMap.end())
+			for (auto resource: resourceMap.getResourcesInProvince(provinceNumber))
 			{
-				for (auto resource: mapping->second)
-				{
-					state.second->addResource(resource.first, resource.second);
-				}
+				state.second->addResource(resource.first, resource.second);
 			}
 		}
 	}
-}
-
-
-map<int, map<string, double>> HoI4World::importResourceMap() const
-{
-	map<int, map<string, double>> resourceMap;
-
-	auto fileObj = parser_UTF8::doParseFile("resources.txt");
-	if (fileObj)
-	{
-		auto resourcesObj = fileObj->safeGetObject("resources");
-		for (auto linkObj: resourcesObj->getValue("link"))
-		{
-			int provinceNumber = linkObj->safeGetInt("province");
-			auto mapping = resourceMap.find(provinceNumber);
-			if (mapping == resourceMap.end())
-			{
-				map<string, double> resources;
-				resourceMap.insert(make_pair(provinceNumber, resources));
-				mapping = resourceMap.find(provinceNumber);
-			}
-
-			auto resourcesObj = linkObj->safeGetObject("resources");
-			for (auto resource: resourcesObj->getLeaves())
-			{
-				string resourceName = resource->getKey();
-				mapping->second[resourceName] += stof(resource->getLeaf());
-			}
-		}
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Could not read resources.txt";
-		exit(-1);
-	}
-
-	return resourceMap;
 }
 
 

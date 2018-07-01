@@ -165,6 +165,7 @@
     <ClCompile Include="Source\HOI4World\ImpassableProvinces.cpp" />
     <ClCompile Include="Source\HOI4World\Names.cpp" />
     <ClCompile Include="Source\HOI4World\OnActions.cpp" />
+    <ClCompile Include="Source\HOI4World\Resources.cpp" />
     <ClCompile Include="Source\HOI4World\StateCategories.cpp" />
     <ClCompile Include="Source\HOI4World\SupplyZones.cpp" />
     <ClCompile Include="Source\Mappers\CoastalHoI4Provinces.cpp" />
@@ -248,6 +249,7 @@
     <ClInclude Include="Source\HOI4World\ImpassableProvinces.h" />
     <ClInclude Include="Source\HOI4World\Names.h" />
     <ClInclude Include="Source\HOI4World\OnActions.h" />
+    <ClInclude Include="Source\HOI4World\Resources.h" />
     <ClInclude Include="Source\HOI4World\StateCategories.h" />
     <ClInclude Include="Source\HOI4World\SupplyZones.h" />
     <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h" />

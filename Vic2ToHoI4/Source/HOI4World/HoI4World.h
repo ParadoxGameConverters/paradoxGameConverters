@@ -137,7 +137,6 @@ class HoI4World
 		void reportDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
 
 		void convertResources();
-		map<int, map<string, double>> importResourceMap() const;
 
 		void convertStrategicRegions();
 		map<int, int> importStrategicRegions();
