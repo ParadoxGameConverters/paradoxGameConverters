@@ -726,32 +726,44 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 
 	auto newFocus = loadedFocuses.find("EmpireGlory")->second.makeCustomizedCopy(Home->getTag());
 	newFocus->xPos = nextFreeColumn + 5;
+	newFocus->yPos = 0;
 	focuses.push_back(newFocus);
 
 	newFocus = loadedFocuses.find("StrengthenColonies")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn + 4;
+	newFocus->relativePositionId = "EmpireGlory" + Home->getTag();
+	newFocus->xPos = -1;
+	newFocus->yPos = 1;
 	focuses.push_back(newFocus);
 
 	newFocus = loadedFocuses.find("StrengthenHome")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn + 6;
+	newFocus->relativePositionId = "EmpireGlory" + Home->getTag();
+	newFocus->xPos = 1;
+	newFocus->yPos = 1;
 	focuses.push_back(newFocus);
 
 	newFocus = loadedFocuses.find("ColonialInd")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn + 2;
+	newFocus->relativePositionId = "StrengthenColonies" + Home->getTag();
+	newFocus->xPos = -2;
+	newFocus->yPos = 1;
 	focuses.push_back(newFocus);
 
 	newFocus = loadedFocuses.find("ColonialHwy")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn;
+	newFocus->relativePositionId = "ColonialInd" + Home->getTag();
+	newFocus->xPos = -2;
+	newFocus->yPos = 1;
 	focuses.push_back(newFocus);
 
 	newFocus = loadedFocuses.find("ResourceFac")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn + 2;
+	newFocus->relativePositionId = "ColonialInd" + Home->getTag();
+	newFocus->xPos = 0;
+	newFocus->yPos = 1;
 	focuses.push_back(newFocus);
 
 	//establish colonial army
 	newFocus = loadedFocuses.find("ColonialArmy")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn + 4;
-	newFocus->yPos = 2;
+	newFocus->relativePositionId = "StrengthenColonies" + Home->getTag();
+	newFocus->xPos = 0;
+	newFocus->yPos = 1;
 	focuses.push_back(newFocus);
 
 	//establish protectorate
@@ -778,8 +790,9 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }\n";
 		newFocus->available += "		}";
 		newFocus->prerequisites.push_back("= { focus = ColonialArmy" + Home->getTag() + " }");
-		newFocus->xPos = nextFreeColumn + 4;
-		newFocus->yPos = 3;
+		newFocus->relativePositionId = "ColonialArmy" + Home->getTag();
+		newFocus->xPos = 0;
+		newFocus->yPos = 1;
 		newFocus->bypass += "= {\n";
 		newFocus->bypass += "			OR = {\n";
 		newFocus->bypass += "				" + Home->getTag() + " = {\n";
@@ -827,8 +840,9 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }\n";
 		newFocus->available += "		}";
 		newFocus->prerequisites.push_back("= { focus = Protectorate" + Home->getTag() + targetColonies.front()->getTag() + " }");
-		newFocus->xPos = nextFreeColumn + 4;
-		newFocus->yPos = 4;
+		newFocus->relativePositionId = "Protectorate" + Home->getTag() + targetColonies.front()->getTag();
+		newFocus->xPos = 0;
+		newFocus->yPos = 1;
 		newFocus->bypass += "= {\n";
 		newFocus->bypass += "			OR = {\n";
 		newFocus->bypass += "				" + Home->getTag() + " = {\n";
@@ -857,44 +871,51 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 	//Trade Empire
 	newFocus = loadedFocuses.find("TradeEmpire")->second.makeCustomizedCopy(Home->getTag());
 	newFocus->text += "Fund the " + homeCountryAdjective + " Colonial Trade Corporation";
-	newFocus->xPos = nextFreeColumn + 1;
-	newFocus->yPos = 4;
+	newFocus->relativePositionId = "ColonialInd" + Home->getTag();
+	newFocus->xPos = -1;
+	newFocus->yPos = 2;
 	focuses.push_back(newFocus);
 
 	//Home Industry Buildup
 	newFocus = loadedFocuses.find("IndHome")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn + 7;
-	newFocus->yPos = 2;
+	newFocus->relativePositionId = "StrengthenHome" + Home->getTag();
+	newFocus->xPos = 1;
+	newFocus->yPos = 1;
 	focuses.push_back(newFocus);
 
 	//National Highway
 	newFocus = loadedFocuses.find("NationalHwy")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn + 6;
-	newFocus->yPos = 3;
+	newFocus->relativePositionId = "IndHome" + Home->getTag();
+	newFocus->xPos = -1;
+	newFocus->yPos = 1;
 	focuses.push_back(newFocus);
 
 	//National College
 	newFocus = loadedFocuses.find("NatCollege")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn + 8;
-	newFocus->yPos = 3;
+	newFocus->relativePositionId = "IndHome" + Home->getTag();
+	newFocus->xPos = 1;
+	newFocus->yPos = 1;
 	focuses.push_back(newFocus);
 
 	//Improve Factories
 	newFocus = loadedFocuses.find("MilitaryBuildup")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn + 9;
-	newFocus->yPos = 4;
+	newFocus->relativePositionId = "IndHome" + Home->getTag();
+	newFocus->xPos = 2;
+	newFocus->yPos = 2;
 	focuses.push_back(newFocus);
 
 	//PrepBorder
 	newFocus = loadedFocuses.find("PrepTheBorder")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn + 10;
-	newFocus->yPos = 2;
+	newFocus->relativePositionId = "StrengthenHome" + Home->getTag();
+	newFocus->xPos = 4;
+	newFocus->yPos = 1;
 	focuses.push_back(newFocus);
 
 	//Promote Nationalistic Spirit
 	newFocus = loadedFocuses.find("NatSpirit")->second.makeCustomizedCopy(Home->getTag());
-	newFocus->xPos = nextFreeColumn + 10;
-	newFocus->yPos = 3;
+	newFocus->relativePositionId = "PrepTheBorder" + Home->getTag();
+	newFocus->xPos = 0;
+	newFocus->yPos = 1;
 	focuses.push_back(newFocus);
 
 	//ANNEX
@@ -921,8 +942,9 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }\n";
 		newFocus->available += "		}";
 		newFocus->prerequisites.push_back("= { focus = PrepTheBorder" + Home->getTag() + " }");
-		newFocus->xPos = nextFreeColumn + 12;
-		newFocus->yPos = 3;
+		newFocus->relativePositionId = "PrepTheBorder" + Home->getTag();
+		newFocus->xPos = 2;
+		newFocus->yPos = 1;
 		newFocus->bypass += "= {\n";
 		newFocus->bypass += "			OR = {\n";
 		newFocus->bypass += "				" + Home->getTag() + "= {\n";
@@ -970,8 +992,9 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> H
 		newFocus->available += "			\"" + target->getTag() + "\" = { is_in_faction = no }\n";
 		newFocus->available += "		}";
 		newFocus->prerequisites.push_back("= { focus = NatSpirit" + Home->getTag() + " }");
-		newFocus->xPos = nextFreeColumn + 10;
-		newFocus->yPos = 4;
+		newFocus->relativePositionId = "NatSpirit" + Home->getTag();
+		newFocus->xPos = 1;
+		newFocus->yPos = 1;
 		newFocus->bypass += "= {\n";
 		newFocus->bypass += "			OR = {\n";
 		newFocus->bypass += "				" + Home->getTag() + " = {\n";
