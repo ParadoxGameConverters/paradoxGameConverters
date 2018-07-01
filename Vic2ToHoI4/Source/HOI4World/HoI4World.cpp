@@ -49,6 +49,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "StateCategories.h"
 #include "SupplyZones.h"
 #include "../Mappers/CountryMapping.h"
+#include "../Mappers/TechMapper.h"
 #include <fstream>
 using namespace std;
 
@@ -864,145 +865,40 @@ void HoI4World::convertTechs()
 {
 	LOG(LogLevel::Info) << "Converting techs and research bonuses";
 
-	map<string, vector<pair<string, int>>> techMap = importTechMap();
-	map<string, vector<pair<string, int>>> researchBonusMap = importResearchBonusMap();
+	techMapper techMap;
 
-	for (auto dstCountry : countries)
+	for (auto dstCountry: countries)
 	{
-		const Vic2::Country* sourceCountry = dstCountry.second->getSourceCountry();
+		auto sourceCountry = dstCountry.second->getSourceCountry();
 
-		for (auto technology : sourceCountry->getTechs())
+		for (auto technology: sourceCountry->getTechs())
 		{
 			addTechs(dstCountry.second, technology, techMap);
-			addResearchBonuses(dstCountry.second, technology, researchBonusMap);
+			addResearchBonuses(dstCountry.second, technology, techMap);
 		}
-		for (auto invention : sourceCountry->getInventions())
+		for (auto invention: sourceCountry->getInventions())
 		{
 			addTechs(dstCountry.second, invention, techMap);
-			addResearchBonuses(dstCountry.second, invention, researchBonusMap);
+			addResearchBonuses(dstCountry.second, invention, techMap);
 		}
 	}
 }
 
 
-map<string, vector<pair<string, int>>> HoI4World::importTechMap() const
+void HoI4World::addTechs(shared_ptr<HoI4Country> country, const string& oldTech, const techMapper& techMap)
 {
-	map<string, vector<pair<string, int>>> techMap;
-
-	auto fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
-	if (fileObj)
+	for (auto HoI4TechItr: techMap.getHoI4Techs(oldTech))
 	{
-		auto mapObj = fileObj->safeGetObject("tech_map");
-		if (mapObj == nullptr)
-		{
-			LOG(LogLevel::Error) << "Could not read tech map";
-			exit(-1);
-		}
-		for (auto link: mapObj->getValue("link"))
-		{
-			vector<pair<string, int> > targetTechs;
-			string tech = "";
-
-			for (auto leaf: link->getLeaves())
-			{
-				string key = leaf->getKey();
-				if (key == "vic2")
-				{
-					tech = leaf->getLeaf();
-				}
-				else
-				{
-					int value = link->safeGetInt(key);
-					targetTechs.push_back(pair<string, int>(key, value));
-				}
-			}
-
-			techMap[tech] = targetTechs;
-		}
-
-		return techMap;
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Could not parse tech_mapping.txt";
-		exit(-1);
+		country->setTechnology(HoI4TechItr.first, HoI4TechItr.second);
 	}
 }
 
-map<string, vector<pair<string, int>>> HoI4World::importResearchBonusMap() const
+
+void HoI4World::addResearchBonuses(shared_ptr<HoI4Country> country, const string& oldTech, const techMapper& techMap)
 {
-	map<string, vector<pair<string, int>>> researchBonusMap;
-
-	auto fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
-	if (fileObj)
+	for (auto HoI4TechItr: techMap.getResearchBonuses(oldTech))
 	{
-		auto mapObj = fileObj->safeGetObject("bonus_map");
-		if (mapObj == nullptr)
-		{
-			LOG(LogLevel::Error) << "Could not read bonus map";
-			exit(-1);
-		}
-
-		for (auto link : mapObj->getValue("link"))
-		{
-			vector<pair<string, int> > targetTechs;
-			string tech = "";
-
-			for (auto leaf: link->getLeaves())
-			{
-				string key = leaf->getKey();
-				if (key == "vic2")
-				{
-					tech = leaf->getLeaf();
-				}
-				else
-				{
-					int value = link->safeGetInt(key);
-					targetTechs.push_back(pair<string, int>(key, value));
-				}
-			}
-
-			researchBonusMap[tech] = targetTechs;
-		}
-
-		return researchBonusMap;
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Could not parse tech_mapping.txt";
-		exit(-1);
-	}
-}
-
-void HoI4World::addTechs(shared_ptr<HoI4Country> country, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap)
-{
-	auto mapItr = techMap.find(oldTech);
-	if (mapItr == techMap.end())
-	{
-		return;
-	}
-	if (mapItr != techMap.end())
-	{
-		for (auto HoI4TechItr: mapItr->second)
-		{
-			country->setTechnology(HoI4TechItr.first, HoI4TechItr.second);
-		}
-	}
-}
-
-void HoI4World::addResearchBonuses(shared_ptr<HoI4Country> country, const string& oldTech, const map<string, vector<pair<string, int>>>& researchBonusMap)
-{
-	auto mapItr = researchBonusMap.find(oldTech);
-	if (mapItr == researchBonusMap.end())
-	{
-		return;
-	}
-	if (mapItr != researchBonusMap.end())
-	{
-		for (auto HoI4TechItr : mapItr->second)
-		{
-			country->setResearchBonus(HoI4TechItr.first, HoI4TechItr.second);
-		}
+		country->setResearchBonus(HoI4TechItr.first, HoI4TechItr.second);
 	}
 }
 

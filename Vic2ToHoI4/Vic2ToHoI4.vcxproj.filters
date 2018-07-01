@@ -242,6 +242,9 @@
     <ClCompile Include="Source\HOI4World\SupplyZones.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Mappers\TechMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -470,6 +473,9 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\SupplyZones.h">
       <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\TechMapper.h">
+      <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

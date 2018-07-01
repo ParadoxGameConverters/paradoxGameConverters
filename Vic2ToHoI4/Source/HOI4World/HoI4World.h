@@ -51,6 +51,7 @@ class HoI4Ideology;
 class HoI4Province;
 class HoI4States;
 class HoI4StrategicRegion;
+class techMapper;
 
 
 namespace HoI4
@@ -150,10 +151,8 @@ class HoI4World
 		void convertRelations();
 
 		void convertTechs();
-		map<string, vector<pair<string, int>>> importTechMap() const;
-		map<string, vector<pair<string, int>>> importResearchBonusMap() const;
-		void addTechs(shared_ptr<HoI4Country> countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
-		void addResearchBonuses(shared_ptr<HoI4Country> countryaddBonuses, const string& oldTech, const map<string, vector<pair<string, int>>>& researchBonusMap);
+		void addTechs(shared_ptr<HoI4Country> countryaddTechs, const string& oldTech, const techMapper& techMap);
+		void addResearchBonuses(shared_ptr<HoI4Country> countryaddBonuses, const string& oldTech, const techMapper& researchBonusMap);
 
 		map<string, HoI4::UnitMap> importUnitMap() const;
 		vector<HoI4::DivisionTemplateType> importDivisionTemplates() const;
