@@ -25,7 +25,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Advisor.h"
 #include "HoI4World.h"
 #include "Log.h"
-#include "ParadoxParserUTF8.h"
 #include "HoI4Faction.h"
 #include "HoI4Focus.h"
 #include "HoI4Leader.h"
@@ -361,44 +360,6 @@ void HoI4Country::findBestCapital()
 {
 	capitalStateNum = 0;
 	LOG(LogLevel::Warning) << "Could not properly set capital for " << tag;
-}
-
-
-void HoI4Country::initFromHistory()
-{
-	string fullFilename;
-	auto possibleFilename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
-	if (possibleFilename)
-	{
-		filename = *possibleFilename;
-		fullFilename = "./blankMod/output/history/countries/" + filename;
-	}
-	else
-	{
-		possibleFilename = Utils::GetFileFromTag(theConfiguration.getHoI4Path() + "/history/countries/", tag);
-		if (possibleFilename)
-		{
-			filename = *possibleFilename;
-			fullFilename = theConfiguration.getHoI4Path() + "/history/countries/" + filename;
-		}
-		else
-		{
-			LOG(LogLevel::Error) << "Could not find history file for " << tag;
-		}
-	}
-
-	LOG(LogLevel::Debug) << "Parsing " << fullFilename;
-	auto obj = parser_UTF8::doParseFile(fullFilename);
-	if (obj)
-	{
-		governmentIdeology = obj->safeGetString("ideology", governmentIdeology);
-		capitalStateNum = obj->safeGetInt("capital", capitalStateNum);
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Could not parse file " << fullFilename;
-		exit(-1);
-	}
 }
 
 
