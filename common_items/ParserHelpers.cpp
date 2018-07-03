@@ -281,3 +281,14 @@ commonItems::stringOfItem::stringOfItem(std::istream& theStream)
 		}
 	}
 }
+
+
+commonItems::stringsOfItems::stringsOfItems(std::istream& theStream)
+{
+	registerKeyword(std::regex("[a-zA-Z0-9_]+"), [this](const std::string& itemName, std::istream& theStream){
+		stringOfItem theItem(theStream);
+		theStrings.push_back(itemName + theItem.getString() + "\n}\n");
+	});
+
+	parseStream(theStream);
+}
