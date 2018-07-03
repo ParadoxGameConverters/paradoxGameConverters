@@ -134,6 +134,18 @@ class stringOfItem: commonItems::parser
 		std::string theString;
 };
 
+
+class stringsOfItems: commonItems::parser
+{
+	public:
+		stringsOfItems(std::istream& theStream);
+
+		std::vector<std::string> getStrings() const { return theStrings; }
+
+	private:
+		std::vector<std::string> theStrings;
+};
+
 }
 
 
