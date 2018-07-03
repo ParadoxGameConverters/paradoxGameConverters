@@ -51,13 +51,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "SupplyZones.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/TechMapper.h"
+#include "ParserHelpers.h"
 #include <fstream>
 using namespace std;
 
 
 
 
-HoI4World::HoI4World(const Vic2::World* _sourceWorld):
+HoI4::World::World(const Vic2::World* _sourceWorld):
 	sourceWorld(_sourceWorld),
 	countryMap(_sourceWorld),
 	states(new HoI4States(sourceWorld, countryMap)),
@@ -116,10 +117,7 @@ HoI4World::HoI4World(const Vic2::World* _sourceWorld):
 }
 
 
-HoI4World::~HoI4World() = default;
-
-
-shared_ptr<HoI4Country> HoI4World::findCountry(const string& countryTag)
+shared_ptr<HoI4Country> HoI4::World::findCountry(const string& countryTag)
 {
 	auto country = countries.find(countryTag);
 	if (country == countries.end())
@@ -130,7 +128,7 @@ shared_ptr<HoI4Country> HoI4World::findCountry(const string& countryTag)
 	return country->second;
 }
 
-void HoI4World::convertNavalBases()
+void HoI4::World::convertNavalBases()
 {
 	for (auto state: states->getStates())
 	{
@@ -139,7 +137,7 @@ void HoI4World::convertNavalBases()
 }
 
 
-void HoI4World::convertCountries()
+void HoI4::World::convertCountries()
 {
 	LOG(LogLevel::Info) << "Converting countries";
 
@@ -152,7 +150,7 @@ void HoI4World::convertCountries()
 }
 
 
-void HoI4World::convertCountry(pair<string, Vic2::Country*> country)
+void HoI4::World::convertCountry(pair<string, Vic2::Country*> country)
 {
 	// don't convert rebels
 	if (country.first == "REB")
@@ -209,7 +207,7 @@ void HoI4World::convertCountry(pair<string, Vic2::Country*> country)
 }
 
 
-void HoI4World::importIdeologies()
+void HoI4::World::importIdeologies()
 {
 	if (theConfiguration.getIdeologiesOptions() != ideologyOptions::keep_default)
 	{
@@ -219,7 +217,7 @@ void HoI4World::importIdeologies()
 }
 
 
-void HoI4World::importIdeologyFile(const string& filename)
+void HoI4::World::importIdeologyFile(const string& filename)
 {
 	auto fileObject = parser_UTF8::doParseFile(filename);
 	if (fileObject)
@@ -243,26 +241,18 @@ void HoI4World::importIdeologyFile(const string& filename)
 }
 
 
-void HoI4World::importLeaderTraits()
+void HoI4::World::importLeaderTraits()
 {
-	auto fileObject = parser_UTF8::doParseFile("converterLeaderTraits.txt");
-	if (fileObject)
-	{
-		auto ideologyObjects = fileObject->getLeaves();
-		for (auto ideologyObject: ideologyObjects)
-		{
-			string ideaName = ideologyObject->getKey();
-			ideologicalLeaderTraits.insert(make_pair(ideaName, ideologyObject->getLeaves()));
-		}
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Could not parse converterLeaderTraits.txt";
-	}
+	clearRegisteredKeywords();
+	registerKeyword(std::regex("[a-z]+"), [this](const std::string& ideologyName, std::istream& theStream){
+		commonItems::stringsOfItems traits(theStream);
+		ideologicalLeaderTraits.insert(make_pair(ideologyName, traits.getStrings()));
+	});
+	parseFile("converterLeaderTraits.txt");
 }
 
 
-void HoI4World::importIdeologicalMinisters()
+void HoI4::World::importIdeologicalMinisters()
 {
 	HoI4::IdeologicalAdvisors theAdvisors;
 	auto theAcutalAdvisors = theAdvisors.getAdvisors();
@@ -270,7 +260,7 @@ void HoI4World::importIdeologicalMinisters()
 }
 
 
-void HoI4World::convertGovernments()
+void HoI4::World::convertGovernments()
 {
 	for (auto country: countries)
 	{
@@ -279,7 +269,7 @@ void HoI4World::convertGovernments()
 }
 
 
-void HoI4World::convertParties()
+void HoI4::World::convertParties()
 {
 	for (auto country: countries)
 	{
@@ -288,7 +278,7 @@ void HoI4World::convertParties()
 }
 
 
-void HoI4World::identifyMajorIdeologies()
+void HoI4::World::identifyMajorIdeologies()
 {
 	if (theConfiguration.getIdeologiesOptions() == ideologyOptions::keep_major)
 	{
@@ -316,7 +306,7 @@ void HoI4World::identifyMajorIdeologies()
 }
 
 
-void HoI4World::addNeutrality()
+void HoI4::World::addNeutrality()
 {
 	for (auto country: countries)
 	{
@@ -328,7 +318,7 @@ void HoI4World::addNeutrality()
 }
 
 
-void HoI4World::convertIdeologySupport()
+void HoI4::World::convertIdeologySupport()
 {
 	for (auto country: countries)
 	{
@@ -337,7 +327,7 @@ void HoI4World::convertIdeologySupport()
 }
 
 
-void HoI4World::convertIndustry()
+void HoI4::World::convertIndustry()
 {
 	LOG(LogLevel::Info) << "Converting industry";
 
@@ -351,7 +341,7 @@ void HoI4World::convertIndustry()
 }
 
 
-void HoI4World::addStatesToCountries()
+void HoI4::World::addStatesToCountries()
 {
 	for (auto state: states->getStates())
 	{
@@ -372,7 +362,7 @@ void HoI4World::addStatesToCountries()
 }
 
 
-map<string, double> HoI4World::calculateFactoryWorkerRatios()
+map<string, double> HoI4::World::calculateFactoryWorkerRatios()
 {
 	map<string, double> industrialWorkersPerCountry = getIndustrialWorkersPerCountry();
 	double totalWorldWorkers = getTotalWorldWorkers(industrialWorkersPerCountry);
@@ -398,7 +388,7 @@ map<string, double> HoI4World::calculateFactoryWorkerRatios()
 }
 
 
-map<string, double> HoI4World::getIndustrialWorkersPerCountry()
+map<string, double> HoI4::World::getIndustrialWorkersPerCountry()
 {
 	map<string, double> industrialWorkersPerCountry;
 	for (auto country: landedCountries)
@@ -415,7 +405,7 @@ map<string, double> HoI4World::getIndustrialWorkersPerCountry()
 }
 
 
-double HoI4World::getTotalWorldWorkers(const map<string, double>& industrialWorkersPerCountry)
+double HoI4::World::getTotalWorldWorkers(const map<string, double>& industrialWorkersPerCountry)
 {
 	double totalWorldWorkers = 0.0;
 	for (auto countryWorkers: industrialWorkersPerCountry)
@@ -427,7 +417,7 @@ double HoI4World::getTotalWorldWorkers(const map<string, double>& industrialWork
 }
 
 
-map<string, double> HoI4World::adjustWorkers(const map<string, double>& industrialWorkersPerCountry, double totalWorldWorkers)
+map<string, double> HoI4::World::adjustWorkers(const map<string, double>& industrialWorkersPerCountry, double totalWorldWorkers)
 {
 	double meanWorkersPerCountry = totalWorldWorkers / industrialWorkersPerCountry.size();
 
@@ -450,7 +440,7 @@ map<string, double> HoI4World::adjustWorkers(const map<string, double>& industri
 }
 
 
-double HoI4World::getWorldwideWorkerFactoryRatio(const map<string, double>& workersInCountries, double totalWorldWorkers)
+double HoI4::World::getWorldwideWorkerFactoryRatio(const map<string, double>& workersInCountries, double totalWorldWorkers)
 {
 	double baseIndustry = 0.0;
 	for (auto countryWorkers: workersInCountries)
@@ -472,7 +462,7 @@ double HoI4World::getWorldwideWorkerFactoryRatio(const map<string, double>& work
 }
 
 
-void HoI4World::putIndustryInStates(const map<string, double>& factoryWorkerRatios)
+void HoI4::World::putIndustryInStates(const map<string, double>& factoryWorkerRatios)
 {
 	HoI4::stateCategories theStateCategories;
 
@@ -489,7 +479,7 @@ void HoI4World::putIndustryInStates(const map<string, double>& factoryWorkerRati
 }
 
 
-void HoI4World::calculateIndustryInCountries()
+void HoI4::World::calculateIndustryInCountries()
 {
 	for (auto country: countries)
 	{
@@ -498,7 +488,7 @@ void HoI4World::calculateIndustryInCountries()
 }
 
 
-void HoI4World::reportIndustryLevels()
+void HoI4::World::reportIndustryLevels()
 {
 	map<string, int> countryIndustry;
 	int militaryFactories = 0;
@@ -524,7 +514,7 @@ void HoI4World::reportIndustryLevels()
 }
 
 
-void HoI4World::reportCountryIndustry()
+void HoI4::World::reportCountryIndustry()
 {
 	ofstream report("convertedIndustry.csv");
 	report << "tag,military factories,civilian factories,dockyards,total factories\n";
@@ -538,7 +528,7 @@ void HoI4World::reportCountryIndustry()
 }
 
 
-void HoI4World::reportDefaultIndustry()
+void HoI4::World::reportDefaultIndustry()
 {
 	map<string, array<int, 3>> countryIndustry;
 
@@ -563,7 +553,7 @@ void HoI4World::reportDefaultIndustry()
 }
 
 
-pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(const HoI4::State* state)
+pair<string, array<int, 3>> HoI4::World::getDefaultStateIndustry(const HoI4::State* state)
 {
 	int civilianFactories = state->getCivFactories();
 	int militaryFactories = state->getMilFactories();
@@ -577,7 +567,7 @@ pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(const HoI4::State
 }
 
 
-void HoI4World::reportDefaultIndustry(const map<string, array<int, 3>>& countryIndustry)
+void HoI4::World::reportDefaultIndustry(const map<string, array<int, 3>>& countryIndustry)
 {
 	ofstream report("defaultIndustry.csv");
 	report << "tag,military factories,civilian factories,dockyards,total factories\n";
@@ -595,7 +585,7 @@ void HoI4World::reportDefaultIndustry(const map<string, array<int, 3>>& countryI
 }
 
 
-void HoI4World::convertResources()
+void HoI4::World::convertResources()
 {
 	resources resourceMap;
 
@@ -612,7 +602,7 @@ void HoI4World::convertResources()
 }
 
 
-void HoI4World::convertStrategicRegions()
+void HoI4::World::convertStrategicRegions()
 {
 	map<int, int> provinceToStrategicRegionMap = importStrategicRegions();
 
@@ -629,7 +619,7 @@ void HoI4World::convertStrategicRegions()
 }
 
 
-map<int, int> HoI4World::importStrategicRegions()
+map<int, int> HoI4::World::importStrategicRegions()
 {
 	map<int, int> provinceToStrategicRegionMap;
 
@@ -650,7 +640,7 @@ map<int, int> HoI4World::importStrategicRegions()
 }
 
 
-map<int, int> HoI4World::determineUsedRegions(const HoI4::State* state, map<int, int>& provinceToStrategicRegionMap)
+map<int, int> HoI4::World::determineUsedRegions(const HoI4::State* state, map<int, int>& provinceToStrategicRegionMap)
 {
 	map<int, int> usedRegions;	// region ID -> number of provinces in that region
 
@@ -680,7 +670,7 @@ map<int, int> HoI4World::determineUsedRegions(const HoI4::State* state, map<int,
 }
 
 
-optional<int> HoI4World::determineMostUsedRegion(const map<int, int>& usedRegions) const
+optional<int> HoI4::World::determineMostUsedRegion(const map<int, int>& usedRegions) const
 {
 	int mostProvinces = 0;
 	optional<int> bestRegion;
@@ -697,7 +687,7 @@ optional<int> HoI4World::determineMostUsedRegion(const map<int, int>& usedRegion
 }
 
 
-void HoI4World::addProvincesToRegion(const HoI4::State* state, int regionNum)
+void HoI4::World::addProvincesToRegion(const HoI4::State* state, int regionNum)
 {
 	auto region = strategicRegions.find(regionNum);
 	if (region == strategicRegions.end())
@@ -713,7 +703,7 @@ void HoI4World::addProvincesToRegion(const HoI4::State* state, int regionNum)
 }
 
 
-void HoI4World::addLeftoverProvincesToRegions(const map<int, int>& provinceToStrategicRegionMap)
+void HoI4::World::addLeftoverProvincesToRegions(const map<int, int>& provinceToStrategicRegionMap)
 {
 	for (auto mapping: provinceToStrategicRegionMap)
 	{
@@ -728,7 +718,7 @@ void HoI4World::addLeftoverProvincesToRegions(const map<int, int>& provinceToStr
 }
 
 
-void HoI4World::convertDiplomacy()
+void HoI4::World::convertDiplomacy()
 {
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	convertAgreements();
@@ -736,7 +726,7 @@ void HoI4World::convertDiplomacy()
 }
 
 
-void HoI4World::convertAgreements()
+void HoI4::World::convertAgreements()
 {
 	for (auto agreement : sourceWorld->getDiplomacy()->getAgreements())
 	{
@@ -785,7 +775,7 @@ void HoI4World::convertAgreements()
 }
 
 
-void HoI4World::convertRelations()
+void HoI4::World::convertRelations()
 {
 	for (auto country: countries)
 	{
@@ -821,7 +811,7 @@ void HoI4World::convertRelations()
 }
 
 
-void HoI4World::convertTechs()
+void HoI4::World::convertTechs()
 {
 	LOG(LogLevel::Info) << "Converting techs and research bonuses";
 
@@ -845,7 +835,7 @@ void HoI4World::convertTechs()
 }
 
 
-void HoI4World::addTechs(shared_ptr<HoI4Country> country, const string& oldTech, const techMapper& techMap)
+void HoI4::World::addTechs(shared_ptr<HoI4Country> country, const string& oldTech, const techMapper& techMap)
 {
 	for (auto HoI4TechItr: techMap.getHoI4Techs(oldTech))
 	{
@@ -854,7 +844,7 @@ void HoI4World::addTechs(shared_ptr<HoI4Country> country, const string& oldTech,
 }
 
 
-void HoI4World::addResearchBonuses(shared_ptr<HoI4Country> country, const string& oldTech, const techMapper& techMap)
+void HoI4::World::addResearchBonuses(shared_ptr<HoI4Country> country, const string& oldTech, const techMapper& techMap)
 {
 	for (auto HoI4TechItr: techMap.getResearchBonuses(oldTech))
 	{
@@ -862,7 +852,7 @@ void HoI4World::addResearchBonuses(shared_ptr<HoI4Country> country, const string
 	}
 }
 
-map<string, HoI4::UnitMap> HoI4World::importUnitMap() const
+map<string, HoI4::UnitMap> HoI4::World::importUnitMap() const
 {
 	/* HARDCODED! TO DO : IMPLEMENT PARSING of unit_mapping.txt */
 
@@ -907,7 +897,7 @@ map<string, HoI4::UnitMap> HoI4World::importUnitMap() const
 	return unitMap;
 }
 
-vector<HoI4::DivisionTemplateType> HoI4World::importDivisionTemplates() const
+vector<HoI4::DivisionTemplateType> HoI4::World::importDivisionTemplates() const
 {
 	/* HARDCODED! TO DO : IMPLEMENT PARSING of unit_mapping.txt */
 
@@ -1081,7 +1071,7 @@ vector<HoI4::DivisionTemplateType> HoI4World::importDivisionTemplates() const
 	return templateList;
 }
 
-void HoI4World::convertMilitaries()
+void HoI4::World::convertMilitaries()
 {
 	map<string, HoI4::UnitMap> unitMap = importUnitMap();
 	divisionTemplates = importDivisionTemplates();
@@ -1092,7 +1082,7 @@ void HoI4World::convertMilitaries()
 }
 
 
-void HoI4World::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates)
+void HoI4::World::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates)
 {
 	LOG(LogLevel::Info) << "Converting armies";
 
@@ -1103,7 +1093,7 @@ void HoI4World::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const v
 }
 
 
-void HoI4World::convertNavies(const map<string, HoI4::UnitMap>& unitMap)
+void HoI4::World::convertNavies(const map<string, HoI4::UnitMap>& unitMap)
 {
 	LOG(LogLevel::Info) << "Converting navies";
 
@@ -1115,7 +1105,7 @@ void HoI4World::convertNavies(const map<string, HoI4::UnitMap>& unitMap)
 }
 
 
-void HoI4World::convertAirforces(const map<string, HoI4::UnitMap>& unitMap)
+void HoI4::World::convertAirforces(const map<string, HoI4::UnitMap>& unitMap)
 {
 	LOG(LogLevel::Info) << "Converting air forces";
 
@@ -1126,7 +1116,7 @@ void HoI4World::convertAirforces(const map<string, HoI4::UnitMap>& unitMap)
 }
 
 
-void HoI4World::determineGreatPowers()
+void HoI4::World::determineGreatPowers()
 {
 	for (auto greatPowerVic2Tag: sourceWorld->getGreatPowers())
 	{
@@ -1144,7 +1134,7 @@ void HoI4World::determineGreatPowers()
 }
 
 
-void HoI4World::convertCapitalVPs()
+void HoI4::World::convertCapitalVPs()
 {
 	LOG(LogLevel::Info) << "Adding bonuses to capitals";
 
@@ -1154,7 +1144,7 @@ void HoI4World::convertCapitalVPs()
 }
 
 
-void HoI4World::addBasicCapitalVPs()
+void HoI4::World::addBasicCapitalVPs()
 {
 	for (auto countryItr: countries)
 	{
@@ -1163,7 +1153,7 @@ void HoI4World::addBasicCapitalVPs()
 }
 
 
-void HoI4World::addGreatPowerVPs()
+void HoI4::World::addGreatPowerVPs()
 {
 	for (auto greatPower: greatPowers)
 	{
@@ -1172,7 +1162,7 @@ void HoI4World::addGreatPowerVPs()
 }
 
 
-void HoI4World::addStrengthVPs()
+void HoI4::World::addStrengthVPs()
 {
 	double greatestStrength = getStrongestCountryStrength();
 	for (auto country: countries)
@@ -1183,7 +1173,7 @@ void HoI4World::addStrengthVPs()
 }
 
 
-double HoI4World::getStrongestCountryStrength() const
+double HoI4::World::getStrongestCountryStrength() const
 {
 	double greatestStrength = 0.0;
 	for (auto country: countries)
@@ -1199,14 +1189,14 @@ double HoI4World::getStrongestCountryStrength() const
 }
 
 
-int HoI4World::calculateStrengthVPs(shared_ptr<HoI4Country> country, double greatestStrength) const
+int HoI4::World::calculateStrengthVPs(shared_ptr<HoI4Country> country, double greatestStrength) const
 {
 	double relativeStrength = country->getStrengthOverTime(1.0) / greatestStrength;
 	return static_cast<int>(relativeStrength * 30.0);
 }
 
 
-void HoI4World::convertAirBases()
+void HoI4::World::convertAirBases()
 {
 	addBasicAirBases();
 	addCapitalAirBases();
@@ -1214,7 +1204,7 @@ void HoI4World::convertAirBases()
 }
 
 
-void HoI4World::addBasicAirBases()
+void HoI4::World::addBasicAirBases()
 {
 	for (auto state: states->getStates())
 	{
@@ -1229,7 +1219,7 @@ void HoI4World::addBasicAirBases()
 }
 
 
-void HoI4World::addCapitalAirBases()
+void HoI4::World::addCapitalAirBases()
 {
 	for (auto country: countries)
 	{
@@ -1242,7 +1232,7 @@ void HoI4World::addCapitalAirBases()
 }
 
 
-void HoI4World::addGreatPowerAirBases()
+void HoI4::World::addGreatPowerAirBases()
 {
 	for (auto greatPower: greatPowers)
 	{
@@ -1255,7 +1245,7 @@ void HoI4World::addGreatPowerAirBases()
 }
 
 
-void HoI4World::createFactions()
+void HoI4::World::createFactions()
 {
 	LOG(LogLevel::Info) << "Creating Factions";
 
@@ -1354,7 +1344,7 @@ void HoI4World::createFactions()
 }
 
 
-void HoI4World::logFactionMember(ofstream& factionsLog, shared_ptr<HoI4Country> member) const
+void HoI4::World::logFactionMember(ofstream& factionsLog, shared_ptr<HoI4Country> member) const
 {
 	auto possibleName = member->getSourceCountry()->getName("english");
 	if (possibleName)
@@ -1372,7 +1362,7 @@ void HoI4World::logFactionMember(ofstream& factionsLog, shared_ptr<HoI4Country> 
 }
 
 
-optional<string> HoI4World::returnSphereLeader(shared_ptr<HoI4Country> possibleSphereling) const
+optional<string> HoI4::World::returnSphereLeader(shared_ptr<HoI4Country> possibleSphereling) const
 {
 	for (auto greatPower: greatPowers)
 	{
@@ -1391,7 +1381,7 @@ optional<string> HoI4World::returnSphereLeader(shared_ptr<HoI4Country> possibleS
 }
 
 
-bool HoI4World::governmentsAllowFaction(const string& leaderIdeology, const string& allyGovernment) const
+bool HoI4::World::governmentsAllowFaction(const string& leaderIdeology, const string& allyGovernment) const
 {
 	if (leaderIdeology == allyGovernment)
 	{
@@ -1420,7 +1410,7 @@ bool HoI4World::governmentsAllowFaction(const string& leaderIdeology, const stri
 }
 
 
-void HoI4World::addFocusTrees()
+void HoI4::World::addFocusTrees()
 {
 	for (auto country: countries)
 	{
@@ -1432,7 +1422,7 @@ void HoI4World::addFocusTrees()
 }
 
 
-void HoI4World::adjustResearchFocuses()
+void HoI4::World::adjustResearchFocuses()
 {
 	for (auto country: countries)
 	{
@@ -1441,7 +1431,7 @@ void HoI4World::adjustResearchFocuses()
 }
 
 
-void HoI4World::addCountryElectionEvents(const set<string>& majorIdeologies)
+void HoI4::World::addCountryElectionEvents(const set<string>& majorIdeologies)
 {
 	for (auto country: countries)
 	{
@@ -1450,7 +1440,7 @@ void HoI4World::addCountryElectionEvents(const set<string>& majorIdeologies)
 }
 
 
-void HoI4World::output()
+void HoI4::World::output()
 {
 	LOG(LogLevel::Info) << "Outputting world";
 
@@ -1486,7 +1476,7 @@ void HoI4World::output()
 }
 
 
-void HoI4World::outputCommonCountries() const
+void HoI4::World::outputCommonCountries() const
 {
 	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/common/country_tags"))
 	{
@@ -1515,7 +1505,7 @@ void HoI4World::outputCommonCountries() const
 }
 
 
-void HoI4World::outputColorsfile() const
+void HoI4::World::outputColorsfile() const
 {
 	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/common/countries"))
 	{
@@ -1543,7 +1533,7 @@ void HoI4World::outputColorsfile() const
 }
 
 
-void HoI4World::outputNames() const
+void HoI4::World::outputNames() const
 {
 	ofstream namesFile("output/" + theConfiguration.getOutputName() + "/common/names/01_names.txt");
 	namesFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
@@ -1563,7 +1553,7 @@ void HoI4World::outputNames() const
 	}
 }
 
-void HoI4World::outputUnitNames() const
+void HoI4::World::outputUnitNames() const
 {
 	ofstream namesFile("output/" + theConfiguration.getOutputName() + "/common/units/names/01_names.txt");
 	namesFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
@@ -1584,7 +1574,7 @@ void HoI4World::outputUnitNames() const
 }
 
 
-void HoI4World::outputMap() const
+void HoI4::World::outputMap() const
 {
 	LOG(LogLevel::Debug) << "Writing Map Info";
 
@@ -1632,7 +1622,7 @@ void HoI4World::outputMap() const
 }
 
 
-void HoI4World::outputGenericFocusTree() const
+void HoI4::World::outputGenericFocusTree() const
 {
 	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/common/national_focus"))
 	{
@@ -1646,7 +1636,7 @@ void HoI4World::outputGenericFocusTree() const
 }
 
 
-void HoI4World::outputCountries()
+void HoI4::World::outputCountries()
 {
 	LOG(LogLevel::Debug) << "Writing countries";
 	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/history"))
@@ -1699,7 +1689,7 @@ void HoI4World::outputCountries()
 }
 
 
-set<const HoI4::Advisor*, HoI4::advisorCompare> HoI4World::getActiveIdeologicalAdvisors() const
+set<const HoI4::Advisor*, HoI4::advisorCompare> HoI4::World::getActiveIdeologicalAdvisors() const
 {
 	set<const HoI4::Advisor*, HoI4::advisorCompare> theAdvisors;
 	for (auto ideology: majorIdeologies)
@@ -1715,7 +1705,7 @@ set<const HoI4::Advisor*, HoI4::advisorCompare> HoI4World::getActiveIdeologicalA
 }
 
 
-void HoI4World::outputRelations() const
+void HoI4::World::outputRelations() const
 {
 	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/common/opinion_modifiers"))
 	{
@@ -1768,7 +1758,7 @@ void HoI4World::outputRelations() const
 }
 
 
-void HoI4World::outputIdeologies() const
+void HoI4::World::outputIdeologies() const
 {
 	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/common/ideologies/"))
 	{
@@ -1790,7 +1780,7 @@ void HoI4World::outputIdeologies() const
 }
 
 
-void HoI4World::outputLeaderTraits() const
+void HoI4::World::outputLeaderTraits() const
 {
 	ofstream traitsFile("output/" + theConfiguration.getOutputName() + "/common/country_leader/converterTraits.txt");
 	traitsFile << "leader_traits = {\n";
@@ -1802,7 +1792,7 @@ void HoI4World::outputLeaderTraits() const
 			for (auto trait: ideologyTraits->second)
 			{
 				traitsFile << "\n";
-				traitsFile << *trait;
+				traitsFile << trait;
 			}
 		}
 	}
@@ -1811,13 +1801,13 @@ void HoI4World::outputLeaderTraits() const
 }
 
 
-void HoI4World::outputIdeas() const
+void HoI4::World::outputIdeas() const
 {
 	theIdeas->output(majorIdeologies);
 }
 
 
-void HoI4World::outputScriptedTriggers() const
+void HoI4::World::outputScriptedTriggers() const
 {
 	ofstream triggersFile("output/" + theConfiguration.getOutputName() + "/common/scripted_triggers/convertedTriggers.txt");
 
@@ -1896,7 +1886,7 @@ void HoI4World::outputScriptedTriggers() const
 }
 
 
-void HoI4World::outputBookmarks() const
+void HoI4::World::outputBookmarks() const
 {
 	ofstream bookmarkFile("output/" + theConfiguration.getOutputName() + "/common/bookmarks/the_gathering_storm.txt");
 
@@ -1950,7 +1940,7 @@ void HoI4World::outputBookmarks() const
 }
 
 
-/*vector<int> HoI4World::getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
+/*vector<int> HoI4::World::getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
 {
 vector<int> portLocationCandidates = getPortProvinces(locationCandidates);
 if (portLocationCandidates.size() == 0)
@@ -1976,7 +1966,7 @@ return portLocationCandidates;
 }
 
 
-vector<int> HoI4World::getPortProvinces(const vector<int>& locationCandidates)
+vector<int> HoI4::World::getPortProvinces(const vector<int>& locationCandidates)
 {
 vector<int> newLocationCandidates;
 for (auto litr : locationCandidates)
@@ -1992,7 +1982,7 @@ return newLocationCandidates;
 }
 
 
-int HoI4World::getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner)
+int HoI4::World::getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner)
 {
 queue<int>		openProvinces;
 map<int, int>	closedProvinces;

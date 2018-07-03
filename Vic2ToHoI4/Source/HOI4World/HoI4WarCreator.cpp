@@ -34,7 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
+HoI4WarCreator::HoI4WarCreator(const HoI4::World* world):
 	genericFocusTree(new HoI4FocusTree),
 	theWorld(world),
 	AggressorFactions(),
@@ -153,7 +153,7 @@ double HoI4WarCreator::calculateWorldStrength(ofstream& AILog) const
 }
 
 
-void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, const std::set<std::string>& majorIdeologies, const HoI4World* world)
+void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, const std::set<std::string>& majorIdeologies, const HoI4::World* world)
 {
 	if (theConfiguration.getDebug())
 	{
@@ -688,7 +688,7 @@ double HoI4WarCreator::GetFactionStrength(const shared_ptr<HoI4Faction> Faction,
 }
 
 
-vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4Country> Leader, ofstream& AILog, const HoI4World* world)
+vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4Country> Leader, ofstream& AILog, const HoI4::World* world)
 {
 	vector<shared_ptr<HoI4Faction>> CountriesAtWar;
 	auto name = Leader->getSourceCountry()->getName("english");
@@ -1355,7 +1355,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::radicalWarCreator(shared_ptr<HoI
 	return absolutistWarCreator(country);
 }
 
-set<int> HoI4WarCreator::findBorderState(shared_ptr<HoI4Country> country, shared_ptr<HoI4Country> neighbor, const HoI4World * world)
+set<int> HoI4WarCreator::findBorderState(shared_ptr<HoI4Country> country, shared_ptr<HoI4Country> neighbor, const HoI4::World* world)
 {
 	set<int> demandedStates;
 	std::map<int,int> provinceToStateIdMapping = world->getProvinceToStateIDMap();
@@ -1381,7 +1381,7 @@ set<int> HoI4WarCreator::findBorderState(shared_ptr<HoI4Country> country, shared
 	return demandedStates;
 }
 
-vector<int> HoI4WarCreator::sortStatesByCapitalDistance(set<int> stateList, shared_ptr<HoI4Country> country, const HoI4World* world)
+vector<int> HoI4WarCreator::sortStatesByCapitalDistance(set<int> stateList, shared_ptr<HoI4Country> country, const HoI4::World* world)
 {
 	multimap<double, int> statesWithDistance;
 	pair<int, int> capitalCoords = getCapitalPosition(country);

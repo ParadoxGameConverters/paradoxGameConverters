@@ -30,10 +30,19 @@ using namespace std;
 
 
 
-class HoI4World;
+namespace HoI4
+{
+
+class World;
+
+}
+
+
 namespace Vic2
 {
+
 class World;
+
 }
 
 
@@ -44,7 +53,7 @@ const int maxGCWars = 1;
 class HoI4WarCreator
 {
 	public:
-		explicit HoI4WarCreator(const HoI4World* world);
+		explicit HoI4WarCreator(const HoI4::World* world);
 
 	private:
 		HoI4WarCreator(const HoI4WarCreator&) = delete;
@@ -55,12 +64,12 @@ class HoI4WarCreator
 		void addTargetsToWorldTargetMap(shared_ptr<HoI4Country> country);
 		map<double, shared_ptr<HoI4Country>> getDistancesToGreatPowers(shared_ptr<HoI4Country> country);
 		double calculateWorldStrength(ofstream& AILog) const;
-		void generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, const std::set<std::string>& majorIdeologies, const HoI4World* world);
+		void generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, const std::set<std::string>& majorIdeologies, const HoI4::World* world);
 		double calculatePercentOfWorldAtWar(ofstream& AILog, const set<shared_ptr<HoI4Faction>>& factionsAtWar, double worldStrength) const;
 		void generateAdditionalWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, double worldStrength);
 		bool isImportantCountry(shared_ptr<HoI4Country> country);
 
-		vector<shared_ptr<HoI4Faction>> fascistWarMaker(shared_ptr<HoI4Country> country, ofstream& AILog, const HoI4World *world);
+		vector<shared_ptr<HoI4Faction>> fascistWarMaker(shared_ptr<HoI4Country> country, ofstream& AILog, const HoI4::World *world);
 		vector<shared_ptr<HoI4Faction>> communistWarCreator(shared_ptr<HoI4Country> country, const std::set<std::string>& majorIdeologies, ofstream& AILog);
 		vector<shared_ptr<HoI4Faction>> democracyWarCreator(shared_ptr<HoI4Country> country);
 		vector<shared_ptr<HoI4Faction>> absolutistWarCreator(shared_ptr<HoI4Country> country);
@@ -69,8 +78,8 @@ class HoI4WarCreator
 
 		vector<shared_ptr<HoI4Country>> findEvilCountries() const;
 
-		set<int> findBorderState(shared_ptr<HoI4Country> country, shared_ptr<HoI4Country> neighbor, const HoI4World* world);
-		vector<int> sortStatesByCapitalDistance(set<int> stateList, shared_ptr<HoI4Country> country, const HoI4World* world);
+		set<int> findBorderState(shared_ptr<HoI4Country> country, shared_ptr<HoI4Country> neighbor, const HoI4::World* world);
+		vector<int> sortStatesByCapitalDistance(set<int> stateList, shared_ptr<HoI4Country> country, const HoI4::World* world);
 		vector<shared_ptr<HoI4Country>> findWeakNeighbors(shared_ptr<HoI4Country> country);
 		map<string, shared_ptr<HoI4Country>> findCloseNeighbors(shared_ptr<HoI4Country> country);
 		vector<shared_ptr<HoI4Country>> findWeakColonies(shared_ptr<HoI4Country> country);
@@ -102,7 +111,7 @@ class HoI4WarCreator
 
 
 		HoI4FocusTree* genericFocusTree;
-		const HoI4World* theWorld;
+		const HoI4::World* theWorld;
 
 		vector<HoI4Country*> AggressorFactions;
 		map<shared_ptr<HoI4Country>, vector<shared_ptr<HoI4Country>>> WorldTargetMap;

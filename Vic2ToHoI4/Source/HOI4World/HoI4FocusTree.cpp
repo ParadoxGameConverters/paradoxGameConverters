@@ -25,6 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "HoI4Focus.h"
 #include "HoI4Localisation.h"
+#include "HoI4World.h"
 #include "../Configuration.h"
 #include "../V2World/Party.h"
 #include "Log.h"
@@ -1318,7 +1319,7 @@ void HoI4FocusTree::addFascistAnnexationBranch(shared_ptr<HoI4Country> Home, con
 	}
 }
 
-void HoI4FocusTree::addFascistSudetenBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& sudetenTargets, const vector<vector<int>>& demandedStates, const HoI4World* world)
+void HoI4FocusTree::addFascistSudetenBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& sudetenTargets, const vector<vector<int>>& demandedStates, const HoI4::World* world)
 {
 	HoI4::Events* events = world->getEvents();
 

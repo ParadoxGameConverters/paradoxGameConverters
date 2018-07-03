@@ -43,7 +43,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld):
+HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4::World* _theWorld):
 	theWorld(_theWorld),
 	srcCountry(nullptr),
 	filename(""),

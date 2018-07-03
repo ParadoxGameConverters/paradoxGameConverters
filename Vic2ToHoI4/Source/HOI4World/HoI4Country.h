@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Airforce.h"
 #include "HoI4Army.h"
 #include "HoI4FocusTree.h"
+#include "HOI4Ideology.h"
 #include "HoI4Leader.h"
 #include "HoI4Navy.h"
 #include "HoI4Province.h"
@@ -38,8 +39,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Date.h"
 #include "../V2World/Army.h"
 #include "../V2World/Party.h"
+#include <map>
 #include <optional>
 #include <set>
+#include <string>
 #include <vector>
 using namespace std;
 
@@ -48,17 +51,26 @@ using namespace std;
 namespace Vic2
 {
 class Country;
+class World;
 }
+
+
 class HoI4Faction;
-class HoI4World;
+class HoI4Ideology;
+
 
 namespace HoI4
 {
 class Advisor;
 class namesMapper;
+class State;
+class World;
 struct advisorCompare;
 }
 
+
+class CountryMapper;
+class governmentMapper;
 class graphicsMapper;
 
 
@@ -66,9 +78,9 @@ class graphicsMapper;
 class HoI4Country
 {
 	public:
-		HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld);
+		HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4::World* _theWorld);
 
-		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4::State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics, const CountryMapper& countryMap);
+		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const std::map<int, int>& stateMap, const std::map<int, HoI4::State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics, const CountryMapper& countryMap);
 		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies, const governmentMapper& governmentMap);
 		void convertGovernment(const Vic2::World& _srcWorld, const governmentMapper& governmentMap);
 		void convertParties(const set<string>& majorIdeologies, const governmentMapper& governmentMap);
@@ -179,7 +191,7 @@ class HoI4Country
 		void outputUnitType(ofstream& unitNamesFile, string sourceUnitType, string destUnitType, string defaultName) const;
 
 
-		const HoI4World* theWorld;
+		const HoI4::World* theWorld;
 		const Vic2::Country* srcCountry;
 		string filename;
 

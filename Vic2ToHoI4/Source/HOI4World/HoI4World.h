@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "AIPeaces.h"
+#include "Decisions.h"
 #include "Ideas.h"
 #include "OnActions.h"
 #include "Names.h"
@@ -34,12 +35,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/GovernmentMapper.h"
 #include "../Mappers/GraphicsMapper.h"
+#include "newParser.h"
 #include <map>
 #include <optional>
 #include <set>
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
@@ -54,21 +55,6 @@ class HoI4StrategicRegion;
 class techMapper;
 
 
-namespace HoI4
-{
-
-class Advisor;
-class decisions;
-class DivisionTemplateType;
-class Events;
-class State;
-class SupplyZones;
-class UnitMap;
-struct advisorCompare;
-
-}
-
-
 namespace Vic2
 {
 
@@ -79,11 +65,22 @@ class World;
 
 
 
-class HoI4World
+namespace HoI4
+{
+
+class Advisor;
+class DivisionTemplateType;
+class Events;
+class State;
+class SupplyZones;
+class UnitMap;
+struct advisorCompare;
+
+class World: commonItems::parser
 {
 	public:
-		explicit HoI4World(const Vic2::World* sourceWorld);
-		~HoI4World();
+		explicit World(const Vic2::World* sourceWorld);
+		~World() = default;
 
 		void output();
 
@@ -98,8 +95,8 @@ class HoI4World
 		shared_ptr<HoI4Country> findCountry(const string& countryTag);
 
 	private:
-		HoI4World(const HoI4World&) = delete;
-		HoI4World& operator=(const HoI4World&) = delete;
+		World(const World&) = delete;
+		World& operator=(const World&) = delete;
 
 		void convertNavalBases();
 
@@ -223,7 +220,7 @@ class HoI4World
 
 		map<string, HoI4Ideology*> ideologies;
 		std::set<std::string> majorIdeologies;
-		map<string, vector<shared_ptr<Object>>> ideologicalLeaderTraits;
+		std::map<std::string, vector<std::string>> ideologicalLeaderTraits;
 		map<std::string, HoI4::Advisor*> ideologicalAdvisors;
 		std::unique_ptr<HoI4::Ideas> theIdeas;
 		
@@ -236,6 +233,8 @@ class HoI4World
 
 		vector<HoI4::DivisionTemplateType> divisionTemplates;
 };
+
+}
 
 
 

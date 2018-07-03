@@ -71,7 +71,7 @@ int main(const int argc, const char* argv[])
 
 void checkMods();
 void getOutputName(const string& V2SaveFileName);
-void output(HoI4World& destWorld);
+void output(HoI4::World& destWorld);
 void ConvertV2ToHoI4(const string& V2SaveFileName)
 {
 	ConfigurationFile("configuration.txt");
@@ -81,7 +81,7 @@ void ConvertV2ToHoI4(const string& V2SaveFileName)
 	theProvinceMapper.initialize();
 
 	Vic2::World sourceWorld(V2SaveFileName);
-	HoI4World destWorld(&sourceWorld);
+	HoI4::World destWorld(&sourceWorld);
 
 	output(destWorld);
 	LOG(LogLevel::Info) << "* Conversion complete *";
@@ -149,7 +149,7 @@ void getOutputName(const string& V2SaveFileName)
 
 void createModFile();
 void renameOutputFolder();
-void output(HoI4World& destWorld)
+void output(HoI4::World& destWorld)
 {
 	createModFile();
 	renameOutputFolder();
