@@ -292,3 +292,14 @@ commonItems::stringsOfItems::stringsOfItems(std::istream& theStream)
 
 	parseStream(theStream);
 }
+
+
+commonItems::stringsOfItemNames::stringsOfItemNames(std::istream& theStream)
+{
+	registerKeyword(std::regex("[a-zA-Z0-9_]+"), [this](const std::string& itemName, std::istream& theStream){
+		ignoreItem(itemName, theStream);
+		theStrings.push_back(itemName);
+	});
+
+	parseStream(theStream);
+}
