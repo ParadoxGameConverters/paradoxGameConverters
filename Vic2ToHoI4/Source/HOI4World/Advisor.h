@@ -52,7 +52,6 @@ class Advisor: commonItems::parser
 
 		std::vector<std::string> traits;
 		std::string picture = "";
-		std::string event = "";
 		std::string ideology = "";
 };
 

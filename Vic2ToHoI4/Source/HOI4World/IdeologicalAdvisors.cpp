@@ -23,7 +23,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "IdeologicalAdvisors.h"
 #include "Advisor.h"
-#include "NewParserToOldParserConverters.h"
 
 
 

@@ -143,9 +143,6 @@
     <ClCompile Include="Source\HOI4World\Decision.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
-    <ClCompile Include="..\common_items\NewParserToOldParserConverters.cpp">
-      <Filter>CommonItems</Filter>
-    </ClCompile>
     <ClCompile Include="..\common_items\ParserHelpers.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
@@ -380,9 +377,6 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\Decisions.h">
       <Filter>HoI4World</Filter>
-    </ClInclude>
-    <ClInclude Include="..\common_items\NewParserToOldParserConverters.h">
-      <Filter>CommonItems</Filter>
     </ClInclude>
     <ClInclude Include="..\common_items\ParserHelpers.h">
       <Filter>CommonItems</Filter>

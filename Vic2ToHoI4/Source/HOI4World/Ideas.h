@@ -27,7 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "IdeaGroup.h"
 #include "newParser.h"
-#include "NewParserToOldParserConverters.h"
 #include <map>
 #include <memory>
 #include <set>
