@@ -23,7 +23,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Date.h"
 #include <vector>
-#include "Object.h"
 #include "OSCompatibilityLayer.h"
 
 
@@ -75,25 +74,6 @@ const date& date::operator=(const date& _rhs)
 	month = _rhs.month;
 	day = _rhs.day;
 	return *this;
-}
-
-
-date::date(const std::shared_ptr<Object> _init)
-{
-	auto dateSubObj = _init->safeGetObject("year");	// the date within the larger object
-	if (dateSubObj)
-	{
-		// date specified by year=, month=, day=
-		year	= _init->safeGetInt("year");
-		month	= _init->safeGetInt("month");
-		day	= _init->safeGetInt("day");
-	}
-	else
-	{
-		// date specified by year.month.day
-		// build another date object via date(string&) and copy it to this one
-		(*this) = date(_init->getLeaf());
-	}
 }
 
 

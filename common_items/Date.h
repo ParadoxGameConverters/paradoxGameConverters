@@ -32,17 +32,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-class Object;
-
-
-
 struct date
 {
 	public:
 		date() : year(1), month(1), day(1) {};
 		explicit date(std::string _init);
 		date(const date& _init);
-		explicit date(const std::shared_ptr<Object> _init);
 
 		const date& operator=(const date& _rhs);
 		bool operator==(const date& _rhs) const;

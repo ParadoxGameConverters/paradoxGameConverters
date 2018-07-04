@@ -21,12 +21,6 @@
     <ClCompile Include="..\common_items\Log.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
-    <ClCompile Include="..\common_items\Object.cpp">
-      <Filter>CommonItems</Filter>
-    </ClCompile>
-    <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp">
-      <Filter>CommonItems</Filter>
-    </ClCompile>
     <ClCompile Include="Source\HOI4World\HoI4Army.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
@@ -58,9 +52,6 @@
       <Filter>HoI4World</Filter>
     </ClCompile>
     <ClCompile Include="..\common_items\WinUtils.cpp">
-      <Filter>CommonItems</Filter>
-    </ClCompile>
-    <ClCompile Include="..\common_items\ParadoxParser8859_15.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
     <ClCompile Include="..\common_items\CommonUtils.cpp">
@@ -256,12 +247,6 @@
     <ClInclude Include="..\common_items\Log.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
-    <ClInclude Include="..\common_items\Object.h">
-      <Filter>CommonItems</Filter>
-    </ClInclude>
-    <ClInclude Include="..\common_items\ParadoxParserUTF8.h">
-      <Filter>CommonItems</Filter>
-    </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Army.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
@@ -290,9 +275,6 @@
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\HOI4World\HoI4State.h">
       <Filter>HoI4World</Filter>
-    </ClInclude>
-    <ClInclude Include="..\common_items\ParadoxParser8859_15.h">
-      <Filter>CommonItems</Filter>
     </ClInclude>
     <ClInclude Include="..\common_items\OSCompatibilityLayer.h">
       <Filter>CommonItems</Filter>
