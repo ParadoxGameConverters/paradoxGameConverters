@@ -104,10 +104,7 @@ class World: commonItems::parser
 		void convertCountry(pair<string, Vic2::Country*> country);
 
 		void importIdeologies();
-		void importIdeologyFile(const string& filename);
-
 		void importLeaderTraits();
-
 		void importIdeologicalMinisters();
 
 		void convertGovernments();

@@ -162,6 +162,7 @@
     <ClCompile Include="Source\HOI4World\IdeaGroup.cpp" />
     <ClCompile Include="Source\HOI4World\Ideas.cpp" />
     <ClCompile Include="Source\HOI4World\IdeologicalAdvisors.cpp" />
+    <ClCompile Include="Source\HOI4World\IdeologyFile.cpp" />
     <ClCompile Include="Source\HOI4World\ImpassableProvinces.cpp" />
     <ClCompile Include="Source\HOI4World\Names.cpp" />
     <ClCompile Include="Source\HOI4World\OnActions.cpp" />
@@ -246,6 +247,7 @@
     <ClInclude Include="Source\HOI4World\IdeaGroup.h" />
     <ClInclude Include="Source\HOI4World\Ideas.h" />
     <ClInclude Include="Source\HOI4World\IdeologicalAdvisors.h" />
+    <ClInclude Include="Source\HOI4World\IdeologyFile.h" />
     <ClInclude Include="Source\HOI4World\ImpassableProvinces.h" />
     <ClInclude Include="Source\HOI4World\Names.h" />
     <ClInclude Include="Source\HOI4World\OnActions.h" />

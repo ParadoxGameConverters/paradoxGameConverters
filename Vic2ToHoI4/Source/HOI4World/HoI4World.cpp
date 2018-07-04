@@ -22,7 +22,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4World.h"
-#include "ParadoxParserUTF8.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Configuration.h"
@@ -40,6 +39,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Ideas.h"
 #include "IdeologicalAdvisors.h"
 #include "HOI4Ideology.h"
+#include "IdeologyFile.h"
 #include "HoI4Localisation.h"
 #include "Names.h"
 #include "HoI4Province.h"
@@ -209,35 +209,21 @@ void HoI4::World::convertCountry(pair<string, Vic2::Country*> country)
 
 void HoI4::World::importIdeologies()
 {
+	clearRegisteredKeywords();
+	registerKeyword(std::regex("ideologies"), [this](const std::string& unused, std::istream& theStream)
+	{
+		IdeologyFile theFile(theStream);
+		for (auto ideology: theFile.getIdeologies())
+		{
+			ideologies.insert(ideology);
+		}
+	});
+
 	if (theConfiguration.getIdeologiesOptions() != ideologyOptions::keep_default)
 	{
-		importIdeologyFile("converterIdeologies.txt");
+		parseFile("converterIdeologies.txt");
 	}
-	importIdeologyFile(theConfiguration.getHoI4Path() + "/common/ideologies/00_ideologies.txt");
-}
-
-
-void HoI4::World::importIdeologyFile(const string& filename)
-{
-	auto fileObject = parser_UTF8::doParseFile(filename);
-	if (fileObject)
-	{
-		auto ideologiesObjects = fileObject->getLeaves();
-		if (ideologiesObjects.size() > 0)
-		{
-			for (auto ideologyObject: ideologiesObjects[0]->getLeaves())
-			{
-				string ideologyName = ideologyObject->getKey();
-				HoI4Ideology* newIdeology = new HoI4Ideology(ideologyObject);
-				ideologies.insert(make_pair(ideologyName, newIdeology));
-			}
-		}
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Could not parse " << filename;
-		exit(-1);
-	}
+	parseFile(theConfiguration.getHoI4Path() + "/common/ideologies/00_ideologies.txt");
 }
 
 

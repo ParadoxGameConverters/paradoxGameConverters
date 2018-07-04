@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,52 +26,48 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "newParser.h"
+#include "../Color.h"
 #include <fstream>
 #include <map>
-#include <memory>
+#include <string>
 #include <vector>
-#include "../Color.h"
-using namespace std;
 
 
 
-class Object;
-
-
-
-class HoI4Ideology
+class HoI4Ideology: commonItems::parser
 {
 	public:
-		explicit HoI4Ideology(shared_ptr<Object> obj);
-		void output(ofstream& file) const;
+		explicit HoI4Ideology(const std::string& ideologyName, std::istream& theStream);
+		void output(std::ofstream& file) const;
 
-		vector<string> getTypes() const { return types; }
+		std::vector<std::string> getTypes() const { return types; }
 
 	private:
 		HoI4Ideology(const HoI4Ideology&) = delete;
 		HoI4Ideology& operator=(const HoI4Ideology&) = delete;
 
-		void outputTypes(ofstream& file) const;
-		void outputDynamicFactionNames(ofstream& file) const;
-		void outputTheColor(ofstream& file) const;
-		void outputRules(ofstream& file) const;
-		void outputOnWorldTension(ofstream& file) const;
-		void outputModifiers(ofstream& file) const;
-		void outputFactionModifiers(ofstream& file) const;
-		void outputCans(ofstream& file) const;
-		void outputAI(ofstream& file) const;
+		void outputTypes(std::ofstream& file) const;
+		void outputDynamicFactionNames(std::ofstream& file) const;
+		void outputTheColor(std::ofstream& file) const;
+		void outputRules(std::ofstream& file) const;
+		void outputOnWorldTension(std::ofstream& file) const;
+		void outputModifiers(std::ofstream& file) const;
+		void outputFactionModifiers(std::ofstream& file) const;
+		void outputCans(std::ofstream& file) const;
+		void outputAI(std::ofstream& file) const;
 
-		string ideologyName;
-		vector<string> types;
-		vector<string> dynamicFactionNames;
-		ConverterColor::Color* theColor;
-		map<string, string> rules;
-		float warImpactOnWorldTension;
-		float factionImpactOnWorldTension;
-		map<string, float> modifiers;
-		map<string, float> factionModifiers;
-		map<string, string> cans;
-		string AI;
+		std::string ideologyName;
+		std::vector<std::string> types;
+		std::vector<std::string> dynamicFactionNames;
+		ConverterColor::Color* theColor = nullptr;
+		std::map<std::string, std::string> rules;
+		float warImpactOnWorldTension = 0.0;
+		float factionImpactOnWorldTension = 0.0;
+		std::map<std::string, float> modifiers;
+		std::map<std::string, float> factionModifiers;
+		std::map<std::string, std::string> cans;
+		std::string AI;
 };
 
 

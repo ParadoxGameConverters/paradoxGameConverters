@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -23,95 +23,80 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HOI4Ideology.h"
 #include "../Color.h"
-#include "Object.h"
+#include "ParserHelpers.h"
 #include <iomanip>
 
 
 
-HoI4Ideology::HoI4Ideology(shared_ptr<Object> obj):
-	ideologyName(obj->getKey()),
-	types(),
-	dynamicFactionNames(),
-	theColor(nullptr),
-	rules(),
-	warImpactOnWorldTension(static_cast<float>(obj->safeGetFloat("war_impact_on_world_tension"))),
-	factionImpactOnWorldTension(static_cast<float>(obj->safeGetFloat("faction_impact_on_world_tension"))),
-	modifiers(),
-	factionModifiers(),
-	cans(),
-	AI("")
+HoI4Ideology::HoI4Ideology(const std::string& _ideologyName, std::istream& theStream):
+	ideologyName(_ideologyName)
 {
-	auto typesObj = obj->safeGetObject("types");
-	if (typesObj != nullptr)
-	{
-		for (auto typeObj: typesObj->getLeaves())
+	registerKeyword(std::regex("types"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringsOfItemNames typesStrings(theStream);
+		types = typesStrings.getStrings();
+	});
+	registerKeyword(std::regex("dynamic_faction_names"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringList namesStrings(theStream);
+		dynamicFactionNames = namesStrings.getStrings();
+	});
+	registerKeyword(std::regex("color"), [this](const std::string& unused, std::istream& theStream){
+		theColor = new ConverterColor::Color(theStream);
+	});
+	registerKeyword(std::regex("war_impact_on_world_tension"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleDouble impactNum(theStream);
+		warImpactOnWorldTension = static_cast<float>(impactNum.getDouble());
+	});
+	registerKeyword(std::regex("faction_impact_on_world_tension"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleDouble impactNum(theStream);
+		factionImpactOnWorldTension = static_cast<float>(impactNum.getDouble());
+	});
+	registerKeyword(std::regex("rules"), [this](const std::string& unused, std::istream& theStream){
+		auto equals = getNextTokenWithoutMatching(theStream);
+		auto brace = getNextTokenWithoutMatching(theStream);
+		auto key = getNextTokenWithoutMatching(theStream);
+		while (key && (*key != "}"))
 		{
-			types.push_back(typeObj->getKey());
+			commonItems::singleString leaf(theStream);
+			rules.insert(std::make_pair(*key, leaf.getString()));
+			key = getNextTokenWithoutMatching(theStream);
 		}
-	}
-
-	for (auto dynamicFactionNameObj: obj->safeGetTokens("dynamic_faction_names"))
-	{
-		dynamicFactionNames.push_back(dynamicFactionNameObj);
-	}
-
-	auto colorsObj = obj->safeGetObject("color");
-	if (colorsObj != nullptr)
-	{
-		theColor = new ConverterColor::Color(colorsObj);
-	}
-
-	auto rulesObj = obj->safeGetObject("rules");
-	if (rulesObj != nullptr)
-	{
-		for (auto ruleObj: rulesObj->getLeaves())
+	});
+	registerKeyword(std::regex("modifiers"), [this](const std::string& unused, std::istream& theStream){
+		auto equals = getNextTokenWithoutMatching(theStream);
+		auto brace = getNextTokenWithoutMatching(theStream);
+		auto key = getNextTokenWithoutMatching(theStream);
+		while (key != "}")
 		{
-			auto rule = ruleObj->getKey();
-			auto onOff = ruleObj->getLeaf();
-			rules.insert(make_pair(rule, onOff));
+			commonItems::singleDouble leaf(theStream);
+			modifiers.insert(std::make_pair(*key, static_cast<float>(leaf.getDouble())));
+			key = getNextTokenWithoutMatching(theStream);
 		}
-	}
-
-	auto modifiersObj = obj->safeGetObject("modifiers");
-	if (modifiersObj != nullptr)
-	{
-		for (auto modifierObj: modifiersObj->getLeaves())
+	});
+	registerKeyword(std::regex("faction_modifiers"), [this](const std::string& unused, std::istream& theStream){
+		auto equals = getNextTokenWithoutMatching(theStream);
+		auto brace = getNextTokenWithoutMatching(theStream);
+		auto key = getNextTokenWithoutMatching(theStream);
+		while (key != "}")
 		{
-			auto modifier = modifierObj->getKey();
-			auto value = stof(modifierObj->getLeaf());
-			modifiers.insert(make_pair(modifier, value));
+			commonItems::singleDouble leaf(theStream);
+			factionModifiers.insert(std::make_pair(*key, static_cast<float>(leaf.getDouble())));
+			key = getNextTokenWithoutMatching(theStream);
 		}
-	}
+	});
+	registerKeyword(std::regex("ai_[a-z]+"), [this](const std::string& aiString, std::istream& theStream){
+		AI = aiString;
+		commonItems::ignoreItem(aiString, theStream);
+	});
+	registerKeyword(std::regex("can_[a-z_]+"), [this](const std::string& canString, std::istream& theStream){
+		commonItems::singleString yesNo(theStream);
+		cans.insert(std::make_pair(canString, yesNo.getString()));
+	});
 
-	auto factionModifiersObj = obj->safeGetObject("faction_modifiers");
-	if (factionModifiersObj != nullptr)
-	{
-		for (auto factionModifierObj: factionModifiersObj->getLeaves())
-		{
-			auto modifier = factionModifierObj->getKey();
-			auto value = stof(factionModifierObj->getLeaf());
-			factionModifiers.insert(make_pair(modifier, value));
-		}
-	}
-
-	for (auto object: obj->getLeaves())
-	{
-		if (object->getKey().substr(0, 3) == "can")
-		{
-			auto can = object->getKey();
-			auto yesNo = object->getLeaf();
-			cans.insert(make_pair(can, yesNo));
-		}
-
-		if (object->getKey().substr(0, 3) == "ai_")
-		{
-			AI = object->getKey();
-		}
-	}
+	parseStream(theStream);
 }
 
 
-void HoI4Ideology::output(ofstream& file) const
+void HoI4Ideology::output(std::ofstream& file) const
 {
 	file << "\t" << ideologyName << " = {\n";
 	file << "\t\n";
@@ -129,7 +114,7 @@ void HoI4Ideology::output(ofstream& file) const
 }
 
 
-void HoI4Ideology::outputTypes(ofstream& file) const
+void HoI4Ideology::outputTypes(std::ofstream& file) const
 {
 	file << "\t\ttypes = {\n";
 	file << "\t";
@@ -144,7 +129,7 @@ void HoI4Ideology::outputTypes(ofstream& file) const
 }
 
 
-void HoI4Ideology::outputDynamicFactionNames(ofstream& file) const
+void HoI4Ideology::outputDynamicFactionNames(std::ofstream& file) const
 {
 	file << "\t\tdynamic_faction_names = {\n";
 	for (auto dynamicFactionName: dynamicFactionNames)
@@ -156,14 +141,14 @@ void HoI4Ideology::outputDynamicFactionNames(ofstream& file) const
 }
 
 
-void HoI4Ideology::outputTheColor(ofstream& file) const
+void HoI4Ideology::outputTheColor(std::ofstream& file) const
 {
 	file << "\t\tcolor = { " << (*theColor) << " }\n";
 	file << "\t\t\n";
 }
 
 
-void HoI4Ideology::outputRules(ofstream& file) const
+void HoI4Ideology::outputRules(std::ofstream& file) const
 {
 	file << "\t\trules = {\n";
 	for (auto rule: rules)
@@ -175,7 +160,7 @@ void HoI4Ideology::outputRules(ofstream& file) const
 }
 
 
-void HoI4Ideology::outputOnWorldTension(ofstream& file) const
+void HoI4Ideology::outputOnWorldTension(std::ofstream& file) const
 {
 	file << "\t\twar_impact_on_world_tension = " << warImpactOnWorldTension << "\n";
 	file << "\t\tfaction_impact_on_world_tension = " << factionImpactOnWorldTension << "\n";
@@ -183,7 +168,7 @@ void HoI4Ideology::outputOnWorldTension(ofstream& file) const
 }
 
 
-void HoI4Ideology::outputModifiers(ofstream& file) const
+void HoI4Ideology::outputModifiers(std::ofstream& file) const
 {
 	file << "\t\tmodifiers = {\n";
 	for (auto modifier: modifiers)
@@ -195,7 +180,7 @@ void HoI4Ideology::outputModifiers(ofstream& file) const
 }
 
 
-void HoI4Ideology::outputFactionModifiers(ofstream& file) const
+void HoI4Ideology::outputFactionModifiers(std::ofstream& file) const
 {
 	file << "\t\tfaction_modifiers = {\n";
 	for (auto factionModifier: factionModifiers)
@@ -206,7 +191,7 @@ void HoI4Ideology::outputFactionModifiers(ofstream& file) const
 }
 
 
-void HoI4Ideology::outputCans(ofstream& file) const
+void HoI4Ideology::outputCans(std::ofstream& file) const
 {
 	if (cans.size() > 0)
 	{
@@ -223,7 +208,7 @@ void HoI4Ideology::outputCans(ofstream& file) const
 }
 
 
-void HoI4Ideology::outputAI(ofstream& file) const
+void HoI4Ideology::outputAI(std::ofstream& file) const
 {
 	file << "\t\t" << AI << " = yes\n";
 }
