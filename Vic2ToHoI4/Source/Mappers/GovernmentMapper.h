@@ -44,19 +44,19 @@ class Country;
 
 typedef struct governmentMapping
 {
-	string vic2Government;
-	string HoI4GovernmentIdeology;
-	string HoI4LeaderIdeology;
-	string rulingPartyRequired;
+	std::string vic2Government;
+	std::string HoI4GovernmentIdeology;
+	std::string HoI4LeaderIdeology;
+	std::string rulingPartyRequired;
 } governmentMapping;
 
 
 
 typedef struct partyMapping
 {
-	string rulingIdeology;
-	string vic2Ideology;
-	string supportedIdeology;
+	std::string rulingIdeology;
+	std::string vic2Ideology;
+	std::string supportedIdeology;
 } partyMapping;
 
 
