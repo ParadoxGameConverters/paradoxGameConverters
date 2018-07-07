@@ -35,10 +35,10 @@ EU4Relations::EU4Relations(shared_ptr<Object> obj)
 	(maObj.size() > 0) ? military_access = (maObj[0]->getLeaf() == "yes") : military_access = false;
 
 	vector<shared_ptr<Object>> lastSendObj = obj->getValue("last_send_diplomat");	// the object holding the date the last diplomat was sent
-	(lastSendObj.size() > 0) ? last_send_diplomat = date(lastSendObj[0]) : last_send_diplomat = date();
+	(lastSendObj.size() > 0) ? last_send_diplomat = date(lastSendObj[0]->getLeaf()) : last_send_diplomat = date();
 
 	vector<shared_ptr<Object>> lastWarObj = obj->getValue("last_war");	// the object holding the date of the last war
-	(lastWarObj.size() > 0) ? last_war = date(lastWarObj[0]) : last_war = date();
+	(lastWarObj.size() > 0) ? last_war = date(lastWarObj[0]->getLeaf()) : last_war = date();
 
 	vector<shared_ptr<Object>> attitudeObj = obj->getValue("attitude");	//the object holding the diplomatic attitude
 	(attitudeObj.size() > 0) ? attitude = attitudeObj[0]->getLeaf() : attitude = "attitude_neutral";
