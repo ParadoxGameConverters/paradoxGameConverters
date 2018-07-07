@@ -1164,31 +1164,35 @@ void HoI4Country::outputColors(ofstream& out) const
 
 void HoI4Country::outputToNamesFiles(ofstream& namesFile, const HoI4::namesMapper& theNames) const
 {
+	auto femaleSurnames = theNames.getFemaleSurnames(srcCountry->getPrimaryCulture());
+
 	namesFile << tag << " = {\n";
 
 	namesFile << "\tmale = {\n";
 	namesFile << "\t\tnames = {\n";
 	outputNamesSet(namesFile, theNames.getMaleNames(srcCountry->getPrimaryCulture()), "\t\t\t");
 	namesFile << "\t\t}\n";
+	if (femaleSurnames->size() > 0)
+	{
+		namesFile << "\t\tsurnames = {\n";
+		outputNamesSet(namesFile, theNames.getSurnames(srcCountry->getPrimaryCulture()), "\t\t");
+		namesFile << "\t\t}\n";
+	}
 	namesFile << "\t}\n";
 
 	namesFile << "\tfemale = {\n";
 	namesFile << "\t\tnames = {\n";
 	outputNamesSet(namesFile, theNames.getFemaleNames(srcCountry->getPrimaryCulture()), "\t\t\t");
 	namesFile << "\t\t}\n";
-	namesFile << "\t}\n";
-
-	if (auto femaleSurnames = theNames.getFemaleSurnames(srcCountry->getPrimaryCulture()); femaleSurnames->size() > 0)
+	if (femaleSurnames->size() > 0)
 	{
-		namesFile << "\tfemale_surnames = {\n";
+		namesFile << "\t\tsurnames = {\n";
 		outputNamesSet(namesFile, femaleSurnames, "\t\t");
 		namesFile << "\t}\n";
-
-		namesFile << "\tmale_surnames = {\n";
-		outputNamesSet(namesFile, theNames.getSurnames(srcCountry->getPrimaryCulture()), "\t\t");
-		namesFile << "\t}\n";
 	}
-	else
+	namesFile << "\t}\n";
+
+	if (femaleSurnames->size() == 0)
 	{
 		namesFile << "\tsurnames = {\n";
 		outputNamesSet(namesFile, theNames.getSurnames(srcCountry->getPrimaryCulture()), "\t\t");
