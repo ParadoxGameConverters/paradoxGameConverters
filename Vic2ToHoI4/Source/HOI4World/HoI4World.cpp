@@ -1777,7 +1777,7 @@ void HoI4::World::outputLeaderTraits() const
 		{
 			for (auto trait: ideologyTraits->second)
 			{
-				traitsFile << "\n";
+				traitsFile << "\t";
 				traitsFile << trait;
 			}
 		}
