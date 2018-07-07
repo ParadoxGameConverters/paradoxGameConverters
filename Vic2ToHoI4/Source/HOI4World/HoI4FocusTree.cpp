@@ -1088,6 +1088,28 @@ void HoI4FocusTree::addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const v
 					newFocus->completionReward += "					add_ideas = democratic_influence\n";
 					newFocus->completionReward += "				}\n";
 				}
+				if (majorIdeologies.count("absolutist") > 0)
+				{
+					newFocus->completionReward += "				if = {\n";
+					newFocus->completionReward += "					limit = {\n";
+					newFocus->completionReward += "						" + Home->getTag() + " = {\n";
+					newFocus->completionReward += "							has_government = absolutist\n";
+					newFocus->completionReward += "						}\n";
+					newFocus->completionReward += "					}\n";
+					newFocus->completionReward += "					add_ideas = absolutist_influence\n";
+					newFocus->completionReward += "				}\n";
+				}
+				if (majorIdeologies.count("radical") > 0)
+				{
+					newFocus->completionReward += "				if = {\n";
+					newFocus->completionReward += "					limit = {\n";
+					newFocus->completionReward += "						" + Home->getTag() + " = {\n";
+					newFocus->completionReward += "							has_government = radical\n";
+					newFocus->completionReward += "						}\n";
+					newFocus->completionReward += "					}\n";
+					newFocus->completionReward += "					add_ideas = radical_influence\n";
+					newFocus->completionReward += "				}\n";
+				}
 				newFocus->completionReward += "				country_event = { id = generic.1 }\n";
 				newFocus->completionReward += "			}\n";
 				newFocus->completionReward += "		}";
