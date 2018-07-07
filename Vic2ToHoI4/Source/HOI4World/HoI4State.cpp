@@ -211,12 +211,21 @@ void HoI4::State::output(const std::string& _filename) const
 	{
 		if (theConfiguration.getDebug())
 		{
+			out << "\t\tvictory_points = { " << victoryPointPosition << " " << (victoryPointValue + 10) << " }\n";
 			for (auto VP: debugVictoryPoints)
 			{
-				out << "\t\tvictory_points = { " << VP << " 10 }\n";
+				if (VP == victoryPointPosition)
+				{
+					continue;
+				}
+				out << "\t\tvictory_points = { " << VP << " 5 }\n";
 			}
 			for (auto VP: secondaryDebugVictoryPoints)
 			{
+				if (VP == victoryPointPosition)
+				{
+					continue;
+				}
 				out << "\t\tvictory_points = { " << VP << " 1 }\n";
 			}
 		}
