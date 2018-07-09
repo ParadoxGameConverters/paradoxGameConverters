@@ -84,8 +84,9 @@ class Buildings
 		void processLine(const std::string& line);
 		void importDefaultBuilding(const std::smatch& matches, defaultPositions& positions);
 
-		void placeCoastalBuildings(const std::map<int, int>& provinceToStateIDMap);
+		void placeBuildings(const std::map<int, int>& provinceToStateIDMap);
 		void addNavalBase(int stateID, const std::pair<int, std::vector<int>>& province);
+		void addBunker(int stateID, int province);
 		void addCoastalBunker(int stateID, const std::pair<int, std::vector<int>>& province);
 
 		std::multimap<int, Building*> buildings;

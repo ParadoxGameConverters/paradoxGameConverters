@@ -240,13 +240,13 @@ const optional<point> provinceNeighborMapper::GetBorderCenter(int mainProvince, 
 	if (bordersWithNeighbors == borders.end())
 	{
 		LOG(LogLevel::Warning) << "Province " << mainProvince << " has no borders.";
-		return make_pair(-1, -1);
+		return std::nullopt;
 	}
 	auto border = bordersWithNeighbors->second.find(neighbor);
 	if (border == bordersWithNeighbors->second.end())
 	{
 		LOG(LogLevel::Warning) << "Province " << mainProvince << " does not border " << neighbor << ".";
-		return make_pair(-1, -1);
+		return std::nullopt;
 	}
 
 	return border->second[(border->second.size() / 2)];

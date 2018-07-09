@@ -58,7 +58,7 @@ HoI4::Buildings::Buildings(const map<int, int>& provinceToStateIDMap)
 	LOG(LogLevel::Info) << "Creating buildings";
 
 	importDefaultBuildings();
-	placeCoastalBuildings(provinceToStateIDMap);
+	placeBuildings(provinceToStateIDMap);
 }
 
 
@@ -149,7 +149,7 @@ void HoI4::Buildings::importDefaultBuilding(const std::smatch& matches, defaultP
 }
 
 
-void HoI4::Buildings::placeCoastalBuildings(const map<int, int>& provinceToStateIDMap)
+void HoI4::Buildings::placeBuildings(const map<int, int>& provinceToStateIDMap)
 {
 	auto coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	for (auto province: coastalProvinces)
@@ -163,6 +163,12 @@ void HoI4::Buildings::placeCoastalBuildings(const map<int, int>& provinceToState
 
 		addNavalBase(provinceToStateMapping->second, province);
 	}
+
+	for (auto provinceAndStateID: provinceToStateIDMap)
+	{
+		addBunker(provinceAndStateID.second, provinceAndStateID.first);
+	}
+
 	for (auto province: coastalProvinces)
 	{
 		auto provinceToStateMapping = provinceToStateIDMap.find(province.first);
@@ -215,6 +221,43 @@ void HoI4::Buildings::addNavalBase(int stateID, const std::pair<int, std::vector
 	}
 
 	HoI4::Building* newBuilding = new HoI4::Building(stateID, "naval_base", position, connectingSeaProvince);
+	buildings.insert(make_pair(stateID, newBuilding));
+}
+
+
+void HoI4::Buildings::addBunker(int stateID, int province)
+{
+	buildingPosition position;
+	bool positionUnset = true;
+
+	auto defaultBunker = defaultBunkers.find(make_pair(province, 0));
+	if (defaultBunker != defaultBunkers.end())
+	{
+		position = defaultBunker->second;
+		positionUnset = false;
+	}
+
+	if (positionUnset)
+	{
+		auto possiblePosition = provinceNeighborMapper::getBorderCenter(province, 0);
+		if (!possiblePosition)
+		{
+			LOG(LogLevel::Warning) << "Could not find position for province " << province << ". Bunker not set.";
+			return;
+		}
+
+		position.xCoordinate = possiblePosition->first;
+		position.yCoordinate = 11.0;
+		position.zCoordinate = possiblePosition->second;
+		position.rotation = 0.0;
+
+		if (theConfiguration.getDebug())
+		{
+			LOG(LogLevel::Warning) << "The bunker in " << province << " at (" << position.xCoordinate << ", " << position.zCoordinate << ") did not have a location in default HoI4.";
+		}
+	}
+
+	HoI4::Building* newBuilding = new HoI4::Building(stateID, "bunker", position, 0);
 	buildings.insert(make_pair(stateID, newBuilding));
 }
 
