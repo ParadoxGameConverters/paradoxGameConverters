@@ -44,7 +44,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-class HoI4Buildings;
 class HoI4Country;
 class HoI4Diplomacy;
 class HoI4Faction;
@@ -69,6 +68,7 @@ namespace HoI4
 {
 
 class Advisor;
+class Buildings;
 class DivisionTemplateType;
 class Events;
 class State;
@@ -209,7 +209,7 @@ class World: commonItems::parser
 
 		HoI4::SupplyZones* supplyZones = nullptr;
 		map<int, HoI4StrategicRegion*> strategicRegions;
-		HoI4Buildings* buildings = nullptr;
+		Buildings* buildings = nullptr;
 
 		map<string, shared_ptr<HoI4Country>> countries;
 		map<string, shared_ptr<HoI4Country>> landedCountries;

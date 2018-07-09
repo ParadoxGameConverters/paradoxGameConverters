@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,61 +27,42 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceNeighborMapper.h"
 #include "Log.h"
 #include "HoI4Province.h"
-#include <fstream>
 #include <iomanip>
-#include <regex>
-#include <string>
-using namespace std;
 
 
 
-HoI4Building::HoI4Building(int _stateID, const buildingPosition& _position):
+HoI4::Building::Building(int _stateID, const std::string& _type, buildingPosition& _position, std::optional<int> _connectingSeaProvince):
 	stateID(_stateID),
+	type(_type),
 	position(_position)
 {
+	if (_connectingSeaProvince)
+	{
+		connectingSeaProvince = *_connectingSeaProvince;
+	}
 }
 
 
-ostream& operator << (ostream& out, const HoI4Building& building)
+std::ostream& HoI4::operator << (std::ostream& out, const HoI4::Building& building)
 {
-	return building.print(out);
-}
-
-
-ostream& HoI4Building::print(ostream& out) const
-{
-	return out;
-}
-
-
-HoI4NavalBase::HoI4NavalBase(int _stateID, const buildingPosition& _position, int _connectingSeaProvince):
-	HoI4Building(_stateID, _position),
-	connectingSeaProvince(_connectingSeaProvince)
-{
-}
-
-
-ostream& HoI4NavalBase::print(ostream& out) const
-{
-	out << stateID << ";naval_base;";
-	out << fixed << setprecision(2) << position.xCoordinate << ';' << position.yCoordinate << ';' << position.zCoordinate << ';' << position.rotation << ';';
-	out << connectingSeaProvince << '\n';
+	out << building.stateID << ";" << building.type << ";";
+	out << std::fixed << setprecision(2) << building.position.xCoordinate << ';' << building.position.yCoordinate << ';' << building.position.zCoordinate << ';' << building.position.rotation << ';';
+	out << building.connectingSeaProvince << '\n';
 
 	return out;
 }
 
 
-HoI4Buildings::HoI4Buildings(const map<int, int>& provinceToStateIDMap):
-	buildings()
+HoI4::Buildings::Buildings(const map<int, int>& provinceToStateIDMap)
 {
 	LOG(LogLevel::Info) << "Creating buildings";
 
 	importDefaultBuildings();
-	placeNavalBases(provinceToStateIDMap);
+	placeCoastalBuildings(provinceToStateIDMap);
 }
 
 
-void HoI4Buildings::importDefaultBuildings()
+void HoI4::Buildings::importDefaultBuildings()
 {
 	ifstream buildingsFile(theConfiguration.getHoI4Path() + "/map/buildings.txt");
 	if (!buildingsFile.is_open())
@@ -94,45 +75,81 @@ void HoI4Buildings::importDefaultBuildings()
 	{
 		string line;
 		getline(buildingsFile, line);
-		importDefaultBuilding(line);
+		processLine(line);
 	}
 }
 
 
-void HoI4Buildings::importDefaultBuilding(const string& line)
+void HoI4::Buildings::processLine(const string& line)
 {
 	regex pattern("(.+);(.+);(.+);(.+);(.+);(.+);(.+)");
 	smatch matches;
 	if (regex_match(line, matches, pattern))
 	{
-		buildingPosition position;
-		position.xCoordinate = stof(matches[3].str());
-		position.yCoordinate = stof(matches[4].str());
-		position.zCoordinate = stof(matches[5].str());
-		position.rotation = stof(matches[6].str());
-
-		if (matches[2] == "naval_base")
+		if (matches[2] == "arms_factory")
 		{
-			importDefaultNavalBase(position, matches);
+			importDefaultBuilding(matches, defaultArmsFactories);
+		}
+		else if (matches[2] == "industrial_complex")
+		{
+			importDefaultBuilding(matches, defaultIndustrialComplexes);
+		}
+		else if (matches[2] == "air_base")
+		{
+			importDefaultBuilding(matches, defaultAirBase);
+		}
+		else if (matches[2] == "naval_base")
+		{
+			importDefaultBuilding(matches, defaultNavalBases);
+		}
+		else if (matches[2] == "bunker")
+		{
+			importDefaultBuilding(matches, defaultBunkers);
+		}
+		else if (matches[2] == "coastal_bunker")
+		{
+			importDefaultBuilding(matches, defaultCoastalBunkers);
+		}
+		else if (matches[2] == "dockyard")
+		{
+			importDefaultBuilding(matches, defaultDockyards);
+		}
+		else if (matches[2] == "anti_air_building")
+		{
+			importDefaultBuilding(matches, defaultAntiAirs);
+		}
+		else if (matches[2] == "synthetic_refinery")
+		{
+			importDefaultBuilding(matches, defaultSyntheticRefineries);
+		}
+		else if (matches[2] == "nuclear_reactor")
+		{
+			importDefaultBuilding(matches, defaultNuclearReactors);
 		}
 	}
 }
 
 
-void HoI4Buildings::importDefaultNavalBase(const buildingPosition& position, const smatch& matches)
+void HoI4::Buildings::importDefaultBuilding(const std::smatch& matches, defaultPositions& positions)
 {
+	buildingPosition position;
+	position.xCoordinate = stof(matches[3].str());
+	position.yCoordinate = stof(matches[4].str());
+	position.zCoordinate = stof(matches[5].str());
+	position.rotation = stof(matches[6].str());
+
 	int connectingSeaProvince = stoi(matches[7].str());
 
 	auto province = provinceNeighborMapper::getProvinceNumber(position.xCoordinate, position.zCoordinate);
 	if (province)
 	{
 		auto key = make_pair(*province, connectingSeaProvince);
-		defaultNavalBases[key] = position;
+		positions[key] = position;
 	}
 }
 
 
-void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
+void HoI4::Buildings::placeCoastalBuildings(const map<int, int>& provinceToStateIDMap)
 {
 	auto coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	for (auto province: coastalProvinces)
@@ -144,48 +161,102 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 			continue;
 		}
 
-		buildingPosition position;
-		bool positionUnset = true;
-		int connectingSeaProvince = 0;
-		for (auto seaProvince: province.second)
+		addNavalBase(provinceToStateMapping->second, province);
+	}
+	for (auto province: coastalProvinces)
+	{
+		auto provinceToStateMapping = provinceToStateIDMap.find(province.first);
+		if (provinceToStateMapping == provinceToStateIDMap.end())
 		{
-			auto defaultNavalBase = defaultNavalBases.find(make_pair(province.first, seaProvince));
-			if (defaultNavalBase != defaultNavalBases.end())
-			{
-				position = defaultNavalBase->second;
-				connectingSeaProvince = seaProvince;
-				positionUnset = false;
-			}
+			LOG(LogLevel::Warning) << "Could not find state for province " << province.first << ". Coastal bunker not set.";
+			continue;
 		}
 
-		if (positionUnset)
-		{
-			connectingSeaProvince = province.second[0];
-			auto possiblePosition = provinceNeighborMapper::getBorderCenter(province.first, province.second[0]);
-			if (!possiblePosition)
-			{
-				LOG(LogLevel::Warning) << "Could not find position for province " << province.first << ". Naval base not set.";
-				continue;
-			}
-
-			position.xCoordinate = possiblePosition->first;
-			position.yCoordinate = 11.0;
-			position.zCoordinate = possiblePosition->second;
-			position.rotation = 0.0;
-
-			if (theConfiguration.getDebug())
-			{
-				LOG(LogLevel::Warning) << "The naval base from " << province.first << " to " << connectingSeaProvince << " at (" << position.xCoordinate << ", " << position.zCoordinate << ") did not have a location in default HoI4.";
-			}
-		}
-
-		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, position, connectingSeaProvince);
-		buildings.insert(make_pair(provinceToStateMapping->second, newNavalBase));
+		addCoastalBunker(provinceToStateMapping->second, province);
 	}
 }
 
 
-void HoI4Buildings::output() const
+void HoI4::Buildings::addNavalBase(int stateID, const std::pair<int, std::vector<int>>& province)
+{
+	buildingPosition position;
+	bool positionUnset = true;
+	int connectingSeaProvince = 0;
+	for (auto seaProvince: province.second)
+	{
+		auto defaultNavalBase = defaultNavalBases.find(make_pair(province.first, seaProvince));
+		if (defaultNavalBase != defaultNavalBases.end())
+		{
+			position = defaultNavalBase->second;
+			connectingSeaProvince = seaProvince;
+			positionUnset = false;
+		}
+	}
+
+	if (positionUnset)
+	{
+		connectingSeaProvince = province.second[0];
+		auto possiblePosition = provinceNeighborMapper::getBorderCenter(province.first, province.second[0]);
+		if (!possiblePosition)
+		{
+			LOG(LogLevel::Warning) << "Could not find position for province " << province.first << ". Naval base not set.";
+			return;
+		}
+
+		position.xCoordinate = possiblePosition->first;
+		position.yCoordinate = 11.0;
+		position.zCoordinate = possiblePosition->second;
+		position.rotation = 0.0;
+
+		if (theConfiguration.getDebug())
+		{
+			LOG(LogLevel::Warning) << "The naval base from " << province.first << " to " << connectingSeaProvince << " at (" << position.xCoordinate << ", " << position.zCoordinate << ") did not have a location in default HoI4.";
+		}
+	}
+
+	HoI4::Building* newBuilding = new HoI4::Building(stateID, "naval_base", position, connectingSeaProvince);
+	buildings.insert(make_pair(stateID, newBuilding));
+}
+
+
+void HoI4::Buildings::addCoastalBunker(int stateID, const std::pair<int, std::vector<int>>& province)
+{
+	buildingPosition position;
+	bool positionUnset = true;
+
+	auto defaultBunker = defaultCoastalBunkers.find(make_pair(province.first, 0));
+	if (defaultBunker != defaultCoastalBunkers.end())
+	{
+		position = defaultBunker->second;
+		positionUnset = false;
+	}
+
+	if (positionUnset)
+	{
+		auto possiblePosition = provinceNeighborMapper::getBorderCenter(province.first, province.second[0]);
+		if (!possiblePosition)
+		{
+			LOG(LogLevel::Warning) << "Could not find position for province " << province.first << ". Coastal bunker not set.";
+			return;
+		}
+
+		position.xCoordinate = possiblePosition->first;
+		position.yCoordinate = 11.0;
+		position.zCoordinate = possiblePosition->second;
+		position.rotation = 0.0;
+
+		if (theConfiguration.getDebug())
+		{
+			LOG(LogLevel::Warning) << "The coastal bunker in " << province.first << " at (" << position.xCoordinate << ", " << position.zCoordinate << ") did not have a location in default HoI4.";
+		}
+	}
+
+	HoI4::Building* newBuilding = new HoI4::Building(stateID, "coastal_bunker", position, 0);
+	buildings.insert(make_pair(stateID, newBuilding));
+}
+
+
+void HoI4::Buildings::output() const
 {
 	ofstream out("output/" + theConfiguration.getOutputName() + "/map/buildings.txt");
 	if (!out.is_open())
