@@ -111,7 +111,7 @@
 	# # Tennessee
 	link = { vic2 = 188 hoi4 = 12501 hoi4 = 8083 hoi4 = 10281 hoi4 = 10824 hoi4 = 12670 }	# Nashville -> land, land, land, land, land
 	link = { vic2 = 189 hoi4 = 7797 hoi4 = 10615 hoi4 = 1987 hoi4 = 7615 }	# Memphis -> land, land, land, land
-	link = { vic2 = 190 hoi4 = 779 hoi4 = 913 hoi4 = 10657 hoi4 = 80141 }	# Knoxville -> land, land, land, land
+	link = { vic2 = 190 hoi4 = 7791 hoi4 = 10657 hoi4 = 913 hoi4 = 8014 }	# Knoxville -> land, land, land, land
 	link = { vic2 = 191 hoi4 = 10909 hoi4 = 1758 }	# Chattanooga -> land, land
 	# # Kentucky
 	link = { vic2 = 184 hoi4 = 6696 hoi4 = 10727 hoi4 = 12709 }	# Louisville -> land, land, land
@@ -1865,7 +1865,7 @@
 	link = { vic2 = 599 hoi4 = 692 hoi4 = 6693 hoi4 = 11620 hoi4 = 9652 hoi4 = 3688 hoi4 = 707 hoi4 = 3705 hoi4 = 11653 }	# Munich -> land, land, land, land, land, land, land, land
 	link = { vic2 = 600 hoi4 = 6725 hoi4 = 9681 hoi4 = 532 }	# Landshut -> land, land, land
 	link = { vic2 = 601 hoi4 = 6540 }	# Ingolstadt -> land
-	link = { vic2 = 602 hoi4 = 329 hoi4 = 9515 hoi4 = 3541 hoi4 = 114979 hoi4 = 571 hoi4 = 3571 }	# Regensburg -> land, land, land, land, land, land
+	link = { vic2 = 602 hoi4 = 3299 hoi4 = 9515 hoi4 = 3541 hoi4 = 11497 hoi4 = 571 hoi4 = 3571 }	# Regensburg -> land, land, land, land, land, land
 	# 
 	# ## Switzerland
 	# # West Switzerland
