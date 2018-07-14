@@ -38,6 +38,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 namespace HoI4
 {
 
+class coastalProvinces;
+
+
 struct buildingPosition
 {
 	double xCoordinate = 0.0;
@@ -45,7 +48,6 @@ struct buildingPosition
 	double zCoordinate = 0.0;
 	double rotation = 0.0;
 };
-
 
 
 class Building
@@ -72,7 +74,7 @@ typedef std::map<std::pair<int, int>, buildingPosition> defaultPositions;
 class Buildings
 {
 	public:
-		explicit Buildings(const std::map<int, int>& provinceToStateIDMap);
+		explicit Buildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces);
 
 		void output() const;
 
@@ -84,7 +86,7 @@ class Buildings
 		void processLine(const std::string& line);
 		void importDefaultBuilding(const std::smatch& matches, defaultPositions& positions);
 
-		void placeBuildings(const std::map<int, int>& provinceToStateIDMap);
+		void placeBuildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces);
 		void addNavalBase(int stateID, const std::pair<int, std::vector<int>>& province);
 		void addBunker(int stateID, int province);
 		void addCoastalBunker(int stateID, const std::pair<int, std::vector<int>>& province);

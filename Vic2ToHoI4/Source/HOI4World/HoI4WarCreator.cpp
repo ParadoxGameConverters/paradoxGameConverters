@@ -26,8 +26,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Faction.h"
 #include "HoI4Focus.h"
 #include "HoI4World.h"
+#include "MapData.h"
 #include "../Mappers/ProvinceDefinitions.h"
-#include "../Mappers/ProvinceNeighborMapper.h"
 #include "../V2World/Party.h"
 #include "../V2World/World.h"
 #include "Log.h"
@@ -615,7 +615,7 @@ map<string, shared_ptr<HoI4Country>> HoI4WarCreator::getImmediateNeighbors(share
 
 	for (auto province: checkingCountry->getProvinces())
 	{
-		for (int provinceNumber: provinceNeighborMapper::getNeighbors(province))
+		for (int provinceNumber: HoI4::MapData::getNeighbors(province))
 		{
 			if (!provinceDefinitions::isLandProvince(province))
 			{
@@ -1361,7 +1361,7 @@ set<int> HoI4WarCreator::findBorderState(shared_ptr<HoI4Country> country, shared
 	std::map<int,int> provinceToStateIdMapping = world->getProvinceToStateIDMap();
 	for (auto leaderprov : country->getProvinces())
 	{
-		for (int prov : provinceNeighborMapper::getNeighbors(leaderprov))
+		for (int prov : HoI4::MapData::getNeighbors(leaderprov))
 		{
 			if (!provinceDefinitions::isLandProvince(prov))
 			{

@@ -22,11 +22,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Buildings.h"
-#include "../Configuration.h"
-#include "../Mappers/CoastalHoI4Provinces.h"
-#include "../Mappers/ProvinceNeighborMapper.h"
-#include "Log.h"
 #include "HoI4Province.h"
+#include "CoastalProvinces.h"
+#include "MapData.h"
+#include "../Configuration.h"
+#include "Log.h"
 #include <iomanip>
 
 
@@ -46,25 +46,25 @@ HoI4::Building::Building(int _stateID, const std::string& _type, buildingPositio
 std::ostream& HoI4::operator << (std::ostream& out, const HoI4::Building& building)
 {
 	out << building.stateID << ";" << building.type << ";";
-	out << std::fixed << setprecision(2) << building.position.xCoordinate << ';' << building.position.yCoordinate << ';' << building.position.zCoordinate << ';' << building.position.rotation << ';';
+	out << std::fixed << std::setprecision(2) << building.position.xCoordinate << ';' << building.position.yCoordinate << ';' << building.position.zCoordinate << ';' << building.position.rotation << ';';
 	out << building.connectingSeaProvince << '\n';
 
 	return out;
 }
 
 
-HoI4::Buildings::Buildings(const map<int, int>& provinceToStateIDMap)
+HoI4::Buildings::Buildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces)
 {
 	LOG(LogLevel::Info) << "Creating buildings";
 
 	importDefaultBuildings();
-	placeBuildings(provinceToStateIDMap);
+	placeBuildings(provinceToStateIDMap, theCoastalProvinces);
 }
 
 
 void HoI4::Buildings::importDefaultBuildings()
 {
-	ifstream buildingsFile(theConfiguration.getHoI4Path() + "/map/buildings.txt");
+	std::ifstream buildingsFile(theConfiguration.getHoI4Path() + "/map/buildings.txt");
 	if (!buildingsFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open " << theConfiguration.getHoI4Path() << "/map/buildings.txt";
@@ -73,17 +73,17 @@ void HoI4::Buildings::importDefaultBuildings()
 
 	while (!buildingsFile.eof())
 	{
-		string line;
+		std::string line;
 		getline(buildingsFile, line);
 		processLine(line);
 	}
 }
 
 
-void HoI4::Buildings::processLine(const string& line)
+void HoI4::Buildings::processLine(const std::string& line)
 {
-	regex pattern("(.+);(.+);(.+);(.+);(.+);(.+);(.+)");
-	smatch matches;
+	std::regex pattern("(.+);(.+);(.+);(.+);(.+);(.+);(.+)");
+	std::smatch matches;
 	if (regex_match(line, matches, pattern))
 	{
 		if (matches[2] == "arms_factory")
@@ -140,18 +140,18 @@ void HoI4::Buildings::importDefaultBuilding(const std::smatch& matches, defaultP
 
 	int connectingSeaProvince = stoi(matches[7].str());
 
-	auto province = provinceNeighborMapper::getProvinceNumber(position.xCoordinate, position.zCoordinate);
+	auto province = MapData::getProvinceNumber(position.xCoordinate, position.zCoordinate);
 	if (province)
 	{
-		auto key = make_pair(*province, connectingSeaProvince);
+		auto key = std::make_pair(*province, connectingSeaProvince);
 		positions[key] = position;
 	}
 }
 
 
-void HoI4::Buildings::placeBuildings(const map<int, int>& provinceToStateIDMap)
+void HoI4::Buildings::placeBuildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces)
 {
-	auto coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
+	auto coastalProvinces = theCoastalProvinces.getCoastalProvinces();
 	for (auto province: coastalProvinces)
 	{
 		auto provinceToStateMapping = provinceToStateIDMap.find(province.first);
@@ -190,7 +190,7 @@ void HoI4::Buildings::addNavalBase(int stateID, const std::pair<int, std::vector
 	int connectingSeaProvince = 0;
 	for (auto seaProvince: province.second)
 	{
-		auto defaultNavalBase = defaultNavalBases.find(make_pair(province.first, seaProvince));
+		auto defaultNavalBase = defaultNavalBases.find(std::make_pair(province.first, seaProvince));
 		if (defaultNavalBase != defaultNavalBases.end())
 		{
 			position = defaultNavalBase->second;
@@ -202,7 +202,7 @@ void HoI4::Buildings::addNavalBase(int stateID, const std::pair<int, std::vector
 	if (positionUnset)
 	{
 		connectingSeaProvince = province.second[0];
-		auto possiblePosition = provinceNeighborMapper::getBorderCenter(province.first, province.second[0]);
+		auto possiblePosition = MapData::getBorderCenter(province.first, province.second[0]);
 		if (!possiblePosition)
 		{
 			LOG(LogLevel::Warning) << "Could not find position for province " << province.first << ". Naval base not set.";
@@ -221,7 +221,7 @@ void HoI4::Buildings::addNavalBase(int stateID, const std::pair<int, std::vector
 	}
 
 	HoI4::Building* newBuilding = new HoI4::Building(stateID, "naval_base", position, connectingSeaProvince);
-	buildings.insert(make_pair(stateID, newBuilding));
+	buildings.insert(std::make_pair(stateID, newBuilding));
 }
 
 
@@ -230,7 +230,7 @@ void HoI4::Buildings::addBunker(int stateID, int province)
 	buildingPosition position;
 	bool positionUnset = true;
 
-	auto defaultBunker = defaultBunkers.find(make_pair(province, 0));
+	auto defaultBunker = defaultBunkers.find(std::make_pair(province, 0));
 	if (defaultBunker != defaultBunkers.end())
 	{
 		position = defaultBunker->second;
@@ -239,7 +239,7 @@ void HoI4::Buildings::addBunker(int stateID, int province)
 
 	if (positionUnset)
 	{
-		auto possiblePosition = provinceNeighborMapper::getBorderCenter(province, 0);
+		auto possiblePosition = MapData::getBorderCenter(province, 0);
 		if (!possiblePosition)
 		{
 			LOG(LogLevel::Warning) << "Could not find position for province " << province << ". Bunker not set.";
@@ -258,7 +258,7 @@ void HoI4::Buildings::addBunker(int stateID, int province)
 	}
 
 	HoI4::Building* newBuilding = new HoI4::Building(stateID, "bunker", position, 0);
-	buildings.insert(make_pair(stateID, newBuilding));
+	buildings.insert(std::make_pair(stateID, newBuilding));
 }
 
 
@@ -267,7 +267,7 @@ void HoI4::Buildings::addCoastalBunker(int stateID, const std::pair<int, std::ve
 	buildingPosition position;
 	bool positionUnset = true;
 
-	auto defaultBunker = defaultCoastalBunkers.find(make_pair(province.first, 0));
+	auto defaultBunker = defaultCoastalBunkers.find(std::make_pair(province.first, 0));
 	if (defaultBunker != defaultCoastalBunkers.end())
 	{
 		position = defaultBunker->second;
@@ -276,7 +276,7 @@ void HoI4::Buildings::addCoastalBunker(int stateID, const std::pair<int, std::ve
 
 	if (positionUnset)
 	{
-		auto possiblePosition = provinceNeighborMapper::getBorderCenter(province.first, province.second[0]);
+		auto possiblePosition = MapData::getBorderCenter(province.first, province.second[0]);
 		if (!possiblePosition)
 		{
 			LOG(LogLevel::Warning) << "Could not find position for province " << province.first << ". Coastal bunker not set.";
@@ -295,13 +295,13 @@ void HoI4::Buildings::addCoastalBunker(int stateID, const std::pair<int, std::ve
 	}
 
 	HoI4::Building* newBuilding = new HoI4::Building(stateID, "coastal_bunker", position, 0);
-	buildings.insert(make_pair(stateID, newBuilding));
+	buildings.insert(std::make_pair(stateID, newBuilding));
 }
 
 
 void HoI4::Buildings::output() const
 {
-	ofstream out("output/" + theConfiguration.getOutputName() + "/map/buildings.txt");
+	std::ofstream out("output/" + theConfiguration.getOutputName() + "/map/buildings.txt");
 	if (!out.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open output/" << theConfiguration.getOutputName() << "/map/buildings.txt";

@@ -63,7 +63,7 @@ HoI4::World::World(const Vic2::World* _sourceWorld):
 	countryMap(_sourceWorld),
 	states(new HoI4States(sourceWorld, countryMap)),
 	supplyZones(new HoI4::SupplyZones(states->getDefaultStates())),
-	buildings(new Buildings(states->getProvinceToStateIDMap())),
+	theCoastalProvinces(),
 	theIdeas(std::make_unique<HoI4::Ideas>()),
 	decisions(make_unique<HoI4::decisions>()),
 	peaces(make_unique<HoI4::AIPeaces>()),
@@ -73,6 +73,7 @@ HoI4::World::World(const Vic2::World* _sourceWorld):
 {
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 
+	buildings = new Buildings(states->getProvinceToStateIDMap(), theCoastalProvinces),
 	convertNavalBases();
 	convertCountries();
 	HoI4Localisation::addStateLocalisations(states);
@@ -132,7 +133,7 @@ void HoI4::World::convertNavalBases()
 {
 	for (auto state: states->getStates())
 	{
-		state.second->convertNavalBases();
+		state.second->convertNavalBases(theCoastalProvinces);
 	}
 }
 
@@ -460,7 +461,7 @@ void HoI4::World::putIndustryInStates(const map<string, double>& factoryWorkerRa
 			continue;
 		}
 
-		HoI4State.second->convertIndustry(ratioMapping->second, theStateCategories);
+		HoI4State.second->convertIndustry(ratioMapping->second, theStateCategories, theCoastalProvinces);
 	}
 }
 

@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "AIPeaces.h"
+#include "CoastalProvinces.h"
 #include "Decisions.h"
 #include "Ideas.h"
 #include "OnActions.h"
@@ -229,6 +230,8 @@ class World: commonItems::parser
 		std::unique_ptr<HoI4::OnActions> onActions;
 
 		vector<HoI4::DivisionTemplateType> divisionTemplates;
+
+		coastalProvinces theCoastalProvinces;
 };
 
 }

@@ -44,6 +44,7 @@ class State;
 namespace HoI4
 {
 
+class coastalProvinces;
 class stateCategories;
 
 
@@ -64,7 +65,7 @@ class State: commonItems::parser
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
 		void setVPLocation(int province) { victoryPointPosition = province; }
 
-		void convertNavalBases();
+		void convertNavalBases(const coastalProvinces& theCoastalProvinces);
 		void addNavalBase(int level, int location);
 		void addCores(const std::vector<std::string>& newCores);
 
@@ -88,7 +89,7 @@ class State: commonItems::parser
 		void tryToCreateVP();
 		void addManpower();
 
-		void convertIndustry(double workerFactoryRatio, const HoI4::stateCategories& theStateCategories);
+		void convertIndustry(double workerFactoryRatio, const HoI4::stateCategories& theStateCategories, const coastalProvinces& theCoastalProvinces);
 
 	private:
 		State(const State&) = delete;
@@ -98,11 +99,11 @@ class State: commonItems::parser
 		int constrainFactoryNumbers(double rawFactories);
 		void determineCategory(int factories, const HoI4::stateCategories& theStateCategories);
 		void setInfrastructure(int factories);
-		void setIndustry(int factories);
-		bool amICoastal();
+		void setIndustry(int factories, const coastalProvinces& theCoastalProvinces);
+		bool amICoastal(const coastalProvinces& theCoastalProvinces);
 
 		int determineNavalBaseLevel(const Vic2::Province* sourceProvince);
-		std::optional<int> determineNavalBaseLocation(const Vic2::Province* sourceProvince);
+		std::optional<int> determineNavalBaseLocation(const Vic2::Province* sourceProvince, const coastalProvinces& theCoastalProvinces);
 
 		bool assignVPFromVic2Province(int Vic2ProvinceNumber);
 		void assignVP(int location);

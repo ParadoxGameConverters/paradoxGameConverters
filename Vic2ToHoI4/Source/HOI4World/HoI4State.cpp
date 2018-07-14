@@ -22,9 +22,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4State.h"
+#include "CoastalProvinces.h"
 #include "StateCategories.h"
 #include "../Configuration.h"
-#include "../Mappers/CoastalHoI4Provinces.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "../V2World/StateDefinitions.h"
 #include "../V2World/Province.h"
@@ -271,7 +271,7 @@ void HoI4::State::output(const std::string& _filename) const
 }
 
 
-void HoI4::State::convertNavalBases()
+void HoI4::State::convertNavalBases(const coastalProvinces& theCoastalProvinces)
 {
 	for (auto sourceProvince: sourceState->getProvinces())
 	{
@@ -281,7 +281,7 @@ void HoI4::State::convertNavalBases()
 			continue;
 		}
 
-		auto navalBaseLocation = determineNavalBaseLocation(sourceProvince);
+		auto navalBaseLocation = determineNavalBaseLocation(sourceProvince, theCoastalProvinces);
 		if (navalBaseLocation)
 		{
 			addNavalBase(navalBaseLevel, *navalBaseLocation);
@@ -302,13 +302,13 @@ int HoI4::State::determineNavalBaseLevel(const Vic2::Province* sourceProvince)
 }
 
 
-std::optional<int> HoI4::State::determineNavalBaseLocation(const Vic2::Province* sourceProvince)
+std::optional<int> HoI4::State::determineNavalBaseLocation(const Vic2::Province* sourceProvince, const coastalProvinces& theCoastalProvinces)
 {
 	if (auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(sourceProvince->getNumber()))
 	{
 		for (auto HoI4ProvNum: *mapping)
 		{
-			if (coastalHoI4ProvincesMapper::isProvinceCoastal(HoI4ProvNum))
+			if (theCoastalProvinces.isProvinceCoastal(HoI4ProvNum))
 			{
 				return HoI4ProvNum;
 			}
@@ -323,7 +323,7 @@ void HoI4::State::addNavalBase(int level, int location)
 {
 	if ((level > 0) && (provinces.find(location) != provinces.end()))
 	{
-		navalBases.push_back(make_pair(location, level));
+		navalBases.push_back(std::make_pair(location, level));
 	}
 }
 
@@ -480,13 +480,13 @@ void HoI4::State::addManpower()
 }
 
 
-void HoI4::State::convertIndustry(double workerFactoryRatio, const HoI4::stateCategories& theStateCategories)
+void HoI4::State::convertIndustry(double workerFactoryRatio, const HoI4::stateCategories& theStateCategories, const coastalProvinces& theCoastalProvinces)
 {
 	int factories = determineFactoryNumbers(workerFactoryRatio);
 
 	determineCategory(factories, theStateCategories);
 	setInfrastructure(factories);
-	setIndustry(factories);
+	setIndustry(factories, theCoastalProvinces);
 	addVictoryPointValue(factories / 2);
 }
 
@@ -562,9 +562,9 @@ void HoI4::State::setInfrastructure(int factories)
 
 static std::mt19937 randomnessEngine;
 static std::uniform_int_distribution<> numberDistributor(0, 99);
-void HoI4::State::setIndustry(int factories)
+void HoI4::State::setIndustry(int factories, const coastalProvinces& theCoastalProvinces)
 {
-	if (amICoastal())
+	if (amICoastal(theCoastalProvinces))
 	{
 		// distribute military factories, civilian factories, and dockyards using unseeded random
 		//		20% chance of dockyard
@@ -609,9 +609,9 @@ void HoI4::State::setIndustry(int factories)
 }
 
 
-bool HoI4::State::amICoastal()
+bool HoI4::State::amICoastal(const coastalProvinces& theCoastalProvinces)
 {
-	auto coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
+	auto coastalProvinces = theCoastalProvinces.getCoastalProvinces();
 	for (auto province: provinces)
 	{
 		auto itr = coastalProvinces.find(province);

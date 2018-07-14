@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef PROVINCE_NEIGHBOR_MAPPER_H
-#define PROVINCE_NEIGHBOR_MAPPER_H
+#ifndef MAP_DATA_H
+#define MAP_DATA_H
 
 
 
@@ -31,49 +31,51 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <set>
 #include "../bitmap_image.hpp"
 #include "../Color.h"
-using namespace std;
 
 
 
-typedef pair<int, int> point;
-typedef vector<point> borderPoints;
-typedef map<int, borderPoints> bordersWith;
+typedef std::pair<int, int> point;
+typedef std::vector<point> borderPoints;
+typedef std::map<int, borderPoints> bordersWith;
 
 
 
-class provinceNeighborMapper
+namespace HoI4
+{
+
+class MapData
 {
 	public:
-		static const set<int> getNeighbors(int province)
+		static const std::set<int> getNeighbors(int province)
 		{
 			return getInstance()->GetNeighbors(province);
 		}
 
-		static const optional<point> getBorderCenter(int mainProvince, int neighbor)
+		static const std::optional<point> getBorderCenter(int mainProvince, int neighbor)
 		{
 			return getInstance()->GetBorderCenter(mainProvince, neighbor);
 		}
 
-		static optional<int> getProvinceNumber(double x, double y)
+		static std::optional<int> getProvinceNumber(double x, double y)
 		{
 			return getInstance()->GetProvinceNumber(x, y);
 		}
 
 	private:
-		static provinceNeighborMapper* instance;
-		static provinceNeighborMapper* getInstance()
+		static MapData* instance;
+		static MapData* getInstance()
 		{
 			if (instance == nullptr)
 			{
-				instance = new provinceNeighborMapper();
+				instance = new MapData();
 			}
 
 			return instance;
 		}
-		provinceNeighborMapper();
+		MapData();
 
-		provinceNeighborMapper(const provinceNeighborMapper&) = delete;
-		provinceNeighborMapper& operator=(const provinceNeighborMapper&) = delete;
+		MapData(const MapData&) = delete;
+		MapData& operator=(const MapData&) = delete;
 
 		ConverterColor::Color getCenterColor(point position);
 		ConverterColor::Color getAboveColor(point position, int height);
@@ -84,16 +86,18 @@ class provinceNeighborMapper
 		void addNeighbor(int mainProvince, int neighborProvince);
 		void addPointToBorder(int mainProvince, int neighborProvince, point position);
 
-		const set<int> GetNeighbors(int province) const;
-		const optional<point> GetBorderCenter(int mainProvince, int neighbor) const;
-		optional<int> GetProvinceNumber(double x, double y);
+		const std::set<int> GetNeighbors(int province) const;
+		const std::optional<point> GetBorderCenter(int mainProvince, int neighbor) const;
+		std::optional<int> GetProvinceNumber(double x, double y);
 
-		map<int, set<int>> provinceNeighbors;
-		map<int, bordersWith> borders;
+		std::map<int, std::set<int>> provinceNeighbors;
+		std::map<int, bordersWith> borders;
 
 		bitmap_image provinceMap;
 };
 
+}
 
 
-#endif //PROVINCE_NEIGHBOR_MAPPER_H
+
+#endif //MAP_DATA_H

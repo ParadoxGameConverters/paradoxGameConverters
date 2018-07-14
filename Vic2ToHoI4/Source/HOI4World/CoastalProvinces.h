@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,61 +21,46 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef COASTALHOI4PROVINCES_H_
-#define COASTALHOI4PROVINCES_H_
+#ifndef COASTAL_PROVINCES_H_
+#define COASTAL_PROVINCES_H_
 
 
 
+#include <string>
 #include <vector>
 #include <map>
-using namespace std;
 
 
+
+namespace HoI4
+{
 
 typedef struct province
 {
 	bool isLand;
-	string type;
+	std::string type;
 } province;
 
 
-class coastalHoI4ProvincesMapper
+class coastalProvinces
 {
 	public:
-		static map<int, vector<int>> getCoastalProvinces()
-		{
-			return getInstance()->coastalProvinces;
-		}
+		coastalProvinces();
 
-		static bool isProvinceCoastal(int provinceNum)
-		{
-			return getInstance()->IsProvinceCoastal(provinceNum);
-		}
+		auto getCoastalProvinces() const { return theCoastalProvinces; }
+		bool isProvinceCoastal(int provinceNum) const;
 
 	private:
+		coastalProvinces(const coastalProvinces&) = delete;
+		coastalProvinces& operator=(const coastalProvinces&) = delete;
 
-		static coastalHoI4ProvincesMapper* instance;
-		static coastalHoI4ProvincesMapper* getInstance()
-		{
-			if (instance == NULL)
-			{
-				instance = new coastalHoI4ProvincesMapper();
-			}
+		std::map<int, province> getProvinces() const;
 
-			return instance;
-		}
-
-		coastalHoI4ProvincesMapper();
-		map<int, province> getProvinces() const;
-
-		coastalHoI4ProvincesMapper(const coastalHoI4ProvincesMapper&) = delete;
-		coastalHoI4ProvincesMapper& operator=(const coastalHoI4ProvincesMapper&) = delete;
-
-		bool IsProvinceCoastal(int provinceNum) const;
-
-		map<int, vector<int>> coastalProvinces;	// province, connecting sea provinces
+		std::map<int, std::vector<int>> theCoastalProvinces;	// province, connecting sea provinces
 };
 
+}
 
 
-#endif // COASTALHOI4PROVINCES_H_
+
+#endif // COASTAL_PROVINCES_H_

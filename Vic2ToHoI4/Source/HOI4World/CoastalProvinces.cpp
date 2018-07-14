@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,22 +21,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "CoastalHoI4Provinces.h"
+#include "CoastalProvinces.h"
 #include <fstream>
 #include "Log.h"
 #include "../Configuration.h"
-#include "ProvinceNeighborMapper.h"
+#include "../HOI4World/MapData.h"
 
 
 
-
-coastalHoI4ProvincesMapper* coastalHoI4ProvincesMapper::instance = nullptr;
-
-
-coastalHoI4ProvincesMapper::coastalHoI4ProvincesMapper():
-	coastalProvinces()
+HoI4::coastalProvinces::coastalProvinces()
 {
-	map<int, province> provinces = getProvinces();
+	auto provinces = getProvinces();
 
 	for (auto province: provinces)
 	{
@@ -45,18 +40,18 @@ coastalHoI4ProvincesMapper::coastalHoI4ProvincesMapper():
 			continue;
 		}
 
-		auto neighbors = provinceNeighborMapper::getNeighbors(province.first);
+		auto neighbors = HoI4::MapData::getNeighbors(province.first);
 		for (auto adjProvinceNum: neighbors)
 		{
 			auto adjProvince = provinces.find(adjProvinceNum);
 			if ((adjProvince != provinces.end()) && (adjProvince->second.type == "ocean"))
 			{
-				auto coastalProvince = coastalProvinces.find(province.first);
-				if (coastalProvince == coastalProvinces.end())
+				auto coastalProvince = theCoastalProvinces.find(province.first);
+				if (coastalProvince == theCoastalProvinces.end())
 				{
-					vector<int> seaProvince;
+					std::vector<int> seaProvince;
 					seaProvince.push_back(adjProvinceNum);
-					coastalProvinces.insert(make_pair(province.first, seaProvince));
+					theCoastalProvinces.insert(make_pair(province.first, seaProvince));
 				}
 				else
 				{
@@ -68,19 +63,19 @@ coastalHoI4ProvincesMapper::coastalHoI4ProvincesMapper():
 }
 
 
-map<int, province> coastalHoI4ProvincesMapper::getProvinces() const
+std::map<int, HoI4::province> HoI4::coastalProvinces::getProvinces() const
 {
-	ifstream provinceDefinitions(theConfiguration.getHoI4Path() + "/map/definition.csv");
+	std::ifstream provinceDefinitions(theConfiguration.getHoI4Path() + "/map/definition.csv");
 	if (!provinceDefinitions.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open " << theConfiguration.getHoI4Path() << "/map/definition.csv";
 		exit(-1);
 	}
 
-	map<int, province> provinces;
+	std::map<int, province> provinces;
 	while (!provinceDefinitions.eof())
 	{
-		string line;
+		std::string line;
 		getline(provinceDefinitions, line);
 		if (line.length() == 0)
 		{
@@ -105,7 +100,7 @@ map<int, province> coastalHoI4ProvincesMapper::getProvinces() const
 		line = line.substr(blueSeparator + 1, line.size());
 
 		int landSeaSeparator = line.find_first_of(';');
-		string landOrSea = line.substr(0, landSeaSeparator);
+		std::string landOrSea = line.substr(0, landSeaSeparator);
 		bool isLand = (landOrSea == "land");
 		line = line.substr(landSeaSeparator + 1, line.size());
 
@@ -113,20 +108,20 @@ map<int, province> coastalHoI4ProvincesMapper::getProvinces() const
 		line = line.substr(boolSeparator + 1, line.size());
 
 		int typeSeparator = line.find_first_of(';');
-		string type = line.substr(0, typeSeparator);
+		std::string type = line.substr(0, typeSeparator);
 
 		province newProvince;
 		newProvince.isLand = isLand;
 		newProvince.type = type;
-		provinces.insert(make_pair(ID, newProvince));
+		provinces.insert(std::make_pair(ID, newProvince));
 	}
 
 	return provinces;
 }
 
 
-bool coastalHoI4ProvincesMapper::IsProvinceCoastal(int provinceNum) const
+bool HoI4::coastalProvinces::isProvinceCoastal(int provinceNum) const
 {
-	auto province = coastalProvinces.find(provinceNum);
-	return (province != coastalProvinces.end());
+	auto province = theCoastalProvinces.find(provinceNum);
+	return (province != theCoastalProvinces.end());
 }

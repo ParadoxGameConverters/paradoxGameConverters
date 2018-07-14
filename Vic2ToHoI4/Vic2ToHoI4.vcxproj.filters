@@ -80,9 +80,6 @@
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\CoastalHoI4Provinces.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -108,9 +105,6 @@
       <Filter>CommonItems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Mappers\ProvinceDefinitions.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mappers\ProvinceNeighborMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
     <ClCompile Include="Source\HOI4World\HoI4Agreement.cpp">
@@ -239,6 +233,12 @@
     <ClCompile Include="Source\HOI4World\IdeologyFile.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HOI4World\MapData.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\CoastalProvinces.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -302,9 +302,6 @@
     <ClInclude Include="Source\Mappers\GovernmentMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\ProvinceMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -336,9 +333,6 @@
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\bitmap_image.hpp" />
-    <ClInclude Include="Source\Mappers\ProvinceNeighborMapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Agreement.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
@@ -463,6 +457,12 @@
       <Filter>HoI4World</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\IdeologyFile.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\MapData.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\CoastalProvinces.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>
