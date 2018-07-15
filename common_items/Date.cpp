@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Date.h"
+#include <array>
 #include <vector>
 #include "OSCompatibilityLayer.h"
 
@@ -60,24 +61,7 @@ date::date(std::string _init):
 }
 
 
-date::date(const date& _init)
-{
-	year = _init.year;
-	month = _init.month;
-	day = _init.day;
-}
-
-
-const date& date::operator=(const date& _rhs)
-{
-	year = _rhs.year;
-	month = _rhs.month;
-	day = _rhs.day;
-	return *this;
-}
-
-
-bool date::operator==(const date& _rhs) const
+bool date::operator==(const date& _rhs) const noexcept
 {
 	return ((year == _rhs.year)
 		 && (month == _rhs.month)
@@ -85,13 +69,13 @@ bool date::operator==(const date& _rhs) const
 }
 
 
-bool date::operator!=(const date& _rhs) const
+bool date::operator!=(const date& _rhs) const noexcept
 {
 	return !(*this == _rhs);
 }
 
 
-bool date::operator<(const date& _rhs) const
+bool date::operator<(const date& _rhs) const noexcept
 {
 	return ((year < _rhs.year)
 		|| ((year == _rhs.year) && (month < _rhs.month))
@@ -99,7 +83,7 @@ bool date::operator<(const date& _rhs) const
 }
 
 
-bool date::operator>(const date& _rhs) const
+bool date::operator>(const date& _rhs) const noexcept
 {
 	return ((year > _rhs.year)
 		|| ((year == _rhs.year) && (month > _rhs.month))
@@ -107,13 +91,13 @@ bool date::operator>(const date& _rhs) const
 }
 
 
-bool date::operator<=(const date& _rhs) const
+bool date::operator<=(const date& _rhs) const noexcept
 {
 	return ((*this == _rhs) || (*this < _rhs));
 }
 
 
-bool date::operator>=(const date& _rhs) const
+bool date::operator>=(const date& _rhs) const noexcept
 { 
 	return ((*this == _rhs) || (*this > _rhs));
 }
@@ -126,23 +110,23 @@ std::ostream& operator<<(std::ostream& out, const date& d)
 }
 
 
-float date::diffInYears(const date& _rhs) const
+float date::diffInYears(const date& _rhs) const noexcept
 {
 	float years = static_cast<float>(year - _rhs.year);	// the difference in years
-	years += (calculateDayInYear() - _rhs.calculateDayInYear()) / 365;
+	years += static_cast<float>(calculateDayInYear() - _rhs.calculateDayInYear()) / 365;
 
 	return years;
 }
 
 
-const int daysByMonth[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
-int date::calculateDayInYear() const
+const std::array<int, 12> daysByMonth = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
+int date::calculateDayInYear() const noexcept
 {
 	return day + daysByMonth[month - 1];
 }
 
 
-void date::delayedByMonths(const int _months)
+void date::increaseByMonths(const int _months) noexcept
 {
 	year += _months / 12;
 	month += _months % 12;
@@ -155,13 +139,13 @@ void date::delayedByMonths(const int _months)
 }
 
 
-void date::subtractYears(const int _years)
+void date::subtractYears(const int _years) noexcept
 {
 	year -= _years;
 }
 
 
-bool date::isSet() const
+bool date::isSet() const noexcept
 {
 	const date default_date;	// an instance with the default date
 	return (*this != default_date);

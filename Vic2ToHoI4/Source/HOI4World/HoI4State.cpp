@@ -40,7 +40,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class dockyardProvince: commonItems::parser
 {
 	public:
-		dockyardProvince(std::istream& theStream);
+		explicit dockyardProvince(std::istream& theStream);
 
 		int getDockyards() const { return dockyards; }
 
@@ -65,7 +65,7 @@ dockyardProvince::dockyardProvince(std::istream& theStream)
 class stateBuildings: commonItems::parser
 {
 	public:
-		stateBuildings(std::istream& theStream);
+		explicit stateBuildings(std::istream& theStream);
 
 		int getCivFactories() const { return civFactories; }
 		int getMilFactories() const { return milFactories; }
@@ -104,7 +104,7 @@ stateBuildings::stateBuildings(std::istream& theStream)
 class stateHistory: commonItems::parser
 {
 	public:
-		stateHistory(std::istream& theStream);
+		explicit stateHistory(std::istream& theStream);
 
 		int getCivFactories() const { return civFactories; }
 		int getMilFactories() const { return milFactories; }
@@ -162,6 +162,8 @@ HoI4::State::State(std::istream& theStream)
 	registerKeyword(std::regex("[a-zA-Z0-9_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
+
+	sourceState = nullptr;
 }
 
 

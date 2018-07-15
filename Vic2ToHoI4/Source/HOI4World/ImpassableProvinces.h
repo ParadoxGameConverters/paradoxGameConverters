@@ -41,7 +41,7 @@ class State;
 class impassableProvinces
 {
 	public:
-		impassableProvinces(const std::map<int, HoI4::State*>& states);
+		explicit impassableProvinces(const std::map<int, HoI4::State*>& states);
 
 		bool isProvinceImpassable(int provinceNumber) const;
 

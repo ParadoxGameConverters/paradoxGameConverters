@@ -48,7 +48,7 @@ class State;
 class SupplyZones: commonItems::parser
 {
 	public:
-		SupplyZones(const std::map<int, HoI4::State*>& defaultStates);
+		explicit SupplyZones(const std::map<int, HoI4::State*>& defaultStates);
 		void output();
 		void convertSupplyZones(const HoI4States* states);
 

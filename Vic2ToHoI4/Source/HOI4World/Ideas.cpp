@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4::Ideas::Ideas()
+HoI4::Ideas::Ideas() noexcept
 {
 	importIdeologicalIdeas();
 	importGeneralIdeas();
@@ -273,7 +273,7 @@ void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
 }
 
 
-void HoI4::Ideas::output(std::set<std::string> majorIdeologies) const
+void HoI4::Ideas::output(const std::set<std::string>& majorIdeologies) const
 {
 	outputIdeologicalIdeas(majorIdeologies);
 	outputGeneralIdeas();

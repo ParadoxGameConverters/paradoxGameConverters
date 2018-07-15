@@ -53,7 +53,7 @@ class State: commonItems::parser
 {
 	public:
 		State(std::istream& theStream, const std::string& ownerTag);
-		State(std::set<std::pair<int, Province*>> theProvinces);
+		explicit State(std::set<std::pair<int, Province*>> theProvinces);
 
 		void determineEmployedWorkers();
 		void determineIfPartialState();

@@ -39,7 +39,7 @@ namespace Vic2
 class cultureGroups: commonItems::parser
 {
 	public:
-		cultureGroups();
+		cultureGroups() noexcept;
 		~cultureGroups() = default;
 
 		std::optional<std::string> getGroup(const std::string& culture) const;

@@ -39,7 +39,7 @@ namespace Vic2
 class inventions: commonItems::parser
 {
 	public:
-		inventions();
+		inventions() noexcept;
 
 		std::optional<std::string> getInventionName(int inventionNum) const;
 
@@ -48,8 +48,8 @@ class inventions: commonItems::parser
 		inventions& operator=(const inventions&) = delete;
 
 		std::string getInventionPath() const;
-		void generateNums(std::string path);
-		void processTechFile(std::string filename);
+		void generateNums(const std::string& path);
+		void processTechFile(const std::string& filename);
 
 		std::map<int, std::string> inventionNumsToNames;
 };

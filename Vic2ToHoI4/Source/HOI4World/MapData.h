@@ -72,7 +72,7 @@ class MapData
 
 			return instance;
 		}
-		MapData();
+		MapData() noexcept;
 
 		MapData(const MapData&) = delete;
 		MapData& operator=(const MapData&) = delete;

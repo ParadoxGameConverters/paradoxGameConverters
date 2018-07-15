@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4::coastalProvinces::coastalProvinces()
+HoI4::coastalProvinces::coastalProvinces() noexcept
 {
 	auto provinces = getProvinces();
 

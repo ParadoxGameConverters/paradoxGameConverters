@@ -45,7 +45,7 @@ typedef std::map<std::string, std::string> cultureGroupToGraphicalCultureMap;
 class graphicsMapper: commonItems::parser
 {
 	public:
-		graphicsMapper();
+		graphicsMapper() noexcept;
 
 		std::string getLeaderPortrait(const std::string& cultureGroup, const std::string& ideology);
 		std::string getIdeologyMinisterPortrait(const std::string& cultureGroup, const std::string& ideology);

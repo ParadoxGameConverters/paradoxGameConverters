@@ -1206,7 +1206,7 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile, const HoI4::namesMappe
 	namesFile << "}\n";
 }
 
-void HoI4Country::outputUnitType(ofstream& unitNamesFile, string sourceUnitType, string destUnitType, string defaultName) const
+void HoI4Country::outputUnitType(ofstream& unitNamesFile, const string& sourceUnitType, const string& destUnitType, const string& defaultName) const
 {
 	unitNamesFile << "\t" << destUnitType << " = {\n";
 	unitNamesFile << "\t\tprefix = \"\"\n";

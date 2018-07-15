@@ -38,20 +38,20 @@ namespace ConverterColor
 
 struct red
 {
-	red() { Red = 0; }
-	red(int r): Red(r) {}
+	red() noexcept { Red = 0; }
+	explicit red(int r): Red(r) {}
 	int Red;
 };
 struct green
 {
-	green() { Green = 0; }
-	green(int g): Green(g) {}
+	green() noexcept { Green = 0; }
+	explicit green(int g): Green(g) {}
 	int Green;
 };
 struct blue
 {
-	blue() { Blue = 0; }
-	blue(int b): Blue(b) {}
+	blue() noexcept { Blue = 0; }
+	explicit blue(int b): Blue(b) {}
 	int Blue;
 };
 
@@ -59,11 +59,14 @@ struct blue
 class Color: commonItems::parser
 {
 	public:
-		Color();
+		Color() = default;
 		explicit Color(red r, green g, blue b);
 		explicit Color(std::istream& theStream);
 		Color(const Color&) = default;
+		Color(Color&&) = default;
 		Color& operator=(const Color&) = default;
+		Color& operator=(Color&&) = default;
+		~Color() = default;
 
 		// Randomly adjust the RGB values up or down (within the range 0-255)
 		// with a normal distribution of the given standard deviation.
@@ -81,8 +84,8 @@ class Color: commonItems::parser
 		operator bool() const;
 
 	private:
-		bool initialized;
-		std::array<int, 3> c;
+		bool initialized = false;
+		std::array<int, 3> c = {0,0,0};
 };
 
 std::ostream& operator<<(std::ostream& out, const Color& color);

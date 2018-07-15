@@ -41,7 +41,7 @@ namespace HoI4
 class IdeologyFile: commonItems::parser
 {
 	public:
-		IdeologyFile(std::istream& theStream);
+		explicit IdeologyFile(std::istream& theStream);
 
 		auto getIdeologies() const { return ideologies; }
 

@@ -34,15 +34,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class supplyArea: commonItems::parser
 {
 	public:
-		supplyArea(std::istream& theStream);
+		explicit supplyArea(std::istream& theStream);
 
 		auto getID() const { return ID; }
 		auto getValue() const { return value; }
 		auto getStates() const { return states; }
 
 	private:
-		int ID;
-		int value;
+		int ID = 0;
+		int value = 0;
 		std::vector<int> states;
 };
 

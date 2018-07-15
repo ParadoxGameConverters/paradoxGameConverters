@@ -161,7 +161,11 @@ void HoI4::World::convertCountry(pair<string, Vic2::Country*> country)
 
 	HoI4Country* destCountry = nullptr;
 	auto possibleHoI4Tag = countryMap.getHoI4Tag(country.first);
-	if (possibleHoI4Tag)
+	if (!possibleHoI4Tag)
+	{
+		LOG(LogLevel::Warning) << "Could not convert V2 tag " << country.first << " to HoI4";
+	}
+	else
 	{
 		auto possibleCountryName = country.second->getName("english");
 		string countryName;
@@ -197,14 +201,9 @@ void HoI4::World::convertCountry(pair<string, Vic2::Country*> country)
 
 		destCountry->initFromV2Country(*sourceWorld, country.second, states->getProvinceToStateIDMap(), states->getStates(), theNames, theGraphics, countryMap);
 		countries.insert(make_pair(*possibleHoI4Tag, destCountry));
+		HoI4Localisation::createCountryLocalisations(make_pair(country.first, *possibleHoI4Tag), governmentMap);
+		HoI4Localisation::updateMainCountryLocalisation(destCountry->getTag() + "_" + destCountry->getGovernmentIdeology(), country.first, country.second->getGovernment());
 	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Could not convert V2 tag " << country.first << " to HoI4";
-	}
-
-	HoI4Localisation::createCountryLocalisations(make_pair(country.first, *possibleHoI4Tag), governmentMap);
-	HoI4Localisation::updateMainCountryLocalisation(destCountry->getTag() + "_" + destCountry->getGovernmentIdeology(), country.first, country.second->getGovernment());
 }
 
 
@@ -441,7 +440,8 @@ double HoI4::World::getWorldwideWorkerFactoryRatio(const map<string, double>& wo
 	{
 		defaultFactories = 1201;
 	}
-	double deltaIndustry = baseIndustry - (defaultFactories - landedCountries.size());
+	double deltaIndustry = baseIndustry - defaultFactories;
+	deltaIndustry -= landedCountries.size();
 	double newIndustry = baseIndustry - theConfiguration.getIcFactor() * deltaIndustry;
 	double acutalWorkerFactoryRatio = newIndustry / totalWorldWorkers;
 
@@ -477,7 +477,6 @@ void HoI4::World::calculateIndustryInCountries()
 
 void HoI4::World::reportIndustryLevels()
 {
-	map<string, int> countryIndustry;
 	int militaryFactories = 0;
 	int civilialFactories = 0;
 	int dockyards = 0;

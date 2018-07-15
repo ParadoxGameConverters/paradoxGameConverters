@@ -33,7 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class region: commonItems::parser
 {
 	public:
-		region(std::istream& theStream);
+		explicit region(std::istream& theStream);
 
 		auto getID() const { return ID; }
 		auto getProvinces() const { return provinces; }

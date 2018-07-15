@@ -30,15 +30,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 namespace commonItems
 {
-	std::string getNextLexeme(std::istream& theStream);
-}
 
+std::string getNextLexeme(std::istream& theStream);
 
-commonItems::parser::parser():
-	registeredKeywords(),
-	nextToken(),
-	braceDepth(0)
-{
 }
 			
 
@@ -97,8 +91,8 @@ void commonItems::parser::parseFile(const std::string& filename)
 		LOG(LogLevel::Error) << "Could not open " << filename << " for parsing.";
 	}
 
-	char firstChar = theFile.peek();
-	if (firstChar == (char)0xEF)
+	const char firstChar = theFile.peek();
+	if (firstChar == '\xEF')
 	{
 		char bitBucket[3];
 		theFile.read(bitBucket, 3);

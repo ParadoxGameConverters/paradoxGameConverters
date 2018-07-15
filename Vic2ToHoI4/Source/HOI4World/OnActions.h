@@ -38,7 +38,7 @@ namespace HoI4
 class OnActions
 {
 	public:
-		OnActions();
+		OnActions() noexcept;
 
 		void output(const std::set<std::string>& majorIdeologies) const;
 

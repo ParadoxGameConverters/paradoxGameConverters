@@ -37,7 +37,7 @@ namespace HoI4
 
 typedef struct province
 {
-	bool isLand;
+	bool isLand = false;
 	std::string type;
 } province;
 
@@ -45,7 +45,7 @@ typedef struct province
 class coastalProvinces
 {
 	public:
-		coastalProvinces();
+		coastalProvinces() noexcept;
 
 		auto getCoastalProvinces() const { return theCoastalProvinces; }
 		bool isProvinceCoastal(int provinceNum) const;

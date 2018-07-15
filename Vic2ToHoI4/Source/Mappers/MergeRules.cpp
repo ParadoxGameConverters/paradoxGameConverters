@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class MergeRule: commonItems::parser
 {
 	public:
-		MergeRule(std::istream& theStream);
+		explicit MergeRule(std::istream& theStream);
 
 		bool isEnabled() const { return enabled; }
 		std::string getMaster() const { return master; }
@@ -42,7 +42,7 @@ class MergeRule: commonItems::parser
 };
 
 
-MergeRules::MergeRules()
+MergeRules::MergeRules() noexcept
 {
 	registerKeyword(std::regex("[A-Za-z_]+"), [this](const std::string& ruleName, std::istream& theStream){
 		MergeRule theRule(theStream);

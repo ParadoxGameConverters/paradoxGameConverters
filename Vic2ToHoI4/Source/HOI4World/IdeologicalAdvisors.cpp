@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4::IdeologicalAdvisors::IdeologicalAdvisors()
+HoI4::IdeologicalAdvisors::IdeologicalAdvisors() noexcept
 {
 	registerKeyword(std::regex("[a-z]+"), [this](const std::string& ideology, std::istream& theStream){
 		Advisor* newAdvisor = new Advisor(ideology, theStream);

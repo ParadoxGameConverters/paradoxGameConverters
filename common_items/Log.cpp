@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -56,7 +56,7 @@ Log::~Log()
 }
 
 
-static std::map<LogLevel, std::string> logLevelStrings = {
+static const std::map<LogLevel, std::string> logLevelStrings = {
 	{LogLevel::Error, "  [ERROR] "},
 	{LogLevel::Warning, "[WARNING] "},
 	{LogLevel::Info, "   [INFO] "},
@@ -66,7 +66,7 @@ void Log::WriteToFile(LogLevel level, const std::string& logMessage)
 {
 	std::ofstream logFile("log.txt", std::ofstream::app);
 	WriteTheTime(logFile);
-	logFile << logLevelStrings[level];
+	logFile << logLevelStrings.find(level)->second;
 	logFile << logMessage;
 }
 

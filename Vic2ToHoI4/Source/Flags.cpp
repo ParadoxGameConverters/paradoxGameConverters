@@ -267,6 +267,10 @@ tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsign
 	destFlag->color_map_data = nullptr;
 
 	destFlag->image_data = static_cast<uint8_t*>(malloc(sizeX * sizeY * 4));
+	if (destFlag->image_data == nullptr)
+	{
+		return destFlag;
+	}
 	for (unsigned int y = 0; y < sizeY; y++)
 	{
 		for (unsigned int x = 0; x < sizeX; x++)

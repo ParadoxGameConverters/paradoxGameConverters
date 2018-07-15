@@ -108,7 +108,7 @@ extern Configuration theConfiguration;
 class ConfigurationFile: commonItems::parser
 {
 	public:
-		ConfigurationFile(const std::string& filename);
+		explicit ConfigurationFile(const std::string& filename);
 
 	private:
 		ConfigurationFile(const ConfigurationFile&) = delete;

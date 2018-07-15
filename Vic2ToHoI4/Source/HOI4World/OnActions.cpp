@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4::OnActions::OnActions(): electionEvents{ "election.2" }
+HoI4::OnActions::OnActions() noexcept: electionEvents{ "election.2" }
 {
 }
 

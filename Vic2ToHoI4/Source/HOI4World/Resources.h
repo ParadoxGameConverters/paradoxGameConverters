@@ -33,7 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class resources: commonItems::parser
 {
 	public:
-		resources();
+		resources() noexcept;
 
 		std::map<std::string, double> getResourcesInProvince(int provinceNum);
 

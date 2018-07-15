@@ -67,7 +67,7 @@ bool operator==(const decisionsCategory& categoryOne, const decisionsCategory& c
 class decisions: commonItems::parser
 {
 	public:
-		decisions();
+		decisions() noexcept;
 
 		void updateDecisions(const std::set<std::string>& majorIdeologies);
 

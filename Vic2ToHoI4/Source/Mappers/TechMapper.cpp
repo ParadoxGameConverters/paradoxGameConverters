@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class techMapping: commonItems::parser
 {
 	public:
-	techMapping(std::istream& theStream);
+		explicit techMapping(std::istream& theStream);
 
 		auto getKey() const { return key; }
 		auto getValues() const { return values; }
@@ -58,7 +58,7 @@ techMapping::techMapping(std::istream& theStream)
 class map: commonItems::parser
 {
 	public:
-		map(std::istream& theStream);
+		explicit map(std::istream& theStream);
 
 		auto getMappings() const { return mappings; }
 
@@ -79,7 +79,7 @@ map::map(std::istream& theStream)
 }
 
 
-techMapper::techMapper()
+techMapper::techMapper() noexcept
 {
 	registerKeyword(std::regex("tech_map"), [this](const std::string& unused, std::istream& theStream){
 		map theTechMap(theStream);

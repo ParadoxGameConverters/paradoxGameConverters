@@ -57,7 +57,7 @@ class link: commonItems::parser
 		auto getResources() const { return theResources; }
 
 	private:
-		int provinceNum;
+		int provinceNum = 0;
 		std::map<std::string, double> theResources;
 };
 
@@ -77,7 +77,7 @@ link::link(std::istream& theStream)
 }
 
 
-resources::resources()
+resources::resources() noexcept
 {
 	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream){
 		link theLink(theStream);

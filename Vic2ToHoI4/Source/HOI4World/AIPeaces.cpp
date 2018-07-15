@@ -23,11 +23,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "AIPeaces.h"
 #include "../Configuration.h"
+#include <execution>
 #include <fstream>
 
 
 
-HoI4::AIPeaces::AIPeaces()
+HoI4::AIPeaces::AIPeaces() noexcept
 {
 	registerKeyword(std::regex("[A-Za-z0-9\\_]+"), [this](const std::string& peaceName, std::istream& theStream)
 	{
@@ -75,7 +76,7 @@ void HoI4::AIPeaces::updateAIPeaces(std::set<std::string> majorIdeologies)
 
 void HoI4::AIPeaces::output(std::set<std::string> majorIdeologies)
 {
-	std::for_each(thePeaces.begin(), thePeaces.end(), [majorIdeologies](auto& thePeace){
+	std::for_each(std::execution::seq, thePeaces.begin(), thePeaces.end(), [majorIdeologies](auto& thePeace){
 		if (thePeace.getName() == "communist_peace")
 		{
 			std::ofstream outFile("output/" + theConfiguration.getOutputName() + "/common/ai_peace/1_communist.txt");

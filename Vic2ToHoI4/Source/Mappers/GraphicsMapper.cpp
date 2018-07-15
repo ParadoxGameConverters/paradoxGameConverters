@@ -92,7 +92,7 @@ graphicsCultureGroup::graphicsCultureGroup(std::istream& theStream)
 }
 
 
-graphicsMapper::graphicsMapper():
+graphicsMapper::graphicsMapper() noexcept:
 	rng()
 {
 	LOG(LogLevel::Info) << "Reading graphics mappings";

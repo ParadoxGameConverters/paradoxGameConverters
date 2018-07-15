@@ -38,7 +38,7 @@ class Advisor;
 class IdeologicalAdvisors: commonItems::parser
 {
 	public:
-		IdeologicalAdvisors();
+		IdeologicalAdvisors() noexcept;
 
 		auto getAdvisors() { return theAdvisors; }
 

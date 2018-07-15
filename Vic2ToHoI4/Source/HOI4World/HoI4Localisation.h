@@ -124,7 +124,7 @@ class HoI4Localisation
 			}
 			return instance;
 		}
-		HoI4Localisation();
+		HoI4Localisation() noexcept;
 		void importLocalisations();
 		void importFocusLocalisations(const std::string& filename);
 		void importGenericIdeaLocalisations(const std::string& filename);

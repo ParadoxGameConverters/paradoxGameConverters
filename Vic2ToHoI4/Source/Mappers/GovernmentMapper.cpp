@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class aGovernmentMapping: commonItems::parser
 {
 	public:
-		aGovernmentMapping(std::istream& theStream);
+		explicit aGovernmentMapping(std::istream& theStream);
 
 		auto getMapping() const { return mapping; }
 
@@ -66,7 +66,7 @@ aGovernmentMapping::aGovernmentMapping(std::istream& theStream)
 class governmentMappings: commonItems::parser
 {
 	public:
-		governmentMappings(std::istream& theStream);
+		explicit governmentMappings(std::istream& theStream);
 
 		auto getGovernmentMap() const { return governmentMap; }
 
@@ -89,7 +89,7 @@ governmentMappings::governmentMappings(std::istream& theStream)
 class aPartyMapping: commonItems::parser
 {
 	public:
-		aPartyMapping(std::istream& theStream);
+		explicit aPartyMapping(std::istream& theStream);
 
 		auto getMapping() const { return mapping; }
 
@@ -120,7 +120,7 @@ aPartyMapping::aPartyMapping(std::istream& theStream)
 class partyMappings: commonItems::parser
 {
 	public:
-		partyMappings(std::istream& theStream);
+		explicit partyMappings(std::istream& theStream);
 
 		auto getPartyMap() const { return partyMap; }
 
@@ -140,7 +140,7 @@ partyMappings::partyMappings(std::istream& theStream)
 }
 
 
-governmentMapper::governmentMapper()
+governmentMapper::governmentMapper() noexcept
 {
 	registerKeyword(std::regex("government_mappings"), [this](const std::string& unused, std::istream& theStream){
 		governmentMappings mappings(theStream);

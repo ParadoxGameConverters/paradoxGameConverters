@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -71,7 +71,7 @@ class HoI4States: commonItems::parser
 		optional<vector<int>> retrieveSourceProvinceNums(int provNum) const;
 		map<const Vic2::Country*, pair<int, int>> determinePotentialOwners(const vector<int>& sourceProvinceNums) const;
 		const Vic2::Country* selectProvinceOwner(const map<const Vic2::Country*, pair<int, int>>& potentialOwners) const;
-		vector<string> determineCores(const vector<int>& sourceProvinces, const Vic2::Country* oldOwner, const CountryMapper& countryMap) const;
+		vector<string> determineCores(const vector<int>& sourceProvinces, const Vic2::Country* oldOwner, const CountryMapper& countryMap, const std::string& newOwner) const;
 
 		void createStates(const HoI4::impassableProvinces& theImpassables, const CountryMapper& countryMap);
 		void createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner, const HoI4::impassableProvinces& theImpassables);

@@ -38,7 +38,7 @@ namespace HoI4
 class stateCategories: commonItems::parser
 {
 	public:
-		stateCategories();
+		stateCategories() noexcept;
 
 		std::string getBestCategory(int numBuildingSlots) const;
 

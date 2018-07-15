@@ -56,7 +56,7 @@ group::group(std::istream& theStream)
 
 
 
-Vic2::cultureGroups::cultureGroups()
+Vic2::cultureGroups::cultureGroups() noexcept
 {
 	registerKeyword(std::regex("[a-zA-Z_]+"), [this](const std::string& groupName, std::istream& theStream){
 		group newCultureGroup(theStream);

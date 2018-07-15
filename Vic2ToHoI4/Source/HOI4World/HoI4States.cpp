@@ -94,7 +94,7 @@ void HoI4States::determineOwnersAndCores(const CountryMapper& countryMap)
 			}
 			ownersMap.insert(make_pair(provinceNumber, *HoI4Tag));
 
-			vector<string> cores = determineCores(*sourceProvinceNums, oldOwner, countryMap);
+			vector<string> cores = determineCores(*sourceProvinceNums, oldOwner, countryMap, *HoI4Tag);
 			coresMap.insert(make_pair(provinceNumber, cores));
 		}
 	}
@@ -176,7 +176,7 @@ const Vic2::Country* HoI4States::selectProvinceOwner(const map<const Vic2::Count
 }
 
 
-vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, const Vic2::Country* Vic2Owner, const CountryMapper& countryMap) const
+vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, const Vic2::Country* Vic2Owner, const CountryMapper& countryMap, const std::string& newOwner) const
 {
 	vector<string> cores;
 
@@ -190,17 +190,17 @@ vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, co
 
 		for (auto Vic2Core: (*sourceProvince)->getCores())
 		{
-			// skip this core if the country is the owner of the V2 province but not the HoI4 province
-			// (i.e. "avoid boundary conflicts that didn't exist in V2").
-			// this country may still get core via a province that DID belong to the current HoI4 owner
-			if ((Vic2Core == Vic2Owner) && (Vic2Core != Vic2Owner))
-			{
-				continue;
-			}
-
 			auto HoI4CoreTag = countryMap.getHoI4Tag(Vic2Core->getTag());
 			if (HoI4CoreTag)
 			{
+				// skip this core if the country is the owner of the V2 province but not the HoI4 province
+				// (i.e. "avoid boundary conflicts that didn't exist in V2").
+				// this country may still get core via a province that DID belong to the current HoI4 owner
+				if ((Vic2Core == Vic2Owner) && (*HoI4CoreTag != newOwner))
+				{
+					continue;
+				}
+
 				cores.push_back(*HoI4CoreTag);
 			}
 		}

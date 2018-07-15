@@ -35,7 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class techMapper: commonItems::parser
 {
 	public:
-		techMapper();
+		techMapper() noexcept;
 
 		std::vector<std::pair<std::string, int>> getHoI4Techs(const std::string& oldTech) const;
 		std::vector<std::pair<std::string, int>> getResearchBonuses(const std::string& oldTech) const;

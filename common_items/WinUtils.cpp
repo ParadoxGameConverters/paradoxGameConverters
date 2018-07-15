@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -66,8 +66,8 @@ std::string getCurrentDirectory()
 
 void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
 {
-	WIN32_FIND_DATA findData;	// the structure to hold the file data
-	HANDLE findHandle = FindFirstFileW(convertUTF8ToUTF16(path + "/*").c_str(), &findData);	// the results of the file search
+	WIN32_FIND_DATA findData;
+	HANDLE findHandle = FindFirstFileW(convertUTF8ToUTF16(path + "/*").c_str(), &findData);
 	if (findHandle == INVALID_HANDLE_VALUE)
 	{
 		return;
@@ -85,12 +85,12 @@ void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNam
 
 void GetAllFilesInFolderRecursive(const std::string& path, std::set<std::string>& filenames)
 {
-	struct _finddata_t	provinceFileData;
-	intptr_t					fileListing	= NULL;
+	struct _finddata_t provinceFileData;
+	intptr_t	fileListing	= NULL;
 	std::list<std::string> directories;
 	directories.push_back("");
 
-	while (directories.size() > 0)
+	while (!directories.empty())
 	{
 		if ((fileListing = _findfirst((path + directories.front() + "/*").c_str(), &provinceFileData)) == -1L)
 		{
@@ -122,7 +122,7 @@ void GetAllFilesInFolderRecursive(const std::string& path, std::set<std::string>
 
 bool TryCopyFile(const std::string& sourcePath, const std::string& destPath)
 {
-	BOOL success = ::CopyFileW(convertUTF8ToUTF16(sourcePath).c_str(), convertUTF8ToUTF16(destPath).c_str(), FALSE);	// whether or not the copy succeeded
+	BOOL success = ::CopyFileW(convertUTF8ToUTF16(sourcePath).c_str(), convertUTF8ToUTF16(destPath).c_str(), FALSE);
 	if (success)
 	{
 		return true;
@@ -148,13 +148,13 @@ bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
 	to[wideDest.size() + 1] = '\0';
 
 	SHFILEOPSTRUCT fileOptStruct;
-	fileOptStruct.hwnd	= NULL;
-	fileOptStruct.wFunc	= FO_COPY;
-	fileOptStruct.pFrom	= from;
-	fileOptStruct.pTo		= to;
+	fileOptStruct.hwnd = NULL;
+	fileOptStruct.wFunc = FO_COPY;
+	fileOptStruct.pFrom = from;
+	fileOptStruct.pTo = to;
 	fileOptStruct.fFlags	= FOF_NOCONFIRMATION | FOF_NOCONFIRMMKDIR | FOF_NOERRORUI | FOF_SILENT;
 
-	int result = SHFileOperation(&fileOptStruct);
+	const int result = SHFileOperation(&fileOptStruct);
 	if (result != 0)
 	{
 		LOG(LogLevel::Error) << "Could not copy " << sourceFolder << " to " << destFolder << ". Error code: " << result;
@@ -183,11 +183,11 @@ bool renameFolder(const std::string& sourceFolder, const std::string& destFolder
 	to[wideDest.size() + 1] = '\0';
 
 	SHFILEOPSTRUCT fileOptStruct;
-	fileOptStruct.hwnd	= NULL;
-	fileOptStruct.wFunc	= FO_MOVE;
-	fileOptStruct.pFrom	= from;
-	fileOptStruct.pTo		= to;
-	fileOptStruct.fFlags	= FOF_NOCONFIRMATION | FOF_NOCONFIRMMKDIR | FOF_NOERRORUI | FOF_SILENT;
+	fileOptStruct.hwnd = NULL;
+	fileOptStruct.wFunc = FO_MOVE;
+	fileOptStruct.pFrom = from;
+	fileOptStruct.pTo = to;
+	fileOptStruct.fFlags = FOF_NOCONFIRMATION | FOF_NOCONFIRMMKDIR | FOF_NOERRORUI | FOF_SILENT;
 
 	int result = SHFileOperation(&fileOptStruct);
 	if (result != 0)
@@ -209,24 +209,24 @@ bool renameFolder(const std::string& sourceFolder, const std::string& destFolder
 
 bool DoesFileExist(const std::string& path)
 {
-	DWORD attributes = GetFileAttributesW(convertUTF8ToUTF16(path).c_str());	// the file attributes
+	DWORD attributes = GetFileAttributesW(convertUTF8ToUTF16(path).c_str());
 	return (attributes != INVALID_FILE_ATTRIBUTES && !(attributes & FILE_ATTRIBUTE_DIRECTORY));
 }
 
 
 bool doesFolderExist(const std::string& path)
 {
-	DWORD attributes = GetFileAttributesW(convertUTF8ToUTF16(path).c_str());	// the file attributes
+	DWORD attributes = GetFileAttributesW(convertUTF8ToUTF16(path).c_str());
 	return (attributes != INVALID_FILE_ATTRIBUTES && (attributes & FILE_ATTRIBUTE_DIRECTORY));
 }
 
 
 std::string GetLastErrorString()
 {
-	DWORD errorCode = ::GetLastError();	// the code for the latest error
-	const DWORD errorBufferSize = 256;	// the size of the textbuffer for the error
-	wchar_t errorBuffer[errorBufferSize];	// the text buffer for the error
-	BOOL success = ::FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM,		// whether or not the error could be formatted
+	const DWORD errorCode = ::GetLastError();
+	const DWORD errorBufferSize = 256;
+	wchar_t errorBuffer[errorBufferSize];
+	const BOOL success = ::FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM,
 		NULL,
 		errorCode,
 		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
@@ -257,7 +257,7 @@ bool deleteFolder(const std::string& folder)
 	fileOptStruct.pFrom	= folderStr;
 	fileOptStruct.fFlags	= FOF_NOCONFIRMATION | FOF_NOERRORUI | FOF_SILENT;
 
-	int result = SHFileOperation(&fileOptStruct);
+	const int result = SHFileOperation(&fileOptStruct);
 	if (result != 0)
 	{
 		LOG(LogLevel::Error) << "Could not delete " << folder << ". Error code: " << result;
@@ -310,7 +310,7 @@ std::string convertUTF8To8859_15(const std::string& UTF8)
 
 std::string convertUTF16ToUTF8(std::wstring UTF16)
 {
-	int requiredSize = WideCharToMultiByte(CP_UTF8, 0, UTF16.c_str(), -1, NULL, 0, NULL, NULL);
+	const int requiredSize = WideCharToMultiByte(CP_UTF8, 0, UTF16.c_str(), -1, NULL, 0, NULL, NULL);
 	char* utf8array = new char[requiredSize];
 
 	if (0 == WideCharToMultiByte(CP_UTF8, 0, UTF16.c_str(), -1, utf8array, requiredSize, NULL, NULL))
@@ -339,7 +339,7 @@ std::string convert8859_15ToUTF8(const std::string& input)
 
 std::wstring convert8859_15ToUTF16(std::string string8859_15)
 {
-	int requiredSize = MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, string8859_15.c_str(), -1, NULL, 0);
+	const int requiredSize = MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, string8859_15.c_str(), -1, NULL, 0);
 	wchar_t* wideKeyArray = new wchar_t[requiredSize];
 
 	if (0 == MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, string8859_15.c_str(), -1, wideKeyArray, requiredSize))
@@ -356,7 +356,7 @@ std::wstring convert8859_15ToUTF16(std::string string8859_15)
 
 std::wstring convertUTF8ToUTF16(std::string UTF8)
 {
-	int requiredSize = MultiByteToWideChar(CP_UTF8, 0, UTF8.c_str(), -1, NULL, 0);
+	const int requiredSize = MultiByteToWideChar(CP_UTF8, 0, UTF8.c_str(), -1, NULL, 0);
 	if (requiredSize == 0)
 	{
 		LOG(LogLevel::Error) << "Could not translate string to UTF-16 - " << GetLastErrorString();
@@ -405,28 +405,28 @@ void WriteToConsole(LogLevel level, const std::string& logMessage)
 	if (console != INVALID_HANDLE_VALUE)
 	{
 		CONSOLE_SCREEN_BUFFER_INFO oldConsoleInfo;	// the current (soon to be outdated) console data
-		BOOL success = GetConsoleScreenBufferInfo(console, &oldConsoleInfo);	// whether or not the console data could be retrieved
+		const BOOL success = GetConsoleScreenBufferInfo(console, &oldConsoleInfo);	// whether or not the console data could be retrieved
 		if (success)
 		{
-			WORD color;	// the color the text will be
+			WORD color = 0x0;
 			switch (level)
 			{
-			case LogLevel::Error:
-				color = FOREGROUND_RED | FOREGROUND_INTENSITY;
-				break;
+				case LogLevel::Error:
+					color = FOREGROUND_RED | FOREGROUND_INTENSITY;
+					break;
 
-			case LogLevel::Warning:
-				color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;
-				break;
+				case LogLevel::Warning:
+					color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;
+					break;
 
-			case LogLevel::Info:
-				color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-				break;
+				case LogLevel::Info:
+					color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+					break;
 
-			case LogLevel::Debug:
-			default:
-				color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
-				break;
+				case LogLevel::Debug:
+				default:
+					color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
+					break;
 			}
 			SetConsoleTextAttribute(console, color);
 			DWORD bytesWritten = 0;

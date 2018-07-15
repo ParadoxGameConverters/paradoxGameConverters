@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class countryMappingRule: commonItems::parser
 {
 	public:
-		countryMappingRule(std::istream& theStream);
+		explicit countryMappingRule(std::istream& theStream);
 
 		std::string getVic2Tag() const { return Vic2Tag; }
 		std::vector<std::string> getHoI4Tags() const { return HoI4Tags; }

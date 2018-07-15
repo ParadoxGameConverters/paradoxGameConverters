@@ -41,11 +41,11 @@ namespace HoI4
 class Ideas: commonItems::parser
 {
 	public:
-		Ideas();
+		Ideas() noexcept;
 
 		void updateIdeas(std::set<std::string> majorIdeologies);
 
-		void output(std::set<std::string> majorIdeologies) const;
+		void output(const std::set<std::string>& majorIdeologies) const;
 
 	private:
 		void importIdeologicalIdeas();

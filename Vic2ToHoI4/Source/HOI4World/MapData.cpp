@@ -33,7 +33,7 @@ HoI4::MapData* HoI4::MapData::instance = nullptr;
 
 
 
-HoI4::MapData::MapData():
+HoI4::MapData::MapData() noexcept:
 	provinceNeighbors(),
 	borders(),
 	provinceMap(theConfiguration.getHoI4Path() + "/map/provinces.bmp")
@@ -100,7 +100,7 @@ ConverterColor::Color HoI4::MapData::getAboveColor(point position, int height)
 	rgb_t color;
 	provinceMap.get_pixel(position.first, position.second, color);
 
-	ConverterColor::Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(ConverterColor::red(color.red), ConverterColor::green(color.green), ConverterColor::blue(color.blue));
 	return theColor;
 }
 
@@ -115,7 +115,7 @@ ConverterColor::Color HoI4::MapData::getBelowColor(point position, int height)
 	rgb_t color;
 	provinceMap.get_pixel(position.first, position.second, color);
 
-	ConverterColor::Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(ConverterColor::red(color.red), ConverterColor::green(color.green), ConverterColor::blue(color.blue));
 	return theColor;
 }
 
@@ -134,7 +134,7 @@ ConverterColor::Color HoI4::MapData::getLeftColor(point position, int width)
 	rgb_t color;
 	provinceMap.get_pixel(position.first, position.second, color);
 
-	ConverterColor::Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(ConverterColor::red(color.red), ConverterColor::green(color.green), ConverterColor::blue(color.blue));
 	return theColor;
 }
 
@@ -153,7 +153,7 @@ ConverterColor::Color HoI4::MapData::getRightColor(point position, int width)
 	rgb_t color;
 	provinceMap.get_pixel(position.first, position.second, color);
 
-	ConverterColor::Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(ConverterColor::red(color.red), ConverterColor::green(color.green), ConverterColor::blue(color.blue));
 	return theColor;
 }
 
@@ -257,6 +257,6 @@ optional<int> HoI4::MapData::GetProvinceNumber(double x, double y)
 {
 	rgb_t color;
 	provinceMap.get_pixel(static_cast<unsigned int>(x), (provinceMap.height() - 1) - static_cast<unsigned int>(y), color);
-	ConverterColor::Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(ConverterColor::red(color.red), ConverterColor::green(color.green), ConverterColor::blue(color.blue));
 	return provinceDefinitions::getProvinceFromColor(theColor);
 }

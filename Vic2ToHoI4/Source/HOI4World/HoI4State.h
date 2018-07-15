@@ -51,7 +51,7 @@ class stateCategories;
 class State: commonItems::parser
 {
 	public:
-		State(std::istream& theStream);
+		explicit State(std::istream& theStream);
 		State(const Vic2::State* sourceState, int _ID, const std::string& _ownerTag);
 
 		void output(const std::string& filename) const;

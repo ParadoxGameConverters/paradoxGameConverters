@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Decisions.h"
 #include "Decision.h"
 #include "../Configuration.h"
+#include <execution>
 #include <fstream>
 
 
@@ -43,7 +44,7 @@ HoI4::decisionsCategory::decisionsCategory(const std::string& categoryName, std:
 
 void HoI4::decisionsCategory::updatePoliticalDecisions(const std::set<std::string>& majorIdeologies)
 {
-	std::for_each(theDecisions.begin(), theDecisions.end(), [majorIdeologies](auto& theDecision){
+	std::for_each(std::execution::seq, theDecisions.begin(), theDecisions.end(), [majorIdeologies](auto& theDecision){
 		if (theDecision.getName().substr(0, 28) == "open_up_political_discourse_")
 		{
 			std::string available = "= {\n";
@@ -188,7 +189,7 @@ namespace HoI4
 	class decisionsCategorySet: commonItems::parser
 	{
 		public:
-			decisionsCategorySet(std::istream& theStream)
+			explicit decisionsCategorySet(std::istream& theStream)
 			{
 				registerKeyword(std::regex("[A-Za-z\\_]+"), [this](const std::string& categoryName, std::istream& theStream)
 				{
@@ -206,7 +207,7 @@ namespace HoI4
 }
 
 
-HoI4::decisions::decisions()
+HoI4::decisions::decisions() noexcept
 {
 	registerKeyword(std::regex("[A-Za-z\\_]+"), [this](const std::string& categoryName, std::istream& theStream)
 	{
@@ -221,7 +222,7 @@ HoI4::decisions::decisions()
 	{
 		decisionsCategorySet categorySet(theStream);
 		auto categories = categorySet.takeCategories();
-		std::for_each(categories.begin(), categories.end(), [this, ideologyName](auto& category){
+		std::for_each(std::execution::seq, categories.begin(), categories.end(), [this, ideologyName](auto& category){
 			ideologicalDecisions.insert(std::make_pair(ideologyName, category));
 		});
 	});

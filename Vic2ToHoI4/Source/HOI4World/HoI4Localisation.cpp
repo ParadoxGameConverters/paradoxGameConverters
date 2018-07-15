@@ -39,17 +39,7 @@ HoI4Localisation* HoI4Localisation::instance = nullptr;
 
 
 
-HoI4Localisation::HoI4Localisation():
-	stateLocalisations(),
-	VPLocalisations(),
-	countryLocalisations(),
-	originalFocuses(),
-	newFocuses(),
-	ideaLocalisations(),
-	genericIdeaLocalisations(),
-	originalEventLocalisations(),
-	newEventLocalisations(),
-	politicalPartyLocalisations()
+HoI4Localisation::HoI4Localisation() noexcept
 {
 	importLocalisations();
 	prepareIdeaLocalisations();

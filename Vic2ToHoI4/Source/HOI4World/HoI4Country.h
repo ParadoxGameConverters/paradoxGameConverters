@@ -104,7 +104,7 @@ class HoI4Country
 		void output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4::DivisionTemplateType>& divisionTemplates, HoI4::namesMapper& theNames, graphicsMapper& theGraphics) const;
 		void outputIdeaGraphics(ofstream& ideasFile, graphicsMapper& graphics) const;
 
-		void		setSphereLeader(const string& SphereLeader) { sphereLeader == SphereLeader; }
+		void setSphereLeader(const string& SphereLeader) { sphereLeader = SphereLeader; }
 		void		setFaction(shared_ptr<const HoI4Faction> newFaction) { faction = newFaction; }
 		void		setFactionLeader() { factionLeader = true; }
 		void addNationalFocus(shared_ptr<HoI4FocusTree> NF) { nationalFocus = NF; }
@@ -188,7 +188,7 @@ class HoI4Country
 		void outputOOBLine(ofstream& output) const;
 		void outputCommonCountryFile() const;
 		void outputAdvisorIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const;
-		void outputUnitType(ofstream& unitNamesFile, string sourceUnitType, string destUnitType, string defaultName) const;
+		void outputUnitType(ofstream& unitNamesFile, const string& sourceUnitType, const string& destUnitType, const string& defaultName) const;
 
 
 		const HoI4::World* theWorld;
@@ -204,7 +204,7 @@ class HoI4Country
 		map<string, int> ideologySupport;
 		date lastElection;
 
-		const string						sphereLeader = "";
+		string sphereLeader = "";
 		string								tag;
 		set<int>							provinces;
 		map<int, HoI4::State*> states;

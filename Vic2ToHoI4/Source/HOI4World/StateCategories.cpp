@@ -32,12 +32,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class stateCategory: commonItems::parser
 {
 	public:
-		stateCategory(std::istream& theStream);
+		explicit stateCategory(std::istream& theStream);
 
 		auto getNumberOfSlots() const { return numberOfSlots; }
 
 	private:
-		int numberOfSlots;
+		int numberOfSlots = 0;
 };
 
 
@@ -56,7 +56,7 @@ stateCategory::stateCategory(std::istream& theStream)
 class stateCategoryFile: commonItems::parser
 {
 	public:
-		stateCategoryFile(std::istream& theStream);
+		explicit stateCategoryFile(std::istream& theStream);
 
 		auto getCategories() const { return theCategories; }
 
@@ -76,7 +76,7 @@ stateCategoryFile::stateCategoryFile(std::istream& theStream)
 }
 
 
-HoI4::stateCategories::stateCategories()
+HoI4::stateCategories::stateCategories() noexcept
 {
 	registerKeyword(std::regex("state_categories"), [this](const std::string& unused, std::istream& theStream){
 		stateCategoryFile theFile(theStream);

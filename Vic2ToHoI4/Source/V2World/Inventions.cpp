@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-Vic2::inventions::inventions()
+Vic2::inventions::inventions() noexcept
 {
 	std::string path = getInventionPath();
 	generateNums(path);
@@ -51,7 +51,7 @@ std::string Vic2::inventions::getInventionPath() const
 }
 
 
-void Vic2::inventions::generateNums(std::string path)
+void Vic2::inventions::generateNums(const std::string& path)
 {
 	std::set<std::string> techFiles;
 	Utils::GetAllFilesInFolder(path, techFiles);
@@ -62,7 +62,7 @@ void Vic2::inventions::generateNums(std::string path)
 }
 
 
-void Vic2::inventions::processTechFile(std::string filename)
+void Vic2::inventions::processTechFile(const std::string& filename)
 {
 	registerKeyword(std::regex("[a-zA-Z0-9_\\.\\è\\é\\ö\\ü\\:]+"), [this](const std::string& inventionName, std::istream& theStream){
 		inventionNumsToNames.insert(make_pair(inventionNumsToNames.size() + 1, inventionName));

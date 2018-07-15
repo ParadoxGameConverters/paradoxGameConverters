@@ -260,9 +260,7 @@ vector<shared_ptr<HoI4Country>> HoI4WarCreator::findEvilCountries() const
 
 	for (auto country : theWorld->getCountries())
 	{
-		double v1 = rand() % 95 + 1;
-		v1 = v1 / 100;
-		double evilness = v1;
+		double evilness = 0.5;
 		if (country.second->getGovernmentIdeology() == "fascism")
 			evilness += 5;
 		if (country.second->getGovernmentIdeology() == "absolutist")
@@ -1264,7 +1262,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<Ho
 
 		set<string> Allies = country->getAllies();
 		date startDate = date("1937.01.01");
-		startDate.delayedByMonths(relations / -4);
+		startDate.increaseByMonths(relations / -4);
 		if (Allies.find(target->getTag()) == Allies.end())
 		{
 			auto possibleTargetName = target->getSourceCountry()->getName("english");
