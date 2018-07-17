@@ -22,14 +22,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "CoastalProvinces.h"
-#include <fstream>
+#include "MapData.h"
 #include "Log.h"
 #include "../Configuration.h"
-#include "../HOI4World/MapData.h"
+#include <fstream>
 
 
 
-HoI4::coastalProvinces::coastalProvinces() noexcept
+void HoI4::coastalProvinces::init(const MapData& theMapData)
 {
 	auto provinces = getProvinces();
 
@@ -40,7 +40,7 @@ HoI4::coastalProvinces::coastalProvinces() noexcept
 			continue;
 		}
 
-		auto neighbors = HoI4::MapData::getNeighbors(province.first);
+		auto neighbors = theMapData.getNeighbors(province.first);
 		for (auto adjProvinceNum: neighbors)
 		{
 			auto adjProvince = provinces.find(adjProvinceNum);

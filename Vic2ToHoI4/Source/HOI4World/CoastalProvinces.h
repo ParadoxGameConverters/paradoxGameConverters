@@ -35,6 +35,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 namespace HoI4
 {
 
+class MapData;
+
 typedef struct province
 {
 	bool isLand = false;
@@ -45,7 +47,8 @@ typedef struct province
 class coastalProvinces
 {
 	public:
-		coastalProvinces() noexcept;
+		coastalProvinces() = default;
+		void init(const MapData& theMapData);
 
 		auto getCoastalProvinces() const { return theCoastalProvinces; }
 		bool isProvinceCoastal(int provinceNum) const;

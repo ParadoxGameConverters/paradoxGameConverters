@@ -29,13 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4::MapData* HoI4::MapData::instance = nullptr;
-
-
-
 HoI4::MapData::MapData() noexcept:
-	provinceNeighbors(),
-	borders(),
 	provinceMap(theConfiguration.getHoI4Path() + "/map/provinces.bmp")
 {
 	if (!provinceMap)
@@ -219,7 +213,7 @@ void HoI4::MapData::addPointToBorder(int mainProvince, int neighborProvince, poi
 }
 
 
-const set<int> HoI4::MapData::GetNeighbors(int province) const
+set<int> HoI4::MapData::getNeighbors(int province) const
 {
 	auto neighbors = provinceNeighbors.find(province);
 	if (neighbors != provinceNeighbors.end())
@@ -234,7 +228,7 @@ const set<int> HoI4::MapData::GetNeighbors(int province) const
 }
 
 
-const optional<point> HoI4::MapData::GetBorderCenter(int mainProvince, int neighbor) const
+optional<point> HoI4::MapData::getSpecifiedBorderCenter(int mainProvince, int neighbor) const
 {
 	auto bordersWithNeighbors = borders.find(mainProvince);
 	if (bordersWithNeighbors == borders.end())
@@ -253,7 +247,26 @@ const optional<point> HoI4::MapData::GetBorderCenter(int mainProvince, int neigh
 }
 
 
-optional<int> HoI4::MapData::GetProvinceNumber(double x, double y)
+optional<point> HoI4::MapData::getAnyBorderCenter(int province) const
+{
+	auto bordersWithNeighbors = borders.find(province);
+	if (bordersWithNeighbors == borders.end())
+	{
+		LOG(LogLevel::Warning) << "Province " << province << " has no borders.";
+		return std::nullopt;
+	}
+	auto border = bordersWithNeighbors->second.begin();
+	if (border == bordersWithNeighbors->second.end())
+	{
+		LOG(LogLevel::Warning) << "Province " << province << " has no borders.";
+		return std::nullopt;
+	}
+
+	return border->second[(border->second.size() / 2)];
+}
+
+
+optional<int> HoI4::MapData::getProvinceNumber(double x, double y)
 {
 	rgb_t color;
 	provinceMap.get_pixel(static_cast<unsigned int>(x), (provinceMap.height() - 1) - static_cast<unsigned int>(y), color);

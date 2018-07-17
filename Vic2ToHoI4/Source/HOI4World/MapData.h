@@ -43,37 +43,20 @@ typedef std::map<int, borderPoints> bordersWith;
 namespace HoI4
 {
 
+class MapData;
+
+
 class MapData
 {
 	public:
-		static const std::set<int> getNeighbors(int province)
-		{
-			return getInstance()->GetNeighbors(province);
-		}
-
-		static const std::optional<point> getBorderCenter(int mainProvince, int neighbor)
-		{
-			return getInstance()->GetBorderCenter(mainProvince, neighbor);
-		}
-
-		static std::optional<int> getProvinceNumber(double x, double y)
-		{
-			return getInstance()->GetProvinceNumber(x, y);
-		}
-
-	private:
-		static MapData* instance;
-		static MapData* getInstance()
-		{
-			if (instance == nullptr)
-			{
-				instance = new MapData();
-			}
-
-			return instance;
-		}
 		MapData() noexcept;
 
+		std::set<int> getNeighbors(int province) const;
+		std::optional<point> getSpecifiedBorderCenter(int mainProvince, int neighbor) const;
+		std::optional<point> getAnyBorderCenter(int province) const;
+		std::optional<int> getProvinceNumber(double x, double y);
+
+	private:
 		MapData(const MapData&) = delete;
 		MapData& operator=(const MapData&) = delete;
 
@@ -85,10 +68,6 @@ class MapData
 		void handleNeighbor(ConverterColor::Color centerColor, ConverterColor::Color otherColor, const point& position);
 		void addNeighbor(int mainProvince, int neighborProvince);
 		void addPointToBorder(int mainProvince, int neighborProvince, point position);
-
-		const std::set<int> GetNeighbors(int province) const;
-		const std::optional<point> GetBorderCenter(int mainProvince, int neighbor) const;
-		std::optional<int> GetProvinceNumber(double x, double y);
 
 		std::map<int, std::set<int>> provinceNeighbors;
 		std::map<int, bordersWith> borders;

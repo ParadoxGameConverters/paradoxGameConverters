@@ -33,6 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OnActions.h"
 #include "Names.h"
 #include "HoI4States.h"
+#include "MapData.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/GovernmentMapper.h"
 #include "../Mappers/GraphicsMapper.h"
@@ -232,6 +233,7 @@ class World: commonItems::parser
 		vector<HoI4::DivisionTemplateType> divisionTemplates;
 
 		coastalProvinces theCoastalProvinces;
+		MapData theMapData;
 };
 
 }

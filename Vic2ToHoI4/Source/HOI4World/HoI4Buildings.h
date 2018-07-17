@@ -39,6 +39,7 @@ namespace HoI4
 {
 
 class coastalProvinces;
+class MapData;
 
 
 struct buildingPosition
@@ -74,7 +75,7 @@ typedef std::map<std::pair<int, int>, buildingPosition> defaultPositions;
 class Buildings
 {
 	public:
-		explicit Buildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces);
+		explicit Buildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces, MapData& theMapData);
 
 		void output() const;
 
@@ -82,14 +83,14 @@ class Buildings
 		Buildings(const Buildings&) = delete;
 		Buildings& operator=(const Buildings&) = delete;
 
-		void importDefaultBuildings();
-		void processLine(const std::string& line);
-		void importDefaultBuilding(const std::smatch& matches, defaultPositions& positions);
+		void importDefaultBuildings(MapData& theMapData);
+		void processLine(const std::string& line, MapData& theMapData);
+		void importDefaultBuilding(const std::smatch& matches, defaultPositions& positions, MapData& theMapData);
 
-		void placeBuildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces);
-		void addNavalBase(int stateID, const std::pair<int, std::vector<int>>& province);
-		void addBunker(int stateID, int province);
-		void addCoastalBunker(int stateID, const std::pair<int, std::vector<int>>& province);
+		void placeBuildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces, const MapData& theMapData);
+		void addNavalBase(int stateID, const std::pair<int, std::vector<int>>& province, const MapData& theMapData);
+		void addBunker(int stateID, int province, const MapData& theMapData);
+		void addCoastalBunker(int stateID, const std::pair<int, std::vector<int>>& province, const MapData& theMapData);
 
 		std::multimap<int, Building*> buildings;
 
