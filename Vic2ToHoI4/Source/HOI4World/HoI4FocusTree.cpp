@@ -629,6 +629,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, ve
 		newFocus->available += "			any_other_country = {\n";
 		newFocus->available += "				original_tag = " + country->getTag() + "\n";
 		newFocus->available += "				exists = yes\n";
+		newFocus->available += "				NOT = { has_government = democratic } \n";
 		newFocus->available += "				NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
 		newFocus->available += "				OR = {\n";
 		newFocus->available += "					has_offensive_war = yes\n";
@@ -653,6 +654,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, ve
 		newFocus->available += "			any_other_country = {\n";
 		newFocus->available += "				original_tag = " + country->getTag() + "\n";
 		newFocus->available += "				exists = yes\n";
+		newFocus->available += "				NOT = { has_government = democratic } \n";
 		newFocus->available += "				NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
 		newFocus->available += "				OR = {\n";
 		newFocus->available += "					has_offensive_war = yes\n";
@@ -685,6 +687,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, ve
 		newFocus->available += "			any_other_country = {\n";
 		newFocus->available += "				original_tag = " + country->getTag() + "\n";
 		newFocus->available += "				exists = yes\n";
+		newFocus->available += "				NOT = { has_government = democratic } \n";
 		newFocus->available += "				NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
 		newFocus->available += "				OR = {\n";
 		newFocus->available += "					has_offensive_war = yes\n";
