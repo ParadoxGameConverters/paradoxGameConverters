@@ -1624,3 +1624,91 @@ focus = {
 		icon = GFX_goal_generic_major_war
 		cost = 10
 	}
+
+	focus = {
+		id = The_third_way
+		icon = GFX_goal_support_fascism
+		text = "The Third Way!"
+		cost = 10
+		ai_will_do = {
+			factor = 5
+			}
+	}
+
+	focus = {
+		id = mil_march
+		icon = GFX_goal_generic_allies_build_infantry
+		text = "Establish Military March Day"
+		prerequisite = { focus = The_third_way }
+		cost = 10
+		ai_will_do = {
+			factor = 5
+			}
+		completion_reward = {
+			army_experience = 20
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+
+	focus = {
+		id = _anschluss_
+		icon = GFX_goal_anschluss
+		prerequisite = { focus = mil_march }
+		cost = 10
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				date < 1937.6.6
+			}
+		}
+	}
+
+	focus = {
+		id = expand_the_reich
+		icon = GFX_goal_generic_political_pressure
+		text = "Expand our Nation"
+		cost = 10
+		ai_will_do = {
+			factor = 5
+			}
+		}
+	}
+
+	focus = {
+		id = _sudeten_
+		icon = GFX_goal_anschluss
+		prerequisite = { focus = expand_the_reich }
+		cost = 10
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				date < 1937.6.6
+			}
+		}
+	}
+		
+	focus = {
+		id = _finish_
+		icon = GFX_goal_generic_territory_or_war
+		available = 	is_puppet = no
+		cost = 10
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				date < 1937.6.6
+			}
+		}
+	}
+
+	focus = {
+		id = NeighborWar
+		icon = GFX_goal_generic_major_war
+		cost = 10
+	}
