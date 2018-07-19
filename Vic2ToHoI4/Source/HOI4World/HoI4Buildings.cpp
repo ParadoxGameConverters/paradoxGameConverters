@@ -25,6 +25,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Province.h"
 #include "CoastalProvinces.h"
 #include "MapData.h"
+#include "HoI4States.h"
+#include "HoI4State.h"
 #include "../Configuration.h"
 #include "Log.h"
 #include <iomanip>
@@ -53,12 +55,12 @@ std::ostream& HoI4::operator << (std::ostream& out, const HoI4::Building& buildi
 }
 
 
-HoI4::Buildings::Buildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces, MapData& theMapData)
+HoI4::Buildings::Buildings(const HoI4States& theStates, const coastalProvinces& theCoastalProvinces, MapData& theMapData)
 {
 	LOG(LogLevel::Info) << "Creating buildings";
 
 	importDefaultBuildings(theMapData);
-	placeBuildings(provinceToStateIDMap, theCoastalProvinces, theMapData);
+	placeBuildings(theStates, theCoastalProvinces, theMapData);
 }
 
 
@@ -96,7 +98,7 @@ void HoI4::Buildings::processLine(const std::string& line, MapData& theMapData)
 		}
 		else if (matches[2] == "air_base")
 		{
-			importDefaultBuilding(matches, defaultAirBase, theMapData);
+			importDefaultBuilding(matches, defaultAirBases, theMapData);
 		}
 		else if (matches[2] == "naval_base")
 		{
@@ -149,8 +151,50 @@ void HoI4::Buildings::importDefaultBuilding(const std::smatch& matches, defaultP
 }
 
 
-void HoI4::Buildings::placeBuildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces, const MapData& theMapData)
+void HoI4::Buildings::placeBuildings(const HoI4States& theStates, const coastalProvinces& theCoastalProvinces, const MapData& theMapData)
 {
+	auto provinceToStateIDMap = theStates.getProvinceToStateIDMap();
+
+	for (auto state: theStates.getStates())
+	{
+		bool airportPlaced = false;
+		for (auto theProvince: state.second->getProvinces())
+		{
+			auto possibleAirbase = defaultAirBases.find(make_pair(theProvince, 0));
+			if (possibleAirbase != defaultAirBases.end())
+			{
+				auto position = possibleAirbase->second;
+				HoI4::Building* newBuilding = new HoI4::Building(state.first, "air_base", position, 0);
+				buildings.insert(std::make_pair(state.first, newBuilding));
+				airportLocations.insert(make_pair(state.first, theProvince));
+				airportPlaced = true;
+				break;
+			}
+		}
+		if (!airportPlaced)
+		{
+			auto theProvince = state.second->getProvinces().begin();
+			airportLocations.insert(make_pair(state.first, *theProvince));
+
+			auto theProvincePoints = theMapData.getProvincePoints(*theProvince);
+			if (theProvincePoints)
+			{
+				auto centermostPoint = theProvincePoints->getCentermostPoint();
+				HoI4::buildingPosition thePosition;
+				thePosition.xCoordinate = centermostPoint.first;
+				thePosition.yCoordinate = 11.0;
+				thePosition.yCoordinate = centermostPoint.second;
+				thePosition.rotation = 0;
+				HoI4::Building* newBuilding = new HoI4::Building(state.first, "air_base", thePosition, 0);
+				buildings.insert(std::make_pair(state.first, newBuilding));
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Province " << *theProvince << " did not have any points. Airport not set for state " << state.first << ".";
+			}
+		}
+	}
+
 	auto coastalProvinces = theCoastalProvinces.getCoastalProvinces();
 	for (auto province: coastalProvinces)
 	{
@@ -312,4 +356,17 @@ void HoI4::Buildings::output() const
 	{
 		out << *(building.second);
 	}
+	out.close();
+
+	ofstream airportsFile("output/" + theConfiguration.getOutputName() + "/map/airports.txt");
+	if (!airportsFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not create output/" << theConfiguration.getOutputName() << "/map/airports.txt";
+		exit(-1);
+	}
+	for (auto airportLocation: airportLocations)
+	{
+		airportsFile << airportLocation.first << " = { " << airportLocation.second << " }\n";
+	}
+	airportsFile.close();
 }

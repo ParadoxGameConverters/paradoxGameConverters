@@ -25,6 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define HOI4_BUILDINGS_H_
 
 
+
 #include <fstream>
 #include <map>
 #include <optional>
@@ -33,6 +34,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 #include <vector>
 
+
+
+class HoI4States;
 
 
 namespace HoI4
@@ -75,7 +79,7 @@ typedef std::map<std::pair<int, int>, buildingPosition> defaultPositions;
 class Buildings
 {
 	public:
-		explicit Buildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces, MapData& theMapData);
+		explicit Buildings(const HoI4States& theStates, const coastalProvinces& theCoastalProvinces, MapData& theMapData);
 
 		void output() const;
 
@@ -87,7 +91,7 @@ class Buildings
 		void processLine(const std::string& line, MapData& theMapData);
 		void importDefaultBuilding(const std::smatch& matches, defaultPositions& positions, MapData& theMapData);
 
-		void placeBuildings(const std::map<int, int>& provinceToStateIDMap, const coastalProvinces& theCoastalProvinces, const MapData& theMapData);
+		void placeBuildings(const HoI4States& theStates, const coastalProvinces& theCoastalProvinces, const MapData& theMapData);
 		void addNavalBase(int stateID, const std::pair<int, std::vector<int>>& province, const MapData& theMapData);
 		void addBunker(int stateID, int province, const MapData& theMapData);
 		void addCoastalBunker(int stateID, const std::pair<int, std::vector<int>>& province, const MapData& theMapData);
@@ -96,7 +100,7 @@ class Buildings
 
 		defaultPositions defaultArmsFactories;
 		defaultPositions defaultIndustrialComplexes;
-		defaultPositions defaultAirBase;
+		defaultPositions defaultAirBases;
 		defaultPositions defaultNavalBases;
 		defaultPositions defaultBunkers;
 		defaultPositions defaultCoastalBunkers;
@@ -104,6 +108,8 @@ class Buildings
 		defaultPositions defaultAntiAirs;
 		defaultPositions defaultSyntheticRefineries;
 		defaultPositions defaultNuclearReactors;
+
+		std::map<int, int> airportLocations;
 };
 
 }

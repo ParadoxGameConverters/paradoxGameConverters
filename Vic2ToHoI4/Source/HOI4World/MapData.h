@@ -43,7 +43,22 @@ typedef std::map<int, borderPoints> bordersWith;
 namespace HoI4
 {
 
-class MapData;
+class provincePoints
+{
+	public:
+		provincePoints() = default;
+
+		void addPoint(const point& thePoint);
+
+		point getCentermostPoint();
+
+	private:
+		std::set<point> thePoints;
+		point leftmostPoint = {1000000, 0};
+		point rightmostPoint = {-1, 0};
+		point highestPoint = {0, -1};
+		point lowestPoint = {0, 1000000};
+};
 
 
 class MapData
@@ -55,6 +70,8 @@ class MapData
 		std::optional<point> getSpecifiedBorderCenter(int mainProvince, int neighbor) const;
 		std::optional<point> getAnyBorderCenter(int province) const;
 		std::optional<int> getProvinceNumber(double x, double y);
+
+		std::optional<provincePoints> getProvincePoints(int provinceNum) const;
 
 	private:
 		MapData(const MapData&) = delete;
@@ -71,6 +88,7 @@ class MapData
 
 		std::map<int, std::set<int>> provinceNeighbors;
 		std::map<int, bordersWith> borders;
+		std::map<int, provincePoints> theProvincePoints;
 
 		bitmap_image provinceMap;
 };

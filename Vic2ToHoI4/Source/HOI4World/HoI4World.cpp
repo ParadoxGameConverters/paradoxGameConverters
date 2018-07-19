@@ -73,7 +73,7 @@ HoI4::World::World(const Vic2::World* _sourceWorld):
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 
 	theCoastalProvinces.init(theMapData);
-	buildings = new Buildings(states->getProvinceToStateIDMap(), theCoastalProvinces, theMapData),
+	buildings = new Buildings(*states, theCoastalProvinces, theMapData),
 	convertNavalBases();
 	convertCountries();
 	HoI4Localisation::addStateLocalisations(states);
@@ -1582,19 +1582,6 @@ void HoI4::World::outputMap() const
 		rocketSitesFile << state.second->getID() << " = { " << *provinces.begin() << " }\n";
 	}
 	rocketSitesFile.close();
-
-	ofstream airportsFile("output/" + theConfiguration.getOutputName() + "/map/airports.txt");
-	if (!airportsFile.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not create output/" << theConfiguration.getOutputName() << "/map/airports.txt";
-		exit(-1);
-	}
-	for (auto state: states->getStates())
-	{
-		auto provinces = state.second->getProvinces();
-		airportsFile << state.second->getID() << " = { " << *provinces.begin() << " }\n";
-	}
-	airportsFile.close();
 
 	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/map/strategicregions"))
 	{

@@ -29,6 +29,60 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+void HoI4::provincePoints::addPoint(const point& thePoint)
+{
+	thePoints.emplace(thePoint);
+	if (thePoint.first < leftmostPoint.first)
+	{
+		leftmostPoint = thePoint;
+	}
+	if (thePoint.first > rightmostPoint.first)
+	{
+		rightmostPoint = thePoint;
+	}
+	if (thePoint.second < lowestPoint.second)
+	{
+		lowestPoint = thePoint;
+	}
+	if (thePoint.second > highestPoint.second)
+	{
+		highestPoint = thePoint;
+	}
+}
+
+
+point HoI4::provincePoints::getCentermostPoint()
+{
+	point possibleCenter;
+	possibleCenter.first = (leftmostPoint.first + rightmostPoint.first) / 2;
+	possibleCenter.second = (lowestPoint.second + highestPoint.second) / 2;
+	if (thePoints.count(possibleCenter) > 0)
+	{
+		return possibleCenter;
+	}
+	else
+	{
+		float shortestDistance = 1000000;
+		point closestPoint;
+		for (auto possiblePoint: thePoints)
+		{
+			float distanceSquared;
+			float deltaX = static_cast<float>(possiblePoint.first - possibleCenter.first);
+			distanceSquared = deltaX * deltaX;
+			float deltaY = static_cast<float>(possiblePoint.second - possibleCenter.second);
+			distanceSquared = deltaY * deltaY;
+
+			if (distanceSquared < shortestDistance)
+			{
+				shortestDistance = distanceSquared;
+				closestPoint = possiblePoint;
+			}
+		}
+		return closestPoint;
+	}
+}
+
+
 HoI4::MapData::MapData() noexcept:
 	provinceMap(theConfiguration.getHoI4Path() + "/map/provinces.bmp")
 {
@@ -68,6 +122,22 @@ HoI4::MapData::MapData() noexcept:
 			if (centerColor != leftColor)
 			{
 				handleNeighbor(centerColor, leftColor, position);
+			}
+
+			auto province = provinceDefinitions::getProvinceFromColor(centerColor);
+			if (province)
+			{
+				auto specificProvincePoints = theProvincePoints.find(*province);
+				if (specificProvincePoints != theProvincePoints.end())
+				{
+					specificProvincePoints->second.addPoint(position);
+				}
+				else
+				{
+					provincePoints theNewPoints;
+					theNewPoints.addPoint(position);
+					theProvincePoints.insert(make_pair(*province, theNewPoints));
+				}
 			}
 		}
 	}
@@ -272,4 +342,18 @@ optional<int> HoI4::MapData::getProvinceNumber(double x, double y)
 	provinceMap.get_pixel(static_cast<unsigned int>(x), (provinceMap.height() - 1) - static_cast<unsigned int>(y), color);
 	ConverterColor::Color theColor(ConverterColor::red(color.red), ConverterColor::green(color.green), ConverterColor::blue(color.blue));
 	return provinceDefinitions::getProvinceFromColor(theColor);
+}
+
+
+std::optional<HoI4::provincePoints> HoI4::MapData::getProvincePoints(int provinceNum) const
+{
+	auto possiblePoints = theProvincePoints.find(provinceNum);
+	if (possiblePoints != theProvincePoints.end())
+	{
+		return possiblePoints->second;
+	}
+	else
+	{
+		return std::nullopt;
+	}
 }
