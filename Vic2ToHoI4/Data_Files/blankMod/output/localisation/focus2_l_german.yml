@@ -50,3 +50,6 @@
  _sudeten_:0 "Wunschgebiet aus $TARGET"
  _finish_:0 "Das Schicksal von $TARGET"
  NeighborWar:0 "Krieg mit $TARGET"
+ _Summit:0 "Aufruf zum $TARGET Gipfel"
+ Alliance_:0 "Allianz mit $TARGET"
+ GP_War:0 "Krieg mit $TARGET"

@@ -50,3 +50,6 @@
  _sudeten_:0 "Território de demanda da $TARGET"
  _finish_:0 "O destino da $TARGET"
  NeighborWar:0 "Guerra com a $TARGET"
+ _Summit:0 "Chamada para a Cúpula $TARGET"
+ Alliance_:0 "Aliança com a $TARGET"
+ GP_War:0 "Guerra com a"

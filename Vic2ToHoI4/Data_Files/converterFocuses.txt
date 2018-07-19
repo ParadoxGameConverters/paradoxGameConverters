@@ -1712,3 +1712,37 @@ focus = {
 		icon = GFX_goal_generic_major_war
 		cost = 10
 	}
+
+	focus = {
+		id = _Summit
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 10
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 10
+				date > 1938.1.1
+			}
+		}
+	}
+
+	focus = {
+		id = Alliance_
+		icon = GFX_goal_generic_allies_build_infantry
+		available = {
+				OR = {
+					is_faction_leader = yes
+					is_in_faction = no
+				}
+		}
+		cost = 10
+		ai_will_do = {
+				factor = 10
+		}
+	}
+
+	focus = {
+		id = GP_War
+		icon = GFX_goal_generic_major_war
+		cost = 10
+	}

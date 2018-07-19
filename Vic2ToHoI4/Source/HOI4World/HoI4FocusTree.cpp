@@ -1316,7 +1316,14 @@ void HoI4FocusTree::addFascistAnnexationBranch(shared_ptr<HoI4Country> Home, con
 			events->createAnnexEvent(Home, annexationTargets[i]);
 		}
 	}
-	nextFreeColumn += annexationTargets.size() * 2;
+	if (annexationTargets.size() >= 1)
+	{
+		nextFreeColumn += annexationTargets.size() * 2;
+	}
+	else
+	{
+		nextFreeColumn += 2;
+	}
 	//}
 }
 
@@ -1324,8 +1331,6 @@ void HoI4FocusTree::addFascistSudetenBranch(shared_ptr<HoI4Country> Home, const 
 {
 	HoI4::Events* events = world->getEvents();
 
-	//if (sudetenTargets.size() >= 1)
-	//{
 	//if it can easily take these targets as they are not in an alliance, you can get annexation event
 
 	//Focus to increase empire size more
@@ -1425,30 +1430,28 @@ void HoI4FocusTree::addFascistSudetenBranch(shared_ptr<HoI4Country> Home, const 
 		}
 	}
 	nextFreeColumn += 2 * sudetenTargets.size();
-	//}
 }
 
 
 void HoI4FocusTree::addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& newAllies, const vector<shared_ptr<HoI4Country>>& GCTargets, const string& ideology, HoI4::Events* events)
 {
+	int numAllies = newAllies.size();
 	string ideologyShort = ideology.substr(0, 3);
 	if (newAllies.size() > 0)
 	{
 		//Focus to call summit, maybe have events from summit
-		shared_ptr<HoI4Focus> newFocus = make_shared<HoI4Focus>();
+		shared_ptr<HoI4Focus> newFocus = loadedFocuses.find("_Summit")->second.makeCustomizedCopy(Home->getTag());
 		newFocus->id = ideologyShort + "_Summit" + Home->getTag();
-		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
 		newFocus->text = "Call for the " + ideology + " Summit";
-		newFocus->xPos = nextFreeColumn + newAllies.size() - 1;
+		if (numAllies = 0)
+		{
+			newFocus->xPos = nextFreeColumn + newAllies.size();
+		}
+		else
+		{
+			newFocus->xPos = nextFreeColumn + newAllies.size() + 1;
+		}
 		newFocus->yPos = 0;
-		newFocus->cost = 10;
-		newFocus->aiWillDo += "= {\n";
-		newFocus->aiWillDo += "			factor = 2\n";
-		newFocus->aiWillDo += "			modifier = {\n";
-		newFocus->aiWillDo += "			factor = 10\n";
-		newFocus->aiWillDo += "			date > 1938.1.1\n";
-		newFocus->aiWillDo += "			}\n";
-		newFocus->aiWillDo += "		}";
 		newFocus->completionReward += "= {\n";
 		newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 		newFocus->completionReward += "		}";
@@ -1469,24 +1472,22 @@ void HoI4FocusTree::addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<sh
 			LOG(LogLevel::Warning) << "Could not determine ally country name for GP alliance focuses";
 			allyCountryName = "";
 		}
+		
 
-		shared_ptr<HoI4Focus> newFocus = make_shared<HoI4Focus>();
+		shared_ptr<HoI4Focus> newFocus = loadedFocuses.find("Alliance_")->second.makeCustomizedCopy(Home->getTag());
 		newFocus->id = "Alliance_" + newAlly->getTag() + Home->getTag();
-		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
 		newFocus->text = "Alliance with " + allyCountryName;
 		newFocus->prerequisites.push_back("= { focus = " + ideologyShort + "_Summit" + Home->getTag() + " }");
-		newFocus->available = "= {\n";
-		newFocus->available += "		OR = {\n";
-		newFocus->available += "			is_faction_leader = yes\n";
-		newFocus->available += "			is_in_faction = no\n";
-		newFocus->available += "		}";
-		newFocus->available += "		}";
-		newFocus->xPos = nextFreeColumn + i * 2;
+		newFocus->relativePositionId = ideologyShort + "_Summit" + Home->getTag();
+		if (numAllies == 1)
+		{
+			newFocus->xPos = 0;
+		}
+		else
+		{
+			newFocus->xPos = (i * 2) - 1;
+		}
 		newFocus->yPos = 1;
-		newFocus->cost = 10;
-		newFocus->aiWillDo += "= {\n";
-		newFocus->aiWillDo += "			factor = 10\n";
-		newFocus->aiWillDo += "		}";
 		newFocus->bypass += "= {\n";
 		newFocus->bypass += "			OR = {\n";
 		newFocus->bypass += "				" + Home->getTag() + " = { is_in_faction_with = " + newAlly->getTag() + "}\n";
@@ -1524,7 +1525,7 @@ void HoI4FocusTree::addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<sh
 		string prereq = "";
 		int y2 = 1;
 		//figuring out location of WG
-		shared_ptr<HoI4Focus> newFocus = make_shared<HoI4Focus>();
+		shared_ptr<HoI4Focus> newFocus = loadedFocuses.find("GP_War")->second.makeCustomizedCopy(Home->getTag());
 		if (newAllies.size() > 0)
 		{
 			y2 = 2;
@@ -1535,16 +1536,15 @@ void HoI4FocusTree::addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<sh
 		}
 		int v1 = rand() % 12 + 1;
 		int v2 = rand() % 12 + 1;
-		newFocus->id = "War" + GC->getTag() + Home->getTag();
-		newFocus->icon = "GFX_goal_generic_major_war";
+		newFocus->id = "GP_War" + GC->getTag() + Home->getTag();
 		newFocus->text = "War with " + warTargetCountryName;//change to faction name later
 		newFocus->available = "= {\n";
 		newFocus->available += "			has_war = no\n";
 		newFocus->available += "			date > 1939." + to_string(v1) + "." + to_string(v2) + "\n";
 		newFocus->available += "		}";
-		newFocus->xPos = nextFreeColumn + i * 2;
-		newFocus->yPos = y2;
-		newFocus->cost = 10;
+		newFocus->relativePositionId = ideologyShort + "_Summit" + Home->getTag();
+		newFocus->xPos = 0;
+		newFocus->yPos = 2;
 		newFocus->bypass = "= {\n";
 		newFocus->bypass += "		   has_war_with = " + GC->getTag() + "\n";
 		newFocus->bypass += "		}";

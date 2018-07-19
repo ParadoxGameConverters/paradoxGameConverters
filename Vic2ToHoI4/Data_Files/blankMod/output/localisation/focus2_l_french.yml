@@ -50,3 +50,6 @@
  _sudeten_:0 "Demande Territoire de $TARGET"
  _finish_:0 "Le sort de $TARGET"
  NeighborWar:0 "Guerre avec $TARGET"
+ _Summit:0 "Appel pour le Sommet $TARGET"
+ Alliance_:0 "Alliance avec  $TARGET"
+ GP_War:0 "Guerre avec $TARGET"
