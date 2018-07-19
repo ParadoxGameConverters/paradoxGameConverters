@@ -1243,6 +1243,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<Ho
 
 	for (auto target : weakNeighbors)
 	{
+		auto focusTree = genericFocusTree->makeCustomizedCopy(*country);
 		if (numWarsWithNeighbors >= 2)
 		{
 			break;
@@ -1283,52 +1284,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<Ho
 				AILog << "Creating focus to attack " + targetName << "\n";
 			}
 
-			shared_ptr<HoI4Focus> newFocus = make_shared<HoI4Focus>();
-			newFocus->id = "War" + target->getTag() + country->getTag();
-			newFocus->icon = "GFX_goal_generic_major_war";
-			newFocus->text = "War with " + targetName;//change to faction name later
-			newFocus->available = "= {\n";
-			newFocus->available += "			has_war = no\n";
-			newFocus->available += "			date > " + startDate.toString() + "\n";
-			newFocus->available += "		}";
-			newFocus->xPos = 24;
-			newFocus->yPos = 0;
-			newFocus->cost = 10;
-			newFocus->bypass = "= {\n";
-			newFocus->bypass += "			has_war_with = " + target->getTag() + "\n";
-			newFocus->bypass += "		}";
-			newFocus->aiWillDo = "= {\n";
-			newFocus->aiWillDo += "			factor = " + to_string(10 - numWarsWithNeighbors * 5) + "\n";
-			newFocus->aiWillDo += "			modifier = {\n";
-			newFocus->aiWillDo += "				factor = 0\n";
-			newFocus->aiWillDo += "				strength_ratio = { tag = " + target->getTag() + " ratio < 0.8 }\n";
-			newFocus->aiWillDo += "			}";
-			if (weakNeighbors.size() > 2) //make ai have this as a 0 modifier if they are at war
-			{
-				newFocus->aiWillDo += "\n";
-				newFocus->aiWillDo += "			modifier = {\n";
-				newFocus->aiWillDo += "				factor = 0\n";
-				newFocus->aiWillDo += "				OR = {\n";
-				for (auto target2 : weakNeighbors)
-				{
-					if (target != target2)
-					{
-						newFocus->aiWillDo += "					has_war_with = " + target2->getTag() + "\n";
-					}
-				}
-				newFocus->aiWillDo += "				}\n";
-				newFocus->aiWillDo += "			}";
-			}
-			newFocus->aiWillDo += "\n";
-			newFocus->aiWillDo += "		}";
-			newFocus->completionReward += "= {\n";
-			newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
-			newFocus->completionReward += "			create_wargoal = {\n";
-			newFocus->completionReward += "				type = annex_everything\n";
-			newFocus->completionReward += "				target = " + target->getTag() + "\n";
-			newFocus->completionReward += "			}\n";
-			newFocus->completionReward += "		}";
-			newFocuses.push_back(newFocus);
+			focusTree->addNeighborWarBranch(country->getTag(), weakNeighbors, target, targetName, startDate, numWarsWithNeighbors);
 
 			numWarsWithNeighbors++;
 		}
