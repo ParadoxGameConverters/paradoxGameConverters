@@ -187,10 +187,11 @@ void HoI4::Buildings::placeAirports(const HoI4States& theStates, const MapData& 
 		}
 		if (!airportPlaced)
 		{
-			auto theProvince = state.second->getProvinces().begin();
-			airportLocations.insert(make_pair(state.first, *theProvince));
+			auto theProvince = *state.second->getProvinces().begin();
+			bool pause = false;
+			airportLocations.insert(make_pair(state.first, theProvince));
 
-			auto theProvincePoints = theMapData.getProvincePoints(*theProvince);
+			auto theProvincePoints = theMapData.getProvincePoints(theProvince);
 			if (theProvincePoints)
 			{
 				auto centermostPoint = theProvincePoints->getCentermostPoint();
@@ -204,7 +205,7 @@ void HoI4::Buildings::placeAirports(const HoI4States& theStates, const MapData& 
 			}
 			else
 			{
-				LOG(LogLevel::Warning) << "Province " << *theProvince << " did not have any points. Airport not set for state " << state.first << ".";
+				LOG(LogLevel::Warning) << "Province " << theProvince << " did not have any points. Airport not set for state " << state.first << ".";
 			}
 		}
 	}
@@ -497,8 +498,8 @@ void HoI4::Buildings::placeSyntheticRefineries(const HoI4States& theStates, cons
 		}
 		if (!refineryPlaced)
 		{
-			auto theProvince = state.second->getProvinces().begin();
-			auto theProvincePoints = theMapData.getProvincePoints(*theProvince);
+			auto theProvince = *state.second->getProvinces().begin();
+			auto theProvincePoints = theMapData.getProvincePoints(theProvince);
 			if (theProvincePoints)
 			{
 				auto centermostPoint = theProvincePoints->getCentermostPoint();
@@ -512,7 +513,7 @@ void HoI4::Buildings::placeSyntheticRefineries(const HoI4States& theStates, cons
 			}
 			else
 			{
-				LOG(LogLevel::Warning) << "Province " << *theProvince << " did not have any points. Synthetic refinery not set for state " << state.first << ".";
+				LOG(LogLevel::Warning) << "Province " << theProvince << " did not have any points. Synthetic refinery not set for state " << state.first << ".";
 			}
 		}
 	}
@@ -538,8 +539,8 @@ void HoI4::Buildings::placeNuclearReactors(const HoI4States& theStates, const Ma
 		}
 		if (!reactorPlaced)
 		{
-			auto theProvince = state.second->getProvinces().begin();
-			auto theProvincePoints = theMapData.getProvincePoints(*theProvince);
+			auto theProvince = *state.second->getProvinces().begin();
+			auto theProvincePoints = theMapData.getProvincePoints(theProvince);
 			if (theProvincePoints)
 			{
 				auto centermostPoint = theProvincePoints->getCentermostPoint();
@@ -553,7 +554,7 @@ void HoI4::Buildings::placeNuclearReactors(const HoI4States& theStates, const Ma
 			}
 			else
 			{
-				LOG(LogLevel::Warning) << "Province " << *theProvince << " did not have any points. Nuclear reactor not set for state " << state.first << ".";
+				LOG(LogLevel::Warning) << "Province " << theProvince << " did not have any points. Nuclear reactor not set for state " << state.first << ".";
 			}
 		}
 	}

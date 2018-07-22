@@ -70,7 +70,7 @@ point HoI4::provincePoints::getCentermostPoint()
 			float deltaX = static_cast<float>(possiblePoint.first - possibleCenter.first);
 			distanceSquared = deltaX * deltaX;
 			float deltaY = static_cast<float>(possiblePoint.second - possibleCenter.second);
-			distanceSquared = deltaY * deltaY;
+			distanceSquared += deltaY * deltaY;
 
 			if (distanceSquared < shortestDistance)
 			{
