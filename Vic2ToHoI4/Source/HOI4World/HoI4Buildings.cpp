@@ -154,7 +154,18 @@ void HoI4::Buildings::importDefaultBuilding(const std::smatch& matches, defaultP
 void HoI4::Buildings::placeBuildings(const HoI4States& theStates, const coastalProvinces& theCoastalProvinces, const MapData& theMapData)
 {
 	auto provinceToStateIDMap = theStates.getProvinceToStateIDMap();
+	auto actualCoastalProvinces = theCoastalProvinces.getCoastalProvinces();
 
+	placeAirports(theStates, theMapData);
+	placeNavalBases(provinceToStateIDMap, actualCoastalProvinces, theMapData);
+	placeBunkers(provinceToStateIDMap, theMapData);
+	placeCoastalBunkers(provinceToStateIDMap, actualCoastalProvinces, theMapData);
+	placeDockyards(theStates, theCoastalProvinces, actualCoastalProvinces, theMapData);
+}
+
+
+void HoI4::Buildings::placeAirports(const HoI4States& theStates, const MapData& theMapData)
+{
 	for (auto state: theStates.getStates())
 	{
 		bool airportPlaced = false;
@@ -194,9 +205,12 @@ void HoI4::Buildings::placeBuildings(const HoI4States& theStates, const coastalP
 			}
 		}
 	}
+}
 
-	auto coastalProvinces = theCoastalProvinces.getCoastalProvinces();
-	for (auto province: coastalProvinces)
+
+void HoI4::Buildings::placeNavalBases(const std::map<int, int>& provinceToStateIDMap, std::map<int, std::vector<int>> actualCoastalProvinces, const MapData& theMapData)
+{
+	for (auto province: actualCoastalProvinces)
 	{
 		auto provinceToStateMapping = provinceToStateIDMap.find(province.first);
 		if (provinceToStateMapping == provinceToStateIDMap.end())
@@ -207,73 +221,14 @@ void HoI4::Buildings::placeBuildings(const HoI4States& theStates, const coastalP
 
 		addNavalBase(provinceToStateMapping->second, province, theMapData);
 	}
+}
 
+
+void HoI4::Buildings::placeBunkers(const std::map<int, int>& provinceToStateIDMap, const MapData& theMapData)
+{
 	for (auto provinceAndStateID: provinceToStateIDMap)
 	{
 		addBunker(provinceAndStateID.second, provinceAndStateID.first, theMapData);
-	}
-
-	for (auto province: coastalProvinces)
-	{
-		auto provinceToStateMapping = provinceToStateIDMap.find(province.first);
-		if (provinceToStateMapping == provinceToStateIDMap.end())
-		{
-			LOG(LogLevel::Warning) << "Could not find state for province " << province.first << ". Coastal bunker not set.";
-			continue;
-		}
-
-		addCoastalBunker(provinceToStateMapping->second, province, theMapData);
-	}
-
-	for (auto state: theStates.getStates())
-	{
-		bool dockyardPlaced = false;
-		for (auto theProvince: state.second->getProvinces())
-		{
-			auto possibleDockyard = defaultDockyards.find(make_pair(theProvince, 0));
-			if (possibleDockyard != defaultDockyards.end())
-			{
-				auto position = possibleDockyard->second;
-				HoI4::Building* newBuilding = new HoI4::Building(state.first, "dockyard", position, 0);
-				buildings.insert(std::make_pair(state.first, newBuilding));
-				dockyardPlaced = true;
-				break;
-			}
-		}
-		if (!dockyardPlaced)
-		{
-			std::optional<int> theProvince;
-			for (auto possibleProvince: state.second->getProvinces())
-			{
-				if (theCoastalProvinces.isProvinceCoastal(possibleProvince))
-				{
-					theProvince = possibleProvince;
-					break;
-				}
-			}
-			if (theProvince)
-			{
-				auto connectingSeaProvinces = coastalProvinces.find(*theProvince);
-				if (connectingSeaProvinces != coastalProvinces.end())
-				{
-					auto centermostPoint = theMapData.getSpecifiedBorderCenter(*theProvince, connectingSeaProvinces->second[0]);
-					if (centermostPoint)
-					{
-						HoI4::buildingPosition thePosition;
-						thePosition.xCoordinate = centermostPoint->first;
-						thePosition.yCoordinate = 11.0;
-						thePosition.yCoordinate = centermostPoint->second;
-						thePosition.rotation = 0;
-						HoI4::Building* newBuilding = new HoI4::Building(state.first, "dockyard", thePosition, 0);
-						buildings.insert(std::make_pair(state.first, newBuilding));
-					}
-					else
-					{
-						LOG(LogLevel::Warning) << "Province " << *theProvince << " did not have any points. Dockyard not set for state " << state.first << ".";
-					}
-				}
-			}
-		}
 	}
 }
 
@@ -357,6 +312,22 @@ void HoI4::Buildings::addBunker(int stateID, int province, const MapData& theMap
 }
 
 
+void HoI4::Buildings::placeCoastalBunkers(const std::map<int, int>& provinceToStateIDMap, std::map<int, std::vector<int>> actualCoastalProvinces, const MapData& theMapData)
+{
+	for (auto province: actualCoastalProvinces)
+	{
+		auto provinceToStateMapping = provinceToStateIDMap.find(province.first);
+		if (provinceToStateMapping == provinceToStateIDMap.end())
+		{
+			LOG(LogLevel::Warning) << "Could not find state for province " << province.first << ". Coastal bunker not set.";
+			continue;
+		}
+
+		addCoastalBunker(provinceToStateMapping->second, province, theMapData);
+	}
+}
+
+
 void HoI4::Buildings::addCoastalBunker(int stateID, const std::pair<int, std::vector<int>>& province, const MapData& theMapData)
 {
 	buildingPosition position;
@@ -391,6 +362,61 @@ void HoI4::Buildings::addCoastalBunker(int stateID, const std::pair<int, std::ve
 
 	HoI4::Building* newBuilding = new HoI4::Building(stateID, "coastal_bunker", position, 0);
 	buildings.insert(std::make_pair(stateID, newBuilding));
+}
+
+
+void HoI4::Buildings::placeDockyards(const HoI4States& theStates, const coastalProvinces& theCoastalProvinces, std::map<int, std::vector<int>> actualCoastalProvinces, const MapData& theMapData)
+{
+	for (auto state: theStates.getStates())
+	{
+		bool dockyardPlaced = false;
+		for (auto theProvince: state.second->getProvinces())
+		{
+			auto possibleDockyard = defaultDockyards.find(make_pair(theProvince, 0));
+			if (possibleDockyard != defaultDockyards.end())
+			{
+				auto position = possibleDockyard->second;
+				HoI4::Building* newBuilding = new HoI4::Building(state.first, "dockyard", position, 0);
+				buildings.insert(std::make_pair(state.first, newBuilding));
+				dockyardPlaced = true;
+				break;
+			}
+		}
+		if (!dockyardPlaced)
+		{
+			std::optional<int> theProvince;
+			for (auto possibleProvince: state.second->getProvinces())
+			{
+				if (theCoastalProvinces.isProvinceCoastal(possibleProvince))
+				{
+					theProvince = possibleProvince;
+					break;
+				}
+			}
+			if (theProvince)
+			{
+				auto connectingSeaProvinces = actualCoastalProvinces.find(*theProvince);
+				if (connectingSeaProvinces != actualCoastalProvinces.end())
+				{
+					auto centermostPoint = theMapData.getSpecifiedBorderCenter(*theProvince, connectingSeaProvinces->second[0]);
+					if (centermostPoint)
+					{
+						HoI4::buildingPosition thePosition;
+						thePosition.xCoordinate = centermostPoint->first;
+						thePosition.yCoordinate = 11.0;
+						thePosition.yCoordinate = centermostPoint->second;
+						thePosition.rotation = 0;
+						HoI4::Building* newBuilding = new HoI4::Building(state.first, "dockyard", thePosition, 0);
+						buildings.insert(std::make_pair(state.first, newBuilding));
+					}
+					else
+					{
+						LOG(LogLevel::Warning) << "Province " << *theProvince << " did not have any points. Dockyard not set for state " << state.first << ".";
+					}
+				}
+			}
+		}
+	}
 }
 
 
