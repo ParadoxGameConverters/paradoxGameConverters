@@ -100,6 +100,8 @@ class Buildings
 		void placeCoastalBunkers(const std::map<int, int>& provinceToStateIDMap, std::map<int, std::vector<int>> actualCoastalProvinces, const MapData& theMapData);
 		void addCoastalBunker(int stateID, const std::pair<int, std::vector<int>>& province, const MapData& theMapData);
 		void placeDockyards(const HoI4States& theStates, const coastalProvinces& theCoastalProvinces, std::map<int, std::vector<int>> actualCoastalProvinces, const MapData& theMapData);
+		void placeSyntheticRefineries(const HoI4States& theStates, const MapData& theMapData);
+		void placeNuclearReactors(const HoI4States& theStates, const MapData& theMapData);
 
 		std::multimap<int, Building*> buildings;
 

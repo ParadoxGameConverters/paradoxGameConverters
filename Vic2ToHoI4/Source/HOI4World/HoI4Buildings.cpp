@@ -161,6 +161,8 @@ void HoI4::Buildings::placeBuildings(const HoI4States& theStates, const coastalP
 	placeBunkers(provinceToStateIDMap, theMapData);
 	placeCoastalBunkers(provinceToStateIDMap, actualCoastalProvinces, theMapData);
 	placeDockyards(theStates, theCoastalProvinces, actualCoastalProvinces, theMapData);
+	placeSyntheticRefineries(theStates, theMapData);
+	placeNuclearReactors(theStates, theMapData);
 }
 
 
@@ -414,6 +416,88 @@ void HoI4::Buildings::placeDockyards(const HoI4States& theStates, const coastalP
 						LOG(LogLevel::Warning) << "Province " << *theProvince << " did not have any points. Dockyard not set for state " << state.first << ".";
 					}
 				}
+			}
+		}
+	}
+}
+
+
+void HoI4::Buildings::placeSyntheticRefineries(const HoI4States& theStates, const MapData& theMapData)
+{
+	for (auto state: theStates.getStates())
+	{
+		bool refineryPlaced = false;
+		for (auto theProvince: state.second->getProvinces())
+		{
+			auto possibleRefinery = defaultSyntheticRefineries.find(make_pair(theProvince, 0));
+			if (possibleRefinery != defaultSyntheticRefineries.end())
+			{
+				auto position = possibleRefinery->second;
+				HoI4::Building* newBuilding = new HoI4::Building(state.first, "synthetic_refinery", position, 0);
+				buildings.insert(std::make_pair(state.first, newBuilding));
+				refineryPlaced = true;
+				break;
+			}
+		}
+		if (!refineryPlaced)
+		{
+			auto theProvince = state.second->getProvinces().begin();
+			auto theProvincePoints = theMapData.getProvincePoints(*theProvince);
+			if (theProvincePoints)
+			{
+				auto centermostPoint = theProvincePoints->getCentermostPoint();
+				HoI4::buildingPosition thePosition;
+				thePosition.xCoordinate = centermostPoint.first;
+				thePosition.yCoordinate = 11.0;
+				thePosition.yCoordinate = centermostPoint.second;
+				thePosition.rotation = 0;
+				HoI4::Building* newBuilding = new HoI4::Building(state.first, "synthetic_refinery", thePosition, 0);
+				buildings.insert(std::make_pair(state.first, newBuilding));
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Province " << *theProvince << " did not have any points. Synthetic refinery not set for state " << state.first << ".";
+			}
+		}
+	}
+}
+
+
+void HoI4::Buildings::placeNuclearReactors(const HoI4States& theStates, const MapData& theMapData)
+{
+	for (auto state: theStates.getStates())
+	{
+		bool reactorPlaced = false;
+		for (auto theProvince: state.second->getProvinces())
+		{
+			auto possibleReactor = defaultNuclearReactors.find(make_pair(theProvince, 0));
+			if (possibleReactor != defaultNuclearReactors.end())
+			{
+				auto position = possibleReactor->second;
+				HoI4::Building* newBuilding = new HoI4::Building(state.first, "nuclear_reactor", position, 0);
+				buildings.insert(std::make_pair(state.first, newBuilding));
+				reactorPlaced = true;
+				break;
+			}
+		}
+		if (!reactorPlaced)
+		{
+			auto theProvince = state.second->getProvinces().begin();
+			auto theProvincePoints = theMapData.getProvincePoints(*theProvince);
+			if (theProvincePoints)
+			{
+				auto centermostPoint = theProvincePoints->getCentermostPoint();
+				HoI4::buildingPosition thePosition;
+				thePosition.xCoordinate = centermostPoint.first;
+				thePosition.yCoordinate = 11.0;
+				thePosition.yCoordinate = centermostPoint.second;
+				thePosition.rotation = 0;
+				HoI4::Building* newBuilding = new HoI4::Building(state.first, "nuclear_reactor", thePosition, 0);
+				buildings.insert(std::make_pair(state.first, newBuilding));
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Province " << *theProvince << " did not have any points. Nuclear reactor not set for state " << state.first << ".";
 			}
 		}
 	}
