@@ -157,6 +157,8 @@ void HoI4::Buildings::placeBuildings(const HoI4States& theStates, const coastalP
 	auto actualCoastalProvinces = theCoastalProvinces.getCoastalProvinces();
 
 	placeAirports(theStates, theMapData);
+	placeArmsFactories(theStates, theMapData);
+	placeIndustrialComplexes(theStates, theMapData);
 	placeNavalBases(provinceToStateIDMap, actualCoastalProvinces, theMapData);
 	placeBunkers(provinceToStateIDMap, theMapData);
 	placeCoastalBunkers(provinceToStateIDMap, actualCoastalProvinces, theMapData);
@@ -164,6 +166,114 @@ void HoI4::Buildings::placeBuildings(const HoI4States& theStates, const coastalP
 	placeAntiAir(theStates, theMapData);
 	placeSyntheticRefineries(theStates, theMapData);
 	placeNuclearReactors(theStates, theMapData);
+}
+
+
+void HoI4::Buildings::placeArmsFactories(const HoI4States& theStates, const MapData& theMapData)
+{
+	for (auto state: theStates.getStates())
+	{
+		int numPlaced = 0;
+		for (auto theProvince: state.second->getProvinces())
+		{
+			auto possibleArmsFactory = defaultArmsFactories.find(make_pair(theProvince, 0));
+			if (possibleArmsFactory != defaultArmsFactories.end())
+			{
+				auto position = possibleArmsFactory->second;
+				HoI4::Building* newBuilding = new HoI4::Building(state.first, "arms_factory", position, 0);
+				buildings.insert(std::make_pair(state.first, newBuilding));
+				numPlaced++;
+
+				if (numPlaced > 3)
+				{
+					break;
+				}
+			}
+		}
+		while (numPlaced < 6)
+		{
+			for (auto theProvince: state.second->getProvinces())
+			{
+				auto theProvincePoints = theMapData.getProvincePoints(theProvince);
+				if (theProvincePoints)
+				{
+					auto centermostPoint = theProvincePoints->getCentermostPoint();
+					HoI4::buildingPosition thePosition;
+					thePosition.xCoordinate = centermostPoint.first;
+					thePosition.yCoordinate = 11.0;
+					thePosition.zCoordinate = centermostPoint.second;
+					thePosition.rotation = 0;
+					HoI4::Building* newBuilding = new HoI4::Building(state.first, "arms_factory", thePosition, 0);
+					buildings.insert(std::make_pair(state.first, newBuilding));
+					numPlaced++;
+				}
+				else
+				{
+					LOG(LogLevel::Warning) << "Province " << theProvince << " did not have any points. Arms factories not fully set in state " << state.first << ".";
+					break;
+				}
+
+				if (numPlaced >=6)
+				{
+					break;
+				}
+			}
+		}
+	}
+}
+
+
+void HoI4::Buildings::placeIndustrialComplexes(const HoI4States& theStates, const MapData& theMapData)
+{
+	for (auto state: theStates.getStates())
+	{
+		int numPlaced = 0;
+		for (auto theProvince: state.second->getProvinces())
+		{
+			auto possibleIndustrialComplex = defaultIndustrialComplexes.find(make_pair(theProvince, 0));
+			if (possibleIndustrialComplex != defaultIndustrialComplexes.end())
+			{
+				auto position = possibleIndustrialComplex->second;
+				HoI4::Building* newBuilding = new HoI4::Building(state.first, "industrial_complex", position, 0);
+				buildings.insert(std::make_pair(state.first, newBuilding));
+				numPlaced++;
+
+				if (numPlaced > 3)
+				{
+					break;
+				}
+			}
+		}
+		while (numPlaced < 6)
+		{
+			for (auto theProvince: state.second->getProvinces())
+			{
+				auto theProvincePoints = theMapData.getProvincePoints(theProvince);
+				if (theProvincePoints)
+				{
+					auto centermostPoint = theProvincePoints->getCentermostPoint();
+					HoI4::buildingPosition thePosition;
+					thePosition.xCoordinate = centermostPoint.first;
+					thePosition.yCoordinate = 11.0;
+					thePosition.zCoordinate = centermostPoint.second;
+					thePosition.rotation = 0;
+					HoI4::Building* newBuilding = new HoI4::Building(state.first, "industrial_complex", thePosition, 0);
+					buildings.insert(std::make_pair(state.first, newBuilding));
+					numPlaced++;
+				}
+				else
+				{
+					LOG(LogLevel::Warning) << "Province " << theProvince << " did not have any points. Industrial complexes not fully set in state " << state.first << ".";
+					break;
+				}
+
+				if (numPlaced >=6)
+				{
+					break;
+				}
+			}
+		}
+	}
 }
 
 
@@ -225,7 +335,6 @@ void HoI4::Buildings::placeAntiAir(const HoI4States& theStates, const MapData& t
 				auto position = possibleAntiAir->second;
 				HoI4::Building* newBuilding = new HoI4::Building(state.first, "anti_air_building", position, 0);
 				buildings.insert(std::make_pair(state.first, newBuilding));
-				airportLocations.insert(make_pair(state.first, theProvince));
 				numPlaced++;
 
 				if (numPlaced > 3)

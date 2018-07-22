@@ -92,6 +92,8 @@ class Buildings
 		void importDefaultBuilding(const std::smatch& matches, defaultPositions& positions, MapData& theMapData);
 
 		void placeBuildings(const HoI4States& theStates, const coastalProvinces& theCoastalProvinces, const MapData& theMapData);
+		void placeArmsFactories(const HoI4States& theStates, const MapData& theMapData);
+		void placeIndustrialComplexes(const HoI4States& theStates, const MapData& theMapData);
 		void placeAirports(const HoI4States& theStates, const MapData& theMapData);
 		void placeNavalBases(const std::map<int, int>& provinceToStateIDMap, std::map<int, std::vector<int>> actualCoastalProvinces, const MapData& theMapData);
 		void addNavalBase(int stateID, const std::pair<int, std::vector<int>>& province, const MapData& theMapData);
