@@ -196,7 +196,7 @@ void HoI4::Buildings::placeAirports(const HoI4States& theStates, const MapData& 
 				HoI4::buildingPosition thePosition;
 				thePosition.xCoordinate = centermostPoint.first;
 				thePosition.yCoordinate = 11.0;
-				thePosition.yCoordinate = centermostPoint.second;
+				thePosition.zCoordinate = centermostPoint.second;
 				thePosition.rotation = 0;
 				HoI4::Building* newBuilding = new HoI4::Building(state.first, "air_base", thePosition, 0);
 				buildings.insert(std::make_pair(state.first, newBuilding));
@@ -406,7 +406,7 @@ void HoI4::Buildings::placeDockyards(const HoI4States& theStates, const coastalP
 						HoI4::buildingPosition thePosition;
 						thePosition.xCoordinate = centermostPoint->first;
 						thePosition.yCoordinate = 11.0;
-						thePosition.yCoordinate = centermostPoint->second;
+						thePosition.zCoordinate = centermostPoint->second;
 						thePosition.rotation = 0;
 						HoI4::Building* newBuilding = new HoI4::Building(state.first, "dockyard", thePosition, 0);
 						buildings.insert(std::make_pair(state.first, newBuilding));
@@ -449,7 +449,7 @@ void HoI4::Buildings::placeSyntheticRefineries(const HoI4States& theStates, cons
 				HoI4::buildingPosition thePosition;
 				thePosition.xCoordinate = centermostPoint.first;
 				thePosition.yCoordinate = 11.0;
-				thePosition.yCoordinate = centermostPoint.second;
+				thePosition.zCoordinate = centermostPoint.second;
 				thePosition.rotation = 0;
 				HoI4::Building* newBuilding = new HoI4::Building(state.first, "synthetic_refinery", thePosition, 0);
 				buildings.insert(std::make_pair(state.first, newBuilding));
@@ -490,7 +490,7 @@ void HoI4::Buildings::placeNuclearReactors(const HoI4States& theStates, const Ma
 				HoI4::buildingPosition thePosition;
 				thePosition.xCoordinate = centermostPoint.first;
 				thePosition.yCoordinate = 11.0;
-				thePosition.yCoordinate = centermostPoint.second;
+				thePosition.zCoordinate = centermostPoint.second;
 				thePosition.rotation = 0;
 				HoI4::Building* newBuilding = new HoI4::Building(state.first, "nuclear_reactor", thePosition, 0);
 				buildings.insert(std::make_pair(state.first, newBuilding));
