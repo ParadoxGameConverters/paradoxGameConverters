@@ -161,6 +161,7 @@ void HoI4::Buildings::placeBuildings(const HoI4States& theStates, const coastalP
 	placeBunkers(provinceToStateIDMap, theMapData);
 	placeCoastalBunkers(provinceToStateIDMap, actualCoastalProvinces, theMapData);
 	placeDockyards(theStates, theCoastalProvinces, actualCoastalProvinces, theMapData);
+	placeAntiAir(theStates, theMapData);
 	placeSyntheticRefineries(theStates, theMapData);
 	placeNuclearReactors(theStates, theMapData);
 }
@@ -204,6 +205,61 @@ void HoI4::Buildings::placeAirports(const HoI4States& theStates, const MapData& 
 			else
 			{
 				LOG(LogLevel::Warning) << "Province " << *theProvince << " did not have any points. Airport not set for state " << state.first << ".";
+			}
+		}
+	}
+}
+
+
+void HoI4::Buildings::placeAntiAir(const HoI4States& theStates, const MapData& theMapData)
+{
+	for (auto state: theStates.getStates())
+	{
+		int numPlaced = 0;
+		for (auto theProvince: state.second->getProvinces())
+		{
+			auto possibleAntiAir = defaultAntiAirs.find(make_pair(theProvince, 0));
+			if (possibleAntiAir != defaultAntiAirs.end())
+			{
+				auto position = possibleAntiAir->second;
+				HoI4::Building* newBuilding = new HoI4::Building(state.first, "anti_air_building", position, 0);
+				buildings.insert(std::make_pair(state.first, newBuilding));
+				airportLocations.insert(make_pair(state.first, theProvince));
+				numPlaced++;
+
+				if (numPlaced > 3)
+				{
+					break;
+				}
+			}
+		}
+		while (numPlaced < 3)
+		{
+			for (auto theProvince: state.second->getProvinces())
+			{
+				auto theProvincePoints = theMapData.getProvincePoints(theProvince);
+				if (theProvincePoints)
+				{
+					auto centermostPoint = theProvincePoints->getCentermostPoint();
+					HoI4::buildingPosition thePosition;
+					thePosition.xCoordinate = centermostPoint.first;
+					thePosition.yCoordinate = 11.0;
+					thePosition.zCoordinate = centermostPoint.second;
+					thePosition.rotation = 0;
+					HoI4::Building* newBuilding = new HoI4::Building(state.first, "anti_air_building", thePosition, 0);
+					buildings.insert(std::make_pair(state.first, newBuilding));
+					numPlaced++;
+				}
+				else
+				{
+					LOG(LogLevel::Warning) << "Province " << theProvince << " did not have any points. Anti-air not fully set in state " << state.first << ".";
+					break;
+				}
+
+				if (numPlaced >=3)
+				{
+					break;
+				}
 			}
 		}
 	}
