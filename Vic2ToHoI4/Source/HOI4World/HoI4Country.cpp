@@ -490,6 +490,11 @@ void HoI4Country::convertAirforce(const map<string, HoI4::UnitMap>& unitMap)
 
 void HoI4Country::convertArmyDivisions(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates)
 {
+	if (capitalState == nullptr)
+	{
+		return;
+	}
+
 	map<string, int> BattalionsAndCompanies;
 
 	for (auto army : srcCountry->getArmies())
