@@ -85,8 +85,10 @@ void V2Localisations::processLine(string line)
 	int division = line.find_first_of(';');
 	string key = line.substr(0, division);
 
+	bool pause = false;
 	for (auto language: languages)
 	{
+		pause = false;
 		string result = getNextLocalisation(line, division);
 		result = replaceBadCharacters(result);
 		auto UTF8Result = Utils::convert8859_15ToUTF8(result);
@@ -118,43 +120,43 @@ string V2Localisations::getNextLocalisation(string line, int& division)
 string V2Localisations::replaceBadCharacters(string localisation)
 {
 	// Ö gets translated to an invalid character sequence. Oe is accepted substitute in German.
-	int O = localisation.find_first_of("Ö");
+	int O = localisation.find_first_of('Ö');
 	while (O != string::npos)
 	{
 		localisation.replace(O, 1, "Oe");
-		O = localisation.find_first_of("Ö");
+		O = localisation.find_first_of('Ö');
 	}
 
 	// dash characters other than 0x2D break HoI4
-	int dash = localisation.find_first_of("–");
+	int dash = localisation.find_first_of('–');
 	while (dash != string::npos)
 	{
 		localisation.replace(dash, 1, "-");
-		dash = localisation.find_first_of("–");
+		dash = localisation.find_first_of('–');
 	}
 
 	// Problem with S-hacek
-	int shacek = localisation.find_first_of("");	// character may not display, but is present
+	int shacek = localisation.find_first_of('');	// character may not display, but is present
 	while (shacek != string::npos)
 	{
 		localisation.replace(shacek, 1, "š");
-		shacek = localisation.find_first_of("");	// character may not display, but is present
+		shacek = localisation.find_first_of('');	// character may not display, but is present
 	}
 
 	// Problem with Z-hacek
-	int zhacek = localisation.find_first_of("");	// character may not display, but is present
+	int zhacek = localisation.find_first_of('');	// character may not display, but is present
 	while (zhacek != string::npos)
 	{
 		localisation.replace(zhacek, 1, "ž");
-		zhacek = localisation.find_first_of("");	// character may not display, but is present
+		zhacek = localisation.find_first_of('');	// character may not display, but is present
 	}
 
 	// Problem with apostrophe (Spanish)
-	int apostrophe = localisation.find_first_of("");	// character may not display, but is present
+	int apostrophe = localisation.find_first_of('');	// character may not display, but is present
 	while (apostrophe != string::npos)
 	{
 		localisation.replace(apostrophe, 1, "’");
-		apostrophe = localisation.find_first_of("");	// character may not display, but is present
+		apostrophe = localisation.find_first_of('');	// character may not display, but is present
 	}
 
 	return localisation;
