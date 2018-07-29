@@ -2080,6 +2080,23 @@ void HoI4Country::outputIdeaGraphics(ofstream& ideasFile, graphicsMapper& graphi
 
 
 	ideasFile << "\tspriteType = {\n";
+	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_neutrality_advisor\"\n";
+	ideasFile << "\t\ttexturefile = \"" << graphics.getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "neutrality") << "\"\n";
+	ideasFile << "\t}\n";
+	
+	ideasFile << "\tspriteType = {\n";
+	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_absolutist_advisor\"\n";
+	ideasFile << "\t\ttexturefile = \"" << graphics.getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "absolutist") << "\"\n";
+	ideasFile << "\t}\n";
+
+
+	ideasFile << "\tspriteType = {\n";
+	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_radical_advisor\"\n";
+	ideasFile << "\t\ttexturefile = \"" << graphics.getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "radical") << "\"\n";
+	ideasFile << "\t}\n";
+
+
+	ideasFile << "\tspriteType = {\n";
 	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_fascist_advisor\"\n";
 	ideasFile << "\t\ttexturefile = \"" << graphics.getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "fascism") << "\"\n";
 	ideasFile << "\t}\n";
