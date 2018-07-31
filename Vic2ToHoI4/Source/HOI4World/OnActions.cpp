@@ -81,6 +81,9 @@ void HoI4::OnActions::output(const std::set<std::string>& majorIdeologies) const
 	{
 		onActionsFile << "			if = {\n";
 		onActionsFile << "				limit = { has_government = democratic }\n";
+		onActionsFile << "				set_politics = {\n";
+		onActionsFile << "					elections_allowed = yes\n";
+		onActionsFile << "				}\n";
 		onActionsFile << "				if = {\n";
 		onActionsFile << "					limit = { has_idea = democratic_opposition_voicing_protests }\n";
 		onActionsFile << "					remove_ideas = democratic_opposition_voicing_protests\n";
@@ -131,7 +134,7 @@ void HoI4::OnActions::output(const std::set<std::string>& majorIdeologies) const
 
 	onActionsFile << "	on_startup = {\n";
 	onActionsFile << "		effect = {\n";
-	onActionsFile << "			set_province_name = { id = 587 name = \"Köln\"} #Cologne\n";
+	onActionsFile << "			set_province_name = { id = 587 name = \"KÃ¶ln\"} #Cologne\n";
 	onActionsFile << "			set_province_name = { id = 957 name = \"Vladivostok\"} #Haishenwai\n";
 	onActionsFile << "			set_province_name = { id = 1025 name = \"Kokura\"} #Fukuoka\n";
 	onActionsFile << "			set_province_name = { id = 1047 name = \"Guangzhou\"} #Canton\n";
@@ -142,9 +145,9 @@ void HoI4::OnActions::output(const std::set<std::string>& majorIdeologies) const
 	onActionsFile << "			set_province_name = { id = 3152 name = \"Tallinn\"} #Reval\n";
 	onActionsFile << "			set_province_name = { id = 3529 name = \"Stalingrad\"} #Tsaritsyn\n";
 	onActionsFile << "			set_province_name = { id = 4180 name = \"Honolulu\"} #Hawaii\n";
-	onActionsFile << "			set_province_name = { id = 4268 name = \"Nouméa\"} #New Caledonia\n";
+	onActionsFile << "			set_province_name = { id = 4268 name = \"NoumÃ©a\"} #New Caledonia\n";
 	onActionsFile << "			set_province_name = { id = 4333 name = \"Astana\"} #Qaraganda\n";
-	onActionsFile << "			set_province_name = { id = 4709 name = \"Ürümqi\"} #Díhuà\n";
+	onActionsFile << "			set_province_name = { id = 4709 name = \"ÃœrÃ¼mqi\"} #DÃ­huÃ \n";
 	onActionsFile << "			set_province_name = { id = 4801 name = \"Ulaanbaatar\"} #Urga\n";
 	onActionsFile << "			set_province_name = { id = 6115 name = \"Oslo\"} #Christiania\n";
 	onActionsFile << "			set_province_name = { id = 7371 name = \"Kuching\"} #Brunei\n";
