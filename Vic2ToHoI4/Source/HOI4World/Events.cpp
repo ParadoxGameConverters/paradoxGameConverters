@@ -878,6 +878,7 @@ void HoI4::Events::addFiftyPercentEvents(const std::set<std::string>& majorIdeol
 		optionC += "	}";
 		fiftyPercentEvent.options.push_back(optionC);
 		politicalEvents.push_back(fiftyPercentEvent);
+		eventNumbers.insert(make_pair(std::string("fiftyPercent") + ideology, politicalEventNumber));
 		politicalEventNumber++;
 	}
 }
@@ -1372,4 +1373,18 @@ void HoI4::Events::createStabilityEvents(const std::set<std::string>& majorIdeol
 	option += "		set_country_flag = { flag = draft_dodging_resolved days = 90 }\n";
 	option += "	}";
 	conscriptionRebellion->second.options.push_back(option);
+}
+
+
+std::optional<int> HoI4::Events::getEventNumber(const std::string& eventName) const
+{
+	auto eventRecord = eventNumbers.find(eventName);
+	if (eventRecord != eventNumbers.end())
+	{
+		return eventRecord->second;
+	}
+	else
+	{
+		return std::nullopt;
+	}
 }

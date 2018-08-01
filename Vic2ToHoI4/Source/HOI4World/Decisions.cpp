@@ -23,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Decisions.h"
 #include "Decision.h"
+#include "Events.h"
 #include "../Configuration.h"
 #include <fstream>
 
@@ -41,9 +42,9 @@ HoI4::decisionsCategory::decisionsCategory(const std::string& categoryName, std:
 }
 
 
-void HoI4::decisionsCategory::updatePoliticalDecisions(const std::set<std::string>& majorIdeologies)
+void HoI4::decisionsCategory::updatePoliticalDecisions(const std::set<std::string>& majorIdeologies, const Events& theEvents)
 {
-	std::for_each(theDecisions.begin(), theDecisions.end(), [majorIdeologies](auto& theDecision){
+	std::for_each(theDecisions.begin(), theDecisions.end(), [majorIdeologies, &theEvents](auto& theDecision){
 		if (theDecision.getName().substr(0, 28) == "open_up_political_discourse_")
 		{
 			std::string available = "= {\n";
@@ -158,6 +159,19 @@ void HoI4::decisionsCategory::updatePoliticalDecisions(const std::set<std::strin
 			completeEffect += "		}";
 			theDecision.setCompleteEffect(completeEffect);
 		}
+		if (theDecision.getName().substr(0, 9) == "hold_the_")
+		{
+			std::string decisionIdeology = theDecision.getName().substr(9, theDecision.getName().length());
+			decisionIdeology = decisionIdeology.substr(0, decisionIdeology.find_first_of('_'));
+			auto eventNumber = theEvents.getEventNumber("fiftyPercent" + decisionIdeology);
+			if (eventNumber)
+			{
+				std::string completeEffect = "= {\n";
+				completeEffect += "			country_event = { id = political." + std::to_string(*eventNumber) + " }\n";
+				completeEffect += "		}";
+				theDecision.setCompleteEffect(completeEffect);
+			}
+		}
 	});
 }
 
@@ -229,10 +243,10 @@ HoI4::decisions::decisions() noexcept
 }
 
 
-void HoI4::decisions::updateDecisions(const std::set<std::string>& majorIdeologies)
+void HoI4::decisions::updateDecisions(const std::set<std::string>& majorIdeologies, const Events& theEvents)
 {
 	updateStabilityDecisions(majorIdeologies);
-	updatePoliticalDecisions(majorIdeologies);
+	updatePoliticalDecisions(majorIdeologies, theEvents);
 }
 
 
@@ -335,7 +349,7 @@ std::string HoI4::decisions::updateTimeoutEffect(std::string& originalEffect, co
 }
 
 
-void HoI4::decisions::updatePoliticalDecisions(const std::set<std::string>& majorIdeologies)
+void HoI4::decisions::updatePoliticalDecisions(const std::set<std::string>& majorIdeologies, const Events& theEvents)
 {
 	std::for_each(majorIdeologies.begin(), majorIdeologies.end(), [this](auto ideology){
 		auto categories = ideologicalDecisions.equal_range(ideology);
@@ -357,7 +371,7 @@ void HoI4::decisions::updatePoliticalDecisions(const std::set<std::string>& majo
 
 	for (auto& decisionsByIdeology: politicalDecisions)
 	{
-		decisionsByIdeology.updatePoliticalDecisions(majorIdeologies);
+		decisionsByIdeology.updatePoliticalDecisions(majorIdeologies, theEvents);
 	}
 }
 

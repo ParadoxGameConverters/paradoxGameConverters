@@ -39,6 +39,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 namespace HoI4
 {
 
+class Events;
+
+
 class decisionsCategory: commonItems::parser
 {
 	public:
@@ -50,7 +53,7 @@ class decisionsCategory: commonItems::parser
 		void replaceDecision(decision theDecision) { std::replace(theDecisions.begin(), theDecisions.end(), theDecision, theDecision); }
 		void addDecision(decision& theDecision) { theDecisions.push_back(theDecision); }
 
-		void updatePoliticalDecisions(const std::set<std::string>& majorIdeologies);
+		void updatePoliticalDecisions(const std::set<std::string>& majorIdeologies, const Events& theEvents);
 
 		friend std::ostream& operator<<(std::ostream& outStream, const decisionsCategory& outCategory);
 		friend bool operator==(const decisionsCategory& categoryOne, const decisionsCategory& categoryTwo);
@@ -69,7 +72,7 @@ class decisions: commonItems::parser
 	public:
 		decisions() noexcept;
 
-		void updateDecisions(const std::set<std::string>& majorIdeologies);
+		void updateDecisions(const std::set<std::string>& majorIdeologies, const Events& theEvents);
 
 		void output();
 
@@ -79,7 +82,7 @@ class decisions: commonItems::parser
 		std::pair<std::string, std::string> determineIdeologiesForStabilityDecisions(const std::set<std::string>& majorIdeologies);
 		std::string updateTimeoutEffect(std::string& originalEffect, const std::pair<std::string, std::string>& ideologiesForStabilityDecisions);
 
-		void updatePoliticalDecisions(const std::set<std::string>& majorIdeologies);
+		void updatePoliticalDecisions(const std::set<std::string>& majorIdeologies, const Events& theEvents);
 
 		std::vector<decisionsCategory> stabilityDecisions;
 		std::vector<decisionsCategory> politicalDecisions;
