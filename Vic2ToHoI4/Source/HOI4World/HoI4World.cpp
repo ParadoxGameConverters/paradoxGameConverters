@@ -1074,7 +1074,7 @@ void HoI4::World::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const
 
 	for (auto country: countries)
 	{
-		country.second->convertArmyDivisions(unitMap, divisionTemplates);
+		country.second->convertArmies(unitMap, divisionTemplates);
 	}
 }
 

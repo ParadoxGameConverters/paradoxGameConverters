@@ -488,17 +488,24 @@ void HoI4Country::convertAirforce(const map<string, HoI4::UnitMap>& unitMap)
 	}	
 }
 
-void HoI4Country::convertArmyDivisions(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates)
+void HoI4Country::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates)
 {
 	if (capitalState == nullptr)
 	{
 		return;
 	}
 
-	map<string, int> BattalionsAndCompanies;
+	map<string, int> remainingBattalionsAndCompanies;
 
 	for (auto army : srcCountry->getArmies())
 	{
+		auto provinceMapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(army->getLocation());
+		if (!provinceMapping)
+		{
+			continue;
+		}
+
+		map<string, int> localBattalionsAndCompanies;
 		for (auto regiment : army->getRegiments())
 		{
 			string type = regiment->getType();
@@ -507,9 +514,23 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4::UnitMap>& unitMap
 			{
 				HoI4::UnitMap unitInfo = unitMap.at(type);
 
-				if (unitInfo.getCategory() == "land") {
+				if (unitInfo.getCategory() == "land")
+				{
 					// Calculate how many Battalions and Companies are available after mapping Vic2 armies
-					BattalionsAndCompanies[unitInfo.getType()] = BattalionsAndCompanies[unitInfo.getType()] + unitInfo.getSize();
+					localBattalionsAndCompanies[unitInfo.getType()] = localBattalionsAndCompanies[unitInfo.getType()] + unitInfo.getSize();
+					convertArmyDivisions(unitMap, divisionTemplates, localBattalionsAndCompanies, *provinceMapping->begin());
+					for (auto unit: localBattalionsAndCompanies)
+					{
+						auto remainingUnit = remainingBattalionsAndCompanies.find(unit.first);
+						if (remainingUnit != remainingBattalionsAndCompanies.end())
+						{
+							remainingUnit->second += unit.second;
+						}
+						else
+						{
+							remainingBattalionsAndCompanies.insert(unit);
+						}
+					}
 				}
 			}
 			else
@@ -518,7 +539,13 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4::UnitMap>& unitMap
 			}
 		}
 	}
-		
+
+	convertArmyDivisions(unitMap, divisionTemplates, remainingBattalionsAndCompanies, capitalState->getVPLocation());
+}
+
+
+void HoI4Country::convertArmyDivisions(const std::map<std::string, HoI4::UnitMap>& unitMap, const std::vector<HoI4::DivisionTemplateType>& divisionTemplates, std::map<std::string, int>& BattalionsAndCompanies, int location)
+{
 	for (auto& divTemplate: divisionTemplates)
 	{
 		// for each template determine the Battalion and Company requirements
@@ -546,7 +573,7 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4::UnitMap>& unitMap
 		// Create new divisions as long as sufficient units exist, otherwise move on to next template
 		while (sufficientUnits == true) 
 		{
-			HoI4::DivisionType newDivision(to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), capitalState->getVPLocation());
+			HoI4::DivisionType newDivision(to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), location);
 			divisionCounter = divisionCounter + 1;
 			divisions.push_back(newDivision);
 
@@ -564,458 +591,7 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4::UnitMap>& unitMap
 				}
 			}
 		}	
-	}	
-
-	/*
-	// get the total number of source brigades and the number of source brigades per location
-	int infantryBrigades = 0;
-	int artilleryBrigades = 0;
-	int supportBrigades = 0;
-	int tankBrigades = 0;
-	int cavalryBrigades = 0;
-	int cavalrySupportBrigades = 0;
-	int mountainBrigades = 0;
-	const double adjustment = 0.1 * theConfiguration.getForceMultiplier();
-
-	map<int, double> locations;
-	int totalRegiments = 0;
-	for (auto army : srcCountry->getArmies())
-	{
-		// get the number of source brigades per location
-		int HoI4location = 0;
-		if (auto provMapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(army->getLocation()))
-		{
-			for (auto HoI4ProvNum: *provMapping)
-			{
-				if (HoI4ProvNum != 0 && provinces.find(HoI4ProvNum) != provinces.end())
-				{
-					HoI4location = HoI4ProvNum;
-				}
-			}
-		}
-
-		// no weight for locations we don't own
-		totalRegiments += army->getRegiments().size();
-		if (provinces.find(HoI4location) != provinces.end()) {
-			locations[HoI4location] += army->getRegiments().size();
-		}
-
-		// get the total number of source brigades
-		for (auto regiment : army->getRegiments())
-		{
-			string type = regiment->getType();
-			if (type == "artillery")
-			{
-				infantryBrigades += 2;
-				artilleryBrigades++;
-			}
-			else if (type == "cavalry")
-			{
-				cavalryBrigades += 3;
-			}
-			else if (type == "cuirassier" || type == "dragoon" || type == "hussar")
-			{
-				cavalryBrigades += 3;
-				cavalrySupportBrigades++;
-			}
-			else if (type == "engineer")
-			{
-				supportBrigades += 3;
-			}
-			else if (type == "guard")
-			{
-				mountainBrigades += 2;
-			}
-			else if (type == "infantry")
-			{
-				infantryBrigades += 3;
-			}
-			else if (type == "irregular")
-			{
-				infantryBrigades += 1;
-			}
-			else if (type == "tank")
-			{
-				tankBrigades++;
-			}
-		}
 	}
-	double InfWep = 0;
-	if (technologies.find("infantry_weapons1") == technologies.end())
-	{
-		InfWep = 0.3;
-	}
-	if (technologies.find("infantry_weapons1") != technologies.end())
-	{
-		InfWep = 0.5;
-	}
-	armyStrength = 0;
-	armyStrength = static_cast<long>((100 * InfWep*infantryBrigades) + (supportBrigades * 175) + (artilleryBrigades * 126) + (tankBrigades * 1135) + (cavalryBrigades * 120 * InfWep) + (mountainBrigades * 140 * InfWep));
-	// calculate the number of brigades in different types of divisions
-	int infantryPerDivision = 0;
-	if (infantryBrigades <= 45)
-	{
-		infantryPerDivision = 3;
-	}
-	else if (infantryBrigades <= 90)
-	{
-		infantryPerDivision = 6;
-	}
-	else
-	{
-		infantryPerDivision = 9;
-	}
-
-	int tanksPerDivision = 0;
-	if (tankBrigades <= 5)
-	{
-		tanksPerDivision = 1;
-	}
-	else if (tankBrigades <= 10)
-	{
-		tanksPerDivision = 2;
-	}
-	else
-	{
-		tanksPerDivision = 3;
-	}
-
-	int cavalryPerDivision = 0;
-	if (cavalryBrigades <= 9)
-	{
-		cavalryPerDivision = 1;
-	}
-	else if (cavalryBrigades <= 18)
-	{
-		cavalryPerDivision = 2;
-	}
-	else
-	{
-		cavalryPerDivision = 3;
-	}
-
-	int mountainPerDivision = 0;
-	if (mountainBrigades <= 9)
-	{
-		mountainPerDivision = 1;
-	}
-	else if (mountainBrigades <= 18)
-	{
-		mountainPerDivision = 2;
-	}
-	else
-	{
-		mountainPerDivision = 3;
-	}
-
-	int advancedIndex = -1;
-	int mediumIndex = -1;
-	int basicIndex = -1;
-	int tankIndex = -1;
-	bool mediumSupport = false;
-	// create division templates
-	if (tankBrigades > 0)
-	{
-		HoI4DivisionTemplateType newDivisionTemplate("Tank Division");
-		for (int i = 0; i < tanksPerDivision; i++)
-		{
-			HoI4RegimentType lightArmorRegimentOne("light_armor", 0, i);
-			newDivisionTemplate.addRegiment(lightArmorRegimentOne);
-			HoI4RegimentType lightArmorRegimentTwo("light_armor", 1, i);
-			newDivisionTemplate.addRegiment(lightArmorRegimentTwo);
-			HoI4RegimentType motorizedrRegiment("motorized", 2, i);
-			newDivisionTemplate.addRegiment(motorizedrRegiment);
-		}
-		tankIndex = divisionTemplates.size();
-		divisionTemplates.push_back(newDivisionTemplate);
-	}
-	if (cavalryBrigades > 0)
-	{
-		HoI4DivisionTemplateType newDivisionTemplate("Cavalry Division");
-		for (int i = 0; i < cavalryPerDivision; i++)
-		{
-			HoI4RegimentType cavalryRegimentOne("cavalry", 0, i);
-			newDivisionTemplate.addRegiment(cavalryRegimentOne);
-			HoI4RegimentType cavalryRegimentTwo("cavalry", 1, i);
-			newDivisionTemplate.addRegiment(cavalryRegimentTwo);
-			HoI4RegimentType cavalryRegimentThree("cavalry", 2, i);
-			newDivisionTemplate.addRegiment(cavalryRegimentThree);
-		}
-		divisionTemplates.push_back(newDivisionTemplate);
-	}
-	if (mountainBrigades > 0)
-	{
-		HoI4DivisionTemplateType newDivisionTemplate("Mountaineers");
-		for (int i = 0; i < cavalryPerDivision; i++)
-		{
-			HoI4RegimentType mountainRegimentOne("mountaineers", 0, i);
-			newDivisionTemplate.addRegiment(mountainRegimentOne);
-			HoI4RegimentType mountainRegimentTwo("mountaineers", 1, i);
-			newDivisionTemplate.addRegiment(mountainRegimentTwo);
-			HoI4RegimentType mountainRegimentThree("mountaineers", 2, i);
-			newDivisionTemplate.addRegiment(mountainRegimentThree);
-		}
-		divisionTemplates.push_back(newDivisionTemplate);
-	}
-	if ((artilleryBrigades > 0) || (supportBrigades > 0))
-	{
-		if (3 * artilleryBrigades > infantryPerDivision * supportBrigades)
-		{
-			//there are more brigades with artillery than with support, meddiv will have only art
-			HoI4DivisionTemplateType newDivisionTemplate("Support Infantry Division");
-			for (int i = 0; i < (infantryPerDivision / 3); i++)
-			{
-				HoI4RegimentType infantryRegiment("infantry", 0, i);
-				newDivisionTemplate.addRegiment(infantryRegiment);
-			}
-			for (int i = 0; i < (infantryPerDivision / 3); i++)
-			{
-				HoI4RegimentType infantryRegimentOne("infantry", i, 0);
-				newDivisionTemplate.addRegiment(infantryRegimentOne);
-				HoI4RegimentType infantryRegimentTwo("infantry", i, 1);
-				newDivisionTemplate.addRegiment(infantryRegimentTwo);
-				HoI4RegimentType infantryRegimentThree("infantry", i, 2);
-				newDivisionTemplate.addRegiment(infantryRegimentThree);
-				HoI4RegimentType artilleryRegiment("artillery_brigade", i, 3);
-				newDivisionTemplate.addRegiment(artilleryRegiment);
-			}
-			mediumIndex = divisionTemplates.size();
-			divisionTemplates.push_back(newDivisionTemplate);
-
-			if (supportBrigades > 0)
-			{
-				//have both support brigades and artillery, have superdiv
-				HoI4DivisionTemplateType newDivisionTemplate("Advance Infantry Division");
-				for (int i = 0; i < (infantryPerDivision / 3); i++)
-				{
-					HoI4RegimentType infantryRegiment("infantry", 0, i);
-					newDivisionTemplate.addRegiment(infantryRegiment);
-				}
-				for (int i = 0; i < (infantryPerDivision / 3); i++)
-				{
-					HoI4RegimentType infantryRegimentOne("infantry", i, 0);
-					newDivisionTemplate.addRegiment(infantryRegimentOne);
-					HoI4RegimentType infantryRegimentTwo("infantry", i, 1);
-					newDivisionTemplate.addRegiment(infantryRegimentTwo);
-					HoI4RegimentType infantryRegimentThree("infantry", i, 2);
-					newDivisionTemplate.addRegiment(infantryRegimentThree);
-					HoI4RegimentType artilleryRegiment("artillery_brigade", i, 3);
-					newDivisionTemplate.addRegiment(artilleryRegiment);
-				}
-				HoI4RegimentType engineerRegiment("engineer", 0, 0);
-				newDivisionTemplate.addSupportRegiment(engineerRegiment);
-				HoI4RegimentType reconRegiment("recon", 0, 1);
-				newDivisionTemplate.addSupportRegiment(reconRegiment);
-
-				advancedIndex = divisionTemplates.size();
-				divisionTemplates.push_back(newDivisionTemplate);
-			}
-		}
-		else
-		{
-			//there are more brigades with support then artillery, meddiv will have only support
-			HoI4DivisionTemplateType newDivisionTemplate("Support Infantry Division");
-			for (int i = 0; i < (infantryPerDivision / 3); i++)
-			{
-				HoI4RegimentType infantryRegiment("infantry", 0, i);
-				newDivisionTemplate.addRegiment(infantryRegiment);
-			}
-			for (int i = 0; i < (infantryPerDivision / 3); i++)
-			{
-				HoI4RegimentType infantryRegimentOne("infantry", i, 0);
-				newDivisionTemplate.addRegiment(infantryRegimentOne);
-				HoI4RegimentType infantryRegimentTwo("infantry", i, 1);
-				newDivisionTemplate.addRegiment(infantryRegimentTwo);
-				HoI4RegimentType infantryRegimentThree("infantry", i, 2);
-				newDivisionTemplate.addRegiment(infantryRegimentThree);
-			}
-			HoI4RegimentType engineerRegiment("engineer", 0, 0);
-			newDivisionTemplate.addSupportRegiment(engineerRegiment);
-			HoI4RegimentType reconRegiment("recon", 0, 1);
-			newDivisionTemplate.addSupportRegiment(reconRegiment);
-			mediumSupport = true;
-			mediumIndex = divisionTemplates.size();
-			divisionTemplates.push_back(newDivisionTemplate);
-
-			if (artilleryBrigades != 0)
-			{
-				//have both supportbrigs and artillery, have superdiv
-				HoI4DivisionTemplateType newDivisionTemplate("Advance Infantry Division");
-				for (int i = 0; i < (infantryPerDivision / 3); i++)
-				{
-					HoI4RegimentType infantryRegiment("infantry", 0, i);
-					newDivisionTemplate.addRegiment(infantryRegiment);
-				}
-				for (int i = 0; i < (infantryPerDivision / 3); i++)
-				{
-					HoI4RegimentType infantryRegimentOne("infantry", i, 0);
-					newDivisionTemplate.addRegiment(infantryRegimentOne);
-					HoI4RegimentType infantryRegimentTwo("infantry", i, 1);
-					newDivisionTemplate.addRegiment(infantryRegimentTwo);
-					HoI4RegimentType infantryRegimentThree("infantry", i, 2);
-					newDivisionTemplate.addRegiment(infantryRegimentThree);
-					HoI4RegimentType artilleryRegiment("artillery_brigade", i, 3);
-					newDivisionTemplate.addRegiment(artilleryRegiment);
-				}
-				HoI4RegimentType engineerRegiment("engineer", 0, 0);
-				newDivisionTemplate.addSupportRegiment(engineerRegiment);
-				HoI4RegimentType reconRegiment("recon", 0, 1);
-				newDivisionTemplate.addSupportRegiment(reconRegiment);
-				advancedIndex = divisionTemplates.size();
-				divisionTemplates.push_back(newDivisionTemplate);
-			}
-		}
-	}
-
-	// basic infantry division
-	HoI4DivisionTemplateType newDivisionTemplate("Basic Infantry Division");
-	for (int i = 0; i < (infantryPerDivision / 3); i++)
-	{
-		HoI4RegimentType infantryRegiment("infantry", 0, i);
-		newDivisionTemplate.addRegiment(infantryRegiment);
-	}
-	for (int i = 0; i < (infantryPerDivision / 3); i++)
-	{
-		HoI4RegimentType infantryRegimentOne("infantry", i, 0);
-		newDivisionTemplate.addRegiment(infantryRegimentOne);
-		HoI4RegimentType infantryRegimentTwo("infantry", i, 1);
-		newDivisionTemplate.addRegiment(infantryRegimentTwo);
-		HoI4RegimentType infantryRegimentThree("infantry", i, 2);
-		newDivisionTemplate.addRegiment(infantryRegimentThree);
-	}
-	basicIndex = divisionTemplates.size();
-	divisionTemplates.push_back(newDivisionTemplate);
-
-	// calculate number of units per location
-	double totalWeight = 0;
-	if (0 == locations.size())
-	{
-		locations[capital] = totalRegiments;
-	}
-	for (auto const location : locations)
-	{
-		totalWeight += location.second;
-	}
-	int numberOfDivisions = infantryBrigades / infantryPerDivision;
-	for (auto& location : locations)
-	{
-		if (totalWeight > 0)
-		{
-			// Use ceiling here to avoid losing units to, eg, numberOfDivisions = 12,
-			// totalWeight = 13. This can happen in the presence of aircraft.
-			location.second = ceil(location.second * adjustment * numberOfDivisions / totalWeight);
-		}
-	}
-
-	// place units
-	int numCav = 1;
-	int numTank = 1;
-	int numMountain = 1;
-	int numAdvanced = 1;
-	int numMedium = 1;
-	int numBasic = 1;
-
-	infantryBrigades = static_cast<int>(0.5 + adjustment * infantryBrigades);
-	artilleryBrigades = static_cast<int>(0.5 + adjustment * artilleryBrigades);
-	supportBrigades = static_cast<int>(0.5 + adjustment * supportBrigades);
-	tankBrigades = static_cast<int>(0.5 + adjustment * tankBrigades);
-	cavalryBrigades = static_cast<int>(0.5 + adjustment * cavalryBrigades);
-	cavalrySupportBrigades = static_cast<int>(0.5 + adjustment * cavalrySupportBrigades);
-	mountainBrigades = static_cast<int>(0.5 + adjustment * mountainBrigades);
-
-	for (auto const location : locations)
-	{
-		int unitsInProv = 0;
-		while (unitsInProv < location.second)
-		{
-			if (infantryBrigades >= infantryPerDivision)
-			{
-				int infLocation = 0;
-				if (location.first != 0)
-				{
-					infLocation = location.first;
-				}
-				else if (capital != 0)
-				{
-					infLocation = capital;
-				}
-				else
-				{
-					LOG(LogLevel::Warning) << "When converting units for " << tag << ", one of the locations for unit placement was undefined!";
-					break;
-				}
-				if (tankBrigades > 0)
-				{
-					HoI4DivisionType newDivision(to_string(numTank++) + ". Tank Division", "Tank Division", infLocation);
-					divisions.push_back(newDivision);
-					tankBrigades -= tanksPerDivision;
-				}
-				if (cavalryBrigades > 0)
-				{
-					HoI4DivisionType newDivision(to_string(numCav++) + ". Cavalry Division", "Cavalry Division", infLocation);
-					divisions.push_back(newDivision);
-					cavalryBrigades -= cavalryPerDivision;
-				}
-				if (mountainBrigades > 0)
-				{
-					HoI4DivisionType newDivision(to_string(numMountain++) + ". Mountaineers", "Mountaineers", infLocation);
-					divisions.push_back(newDivision);
-					mountainBrigades -= mountainPerDivision;
-				}
-
-				if ((3 * artilleryBrigades >= infantryPerDivision) && (supportBrigades >= 1))
-				{
-					// Super Placement
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ". Advance Infantry Division", "Advance Infantry Division", infLocation);
-					divisions.push_back(newDivision);
-					artilleryBrigades -= (infantryPerDivision / 3);
-					supportBrigades--;
-				}
-				else if ((3 * artilleryBrigades >= infantryPerDivision) || (supportBrigades >= 1))
-				{
-					// Med Placement
-					HoI4DivisionType newDivision(to_string(numMedium++) + ". Support Infantry Division", "Support Infantry Division", infLocation);
-					divisions.push_back(newDivision);
-					artilleryBrigades -= (infantryPerDivision / 3);
-					supportBrigades--;
-				}
-				else
-				{
-					// Bad Placement
-					HoI4DivisionType newDivision(to_string(numBasic++) + ". Basic Infantry Division", "Basic Infantry Division", infLocation);
-					divisions.push_back(newDivision);
-				}
-				infantryBrigades -= infantryPerDivision;
-				unitsInProv++;
-			}
-			else
-				break;
-		}
-	}
-	if (artilleryBrigades >= numAdvanced && advancedIndex != -1)
-	{
-		HoI4RegimentType artilleryRegiment("artillery", 0, 2);
-		divisionTemplates[advancedIndex].addSupportRegiment(artilleryRegiment);
-		artilleryBrigades -= numAdvanced;
-	}
-	if (artilleryBrigades >= numMedium && mediumIndex != -1)
-	{
-		HoI4RegimentType artilleryRegiment("artillery", 0, mediumSupport ? 2 : 0);
-		divisionTemplates[mediumIndex].addSupportRegiment(artilleryRegiment);
-		artilleryBrigades -= numMedium;
-	}
-	if (artilleryBrigades >= numBasic && basicIndex != -1)
-	{
-		HoI4RegimentType artilleryRegiment("artillery", 0, 0);
-		divisionTemplates[basicIndex].addSupportRegiment(artilleryRegiment);
-		artilleryBrigades -= numBasic;
-	}
-	if (artilleryBrigades >= numTank && tankIndex != -1)
-	{
-		HoI4RegimentType artilleryRegiment("artillery", 0, 0);
-		divisionTemplates[tankIndex].addSupportRegiment(artilleryRegiment);
-		artilleryBrigades -= numTank;
-	}*/
 }
 
 

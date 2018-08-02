@@ -44,8 +44,8 @@ class provinceMapper: commonItems::parser
 		provinceMapper() = default;
 		void initialize();
 
-		std::optional<std::vector<int>> getVic2ToHoI4ProvinceMapping(int Vic2Province);
-		std::optional<std::vector<int>> getHoI4ToVic2ProvinceMapping(int HoI4Province);
+		std::optional<std::vector<int>> getVic2ToHoI4ProvinceMapping(int Vic2Province) const;
+		std::optional<std::vector<int>> getHoI4ToVic2ProvinceMapping(int HoI4Province) const;
 
 	private:
 		provinceMapper(const provinceMapper&) = delete;
