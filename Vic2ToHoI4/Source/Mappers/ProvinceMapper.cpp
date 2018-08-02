@@ -23,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "ProvinceMapper.h"
 #include "Log.h"
+#include "OSCompatibilityLayer.h"
 #include "ParserHelpers.h"
 #include "../Configuration.h"
 #include <fstream>
@@ -144,7 +145,20 @@ void provinceMapper::initialize()
 	});
 
 	LOG(LogLevel::Info) << "Parsing province mappings";
-	parseFile("province_mappings.txt");
+	bool mapped = false;
+	for (auto mod: theConfiguration.getVic2Mods())
+	{
+		if (Utils::DoesFileExist(mod + "_province_mappings.txt"))
+		{
+			parseFile(mod + "_province_mappings.txt");
+			mapped = true;
+			break;
+		}
+	}
+	if (!mapped)
+	{
+		parseFile("province_mappings.txt");
+	}
 
 	checkAllHoI4ProvinesMapped();
 }
