@@ -518,19 +518,6 @@ void HoI4Country::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const
 				{
 					// Calculate how many Battalions and Companies are available after mapping Vic2 armies
 					localBattalionsAndCompanies[unitInfo.getType()] = localBattalionsAndCompanies[unitInfo.getType()] + unitInfo.getSize();
-					convertArmyDivisions(unitMap, divisionTemplates, localBattalionsAndCompanies, *provinceMapping->begin());
-					for (auto unit: localBattalionsAndCompanies)
-					{
-						auto remainingUnit = remainingBattalionsAndCompanies.find(unit.first);
-						if (remainingUnit != remainingBattalionsAndCompanies.end())
-						{
-							remainingUnit->second += unit.second;
-						}
-						else
-						{
-							remainingBattalionsAndCompanies.insert(unit);
-						}
-					}
 				}
 			}
 			else
@@ -538,13 +525,27 @@ void HoI4Country::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const
 				LOG(LogLevel::Warning) << "Unknown unit type: " << type;
 			}
 		}
+
+		convertArmyDivisions(divisionTemplates, localBattalionsAndCompanies, *provinceMapping->begin());
+		for (auto unit: localBattalionsAndCompanies)
+		{
+			auto remainingUnit = remainingBattalionsAndCompanies.find(unit.first);
+			if (remainingUnit != remainingBattalionsAndCompanies.end())
+			{
+				remainingUnit->second += unit.second;
+			}
+			else
+			{
+				remainingBattalionsAndCompanies.insert(unit);
+			}
+		}
 	}
 
-	convertArmyDivisions(unitMap, divisionTemplates, remainingBattalionsAndCompanies, capitalState->getVPLocation());
+	convertArmyDivisions(divisionTemplates, remainingBattalionsAndCompanies, capitalState->getVPLocation());
 }
 
 
-void HoI4Country::convertArmyDivisions(const std::map<std::string, HoI4::UnitMap>& unitMap, const std::vector<HoI4::DivisionTemplateType>& divisionTemplates, std::map<std::string, int>& BattalionsAndCompanies, int location)
+void HoI4Country::convertArmyDivisions(const std::vector<HoI4::DivisionTemplateType>& divisionTemplates, std::map<std::string, int>& BattalionsAndCompanies, int location)
 {
 	for (auto& divTemplate: divisionTemplates)
 	{
