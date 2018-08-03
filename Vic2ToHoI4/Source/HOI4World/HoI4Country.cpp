@@ -495,7 +495,7 @@ void HoI4Country::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const
 		return;
 	}
 
-	map<string, int> remainingBattalionsAndCompanies;
+	map<string, double> remainingBattalionsAndCompanies;
 
 	for (auto army : srcCountry->getArmies())
 	{
@@ -505,7 +505,7 @@ void HoI4Country::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const
 			continue;
 		}
 
-		map<string, int> localBattalionsAndCompanies;
+		map<string, double> localBattalionsAndCompanies;
 		for (auto regiment : army->getRegiments())
 		{
 			string type = regiment->getType();
@@ -517,7 +517,7 @@ void HoI4Country::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const
 				if (unitInfo.getCategory() == "land")
 				{
 					// Calculate how many Battalions and Companies are available after mapping Vic2 armies
-					localBattalionsAndCompanies[unitInfo.getType()] = localBattalionsAndCompanies[unitInfo.getType()] + unitInfo.getSize();
+					localBattalionsAndCompanies[unitInfo.getType()] = localBattalionsAndCompanies[unitInfo.getType()] + (unitInfo.getSize() * theConfiguration.getForceMultiplier());
 				}
 			}
 			else
@@ -545,7 +545,7 @@ void HoI4Country::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const
 }
 
 
-void HoI4Country::convertArmyDivisions(const std::vector<HoI4::DivisionTemplateType>& divisionTemplates, std::map<std::string, int>& BattalionsAndCompanies, int location)
+void HoI4Country::convertArmyDivisions(const std::vector<HoI4::DivisionTemplateType>& divisionTemplates, std::map<std::string, double>& BattalionsAndCompanies, int location)
 {
 	for (auto& divTemplate: divisionTemplates)
 	{

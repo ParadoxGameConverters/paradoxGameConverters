@@ -89,7 +89,7 @@ class HoI4Country
 		void convertConvoys(const map<string, HoI4::UnitMap>& unitMap);
 		void convertAirforce(const map<string, HoI4::UnitMap>& unitMap);
 		void convertArmies(const std::map<std::string, HoI4::UnitMap>& unitMap, const std::vector<HoI4::DivisionTemplateType>& divisionTemplates);
-		void convertArmyDivisions(const std::vector<HoI4::DivisionTemplateType>& divisionTemplates, std::map<std::string, int>& BattalionsAndCompanies, int location);
+		void convertArmyDivisions(const std::vector<HoI4::DivisionTemplateType>& divisionTemplates, std::map<std::string, double>& BattalionsAndCompanies, int location);
 		void		setTechnology(const string& tech, int level);
 		void		setResearchBonus(const string& tech, int bonus);
 		void addState(HoI4::State* _state);
