@@ -62,6 +62,7 @@ class HoI4Ideology;
 namespace HoI4
 {
 class Advisor;
+class coastalProvinces;
 class namesMapper;
 class State;
 class World;
@@ -85,7 +86,7 @@ class HoI4Country
 		void convertGovernment(const Vic2::World& _srcWorld, const governmentMapper& governmentMap);
 		void convertParties(const set<string>& majorIdeologies, const governmentMapper& governmentMap);
 		void convertIdeologySupport(const set<string>& majorIdeologies, const governmentMapper& governmentMap);
-		void convertNavy(const map<string, HoI4::UnitMap>& unitMap);
+		void convertNavies(const map<string, HoI4::UnitMap>& unitMap, const HoI4::coastalProvinces& theCoastalProvinces);
 		void convertConvoys(const map<string, HoI4::UnitMap>& unitMap);
 		void convertAirforce(const map<string, HoI4::UnitMap>& unitMap);
 		void convertArmies(const std::map<std::string, HoI4::UnitMap>& unitMap, const std::vector<HoI4::DivisionTemplateType>& divisionTemplates);
@@ -248,9 +249,8 @@ class HoI4Country
 
 		// military stuff
 		vector<HoI4::DivisionType>				divisions;
-		vector<HoI4Ship>							ships;
+		vector<HoI4::Navy> navies;
 		vector<HoI4Airplane>						planes;
-		int											navalLocation;
 		map<string, int>							equipmentStockpile;
 
 		shared_ptr<HoI4FocusTree> nationalFocus;

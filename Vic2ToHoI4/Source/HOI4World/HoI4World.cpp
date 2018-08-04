@@ -1085,7 +1085,7 @@ void HoI4::World::convertNavies(const map<string, HoI4::UnitMap>& unitMap)
 
 	for (auto country : countries)
 	{
-		country.second->convertNavy(unitMap);
+		country.second->convertNavies(unitMap, theCoastalProvinces);
 		country.second->convertConvoys(unitMap);
 	}
 }

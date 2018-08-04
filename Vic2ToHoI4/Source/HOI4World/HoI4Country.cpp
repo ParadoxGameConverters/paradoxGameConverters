@@ -89,9 +89,7 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 	tradeLaw("export_focus"),
 	greatPower(false),
 	divisions(),
-	ships(),
 	planes(),
-	navalLocation(0),
 	equipmentStockpile(),
 	nationalFocus(nullptr)
 {
@@ -399,31 +397,9 @@ void HoI4Country::convertIdeologySupport(const set<string>& majorIdeologies, con
 }
 
 
-void HoI4Country::convertNavy(const map<string, HoI4::UnitMap>& unitMap)
+void HoI4Country::convertNavies(const map<string, HoI4::UnitMap>& unitMap, const HoI4::coastalProvinces& theCoastalProvinces)
 {
-	for (auto army : srcCountry->getArmies())
-	{
-		for (auto regiment : army->getRegiments())
-		{
-			string type = regiment->getType();
-			
-			if (unitMap.count(type) > 0)
-			{
-				HoI4::UnitMap unitInfo = unitMap.at(type);
-
-				if (unitInfo.getCategory() == "naval") {
-					// Ships get mapped
-					HoI4Ship newShip(regiment->getName(),unitInfo.getType(),unitInfo.getEquipment(), tag);
-					ships.push_back(newShip);
-				}
-			}
-			else
-			{
-				LOG(LogLevel::Warning) << "Unknown unit type: " << type;
-			}
-		}
-	}
-
+	int backupNavalLocation = 0;
 	for (auto state: states)
 	{
 		if (state.second->getOwner() == tag)
@@ -432,11 +408,55 @@ void HoI4Country::convertNavy(const map<string, HoI4::UnitMap>& unitMap)
 			if (mainNavalLocation)
 			{
 				// Mapped ships will be placed in a single large fleet
-				navalLocation = *mainNavalLocation;
+				backupNavalLocation = *mainNavalLocation;
 			}
 		}
 	}
+
+	for (auto army: srcCountry->getArmies())
+	{
+		int navalLocation = backupNavalLocation;
+		auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(army->getLocation());
+		if (mapping)
+		{
+			for (auto possibleProvince: *mapping)
+			{
+				if (theCoastalProvinces.isProvinceCoastal(possibleProvince))
+				{
+					navalLocation = possibleProvince;
+					break;
+				}
+			}
+		}
+
+		HoI4::Navy newNavy(army->getName(), navalLocation);
+
+		for (auto regiment : army->getRegiments())
+		{
+			string type = regiment->getType();
+			if (unitMap.count(type) > 0)
+			{
+				HoI4::UnitMap unitInfo = unitMap.at(type);
+
+				if (unitInfo.getCategory() == "naval")
+				{
+					HoI4::Ship newShip(regiment->getName(),unitInfo.getType(),unitInfo.getEquipment(), tag);
+					newNavy.addShip(newShip);
+				}
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Unknown unit type: " << type;
+			}
+		}
+
+		if (newNavy.getNumShips() > 0)
+		{
+			navies.push_back(newNavy);
+		}
+	}
 }
+
 
 void HoI4Country::convertConvoys(const map<string, HoI4::UnitMap>& unitMap)
 {
@@ -450,9 +470,10 @@ void HoI4Country::convertConvoys(const map<string, HoI4::UnitMap>& unitMap)
 			{
 				HoI4::UnitMap unitInfo = unitMap.at(type);
 
-				if (unitInfo.getCategory() == "convoy") {
+				if (unitInfo.getCategory() == "convoy")
+				{
 					// Convoys get placed in national stockpile
-					convoys = convoys + 1;
+					convoys = convoys + unitInfo.getSize();
 				}
 			}
 			else
@@ -462,6 +483,7 @@ void HoI4Country::convertConvoys(const map<string, HoI4::UnitMap>& unitMap)
 		}
 	}
 }
+
 
 void HoI4Country::convertAirforce(const map<string, HoI4::UnitMap>& unitMap)
 {
@@ -1376,16 +1398,9 @@ void HoI4Country::outputOOB(const vector<HoI4::DivisionTemplateType>& divisionTe
 	{
 		output << division;
 	}
-	if (ships.size() > 0)
+	for (auto& navy: navies)
 	{
-		output << "\tnavy = {" << endl;
-		output << "\t\tname = \"Grand Fleet\"" << endl;
-		output << "\t\tlocation = " << navalLocation << endl;
-		for (auto& ship : ships)
-		{
-			output << ship;
-		}
-		output << "\t}" << endl;
+		output << navy;
 	}
 	output << "}\n";
 	if (planes.size() > 0)
