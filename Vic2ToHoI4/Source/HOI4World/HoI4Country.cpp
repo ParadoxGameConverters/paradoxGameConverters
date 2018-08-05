@@ -71,7 +71,6 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 	puppets(),
 	puppetMaster(""),
 	practicals(),
-	leaders(),
 	graphicalCulture("western_european_gfx"),
 	graphicalCulture2d("western_european_2d"),
 	majorNation(false),
@@ -152,7 +151,7 @@ void HoI4Country::initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Co
 	}
 
 	convertLaws();
-	//convertLeaders(portraitMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+	convertLeaders(theGraphics);
 	convertRelations(countryMap);
 
 	determineCapitalFromVic2(stateMap, states);
@@ -267,17 +266,20 @@ void HoI4Country::convertLaws()
 }
 
 
-/*void HoI4Country::convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4Country::convertLeaders(const graphicsMapper& theGraphics)
 {
-	vector<V2Leader*> srcLeaders = srcCountry->getLeaders();
-	for (auto srcLeader : srcLeaders)
+	auto srcLeaders = srcCountry->getLeaders();
+	for (auto srcLeader: srcLeaders)
 	{
-		HoI4Leader newLeader(srcLeader, tag, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, portraitMap[graphicalCulture]);
-		leaders.push_back(newLeader);
+		if (srcLeader->getType() == "land")
+		{
+			HoI4::General newLeader(srcLeader, theGraphics.getGeneralPortrait(graphicalCulture));
+			generals.push_back(newLeader);
+		}
 	}
 
 	theConfiguration.setLeaderIDForNextCountry();
-}*/
+}
 
 
 void HoI4Country::convertRelations(const CountryMapper& countryMap)
@@ -918,6 +920,7 @@ void HoI4Country::outputHistory(HoI4::namesMapper& theNames, graphicsMapper& the
 	outputStability(output);
 	outputWarSupport(output);
 	outputCountryLeader(output, theNames, theGraphics);
+	outputGenerals(output);
 
 	output.close();
 }
@@ -1242,6 +1245,16 @@ void HoI4Country::outputCountryLeader(ofstream& output, HoI4::namesMapper& theNa
 	else
 	{
 		LOG(LogLevel::Warning) << "Could not set leader for " + tag + ", as there were no names.";
+	}
+}
+
+
+void HoI4Country::outputGenerals(ofstream& output) const
+{
+	for (auto general: generals)
+	{
+		output << general;
+		output << "\n";
 	}
 }
 

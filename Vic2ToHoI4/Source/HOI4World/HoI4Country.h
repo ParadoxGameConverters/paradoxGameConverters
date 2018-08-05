@@ -157,7 +157,7 @@ class HoI4Country
 		void determineFilename();
 		void initIdeas(HoI4::namesMapper& theNames);
 		void convertLaws();
-		//void convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void convertLeaders(const graphicsMapper& theGraphics);
 		void convertRelations(const CountryMapper& countryMap);
 		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4::State*>& states);
 		bool isStateValidForCapital(int capitalState, const map<int, HoI4::State*>& states);
@@ -187,6 +187,7 @@ class HoI4Country
 		void outputStability(ofstream& output) const;
 		void outputWarSupport(ofstream& output) const;
 		void outputCountryLeader(ofstream& output, HoI4::namesMapper& theNames, graphicsMapper& theGraphics) const;
+		void outputGenerals(ofstream& output) const;
 		void outputOOBLine(ofstream& output) const;
 		void outputCommonCountryFile() const;
 		void outputAdvisorIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const;
@@ -225,7 +226,7 @@ class HoI4Country
 		set<string> puppets;
 		string puppetMaster;
 		map<string, double>				practicals;
-		vector<HoI4Leader>				leaders;
+		std::vector<HoI4::General> generals;
 		string graphicalCulture;
 		string graphicalCulture2d;
 		bool									majorNation;

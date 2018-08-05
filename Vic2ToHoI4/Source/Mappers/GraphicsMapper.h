@@ -49,6 +49,7 @@ class graphicsMapper: commonItems::parser
 
 		std::string getLeaderPortrait(const std::string& cultureGroup, const std::string& ideology);
 		std::string getIdeologyMinisterPortrait(const std::string& cultureGroup, const std::string& ideology);
+		std::string getGeneralPortrait(const std::string& cultureGroup) const;
 		std::optional<std::string> getGraphicalCulture(const std::string& cultureGroup) const;
 		std::optional<std::string> get2dGraphicalCulture(const std::string& cultureGroup) const;
 

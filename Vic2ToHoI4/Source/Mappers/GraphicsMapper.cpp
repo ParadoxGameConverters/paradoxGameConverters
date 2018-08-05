@@ -187,6 +187,12 @@ std::string graphicsMapper::getIdeologyMinisterPortrait(const std::string& cultu
 }
 
 
+std::string graphicsMapper::getGeneralPortrait(const std::string& cultureGroup) const
+{
+	return "";
+}
+
+
 std::optional<std::vector<std::string>> graphicsMapper::getIdeologyMinisterPortraits(const std::string& cultureGroup, const std::string& ideology) const
 {
 	if (auto mapping = ideologyMinisterMappings.find(cultureGroup); mapping != ideologyMinisterMappings.end())
