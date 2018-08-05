@@ -187,7 +187,7 @@ class HoI4Country
 		void outputStability(ofstream& output) const;
 		void outputWarSupport(ofstream& output) const;
 		void outputCountryLeader(ofstream& output, HoI4::namesMapper& theNames, graphicsMapper& theGraphics) const;
-		void outputGenerals(ofstream& output) const;
+		void outputCommanders(ofstream& output) const;
 		void outputOOBLine(ofstream& output) const;
 		void outputCommonCountryFile() const;
 		void outputAdvisorIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const;
@@ -226,7 +226,6 @@ class HoI4Country
 		set<string> puppets;
 		string puppetMaster;
 		map<string, double>				practicals;
-		std::vector<HoI4::General> generals;
 		string graphicalCulture;
 		string graphicalCulture2d;
 		bool									majorNation;
@@ -249,10 +248,12 @@ class HoI4Country
 		bool greatPower;
 
 		// military stuff
-		vector<HoI4::DivisionType>				divisions;
+		vector<HoI4::DivisionType> divisions;
 		vector<HoI4::Navy> navies;
-		vector<HoI4Airplane>						planes;
-		map<string, int>							equipmentStockpile;
+		vector<HoI4Airplane> planes;
+		map<string, int> equipmentStockpile;
+		std::vector<HoI4::General> generals;
+		std::vector<HoI4::Admiral> admirals;
 
 		shared_ptr<HoI4FocusTree> nationalFocus;
 };

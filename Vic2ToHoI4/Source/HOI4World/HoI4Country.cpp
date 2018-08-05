@@ -276,6 +276,11 @@ void HoI4Country::convertLeaders(const graphicsMapper& theGraphics)
 			HoI4::General newLeader(srcLeader, theGraphics.getGeneralPortrait(graphicalCulture));
 			generals.push_back(newLeader);
 		}
+		else if (srcLeader->getType() == "sea")
+		{
+			HoI4::Admiral newLeader(srcLeader, theGraphics.getGeneralPortrait(graphicalCulture));
+			admirals.push_back(newLeader);
+		}
 	}
 
 	theConfiguration.setLeaderIDForNextCountry();
@@ -920,7 +925,7 @@ void HoI4Country::outputHistory(HoI4::namesMapper& theNames, graphicsMapper& the
 	outputStability(output);
 	outputWarSupport(output);
 	outputCountryLeader(output, theNames, theGraphics);
-	outputGenerals(output);
+	outputCommanders(output);
 
 	output.close();
 }
@@ -1249,11 +1254,16 @@ void HoI4Country::outputCountryLeader(ofstream& output, HoI4::namesMapper& theNa
 }
 
 
-void HoI4Country::outputGenerals(ofstream& output) const
+void HoI4Country::outputCommanders(ofstream& output) const
 {
 	for (auto general: generals)
 	{
 		output << general;
+		output << "\n";
+	}
+	for (auto admiral: admirals)
+	{
+		output << admiral;
 		output << "\n";
 	}
 }

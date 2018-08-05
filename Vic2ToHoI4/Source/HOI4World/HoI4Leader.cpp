@@ -35,31 +35,15 @@ HoI4::General::General(const Vic2::Leader* srcLeader, const std::string& portrai
 		skill = 4;
 	}
 
-	/*if (type == "land")
+	/*auto possiblePersonalities = landPersonalityMap.find(srcLeader->getPersonality());
+	if ((possiblePersonalities != landPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
 	{
-		auto possiblePersonalities = landPersonalityMap.find(srcLeader->getPersonality());
-		if ((possiblePersonalities != landPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
-		{
-			traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
-		}
-		auto possibleBackgrounds = landBackgroundMap.find(srcLeader->getBackground());
-		if ((possibleBackgrounds != landBackgroundMap.end()) && (possibleBackgrounds->second.size() > 0))
-		{
-			traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
-		}
+		traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
 	}
-	else if (type == "sea")
+	auto possibleBackgrounds = landBackgroundMap.find(srcLeader->getBackground());
+	if ((possibleBackgrounds != landBackgroundMap.end()) && (possibleBackgrounds->second.size() > 0))
 	{
-		auto possiblePersonalities = seaPersonalityMap.find(srcLeader->getPersonality());
-		if ((possiblePersonalities != seaPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
-		{
-			traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
-		}
-		auto possibleBackgrounds = seaBackgroundMap.find(srcLeader->getBackground());
-		if ((possibleBackgrounds != seaBackgroundMap.end()) && (possibleBackgrounds->second.size() > 0))
-		{
-			traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
-		}
+		traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
 	}*/
 }
 
@@ -80,6 +64,47 @@ std::ofstream& HoI4::operator<< (std::ofstream& output, const HoI4::General& ins
 	output << "\tdefense_skill = " << instance.defenseSkill << "\n";
 	output << "\tplanning_skill = " << instance.planningSkill << "\n";
 	output << "\tlogistics_skill = " << instance.logisticsSkill << "\n";
+	output << "}\n";
+
+	return output;
+}
+
+
+HoI4::Admiral::Admiral(const Vic2::Leader* srcLeader, const std::string& portrait):
+	name(srcLeader->getName()),
+	skill(static_cast<int>(srcLeader->getPrestige() * 22.5f) + 1),
+	picture(portrait)
+{
+	if (skill > 4)
+	{
+		skill = 4;
+	}
+
+	/*auto possiblePersonalities = seaPersonalityMap.find(srcLeader->getPersonality());
+	if ((possiblePersonalities != seaPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
+	{
+		traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
+	}
+	auto possibleBackgrounds = seaBackgroundMap.find(srcLeader->getBackground());
+	if ((possibleBackgrounds != seaBackgroundMap.end()) && (possibleBackgrounds->second.size() > 0))
+	{
+		traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
+	}*/
+}
+
+
+std::ofstream& HoI4::operator<< (std::ofstream& output, const HoI4::Admiral& instance)
+{
+	output << "create_navy_leader = {\n";
+	output << "\tname = \"" << instance.name << "\"\n";
+	output << "\tpicture = \"" << instance.picture << "\"\n";
+	output << "\ttraits = { ";
+	for (auto trait: instance.traits)
+	{
+		output << trait << " ";
+	}
+	output << "}\n";
+	output << "\tskill = " << instance.skill << "\n";
 	output << "}\n";
 
 	return output;

@@ -55,6 +55,24 @@ class General
 		int logisticsSkill = 1;
 };
 
+
+class Admiral
+{
+	public:
+		Admiral(const Vic2::Leader* srcLeader, const std::string& portrait);
+		Admiral(const Admiral&) = default;
+
+		friend std::ofstream& operator << (std::ofstream& output, const Admiral& instance);
+
+	private:
+		Admiral& operator=(const Admiral&) = delete;
+
+		std::string name;
+		std::string picture;
+		std::vector<std::string> traits;
+		int skill = 1;
+};
+
 }
 
 
