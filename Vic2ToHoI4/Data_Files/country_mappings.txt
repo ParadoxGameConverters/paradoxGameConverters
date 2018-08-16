@@ -84,7 +84,7 @@ link = { vic = ISR hoi = ISR } # Israel
 link = { vic = ITA hoi = ITA } # Italy
 link = { vic = JAP hoi = JAP } # Japan
 link = { vic = JOR hoi = JOR } # Jordan (NNM)
-link = { vic = KZH hoi = KAZ } # Kazakhstan
+link = { vic = KAZ hoi = KAZ } # Kazakhstan
 link = { vic = KNY hoi = KEN } # Kenya (HPM)
 link = { vic = SWA hoi = KEN } # Swahili => Kenya
 link = { vic = KYR hoi = KGZ } # Kyrgyzstan (PDM)
@@ -184,7 +184,7 @@ link = { vic = QUE hoi = QUE } # Quebec
 link = { vic = SWK hoi = SAR } # Sarawak (PDM)
 link = { vic = SCA hoi = SCA } # Scandinavia
 link = { vic = SCO hoi = SCO } # Scotland
-link = { vic = SIB hoi = SIB } # Sibir => Siberia
+link = { vic = SIB hoi = SIB } # Siberia
 link = { vic = SOM hoi = SOM } # Somalia (PDM)
 link = { vic = SUD hoi = NUB } # Sudan (PDM)
 link = { vic = NUB hoi = NUB } # Funj => Sudan
