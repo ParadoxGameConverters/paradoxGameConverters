@@ -1915,4 +1915,28 @@ spriteTypes = {
 		texturefile = "gfx/interface/culture/culture_african_native.dds"
 	}
 
+	spriteType = {
+		name = "GFX_idea_culture_afro_norse"
+		texturefile = "gfx/interface/goals/focus_SAF_german_coup.dds"
+	}
+
+	spriteType = {
+		name = "GFX_idea_culture_afro_carpathian"
+		texturefile = "gfx/interface/culture/culture_negru.dds"
+	}
+
+	spriteType = {
+		name = "GFX_idea_culture_afro_italian"
+		texturefile = "gfx/interface/culture/culture_africano.dds"
+	}
+
+	spriteType = {
+		name = "GFX_idea_culture_afro_greek"
+		texturefile = "gfx/interface/culture/culture_mavro.dds"
+	}
+
+	spriteType = {
+		name = "GFX_idea_culture_afro_slavic"
+		texturefile = "gfx/interface/culture/culture_smugly.dds"
+	}
 }

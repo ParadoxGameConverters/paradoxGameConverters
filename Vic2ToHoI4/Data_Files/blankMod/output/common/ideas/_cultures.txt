@@ -2715,5 +2715,40 @@ ideas = {
 			modifier = { }
 		}
 
+
+		culture_afro_norse = {
+			removal_cost = -1
+			allowed = { always = no } allowed_civil_war = { always = yes }
+			picture = culture_afro_norse
+			modifier = { }
+		}
+
+		culture_afro_carpathian = {
+			removal_cost = -1
+			allowed = { always = no } allowed_civil_war = { always = yes }
+			picture = culture_afro_carpathian
+			modifier = { }
+		}
+
+		culture_afro_italian = {
+			removal_cost = -1
+			allowed = { always = no } allowed_civil_war = { always = yes }
+			picture = culture_afro_italian
+			modifier = { }
+		}
+
+		culture_afro_greek = {
+			removal_cost = -1
+			allowed = { always = no } allowed_civil_war = { always = yes }
+			picture = culture_afro_greek
+			modifier = { }
+		}
+
+		culture_afro_slavic = {
+			removal_cost = -1
+			allowed = { always = no } allowed_civil_war = { always = yes }
+			picture = culture_afro_slavic
+			modifier = { }
+		}
 	}
 }
