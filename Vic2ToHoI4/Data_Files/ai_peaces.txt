@@ -1053,26 +1053,6 @@ fascist_peace = {
 				}
 			}
 		}
-		modifier = { #Caribbean islands only take islands for now - might consider expanding later.
-			factor = 0
-			NOT = { 
-				FROM = { 
-					OR = {
-						is_claimed_by = ROOT
-						is_core_of = ROOT
-					}
-				} 
-			}
-			FROM = { 
-				OR = {
-					is_island_state = no
-					AND = {
-						NOT = { is_on_continent = south_america }
-						NOT = { is_on_continent = north_america }
-					}
-				}
-			}
-		}
 		modifier = { #Old World AI will generally stick to the old world and new world to the new.
 			factor = 0
 			NOT = { 
