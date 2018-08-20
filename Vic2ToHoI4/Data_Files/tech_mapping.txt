@@ -140,6 +140,12 @@ tech_map =
 		vic2 = modern_battleships
 		basic_battleship = 1
 	}
+	
+	# HoI4 transport
+	link = {
+		vic2 = steamer_transports
+		transport = 1
+	}
 
 	# ============================
 	# === HOI4 AIRCRAFT FOLDER ===
