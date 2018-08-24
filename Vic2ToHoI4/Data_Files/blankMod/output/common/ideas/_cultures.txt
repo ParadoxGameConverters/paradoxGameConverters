@@ -2750,5 +2750,12 @@ ideas = {
 			picture = culture_afro_slavic
 			modifier = { }
 		}
+
+		culture_aromanian = {
+			removal_cost = -1
+			allowed = { always = no } allowed_civil_war = { always = yes }
+			picture = culture_aromanian
+			modifier = { }
+		}
 	}
 }
