@@ -1939,4 +1939,9 @@ spriteTypes = {
 		name = "GFX_idea_culture_afro_slavic"
 		texturefile = "gfx/interface/culture/culture_smugly.dds"
 	}
+
+	spriteType = {
+		name = "GFX_idea_culture_aromanian"
+		texturefile = "gfx/interface/culture/culture_aromanian.dds"
+	}
 }
