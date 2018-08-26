@@ -59,9 +59,10 @@ std::ofstream& HoI4::operator << (std::ofstream& output, const HoI4::Ship& insta
 }
 
 
-HoI4::Navy::Navy(const std::string& _name, int _location):
+HoI4::Navy::Navy(const std::string& _name, int _location, int _base):
 	name(_name),
-	location(_location)
+	location(_location),
+	base(_base)
 {}
 
 
@@ -69,6 +70,7 @@ std::ofstream& HoI4::operator << (std::ofstream& output, const HoI4::Navy& insta
 {
 	output << "\tnavy = {\n";
 	output << "\t\tname = \"" << instance.name << "\"\n";
+	output << "\t\tbase = " << instance.base << "\n";
 	output << "\t\tlocation = " << instance.location << "\n";
 	for (auto& ship: instance.ships)
 	{

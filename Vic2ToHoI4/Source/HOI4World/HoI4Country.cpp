@@ -33,6 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/GovernmentMapper.h"
 #include "../Mappers/GraphicsMapper.h"
+#include "../Mappers/ProvinceDefinitions.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/Relations.h"
 #include "../V2World/Party.h"
@@ -404,7 +405,7 @@ void HoI4Country::convertIdeologySupport(const set<string>& majorIdeologies, con
 }
 
 
-void HoI4Country::convertNavies(const map<string, HoI4::UnitMap>& unitMap, const HoI4::coastalProvinces& theCoastalProvinces)
+void HoI4Country::convertNavies(const map<string, HoI4::UnitMap>& unitMap, const HoI4::coastalProvinces& theCoastalProvinces, const std::map<int, int>& provinceToStateIDMap)
 {
 	int backupNavalLocation = 0;
 	for (auto state: states)
@@ -423,20 +424,40 @@ void HoI4Country::convertNavies(const map<string, HoI4::UnitMap>& unitMap, const
 	for (auto army: srcCountry->getArmies())
 	{
 		int navalLocation = backupNavalLocation;
+		int base = backupNavalLocation;
+
 		auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(army->getLocation());
 		if (mapping)
 		{
 			for (auto possibleProvince: *mapping)
 			{
-				if (theCoastalProvinces.isProvinceCoastal(possibleProvince))
+				if (provinceDefinitions::isSeaProvince(possibleProvince))
 				{
 					navalLocation = possibleProvince;
 					break;
 				}
+				else
+				{
+					if (provinceToStateIDMap.find(possibleProvince) != provinceToStateIDMap.end())
+					{
+						int stateID = provinceToStateIDMap.at(possibleProvince);
+						if (states.find(stateID) != states.end())
+						{
+							auto state = states.at(stateID);
+							auto mainNavalLocation = state->getMainNavalLocation();
+							if (mainNavalLocation)
+							{
+								navalLocation = *mainNavalLocation;
+								base = *mainNavalLocation;
+								break;
+							}
+						}
+					}
+				}
 			}
 		}
 
-		HoI4::Navy newNavy(army->getName(), navalLocation);
+		HoI4::Navy newNavy(army->getName(), navalLocation, base);
 
 		for (auto regiment : army->getRegiments())
 		{

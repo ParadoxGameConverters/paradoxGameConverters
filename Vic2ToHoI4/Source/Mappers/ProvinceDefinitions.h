@@ -45,6 +45,10 @@ class provinceDefinitions
 		{
 			return (getInstance()->landProvinces.count(province) > 0);
 		}
+		static const bool isSeaProvince(int province)
+		{
+			return (getInstance()->seaProvinces.count(province) > 0);
+		}
 
 		static optional<int> getProvinceFromColor(const ConverterColor::Color& color)
 		{
@@ -72,6 +76,7 @@ class provinceDefinitions
 		int getIntFromColor(const ConverterColor::Color& color) const;
 
 		set<int> landProvinces;
+		set<int> seaProvinces;
 		map<int, int> colorToProvinceMap;	// colors are a packed integer to work around some issues. If you can get Colors to work directly, please replace this hack.
 };
 

@@ -86,7 +86,7 @@ class HoI4Country
 		void convertGovernment(const Vic2::World& _srcWorld, const governmentMapper& governmentMap);
 		void convertParties(const set<string>& majorIdeologies, const governmentMapper& governmentMap);
 		void convertIdeologySupport(const set<string>& majorIdeologies, const governmentMapper& governmentMap);
-		void convertNavies(const map<string, HoI4::UnitMap>& unitMap, const HoI4::coastalProvinces& theCoastalProvinces);
+		void convertNavies(const map<string, HoI4::UnitMap>& unitMap, const HoI4::coastalProvinces& theCoastalProvinces, const std::map<int, int>& provinceToStateIDMap);
 		void convertConvoys(const map<string, HoI4::UnitMap>& unitMap);
 		void convertAirforce(const map<string, HoI4::UnitMap>& unitMap);
 		void convertArmies(const std::map<std::string, HoI4::UnitMap>& unitMap, const std::vector<HoI4::DivisionTemplateType>& divisionTemplates);

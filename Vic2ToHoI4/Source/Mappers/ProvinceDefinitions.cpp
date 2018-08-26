@@ -82,6 +82,10 @@ provinceDefinitions::provinceDefinitions() noexcept:
 		{
 			landProvinces.insert(provNum);
 		}
+		else if (line == "sea")
+		{
+			seaProvinces.insert(provNum);
+		}
 	}
 }
 
