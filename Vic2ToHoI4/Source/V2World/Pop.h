@@ -40,6 +40,8 @@ namespace Vic2
 		public:
 			explicit Pop(const std::string& typeString, std::istream& theStream);
 
+			static Pop* getByID(const int idx);
+
 			int getSize() const { return size; }
 			std::string getType() const { return type; }
 			std::string getCulture() const { return culture; }
@@ -48,6 +50,7 @@ namespace Vic2
 			std::map<std::string, float> getIssues() const { return popIssues; }
 
 			float getIssue(const std::string& issueName) const;
+			int getID() const {return id;}
 
 		private:
 			Pop(const Pop&) = delete;
@@ -60,8 +63,11 @@ namespace Vic2
 			double literacy = 0.0;
 			double consciousness = 0.0;
 			double militancy = 0.0;
+                        int id = 0;
 			std::map<std::string, float> popIssues;
-	};
+
+			static std::map<int, Pop*> pop_map;
+        };
 }
 
 

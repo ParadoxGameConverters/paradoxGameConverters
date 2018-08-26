@@ -25,6 +25,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define PARSER_HELPERS_H
 
 
+#include <map>
+
 
 #include "newParser.h"
 
@@ -62,6 +64,19 @@ class singleInt: commonItems::parser
 		int theInt;
 };
 
+// Parses an object where each entry is a simple assignment, key = value.
+// Nested objects, key = { ... }, are ignored.
+class simpleObject : commonItems::parser
+{
+        public:
+                explicit simpleObject(std::istream& theStream);
+
+                std::string getValue(const std::string& key) const;
+                int getValueAsInt(const std::string& key) const;
+
+        private:
+                std::map<std::string, std::string> values;
+};
 
 class doubleList: commonItems::parser
 {

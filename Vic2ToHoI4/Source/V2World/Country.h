@@ -74,7 +74,8 @@ class Country: commonItems::parser
 		std::map<std::string, const Relations*> getRelations() const { return relations; }
 		std::vector<State*> getStates() const { return states; }
 		std::string getTag() const { return tag; }
-		std::string getPrimaryCulture() const { return primaryCulture; }
+                std::string getIdentifier() const;
+                std::string getPrimaryCulture() const { return primaryCulture; }
 		std::string getPrimaryCultureGroup() const { return primaryCultureGroup; }
 		std::set<std::string> getAcceptedCultures() const { return acceptedCultures; }
 		bool isAnAcceptedCulture(const std::string& culture) const { return (acceptedCultures.count(culture) > 0); }

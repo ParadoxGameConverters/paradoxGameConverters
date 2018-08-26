@@ -373,6 +373,16 @@ void Vic2::Country::setLocalisationAdjective(const string& language, const strin
 	}
 }
 
+std::string Vic2::Country::getIdentifier() const
+{
+        std::string ret = getTag();
+        auto name = getName("english");
+        if (name)
+        {
+                ret += " (" + name.value() + ")";
+        }
+        return ret;
+}
 
 optional<string> Vic2::Country::getName(const string& language) const
 {
