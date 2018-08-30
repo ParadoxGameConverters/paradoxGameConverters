@@ -538,6 +538,21 @@ void HoI4Country::convertAirforce(const map<string, HoI4::UnitMap>& unitMap)
 	}	
 }
 
+bool sufficientUnits(map<string, double>& units, map<string, string> subs,
+                     map<string, int>& req)
+{
+        for (auto unit : req)
+        {
+                int available = units[unit.first];
+                available += units[subs[unit.first]];
+                if (available < unit.second)
+                {
+                        return false;
+                }
+        }
+        return true;
+}
+
 void HoI4Country::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates)
 {
 	if (capitalState == nullptr)
@@ -567,7 +582,7 @@ void HoI4Country::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const
 				if (unitInfo.getCategory() == "land")
 				{
 					// Calculate how many Battalions and Companies are available after mapping Vic2 armies
-					localBattalionsAndCompanies[unitInfo.getType()] = localBattalionsAndCompanies[unitInfo.getType()] + (unitInfo.getSize() * theConfiguration.getForceMultiplier());
+					localBattalionsAndCompanies[unitInfo.getType()] += (unitInfo.getSize() * theConfiguration.getForceMultiplier());
 				}
 			}
 			else
@@ -597,9 +612,11 @@ void HoI4Country::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const
 
 void HoI4Country::convertArmyDivisions(const std::vector<HoI4::DivisionTemplateType>& divisionTemplates, std::map<std::string, double>& BattalionsAndCompanies, int location)
 {
+        map<string, string> substitutes;
+        substitutes["artillery"] = "artillery_brigade";
 	for (auto& divTemplate: divisionTemplates)
 	{
-		// for each template determine the Battalion and Company requirements
+		// For each template determine the Battalion and Company requirements.
 		int divisionCounter = 1;
 
 		map<string, int> templateRequirements;
@@ -612,37 +629,31 @@ void HoI4Country::convertArmyDivisions(const std::vector<HoI4::DivisionTemplateT
 			templateRequirements[regiment.getType()] = templateRequirements[regiment.getType()] + 1;
 		}
 
-		bool sufficientUnits = true;
-		for (auto unit : templateRequirements)
-		{
-			if (BattalionsAndCompanies[unit.first] < unit.second)
-			{
-				sufficientUnits = false;
-			}
-		}
+                // Create new divisions as long as sufficient Victoria units exist,
+                // otherwise move on to next template.
+                while (sufficientUnits(BattalionsAndCompanies, substitutes,
+                                       templateRequirements))
+                {
+                        HoI4::DivisionType newDivision(to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), capitalState->getVPLocation());
 
-		// Create new divisions as long as sufficient units exist, otherwise move on to next template
-		while (sufficientUnits == true) 
-		{
-			HoI4::DivisionType newDivision(to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), location);
-			divisionCounter = divisionCounter + 1;
-			divisions.push_back(newDivision);
-
-			for (auto unit : templateRequirements)
-			{
-				BattalionsAndCompanies[unit.first] = BattalionsAndCompanies[unit.first] - unit.second;
-			}
-
-			sufficientUnits = true;
-			for (auto unit : templateRequirements)
-			{
-				if (BattalionsAndCompanies[unit.first] < unit.second)
-				{
-					sufficientUnits = false;
-				}
-			}
-		}	
-	}
+                        for (auto& unit : templateRequirements)
+                        {
+                                for (int i = 0; i < unit.second; ++i)
+                                {
+                                        if (BattalionsAndCompanies[unit.first] > 0)
+                                        {
+                                                BattalionsAndCompanies[unit.first]--;
+                                        }
+                                        else
+                                        {
+                                                BattalionsAndCompanies[substitutes[unit.first]]--;
+                                        }
+                                }
+                        }
+                        divisionCounter++;
+                        divisions.push_back(newDivision);
+                }
+        }
 }
 
 
