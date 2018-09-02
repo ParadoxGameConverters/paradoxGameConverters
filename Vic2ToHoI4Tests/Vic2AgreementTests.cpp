@@ -8,7 +8,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 
 
-namespace Vic2ToHoI4Tests
+namespace Vic2WorldTests
 {
 
 TEST_CLASS(Vic2AgreementTests)

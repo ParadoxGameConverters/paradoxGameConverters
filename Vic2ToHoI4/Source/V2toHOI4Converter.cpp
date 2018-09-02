@@ -70,13 +70,15 @@ int main(const int argc, const char* argv[])
 
 
 void checkMods();
-void getOutputName(const string& V2SaveFileName);
+void setOutputName(const string& V2SaveFileName);
+void clearOutputFolder();
 void output(HoI4::World& destWorld);
 void ConvertV2ToHoI4(const string& V2SaveFileName)
 {
 	ConfigurationFile("configuration.txt");
 	checkMods();
-	getOutputName(V2SaveFileName);
+	setOutputName(V2SaveFileName);
+	clearOutputFolder();
 
 	theProvinceMapper.initialize();
 
@@ -119,15 +121,41 @@ void checkMods()
 }
 
 
-void getOutputName(const string& V2SaveFileName)
+void setOutputName(const std::string& V2SaveFileName)
 {
-	int slash = V2SaveFileName.find_last_of("\\");
-	if (slash == string::npos)
+	std::string outputName = V2SaveFileName;
+
+	if (outputName == "")
 	{
-		slash = V2SaveFileName.find_last_of("/");
+		return;
 	}
-	string outputName = V2SaveFileName.substr(slash + 1, V2SaveFileName.length());
+
+	const int lastBackslash = V2SaveFileName.find_last_of("\\");
+	const int lastSlash = V2SaveFileName.find_last_of("/");
+	if ((lastBackslash == std::string::npos) && (lastSlash != std::string::npos))
+	{
+		outputName = outputName.substr(lastSlash + 1, outputName.length());
+	}
+	else if ((lastBackslash != std::string::npos) && (lastSlash == std::string::npos))
+	{
+		outputName = outputName.substr(lastBackslash + 1, outputName.length());
+	}
+	else if ((lastBackslash != std::string::npos) && (lastSlash != std::string::npos))
+	{
+		const int slash = max(lastBackslash, lastSlash);
+		outputName = outputName.substr(slash + 1, outputName.length());
+	}
+	else if ((lastBackslash == std::string::npos) && (lastSlash == std::string::npos))
+	{
+		// no change, but explicitly considered
+	}
+
 	const int length = outputName.find_first_of(".");
+	if ((length == std::string::npos) || (".v2" != outputName.substr(length, outputName.length())))
+	{
+		std::exception theException("The save was not a Vic2 save. Choose a save ending in '.v2' and converter again.");
+		throw theException;
+	}
 	outputName = outputName.substr(0, length);
 
 	std::replace(outputName.begin(), outputName.end(), '-', '_');
@@ -135,12 +163,17 @@ void getOutputName(const string& V2SaveFileName)
 
 	theConfiguration.setOutputName(outputName);
 	LOG(LogLevel::Info) << "Using output name " << outputName;
+}
 
+
+void clearOutputFolder()
+{
 	string outputFolder = Utils::getCurrentDirectory() + "/output/" + theConfiguration.getOutputName();
 	if (Utils::doesFolderExist(outputFolder))
 	{
 		if (!Utils::deleteFolder(outputFolder))
 		{
+			LOG(LogLevel::Error) << "Could not remove pre-existing output folder " << output << ". Please delete folder and try converting again.";
 			exit(-1);
 		}
 	}

@@ -32,5 +32,8 @@
     <ClCompile Include="Vic2AgreementTests.cpp">
       <Filter>Source Files\Vic2WorldTests</Filter>
     </ClCompile>
+    <ClCompile Include="Vic2ToHoI4ConverterTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
