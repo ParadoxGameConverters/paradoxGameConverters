@@ -65,6 +65,7 @@ class Advisor;
 class coastalProvinces;
 class namesMapper;
 class State;
+class UnitMap;
 class World;
 struct advisorCompare;
 }

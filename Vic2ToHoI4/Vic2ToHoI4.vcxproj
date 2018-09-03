@@ -215,6 +215,7 @@
     <ClCompile Include="Source\HOI4World\IdeologyFile.cpp" />
     <ClCompile Include="Source\HOI4World\ImpassableProvinces.cpp" />
     <ClCompile Include="Source\HOI4World\MapData.cpp" />
+    <ClCompile Include="Source\HOI4World\MilitaryMappings.cpp" />
     <ClCompile Include="Source\HOI4World\Names.cpp" />
     <ClCompile Include="Source\HOI4World\OnActions.cpp" />
     <ClCompile Include="Source\HOI4World\Resources.cpp" />
@@ -301,6 +302,7 @@
     <ClInclude Include="Source\HOI4World\Resources.h" />
     <ClInclude Include="Source\HOI4World\StateCategories.h" />
     <ClInclude Include="Source\HOI4World\SupplyZones.h" />
+    <ClInclude Include="Source\HOI4World\MilitaryMappings.h" />
     <ClInclude Include="Source\Mappers\GraphicsMapper.h" />
     <ClInclude Include="Source\Mappers\MergeRules.h" />
     <ClInclude Include="Source\Mappers\ProvinceDefinitions.h" />

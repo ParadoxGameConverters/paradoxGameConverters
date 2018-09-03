@@ -103,27 +103,6 @@ class DivisionType
 
 std::ostream& operator << (std::ostream& out, const DivisionType&);
 
-
-class UnitMap
-{
-	public: 
-		UnitMap(const std::string& category, const std::string& type, const std::string& equipment, int size);
-		UnitMap() = default;
-		UnitMap(const UnitMap&) = default;
-		UnitMap& operator=(const UnitMap&) = default;
-
-		std::string getCategory() const { return category; }
-		std::string getType() const { return type; }
-		std::string getEquipment() const { return equipment; }
-		int getSize() const {return size; }
-
-	private:
-		std::string category;
-		std::string type;
-		std::string equipment;
-		int size = 0;
-};
-
 }
 
 

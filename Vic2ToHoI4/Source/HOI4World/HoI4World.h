@@ -34,6 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Names.h"
 #include "HoI4States.h"
 #include "MapData.h"
+#include "MilitaryMappings.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/GovernmentMapper.h"
 #include "../Mappers/GraphicsMapper.h"
@@ -149,8 +150,6 @@ class World: commonItems::parser
 		void addTechs(shared_ptr<HoI4Country> countryaddTechs, const string& oldTech, const techMapper& techMap);
 		void addResearchBonuses(shared_ptr<HoI4Country> countryaddBonuses, const string& oldTech, const techMapper& researchBonusMap);
 
-		map<string, HoI4::UnitMap> importUnitMap() const;
-		vector<HoI4::DivisionTemplateType> importDivisionTemplates() const;
 		void convertMilitaries();
 		void convertArmies(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates);
 		void convertNavies(const map<string, HoI4::UnitMap>& unitMap);
@@ -230,7 +229,7 @@ class World: commonItems::parser
 		HoI4::Events* events = nullptr;
 		std::unique_ptr<HoI4::OnActions> onActions;
 
-		vector<HoI4::DivisionTemplateType> divisionTemplates;
+		militaryMappings theMilitaryMappings;
 
 		coastalProvinces theCoastalProvinces;
 		MapData theMapData;

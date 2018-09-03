@@ -239,6 +239,9 @@
     <ClCompile Include="Source\HOI4World\CoastalProvinces.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HOI4World\MilitaryMappings.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -463,6 +466,9 @@
       <Filter>HoI4World</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\CoastalProvinces.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\MilitaryMappings.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>

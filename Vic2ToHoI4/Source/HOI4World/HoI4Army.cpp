@@ -92,12 +92,3 @@ std::ostream& HoI4::operator << (std::ostream& out, const HoI4::DivisionType& di
 
 	return out;
 }
-
-
-HoI4::UnitMap::UnitMap(const std::string& _category, const std::string& _type, const std::string& _equipment, int _size):
-	category(_category),
-	type(_type),
-	equipment(_equipment),
-	size(_size)
-{
-}
