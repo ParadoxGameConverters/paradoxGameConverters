@@ -127,10 +127,10 @@ class State: commonItems::parser
 		int dockyards = 0;
 		std::string category = "pastoral";
 		int infrastructure = 0;
-	
-		std::vector<std::pair<int, int>> navalBases;
 
-		int airbaseLevel = 0;
+                std::map<int, int> navalBases;
+
+                int airbaseLevel = 0;
 
 		std::map<std::string, double> resources;
 
@@ -138,6 +138,8 @@ class State: commonItems::parser
 		int victoryPointValue = 0;
 		std::set<int> debugVictoryPoints;
 		std::set<int> secondaryDebugVictoryPoints;
+
+                static std::map<int, int> fortLevels;
 };
 
 }

@@ -35,7 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include <random>
 
-
+std::map<int, int> HoI4::State::fortLevels;
 
 class dockyardProvince: commonItems::parser
 {
@@ -245,12 +245,30 @@ void HoI4::State::output(const std::string& _filename) const
 		out << "\t\t\tdockyard = " << dockyards << "\n";
 	}
 		
-	for (auto navalBase: navalBases)
+	for (auto provnum : provinces)
 	{
-		out << "\t\t\t" << navalBase.first << " = {\n";
-		out << "\t\t\t\tnaval_base = " << navalBase.second << "\n";
+                int naval = 0;
+                if (navalBases.find(provnum) != navalBases.end())
+                {
+                        naval = navalBases.at(provnum);
+                }
+                int fort = fortLevels[provnum];
+                if (naval == 0 && fort == 0)
+                {
+                        continue;
+                }
+                out << "\t\t\t" << provnum << " = {\n";
+                if (naval != 0)
+                {
+                        out << "\t\t\t\tnaval_base = " << naval << "\n";
+                }
+                if (fort != 0)
+                {
+                        out << "\t\t\t\tbunker = " << fort << "\n";
+                }
 		out << "\t\t\t}\n";
 	}
+
 	out << "\t\t\tair_base = "<< airbaseLevel << "\n";
 	out << "\t\t}\n";
 	for (auto core: cores)
@@ -325,8 +343,8 @@ void HoI4::State::addNavalBase(int level, int location)
 {
 	if ((level > 0) && (provinces.find(location) != provinces.end()))
 	{
-		navalBases.push_back(std::make_pair(location, level));
-	}
+                navalBases[location] = level;
+        }
 }
 
 
@@ -373,7 +391,7 @@ std::optional<int> HoI4::State::getMainNavalLocation() const
 {
 	std::optional<int> mainLocation;
 	int mainSize = 0;
-	for (auto navalBase: navalBases)
+	for (const auto& navalBase: navalBases)
 	{
 		if (navalBase.second > mainSize)
 		{
