@@ -139,7 +139,8 @@ class State: commonItems::parser
 		std::set<int> debugVictoryPoints;
 		std::set<int> secondaryDebugVictoryPoints;
 
-                static std::map<int, int> fortLevels;
+                static std::map<int, int> landFortLevels;
+                static std::map<int, int> coastFortLevels;
 };
 
 }

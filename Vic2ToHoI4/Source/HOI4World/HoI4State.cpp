@@ -35,7 +35,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include <random>
 
-std::map<int, int> HoI4::State::fortLevels;
+// Currently not populated anywhere, so no forts will be created from them; they
+// exist for future support of forts.
+std::map<int, int> HoI4::State::landFortLevels;
+std::map<int, int> HoI4::State::coastFortLevels;
 
 class dockyardProvince: commonItems::parser
 {
@@ -252,8 +255,9 @@ void HoI4::State::output(const std::string& _filename) const
                 {
                         naval = navalBases.at(provnum);
                 }
-                int fort = fortLevels[provnum];
-                if (naval == 0 && fort == 0)
+                int bunker = landFortLevels[provnum];
+                int coastFort = coastFortLevels[provnum];
+                if (naval == 0 && bunker == 0 && coastFort == 0)
                 {
                         continue;
                 }
@@ -262,9 +266,13 @@ void HoI4::State::output(const std::string& _filename) const
                 {
                         out << "\t\t\t\tnaval_base = " << naval << "\n";
                 }
-                if (fort != 0)
+                if (bunker != 0)
                 {
-                        out << "\t\t\t\tbunker = " << fort << "\n";
+                        out << "\t\t\t\tbunker = " << bunker << "\n";
+                }
+                if (coastFort != 0)
+                {
+                        out << "\t\t\t\tcoastal_bunker = " << coastFort << "\n";
                 }
 		out << "\t\t\t}\n";
 	}
