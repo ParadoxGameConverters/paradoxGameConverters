@@ -25,230 +25,123 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4::UnitMap::UnitMap(const std::string& _category, const std::string& _type, const std::string& _equipment, int _size):
-	category(_category),
-	type(_type),
-	equipment(_equipment),
-	size(_size)
+HoI4::UnitMap::UnitMap(std::istream& theStream)
 {
+	registerKeyword(std::regex("category"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString categoryString(theStream);
+		category = categoryString.getString();
+	});
+	registerKeyword(std::regex("type"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString typeString(theStream);
+		type = typeString.getString();
+	});
+	registerKeyword(std::regex("equipment"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString equipmentString(theStream);
+		equipment = equipmentString.getString();
+	});
+	registerKeyword(std::regex("size"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleInt sizeInt(theStream);
+		size = sizeInt.getInt();
+	});
+
+	parseStream(theStream);
 }
 
 
-HoI4::militaryMappings::militaryMappings()
+namespace HoI4
 {
-	importUnitMap();
-	importDivisionTemplates();
+
+class UnitMapping: commonItems::parser
+{
+	public:
+		UnitMapping(std::istream& theStream);
+
+		std::string getVic2Type() const { return Vic2Type; }
+		auto getHoI4Type() const { return HoI4Type; }
+
+	private:
+		std::string Vic2Type;
+		UnitMap HoI4Type;
+};
+
 }
 
 
-void HoI4::militaryMappings::importUnitMap()
+HoI4::UnitMapping::UnitMapping(std::istream& theStream)
 {
-	/* HARDCODED! TO DO : IMPLEMENT PARSING of unit_mapping.txt */
+	registerKeyword(std::regex("vic"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleString typeString(theStream);
+		Vic2Type = typeString.getString();
+	});
+	registerKeyword(std::regex("hoi"), [this](const std::string& unused, std::istream& theStream)
+	{
+		HoI4::UnitMap theUnit(theStream);
+		HoI4Type = theUnit;
+	});
 
-	unitMap["irregular"] = HoI4::UnitMap();
-
-	unitMap["infantry"] = HoI4::UnitMap("land","infantry","infantry_equipment_0",3);
-	unitMap["regular"] = HoI4::UnitMap("land","infantry","infantry_equipment_0",3);
-	unitMap["engineer"] = HoI4::UnitMap("land", "infantry", "infantry_equipment_0", 3);
-	unitMap["guard"] = HoI4::UnitMap("land", "infantry", "infantry_equipment_0", 3);
-	unitMap["specops"] = HoI4::UnitMap("land", "infantry", "infantry_equipment_0", 3);
-
-	unitMap["artillery"] = HoI4::UnitMap("land", "artillery_brigade", "artillery_equipment_1", 3);
-	unitMap["horse_artillery"] = HoI4::UnitMap("land", "artillery_brigade", "artillery_equipment_1", 3);
-
-	unitMap["cavalry"] = HoI4::UnitMap();
-
-	unitMap["hussar"] = HoI4::UnitMap("land", "cavalry", "infantry_equipment_0", 3);
-	unitMap["cuirassier"] = HoI4::UnitMap("land", "cavalry", "infantry_equipment_0", 3);
-	unitMap["dragoon"] = HoI4::UnitMap("land", "cavalry", "infantry_equipment_0", 3);
-
-	unitMap["tank"] = HoI4::UnitMap("land", "light_armor", "gw_tank_equipment", 1);
-
-	unitMap["plane"] = HoI4::UnitMap("air", "fighter", "fighter_equipment_0", 20);
-	unitMap["bomber"] = HoI4::UnitMap("air", "tac_bomber", "tac_bomber_equipment_0", 20);
-	unitMap["transport_plane"] = HoI4::UnitMap("air", "transport_plane", "transport_plane_equipment_0", 20);
-
-	unitMap["manowar"] = HoI4::UnitMap();
-	unitMap["frigate"] = HoI4::UnitMap();
-	unitMap["commerce_raider"] = HoI4::UnitMap("naval", "destroyer", "destroyer_1", 1);
-	unitMap["ironclad"] = HoI4::UnitMap();
-	unitMap["monitor"] = HoI4::UnitMap();
-	unitMap["cruiser"] = HoI4::UnitMap("naval", "light_cruiser", "light_cruiser_1", 1);
-	unitMap["battleship"] = HoI4::UnitMap("naval", "heavy_cruiser", "heavy_cruiser_1", 1);
-	unitMap["dreadnought"] = HoI4::UnitMap("naval", "battleship", "battleship_1", 1);
-	unitMap["submarine"] = HoI4::UnitMap("naval", "submarine", "submarine_1", 1);
-	unitMap["carrier"] = HoI4::UnitMap("naval", "carrier", "carrier", 1);
-	unitMap["clipper_transport"] = HoI4::UnitMap();
-	unitMap["steam_transport"] = HoI4::UnitMap("convoy", "convoy", "convoy_1", 1);
+	parseStream(theStream);
 }
 
-void HoI4::militaryMappings::importDivisionTemplates()
+
+HoI4::militaryMappings::militaryMappings(const std::string& name, std::istream& theStream):
+	mappingsName(name)
 {
-	/* HARDCODED! TO DO : IMPLEMENT PARSING of unit_mapping.txt */
+	registerKeyword(std::regex("map"), [this](const std::string& unused, std::istream& theStream){
+		importUnitMap(theStream);
+	});
+	registerKeyword(std::regex("division_templates"), [this](const std::string& unused, std::istream& theStream){
+		importDivisionTemplates(theStream);
+	});
 
-	HoI4::DivisionTemplateType armoredTemplate("Armored Division");
+	parseStream(theStream);
+}
 
-	armoredTemplate.addRegiment(HoI4::RegimentType("light_armor", 0, 0));
-	armoredTemplate.addRegiment(HoI4::RegimentType("light_armor", 0, 1));
-	armoredTemplate.addRegiment(HoI4::RegimentType("light_armor", 0, 2));
 
-	armoredTemplate.addRegiment(HoI4::RegimentType("light_armor", 1, 0));
-	armoredTemplate.addRegiment(HoI4::RegimentType("light_armor", 1, 1));
-	armoredTemplate.addRegiment(HoI4::RegimentType("light_armor", 1, 2));
+void HoI4::militaryMappings::importUnitMap(std::istream& theStream)
+{
+	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream&theStream)
+	{
+		UnitMapping newMapping(theStream);
+		unitMap.insert(make_pair(newMapping.getVic2Type(), newMapping.getHoI4Type()));
+	});
 
-	armoredTemplate.addRegiment(HoI4::RegimentType("motorized", 2, 0));
-	armoredTemplate.addRegiment(HoI4::RegimentType("motorized", 2, 1));
-	armoredTemplate.addRegiment(HoI4::RegimentType("motorized", 2, 2));
+	parseStream(theStream);
+}
 
-	armoredTemplate.addSupportRegiment(HoI4::RegimentType("artillery",0,0));
+void HoI4::militaryMappings::importDivisionTemplates(std::istream& theStream)
+{
+	registerKeyword(std::regex("division_template"), [this](const std::string& unused, std::istream& theStream)
+	{
+		HoI4::DivisionTemplateType newTemplate(theStream);
+		divisionTemplates.push_back(newTemplate);
+	});
 
-	divisionTemplates.push_back(armoredTemplate);
+	parseStream(theStream);
+}
 
-	HoI4::DivisionTemplateType mechanizedTemplate("Mechanized Division");
 
-	mechanizedTemplate.addRegiment(HoI4::RegimentType("light_armor", 0, 0));
-	mechanizedTemplate.addRegiment(HoI4::RegimentType("light_armor", 0, 1));
-	mechanizedTemplate.addRegiment(HoI4::RegimentType("light_armor", 0, 2));
+HoI4::allMilitaryMappings::allMilitaryMappings()
+{
+	registerKeyword(std::regex("[a-zA-Z0-9]+"), [this](const std::string& mod, std::istream& theStream)
+	{
+		militaryMappings newMappings(mod, theStream);
+		theMappings.insert(make_pair(mod, newMappings));
+	});
 
-	mechanizedTemplate.addRegiment(HoI4::RegimentType("motorized", 1, 0));
-	mechanizedTemplate.addRegiment(HoI4::RegimentType("motorized", 1, 1));
-	mechanizedTemplate.addRegiment(HoI4::RegimentType("motorized", 1, 2));
+	parseFile("unit_mappings.txt");
+}
 
-	mechanizedTemplate.addRegiment(HoI4::RegimentType("motorized", 2, 0));
-	mechanizedTemplate.addRegiment(HoI4::RegimentType("motorized", 2, 1));
-	mechanizedTemplate.addRegiment(HoI4::RegimentType("motorized", 2, 2));
 
-	mechanizedTemplate.addSupportRegiment(HoI4::RegimentType("artillery", 0, 0));
+HoI4::militaryMappings HoI4::allMilitaryMappings::getMilitaryMappings(const std::vector<std::string>& Vic2Mods) const
+{
+	for (auto mod: Vic2Mods)
+	{
+		if (auto mapping = theMappings.find(mod); mapping != theMappings.end())
+		{
+			return mapping->second;
+		}
+	}
 
-	divisionTemplates.push_back(mechanizedTemplate);
-
-	HoI4::DivisionTemplateType motorizedTemplate("Motorized Division");
-
-	motorizedTemplate.addRegiment(HoI4::RegimentType("motorized", 0, 0));
-	motorizedTemplate.addRegiment(HoI4::RegimentType("motorized", 0, 1));
-	motorizedTemplate.addRegiment(HoI4::RegimentType("motorized", 0, 2));
-
-	motorizedTemplate.addRegiment(HoI4::RegimentType("motorized", 1, 0));
-	motorizedTemplate.addRegiment(HoI4::RegimentType("motorized", 1, 1));
-	motorizedTemplate.addRegiment(HoI4::RegimentType("motorized", 1, 2));
-
-	motorizedTemplate.addRegiment(HoI4::RegimentType("motorized", 2, 0));
-	motorizedTemplate.addRegiment(HoI4::RegimentType("motorized", 2, 1));
-	motorizedTemplate.addRegiment(HoI4::RegimentType("motorized", 2, 2));
-
-	motorizedTemplate.addSupportRegiment(HoI4::RegimentType("artillery", 0, 0));
-
-	divisionTemplates.push_back(motorizedTemplate);
-
-	HoI4::DivisionTemplateType assaultDivTemplate("Assault Division");
-
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 0));
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 1));
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 2));
-
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("infantry", 1, 0));
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("infantry", 1, 1));
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("infantry", 1, 2));
-
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("infantry", 2, 0));
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("infantry", 2, 1));
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("infantry", 2, 2));
-
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("artillery_brigade", 3, 0));
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("artillery_brigade", 3, 1));
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("artillery_brigade", 3, 2));
-
-	assaultDivTemplate.addRegiment(HoI4::RegimentType("light_armor", 4, 0));
-
-	divisionTemplates.push_back(assaultDivTemplate);
-
-	HoI4::DivisionTemplateType assaultBrigadeTemplate("Assault Brigade");
-
-	assaultBrigadeTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 0));
-	assaultBrigadeTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 1));
-	assaultBrigadeTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 2));
-
-	assaultBrigadeTemplate.addRegiment(HoI4::RegimentType("artillery_brigade", 1, 0));
-
-	assaultBrigadeTemplate.addRegiment(HoI4::RegimentType("light_armor", 2, 0));
-
-	divisionTemplates.push_back(assaultBrigadeTemplate);
-
-	HoI4::DivisionTemplateType infantryDivisionTemplate("Infantry Division");
-
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 0));
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 1));
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 2));
-
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 1, 0));
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 1, 1));
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 1, 2));
-
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 2, 0));
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 2, 1));
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 2, 2));
-
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("artillery_brigade", 3, 0));
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("artillery_brigade", 3, 1));
-	infantryDivisionTemplate.addRegiment(HoI4::RegimentType("artillery_brigade", 3, 2));
-
-	divisionTemplates.push_back(infantryDivisionTemplate);
-
-	HoI4::DivisionTemplateType infantryBrigadeTemplate("Infantry Brigade");
-
-	infantryBrigadeTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 0));
-	infantryBrigadeTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 1));
-	infantryBrigadeTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 2));
-
-	infantryBrigadeTemplate.addRegiment(HoI4::RegimentType("artillery_brigade", 1, 0));
-
-	divisionTemplates.push_back(infantryBrigadeTemplate);
-
-	HoI4::DivisionTemplateType lightInfantryDivisionTemplate("Light Infantry Division");
-
-	lightInfantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 0));
-	lightInfantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 1));
-	lightInfantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 2));
-
-	lightInfantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 1, 0));
-	lightInfantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 1, 1));
-	lightInfantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 1, 2));
-
-	lightInfantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 2, 0));
-	lightInfantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 2, 1));
-	lightInfantryDivisionTemplate.addRegiment(HoI4::RegimentType("infantry", 2, 2));
-
-	divisionTemplates.push_back(lightInfantryDivisionTemplate);
-
-	HoI4::DivisionTemplateType lightInfantryBrigadeTemplate("Light Infantry Brigade");
-
-	lightInfantryBrigadeTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 0));
-	lightInfantryBrigadeTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 1));
-	lightInfantryBrigadeTemplate.addRegiment(HoI4::RegimentType("infantry", 0, 2));
-
-	divisionTemplates.push_back(lightInfantryBrigadeTemplate);
-
-	HoI4::DivisionTemplateType cavalryDivisionTemplate("Cavalry Division");
-
-	cavalryDivisionTemplate.addRegiment(HoI4::RegimentType("cavalry", 0, 0));
-	cavalryDivisionTemplate.addRegiment(HoI4::RegimentType("cavalry", 0, 1));
-	cavalryDivisionTemplate.addRegiment(HoI4::RegimentType("cavalry", 0, 2));
-
-	cavalryDivisionTemplate.addRegiment(HoI4::RegimentType("cavalry", 1, 0));
-	cavalryDivisionTemplate.addRegiment(HoI4::RegimentType("cavalry", 1, 1));
-	cavalryDivisionTemplate.addRegiment(HoI4::RegimentType("cavalry", 1, 2));
-
-	cavalryDivisionTemplate.addRegiment(HoI4::RegimentType("cavalry", 2, 0));
-	cavalryDivisionTemplate.addRegiment(HoI4::RegimentType("cavalry", 2, 1));
-	cavalryDivisionTemplate.addRegiment(HoI4::RegimentType("cavalry", 2, 2));
-
-	divisionTemplates.push_back(cavalryDivisionTemplate);
-
-	HoI4::DivisionTemplateType cavalryBrigadeTemplate("Cavalry Brigade");
-
-	cavalryBrigadeTemplate.addRegiment(HoI4::RegimentType("cavalry", 0, 0));
-	cavalryBrigadeTemplate.addRegiment(HoI4::RegimentType("cavalry", 0, 1));
-	cavalryBrigadeTemplate.addRegiment(HoI4::RegimentType("cavalry", 0, 2));
-
-	divisionTemplates.push_back(cavalryBrigadeTemplate);
+	return theMappings.at("default");
 }

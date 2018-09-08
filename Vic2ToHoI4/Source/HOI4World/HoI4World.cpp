@@ -841,9 +841,11 @@ void HoI4::World::addResearchBonuses(shared_ptr<HoI4Country> country, const stri
 
 void HoI4::World::convertMilitaries()
 {
-	convertArmies(theMilitaryMappings.getUnitMap(), theMilitaryMappings.getDivisionTemplates());
-	convertNavies(theMilitaryMappings.getUnitMap());
-	convertAirforces(theMilitaryMappings.getUnitMap());
+	auto specificMappings = theMilitaryMappings.getMilitaryMappings(theConfiguration.getVic2Mods());
+
+	convertArmies(specificMappings.getUnitMap(), specificMappings.getDivisionTemplates());
+	convertNavies(specificMappings.getUnitMap());
+	convertAirforces(specificMappings.getUnitMap());
 }
 
 
@@ -1417,7 +1419,8 @@ void HoI4::World::outputCountries()
 	{
 		if (country.second->getCapitalStateNum() != 0)
 		{
-			country.second->output(activeIdeologicalAdvisors, theMilitaryMappings.getDivisionTemplates(), theNames, theGraphics);
+			auto specificMilitaryMappings = theMilitaryMappings.getMilitaryMappings(theConfiguration.getVic2Mods());
+			country.second->output(activeIdeologicalAdvisors, specificMilitaryMappings.getDivisionTemplates(), theNames, theGraphics);
 		}
 	}
 

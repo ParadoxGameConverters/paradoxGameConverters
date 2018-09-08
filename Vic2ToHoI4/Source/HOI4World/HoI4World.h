@@ -229,7 +229,7 @@ class World: commonItems::parser
 		HoI4::Events* events = nullptr;
 		std::unique_ptr<HoI4::OnActions> onActions;
 
-		militaryMappings theMilitaryMappings;
+		allMilitaryMappings theMilitaryMappings;
 
 		coastalProvinces theCoastalProvinces;
 		MapData theMapData;

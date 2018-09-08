@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Vic2WorldTests">
       <UniqueIdentifier>{a18a0b6c-1f20-4d25-a9df-a36dd0750dc5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HoI4WorldTests">
+      <UniqueIdentifier>{f5e02ae4-4b6d-46b2-b6ac-0043d192c4de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -34,6 +37,12 @@
     </ClCompile>
     <ClCompile Include="Vic2ToHoI4ConverterTests.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MilitaryMappingTests.cpp">
+      <Filter>Source Files\HoI4WorldTests</Filter>
+    </ClCompile>
+    <ClCompile Include="HoI4ArmyTests.cpp">
+      <Filter>Source Files\HoI4WorldTests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

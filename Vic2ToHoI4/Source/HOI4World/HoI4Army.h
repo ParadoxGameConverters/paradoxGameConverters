@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "newParser.h"
 #include <string>
 #include <vector>
 #include <fstream>
@@ -35,10 +36,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 namespace HoI4
 {
 
-class RegimentType
+class RegimentType: commonItems::parser
 {
 	public:
-		explicit RegimentType(const std::string& type, int x, int y);
+		explicit RegimentType(const std::string& _type, std::istream& theStream);
 		RegimentType(const RegimentType&) = default;
 
 		const std::string getType() const { return type; }
@@ -57,27 +58,25 @@ class RegimentType
 std::ostream& operator << (std::ostream& out, const RegimentType& regiment);
 
 
-class DivisionTemplateType
+class DivisionTemplateType: commonItems::parser
 {
 	public:
-		explicit DivisionTemplateType(const std::string& name);
+		explicit DivisionTemplateType(std::istream& theStream);
 		DivisionTemplateType(const DivisionTemplateType&) = default;
-		DivisionTemplateType& operator=(const DivisionTemplateType&) = default;
+		DivisionTemplateType& operator=(const DivisionTemplateType&) = delete;
+
+		bool operator==(const std::string& rhs) { return name == rhs; }
 
 		friend std::ostream& operator << (std::ostream& out, const DivisionTemplateType& rhs);
 
-		void addRegiment(const RegimentType& newRegiment)			{ regiments.push_back(newRegiment); }
-		void addSupportRegiment(const RegimentType& newRegiment)	{ supportRegiments.push_back(newRegiment); }
-
 		std::string getName() const { return name; }
-
 		std::vector<RegimentType> getRegiments() const { return regiments; }
 		std::vector<RegimentType> getSupportRegiments() const { return supportRegiments; }
 
 	private:
 		std::string name;
-		std::vector<RegimentType>	regiments;
-		std::vector<RegimentType>	supportRegiments;
+		std::vector<RegimentType> regiments;
+		std::vector<RegimentType> supportRegiments;
 };
 
 
