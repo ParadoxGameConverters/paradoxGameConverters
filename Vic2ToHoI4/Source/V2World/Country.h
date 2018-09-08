@@ -90,6 +90,7 @@ class Country: commonItems::parser
 		double getRevanchism() const { return revanchism; }
 		double getWarExhaustion() const { return warExhaustion; }
 		double getBadBoy() const { return badboy; }
+		double getPrestige() const { return prestige; }
 		bool isGreatNation() const { return greatNation; }
 		std::map<int, Province*> getProvinces() const { return provinces; }
 		std::vector<Province*> getCores() const { return cores; }
@@ -144,6 +145,7 @@ class Country: commonItems::parser
 		double revanchism = 0.0;
 		double warExhaustion = 0.0;
 		double badboy = 0.0;
+		double prestige = 0.0;
 
 		std::string government = "";
 		std::map<std::string, double> upperHouseComposition;

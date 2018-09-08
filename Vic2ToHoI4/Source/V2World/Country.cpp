@@ -64,6 +64,10 @@ Vic2::Country::Country(const std::string& theTag, std::istream& theStream, const
 		commonItems::singleDouble badboyDouble(theStream);
 		badboy = badboyDouble.getDouble();
 	});
+	registerKeyword(std::regex("prestige"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleDouble prestigeDouble(theStream);
+		prestige = prestigeDouble.getDouble();
+	});
 	registerKeyword(std::regex("government"), [this](const std::string& unused, std::istream& theStream){
 		commonItems::singleString governmentString(theStream);
 		government = governmentString.getString();
