@@ -21,7 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "EU4World.h"
+#include "World.h"
 #include <algorithm>
 #include <fstream>
 #include <string>
@@ -58,19 +58,12 @@ EU4::world::world(const string& EU4SaveFileName):
 			Configuration::setLastEU4Date(endDate);
 		}
 	);
-	registerKeyword(std::regex("save_game"), commonItems::ignoreString);
-	registerKeyword(std::regex("player"), commonItems::ignoreString);
-	registerKeyword(std::regex("colonial_father"), commonItems::ignoreString);
-	registerKeyword(std::regex("colonial_flag_color"), commonItems::ignoreObject);
-	registerKeyword(std::regex("country_colors"), commonItems::ignoreObject);
-	registerKeyword(std::regex("displayed_country_name"), commonItems::ignoreString);
 	registerKeyword(std::regex("savegame_version"), [this](const std::string& versionText, std::istream& theStream)
 		{
 			auto versionObject = commonItems::convert8859Object(versionText, theStream);
 			loadEU4Version(versionObject);
 		}
 	);
-	registerKeyword(std::regex("savegame_versions"), commonItems::ignoreObject);
 	registerKeyword(std::regex("dlc_enabled"), [this](const std::string& DLCText, std::istream& theStream)
 		{
 			auto versionsObject = commonItems::convert8859Object(DLCText, theStream);
@@ -83,61 +76,12 @@ EU4::world::world(const string& EU4SaveFileName):
 			loadUsedMods(modsObject);
 		}
 	);
-	registerKeyword(std::regex("multi_player"), commonItems::ignoreString);
-	registerKeyword(std::regex("not_observer"), commonItems::ignoreString);
-	registerKeyword(std::regex("players_countries"), commonItems::ignoreObject);
-	registerKeyword(std::regex("campaign_id"), commonItems::ignoreString);
-	registerKeyword(std::regex("campaign_length"), commonItems::ignoreString);
-	registerKeyword(std::regex("campaign_stats"), commonItems::ignoreObject);
-	registerKeyword(std::regex("gameplaysettings"), commonItems::ignoreObject);
-	registerKeyword(std::regex("used_client_names"), commonItems::ignoreObject);
-	registerKeyword(std::regex("speed"), commonItems::ignoreString);
-	registerKeyword(std::regex("ignore_end_date"), commonItems::ignoreString);
-	registerKeyword(std::regex("multiplayer_random_seed"), commonItems::ignoreString);
-	registerKeyword(std::regex("multiplayer_random_count"), commonItems::ignoreString);
-	registerKeyword(std::regex("monarch"), commonItems::ignoreString);
-	registerKeyword(std::regex("leader"), commonItems::ignoreString);
-	registerKeyword(std::regex("advisor"), commonItems::ignoreString);
-	registerKeyword(std::regex("rebel"), commonItems::ignoreString);
-	registerKeyword(std::regex("current_age"), commonItems::ignoreString);
-	registerKeyword(std::regex("next_age_progress"), commonItems::ignoreString);
-	registerKeyword(std::regex("id_counters"), commonItems::ignoreObject);
-	registerKeyword(std::regex("unit"), commonItems::ignoreString);
-	registerKeyword(std::regex("unit_template_id"), commonItems::ignoreString);
-	registerKeyword(std::regex("flags"), commonItems::ignoreObject);
 	registerKeyword(std::regex("revolution_target"), [this](const std::string& revolutionText, std::istream& theStream)
 		{
 			auto modsObject = commonItems::convert8859String(revolutionText, theStream);
 			loadRevolutionTargetString(modsObject);
 		}
 	);
-	registerKeyword(std::regex("revolution_target_original_name"), commonItems::ignoreString);
-	registerKeyword(std::regex("has_first_revolution_started"), commonItems::ignoreString);
-	registerKeyword(std::regex("start_date"), commonItems::ignoreString);
-	registerKeyword(std::regex("map_area_data"), commonItems::ignoreObject);
-	registerKeyword(std::regex("total_military_power"), commonItems::ignoreString);
-	registerKeyword(std::regex("average_military_power"), commonItems::ignoreString);
-	registerKeyword(std::regex("institution_origin"), commonItems::ignoreObject);
-	registerKeyword(std::regex("institutions"), commonItems::ignoreObject);
-	registerKeyword(std::regex("institutions_penalties"), commonItems::ignoreObject);
-	registerKeyword(std::regex("trade"), commonItems::ignoreObject);
-	registerKeyword(std::regex("unit_templates"), commonItems::ignoreObject);
-	registerKeyword(std::regex("production_leader_tag"), commonItems::ignoreObject);
-	registerKeyword(std::regex("dynamic_countries"), commonItems::ignoreObject);
-	registerKeyword(std::regex("tradegoods_total_produced"), commonItems::ignoreObject);
-	registerKeyword(std::regex("change_price"), commonItems::ignoreObject);
-	registerKeyword(std::regex("id"), commonItems::ignoreObject);
-	registerKeyword(std::regex("dynasty"), commonItems::ignoreObject);
-	registerKeyword(std::regex("rebel_faction"), commonItems::ignoreObject);
-	registerKeyword(std::regex("continent"), commonItems::ignoreString);
-	registerKeyword(std::regex("imperial_ban_allowed"), commonItems::ignoreString);
-	registerKeyword(std::regex("internal_hre_cb"), commonItems::ignoreString);
-	registerKeyword(std::regex("hre_inheritable"), commonItems::ignoreString);
-	registerKeyword(std::regex("allows_female_emperor"), commonItems::ignoreString);
-	registerKeyword(std::regex("hre_leagues_status"), commonItems::ignoreString);
-	registerKeyword(std::regex("hre_religion_status"), commonItems::ignoreString);
-	registerKeyword(std::regex("old_emperor"), commonItems::ignoreObject);
-	registerKeyword(std::regex("great_powers"), commonItems::ignoreObject);
 	registerKeyword(std::regex("empire"), [this](const std::string& empireText, std::istream& theStream)
 		{
 			auto empireObject = commonItems::convert8859Object(empireText, theStream);
@@ -156,12 +100,6 @@ EU4::world::world(const string& EU4SaveFileName):
 			loadEmpires(empireObject);
 		}
 	);
-	registerKeyword(std::regex("hre_leagues_status"), commonItems::ignoreString);
-	registerKeyword(std::regex("hre_religion_status"), commonItems::ignoreString);
-	registerKeyword(std::regex("religions"), commonItems::ignoreObject);
-	registerKeyword(std::regex("religion_instance_data"), commonItems::ignoreObject);
-	registerKeyword(std::regex("fired_events"), commonItems::ignoreObject);
-	registerKeyword(std::regex("pending_events"), commonItems::ignoreObject);
 	registerKeyword(std::regex("provinces"), [this](const std::string& provincesText, std::istream& theStream)
 		{
 			auto provincesObject = commonItems::convert8859Object(provincesText, theStream);
@@ -169,26 +107,13 @@ EU4::world::world(const string& EU4SaveFileName):
 		}
 	);
 	registerKeyword(std::regex("countries"), [this](const std::string& countriesText, std::istream& theStream) { loadCountries(theStream);	} );
-	registerKeyword(std::regex("active_advisors"), commonItems::ignoreObject);
 	registerKeyword(std::regex("diplomacy"), [this](const std::string& diplomacyText, std::istream& theStream)
 		{
 			auto diplomacyObject = commonItems::convert8859Object(diplomacyText, theStream);
 			loadDiplomacy(diplomacyObject);
 		}
 	);
-	registerKeyword(std::regex("combat"), commonItems::ignoreObject);
-	registerKeyword(std::regex("active_war"), commonItems::ignoreObject);
-	registerKeyword(std::regex("previous_war"), commonItems::ignoreObject);
-	registerKeyword(std::regex("income_statistics"), commonItems::ignoreObject);
-	registerKeyword(std::regex("nation_size_statistics"), commonItems::ignoreObject);
-	registerKeyword(std::regex("score_statistics"), commonItems::ignoreObject);
-	registerKeyword(std::regex("inflation_statistics"), commonItems::ignoreObject);
-	registerKeyword(std::regex("expanded_dip_action_groups"), commonItems::ignoreObject);
-	registerKeyword(std::regex("achievement_ok"), commonItems::ignoreString);
-	registerKeyword(std::regex("unit_manager"), commonItems::ignoreObject);
-	registerKeyword(std::regex("trade_company_manager"), commonItems::ignoreObject);
-	registerKeyword(std::regex("ai"), commonItems::ignoreObject);
-	registerKeyword(std::regex("checksum"), commonItems::ignoreString);
+	registerKeyword(std::regex("[A-Za-z0-9\\_]+"), commonItems::ignoreItem);
 
 	LOG(LogLevel::Info) << "* Importing EU4 save *";
 	verifySave(EU4SaveFileName);
@@ -793,8 +718,7 @@ void EU4::world::readCommonCountriesFile(istream& in, const std::string& rootPat
 		{
 			// First three characters must be the tag.
 			std::string tag = countryLine.substr(0, 3);
-			auto findIter = theCountries.find(tag);
-			if (findIter != theCountries.end())
+			if (auto findIter = theCountries.find(tag); findIter != theCountries.end())
 			{
 				auto country = findIter->second;
 
@@ -818,7 +742,10 @@ void EU4::world::readCommonCountriesFile(istream& in, const std::string& rootPat
 				std::string fullFilename = rootPath + "/common/" + fileName;
 				size_t lastPathSeparatorPos = fullFilename.find_last_of('/');
 				std::string localFileName = fullFilename.substr(lastPathSeparatorPos + 1, string::npos);
-				country->readFromCommonCountry(localFileName, fullFilename);
+				if (Utils::DoesFileExist(fullFilename))
+				{
+					country->readFromCommonCountry(localFileName, fullFilename);
+				}
 			}
 		}
 	}

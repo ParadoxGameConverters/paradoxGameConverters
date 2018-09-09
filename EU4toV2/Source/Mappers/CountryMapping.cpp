@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../EU4World/ColonialRegions.h"
 #include "../EU4World/CultureGroups.h"
-#include "../EU4World/EU4World.h"
+#include "../EU4World/World.h"
 #include "../EU4World/EU4Country.h"
 #include "../EU4World/EU4Province.h"
 #include "CK2TitleMapper.h"

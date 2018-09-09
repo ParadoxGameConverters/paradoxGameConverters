@@ -47,7 +47,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/Vic2CultureUnionMapper.h"
 #include "../Configuration.h"
 #include "../EU4World/Continents.h"
-#include "../EU4World/EU4World.h"
+#include "../EU4World/World.h"
 #include "../EU4World/EU4Relations.h"
 #include "../EU4World/EU4Leader.h"
 #include "../EU4World/EU4Province.h"
@@ -653,6 +653,7 @@ struct MTo1ProvinceComp
 	vector<EU4Province*> provinces;
 };
 
+
 void V2World::convertProvinces(const EU4::world& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Converting provinces";
@@ -809,6 +810,7 @@ void V2World::convertProvinces(const EU4::world& sourceWorld)
 		}
 	}
 }
+
 
 vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, shared_ptr<EU4::Country> oldOwner, int destNum, double provPopRatio)
 {

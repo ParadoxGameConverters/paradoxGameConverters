@@ -187,6 +187,28 @@ void V2Reforms::governmentEffects(const V2Country* dstCountry)
 		trade_unions					+= 0;
 		political_parties				+= -4.0;
 	}
+	else if (government == "prussian_constitutionalism")
+	{
+		slavery							+= 0;
+		vote_franchise					 = -1;
+		upper_house_composition		 = 0;
+		voting_system					+= 1;
+		public_meetings				+= -2.5;
+		press_rights					+= -16;
+		trade_unions					+= 0;
+		political_parties				+= -4.0;
+	}
+	else if (government == "theocracy")
+	{
+		slavery							+= 0;
+		vote_franchise					 = -1;
+		upper_house_composition		 = 0;
+		voting_system					+= 1;
+		public_meetings				+= -2.5;
+		press_rights					+= -16;
+		trade_unions					+= 0;
+		political_parties				+= -4.0;
+	}
 	else if (government == "democracy")
 	{
 		slavery							+= 0;
@@ -199,6 +221,18 @@ void V2Reforms::governmentEffects(const V2Country* dstCountry)
 		political_parties				+= 1.0;
 	}
 	else if (government == "presidential_dictatorship")
+	{
+		slavery							+= 0;
+		vote_franchise					 = -1;
+		upper_house_composition		 = 0;
+		voting_system					+= -2;
+		public_meetings				+= 2.5;
+		press_rights					+= 2;
+		press_rights					*= 10000000;
+		trade_unions					+= 0.14;
+		political_parties				+= -4.0;
+	}
+	else if (government == "proletarian_dictatorship")
 	{
 		slavery							+= 0;
 		vote_franchise					 = -1;
@@ -244,11 +278,23 @@ void V2Reforms::upperHouseEffects(const V2Country* dstCountry)
 	{
 		trade_unions *= 0.0;
 	}
+	else if (government == "prussian_constitutionalism")
+	{
+		trade_unions *= 0.0;
+	}
+	else if (government == "theocracy")
+	{
+		trade_unions *= 0.0;
+	}
 	else if (government == "democracy")
 	{
 		trade_unions *= 5.0;
 	}
 	else if (government == "presidential_dictatorship")
+	{
+		trade_unions *= 1.0;
+	}
+	else if (government == "proletarian_dictatorship")
 	{
 		trade_unions *= 1.0;
 	}
