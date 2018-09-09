@@ -124,7 +124,6 @@ namespace EU4
 			commonItems::Color getColor() const { return color; }
 
 		private:
-			void getGovernmentFromStream(const std::string& unused, std::istream& theStream);
 			void determineJapaneseRelations();
 			void determineInvestments();
 			void determineLibertyDesire();

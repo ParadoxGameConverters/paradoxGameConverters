@@ -653,6 +653,7 @@ struct MTo1ProvinceComp
 	vector<EU4Province*> provinces;
 };
 
+
 void V2World::convertProvinces(const EU4::world& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Converting provinces";
@@ -809,6 +810,7 @@ void V2World::convertProvinces(const EU4::world& sourceWorld)
 		}
 	}
 }
+
 
 vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, shared_ptr<EU4::Country> oldOwner, int destNum, double provPopRatio)
 {

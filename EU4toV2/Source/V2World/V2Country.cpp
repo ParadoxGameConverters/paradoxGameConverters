@@ -1916,7 +1916,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, map<int, V2P
 	int eu4Home = army->getSourceArmy()->getProbabilisticHomeProvince(rc);
 	if (eu4Home == -1)
 	{
-		LOG(LogLevel::Debug) << "Army/navy " << army->getName() << " has no valid home provinces for " << RegimentCategoryNames[rc] << " due to previous errors; dissolving to pool";
+		LOG(LogLevel::Debug) << "Army/navy " << army->getName() << " has no valid home provinces for " << RegimentCategoryNames[rc] << "; dissolving to pool";
 		return -2;
 	}
 	auto homeCandidates = provinceMapper::getVic2ProvinceNumbers(eu4Home);

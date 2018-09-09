@@ -36,6 +36,33 @@ THE SOFTWARE. */
 #include <algorithm>
 
 
+class governmentSection: commonItems::parser
+{
+	public:
+		governmentSection(std::istream& theStream);
+		std::string getGovernment() const { return government; }
+
+	private:
+		std::string government;
+};
+
+
+governmentSection::governmentSection(std::istream& theStream)
+{
+	registerKeyword(std::regex("government"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleString governmentString(theStream);
+		government = governmentString.getString();
+		if (government.substr(0,1) == "\"")
+		{
+			government = government.substr(1,government.size()-2);
+		}
+	});
+	registerKeyword(std::regex("[a-zA-Z0-9_]+"), commonItems::ignoreItem);
+
+	parseStream(theStream);
+}
+
 
 EU4::Country::Country(const std::string& countryTag, std::istream& theStream):
 	tag(countryTag),
@@ -277,8 +304,10 @@ EU4::Country::Country(const std::string& countryTag, std::istream& theStream):
 			}
 		}
 	);
-	commonItems::parsingFunction governmentFunction = std::bind(&EU4::Country::getGovernmentFromStream, this, std::placeholders::_1, std::placeholders::_2);
-	registerKeyword(std::regex("government"), governmentFunction);
+	registerKeyword(std::regex("government"), [this](const std::string& unused, std::istream& theStream){
+		governmentSection theSection(theStream);
+		government = theSection.getGovernment();
+	});
 	registerKeyword(std::regex("active_relations"), [this](const std::string& unused, std::istream& theStream)
 		{
 			auto relationLeaves = commonItems::convert8859Object(unused, theStream);
@@ -387,27 +416,6 @@ EU4::Country::Country(const std::string& countryTag, std::istream& theStream):
 	determineJapaneseRelations();
 	determineInvestments();
 	determineLibertyDesire();
-}
-
-
-void EU4::Country::getGovernmentFromStream(const std::string& unused, std::istream& theStream)
-{
-	auto equals = getNextTokenWithoutMatching(theStream);
-	auto next = getNextTokenWithoutMatching(theStream);
-	if (next == "{")
-	{
-		while (next != "government")
-		{
-			next = getNextTokenWithoutMatching(theStream);
-		}
-		equals = getNextTokenWithoutMatching(theStream);
-		government = *getNextTokenWithoutMatching(theStream);
-		auto closingBracket = getNextTokenWithoutMatching(theStream);
-	}
-	else
-	{
-		government = *next;
-	}
 }
 
 
@@ -531,26 +539,13 @@ void EU4::Country::readFromCommonCountry(const std::string& fileName, const std:
 
 	if (!color)
 	{
-		registerKeyword(std::regex("graphical_culture"), commonItems::ignoreString);
 		registerKeyword(std::regex("color"), [this](const std::string& unused, std::istream& theStream)
 			{
 				color = commonItems::Color(theStream);
 			}
 		);
-		registerKeyword(std::regex("revolutionary_colors"), commonItems::ignoreObject);
-		registerKeyword(std::regex("historical_score"), commonItems::ignoreString);
-		registerKeyword(std::regex("preferred_religion"), commonItems::ignoreString);
-		registerKeyword(std::regex("historical_idea_groups"), commonItems::ignoreObject);
-		registerKeyword(std::regex("historical_units"), commonItems::ignoreObject);
-		registerKeyword(std::regex("monarch_names"), commonItems::ignoreObject);
-		registerKeyword(std::regex("leader_names"), commonItems::ignoreObject);
-		registerKeyword(std::regex("ship_names"), commonItems::ignoreObject);
-		registerKeyword(std::regex("army_names"), commonItems::ignoreObject);
-		registerKeyword(std::regex("fleet_names"), commonItems::ignoreObject);
-		registerKeyword(std::regex("colonial_parent"), commonItems::ignoreString);
-		registerKeyword(std::regex("random_nation_chance"), commonItems::ignoreString);
-		registerKeyword(std::regex("random_nation_extra_size"), commonItems::ignoreString);
-		registerKeyword(std::regex("right_to_bear_arms"), commonItems::ignoreString);
+		registerKeyword(std::regex("[a-zA-Z0-9_]+"), commonItems::ignoreItem);
+
 		parseFile(fullFilename);
 	}
 }

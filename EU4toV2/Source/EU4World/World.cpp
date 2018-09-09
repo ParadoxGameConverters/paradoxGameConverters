@@ -58,8 +58,6 @@ EU4::world::world(const string& EU4SaveFileName):
 			Configuration::setLastEU4Date(endDate);
 		}
 	);
-	// TODO - change to new ignoring method.
-
 	registerKeyword(std::regex("savegame_version"), [this](const std::string& versionText, std::istream& theStream)
 		{
 			auto versionObject = commonItems::convert8859Object(versionText, theStream);
@@ -78,14 +76,12 @@ EU4::world::world(const string& EU4SaveFileName):
 			loadUsedMods(modsObject);
 		}
 	);
-
 	registerKeyword(std::regex("revolution_target"), [this](const std::string& revolutionText, std::istream& theStream)
 		{
 			auto modsObject = commonItems::convert8859String(revolutionText, theStream);
 			loadRevolutionTargetString(modsObject);
 		}
 	);
-
 	registerKeyword(std::regex("empire"), [this](const std::string& empireText, std::istream& theStream)
 		{
 			auto empireObject = commonItems::convert8859Object(empireText, theStream);
@@ -104,7 +100,6 @@ EU4::world::world(const string& EU4SaveFileName):
 			loadEmpires(empireObject);
 		}
 	);
-
 	registerKeyword(std::regex("provinces"), [this](const std::string& provincesText, std::istream& theStream)
 		{
 			auto provincesObject = commonItems::convert8859Object(provincesText, theStream);
@@ -118,7 +113,6 @@ EU4::world::world(const string& EU4SaveFileName):
 			loadDiplomacy(diplomacyObject);
 		}
 	);
-	
 	registerKeyword(std::regex("[A-Za-z0-9\\_]+"), commonItems::ignoreItem);
 
 	LOG(LogLevel::Info) << "* Importing EU4 save *";
@@ -724,8 +718,7 @@ void EU4::world::readCommonCountriesFile(istream& in, const std::string& rootPat
 		{
 			// First three characters must be the tag.
 			std::string tag = countryLine.substr(0, 3);
-			auto findIter = theCountries.find(tag);
-			if (findIter != theCountries.end())
+			if (auto findIter = theCountries.find(tag); findIter != theCountries.end())
 			{
 				auto country = findIter->second;
 
@@ -749,7 +742,10 @@ void EU4::world::readCommonCountriesFile(istream& in, const std::string& rootPat
 				std::string fullFilename = rootPath + "/common/" + fileName;
 				size_t lastPathSeparatorPos = fullFilename.find_last_of('/');
 				std::string localFileName = fullFilename.substr(lastPathSeparatorPos + 1, string::npos);
-				country->readFromCommonCountry(localFileName, fullFilename);
+				if (Utils::DoesFileExist(fullFilename))
+				{
+					country->readFromCommonCountry(localFileName, fullFilename);
+				}
 			}
 		}
 	}
