@@ -19,7 +19,7 @@
 # THE SOFTWARE.
 
 # Those with "#Revise" after it refers to generic portraits that should get a replacement
-# Currently 433 needed
+# Currently 337 needed
 # I support the idea of giving an historical figure a wrong name rather than using
 # Mr. Ponomarenko anywhere just because
 
@@ -46,11 +46,11 @@ germanic = {
 }
 jewish_cultures = { #HPM
 	leader_portraits = {
-		communism = { "gfx/leaders/GER/Portrait_Germany_Generic_1.dds" } #Revise
-		democratic = { "gfx/leaders/GER/Portrait_Germany_Generic_2.dds" } #Revise
-		fascism = { "gfx/leaders/GER/Portrait_Germany_Generic_3.dds" } #Revise
-		absolutist = { "GFX_portrait_ger_wilhelm_ii" } #Revise
-		neutrality = { "gfx/leaders/GER/Portrait_Germany_Generic_2.dds" } #Revise
+		communism = { "gfx/leaders/OC/portrait_ISR_Shmuel_Mikunis.dds" } 
+		democratic = { "gfx/leaders/OC/portrait_ISR_David_Ben_Gurion.dds" } 
+		fascism = { "gfx/leaders/OC/portrait_ISR_Itzhak_Gaster.dds" } 
+		absolutist = { "gfx/leaders/OC/portrait_ISR_King_David.dds" } 
+		neutrality = { "gfx/leaders/OC/portrait_ISR_Rudolf_Szabo.dds" } 
 		radical = { "gfx/leaders/GER/Portrait_Germany_Generic_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -67,11 +67,11 @@ jewish_cultures = { #HPM
 }
 barbarian = { 
 	leader_portraits = {
-		communism = { "gfx/leaders/GER/Portrait_Germany_Generic_1.dds" } #Revise
-		democratic = { "gfx/leaders/GER/Portrait_Germany_Generic_2.dds" } #Revise
-		fascism = { "gfx/leaders/GER/Portrait_Germany_Generic_3.dds" } #Revise
-		absolutist = { "GFX_portrait_ger_wilhelm_ii" } #Revise
-		neutrality = { "gfx/leaders/GER/Portrait_Germany_Generic_2.dds" } #Revise
+		communism = { "gfx/leaders/OC/portrait_VAT_Boniface_II.dds" } 
+		democratic = { "gfx/leaders/OC/portrait_ITA_Odoacer.dds" } 
+		fascism = { "gfx/leaders/OC/portrait_SPR_Alaric_I.dds" } 
+		absolutist = { "gfx/leaders/OC/portrait_ITA_Theoderic_the_Great.dds" } 
+		neutrality = { "gfx/leaders/OC/portrait_FRA_Merovech.dds" } 
 		radical = { "gfx/leaders/GER/Portrait_Germany_Generic_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -88,10 +88,10 @@ barbarian = {
 }
 beneluxian = {
 	leader_portraits = {
-		communism = { "gfx/leaders/Europe/Portrait_Europe_Generic_1.dds" } #Revise
+		communism = { "GFX_BEL_Joseph_Jacquemotte" }
 		democratic = { "gfx/leaders/BEL/Portrait_Belgium_Hubert_Pierlot.dds" }
-		fascism = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
-		absolutist = { "GFX_portrait_ger_wilhelm_ii" } #Revise
+		fascism = { "GFX_HOL_Anton_Mussert" } 
+		absolutist = { "GFX_BEL_Leopold_III" } 
 		neutrality = { "gfx/leaders/LUX/portrait_lux_joseph_bech.dds" }
 		radical = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
 	}
@@ -109,10 +109,10 @@ beneluxian = {
 }
 pan_swiss = {
 	leader_portraits = {
-		communism = { "gfx/leaders/GER/Portrait_Germany_Generic_1.dds" } #Revise
+		communism = { "GFX_SWI_Fritz_Platten" } 
 		democratic = { "gfx/leaders/SWI/Portrait_Switzerland_Federal_council.dds" }
-		fascism = { "GFX_portrait_ger_wilhelm_ii" } #Revise
-		absolutist = { "gfx/leaders/ENG/Portrait_Britain_George_VI.dds" } #Revise
+		fascism = { "GFX_SWI_Jakob_Schaffner" } 
+		absolutist = { "gfx/leaders/OC/portrait_BAV_Rupprecht_Crown_Prince.dds" } 
 		neutrality = { "gfx/leaders/SWI/Portrait_Switzerland_Federal_council.dds" }
 		radical = { "gfx/leaders/GER/Portrait_Germany_Generic_3.dds" } #Revise
 	}
@@ -130,10 +130,10 @@ pan_swiss = {
 }
 scandinavian = {
 	leader_portraits = {
-		communism = { "gfx/leaders/Europe/Portrait_Europe_Generic_1.dds" } #Revise
+		communism = { "GFX_DEN_Aksel_Larsen" } 
 		democratic = { "gfx/leaders/SWE/Portrait_Sweden_Per_Albin_Hansson.dds" }
-		fascism = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
-		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" } #Revise
+		fascism = { "GFX_DEN_Fritz_Clausen" } 
+		absolutist = { "gfx/leaders/OC/portrait_SWE_Gustav_V.dds" } 
 		neutrality = { "gfx/leaders/DEN/Portrait_Denmark_Thorvald_Stauning.dds" }
 		radical = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
 	}
@@ -172,11 +172,11 @@ british = {
 }
 celtic = {
 	leader_portraits = {
-		communism = { "gfx/leaders/ENG/Portrait_Britain_Generic_1.dds" } #Revise
+		communism = { "gfx/leaders/OC/portrait_IRE_Sean_Murrey.dds" } 
 		democratic = { "gfx/leaders/IRE/Portrait_Ireland_Eamon_de_Valera.dds" }
-		fascism = { "gfx/leaders/ENG/Portrait_Britain_Generic_3.dds" } #Revise
-		absolutist = { "gfx/leaders/ENG/Portrait_Britain_George_VI.dds" } #Revise
-		neutrality = { "gfx/leaders/ENG/Portrait_Britain_Generic_2.dds" } #Revise
+		fascism = { "gfx/leaders/OC/portrait_IRE_Ernest_Blythe.dds" } 
+		absolutist = { "GFX_IRE_Eoin_Oduffy" } 
+		neutrality = { "GFX_IRE_James_Larkin" }
 		radical = { "gfx/leaders/ENG/Portrait_Britain_Generic_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -216,7 +216,7 @@ iberian = {
 	leader_portraits = {
 		communism = { "gfx/leaders/SPR/Portrait_Spain_Jose_Diaz.dds" }
 		democratic = { "gfx/leaders/SPR/Portrait_Spain_Manuel_Azana.dds" }
-		fascism = { "gfx/leaders/South America/Portrait_South_America_Generic_3.dds" } #Revise
+		fascism = { "GFX_POR_Francisco_Preto" } 
 		absolutist = { "gfx/leaders/SPR/Portrait_Spain_Francisco_Franco.dds" }
 		neutrality = { "gfx/leaders/POR/Portrait_Portugal_Antonio_de_Oliveira_Salazar.dds" }
 		radical = { "gfx/leaders/South America/Portrait_South_America_Generic_3.dds" } #Revise
@@ -239,7 +239,7 @@ french = {
 		democratic = { "gfx/leaders/FRA/Portrait_France_Edouard_Daladier.dds" }
 		fascism = { "gfx/leaders/FRA/Portrait_France_Philippe_Petain.dds" }
 		absolutist = { "gfx/leaders/ENG/Portrait_France_Charles_De_Gaulle.dds" }
-		neutrality = { "gfx/leaders/FRA/Portrait_France_Generic_2.dds" } #Revise
+		neutrality = { "gfx/leaders/OC/portrait_FRA_Albert_Francois_Lebrun.dds" } 
 		radical = { "gfx/leaders/FRA/Portrait_France_Generic_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -277,11 +277,11 @@ south_slavic = {
 }
 pan_albanian = { #HFM
 	leader_portraits = {
-		communism = { "gfx/leaders/YUG/Portrait_Yugoslavia_Josip_Broz_Tito.dds" } #Revise
-		democratic = { "gfx/leaders/YUG/Portrait_Yugoslavia_Milan_Grol.dds" } #Revise
-		fascism = { "gfx/leaders/YUG/Portrait_Yugoslavia_Milan_Stojadinovic.dds" } #Revise
+		communism = { "GFX_ALB_Enver_Hoxha" } 
+		democratic = { "gfx/leaders/OC/portrait_ALB_Pandeli_Evangjeli.dds" } 
+		fascism = { "GFX_ALB_Tefik_Mborja" } 
 		absolutist = { "gfx/leaders/ALB/Portrait_Albania_King_Zog.dds" }
-		neutrality = { "gfx/leaders/YUG/Portrait_Yugoslavia_Peter_II.dds" } #Revise
+		neutrality = { "GFX_ALB_Fan_Stilian_Noli" } 
 		radical = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -301,7 +301,7 @@ pan_romanian = {
 		communism = { "gfx/leaders/ROM/Portrait_Romania_Constantin_Parhon.dds" }
 		democratic = { "gfx/leaders/ROM/Portrait_Romania_Armand_Calinescu.dds" }
 		fascism = { "gfx/leaders/ROM/Portrait_Romania_Ion_Antonescu.dds" }
-		absolutist = { "gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds" } #Revise
+		absolutist = { "GFX_ROM_Carol_II" } 
 		neutrality = { "gfx/leaders/ROM/Portrait_Romania_Gheorghe_Tatarescu.dds" }
 		radical = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
 	}
@@ -320,10 +320,10 @@ pan_romanian = {
 hungarian_culture_group = {
 	leader_portraits = {
 		communism = { "gfx/leaders/HUN/Portrait_Hungary_Matyas_Rakoski.dds" }
-		democratic = { "gfx/leaders/Europe/Portrait_Europe_Generic_2.dds" } #Revise
+		democratic = { "GFX_HUN_Arpad_Szakasits" } 
 		fascism = { "gfx/leaders/HUN/Portrait_Hungary_Miklos_Horthy.dds" }
-		absolutist = { "gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds" } #Revise
-		neutrality = { "gfx/leaders/Europe/Portrait_Europe_Generic_2.dds" } #Revise
+		absolutist = { "GFX_HUN_Ferenc_Feketehalmy_Czeydner" } 
+		neutrality = { "GFX_HUN_Geza_Lakatos" } 
 		radical = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -364,8 +364,8 @@ czecho_slovak_culture_group = {
 		communism = { "gfx/leaders/CZE/Portrait_Czech_Klement_Gottwald.dds" }
 		democratic = { "gfx/leaders/CZE/Portrait_Czech_Edvard_Benes.dds" }
 		fascism = { "gfx/leaders/CZE/Portrait_Czech_Jaroslav_Krejci.dds" }
-		absolutist = { "gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds" } #Revise
-		neutrality = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" } #Revise
+		absolutist = { "gfx/leaders/OC/portrait_CZE_Charles_III.dds" } 
+		neutrality = { "GFX_CZE_Richard_Tesarik" } 
 		radical = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -383,9 +383,9 @@ czecho_slovak_culture_group = {
 east_slavic = {
 	leader_portraits = {
 		communism = { "gfx/leaders/SOV/Portrait_Leon_Trotsky.dds" }
-		democratic = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" } #Revise
+		democratic = { "GFX_SOV_Alexander_Kerensky" } 
 		fascism = { "gfx/leaders/SOV/Portrait_Soviet_Konstantin_Rodzaevsky.dds" }
-		absolutist = { "gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds" } #Revise
+		absolutist = { "GFX_SOV_Alexander_Guchkov" } 
 		neutrality = { "gfx/leaders/SOV/Portrait_Soviet_Gregory_Zhukov.dds" }
 		radical = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" } #Revise
 	}
@@ -405,8 +405,8 @@ baltic = {
 	leader_portraits = {
 		communism = { "gfx/leaders/LAT/portrait_lat_vilis_lacis.dds" }
 		democratic = { "gfx/leaders/LAT/portrait_lat_fricis_menders.dds" }
-		fascism = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" } #Revise
-		absolutist = { "gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds" } #Revise
+		fascism = { "gfx/leaders/OC/portrait_LAT_Gustavs_Celminsh.dds" } 
+		absolutist = { "gfx/leaders/OC/portrait_EST_Adolf_Friedrich_von_Mecklenburg.dds" } 
 		neutrality = { "gfx/leaders/EST/portrait_est_konstantin_pats.dds" }
 		radical = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" } #Revise
 	}
@@ -425,9 +425,9 @@ baltic = {
 levantine = {
 	leader_portraits = {
 		communism = { "gfx/leaders/GRE/Portrait_Greece_Markos_Vafiadis.dds" }
-		democratic = { "gfx/leaders/ITA/Portrait_Italy_Generic_2.dds" } #Revise
-		fascism = { "gfx/leaders/ITA/Portrait_Italy_Generic_3.dds" } #Revise
-		absolutist = { "gfx/leaders/ITA/Portrait_Italy_Victor_Emmanuel_III.dds" } #Revise
+		democratic = { "GFX_GRE_Panagis_Tsaldaris" } 
+		fascism = { "GFX_GRE_Konstantinos_Maniadakis" } 
+		absolutist = { "gfx/leaders/OC/portrait_BYZ_John_VIII.dds" } 
 		neutrality = { "gfx/leaders/GRE/Portrait_Greece_Ioannis_Metaxas.dds" }
 		radical = { "gfx/leaders/ITA/Portrait_Italy_Generic_3.dds" } #Revise
 	}
@@ -447,8 +447,8 @@ turko_semitic = {
 	leader_portraits = {
 		communism = { "gfx/leaders/TUR/Portrait_Turkey_Sefik_Husnu.dds" }
 		democratic = { "gfx/leaders/TUR/Portrait_Turkey_Ismet_Inonu.dds" }
-		fascism = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
-		absolutist = { "gfx/leaders/SAU/Portrait_Saudi_arabia_Abdulazis_Ibn_Saud.dds" } #Revise
+		fascism = { "gfx/leaders/OC/portrait_TUR_Alparslan_Turkesh.dds" } 
+		absolutist = { "GFX_TUR_Fevzi_Cakmak" } 
 		neutrality = { "gfx/leaders/TUR/Portrait_Turkey_Mustafa_Kemal_Ataturk.dds" }
 		radical = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
 	}
@@ -464,13 +464,13 @@ turko_semitic = {
 	graphical_culture = { middle_eastern_gfx }
 	graphical_culture_2d = { middle_eastern_2d }
 }
-caucasian = {
+caucasian = { #HPM
 	leader_portraits = {
-		communism = { "gfx/leaders/TUR/Portrait_Turkey_Sefik_Husnu.dds" } #Revise
-		democratic = { "gfx/leaders/TUR/Portrait_Turkey_Ismet_Inonu.dds" } #Revise
-		fascism = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
-		absolutist = { "gfx/leaders/SAU/Portrait_Saudi_arabia_Abdulazis_Ibn_Saud.dds" } #Revise
-		neutrality = { "gfx/leaders/TUR/Portrait_Turkey_Mustafa_Kemal_Ataturk.dds" } #Revise
+		communism = { "gfx/leaders/OC/portrait_GEO_Kandid_Charkviani.dds" } 
+		democratic = { "gfx/leaders/OC/portrait_GEO_Neo_Zhordania.dds" } 
+		fascism = { "gfx/leaders/OC/portrait_ARM_Drastamat_Kanayan.dds" } 
+		absolutist = { "gfx/leaders/OC/portrait_GEO_Irakli_Bagration_of_Mukhrani.dds" } 
+		neutrality = { "gfx/leaders/OC/portrait_ARM_Hovhannes_Kajaznuni.dds" } 
 		radical = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -487,9 +487,9 @@ caucasian = {
 }
 arab = {
 	leader_portraits = {
-		communism = { "gfx/leaders/SAU/Portrait_Arabia_Generic_1.dds" } #Revise
-		democratic = { "gfx/leaders/SAU/Portrait_Arabia_Generic_2.dds" } #Revise
-		fascism = { "gfx/leaders/SAU/Portrait_Arabia_Generic_3.dds" } #Revise
+		communism = { "gfx/leaders/OC/portrait_IRQ_Yusuf_Salman_Yusuf.dds" } 
+		democratic = { "gfx/leaders/OC/portrait_IRQ_Hashim_al_Atassi.dds" } 
+		fascism = { "gfx/leaders/OC/portrait_IRQ_Rashid_Ali_al_Gaylani.dds" } 
 		absolutist = { "gfx/leaders/SAU/Portrait_Saudi_arabia_Abdulazis_Ibn_Saud.dds" }
 		neutrality = { "gfx/leaders/IRQ/portrait_ghazi.dds" }
 		radical = { "gfx/leaders/SAU/Portrait_Arabia_Generic_3.dds" } #Revise
@@ -509,8 +509,8 @@ arab = {
 iranian_turanian = {
 	leader_portraits = {
 		communism = { "gfx/leaders/SIK/Portrait_Sinkiang_Sheng_Shicai.dds" }
-		democratic = { "gfx/leaders/SAU/Portrait_Arabia_Generic_2.dds" } #Revise
-		fascism = { "gfx/leaders/SAU/Portrait_Arabia_Generic_3.dds" } #Revise
+		democratic = { "gfx/leaders/OC/portrait_PER_Jalaleddin_Tehrani.dds" } 
+		fascism = { "gfx/leaders/OC/portrait_PER_Abdolhossein_Teymourtash.dds" } 
 		absolutist = { "gfx/leaders/PER/Portrait_Iran_Reza_Shah_Pahlavi.dds" }
 		neutrality = { "gfx/leaders/AFG/Portrait_Afghanistan_Mohammed_Zahir_Shah.dds" }
 		radical = { "gfx/leaders/SAU/Portrait_Arabia_Generic_3.dds" } #Revise
@@ -530,8 +530,8 @@ iranian_turanian = {
 central_asian = {
 	leader_portraits = {
 		communism = { "gfx/leaders/MON/portrait_mon_anandyn_amar.dds" }
-		democratic = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" } #Revise
-		fascism = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" } #Revise
+		democratic = { "gfx/leaders/OC/portrait_MON_Punsalmaagiin_Ochirbat.dds" } 
+		fascism = { "gfx/leaders/OC/portrait_MON_Gengis_Khan.dds" } 
 		absolutist = { "gfx/leaders/BHU/portrait_bhu_jigme_wangchuk.dds" }
 		neutrality = { "gfx/leaders/TIB/Portrait_Tibet_Jamphel_Yeshe_Gyaltsen.dds" }
 		radical = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" } #Revise
@@ -571,11 +571,11 @@ south_asian = {
 }
 indo_iranian = { #HFM
 	leader_portraits = {
-		communism = { "GFX_RAJ_krishna_pillai" } #Revise
-		democratic = { "GFX_RAJ_pattabhi_sitaramayya" } #Revise
-		fascism = { "GFX_RAJ_veer_savarkar" } #Revise
-		absolutist = { "gfx/leaders/RAJ/Portrait_The_Raj_Political_Leader_Generic.dds" } #Revise
-		neutrality = { "gfx/leaders/RAJ/Portrait_The_Raj_Political_Leader_Generic.dds" } #Revise
+		communism = { "gfx/leaders/OC/portrait_PAK_Haji_Mohammad_Danesh.dds" } 
+		democratic = { "gfx/leaders/OC/portrait_PAK_Muhammad_Ali_Jinnah.dds" } 
+		fascism = { "gfx/leaders/OC/portrait_PAK_Mirza_Mughal.dds" } 
+		absolutist = { "gfx/leaders/OC/portrait_PAK_Bahadur_Shah_Zafar.dds" } 
+		neutrality = { "gfx/leaders/OC/portrait_PAK_Qazi_Muhammad_Essa.dds" } 
 		radical = { "gfx/leaders/RAJ/Portrait_The_Raj_Political_Leader_Generic_2.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -592,11 +592,11 @@ indo_iranian = { #HFM
 }
 southeast_asian = {
 	leader_portraits = {
-		communism = { "gfx/leaders/Asia/Portrait_Asia_Generic_1.dds" } #Revise
-		democratic = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" } #Revise
-		fascism = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" } #Revise
+		communism = { "GFX_SIA_Chin_Peng" } 
+		democratic = { "GFX_SIA_Pridi_Banomyon" } 
+		fascism = { "gfx/leaders/OC/portrait_VIN_Pan_Boi_Chau.dds" } 
 		absolutist = { "gfx/leaders/SIA/Portrait_Siam_Phraya_Phahon.dds" }
-		neutrality = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" } #Revise
+		neutrality = { "GFX_SIA_Plaek_Phibunsongk" } 
 		radical = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -614,8 +614,8 @@ southeast_asian = {
 east_asian = {
 	leader_portraits = {
 		communism = { "gfx/leaders/CHI/portrait_prc_mao_zedong.dds" }
-		democratic = { "gfx/leaders/JAP/portrait_jap_tetsu_katayama.dds" } #Revise
-		fascism = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" } #Revise
+		democratic = { "GFX_CHI_Sun_Fo" } 
+		fascism = { "GFX_CHI_Chen_Gongbo" } 
 		absolutist = { "GFX_portrait_man_henry_pu_yi_emperor" }
 		neutrality = { "gfx/leaders/CHI/Portrait_China_Chiang_Kai_Shek.dds" }
 		radical = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" } #Revise
@@ -636,9 +636,9 @@ far_east_asian = {
 	leader_portraits = {
 		communism = { "gfx/leaders/JAP/portrait_jap_kyuichi_tokuda.dds" }
 		democratic = { "gfx/leaders/JAP/portrait_jap_tetsu_katayama.dds" }
-		fascism = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" } #Revise
+		fascism = { "gfx/leaders/OC/portrait_JAP_Yi_Un.dds" } 
 		absolutist = { "gfx/leaders/JAP/Portrait_Japan_Hirohito.dds" }
-		neutrality = { "gfx/leaders/CHI/Portrait_China_Chiang_Kai_Shek.dds" } #Revise
+		neutrality = { "gfx/leaders/OC/portrait_JAP_Emperor_Meiji.dds" } 
 		radical = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -658,7 +658,7 @@ oceanic = {
 		communism = { "gfx/leaders/South America/Portrait_South_America_Generic_1.dds" } #Revise
 		democratic = { "gfx/leaders/South America/Portrait_South_America_Generic_2.dds" } #Revise
 		fascism = { "gfx/leaders/South America/Portrait_South_America_Generic_3.dds" } #Revise
-		absolutist = { "gfx/leaders/SPR/Portrait_Spain_Francisco_Franco.dds" } #Revise
+		absolutist = { "gfx/leaders/OC/portrait_HAW_David_Kalakaua_Kawananakoa.dds" } 
 		neutrality = { "gfx/leaders/South America/Portrait_South_America_Generic_2.dds" } #Revise
 		radical = { "gfx/leaders/South America/Portrait_South_America_Generic_3.dds" } #Revise
 	}
@@ -781,11 +781,11 @@ native_carribean = {
 }
 american_cultures = {
 	leader_portraits = {
-		communism = { "gfx/leaders/USA/Portrait_USA_Generic_1.dds" } #Revise
+		communism = { "gfx/leaders/OC/portrait_USA_Earl_Browder.dds" } 
 		democratic = { "gfx/leaders/USA/Portrait_USA_Franklin_Roosevelt.dds" }
 		fascism = { "gfx/leaders/USA/Portrait_USA_William_Dudley_Pelley.dds" }
 		absolutist = { "gfx/leaders/USA/Portrait_USA_Douglas_MacArthur.dds" }
-		neutrality = { "gfx/leaders/USA/Portrait_USA_Generic_2.dds" } #Revise
+		neutrality = { "gfx/leaders/OC/portrait_USA_Alf_Landon.dds" } 
 		radical = { "gfx/leaders/USA/Portrait_USA_Generic_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -805,7 +805,7 @@ neo_european_cultures = {
 		communism = { "GFX_SAF_moses_kotane" }
 		democratic = { "gfx/leaders/CAN/Portrait_Canada_Mackenzie_King.dds" }
 		fascism = { "gfx//leaders//CAN//Portrait_Canada_Adrien_Arcand.dds" }
-		absolutist = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
+		absolutist = { "gfx/leaders/OC/portrait_FRA_Prince_Jean_de_Guise" } 
 		neutrality = { "gfx/leaders/AST/Portrait_Australia_Rod_Hull.dds" }
 		radical = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" } #Revise
 	}
@@ -826,7 +826,7 @@ latin_american_cultures = {
 		communism = { "gfx/leaders/ARG/Portrait_Argentina_Fanny_Jabcovsky.dds" }
 		democratic = { "gfx/leaders/CHL/portrait_chl_arturo_alessandri.dds" }
 		fascism = { "gfx/leaders/ARG/portrait_south_america_generic_leader_1.dds" } #Totally-not-Hitler
-		absolutist = { "gfx/leaders/SPR/Portrait_Spain_Francisco_Franco.dds" } #Revise
+		absolutist = { "gfx/leaders/OC/portrait_BRA_Pedro_de_Alcantara.dds" } 
 		neutrality = { "gfx/leaders/ARG/Portrait_Argentina_Agustin_Pedro_Justo.dds" }
 		radical = { "gfx/leaders/South America/Portrait_South_America_Generic_3.dds" } #Revise
 	}
@@ -844,11 +844,11 @@ latin_american_cultures = {
 }
 african_diaspora_cultures = {
 	leader_portraits = {
-		communism = { "gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds" } #Revise
+		communism = { "gfx/leaders/OC/portrait_HAI_Jacques_Roumain.dds" } 
 		democratic = { "gfx/leaders/HAI/portrait_hai_stenio_vincent.dds" }
-		fascism = { "gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds" } #Revise
-		absolutist = { "gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds" } #Revise
-		neutrality = { "gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds" } #Revise
+		fascism = { "gfx/leaders/OC/portrait_HAI_Francois_Duvalier.dds" } 
+		absolutist = { "gfx/leaders/OC/portrait_HAI_Faustin_Soulouque.dds" } 
+		neutrality = { "gfx/leaders/OC/portrait_LIB_Edwin_Barclay.dds" } 
 		radical = { "gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds" } #Revise
 	}
 	ideology_minister_portraits = 
@@ -910,7 +910,7 @@ east_african = {
 		communism = { "gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds" } #Revise
 		democratic = { "gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds" } #Revise
 		fascism = { "gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds" } #Revise
-		absolutist = { "gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds" } #Revise
+		absolutist = { "gfx/leaders/ETH/Portrait_Ethiopia_Haile_Selassie.dds" } 
 		neutrality = { "gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds" } #Revise
 		radical = { "gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds" } #Revise
 	}
@@ -949,12 +949,12 @@ southern_african = {
 }
 bears = {
 	leader_portraits = {
-		communism = { "gfx/leaders/POL/Portrait_POL_Voytek.dds" } #Revise
-		democratic = { "gfx/leaders/POL/Portrait_POL_Voytek.dds" } #Revise
-		fascism = { "gfx/leaders/POL/Portrait_POL_Voytek.dds" } #Revise
-		absolutist = { "gfx/leaders/POL/Portrait_POL_Voytek.dds" } #Revise
+		communism = { "gfx/leaders/POL/Portrait_POL_Voytek.dds" } 
+		democratic = { "gfx/leaders/POL/Portrait_POL_Voytek.dds" } 
+		fascism = { "gfx/leaders/POL/Portrait_POL_Voytek.dds" } 
+		absolutist = { "gfx/leaders/POL/Portrait_POL_Voytek.dds" } 
 		neutrality = { "gfx/leaders/POL/Portrait_POL_Voytek.dds" }
-		radical = { "gfx/leaders/POL/Portrait_POL_Voytek.dds" } #Revise
+		radical = { "gfx/leaders/POL/Portrait_POL_Voytek.dds" } 
 	}
 	ideology_minister_portraits = 
 	{
@@ -970,12 +970,12 @@ bears = {
 }
 equine = {
 	leader_portraits = {
-		communism = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
-		democratic = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
-		fascism = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
-		absolutist = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
-		neutrality = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
-		radical = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
+		communism = { "gfx/leaders/OC/portrait_Chancellor_Glitterhoof.dds" } 
+		democratic = { "gfx/leaders/OC/portrait_Chancellor_Glitterhoof.dds" } 
+		fascism = { "gfx/leaders/OC/portrait_Chancellor_Glitterhoof.dds" } 
+		absolutist = { "gfx/leaders/OC/portrait_Chancellor_Glitterhoof.dds" } 
+		neutrality = { "gfx/leaders/OC/portrait_Chancellor_Glitterhoof.dds" } 
+		radical = { "gfx/leaders/OC/portrait_Chancellor_Glitterhoof.dds" } 
 	}
 	ideology_minister_portraits = 
 	{
@@ -991,12 +991,12 @@ equine = {
 }
 non_human = {
 	leader_portraits = {
-		communism = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
-		democratic = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
-		fascism = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
-		absolutist = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
-		neutrality = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
-		radical = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" } #Revise
+		communism = { "gfx/leaders/OC/portrait_Non_Human.dds" } 
+		democratic = { "gfx/leaders/OC/portrait_Non_Human.dds" } 
+		fascism = { "gfx/leaders/OC/portrait_Non_Human.dds" } 
+		absolutist = { "gfx/leaders/OC/portrait_Non_Human.dds" } 
+		neutrality = { "gfx/leaders/OC/portrait_Non_Human.dds" } 
+		radical = { "gfx/leaders/OC/portrait_Non_Human.dds" }
 	}
 	ideology_minister_portraits = 
 	{

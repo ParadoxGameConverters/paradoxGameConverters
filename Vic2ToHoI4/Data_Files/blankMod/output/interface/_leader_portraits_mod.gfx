@@ -1,0 +1,33 @@
+spriteTypes = {
+	#overwritten portraits
+	#originally implying a mod that has given no answer
+	#kept here as to remind me who to use to create new portraits
+  spriteType = {   name =	"GFX_BEL_Joseph_Jacquemotte"	   texturefile =	"gfx/leaders/Europe/Portrait_Europe_Generic_1.dds"	    }
+  spriteType = {   name =	"GFX_BEL_Leopold_III"	   texturefile =	"gfx/leaders/Europe/Portrait_Europe_Generic_1.dds"	    }
+  spriteType = {   name =	"GFX_HOL_Anton_Mussert"	   texturefile =	"gfx/leaders/Europe/Portrait_Europe_Generic_3.dds"	    }
+  spriteType = {   name =	"GFX_IRE_Eoin_Oduffy"	   texturefile =	"gfx/leaders/ENG/Portrait_Britain_George_VI.dds"	    }
+  spriteType = {   name =	"GFX_IRE_James_Larkin"	   texturefile =	"gfx/leaders/ENG/Portrait_Britain_Generic_2.dds"	    }
+  spriteType = {   name =	"GFX_CZE_Richard_Tesarik"	   texturefile =	"gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds"	    }
+  spriteType = {   name =	"GFX_CHI_Chen_Gongbo"	   texturefile =	"gfx/leaders/Asia/Portrait_Asia_Generic_3.dds"	    }
+  spriteType = {   name =	"GFX_CHI_Sun_Fo"	   texturefile =	"gfx/leaders/JAP/portrait_jap_tetsu_katayama.dds"	    }
+  spriteType = {   name =	"GFX_SOV_Alexander_Guchkov"	   texturefile =	"gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds"	    }
+  spriteType = {   name =	"GFX_SOV_Alexander_Kerensky"	   texturefile =	"gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds"	    }
+  spriteType = {   name =	"GFX_HUN_Ferenc_Feketehalmy_Czeydner"	   texturefile =	"gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds"	    }
+  spriteType = {   name =	"GFX_HUN_Geza_Lakatos"	   texturefile =	"gfx/leaders/Europe/Portrait_Europe_Generic_2.dds"	    }
+  spriteType = {   name =	"GFX_HUN_Arpad_Szakasits"	   texturefile =	"gfx/leaders/Europe/Portrait_Europe_Generic_2.dds"	    }
+  spriteType = {   name =	"GFX_POR_Francisco_Preto"	   texturefile =	"gfx/leaders/South America/Portrait_South_America_Generic_3.dds"	    }
+  spriteType = {   name =	"GFX_GRE_Konstantinos_Maniadakis"	   texturefile =	"gfx/leaders/ITA/Portrait_Italy_Generic_3.dds"	    }
+  spriteType = {   name =	"GFX_GRE_Panagis_Tsaldaris"	   texturefile =	"gfx/leaders/ITA/Portrait_Italy_Generic_2.dds"	    }
+  spriteType = {   name =	"GFX_ALB_Enver_Hoxha"	   texturefile =	"gfx/leaders/YUG/Portrait_Yugoslavia_Josip_Broz_Tito.dds"	    }
+  spriteType = {   name =	"GFX_ALB_Fan_Stilian_Noli"	   texturefile =	"gfx/leaders/YUG/Portrait_Yugoslavia_Peter_II.dds"	    }
+  spriteType = {   name =	"GFX_ALB_Tefik_Mborja"	   texturefile =	"gfx/leaders/YUG/Portrait_Yugoslavia_Milan_Stojadinovic.dds"	    }
+  spriteType = {   name =	"GFX_ROM_Carol_II"	   texturefile =	"gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds"	    }
+  spriteType = {   name =	"GFX_SWI_Fritz_Platten"	   texturefile =	"gfx/leaders/GER/Portrait_Germany_Generic_1.dds"	    }
+  spriteType = {   name =	"GFX_SWI_Jakob_Schaffner"	   texturefile =	"gfx/leaders/Europe/Portrait_Europe_Generic_3.dds"	    }
+  spriteType = {   name =	"GFX_DEN_Aksel_Larsen"	   texturefile =	"gfx/leaders/Europe/Portrait_Europe_Generic_1.dds"	    }
+  spriteType = {   name =	"GFX_DEN_Fritz_Clausen"	   texturefile =	"gfx/leaders/Europe/Portrait_Europe_Generic_3.dds"	    }
+  spriteType = {   name =	"GFX_SIA_Chin_Peng"	   texturefile =	"gfx/leaders/Asia/Portrait_Asia_Generic_1.dds"	    }
+  spriteType = {   name =	"GFX_SIA_Plaek_Phibunsongk"	   texturefile =	"gfx/leaders/Asia/Portrait_Asia_Generic_2.dds"	    }
+  spriteType = {   name =	"GFX_SIA_Pridi_Banomyon"	   texturefile =	"gfx/leaders/Asia/Portrait_Asia_Generic_2.dds"	    }
+  spriteType = {   name =	"GFX_TUR_Fevzi_Cakmak"	   texturefile =	"gfx/leaders/SAU/Portrait_Saudi_arabia_Abdulazis_Ibn_Saud.dds"	    }
+}
