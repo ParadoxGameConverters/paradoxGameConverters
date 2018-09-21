@@ -44,5 +44,20 @@
     <ClCompile Include="HoI4ArmyTests.cpp">
       <Filter>Source Files\HoI4WorldTests</Filter>
     </ClCompile>
+    <ClCompile Include="DivisionTests.cpp">
+      <Filter>Source Files\HoI4WorldTests</Filter>
+    </ClCompile>
+    <ClCompile Include="DivisionTemplateTests.cpp">
+      <Filter>Source Files\HoI4WorldTests</Filter>
+    </ClCompile>
+    <ClCompile Include="RegimentTests.cpp">
+      <Filter>Source Files\HoI4WorldTests</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitMapTests.cpp">
+      <Filter>Source Files\HoI4WorldTests</Filter>
+    </ClCompile>
+    <ClCompile Include="AllMilitaryMappingsTests.cpp">
+      <Filter>Source Files\HoI4WorldTests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -21,49 +21,27 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MILITARY_MAPPINGS
-#define MILITARY_MAPPINGS
+#include "Division.h"
 
 
 
-#include "DivisionTemplate.h"
-#include "UnitMap.h"
-#include "newParser.h"
-#include <istream>
-#include <map>
-#include <string>
-#include <vector>
-
-
-
-namespace HoI4
+HoI4::DivisionType::DivisionType(const std::string& _name, const std::string& _type, int _location):
+	name(_name),
+	type(_type),
+	location(_location)
 {
-
-
-class militaryMappings: commonItems::parser
-{
-	public:
-		militaryMappings(const std::string& name, std::istream& theStream);
-
-		auto getMappingsName() const { return mappingsName; }
-		auto getUnitMap() const { return unitMap; }
-		auto getDivisionTemplates() const { return divisionTemplates; }
-		auto getSubstitutes() const { return substitutes; }
-
-	private:
-		void importUnitMap(std::istream& theStream);
-		void importDivisionTemplates(std::istream& theStream);
-		void importSubstitutes(std::istream& theStream);
-
-		std::string mappingsName = "";
-		std::map<std::string, HoI4::UnitMap> unitMap;
-		std::vector<HoI4::DivisionTemplateType> divisionTemplates;
-		std::map<std::string, std::string> substitutes;
-};
-
-
 }
 
 
+std::ostream& HoI4::operator << (std::ostream& out, const HoI4::DivisionType& division)
+{
+	out << "\tdivision = {\n";
+	out << "\t\tname = \"" << division.name << "\"\n";
+	out << "\t\tlocation = " << division.location << "\n";
+	out << "\t\tdivision_template = \"" << division.type << "\"\n";
+	out << "\t\tstart_experience_factor = 0.3\n";
+	out << "\t\tstart_equipment_factor = 0.7\n";
+	out << "\t}\n";
 
-#endif // MILITARY_MAPPINGS
+	return out;
+}

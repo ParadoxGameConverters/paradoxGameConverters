@@ -89,6 +89,7 @@ void commonItems::parser::parseFile(const std::string& filename)
 	if (!theFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open " << filename << " for parsing.";
+		return;
 	}
 
 	const char firstChar = theFile.peek();

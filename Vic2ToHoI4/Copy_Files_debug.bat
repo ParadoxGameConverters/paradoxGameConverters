@@ -14,7 +14,7 @@ copy "Data_Files\country_mappings.txt" "debug\country_mappings.txt
 copy "Data_Files\governmentMapping.txt" "debug\governmentMapping.txt
 copy "Data_Files\license.txt" "debug\license.txt"
 copy "Data_Files\tech_mapping.txt" "debug\tech_mapping.txt"
-copy "Data_Files\unit_mapping.txt" "debug\unit_mapping.txt"
+copy "Data_Files\unit_mappings.txt" "debug\unit_mappings.txt"
 copy "Data_Files\FAQ.txt" "debug\FAQ.txt"
 copy "Data_Files\resources.txt" "debug\resources.txt"
 copy "Data_Files\positions.txt" "debug\positions.txt"

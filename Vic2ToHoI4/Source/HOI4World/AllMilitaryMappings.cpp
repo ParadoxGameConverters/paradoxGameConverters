@@ -21,49 +21,31 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MILITARY_MAPPINGS
-#define MILITARY_MAPPINGS
+#include "AllMilitaryMappings.h"
 
 
 
-#include "DivisionTemplate.h"
-#include "UnitMap.h"
-#include "newParser.h"
-#include <istream>
-#include <map>
-#include <string>
-#include <vector>
-
-
-
-namespace HoI4
+HoI4::allMilitaryMappings::allMilitaryMappings()
 {
+	registerKeyword(std::regex("[a-zA-Z0-9]+"), [this](const std::string& mod, std::istream& theStream)
+	{
+		militaryMappings newMappings(mod, theStream);
+		theMappings.insert(make_pair(mod, newMappings));
+	});
 
-
-class militaryMappings: commonItems::parser
-{
-	public:
-		militaryMappings(const std::string& name, std::istream& theStream);
-
-		auto getMappingsName() const { return mappingsName; }
-		auto getUnitMap() const { return unitMap; }
-		auto getDivisionTemplates() const { return divisionTemplates; }
-		auto getSubstitutes() const { return substitutes; }
-
-	private:
-		void importUnitMap(std::istream& theStream);
-		void importDivisionTemplates(std::istream& theStream);
-		void importSubstitutes(std::istream& theStream);
-
-		std::string mappingsName = "";
-		std::map<std::string, HoI4::UnitMap> unitMap;
-		std::vector<HoI4::DivisionTemplateType> divisionTemplates;
-		std::map<std::string, std::string> substitutes;
-};
-
-
+	parseFile("unit_mappings.txt");
 }
 
 
+HoI4::militaryMappings HoI4::allMilitaryMappings::getMilitaryMappings(const std::vector<std::string>& Vic2Mods) const
+{
+	for (auto mod: Vic2Mods)
+	{
+		if (auto mapping = theMappings.find(mod); mapping != theMappings.end())
+		{
+			return mapping->second;
+		}
+	}
 
-#endif // MILITARY_MAPPINGS
+	return theMappings.at("default");
+}

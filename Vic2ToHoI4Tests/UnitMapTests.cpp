@@ -23,7 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../Vic2ToHoI4/Source/HOI4World/MilitaryMappings.h"
+#include "../Vic2ToHoI4/Source/HOI4World/UnitMap.h"
 
 
 
@@ -34,7 +34,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace HoI4WorldTests
 {
 
-TEST_CLASS(militaryMappingsTests)
+TEST_CLASS(UnitMapTests)
 {
 	public:
 		TEST_METHOD(defaultUnitMapCategoryIsBlank)
@@ -132,135 +132,6 @@ TEST_CLASS(militaryMappingsTests)
 			);
 			HoI4::UnitMap theMap(input);
 			Assert::AreEqual(3, theMap.getSize());
-		}
-		TEST_METHOD(emptyUnitMappingStaysEmpty)
-		{
-			std::stringstream input(
-				"= {\n"\
-				"\tmap = {\n"\
-				"\t}"\
-				"}"
-			);
-			HoI4::militaryMappings theMappings("", input);
-			Assert::AreEqual(size_t(0), theMappings.getUnitMap().size());
-		}
-		TEST_METHOD(Vic2UnitAddedToUnitMapping)
-		{
-			std::stringstream input(
-				"= {\n"\
-				"\tmap = {\n"\
-				"\t\tlink = {\n"\
-				"\t\t\tvic = irregular\n"\
-				"\t\t}\n"\
-				"\t}"\
-				"}"
-			);
-			HoI4::militaryMappings theMappings("", input);
-			Assert::AreEqual(size_t(1), theMappings.getUnitMap().count("irregular"));
-		}
-		TEST_METHOD(UnitMappingHandlesBlankHoI4UnitTypeCorrectly)
-		{
-			std::stringstream input(
-				"= {\n"\
-				"\tmap = {\n"\
-				"\t\tlink = {\n"\
-				"\t\t\tvic = irregular\n"\
-				"\t\t}\n"\
-				"\t}"\
-				"}"
-			);
-			HoI4::militaryMappings theMappings("", input);
-			Assert::AreEqual(std::string(""), theMappings.getUnitMap().at("irregular").getType());
-		}
-		TEST_METHOD(UnitMappingHandlesFilledHoI4UnitTypeCorrectly)
-		{
-			std::stringstream input(
-				"= {\n"\
-				"\tmap = {\n"\
-				"\t\tlink = {\n"\
-				"\t\t\tvic = infantry\n"\
-				"\t\t\thoi = {\n"\
-				"\t\t\t\ttype = land\n"\
-				"\t\t\t}\n"\
-				"\t\t}\n"\
-				"\t}"\
-				"}"
-			);
-			HoI4::militaryMappings theMappings("", input);
-			Assert::AreEqual(std::string("land"), theMappings.getUnitMap().at("infantry").getType());
-		}
-		TEST_METHOD(emptyDivisionTemplatesStaysEmpty)
-		{
-			std::stringstream input(
-				"= {\n"\
-				"\tdivision_templates = {\n"\
-				"\t}"\
-				"}"
-			);
-			HoI4::militaryMappings theMappings("", input);
-			Assert::AreEqual(size_t(0), theMappings.getDivisionTemplates().size());
-		}
-		TEST_METHOD(TemplateAddedToDivisionTemplateMapping)
-		{
-			std::stringstream input(
-				"= {\n"\
-				"\tdivision_templates = {\n"\
-				"\t\tdivision_template = {\n"\
-				"\t\t\tname = \"Light Infantry Brigade\"\n"\
-				"\t\t}\n"\
-				"\t}"\
-				"}"
-			);
-			HoI4::militaryMappings theMappings("", input);
-			auto templates = theMappings.getDivisionTemplates();
-			Assert::IsFalse(std::find(templates.begin(), templates.end(), "Light Infantry Brigade") == templates.end());
-		}
-		TEST_METHOD(emptySubstitutesStaysEmpty)
-		{
-			std::stringstream input(
-				"= {\n"\
-				"\tsubstitutes = {\n"\
-				"\t}"\
-				"}"
-			);
-			HoI4::militaryMappings theMappings("", input);
-			Assert::AreEqual(size_t(0), theMappings.getSubstitutes().size());
-		}
-		TEST_METHOD(substituteAddedToSubstitutes)
-		{
-			std::stringstream input(
-				"= {\n"\
-				"\tsubstitutes = {\n"\
-				"\t\tartillery = artillery_brigade\n"\
-				"\t}"\
-				"}"
-			);
-			HoI4::militaryMappings theMappings("", input);
-			Assert::AreEqual(size_t(1), theMappings.getSubstitutes().size());
-		}
-		TEST_METHOD(substituteNameInList)
-		{
-			std::stringstream input(
-				"= {\n"\
-				"\tsubstitutes = {\n"\
-				"\t\tartillery = artillery_brigade\n"\
-				"\t}"\
-				"}"
-			);
-			HoI4::militaryMappings theMappings("", input);
-			Assert::AreEqual(size_t(1), theMappings.getSubstitutes().count("artillery"));
-		}
-		TEST_METHOD(substituteAlternateInMapping)
-		{
-			std::stringstream input(
-				"= {\n"\
-				"\tsubstitutes = {\n"\
-				"\t\tartillery = artillery_brigade\n"\
-				"\t}"\
-				"}"
-			);
-			HoI4::militaryMappings theMappings("", input);
-			Assert::AreEqual(std::string("artillery_brigade"), theMappings.getSubstitutes().at("artillery"));
 		}
 };
 

@@ -21,18 +21,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MILITARY_MAPPINGS
-#define MILITARY_MAPPINGS
+#ifndef UNIT_MAP_H
+#define UNIT_MAP_H
 
 
 
-#include "DivisionTemplate.h"
-#include "UnitMap.h"
 #include "newParser.h"
 #include <istream>
-#include <map>
+#include <iostream>
 #include <string>
-#include <vector>
 
 
 
@@ -40,25 +37,24 @@ namespace HoI4
 {
 
 
-class militaryMappings: commonItems::parser
+class UnitMap: commonItems::parser
 {
 	public:
-		militaryMappings(const std::string& name, std::istream& theStream);
+		UnitMap(std::istream& theStream);
+		UnitMap() = default;
+		UnitMap(const UnitMap&) = default;
+		UnitMap& operator=(const UnitMap&) = default;
 
-		auto getMappingsName() const { return mappingsName; }
-		auto getUnitMap() const { return unitMap; }
-		auto getDivisionTemplates() const { return divisionTemplates; }
-		auto getSubstitutes() const { return substitutes; }
+		std::string getCategory() const { return category; }
+		std::string getType() const { return type; }
+		std::string getEquipment() const { return equipment; }
+		int getSize() const { return size; }
 
 	private:
-		void importUnitMap(std::istream& theStream);
-		void importDivisionTemplates(std::istream& theStream);
-		void importSubstitutes(std::istream& theStream);
-
-		std::string mappingsName = "";
-		std::map<std::string, HoI4::UnitMap> unitMap;
-		std::vector<HoI4::DivisionTemplateType> divisionTemplates;
-		std::map<std::string, std::string> substitutes;
+		std::string category;
+		std::string type;
+		std::string equipment;
+		int size = 0;
 };
 
 
@@ -66,4 +62,4 @@ class militaryMappings: commonItems::parser
 
 
 
-#endif // MILITARY_MAPPINGS
+#endif // UNIT_MAP_H

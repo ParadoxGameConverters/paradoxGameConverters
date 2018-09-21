@@ -21,16 +21,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MILITARY_MAPPINGS
-#define MILITARY_MAPPINGS
+#ifndef HOI4_DIVISION_TEMPLATE_H_
+#define HOI4_DIVISION_TEMPLATE_H_
 
 
 
-#include "DivisionTemplate.h"
-#include "UnitMap.h"
 #include "newParser.h"
+#include "Regiment.h"
 #include <istream>
-#include <map>
+#include <ostream>
 #include <string>
 #include <vector>
 
@@ -40,30 +39,33 @@ namespace HoI4
 {
 
 
-class militaryMappings: commonItems::parser
+class DivisionTemplateType: commonItems::parser
 {
 	public:
-		militaryMappings(const std::string& name, std::istream& theStream);
+		explicit DivisionTemplateType(std::istream& theStream);
+		DivisionTemplateType(const DivisionTemplateType&) = default;
+		DivisionTemplateType& operator=(const DivisionTemplateType&) = delete;
 
-		auto getMappingsName() const { return mappingsName; }
-		auto getUnitMap() const { return unitMap; }
-		auto getDivisionTemplates() const { return divisionTemplates; }
-		auto getSubstitutes() const { return substitutes; }
+		bool operator==(const std::string& rhs) { return name == rhs; }
+
+		friend std::ostream& operator << (std::ostream& out, const DivisionTemplateType& rhs);
+
+		std::string getName() const { return name; }
+		std::vector<RegimentType> getRegiments() const { return regiments; }
+		std::vector<RegimentType> getSupportRegiments() const { return supportRegiments; }
 
 	private:
-		void importUnitMap(std::istream& theStream);
-		void importDivisionTemplates(std::istream& theStream);
-		void importSubstitutes(std::istream& theStream);
-
-		std::string mappingsName = "";
-		std::map<std::string, HoI4::UnitMap> unitMap;
-		std::vector<HoI4::DivisionTemplateType> divisionTemplates;
-		std::map<std::string, std::string> substitutes;
+		std::string name;
+		std::vector<RegimentType> regiments;
+		std::vector<RegimentType> supportRegiments;
 };
+
+
+std::ostream& operator << (std::ostream& out, const DivisionTemplateType& rhs);
 
 
 }
 
 
 
-#endif // MILITARY_MAPPINGS
+#endif // HOI4_DIVISION_TEMPLATE_H_

@@ -843,19 +843,19 @@ void HoI4::World::convertMilitaries()
 {
 	auto specificMappings = theMilitaryMappings.getMilitaryMappings(theConfiguration.getVic2Mods());
 
-	convertArmies(specificMappings.getUnitMap(), specificMappings.getDivisionTemplates());
+	convertArmies(specificMappings);
 	convertNavies(specificMappings.getUnitMap());
 	convertAirforces(specificMappings.getUnitMap());
 }
 
 
-void HoI4::World::convertArmies(const map<string, HoI4::UnitMap>& unitMap, const vector<HoI4::DivisionTemplateType>& divisionTemplates)
+void HoI4::World::convertArmies(const militaryMappings& theMilitaryMappings)
 {
 	LOG(LogLevel::Info) << "Converting armies";
 
 	for (auto country: countries)
 	{
-		country.second->convertArmies(unitMap, divisionTemplates);
+		country.second->convertArmies(theMilitaryMappings);
 	}
 }
 

@@ -21,49 +21,29 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MILITARY_MAPPINGS
-#define MILITARY_MAPPINGS
-
-
-
-#include "DivisionTemplate.h"
 #include "UnitMap.h"
-#include "newParser.h"
-#include <istream>
-#include <map>
-#include <string>
-#include <vector>
+#include "ParserHelpers.h"
 
 
 
-namespace HoI4
+HoI4::UnitMap::UnitMap(std::istream& theStream)
 {
+	registerKeyword(std::regex("category"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString categoryString(theStream);
+		category = categoryString.getString();
+	});
+	registerKeyword(std::regex("type"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString typeString(theStream);
+		type = typeString.getString();
+	});
+	registerKeyword(std::regex("equipment"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString equipmentString(theStream);
+		equipment = equipmentString.getString();
+	});
+	registerKeyword(std::regex("size"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleInt sizeInt(theStream);
+		size = sizeInt.getInt();
+	});
 
-
-class militaryMappings: commonItems::parser
-{
-	public:
-		militaryMappings(const std::string& name, std::istream& theStream);
-
-		auto getMappingsName() const { return mappingsName; }
-		auto getUnitMap() const { return unitMap; }
-		auto getDivisionTemplates() const { return divisionTemplates; }
-		auto getSubstitutes() const { return substitutes; }
-
-	private:
-		void importUnitMap(std::istream& theStream);
-		void importDivisionTemplates(std::istream& theStream);
-		void importSubstitutes(std::istream& theStream);
-
-		std::string mappingsName = "";
-		std::map<std::string, HoI4::UnitMap> unitMap;
-		std::vector<HoI4::DivisionTemplateType> divisionTemplates;
-		std::map<std::string, std::string> substitutes;
-};
-
-
+	parseStream(theStream);
 }
-
-
-
-#endif // MILITARY_MAPPINGS

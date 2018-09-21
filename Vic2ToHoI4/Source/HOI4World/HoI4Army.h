@@ -26,81 +26,46 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "newParser.h"
+#include "Division.h"
+#include "DivisionTemplate.h"
+#include "MilitaryMappings.h"
 #include <string>
+#include <map>
 #include <vector>
-#include <fstream>
 
+
+
+namespace Vic2
+{
+
+class Army;
+
+}
 
 
 namespace HoI4
 {
 
-class RegimentType: commonItems::parser
+class Army
 {
 	public:
-		explicit RegimentType(const std::string& _type, std::istream& theStream);
-		RegimentType(const RegimentType&) = default;
+		Army() = default;
 
-		const std::string getType() const { return type; }
+		void addSourceArmies(std::vector<const Vic2::Army*> _sourceArmies) { sourceArmies = _sourceArmies; }
 
-		friend std::ostream& operator << (std::ostream& out, const RegimentType& regiment);
+		void convertArmies(const militaryMappings& theMilitaryMappings, int backupLocation);
 
-	private:
-		RegimentType& operator=(const RegimentType&) = delete;
-
-		std::string	type;
-		int x;
-		int y;
-};
-
-
-std::ostream& operator << (std::ostream& out, const RegimentType& regiment);
-
-
-class DivisionTemplateType: commonItems::parser
-{
-	public:
-		explicit DivisionTemplateType(std::istream& theStream);
-		DivisionTemplateType(const DivisionTemplateType&) = default;
-		DivisionTemplateType& operator=(const DivisionTemplateType&) = delete;
-
-		bool operator==(const std::string& rhs) { return name == rhs; }
-
-		friend std::ostream& operator << (std::ostream& out, const DivisionTemplateType& rhs);
-
-		std::string getName() const { return name; }
-		std::vector<RegimentType> getRegiments() const { return regiments; }
-		std::vector<RegimentType> getSupportRegiments() const { return supportRegiments; }
+		friend std::ostream& operator << (std::ostream& output, const Army& theArmy);
 
 	private:
-		std::string name;
-		std::vector<RegimentType> regiments;
-		std::vector<RegimentType> supportRegiments;
+		void convertArmyDivisions(const militaryMappings& theMilitaryMappings, std::map<std::string, double>& BattalionsAndCompanies, int location);
+		bool sufficientUnits(const std::map<std::string, double>& units, const std::map<std::string, std::string>& subs, const std::map<std::string, int>& req);
+
+		std::vector<const Vic2::Army*> sourceArmies;
+		std::vector<DivisionType> divisions;
 };
 
-
-std::ostream& operator << (std::ostream& out, const DivisionTemplateType& rhs);
-
-
-class DivisionType
-{
-	public:
-		DivisionType(const std::string& name, const std::string& type, int location);
-		DivisionType(const DivisionType&) = default;
-
-		friend std::ostream& operator << (std::ostream& out, const DivisionType&);
-
-	private:
-		DivisionType& operator=(const DivisionType&) = delete;
-
-		std::string	name;
-		std::string	type;
-		int location = 0;
-};
-
-
-std::ostream& operator << (std::ostream& out, const DivisionType&);
+std::ostream& operator << (std::ostream& output, const Army& theArmy);
 
 }
 

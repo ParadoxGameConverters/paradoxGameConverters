@@ -28,6 +28,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4Airforce.h"
 #include "HoI4Army.h"
+#include "Division.h"
+#include "DivisionTemplate.h"
 #include "HoI4FocusTree.h"
 #include "HOI4Ideology.h"
 #include "HoI4Leader.h"
@@ -90,8 +92,7 @@ class HoI4Country
 		void convertNavies(const map<string, HoI4::UnitMap>& unitMap, const HoI4::coastalProvinces& theCoastalProvinces, const std::map<int, int>& provinceToStateIDMap);
 		void convertConvoys(const map<string, HoI4::UnitMap>& unitMap);
 		void convertAirforce(const map<string, HoI4::UnitMap>& unitMap);
-		void convertArmies(const std::map<std::string, HoI4::UnitMap>& unitMap, const std::vector<HoI4::DivisionTemplateType>& divisionTemplates);
-		void convertArmyDivisions(const std::vector<HoI4::DivisionTemplateType>& divisionTemplates, std::map<std::string, double>& BattalionsAndCompanies, int location);
+		void convertArmies(const HoI4::militaryMappings& theMilitaryMappings);
 		void		setTechnology(const string& tech, int level);
 		void		setResearchBonus(const string& tech, int bonus);
 		void addState(HoI4::State* _state);
@@ -249,7 +250,7 @@ class HoI4Country
 		bool greatPower;
 
 		// military stuff
-		vector<HoI4::DivisionType> divisions;
+		HoI4::Army theArmy;
 		vector<HoI4::Navy> navies;
 		vector<HoI4Airplane> planes;
 		map<string, int> equipmentStockpile;

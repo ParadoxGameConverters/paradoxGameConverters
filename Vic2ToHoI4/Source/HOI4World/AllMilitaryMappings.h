@@ -21,15 +21,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MILITARY_MAPPINGS
-#define MILITARY_MAPPINGS
+#ifndef ALL_MILITARY_MAPPINGS
+#define ALL_MILITARY_MAPPINGS
 
 
 
-#include "DivisionTemplate.h"
-#include "UnitMap.h"
+#include "militaryMappings.h"
 #include "newParser.h"
-#include <istream>
 #include <map>
 #include <string>
 #include <vector>
@@ -40,25 +38,15 @@ namespace HoI4
 {
 
 
-class militaryMappings: commonItems::parser
+class allMilitaryMappings: commonItems::parser
 {
 	public:
-		militaryMappings(const std::string& name, std::istream& theStream);
+		allMilitaryMappings();
 
-		auto getMappingsName() const { return mappingsName; }
-		auto getUnitMap() const { return unitMap; }
-		auto getDivisionTemplates() const { return divisionTemplates; }
-		auto getSubstitutes() const { return substitutes; }
+		militaryMappings getMilitaryMappings(const std::vector<std::string>& mods) const;
 
 	private:
-		void importUnitMap(std::istream& theStream);
-		void importDivisionTemplates(std::istream& theStream);
-		void importSubstitutes(std::istream& theStream);
-
-		std::string mappingsName = "";
-		std::map<std::string, HoI4::UnitMap> unitMap;
-		std::vector<HoI4::DivisionTemplateType> divisionTemplates;
-		std::map<std::string, std::string> substitutes;
+		std::map<std::string, militaryMappings> theMappings;
 };
 
 
@@ -66,4 +54,4 @@ class militaryMappings: commonItems::parser
 
 
 
-#endif // MILITARY_MAPPINGS
+#endif // ALL_MILITARY_MAPPINGS

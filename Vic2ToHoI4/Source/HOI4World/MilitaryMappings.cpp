@@ -22,30 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "MilitaryMappings.h"
+#include "ParserHelpers.h"
 
-
-
-HoI4::UnitMap::UnitMap(std::istream& theStream)
-{
-	registerKeyword(std::regex("category"), [this](const std::string& unused, std::istream& theStream){
-		commonItems::singleString categoryString(theStream);
-		category = categoryString.getString();
-	});
-	registerKeyword(std::regex("type"), [this](const std::string& unused, std::istream& theStream){
-		commonItems::singleString typeString(theStream);
-		type = typeString.getString();
-	});
-	registerKeyword(std::regex("equipment"), [this](const std::string& unused, std::istream& theStream){
-		commonItems::singleString equipmentString(theStream);
-		equipment = equipmentString.getString();
-	});
-	registerKeyword(std::regex("size"), [this](const std::string& unused, std::istream& theStream){
-		commonItems::singleInt sizeInt(theStream);
-		size = sizeInt.getInt();
-	});
-
-	parseStream(theStream);
-}
 
 
 namespace HoI4
@@ -93,12 +71,32 @@ HoI4::militaryMappings::militaryMappings(const std::string& name, std::istream& 
 	registerKeyword(std::regex("division_templates"), [this](const std::string& unused, std::istream& theStream){
 		importDivisionTemplates(theStream);
 	});
+	registerKeyword(std::regex("substitutes"), [this](const std::string& unused, std::istream& theStream){
+		importSubstitutes(theStream);
+	});
 
 	parseStream(theStream);
 }
 
 
-void HoI4::militaryMappings::importUnitMap(std::istream& theStream)
+namespace HoI4
+{
+
+class UnitMappingsImporter: commonItems::parser
+{
+	public:
+	UnitMappingsImporter(std::istream& theStream);
+
+		auto getUnitMap() const { return unitMap; }
+
+	private:
+		std::map<std::string, HoI4::UnitMap> unitMap;
+};
+
+}
+
+
+HoI4::UnitMappingsImporter::UnitMappingsImporter(std::istream& theStream)
 {
 	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream&theStream)
 	{
@@ -109,7 +107,31 @@ void HoI4::militaryMappings::importUnitMap(std::istream& theStream)
 	parseStream(theStream);
 }
 
-void HoI4::militaryMappings::importDivisionTemplates(std::istream& theStream)
+
+void HoI4::militaryMappings::importUnitMap(std::istream& theStream)
+{
+	UnitMappingsImporter importer(theStream);
+	unitMap = importer.getUnitMap();
+}
+
+
+namespace HoI4
+{
+
+class DivisionTemplatesImporter: commonItems::parser
+{
+	public:
+		DivisionTemplatesImporter(std::istream& theStream);
+
+		auto getDivisionTemplates() const { return divisionTemplates; }
+
+	private:
+		std::vector<HoI4::DivisionTemplateType> divisionTemplates;
+};
+
+}
+
+HoI4::DivisionTemplatesImporter::DivisionTemplatesImporter(std::istream& theStream)
 {
 	registerKeyword(std::regex("division_template"), [this](const std::string& unused, std::istream& theStream)
 	{
@@ -121,27 +143,44 @@ void HoI4::militaryMappings::importDivisionTemplates(std::istream& theStream)
 }
 
 
-HoI4::allMilitaryMappings::allMilitaryMappings()
+void HoI4::militaryMappings::importDivisionTemplates(std::istream& theStream)
 {
-	registerKeyword(std::regex("[a-zA-Z0-9]+"), [this](const std::string& mod, std::istream& theStream)
-	{
-		militaryMappings newMappings(mod, theStream);
-		theMappings.insert(make_pair(mod, newMappings));
-	});
-
-	parseFile("unit_mappings.txt");
+	DivisionTemplatesImporter importer(theStream);
+	divisionTemplates = importer.getDivisionTemplates();
 }
 
 
-HoI4::militaryMappings HoI4::allMilitaryMappings::getMilitaryMappings(const std::vector<std::string>& Vic2Mods) const
+namespace HoI4
 {
-	for (auto mod: Vic2Mods)
-	{
-		if (auto mapping = theMappings.find(mod); mapping != theMappings.end())
-		{
-			return mapping->second;
-		}
-	}
 
-	return theMappings.at("default");
+class substitutesImporter: commonItems::parser
+{
+	public:
+		substitutesImporter(std::istream& theStream);
+
+		auto getSubstitutes() const { return substitutes; }
+
+	private:
+		std::map<std::string, std::string> substitutes;
+};
+
+}
+
+
+HoI4::substitutesImporter::substitutesImporter(std::istream& theStream)
+{
+	registerKeyword(std::regex("[a-zA-Z_]+"), [this](const std::string& left, std::istream& theStream)
+	{
+		commonItems::singleString right(theStream);
+		substitutes.insert(std::make_pair(left, right.getString()));
+	});
+
+	parseStream(theStream);
+}
+
+
+void HoI4::militaryMappings::importSubstitutes(std::istream& theStream)
+{
+	substitutesImporter importer(theStream);
+	substitutes = importer.getSubstitutes();
 }

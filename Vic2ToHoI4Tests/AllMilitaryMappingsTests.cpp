@@ -21,49 +21,43 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MILITARY_MAPPINGS
-#define MILITARY_MAPPINGS
+#include "stdafx.h"
+#include "CppUnitTest.h"
+#include "../Vic2ToHoI4/Source/HOI4World/AllMilitaryMappings.h"
 
 
 
-#include "DivisionTemplate.h"
-#include "UnitMap.h"
-#include "newParser.h"
-#include <istream>
-#include <map>
-#include <string>
-#include <vector>
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 
 
-namespace HoI4
+namespace HoI4WorldTests
 {
 
-
-class militaryMappings: commonItems::parser
+TEST_CLASS(allMilitaryMappingsTests)
 {
 	public:
-		militaryMappings(const std::string& name, std::istream& theStream);
-
-		auto getMappingsName() const { return mappingsName; }
-		auto getUnitMap() const { return unitMap; }
-		auto getDivisionTemplates() const { return divisionTemplates; }
-		auto getSubstitutes() const { return substitutes; }
+		TEST_METHOD(getDefaultMappingsWithNoMods)
+		{
+			std::vector<std::string> mods;
+			auto specificMappings = allTheMappings.getMilitaryMappings(mods);
+			Assert::AreEqual(std::string("default"), specificMappings.getMappingsName());
+		}
+		TEST_METHOD(getDefaultMappingsWithInvalidMod)
+		{
+			std::vector<std::string> mods = { "NotAMod" };
+			auto specificMappings = allTheMappings.getMilitaryMappings(mods);
+			Assert::AreEqual(std::string("default"), specificMappings.getMappingsName());
+		}
+		TEST_METHOD(getPDMMappingsWithPDM)
+		{
+			std::vector<std::string> mods = { "PDM" };
+			auto specificMappings = allTheMappings.getMilitaryMappings(mods);
+			Assert::AreEqual(std::string("PDM"), specificMappings.getMappingsName());
+		}
 
 	private:
-		void importUnitMap(std::istream& theStream);
-		void importDivisionTemplates(std::istream& theStream);
-		void importSubstitutes(std::istream& theStream);
-
-		std::string mappingsName = "";
-		std::map<std::string, HoI4::UnitMap> unitMap;
-		std::vector<HoI4::DivisionTemplateType> divisionTemplates;
-		std::map<std::string, std::string> substitutes;
+		HoI4::allMilitaryMappings allTheMappings;
 };
 
-
 }
-
-
-
-#endif // MILITARY_MAPPINGS

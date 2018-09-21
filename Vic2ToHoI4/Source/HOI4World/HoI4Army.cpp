@@ -22,122 +22,141 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Army.h"
-#include "ParserHelpers.h"
+#include "Division.h"
+#include "../Configuration.h"
+#include "../Mappers/ProvinceMapper.h"
+#include "../V2World/Army.h"
+#include "Log.h"
 
 
 
-HoI4::RegimentType::RegimentType(const std::string& _type, std::istream& theStream):
-	type(_type)
+void HoI4::Army::convertArmies(const militaryMappings& theMilitaryMappings, int backupLocation)
 {
-	registerKeyword(std::regex("x"), [this](const std::string& unused, std::istream& theStream){
-		commonItems::singleInt xInt(theStream);
-		x = xInt.getInt();
-	});
-	registerKeyword(std::regex("y"), [this](const std::string& unused, std::istream& theStream){
-		commonItems::singleInt yInt(theStream);
-		y = yInt.getInt();
-	});
+	std::map<std::string, double> remainingBattalionsAndCompanies;
 
-	parseStream(theStream);
-}
-
-
-std::ostream& HoI4::operator << (std::ostream& out, const HoI4::RegimentType& regiment)
-{
-	out << "\t\t" << regiment.type << " = { x = " << regiment.x << " y = " << regiment.y << " }\n";
-
-	return out;
-}
-
-
-namespace HoI4
-{
-
-class RegimentTypeGroup: commonItems::parser
-{
-	public:
-	RegimentTypeGroup(std::istream& theStream);
-
-		auto getRegimentTypes() const { return regimentTypes; }
-
-	private:
-		std::vector<RegimentType> regimentTypes;
-};
-
-}
-
-
-HoI4::RegimentTypeGroup::RegimentTypeGroup(std::istream& theStream)
-{
-	registerKeyword(std::regex("[a-zA-Z0-9_]+"), [this](const std::string& name, std::istream& theStream){
-		HoI4::RegimentType regimentType(name, theStream);
-		regimentTypes.push_back(regimentType);
-	});
-
-	parseStream(theStream);
-}
-
-
-HoI4::DivisionTemplateType::DivisionTemplateType(std::istream& theStream)
-{
-	registerKeyword(std::regex("name"), [this](const std::string& unused, std::istream& theStream){
-		commonItems::singleString nameString(theStream);
-		name = nameString.getString();
-	});
-	registerKeyword(std::regex("regiments"), [this](const std::string& unused, std::istream& theStream){
-		HoI4::RegimentTypeGroup regimentsGroup(theStream);
-		regiments = regimentsGroup.getRegimentTypes();
-	});
-	registerKeyword(std::regex("support"), [this](const std::string& unused, std::istream& theStream){
-		HoI4::RegimentTypeGroup supportRegimentsGroup(theStream);
-		supportRegiments = supportRegimentsGroup.getRegimentTypes();
-	});
-	registerKeyword(std::regex("priority"),  commonItems::ignoreItem);
-
-	parseStream(theStream);
-}
-
-
-std::ostream& HoI4::operator << (std::ostream& out, const HoI4::DivisionTemplateType& rhs)
-{
-	out << "division_template = {\n";
-	out << "\tname = \"" << rhs.name << "\"\n";
-	out << "\n";
-	out << "\tregiments = {\n";
-	for (auto regiment: rhs.regiments)
+	for (auto army: sourceArmies)
 	{
-		out << regiment;
+		auto provinceMapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(army->getLocation());
+		if (!provinceMapping)
+		{
+			continue;
+		}
+
+		std::map<std::string, double> localBattalionsAndCompanies;
+		for (auto regiment : army->getRegiments())
+		{
+			std::string type = regiment->getType();
+
+			if (theMilitaryMappings.getUnitMap().count(type) > 0)
+			{
+				HoI4::UnitMap unitInfo = theMilitaryMappings.getUnitMap().at(type);
+
+				if (unitInfo.getCategory() == "land")
+				{
+					// Calculate how many Battalions and Companies are available after mapping Vic2 armies
+					localBattalionsAndCompanies[unitInfo.getType()] += (unitInfo.getSize() * theConfiguration.getForceMultiplier());
+				}
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Unknown unit type: " << type;
+			}
+		}
+
+		convertArmyDivisions(theMilitaryMappings, localBattalionsAndCompanies, *provinceMapping->begin());
+		for (auto unit: localBattalionsAndCompanies)
+		{
+			auto remainingUnit = remainingBattalionsAndCompanies.find(unit.first);
+			if (remainingUnit != remainingBattalionsAndCompanies.end())
+			{
+				remainingUnit->second += unit.second;
+			}
+			else
+			{
+				remainingBattalionsAndCompanies.insert(unit);
+			}
+		}
 	}
-	out << "\t}\n";
-	out << "\tsupport = {\n";
-	for (auto regiment: rhs.supportRegiments)
+
+	convertArmyDivisions(theMilitaryMappings, remainingBattalionsAndCompanies, backupLocation);
+}
+
+
+void HoI4::Army::convertArmyDivisions(const militaryMappings& theMilitaryMappings, std::map<std::string, double>& BattalionsAndCompanies, int location)
+{
+	for (auto divTemplate: theMilitaryMappings.getDivisionTemplates())
 	{
-		out << regiment;
+		// For each template determine the Battalion and Company requirements.
+		int divisionCounter = 1;
+
+		std::map<std::string, int> templateRequirements;
+		for (auto regiment : divTemplate.getRegiments())
+		{
+			templateRequirements[regiment.getType()] = templateRequirements[regiment.getType()] + 1;
+		}
+		for (auto regiment : divTemplate.getSupportRegiments())
+		{
+			templateRequirements[regiment.getType()] = templateRequirements[regiment.getType()] + 1;
+		}
+
+		// Create new divisions as long as sufficient Victoria units exist, otherwise move on to next template.
+		while (sufficientUnits(BattalionsAndCompanies, theMilitaryMappings.getSubstitutes(), templateRequirements))
+		{
+			HoI4::DivisionType newDivision(std::to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), location);
+
+			for (auto& unit : templateRequirements)
+			{
+				for (int i = 0; i < unit.second; ++i)
+				{
+					if (BattalionsAndCompanies[unit.first] > 0)
+					{
+						BattalionsAndCompanies[unit.first]--;
+					}
+					else
+					{
+						BattalionsAndCompanies[theMilitaryMappings.getSubstitutes().at(unit.first)]--;
+					}
+				}
+			}
+			divisionCounter++;
+			divisions.push_back(newDivision);
+		}
 	}
-	out << "\t}\n";
-	out << "}\n";
-
-	return out;
 }
 
 
-HoI4::DivisionType::DivisionType(const std::string& _name, const std::string& _type, int _location):
-	name(_name),
-	type(_type),
-	location(_location)
+bool HoI4::Army::sufficientUnits(const std::map<std::string, double>& units, const std::map<std::string, std::string>& substitutes, const std::map<std::string, int>& requiredUnits)
 {
+	for (auto requiredUnit: requiredUnits)
+	{
+		int available = 0;
+		if (units.find(requiredUnit.first) != units.end())
+		{
+			available += static_cast<int>(units.at(requiredUnit.first));
+		}
+		if (substitutes.find(requiredUnit.first) != substitutes.end())
+		{
+			if (units.find(substitutes.at(requiredUnit.first)) != units.end())
+			{
+				available += static_cast<int>(units.at(substitutes.at(requiredUnit.first)));
+			}
+		}
+		if (available < requiredUnit.second)
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
 
 
-std::ostream& HoI4::operator << (std::ostream& out, const HoI4::DivisionType& division)
+std::ostream& HoI4::operator << (std::ostream& output, const HoI4::Army& theArmy)
 {
-	out << "\tdivision = {\n";
-	out << "\t\tname = \"" << division.name << "\"\n";
-	out << "\t\tlocation = " << division.location << "\n";
-	out << "\t\tdivision_template = \"" << division.type << "\"\n";
-	out << "\t\tstart_experience_factor = 0.3\n";
-	out << "\t\tstart_equipment_factor = 0.7\n";
-	out << "\t}\n";
+	for (auto& division: theArmy.divisions)
+	{
+		output << division;
+	}
 
-	return out;
+	return output;
 }

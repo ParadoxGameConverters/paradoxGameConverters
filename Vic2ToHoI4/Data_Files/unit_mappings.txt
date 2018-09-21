@@ -27,6 +27,10 @@
 #	division_templates = {
 #		...
 #	}
+#
+#	substitutes = {
+#		...
+#	}
 # }
 #
 # Vic2 Mod-specific mappings can be defined by copying the "default = { map = { ... } division_templates = { ... } }"  section
@@ -38,6 +42,9 @@
 #		...
 #	}
 #	division_templates = {
+#		...
+#	}
+#	substitutes = {
 #		...
 #	}
 # }
@@ -164,6 +171,16 @@
 #		priority = 2
 #	}
 #}
+#
+#	Finally, the substitutes section allows for some HoI4 brigades to be used in place of others.
+#	The initial brigade listed can be used in the stead of the one following.
+#
+#	EXAMPLE:
+#
+#	substitutes = {
+#		# This allows artillery to be used in the place of artillery_brigade
+#		artillery = artillery_brigade
+#	}
 
 default = {
 	map = {
@@ -568,6 +585,11 @@ default = {
 
 			priority = 2
 		}
+	}
+
+	substitutes = {
+		# This allows artillery to be used in the place of artillery_brigade
+		artillery = artillery_brigade
 	}
 }
 
@@ -1007,5 +1029,10 @@ PDM = {
 
 			priority = 2
 		}
+	}
+
+	substitutes = {
+		# This allows artillery to be used in the place of artillery_brigade
+		artillery = artillery_brigade
 	}
 }
