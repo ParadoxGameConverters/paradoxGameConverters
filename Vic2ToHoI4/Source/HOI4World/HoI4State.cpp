@@ -447,7 +447,20 @@ void HoI4::State::tryToCreateVP()
 
 	if (!VPCreated)
 	{
+		std::list<const Vic2::Province*> provincesOrderedByPopulation;
 		for (auto province: sourceState->getProvinces())
+		{
+			provincesOrderedByPopulation.insert(
+				std::upper_bound(	provincesOrderedByPopulation.begin(),
+										provincesOrderedByPopulation.end(),
+										province,
+										[](const Vic2::Province* a, const Vic2::Province* b){
+											// provide a 'backwards' comparison to force the sort order we want
+											return a->getTotalPopulation() > b->getTotalPopulation();
+										}),
+				province);
+		}
+		for (auto province: provincesOrderedByPopulation)
 		{
 			VPCreated = assignVPFromVic2Province(province->getNumber());
 			if (VPCreated)

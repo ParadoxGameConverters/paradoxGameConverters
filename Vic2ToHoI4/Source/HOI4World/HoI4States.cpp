@@ -288,13 +288,13 @@ void HoI4States::createMatchingHoI4State(const Vic2::State* vic2State, const str
 	if (passableProvinces.size() > 0)
 	{
 		HoI4::State* newState = new HoI4::State(vic2State, nextStateID, stateOwner);
-		addProvincesAndCoresToNewState(newState, passableProvinces);
-		newState->tryToCreateVP();
-		newState->addManpower();
 		if (impassableProvinces.size() > 0)
 		{
 			newState->markHadImpassablePart();
 		}
+		addProvincesAndCoresToNewState(newState, passableProvinces);
+		newState->tryToCreateVP();
+		newState->addManpower();
 		states.insert(make_pair(nextStateID, newState));
 		nextStateID++;
 	}

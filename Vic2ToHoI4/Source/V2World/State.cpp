@@ -50,6 +50,7 @@ Vic2::State::State(std::istream& theStream, const std::string& ownerTag):
 
 	parseStream(theStream);
 	setID();
+	setCapital();
 }
 
 
@@ -62,9 +63,10 @@ Vic2::State::State(std::set<std::pair<int, Vic2::Province*>> theProvinces)
 	}
 	setID();
 	determineIfPartialState();
+	setCapital();
 }
 
-#pragma optimize("",off)
+
 void Vic2::State::setID()
 {
 	auto foundStateID = theStateDefinitions.getStateID(*provinceNums.begin());
@@ -83,7 +85,7 @@ void Vic2::State::setCapital()
 {
 	capitalProvince = theStateDefinitions.getCapitalProvince(stateID);
 }
-#pragma optimize("",on)
+
 
 void Vic2::State::determineEmployedWorkers()
 {
