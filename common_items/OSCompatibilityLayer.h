@@ -109,11 +109,15 @@ namespace Utils
 
 	std::string convertUTF8ToASCII(const std::string& UTF8);
 	std::string convertUTF8To8859_15(const std::string& UTF8);
-	std::string convertUTF16ToUTF8(std::wstring UTF16);
-	std::string convert8859_15ToASCII(std::string input);
+	std::string convertUTF8ToWin1252(const std::string& UTF8);
+	std::string convertUTF16ToUTF8(const std::wstring& UTF16);
+	std::string convert8859_15ToASCII(const std::string& input);
 	std::string convert8859_15ToUTF8(const std::string& input);
-	std::wstring convert8859_15ToUTF16(std::string UTF8);
-	std::wstring convertUTF8ToUTF16(std::string UTF8);
+	std::wstring convert8859_15ToUTF16(const std::string& input);
+	std::string convertWin1252ToASCII(const std::string& Win1252);
+	std::string convertWin1252ToUTF8(const std::string& Win1252);
+	std::wstring convertWin1252ToUTF16(const std::string& Win1252);
+	std::wstring convertUTF8ToUTF16(const std::string& UTF8);
 
 	// converts a string in the system dependent wchar_t encoding to UTF-8
 	std::string convertToUTF8(const std::wstring &input);

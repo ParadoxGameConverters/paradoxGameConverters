@@ -66,7 +66,6 @@ class V2Localisations
 		void ReadFromFile(const string& fileName);
 		void processLine(string line);
 		string getNextLocalisation(string line, int& division);
-		string replaceBadCharacters(string localisation);
 
 		V2Localisations(const V2Localisations&) = delete;
 		V2Localisations& operator=(const V2Localisations&) = delete;

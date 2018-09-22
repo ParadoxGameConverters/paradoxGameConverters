@@ -53,6 +53,9 @@ class Ship
 };
 
 
+std::ofstream& operator << (std::ofstream& output, const Ship& instance);
+
+
 class Navy
 {
 	public:
@@ -70,6 +73,10 @@ class Navy
 		int base;
 		std::vector<Ship> ships;
 };
+
+
+std::ofstream& operator << (std::ofstream& output, const Navy& instance);
+
 
 }
 

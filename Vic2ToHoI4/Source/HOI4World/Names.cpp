@@ -117,8 +117,8 @@ culture::culture(std::istream& theStream)
 
 void::culture::convertNamesToUTF8()
 {
-	std::for_each(maleNames.begin(), maleNames.end(), [](std::string& name){ name = Utils::convert8859_15ToUTF8(name); });
-	std::for_each(surnames.begin(), surnames.end(), [](std::string& name){ name = Utils::convert8859_15ToUTF8(name); });
+	std::for_each(maleNames.begin(), maleNames.end(), [](std::string& name){ name = Utils::convertWin1252ToUTF8(name); });
+	std::for_each(surnames.begin(), surnames.end(), [](std::string& name){ name = Utils::convertWin1252ToUTF8(name); });
 }
 
 

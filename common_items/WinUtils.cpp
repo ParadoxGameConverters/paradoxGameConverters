@@ -308,7 +308,24 @@ std::string convertUTF8To8859_15(const std::string& UTF8)
 }
 
 
-std::string convertUTF16ToUTF8(std::wstring UTF16)
+std::string convertUTF8ToWin1252(const std::string& UTF8)
+{
+	int requiredSize = WideCharToMultiByte(1252, 0, convertUTF8ToUTF16(UTF8).c_str(), -1, NULL, 0, "0", NULL);
+	char* asciiArray = new char[requiredSize];
+
+	if (0 == WideCharToMultiByte(1252, 0, convertUTF8ToUTF16(UTF8).c_str(), -1, asciiArray, requiredSize, "0", NULL))
+	{
+		LOG(LogLevel::Error) << "Could not translate string to ASCII - " << GetLastErrorString();
+	}
+	std::string returnable(asciiArray);
+
+	delete[] asciiArray;
+
+	return returnable;
+}
+
+
+std::string convertUTF16ToUTF8(const std::wstring& UTF16)
 {
 	const int requiredSize = WideCharToMultiByte(CP_UTF8, 0, UTF16.c_str(), -1, NULL, 0, NULL, NULL);
 	char* utf8array = new char[requiredSize];
@@ -325,7 +342,7 @@ std::string convertUTF16ToUTF8(std::wstring UTF16)
 }
 
 
-std::string convert8859_15ToASCII(std::string input)
+std::string convert8859_15ToASCII(const std::string& input)
 {
 	return Utils::convertUTF8ToASCII(Utils::convert8859_15ToUTF8(input));
 }
@@ -337,12 +354,12 @@ std::string convert8859_15ToUTF8(const std::string& input)
 }
 
 
-std::wstring convert8859_15ToUTF16(std::string string8859_15)
+std::wstring convert8859_15ToUTF16(const std::string& input)
 {
-	const int requiredSize = MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, string8859_15.c_str(), -1, NULL, 0);
+	const int requiredSize = MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, input.c_str(), -1, NULL, 0);
 	wchar_t* wideKeyArray = new wchar_t[requiredSize];
 
-	if (0 == MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, string8859_15.c_str(), -1, wideKeyArray, requiredSize))
+	if (0 == MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, input.c_str(), -1, wideKeyArray, requiredSize))
 	{
 		LOG(LogLevel::Error) << "Could not translate string to UTF-16 - " << GetLastErrorString();
 	}
@@ -354,7 +371,36 @@ std::wstring convert8859_15ToUTF16(std::string string8859_15)
 }
 
 
-std::wstring convertUTF8ToUTF16(std::string UTF8)
+std::string convertWin1252ToASCII(const std::string& input)
+{
+	return Utils::convertUTF8ToASCII(Utils::convertWin1252ToUTF8(input));
+}
+
+
+std::string convertWin1252ToUTF8(const std::string& input)
+{
+	return convertUTF16ToUTF8(convertWin1252ToUTF16(input));
+}
+
+
+std::wstring convertWin1252ToUTF16(const std::string& input)
+{
+	const int requiredSize = MultiByteToWideChar(1252, MB_PRECOMPOSED, input.c_str(), -1, NULL, 0);
+	wchar_t* wideKeyArray = new wchar_t[requiredSize];
+
+	if (0 == MultiByteToWideChar(1252, MB_PRECOMPOSED, input.c_str(), -1, wideKeyArray, requiredSize))
+	{
+		LOG(LogLevel::Error) << "Could not translate string to UTF-16 - " << GetLastErrorString();
+	}
+	std::wstring returnable(wideKeyArray);
+
+	delete[] wideKeyArray;
+
+	return returnable;
+}
+
+
+std::wstring convertUTF8ToUTF16(const std::string& UTF8)
 {
 	const int requiredSize = MultiByteToWideChar(CP_UTF8, 0, UTF8.c_str(), -1, NULL, 0);
 	if (requiredSize == 0)
@@ -374,11 +420,14 @@ std::wstring convertUTF8ToUTF16(std::string UTF8)
 	return returnable;
 }
 
-std::string convertToUTF8(const std::wstring &input){
+
+std::string convertToUTF8(const std::wstring& input)
+{
 	return convertUTF16ToUTF8(input);
 }
 
-std::string normalizeUTF8Path(const std::string &utf_8_path)
+
+std::string normalizeUTF8Path(const std::string& utf_8_path)
 {
 	std::string asciiPath = convertUTF8ToASCII(utf_8_path);
 	std::replace(asciiPath.begin(), asciiPath.end(), '/', '_');
@@ -393,6 +442,7 @@ std::string normalizeUTF8Path(const std::string &utf_8_path)
 
 	return asciiPath;
 };
+
 
 void WriteToConsole(LogLevel level, const std::string& logMessage)
 {

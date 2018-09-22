@@ -73,6 +73,9 @@ class Building
 };
 
 
+std::ostream& operator << (std::ostream& out, const Building& building);
+
+
 typedef std::map<std::pair<int, int>, buildingPosition> defaultPositions;
 
 

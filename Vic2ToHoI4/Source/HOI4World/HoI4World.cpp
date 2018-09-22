@@ -178,7 +178,7 @@ void HoI4::World::convertCountry(pair<string, Vic2::Country*> country)
 			LOG(LogLevel::Warning) << "Could not set country name when converting country";
 		}
 
-		std::string countryFileName = Utils::convert8859_15ToUTF8(countryName) + ".txt";
+		std::string countryFileName = Utils::convertWin1252ToUTF8(countryName) + ".txt";
 		int pipe = countryFileName.find_first_of('|');
 		while (pipe != string::npos)
 		{

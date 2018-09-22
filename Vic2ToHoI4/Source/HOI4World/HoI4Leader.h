@@ -56,6 +56,9 @@ class General
 };
 
 
+std::ofstream& operator << (std::ofstream& output, const General& instance);
+
+
 class Admiral
 {
 	public:
@@ -72,6 +75,9 @@ class Admiral
 		std::vector<std::string> traits;
 		int skill = 1;
 };
+
+
+std::ofstream& operator << (std::ofstream& output, const Admiral& instance);
 
 }
 

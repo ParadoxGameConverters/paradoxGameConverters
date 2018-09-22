@@ -48,7 +48,7 @@ Vic2::commonCountryData::commonCountryData(const std::string& filename, const st
 				{
 					name = name.substr(1, name.length() - 2);
 				}
-				unitNames[*token].emplace_back(Utils::convert8859_15ToUTF8(name));
+				unitNames[*token].emplace_back(Utils::convertWin1252ToUTF8(name));
 			}
 
 			token = getNextTokenWithoutMatching(theStream);
