@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -23,120 +23,129 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "GraphicsMapper.h"
 #include "Log.h"
-#include "Object.h"
-#include "ParadoxParserUTF8.h"
+#include "ParserHelpers.h"
 
 
 
-graphicsMapper* graphicsMapper::instance = nullptr;
+class ideologyToPortraitsMapping: commonItems::parser
+{
+	public:
+		ideologyToPortraitsMapping(std::istream& theStream);
+
+		auto getMap() const { return theMap; }
+
+	private:
+		std::map<std::string, std::vector<std::string>> theMap;
+};
+
+
+ideologyToPortraitsMapping::ideologyToPortraitsMapping(std::istream& theStream)
+{
+	registerKeyword(std::regex("[a-zA-Z0-9_]+"), [this](const std::string& ideology, std::istream& theStream){
+		commonItems::stringList portraits(theStream);
+		theMap.insert(make_pair(ideology, portraits.getStrings()));
+	});
+
+	parseStream(theStream);
+}
 
 
 
-graphicsMapper::graphicsMapper():
-	leaderPortraitMappings(),
-	ideologyMinisterMappings(),
-	graphicalCultureMap(),
-	graphicalCulture2dMap(),
+class graphicsCultureGroup: commonItems::parser
+{
+	public:
+	graphicsCultureGroup(std::istream& theStream);
+
+		auto getLeaderPortraits() const { return leaderPortraits; }
+		auto getIdeologyMinisterPortraits() const { return ideologyMinisterPortraits; }
+		auto getGraphicalCulture() const { return graphicalCulture; }
+		auto getGraphicalCulture2D() const { return graphicalCulture2D; }
+
+	private:
+		std::map<std::string, std::vector<std::string>> leaderPortraits;
+		std::map<std::string, std::vector<std::string>> ideologyMinisterPortraits;
+		std::string graphicalCulture;
+		std::string graphicalCulture2D;
+};
+
+
+graphicsCultureGroup::graphicsCultureGroup(std::istream& theStream)
+{
+	registerKeyword(std::regex("leader_portraits"), [this](const std::string& unused, std::istream& theStream){
+		ideologyToPortraitsMapping mappings(theStream);
+		leaderPortraits = mappings.getMap();
+	});
+	registerKeyword(std::regex("ideology_minister_portraits"), [this](const std::string& unused, std::istream& theStream){
+		ideologyToPortraitsMapping mappings(theStream);
+		ideologyMinisterPortraits = mappings.getMap();
+	});
+	registerKeyword(std::regex("graphical_culture"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringList graphicsString(theStream);
+		graphicalCulture = graphicsString.getStrings()[0];
+	});
+	registerKeyword(std::regex("graphical_culture_2d"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringList graphicsString(theStream);
+		graphicalCulture2D = graphicsString.getStrings()[0];
+	});
+
+	parseStream(theStream);
+}
+
+
+graphicsMapper::graphicsMapper() noexcept:
 	rng()
 {
 	LOG(LogLevel::Info) << "Reading graphics mappings";
 
-	auto fileObj = parser_UTF8::doParseFile("cultureGroupToGraphics.txt");
-	if (fileObj)
-	{
-		auto cultureGroupObjs = fileObj->getLeaves();
-		for (auto cultureGroupObj: cultureGroupObjs)
-		{
-			string cultureGroup = cultureGroupObj->getKey();
+	registerKeyword(std::regex("[a-zA-Z0-9_]+"), [this](const std::string& cultureGroupName, std::istream& theStream){
+		graphicsCultureGroup newCultureGroup(theStream);
+		graphicalCultureMap[cultureGroupName] = newCultureGroup.getGraphicalCulture();
+		graphicalCulture2dMap[cultureGroupName] = newCultureGroup.getGraphicalCulture2D();
+		loadLeaderPortraitMappings(cultureGroupName, newCultureGroup.getLeaderPortraits());
+		loadIdeologyMinisterPortraitMappings(cultureGroupName, newCultureGroup.getIdeologyMinisterPortraits());
+	});
 
-			auto leaderPortraitObjs = cultureGroupObj->safeGetObject("leader_portraits");
-			if (leaderPortraitObjs != nullptr)
-			{
-				loadLeaderPortraitMappings(cultureGroup, leaderPortraitObjs);
-			}
-
-			auto ideologyMinisterPortraitObjs = cultureGroupObj->safeGetObject("ideology_minister_portraits");
-			if (ideologyMinisterPortraitObjs != nullptr)
-			{
-				loadIdeologyMinisterPortraitMappings(cultureGroup, ideologyMinisterPortraitObjs);
-			}
-
-			graphicalCultureMap[cultureGroup] = cultureGroupObj->safeGetString("graphical_culture");
-			graphicalCulture2dMap[cultureGroup] = cultureGroupObj->safeGetString("graphical_culture_2d");
-		}
-	}
-	else
-	{
-		return;
-	}
+	parseFile("cultureGroupToGraphics.txt");
 }
 
 
-void graphicsMapper::loadLeaderPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings)
+void graphicsMapper::loadLeaderPortraitMappings(const std::string& cultureGroup, std::map<std::string, std::vector<std::string>> portraitMappings)
 {
-	auto cultureGroupMappings = leaderPortraitMappings.element.find(cultureGroup);
-	if (cultureGroupMappings == leaderPortraitMappings.element.end())
+	auto cultureGroupMappings = leaderPortraitMappings.find(cultureGroup);
+	if (cultureGroupMappings == leaderPortraitMappings.end())
 	{
 		cultureGroupToPortraitsMap newCultureGroupMappings;
-		leaderPortraitMappings.element.insert(make_pair(cultureGroup, newCultureGroupMappings));
-		cultureGroupMappings = leaderPortraitMappings.element.find(cultureGroup);
+		leaderPortraitMappings.insert(make_pair(cultureGroup, newCultureGroupMappings));
+		cultureGroupMappings = leaderPortraitMappings.find(cultureGroup);
 	}
 
-	auto ideologyObjs = portraitMappings->getLeaves();
-	for (auto ideologyObj: ideologyObjs)
+	for (auto portraitMapping: portraitMappings)
 	{
-		string ideology = ideologyObj->getKey();
-		auto ideologyMapping = cultureGroupMappings->second.element.find(ideology);
-		if (ideologyMapping == cultureGroupMappings->second.element.end())
-		{
-			vector<string> newPortaits;
-			cultureGroupMappings->second.element.insert(make_pair(ideology, newPortaits));
-			ideologyMapping = cultureGroupMappings->second.element.find(ideology);
-		}
-
-		for (auto portraitStr: ideologyObj->getTokens())
-		{
-			ideologyMapping->second.push_back(portraitStr);
-		}
+		cultureGroupMappings->second.insert(portraitMapping);
 	}
 }
 
 
-void graphicsMapper::loadIdeologyMinisterPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings)
+void graphicsMapper::loadIdeologyMinisterPortraitMappings(const std::string& cultureGroup, std::map<std::string, std::vector<std::string>> portraitMappings)
 {
-	auto cultureGroupMappings = ideologyMinisterMappings.element.find(cultureGroup);
-	if (cultureGroupMappings == ideologyMinisterMappings.element.end())
+	auto cultureGroupMappings = ideologyMinisterMappings.find(cultureGroup);
+	if (cultureGroupMappings == ideologyMinisterMappings.end())
 	{
 		cultureGroupToPortraitsMap newCultureGroupMappings;
-		ideologyMinisterMappings.element.insert(make_pair(cultureGroup, newCultureGroupMappings));
-		cultureGroupMappings = ideologyMinisterMappings.element.find(cultureGroup);
+		ideologyMinisterMappings.insert(make_pair(cultureGroup, newCultureGroupMappings));
+		cultureGroupMappings = ideologyMinisterMappings.find(cultureGroup);
 	}
 
-	auto ideologyObjs = portraitMappings->getLeaves();
-	for (auto ideologyObj: ideologyObjs)
+	for (auto portraitMapping: portraitMappings)
 	{
-		string ideology = ideologyObj->getKey();
-		auto ideologyMapping = cultureGroupMappings->second.element.find(ideology);
-		if (ideologyMapping == cultureGroupMappings->second.element.end())
-		{
-			vector<string> newPortaits;
-			cultureGroupMappings->second.element.insert(make_pair(ideology, newPortaits));
-			ideologyMapping = cultureGroupMappings->second.element.find(ideology);
-		}
-
-		for (auto portraitStr: ideologyObj->getTokens())
-		{
-			ideologyMapping->second.push_back(portraitStr);
-		}
+		cultureGroupMappings->second.insert(portraitMapping);
 	}
 }
 
 
-string graphicsMapper::GetLeaderPortrait(const string& cultureGroup, const string& ideology)
+std::string graphicsMapper::getLeaderPortrait(const std::string& cultureGroup, const std::string& ideology)
 {
-	auto portraits = GetLeaderPortraits(cultureGroup, ideology);
-
-	if (portraits)
+	if (auto portraits = getLeaderPortraits(cultureGroup, ideology))
 	{
 		std::uniform_int_distribution<int> firstNameGen(0, portraits->size() - 1);
 		return (*portraits)[firstNameGen(rng)];
@@ -148,13 +157,11 @@ string graphicsMapper::GetLeaderPortrait(const string& cultureGroup, const strin
 }
 
 
-optional<vector<string>> graphicsMapper::GetLeaderPortraits(const string& cultureGroup, const string& ideology) const
+std::optional<std::vector<std::string>> graphicsMapper::getLeaderPortraits(const std::string& cultureGroup, const std::string& ideology) const
 {
-	auto mapping = leaderPortraitMappings.element.find(cultureGroup);
-	if (mapping != leaderPortraitMappings.element.end())
+	if (auto mapping = leaderPortraitMappings.find(cultureGroup); mapping != leaderPortraitMappings.end())
 	{
-		auto portraits = mapping->second.element.find(ideology);
-		if (portraits != mapping->second.element.end())
+		if (auto portraits = mapping->second.find(ideology); portraits != mapping->second.end())
 		{
 			return portraits->second;
 		}
@@ -164,9 +171,9 @@ optional<vector<string>> graphicsMapper::GetLeaderPortraits(const string& cultur
 }
 
 
-string graphicsMapper::GetIdeologyMinisterPortrait(const string& cultureGroup, const string& ideology)
+std::string graphicsMapper::getIdeologyMinisterPortrait(const std::string& cultureGroup, const std::string& ideology)
 {
-	auto portraits = GetIdeologyMinisterPortraits(cultureGroup, ideology);
+	auto portraits = getIdeologyMinisterPortraits(cultureGroup, ideology);
 
 	if (portraits)
 	{
@@ -180,13 +187,17 @@ string graphicsMapper::GetIdeologyMinisterPortrait(const string& cultureGroup, c
 }
 
 
-optional<vector<string>> graphicsMapper::GetIdeologyMinisterPortraits(const string& cultureGroup, const string& ideology) const
+std::string graphicsMapper::getGeneralPortrait(const std::string& cultureGroup) const
 {
-	auto mapping = ideologyMinisterMappings.element.find(cultureGroup);
-	if (mapping != ideologyMinisterMappings.element.end())
+	return "";
+}
+
+
+std::optional<std::vector<std::string>> graphicsMapper::getIdeologyMinisterPortraits(const std::string& cultureGroup, const std::string& ideology) const
+{
+	if (auto mapping = ideologyMinisterMappings.find(cultureGroup); mapping != ideologyMinisterMappings.end())
 	{
-		auto portraits = mapping->second.element.find(ideology);
-		if (portraits != mapping->second.element.end())
+		if (auto portraits = mapping->second.find(ideology); portraits != mapping->second.end())
 		{
 			return portraits->second;
 		}
@@ -196,10 +207,9 @@ optional<vector<string>> graphicsMapper::GetIdeologyMinisterPortraits(const stri
 }
 
 
-optional<string> graphicsMapper::GetGraphicalCulture(const string& cultureGroup) const
+std::optional<std::string> graphicsMapper::getGraphicalCulture(const std::string& cultureGroup) const
 {
-	auto itr = graphicalCultureMap.find(cultureGroup);
-	if (itr != graphicalCultureMap.end())
+	if (auto itr = graphicalCultureMap.find(cultureGroup); itr != graphicalCultureMap.end())
 	{
 		return itr->second;
 	}
@@ -210,10 +220,9 @@ optional<string> graphicsMapper::GetGraphicalCulture(const string& cultureGroup)
 }
 
 
-optional<string> graphicsMapper::Get2dGraphicalCulture(const string& cultureGroup) const
+std::optional<std::string> graphicsMapper::get2dGraphicalCulture(const std::string& cultureGroup) const
 {
-	auto itr = graphicalCulture2dMap.find(cultureGroup);
-	if (itr != graphicalCulture2dMap.end())
+	if (auto itr = graphicalCulture2dMap.find(cultureGroup); itr != graphicalCulture2dMap.end())
 	{
 		return itr->second;
 	}

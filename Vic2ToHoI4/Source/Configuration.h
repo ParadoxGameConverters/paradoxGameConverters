@@ -26,9 +26,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "newParser.h"
+#include "HOI4World/HOI4Version.h"
 #include <string>
 #include <vector>
-#include "HOI4World/HOI4Version.h"
 
 
 
@@ -41,133 +42,77 @@ enum class ideologyOptions
 
 
 
-class Configuration // Singleton
+class Configuration: commonItems::parser
 {
 	public:
-		Configuration();
+		Configuration() = default;
+		void instantiate(std::istream& theStream);
 
-		static std::string getHoI4Path()
-		{
-			return getInstance()->HoI4Path;
-		}
+		std::string getHoI4Path() const { return HoI4Path; }
+		std::string getHoI4DocumentsPath() const { return HoI4DocumentsPath; }
+		std::string getVic2Path() const { return Vic2Path; }
+		std::vector<std::string> getVic2Mods() const { return Vic2Mods; }
+		std::string getOutputName() const { return outputName; }
 
-		static std::string getHoI4DocumentsPath()
-		{
-			return getInstance()->HoI4DocumentsPath;
-		}
+		double getForceMultiplier() const { return forceMultiplier; }
+		double getManpowerFactor() const { return manpowerFactor; }
+		double getIndustrialShapeFactor() const { return industrialShapeFactor; }
+		double getIcFactor() const { return icFactor; }
+		ideologyOptions getIdeologiesOptions() const { return ideologiesOptions; }
+		bool getRemoveCores() const { return removeCores; }
+		bool getCreateFactions() const { return createFactions; }
+		HoI4::Version getHOI4Version() const { return version; }
 
-		static std::string getV2Path()
-		{
-			return getInstance()->V2Path;
-		}
+		bool getDebug() const { return debug; }
 
-		static std::vector<std::string> getVic2Mods()
-		{
-			return getInstance()->Vic2Mods;
-		}
+		int getNextLeaderID() { return leaderID++; }
 
-		static void setForceMultiplier(double mult)
-		{
-			getInstance()->forceMultiplier = mult;
-		}
-
-		static void setOutputName(const std::string& name)
-		{
-			getInstance()->outputName = name;
-		}
-
-  		static double getForceMultiplier()
-		{
-			return getInstance()->forceMultiplier;
-		}
-
-		static std::string getOutputName()
-		{
-			return getInstance()->outputName;
-		}
-
-		static double getManpowerFactor()
-		{
-			return getInstance()->manpowerFactor;
-		}
-
-		static double getIndustrialShapeFactor()
-		{
-			return getInstance()->industrialShapeFactor;
-		}
-
-		static double getIcFactor()
-		{
-			return getInstance()->icFactor;
-		}
-
-		static int getNextLeaderID()
-		{
-			return getInstance()->leaderID++;
-		}
-
-		static void setLeaderIDForNextCountry()
-		{
-			getInstance()->leaderIDCountryIdx++;
-			getInstance()->leaderID = 1000 * getInstance()->leaderIDCountryIdx;	
-		}
-
-		static HoI4::Version& getHOI4Version()
-		{
-			return getInstance()->version;
-		}
-
-		static ideologyOptions getIdeologiesOptions()
-		{
-			return getInstance()->ideologiesOptions;
-		}
-
-		static bool getDebug()
-		{
-			return getInstance()->debug;
-		}
-
-		static bool getRemoveCores()
-		{
-			return getInstance()->removeCores;
-		}
-
-		static Configuration* getInstance()
-		{
-			if (instance == nullptr)
-			{
-				instance = new Configuration();
-			}
-			return instance;
+		void setForceMultiplier(double mult) { forceMultiplier = mult; }
+		void setOutputName(const std::string& name) { outputName = name; }
+		void setLeaderIDForNextCountry() {
+			leaderIDCountryIdx++;
+			leaderID = 1000 * leaderIDCountryIdx;	
 		}
 
 	private:
-		static Configuration* instance;
 		Configuration(const Configuration&) = delete;
 		Configuration& operator=(const Configuration&) = delete;
 
 		HoI4::Version getAutomaticHoI4Version();
 
-		std::string			HoI4Path;				// the install directory for HoI4
-		std::string			HoI4DocumentsPath;	// HoI4's directory under My Documents
-		std::string			V2Path;					// the install directory for V2
-		std::vector<std::string>	Vic2Mods;
-		std::string			outputName;				// the name the outputted mod should have
+		std::string HoI4Path = "";
+		std::string HoI4DocumentsPath = "";
+		std::string Vic2Path = "";
+		std::vector<std::string> Vic2Mods;
+		std::string outputName = "";
 
-		double			forceMultiplier;
-		double			manpowerFactor;
-		double industrialShapeFactor;
-		double			icFactor;
-
-		ideologyOptions ideologiesOptions;
-
-		bool debug;
-		bool removeCores;
-
-		unsigned int	leaderID;
-		unsigned int	leaderIDCountryIdx;
-
+		double forceMultiplier = 0.0;
+		double manpowerFactor = 0.0;
+		double industrialShapeFactor = 0.0;
+		double icFactor = 0.0;
+		ideologyOptions ideologiesOptions = ideologyOptions::keep_major;
+		bool removeCores = true;
+		bool createFactions = true;
 		HoI4::Version version;
+
+		bool debug = false;
+
+		unsigned int leaderID = 1000;
+		unsigned int leaderIDCountryIdx = 1;
+};
+
+
+extern Configuration theConfiguration;
+
+
+class ConfigurationFile: commonItems::parser
+{
+	public:
+		explicit ConfigurationFile(const std::string& filename);
+
+	private:
+		ConfigurationFile(const ConfigurationFile&) = delete;
+		ConfigurationFile& operator=(const ConfigurationFile&) = delete;
 };
 
 

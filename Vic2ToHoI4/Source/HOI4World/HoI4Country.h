@@ -28,7 +28,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4Airforce.h"
 #include "HoI4Army.h"
+#include "Division.h"
+#include "DivisionTemplate.h"
 #include "HoI4FocusTree.h"
+#include "HOI4Ideology.h"
 #include "HoI4Leader.h"
 #include "HoI4Navy.h"
 #include "HoI4Province.h"
@@ -38,8 +41,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Date.h"
 #include "../V2World/Army.h"
 #include "../V2World/Party.h"
+#include <map>
 #include <optional>
 #include <set>
+#include <string>
 #include <vector>
 using namespace std;
 
@@ -48,48 +53,62 @@ using namespace std;
 namespace Vic2
 {
 class Country;
+class World;
 }
+
+
 class HoI4Faction;
-class HoI4World;
+class HoI4Ideology;
+
 
 namespace HoI4
 {
 class Advisor;
+class coastalProvinces;
+class namesMapper;
+class State;
+class UnitMap;
+class World;
 struct advisorCompare;
 }
+
+
+class CountryMapper;
+class governmentMapper;
+class graphicsMapper;
 
 
 
 class HoI4Country
 {
 	public:
-		HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld);
+		HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4::World* _theWorld);
 
-		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states);
-		void initFromHistory();
-		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies);
-		void convertGovernment(const Vic2::World& _srcWorld);
-		void convertParties(const set<string>& majorIdeologies);
-		void convertIdeologySupport(const set<string>& majorIdeologies);
-		void		convertNavy(const map<string, HoI4UnitMap>& unitMap);
-		void		convertConvoys(const map<string, HoI4UnitMap>& unitMap);
-		void		convertAirforce(const map<string, HoI4UnitMap>& unitMap);
-		void		convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, const vector<HoI4DivisionTemplateType>& divisionTemplates);		
+		void initFromV2Country(const Vic2::World& _srcWorld, const Vic2::Country* _srcCountry, const std::map<int, int>& stateMap, const std::map<int, HoI4::State*>& states, HoI4::namesMapper& theNames, const graphicsMapper& theGraphics, const CountryMapper& countryMap);
+		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies, const governmentMapper& governmentMap);
+		void convertGovernment(const Vic2::World& _srcWorld, const governmentMapper& governmentMap);
+		void convertParties(const set<string>& majorIdeologies, const governmentMapper& governmentMap);
+		void convertIdeologySupport(const set<string>& majorIdeologies, const governmentMapper& governmentMap);
+		void convertNavies(const map<string, HoI4::UnitMap>& unitMap, const HoI4::coastalProvinces& theCoastalProvinces, const std::map<int, int>& provinceToStateIDMap);
+		void convertConvoys(const map<string, HoI4::UnitMap>& unitMap);
+		void convertAirforce(const map<string, HoI4::UnitMap>& unitMap);
+		void convertArmies(const HoI4::militaryMappings& theMilitaryMappings);
 		void		setTechnology(const string& tech, int level);
 		void		setResearchBonus(const string& tech, int bonus);
-		void addState(HoI4State* _state);
+		void addState(HoI4::State* _state);
 		void calculateIndustry();
 		void reportIndustry(ofstream& out);
 		void addVPsToCapital(int VPs);
-		void adjustResearchFocuses(const set<string>& majorIdeologies);
+		void addGenericFocusTree(const set<string>& majorIdeologies);
+		void adjustResearchFocuses();
 		void outputToCommonCountriesFile(ofstream& countriesFile) const;
 		void outputColors(ofstream& out) const;
-		void outputToNamesFiles(ofstream& namesFile) const;
+		void outputToNamesFiles(ofstream& namesFile, const HoI4::namesMapper& theNames) const;
 		void outputToUnitNamesFiles(ofstream& unitNamesFile) const;
-		void output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const;
-		void outputIdeaGraphics(ofstream& ideasFile) const;
+		void output(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalMinisters, const vector<HoI4::DivisionTemplateType>& divisionTemplates, HoI4::namesMapper& theNames, graphicsMapper& theGraphics) const;
+		void outputIdeaGraphics(ofstream& ideasFile, graphicsMapper& graphics) const;
 
-		void		setSphereLeader(const string& SphereLeader) { sphereLeader == SphereLeader; }
+		void setSphereLeader(const string& SphereLeader) { sphereLeader = SphereLeader; }
 		void		setFaction(shared_ptr<const HoI4Faction> newFaction) { faction = newFaction; }
 		void		setFactionLeader() { factionLeader = true; }
 		void addNationalFocus(shared_ptr<HoI4FocusTree> NF) { nationalFocus = NF; }
@@ -113,12 +132,12 @@ class HoI4Country
 		const string&								getPuppetmaster() const { return puppetMaster; }
 		const map<string, double>&						getPracticals() const { return practicals; }
 		vector<int>									getBrigs() const { return brigs; }
-		HoI4State* getCapitalState() const { return capitalState; }
+		HoI4::State* getCapitalState() const { return capitalState; }
 		int											getCapitalStateNum() const { return capitalStateNum; }
 		const string									getSphereLeader() const { return sphereLeader; }
 		const Vic2::Party getRulingParty() const { return rulingParty; }
 		set<Vic2::Party, function<bool (const Vic2::Party&, const Vic2::Party&)>> getParties() const { return parties; }
-		map<int, HoI4State*> getStates() const { return states; }
+		map<int, HoI4::State*> getStates() const { return states; }
 		bool isInFaction() const { return faction != nullptr; }
 		bool isCivilized() const { return civilized; }
 
@@ -138,25 +157,25 @@ class HoI4Country
 		HoI4Country& operator=(const HoI4Country&) = delete;
 
 		void determineFilename();
-		void initIdeas();
+		void initIdeas(HoI4::namesMapper& theNames);
 		void convertLaws();
-		//void convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
-		void convertRelations();
-		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
-		bool isStateValidForCapital(int capitalState, const map<int, HoI4State*>& states);
-		bool isThisStateOwnedByUs(const HoI4State* state) const;
-		bool isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const;
+		void convertLeaders(const graphicsMapper& theGraphics);
+		void convertRelations(const CountryMapper& countryMap);
+		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4::State*>& states);
+		bool isStateValidForCapital(int capitalState, const map<int, HoI4::State*>& states);
+		bool isThisStateOwnedByUs(const HoI4::State* state) const;
+		bool isThisStateACoreWhileWeOwnNoStates(const HoI4::State* state) const;
 		void setCapitalInCapitalState(int capitalProvince);
 		void findBestCapital();
 
 		void addProvince(int _province);
 
 		void outputNamesSet(ofstream& namesFile, const optional<vector<string>>& names, const string& tabs) const;
-		void outputHistory() const;
+		void outputHistory(HoI4::namesMapper& theNames, graphicsMapper& theGraphics) const;
 		void outputCapital(ofstream& output) const;
 		void outputResearchSlots(ofstream& output) const;
 		void outputThreat(ofstream& output) const;
-		void outputOOB(const vector<HoI4DivisionTemplateType>& divisionTemplates) const;
+		void outputOOB(const vector<HoI4::DivisionTemplateType>& divisionTemplates) const;
 		void outputTechnology(ofstream& output) const;
 		void outputResearchBonuses(ofstream& output) const;
 		void outputConvoys(ofstream& output) const;
@@ -169,14 +188,15 @@ class HoI4Country
 		void outputIdeas(ofstream& output) const;
 		void outputStability(ofstream& output) const;
 		void outputWarSupport(ofstream& output) const;
-		void outputCountryLeader(ofstream& output) const;
+		void outputCountryLeader(ofstream& output, HoI4::namesMapper& theNames, graphicsMapper& theGraphics) const;
+		void outputCommanders(ofstream& output) const;
 		void outputOOBLine(ofstream& output) const;
 		void outputCommonCountryFile() const;
-		void outputIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const;
-		void outputUnitType(ofstream& unitNamesFile, string sourceUnitType, string destUnitType, string defaultName) const;
+		void outputAdvisorIdeas(const set<const HoI4::Advisor*, HoI4::advisorCompare>& ideologicalAdvisors) const;
+		void outputUnitType(ofstream& unitNamesFile, const string& sourceUnitType, const string& destUnitType, const string& defaultName) const;
 
 
-		const HoI4World* theWorld;
+		const HoI4::World* theWorld;
 		const Vic2::Country* srcCountry;
 		string filename;
 
@@ -189,12 +209,12 @@ class HoI4Country
 		map<string, int> ideologySupport;
 		date lastElection;
 
-		const string						sphereLeader = "";
+		string sphereLeader = "";
 		string								tag;
 		set<int>							provinces;
-		map<int, HoI4State*> states;
+		map<int, HoI4::State*> states;
 		int									capitalStateNum;
-		HoI4State*							capitalState;
+		HoI4::State*							capitalState;
 		string								commonCountryFile;
 		map<string, int>					technologies;
 		map<string, int>					researchBonuses;
@@ -208,7 +228,6 @@ class HoI4Country
 		set<string> puppets;
 		string puppetMaster;
 		map<string, double>				practicals;
-		vector<HoI4Leader>				leaders;
 		string graphicalCulture;
 		string graphicalCulture2d;
 		bool									majorNation;
@@ -231,11 +250,12 @@ class HoI4Country
 		bool greatPower;
 
 		// military stuff
-		vector<HoI4DivisionType>				divisions;
-		vector<HoI4Ship>							ships;
-		vector<HoI4Airplane>						planes;
-		int											navalLocation;
-		map<string, int>							equipmentStockpile;
+		HoI4::Army theArmy;
+		vector<HoI4::Navy> navies;
+		vector<HoI4Airplane> planes;
+		map<string, int> equipmentStockpile;
+		std::vector<HoI4::General> generals;
+		std::vector<HoI4::Admiral> admirals;
 
 		shared_ptr<HoI4FocusTree> nationalFocus;
 };

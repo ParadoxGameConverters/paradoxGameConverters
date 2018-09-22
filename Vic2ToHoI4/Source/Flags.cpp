@@ -35,10 +35,10 @@ void copyFlags(const map<string, shared_ptr<HoI4Country>>& countries)
 {
 	LOG(LogLevel::Info) << "Copying flags";
 
-	Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/gfx");
-	Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/gfx/flags");
-	Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/gfx/flags/medium");
-	Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/gfx/flags/small");
+	Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/gfx");
+	Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/gfx/flags");
+	Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/gfx/flags/medium");
+	Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/gfx/flags/small");
 	for (auto country: countries)
 	{
 		processFlagsForCountry(country);
@@ -192,9 +192,9 @@ bool isThisAConvertedTag(const string& Vic2Tag)
 
 optional<string> getConversionModFlag(const string& flagFilename)
 {
-	for (auto mod: Configuration::getVic2Mods())
+	for (auto mod: theConfiguration.getVic2Mods())
 	{
-		string path = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/" + flagFilename;
+		string path = theConfiguration.getVic2Path() + "/mod/" + mod + "/gfx/flags/" + flagFilename;
 		if (Utils::DoesFileExist(path))
 		{
 			return path;
@@ -208,13 +208,13 @@ optional<string> getConversionModFlag(const string& flagFilename)
 static set<string> allowedMods = { "PDM", "NNM", "Divergences of Darkness" };
 optional<string> getAllowModFlags(const string& flagFilename)
 {
-	for (auto mod: Configuration::getVic2Mods())
+	for (auto mod: theConfiguration.getVic2Mods())
 	{
 		if (allowedMods.count(mod) == 0)
 		{
 			continue;
 		}
-		string path = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/" + flagFilename;
+		string path = theConfiguration.getVic2Path() + "/mod/" + mod + "/gfx/flags/" + flagFilename;
 		if (Utils::DoesFileExist(path))
 		{
 			return path;
@@ -267,6 +267,10 @@ tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsign
 	destFlag->color_map_data = nullptr;
 
 	destFlag->image_data = static_cast<uint8_t*>(malloc(sizeX * sizeY * 4));
+	if (destFlag->image_data == nullptr)
+	{
+		return destFlag;
+	}
 	for (unsigned int y = 0; y < sizeY; y++)
 	{
 		for (unsigned int x = 0; x < sizeX; x++)
@@ -293,9 +297,9 @@ void createBigFlag(tga_image* sourceFlag, const string& filename)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 82, 52);
 	FILE* outputFile;
-	if (fopen_s(&outputFile, ("output/" + Configuration::getOutputName() + "/gfx/flags/" + filename).c_str(), "w+b") != 0)
+	if (fopen_s(&outputFile, ("output/" + theConfiguration.getOutputName() + "/gfx/flags/" + filename).c_str(), "w+b") != 0)
 	{
-		LOG(LogLevel::Warning) << "Could not create output/" << Configuration::getOutputName() << "/gfx/flags/" << filename;
+		LOG(LogLevel::Warning) << "Could not create output/" << theConfiguration.getOutputName() << "/gfx/flags/" << filename;
 		return;
 	}
 	tga_write_to_FILE(outputFile, destFlag);
@@ -309,9 +313,9 @@ void createMediumFlag(tga_image* sourceFlag, const string& filename)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 41, 26);
 	FILE* outputFile;
-	if (fopen_s(&outputFile, ("output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + filename).c_str(), "w+b") != 0)
+	if (fopen_s(&outputFile, ("output/" + theConfiguration.getOutputName() + "/gfx/flags/medium/" + filename).c_str(), "w+b") != 0)
 	{
-		LOG(LogLevel::Warning) << "Could not create output/" << Configuration::getOutputName() << "/gfx/flags/medium/" << filename;
+		LOG(LogLevel::Warning) << "Could not create output/" << theConfiguration.getOutputName() << "/gfx/flags/medium/" << filename;
 		return;
 	}
 	tga_write_to_FILE(outputFile, destFlag);
@@ -325,9 +329,9 @@ void createSmallFlag(tga_image* sourceFlag, const string& filename)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 10, 7);
 	FILE* outputFile;
-	if (fopen_s(&outputFile, ("output/" + Configuration::getOutputName() + "/gfx/flags/small/" + filename).c_str(), "w+b") != 0)
+	if (fopen_s(&outputFile, ("output/" + theConfiguration.getOutputName() + "/gfx/flags/small/" + filename).c_str(), "w+b") != 0)
 	{
-		LOG(LogLevel::Warning) << "Could not create output/" << Configuration::getOutputName() << "/gfx/flags/small/" << filename;
+		LOG(LogLevel::Warning) << "Could not create output/" << theConfiguration.getOutputName() << "/gfx/flags/small/" << filename;
 		return;
 	}
 	tga_write_to_FILE(outputFile, destFlag);

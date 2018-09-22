@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4::AIPeaces::AIPeaces()
+HoI4::AIPeaces::AIPeaces() noexcept
 {
 	registerKeyword(std::regex("[A-Za-z0-9\\_]+"), [this](const std::string& peaceName, std::istream& theStream)
 	{
@@ -78,7 +78,7 @@ void HoI4::AIPeaces::output(std::set<std::string> majorIdeologies)
 	std::for_each(thePeaces.begin(), thePeaces.end(), [majorIdeologies](auto& thePeace){
 		if (thePeace.getName() == "communist_peace")
 		{
-			std::ofstream outFile("output/" + Configuration::getOutputName() + "/common/ai_peace/1_communist.txt");
+			std::ofstream outFile("output/" + theConfiguration.getOutputName() + "/common/ai_peace/1_communist.txt");
 			if (majorIdeologies.count("communist") > 0)
 			{
 				outFile << thePeace;
@@ -87,7 +87,7 @@ void HoI4::AIPeaces::output(std::set<std::string> majorIdeologies)
 		}
 		else if (thePeace.getName() == "fascist_peace")
 		{
-			std::ofstream outFile("output/" + Configuration::getOutputName() + "/common/ai_peace/1_fascist.txt");
+			std::ofstream outFile("output/" + theConfiguration.getOutputName() + "/common/ai_peace/1_fascist.txt");
 			if (majorIdeologies.count("fascism") > 0)
 			{
 				outFile << thePeace;
@@ -96,7 +96,7 @@ void HoI4::AIPeaces::output(std::set<std::string> majorIdeologies)
 		}
 		else if (thePeace.getName() == "democratic_peace")
 		{
-			std::ofstream outFile("output/" + Configuration::getOutputName() + "/common/ai_peace/1_democratic.txt");
+			std::ofstream outFile("output/" + theConfiguration.getOutputName() + "/common/ai_peace/1_democratic.txt");
 			if (majorIdeologies.count("democratic") > 0)
 			{
 				outFile << thePeace;

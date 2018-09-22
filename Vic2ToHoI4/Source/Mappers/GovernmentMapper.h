@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,15 +27,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "../HOI4World/HOI4Ideology.h"
+#include "newParser.h"
 #include <memory>
 #include <set>
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
-class Object;
 namespace Vic2
 {
 class Country;
@@ -45,83 +44,45 @@ class Country;
 
 typedef struct governmentMapping
 {
-	string vic2Government;
-	string HoI4GovernmentIdeology;
-	string HoI4LeaderIdeology;
-	string rulingPartyRequired;
+	std::string vic2Government;
+	std::string HoI4GovernmentIdeology;
+	std::string HoI4LeaderIdeology;
+	std::string rulingPartyRequired;
 } governmentMapping;
 
 
 
 typedef struct partyMapping
 {
-	string rulingIdeology;
-	string vic2Ideology;
-	string supportedIdeology;
+	std::string rulingIdeology;
+	std::string vic2Ideology;
+	std::string supportedIdeology;
 } partyMapping;
 
 
-class governmentMapper
+class governmentMapper: commonItems::parser
 {
 	public:
-		static string getIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology)
-		{
-			return getInstance()->GetIdeologyForCountry(country, Vic2RulingIdeology);
-		}
+		governmentMapper() noexcept;
 
-		static string getLeaderIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology)
-		{
-			return getInstance()->GetLeaderIdeologyForCountry(country, Vic2RulingIdeology);
-		}
+		std::string getIdeologyForCountry(const Vic2::Country* country, const std::string& Vic2RulingIdeology) const;
+		std::string getLeaderIdeologyForCountry(const Vic2::Country* country, const std::string& Vic2RulingIdeology) const;
+		std::string getExistingIdeologyForCountry(const Vic2::Country* country, const std::string& Vic2RulingIdeology, const std::set<std::string>& majorIdeologies, const std::map<std::string, HoI4Ideology*>& ideologies) const;
+		std::string getExistingLeaderIdeologyForCountry(const Vic2::Country* country, const std::string& Vic2RulingIdeology, const std::set<std::string>& majorIdeologies, const std::map<std::string, HoI4Ideology*>& ideologies) const;
+		std::string getSupportedIdeology(const std::string& rulingIdeology, const std::string& Vic2Ideology, const std::set<std::string>& majorIdeologies) const;
 
-		static string getExistingIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies)
-		{
-			return getInstance()->GetExistingIdeologyForCountry(country, Vic2RulingIdeology, majorIdeologies, ideologies);
-		}
-
-		static string getExistingLeaderIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies)
-		{
-			return getInstance()->GetExistingLeaderIdeologyForCountry(country, Vic2RulingIdeology, majorIdeologies, ideologies);
-		}
-
-		static string getSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology, const set<string>& majorIdeologies)
-		{
-			return getInstance()->GetSupportedIdeology(rulingIdeology, Vic2Ideology, majorIdeologies);
-		}
-
-		static vector<governmentMapping> getGovernmentMappings()
-		{
-			return getInstance()->governmentMap;
-		}
+		auto getGovernmentMappings() const { return governmentMap; }
 
 	private:
-		static governmentMapper* instance;
-		static governmentMapper* getInstance()
-		{
-			if (instance == nullptr)
-			{
-				instance = new governmentMapper();
-			}
-			return instance;
-		}
-		governmentMapper();
-		void importGovernmentMappings(shared_ptr<Object> obj);
-		void importPartyMappings(shared_ptr<Object> obj);
-
 		governmentMapper(const governmentMapper&) = delete;
 		governmentMapper& operator=(const governmentMapper&) = delete;
 
-		string GetIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology) const;
-		string GetLeaderIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology) const;
-		string GetExistingIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const;
-		string GetExistingLeaderIdeologyForCountry(const Vic2::Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const;
-		string GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology, const set<string>& majorIdeologies) const;
-		bool governmentMatches(const governmentMapping& mapping, const string& government) const;
-		bool rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology) const;
-		bool ideologyIsValid(const governmentMapping& mapping, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const;
+		bool governmentMatches(const governmentMapping& mapping, const std::string& government) const;
+		bool rulingIdeologyMatches(const governmentMapping& mapping, const std::string& rulingIdeology) const;
+		bool ideologyIsValid(const governmentMapping& mapping, const std::set<std::string>& majorIdeologies, const std::map<std::string, HoI4Ideology*>& ideologies) const;
 
-		vector<governmentMapping> governmentMap;
-		vector<partyMapping> partyMap;
+		std::vector<governmentMapping> governmentMap;
+		std::vector<partyMapping> partyMap;
 };
 
 

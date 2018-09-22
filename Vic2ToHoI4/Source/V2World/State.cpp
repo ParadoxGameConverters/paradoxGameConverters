@@ -25,14 +25,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Building.h"
 #include "Country.h"
 #include "Province.h"
+#include "StateDefinitions.h"
 #include "World.h"
-#include "../Mappers/StateMapper.h"
 #include "Log.h"
 #include "ParserHelpers.h"
 
 
 
-Vic2::State::State(std::istream& theStream, const string& ownerTag):
+Vic2::State::State(std::istream& theStream, const std::string& ownerTag):
 	owner(ownerTag)
 {
 	registerKeyword(std::regex("provinces"), [this](const std::string& unused, std::istream& theStream){
@@ -50,6 +50,7 @@ Vic2::State::State(std::istream& theStream, const string& ownerTag):
 
 	parseStream(theStream);
 	setID();
+	setCapital();
 }
 
 
@@ -62,20 +63,27 @@ Vic2::State::State(std::set<std::pair<int, Vic2::Province*>> theProvinces)
 	}
 	setID();
 	determineIfPartialState();
+	setCapital();
 }
 
 
 void Vic2::State::setID()
 {
-	auto stateIDMapping = stateMapper::getStateIdMapping().find(*provinceNums.begin());
-	if (stateIDMapping != stateMapper::getStateIdMapping().end())
+	auto foundStateID = theStateDefinitions.getStateID(*provinceNums.begin());
+	if (foundStateID)
 	{
-		stateID = stateIDMapping->second;
+		stateID = *foundStateID;
 	}
 	else
 	{
 		LOG(LogLevel::Warning) << "Could not find the state for Vic2 province " << *provinceNums.begin() << ".";
 	}
+}
+
+
+void Vic2::State::setCapital()
+{
+	capitalProvince = theStateDefinitions.getCapitalProvince(stateID);
 }
 
 
@@ -154,8 +162,7 @@ void Vic2::State::determineIfPartialState()
 {
 	if (provinces.size() > 0)
 	{
-		auto fullState = stateMapper::getStateMapping().find(*provinceNums.begin());
-		for (auto expectedProvince: fullState->second)
+		for (auto expectedProvince: theStateDefinitions.getAllProvinces(*provinceNums.begin()))
 		{
 			if (provinceNums.count(expectedProvince) == 0)
 			{

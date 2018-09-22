@@ -27,7 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "IdeaGroup.h"
 #include "newParser.h"
-#include "NewParserToOldParserConverters.h"
 #include <map>
 #include <memory>
 #include <set>
@@ -42,11 +41,11 @@ namespace HoI4
 class Ideas: commonItems::parser
 {
 	public:
-		Ideas();
+		Ideas() noexcept;
 
 		void updateIdeas(std::set<std::string> majorIdeologies);
 
-		void output(std::set<std::string> majorIdeologies) const;
+		void output(const std::set<std::string>& majorIdeologies) const;
 
 	private:
 		void importIdeologicalIdeas();
@@ -58,7 +57,7 @@ class Ideas: commonItems::parser
 		std::ofstream openIdeaFile(const std::string& fileName) const;
 		void closeIdeaFile(std::ofstream& fileStream) const;
 
-		std::map<std::string, std::vector<std::shared_ptr<Object>>> ideologicalIdeas;
+		std::map<std::string, IdeaGroup> ideologicalIdeas;
 		std::vector<std::unique_ptr<IdeaGroup>> generalIdeas;
 };
 

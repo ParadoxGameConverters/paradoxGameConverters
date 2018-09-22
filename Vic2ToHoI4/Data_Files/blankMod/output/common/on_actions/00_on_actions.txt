@@ -159,79 +159,12 @@ on_actions = {
 	#FROM is country getting invited.
 	on_offer_join_faction = {
 		effect = {
-			#Give achievement to nation joining a faction, but not in one from game start
-			if = {
-				limit = {
-					date > 1936.01.02
-				}
-				FROM = {
-					if = {
-						limit = {
-							is_faction_leader = no
-						}
-						set_country_flag = achievement_has_joined_faction
-					}
-				}
-				PREV = {
-					if = {
-						limit = {
-							is_faction_leader = no
-						}
-						set_country_flag = achievement_has_joined_faction
-					}
-				}
-			}
-	
-			# Sunset invasion check
-			if = {
-				limit = {
-					is_puppet = no
-					OR = {
-						AND = {
-							PREV = {
-								capital_scope = {
-									NOT = { is_on_continent = south_america }
-								}
-							}
-						}
-						AND = {
-							capital_scope = {
-								NOT = { is_on_continent = south_america }
-							}
-						}
-					}
-				}
-				set_country_flag = achievement_failed_sunset_invasion
-			}			
 		}
 	}
 
 	#FROM is faction leader on join faction requests. THIS DOES NOT FIRE ON ADD_TO_FACTION EFFECT! USE ON_OFFER_JOIN_FACTION!
 	on_join_faction = {
 		effect = {
-			set_country_flag = achievement_has_joined_faction
-
-			# Sunset invasion check
-			if = {
-				limit = {
-					is_puppet = no
-					OR = {
-						AND = {
-							PREV = {
-								capital_scope = {
-									NOT = { is_on_continent = south_america }
-								}
-							}
-						}
-						AND = {
-							capital_scope = {
-								NOT = { is_on_continent = south_america }
-							}
-						}
-					}
-				}
-				set_country_flag = achievement_failed_sunset_invasion
-			}
 		}
 	}
 
@@ -286,6 +219,9 @@ on_actions = {
 	
 	# ROOT is capitulated country, FROM is winner
 	on_capitulation = {
+		effect = {
+			news_event = { id = country_capitulated.0 days = 0 }
+		}
 	}
 
 	# ROOT is previously capitulated country
@@ -295,7 +231,7 @@ on_actions = {
 	}
 
 	on_government_change = {
-		effect = {	
+		effect = {
 		}
 	}
 

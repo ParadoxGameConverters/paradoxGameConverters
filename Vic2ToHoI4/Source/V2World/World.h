@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "newParser.h"
+#include "CultureGroups.h"
 #include "Party.h"
 #include <map>
 #include <optional>
@@ -92,6 +93,8 @@ class World: commonItems::parser
 		const Diplomacy* diplomacy = nullptr;
 		std::vector<Party> parties;
 		std::vector<std::string> greatPowers;
+
+		cultureGroups theCultureGroups;
 };
 
 

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,16 +22,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Color.h"
+#include "ParserHelpers.h"
 #include <chrono>
 #include <random>
-#include "Object.h"
 using namespace ConverterColor;
 
-
-
-Color::Color()
-: initialized(false), c({ 0, 0, 0 })
-{}
 
 
 Color::Color(const red r, const green g, const blue b)
@@ -39,17 +34,16 @@ Color::Color(const red r, const green g, const blue b)
 {}
 
 
-Color::Color(std::shared_ptr<Object> colorObject)
+Color::Color(std::istream& theStream)
 : initialized(false), c({ 0, 0, 0 })
 {
-	initialized = (colorObject->numTokens() >= 3);
+	commonItems::intList colors(theStream);
+
+	initialized = (colors.getInts().size() >= 3);
 	for (size_t i = 0; i < 3; ++i)
 	{
-		auto possibleToken = colorObject->getToken(i);
-		if (possibleToken)
-		{
-			c[i] = stoi(*possibleToken);
-		}
+		auto color = colors.getInts()[i];
+		c[i] = color;
 	}
 }
 

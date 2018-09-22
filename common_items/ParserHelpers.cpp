@@ -23,8 +23,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "ParserHelpers.h"
 #include "Log.h"
+#include <cctype>
 #include <sstream>
-
 
 
 namespace commonItems
@@ -35,8 +35,8 @@ std::string getNextLexeme(std::istream& theStream);
 
 void commonItems::ignoreItem(const std::string& unused, std::istream& theStream)
 {
-	std::string equals = getNextLexeme(theStream);
-	std::string next = getNextLexeme(theStream);
+	std::string next = getNextLexeme(theStream); // equals
+	next = getNextLexeme(theStream);
 	if (next == "{")
 	{
 		int braceDepth = 1;
@@ -129,13 +129,77 @@ commonItems::singleInt::singleInt(std::istream& theStream):
 	{
 		theInt = stoi(token);
 	}
-	catch (std::exception& e)
+	catch (std::exception&)
 	{
 		LOG(LogLevel::Warning) << "Expected an int, but instead got " << token;
 		theInt = 0;
 	}
 }
 
+
+commonItems::simpleObject::simpleObject(std::istream& theStream) : values()
+{
+        auto equals = getNextTokenWithoutMatching(theStream);
+        int braceDepth = 0;
+        std::string key;
+        while (true)
+        {
+                if (theStream.eof())
+                {
+                        return;
+                }
+
+                char inputChar;
+                theStream >> inputChar;
+
+                if (inputChar == '{')
+                {
+                        braceDepth++;
+                }
+                else if (inputChar == '}')
+                {
+                        braceDepth--;
+                        if (braceDepth == 0)
+                        {
+                                return;
+                        }
+                }
+                else if (braceDepth > 1)
+                {
+                        // Internal object; ignore.
+                        continue;
+                }
+                else if (inputChar == '=')
+                {
+                        auto value = getNextTokenWithoutMatching(theStream);
+                        values[key] = *value;
+                        key.clear();
+                }
+                else if (!isspace(inputChar))
+                {
+                        key += inputChar;
+                }
+        }
+}
+
+std::string commonItems::simpleObject::getValue(const std::string& key) const
+{
+        if (values.find(key) == values.end())
+        {
+                return "";
+        }
+        return values.at(key);
+}
+
+int commonItems::simpleObject::getValueAsInt(const std::string& key) const
+{
+        auto value = getValue(key);
+        if (value.empty())
+        {
+                return 0;
+        }
+        return std::stoi(value);
+}
 
 commonItems::doubleList::doubleList(std::istream& theStream):
 	doubles()
@@ -169,7 +233,7 @@ commonItems::singleDouble::singleDouble(std::istream& theStream):
 	{
 		theDouble = stof(token);
 	}
-	catch (std::exception& e)
+	catch (std::exception&)
 	{
 		LOG(LogLevel::Warning) << "Expected a double, but instead got " << token;
 		theDouble = 0.0;
@@ -180,15 +244,21 @@ commonItems::singleDouble::singleDouble(std::istream& theStream):
 commonItems::stringList::stringList(std::istream& theStream):
 	strings()
 {
-	std::string iso8859_15("[\\w\\x20\\x27\\x2C-\\x2E\\x3A\\x3F\\x60\\x8A\\x8E\\x92\\x9A\\x9E\\xA0\\xA6\\xA8\\xAA\\xB4\\xB8\\xBC-\\xBE\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\xFF\\xED]+");
-	registerKeyword(std::regex(iso8859_15), [this](const std::string& theString, std::istream& theStream)
+	registerKeyword(std::regex("[^[:s:]^=^\\{^\\}^\\\"]+"), [this](const std::string& theString, std::istream& theStream)
 	{
 		strings.push_back(theString);
 	}
 	);
-	registerKeyword(std::regex("\\\"" + iso8859_15 + "\\\""), [this](const std::string& theString, std::istream& theStream)
+	registerKeyword(std::regex("\\\"[^\n^=^\\{^\\}^\\\"]+\\\""), [this](const std::string& theString, std::istream& theStream)
 	{
-		strings.push_back(theString);
+		if (theString.substr(0,1) == "\"")
+		{
+			strings.push_back(theString.substr(1, theString.size() - 2));
+		}
+		else
+		{
+			strings.push_back(theString);
+		}
 	}
 	);
 
@@ -274,4 +344,26 @@ commonItems::stringOfItem::stringOfItem(std::istream& theStream)
 			}
 		}
 	}
+}
+
+
+commonItems::stringsOfItems::stringsOfItems(std::istream& theStream)
+{
+	registerKeyword(std::regex("[a-zA-Z0-9_]+"), [this](const std::string& itemName, std::istream& theStream){
+		stringOfItem theItem(theStream);
+		theStrings.push_back(itemName + theItem.getString() + "\n");
+	});
+
+	parseStream(theStream);
+}
+
+
+commonItems::stringsOfItemNames::stringsOfItemNames(std::istream& theStream)
+{
+	registerKeyword(std::regex("[a-zA-Z0-9_]+"), [this](const std::string& itemName, std::istream& theStream){
+		ignoreItem(itemName, theStream);
+		theStrings.push_back(itemName);
+	});
+
+	parseStream(theStream);
 }

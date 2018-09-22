@@ -62,4 +62,7 @@ configuration =
 
 	# Remove Cores: Should some cores be removed during conversion
 	remove_cores = true
+
+	# Create Factions: Should the converter create factions
+	create_factions = yes
 }

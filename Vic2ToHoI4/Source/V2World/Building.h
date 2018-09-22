@@ -36,7 +36,7 @@ namespace Vic2
 class Building: commonItems::parser
 {
 	public:
-		Building(std::istream& theStream);
+		explicit Building(std::istream& theStream);
 
 		int getLevel() const { return level; }
 

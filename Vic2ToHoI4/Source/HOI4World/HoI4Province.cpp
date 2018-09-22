@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -23,9 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4Province.h"
 #include "Log.h"
-#include "Object.h"
 #include "OSCompatibilityLayer.h"
-#include "ParadoxParserUTF8.h"
 #include <sstream>
 #include <algorithm>
 #include <stdio.h>
@@ -55,62 +53,6 @@ HoI4Province::HoI4Province(const std::string& Owner, int State):
 	industry(0),
 	infrastructure(0)
 {
-	//filenames.insert(/*make_pair(_filename, _filename)*/);
-
-	/*int slash		= _filename.find_last_of("\\");
-	int numDigits	= _filename.find_first_of("-") - slash - 2;
-	string temp		= _filename.substr(slash + 1, numDigits);
-	num				= stoi(temp);*/
-
-	shared_ptr<Object> obj;
-	//obj = parser_UTF8::doParseFile((string("./blankMod/output/history/provinces") + _filename));
-	/*if (obj == nullptr)
-	{
-		LOG(LogLevel::Error) << "Could not parse ./blankMod/output/history/provinces" << _filename;
-		exit(-1);
-	}*/
-
-	vector<shared_ptr<Object>> leaves = obj->getLeaves();
-	for (auto itr: leaves)
-	{
-		if (itr->getKey() == "owner")
-		{
-			owner = itr->getLeaf();
-			is_land = true;
-		}
-		else if (itr->getKey() == "metal")
-		{
-			metal = stof(itr->getLeaf());
-		}
-		else if (itr->getKey() == "crude_oil")
-		{
-			oil = stof(itr->getLeaf());
-		}
-		else if (itr->getKey() == "rare_materials")
-		{
-			rare_materials = stof(itr->getLeaf());
-		}
-		else if (itr->getKey() == "energy")
-		{
-			energy = stof(itr->getLeaf());
-		}
-		else if (itr->getKey() == "manpower")
-		{
-			manpower = stof(itr->getLeaf());
-		}
-		else if (itr->getKey() == "leadership")
-		{
-			leadership = stof(itr->getLeaf());
-		}
-		else if (itr->getKey() == "industry")
-		{
-			industry = stoi(itr->getLeaf());
-		}
-		else if (itr->getKey() == "add_core")
-		{
-			cores.push_back(itr->getLeaf());
-		}
-	}
 }
 
 
@@ -119,9 +61,9 @@ void HoI4Province::output() const
 	for (auto filename: filenames)
 	{
 		FILE* output;
-		if (fopen_s(&output, ("output/" + Configuration::getOutputName() + "/history/provinces/" + filename.first).c_str(), "w") != 0)
+		if (fopen_s(&output, ("output/" + theConfiguration.getOutputName() + "/history/provinces/" + filename.first).c_str(), "w") != 0)
 		{
-			LOG(LogLevel::Error) << "Could not create province history file output/" << Configuration::getOutputName() << "/history/provinces/" << filename.first << " - " << Utils::GetLastErrorString();
+			LOG(LogLevel::Error) << "Could not create province history file output/" << theConfiguration.getOutputName() << "/history/provinces/" << filename.first << " - " << Utils::GetLastErrorString();
 			exit(-1);
 		}
 		if (owner != "")

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,88 +21,110 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4BUILDINGS_H_
-#define HOI4BUILDINGS_H_
+#ifndef HOI4_BUILDINGS_H_
+#define HOI4_BUILDINGS_H_
+
 
 
 #include <fstream>
 #include <map>
+#include <optional>
 #include <regex>
 #include <set>
+#include <string>
 #include <vector>
-using namespace std;
 
+
+
+class HoI4States;
+
+
+namespace HoI4
+{
+
+class coastalProvinces;
+class MapData;
 
 
 struct buildingPosition
 {
-	double xCoordinate;
-	double yCoordinate;
-	double zCoordinate;
-	double rotation;
+	double xCoordinate = 0.0;
+	double yCoordinate = 0.0;
+	double zCoordinate = 0.0;
+	double rotation = 0.0;
 };
 
 
-
-class HoI4Building
+class Building
 {
 	public:
-		explicit HoI4Building(int _stateID, const buildingPosition& _position);
+		explicit Building(int _stateID, const std::string& _type, buildingPosition& _position, std::optional<int> _connectingSeaProvince);
 
-		friend ostream& operator << (ostream& out, const HoI4Building& building);
+		friend std::ostream& operator << (std::ostream& out, const Building& building);
 
-		virtual ostream& print(ostream& out) const;
+	private:
+		Building(const Building&) = delete;
+		Building& operator=(const Building&) = delete;
 
-	protected:
-		int stateID;
+		int stateID = 0;
+		std::string type;
 		buildingPosition position;
-
-	private:
-		HoI4Building(const HoI4Building&) = delete;
-		HoI4Building& operator=(const HoI4Building&) = delete;
+		int connectingSeaProvince = 0;
 };
 
 
-class HoI4NavalBase: public HoI4Building
+typedef std::map<std::pair<int, int>, buildingPosition> defaultPositions;
+
+
+class Buildings
 {
 	public:
-		HoI4NavalBase(int _stateID, const buildingPosition& _position, int _connectingSeaProvince);
-
-		ostream& print(ostream& out) const;
-
-	private:
-		HoI4NavalBase(const HoI4NavalBase&) = delete;
-		HoI4NavalBase& operator=(const HoI4NavalBase&) = delete;
-
-		int connectingSeaProvince;
-};
-
-
-
-
-
-class HoI4Buildings
-{
-	public:
-		explicit HoI4Buildings(const map<int, int>& provinceToStateIDMap);
+		explicit Buildings(const HoI4States& theStates, const coastalProvinces& theCoastalProvinces, MapData& theMapData);
 
 		void output() const;
 
 	private:
-		HoI4Buildings(const HoI4Buildings&) = delete;
-		HoI4Buildings& operator=(const HoI4Buildings&) = delete;
+		Buildings(const Buildings&) = delete;
+		Buildings& operator=(const Buildings&) = delete;
 
-		void importDefaultBuildings();
-		void importDefaultBuilding(const string& line);
-		void importDefaultNavalBase(const buildingPosition& position, const smatch& matches);
+		void importDefaultBuildings(MapData& theMapData);
+		void processLine(const std::string& line, MapData& theMapData);
+		void importDefaultBuilding(const std::smatch& matches, defaultPositions& positions, MapData& theMapData);
 
-		void placeNavalBases(const map<int, int>& provinceToStateIDMap);
+		void placeBuildings(const HoI4States& theStates, const coastalProvinces& theCoastalProvinces, const MapData& theMapData);
+		void placeArmsFactories(const HoI4States& theStates, const MapData& theMapData);
+		void placeIndustrialComplexes(const HoI4States& theStates, const MapData& theMapData);
+		void placeAirports(const HoI4States& theStates, const MapData& theMapData);
+		void placeNavalBases(const std::map<int, int>& provinceToStateIDMap, std::map<int, std::vector<int>> actualCoastalProvinces, const MapData& theMapData);
+		void addNavalBase(int stateID, const std::pair<int, std::vector<int>>& province, const MapData& theMapData);
+		void placeBunkers(const std::map<int, int>& provinceToStateIDMap, const MapData& theMapData);
+		void addBunker(int stateID, int province, const MapData& theMapData);
+		void placeCoastalBunkers(const std::map<int, int>& provinceToStateIDMap, std::map<int, std::vector<int>> actualCoastalProvinces, const MapData& theMapData);
+		void addCoastalBunker(int stateID, const std::pair<int, std::vector<int>>& province, const MapData& theMapData);
+		void placeDockyards(const HoI4States& theStates, const coastalProvinces& theCoastalProvinces, std::map<int, std::vector<int>> actualCoastalProvinces, const MapData& theMapData);
+		void placeAntiAir(const HoI4States& theStates, const MapData& theMapData);
+		void placeSyntheticRefineries(const HoI4States& theStates, const MapData& theMapData);
+		void placeNuclearReactors(const HoI4States& theStates, const MapData& theMapData);
 
-		multimap<int, HoI4Building*> buildings;
-		map<pair<int, int>, buildingPosition> defaultNavalBases;
+		std::multimap<int, Building*> buildings;
+
+		defaultPositions defaultArmsFactories;
+		defaultPositions defaultIndustrialComplexes;
+		defaultPositions defaultAirBases;
+		defaultPositions defaultNavalBases;
+		defaultPositions defaultBunkers;
+		defaultPositions defaultCoastalBunkers;
+		defaultPositions defaultDockyards;
+		defaultPositions defaultAntiAirs;
+		defaultPositions defaultSyntheticRefineries;
+		defaultPositions defaultNuclearReactors;
+
+		std::map<int, int> airportLocations;
 };
 
+}
 
 
 
-#endif // HOI4BUILDINGS_H_
+
+#endif // HOI4_BUILDINGS_H_

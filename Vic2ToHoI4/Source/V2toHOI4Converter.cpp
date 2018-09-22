@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "HOI4World/HoI4World.h"
 #include "V2World/World.h"
+#include "Mappers/ProvinceMapper.h"
 #include "OSCompatibilityLayer.h"
 
 
@@ -69,17 +70,20 @@ int main(const int argc, const char* argv[])
 
 
 void checkMods();
-void getOutputName(const string& V2SaveFileName);
-void output(const HoI4World& destWorld);
+void setOutputName(const string& V2SaveFileName);
+void clearOutputFolder();
+void output(HoI4::World& destWorld);
 void ConvertV2ToHoI4(const string& V2SaveFileName)
 {
-	Configuration::getInstance();
-
+	ConfigurationFile("configuration.txt");
 	checkMods();
-	getOutputName(V2SaveFileName);
+	setOutputName(V2SaveFileName);
+	clearOutputFolder();
+
+	theProvinceMapper.initialize();
 
 	Vic2::World sourceWorld(V2SaveFileName);
-	HoI4World destWorld(&sourceWorld);
+	HoI4::World destWorld(&sourceWorld);
 
 	output(destWorld);
 	LOG(LogLevel::Info) << "* Conversion complete *";
@@ -91,24 +95,24 @@ void checkMods()
 	LOG(LogLevel::Info) << "Double-checking Vic2 mods";
 
 	set<string> fileNames;
-	Utils::GetAllFilesInFolder(Configuration::getV2Path() + "/mod", fileNames);
+	Utils::GetAllFilesInFolder(theConfiguration.getVic2Path() + "/mod", fileNames);
 	for (auto fileName: fileNames)
 	{
 		const int lastPeriodPos = fileName.find_last_of('.');
 		if (fileName.substr(lastPeriodPos, fileName.length()) == ".mod")
 		{
 			string folderName = fileName.substr(0, lastPeriodPos);
-			if (Utils::doesFolderExist(Configuration::getV2Path() + "/mod/" + folderName))
+			if (Utils::doesFolderExist(theConfiguration.getVic2Path() + "/mod/" + folderName))
 			{
 				LOG(LogLevel::Debug) << "Found mod with name " << folderName;
 			}
 		}
 	}
 
-	for (auto expectedMod: Configuration::getVic2Mods())
+	for (auto expectedMod: theConfiguration.getVic2Mods())
 	{
 		LOG(LogLevel::Debug) << "Expecting a mod with name " << expectedMod;
-		if (!Utils::doesFolderExist(Configuration::getV2Path() + "/mod/" + expectedMod))
+		if (!Utils::doesFolderExist(theConfiguration.getVic2Path() + "/mod/" + expectedMod))
 		{
 			LOG(LogLevel::Error) << "Could not find expected mod";
 			exit(-1);
@@ -117,28 +121,59 @@ void checkMods()
 }
 
 
-void getOutputName(const string& V2SaveFileName)
+void setOutputName(const std::string& V2SaveFileName)
 {
-	int slash = V2SaveFileName.find_last_of("\\");
-	if (slash == string::npos)
+	std::string outputName = V2SaveFileName;
+
+	if (outputName == "")
 	{
-		slash = V2SaveFileName.find_last_of("/");
+		return;
 	}
-	string outputName = V2SaveFileName.substr(slash + 1, V2SaveFileName.length());
+
+	const int lastBackslash = V2SaveFileName.find_last_of("\\");
+	const int lastSlash = V2SaveFileName.find_last_of("/");
+	if ((lastBackslash == std::string::npos) && (lastSlash != std::string::npos))
+	{
+		outputName = outputName.substr(lastSlash + 1, outputName.length());
+	}
+	else if ((lastBackslash != std::string::npos) && (lastSlash == std::string::npos))
+	{
+		outputName = outputName.substr(lastBackslash + 1, outputName.length());
+	}
+	else if ((lastBackslash != std::string::npos) && (lastSlash != std::string::npos))
+	{
+		const int slash = max(lastBackslash, lastSlash);
+		outputName = outputName.substr(slash + 1, outputName.length());
+	}
+	else if ((lastBackslash == std::string::npos) && (lastSlash == std::string::npos))
+	{
+		// no change, but explicitly considered
+	}
+
 	const int length = outputName.find_first_of(".");
+	if ((length == std::string::npos) || (".v2" != outputName.substr(length, outputName.length())))
+	{
+		std::exception theException("The save was not a Vic2 save. Choose a save ending in '.v2' and converter again.");
+		throw theException;
+	}
 	outputName = outputName.substr(0, length);
 
 	std::replace(outputName.begin(), outputName.end(), '-', '_');
 	std::replace(outputName.begin(), outputName.end(), ' ', '_');
 
-	Configuration::setOutputName(outputName);
+	theConfiguration.setOutputName(outputName);
 	LOG(LogLevel::Info) << "Using output name " << outputName;
+}
 
-	string outputFolder = Utils::getCurrentDirectory() + "/output/" + Configuration::getOutputName();
+
+void clearOutputFolder()
+{
+	string outputFolder = Utils::getCurrentDirectory() + "/output/" + theConfiguration.getOutputName();
 	if (Utils::doesFolderExist(outputFolder))
 	{
 		if (!Utils::deleteFolder(outputFolder))
 		{
+			LOG(LogLevel::Error) << "Could not remove pre-existing output folder " << output << ". Please delete folder and try converting again.";
 			exit(-1);
 		}
 	}
@@ -147,7 +182,7 @@ void getOutputName(const string& V2SaveFileName)
 
 void createModFile();
 void renameOutputFolder();
-void output(const HoI4World& destWorld)
+void output(HoI4::World& destWorld)
 {
 	createModFile();
 	renameOutputFolder();
@@ -164,7 +199,7 @@ void createModFile()
 		exit(-1);
 	}
 
-	ofstream modFile("output/" + Configuration::getOutputName() + ".mod");
+	ofstream modFile("output/" + theConfiguration.getOutputName() + ".mod");
 	if (!modFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create .mod file";
@@ -172,14 +207,14 @@ void createModFile()
 	}
 
 	HoI4::Version versionThatWantsBOM("1.3.3");
-	HoI4::Version thisVersion = Configuration::getHOI4Version();
+	HoI4::Version thisVersion = theConfiguration.getHOI4Version();
 	if (thisVersion >= versionThatWantsBOM)
 	{
 		modFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
 	}
-	modFile << "name = \"Converted - " << Configuration::getOutputName() << "\"\n";
-	modFile << "path = \"mod/" << Configuration::getOutputName() << "/\"\n";
-	modFile << "user_dir = \"" << Configuration::getOutputName() << "_user_dir\"\n";
+	modFile << "name = \"Converted - " << theConfiguration.getOutputName() << "\"\n";
+	modFile << "path = \"mod/" << theConfiguration.getOutputName() << "/\"\n";
+	modFile << "user_dir = \"" << theConfiguration.getOutputName() << "_user_dir\"\n";
 	modFile << "replace_path=\"common/ideologies\"\n";
 	modFile << "replace_path=\"history/countries\"\n";
 	modFile << "replace_path=\"history/states\"\n";
@@ -190,7 +225,7 @@ void createModFile()
 
 void renameOutputFolder()
 {
-	if (!Utils::renameFolder("output/output", "output/" + Configuration::getOutputName()))
+	if (!Utils::renameFolder("output/output", "output/" + theConfiguration.getOutputName()))
 	{
 		LOG(LogLevel::Error) << "Could not rename output folder!";
 		exit(-1);

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,66 +21,38 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef PROVINCE_MAPPING_H
-#define PROVINCE_MAPPING_H
+#ifndef PROVINCE_MAPPER_H
+#define PROVINCE_MAPPER_H
 
 
 
+#include "newParser.h"
 #include <map>
-#include <memory>
 #include <optional>
-#include <unordered_set>
 #include <vector>
-using namespace std;
 
 
 
-class Object;
+typedef std::map<int, std::vector<int>> HoI4ToVic2ProvinceMapping;
+typedef std::map<int, std::vector<int>> Vic2ToHoI4ProvinceMapping;
 
 
 
-typedef map< int, vector<int> > HoI4ToVic2ProvinceMapping;
-typedef map< int, vector<int> > Vic2ToHoI4ProvinceMapping;
-
-
-
-class provinceMapper
+class provinceMapper: commonItems::parser
 {
 	public:
-		static const Vic2ToHoI4ProvinceMapping& getVic2ToHoI4ProvinceMapping()
-		{
-			return getInstance()->Vic2ToHoI4ProvinceMap;
-		}
+		provinceMapper() = default;
+		void initialize();
 
-		static const HoI4ToVic2ProvinceMapping& getHoI4ToVic2ProvinceMapping()
-		{
-			return getInstance()->HoI4ToVic2ProvinceMap;
-		}
+		std::optional<std::vector<int>> getVic2ToHoI4ProvinceMapping(int Vic2Province) const;
+		std::optional<std::vector<int>> getHoI4ToVic2ProvinceMapping(int HoI4Province) const;
 
 	private:
-		static provinceMapper* instance;
-		static provinceMapper* getInstance()
-		{
-			if (instance == NULL)
-			{
-				instance = new provinceMapper();
-			}
-
-			return instance;
-		}
-		provinceMapper();
-
 		provinceMapper(const provinceMapper&) = delete;
 		provinceMapper& operator=(const provinceMapper&) = delete;
 
-		void initProvinceMap(shared_ptr<Object> parsedMappingsFile);
-		vector<shared_ptr<Object>> getCorrectMappingVersion(const vector<shared_ptr<Object>>& versions);
-		void processMappings(const vector<shared_ptr<Object>>& mappings);
-		void insertIntoHoI4ToVic2ProvinceMap(const vector<int>& Vic2Nums, const vector<int>& HoI4nums);
-		void insertIntoVic2ToHoI4ProvinceMap(const vector<int>& Vic2Nums, const vector<int>& HoI4nums);
-
 		void checkAllHoI4ProvinesMapped() const;
-		optional<int> getNextProvinceNumFromFile(ifstream& definitions) const;
+		std::optional<int> getNextProvinceNumFromFile(std::ifstream& definitions) const;
 		void verifyProvinceIsMapped(int provNum) const;
 
 		HoI4ToVic2ProvinceMapping HoI4ToVic2ProvinceMap;
@@ -88,5 +60,8 @@ class provinceMapper
 };
 
 
+extern provinceMapper theProvinceMapper;
 
-#endif // PROVINCE_MAPPING_H
+
+
+#endif // PROVINCE_MAPPER_H

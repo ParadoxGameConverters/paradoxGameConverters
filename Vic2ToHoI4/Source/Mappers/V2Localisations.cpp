@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,7 +26,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
-#include "Object.h"
 
 
 
@@ -34,18 +33,18 @@ V2Localisations* V2Localisations::instance = NULL;
 
 
 
-V2Localisations::V2Localisations():
+V2Localisations::V2Localisations() noexcept:
 	localisations(),
 	localisationToKeyMap()
 {
 	LOG(LogLevel::Info) << "Reading localisation";
 
-	ReadFromAllFilesInFolder(Configuration::getV2Path() + "/localisation");
+	ReadFromAllFilesInFolder(theConfiguration.getVic2Path() + "/localisation");
 
-	for (auto mod: Configuration::getVic2Mods())
+	for (auto mod: theConfiguration.getVic2Mods())
 	{
 		LOG(LogLevel::Debug) << "Reading mod localisation";
-		ReadFromAllFilesInFolder(Configuration::getV2Path() + "/mod/" + mod + "/localisation");
+		ReadFromAllFilesInFolder(theConfiguration.getVic2Path() + "/mod/" + mod + "/localisation");
 	}
 }
 
@@ -86,8 +85,10 @@ void V2Localisations::processLine(string line)
 	int division = line.find_first_of(';');
 	string key = line.substr(0, division);
 
+	bool pause = false;
 	for (auto language: languages)
 	{
+		pause = false;
 		string result = getNextLocalisation(line, division);
 		result = replaceBadCharacters(result);
 		auto UTF8Result = Utils::convert8859_15ToUTF8(result);
@@ -96,7 +97,14 @@ void V2Localisations::processLine(string line)
 		{
 			localisationToKeyMap[UTF8Result] = key;
 		}
-		localisations[key][language] = UTF8Result;
+		if (!UTF8Result.empty())
+		{
+			localisations[key][language] = UTF8Result;
+		}
+		else if ((language != "english") || (language == "x"))
+		{
+			localisations[key][language] = localisations[key]["english"];
+		}
 	}
 }
 
@@ -112,43 +120,43 @@ string V2Localisations::getNextLocalisation(string line, int& division)
 string V2Localisations::replaceBadCharacters(string localisation)
 {
 	// Ö gets translated to an invalid character sequence. Oe is accepted substitute in German.
-	int O = localisation.find_first_of("Ö");
+	int O = localisation.find_first_of('Ö');
 	while (O != string::npos)
 	{
 		localisation.replace(O, 1, "Oe");
-		O = localisation.find_first_of("Ö");
+		O = localisation.find_first_of('Ö');
 	}
 
 	// dash characters other than 0x2D break HoI4
-	int dash = localisation.find_first_of("–");
+	int dash = localisation.find_first_of('–');
 	while (dash != string::npos)
 	{
 		localisation.replace(dash, 1, "-");
-		dash = localisation.find_first_of("–");
+		dash = localisation.find_first_of('–');
 	}
 
 	// Problem with S-hacek
-	int shacek = localisation.find_first_of("");	// character may not display, but is present
+	int shacek = localisation.find_first_of('');	// character may not display, but is present
 	while (shacek != string::npos)
 	{
 		localisation.replace(shacek, 1, "š");
-		shacek = localisation.find_first_of("");	// character may not display, but is present
+		shacek = localisation.find_first_of('');	// character may not display, but is present
 	}
 
 	// Problem with Z-hacek
-	int zhacek = localisation.find_first_of("");	// character may not display, but is present
+	int zhacek = localisation.find_first_of('');	// character may not display, but is present
 	while (zhacek != string::npos)
 	{
 		localisation.replace(zhacek, 1, "ž");
-		zhacek = localisation.find_first_of("");	// character may not display, but is present
+		zhacek = localisation.find_first_of('');	// character may not display, but is present
 	}
 
 	// Problem with apostrophe (Spanish)
-	int apostrophe = localisation.find_first_of("");	// character may not display, but is present
+	int apostrophe = localisation.find_first_of('');	// character may not display, but is present
 	while (apostrophe != string::npos)
 	{
 		localisation.replace(apostrophe, 1, "’");
-		apostrophe = localisation.find_first_of("");	// character may not display, but is present
+		apostrophe = localisation.find_first_of('');	// character may not display, but is present
 	}
 
 	return localisation;

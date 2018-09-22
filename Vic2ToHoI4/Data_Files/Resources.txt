@@ -1,4 +1,3 @@
-resources  =  {
 link = { province = 402 resources = { steel = 1 } }
 link = { province = 467 resources = { steel = 1 } }
 link = { province = 524 resources = { steel = 1 } }
@@ -5804,4 +5803,3 @@ link = { province = 3341 resources = { aluminium = 1 } }
 link = { province = 6235 resources = { aluminium = 1 } }
 link = { province = 6364 resources = { aluminium = 1 } }
 link = { province = 11251 resources = { aluminium = 1 } }
-}

@@ -23,161 +23,172 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Configuration.h"
 #include "OSCompatibilityLayer.h"
-#include "ParadoxParserUTF8.h"
-#include "Object.h"
 #include "Log.h"
+#include "ParserHelpers.h"
 #include <fstream>
 #include <vector>
-using namespace std;
 
 
 
-Configuration* Configuration::instance = nullptr;
+
+Configuration theConfiguration;
 
 
 
-Configuration::Configuration():
-	HoI4Path(""),
-	HoI4DocumentsPath(""),
-	V2Path(""),
-	Vic2Mods(),
-	outputName(""),
-	forceMultiplier(0.0),
-	manpowerFactor(0.0),
-	industrialShapeFactor(0.0),
-	icFactor(0.0),
-	ideologiesOptions(ideologyOptions::keep_major),
-	debug(false),
-	removeCores(true),
-	leaderID(1000),
-	leaderIDCountryIdx(1),
-	version()
+void Configuration::instantiate(std::istream& theStream)
 {
-	LOG(LogLevel::Info) << "Reading configuration file";
-
-	auto oneObj = parser_UTF8::doParseFile("configuration.txt");	// the parsed configuration file
-	if (oneObj)
-	{
-		auto obj = oneObj->safeGetObject("configuration");	// the configuration section
-		if (obj == nullptr)
-		{
-			LOG(LogLevel::Error) << "Configuration missing configuration section";
-			exit (-1);
-		}
-
-		V2Path = obj->safeGetString("V2directory");
-		if (V2Path.empty() || !Utils::doesFolderExist(V2Path))
-		{
-			LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
-			exit(-1);
-		}
-		else if (!Utils::DoesFileExist(V2Path + "/v2game.exe"))
-		{
-			LOG(LogLevel::Error) << "The Victoria 2 path specified in configuration.txt does not contain Victoria 2";
-			exit(-1);
-		}
-		else
-		{
-			LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Path;
-		}
-
-		HoI4Path = obj->safeGetString("HoI4directory");
+	registerKeyword(std::regex("HoI4directory"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString directoryString(theStream);
+		HoI4Path = directoryString.getString();
 		if (HoI4Path.empty() || !Utils::doesFolderExist(HoI4Path))
 		{
 			LOG(LogLevel::Error) << "No HoI4 path was specified in configuration.txt, or the path was invalid";
-			exit(-1);
+			std::exit(EXIT_FAILURE);
 		}
 		else if (!Utils::DoesFileExist(HoI4Path + "/hoi4.exe"))
 		{
 			LOG(LogLevel::Error) << "The HoI4 path specified in configuration.txt does not contain HoI4";
-			exit(-1);
+			std::exit(EXIT_FAILURE);
 		}
 		else
 		{
 			LOG(LogLevel::Debug) << "HoI4 path install path is " << HoI4Path;
 		}
-
-		HoI4DocumentsPath = obj->safeGetString("HoI4Documentsdirectory");
+	});
+	registerKeyword(std::regex("HoI4Documentsdirectory"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString directoryString(theStream);
+		HoI4DocumentsPath = directoryString.getString();
 		if (HoI4DocumentsPath.empty() || !Utils::doesFolderExist(HoI4DocumentsPath))
 		{
 			LOG(LogLevel::Error) << "No HoI4 documents directory was specified in configuration.txt, or the path was invalid";
-			exit(-1);
+			std::exit(EXIT_FAILURE);
 		}
 		else
 		{
 			LOG(LogLevel::Debug) << "HoI4 documents directory is " << HoI4DocumentsPath;
 		}
-
-		Vic2Mods = obj->safeGetTokens("Vic2Mods");
-		manpowerFactor = obj->safeGetFloat("manpower_factor");
-		forceMultiplier = obj->safeGetFloat("force_multiplier");
-		industrialShapeFactor = obj->safeGetFloat("industrial_shape_factor");
-		icFactor = obj->safeGetFloat("ic_factor");
-
-		string versionMethod = obj->safeGetString("HoI4VersionMethod");
-		if (versionMethod == "automatic")
+	});
+	registerKeyword(std::regex("V2directory"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString directoryString(theStream);
+		Vic2Path = directoryString.getString();
+		if (Vic2Path.empty() || !Utils::doesFolderExist(Vic2Path))
 		{
-			version = getAutomaticHoI4Version();
+			LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
+			std::exit(EXIT_FAILURE);
 		}
-		else if (versionMethod == "manualEntry")
+		else if (!Utils::DoesFileExist(Vic2Path + "/v2game.exe"))
 		{
-			version = HoI4::Version(obj->safeGetString("HoI4Version"));
+			LOG(LogLevel::Error) << "The Victoria 2 path specified in configuration.txt does not contain Victoria 2";
+			std::exit(EXIT_FAILURE);
 		}
-		else // (versionMethod == "hardcoded")
+		else
 		{
-			version = HoI4::Version();
+			LOG(LogLevel::Debug) << "Victoria 2 install path is " << Vic2Path;
 		}
-		Log(LogLevel::Debug) << "HoI4 version is " << version;
-
-		string ideologyOptiongsString = obj->safeGetString("ideologies", "keep_major");
-		if (ideologyOptiongsString == "keep_default")
+	});
+	registerKeyword(std::regex("Vic2Mods"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringList modsStrings(theStream);
+		Vic2Mods = modsStrings.getStrings();
+	});
+	registerKeyword(std::regex("force_multiplier"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleDouble factorValue(theStream);
+		forceMultiplier = factorValue.getDouble();
+	});
+	registerKeyword(std::regex("manpower_factor"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleDouble factorValue(theStream);
+		manpowerFactor = factorValue.getDouble();
+	});
+	registerKeyword(std::regex("industrial_shape_factor"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleDouble factorValue(theStream);
+		forceMultiplier = factorValue.getDouble();
+	});
+	registerKeyword(std::regex("ic_factor"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleDouble factorValue(theStream);
+		icFactor = factorValue.getDouble();
+	});
+	registerKeyword(std::regex("ideologies"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString ideologiesOptionString(theStream);
+		if (ideologiesOptionString.getString() == "keep_default")
 		{
 			ideologiesOptions = ideologyOptions::keep_default;
 		}
-		else if (ideologyOptiongsString == "keep_all")
+		else if (ideologiesOptionString.getString() == "keep_all")
 		{
 			ideologiesOptions = ideologyOptions::keep_all;
 		}
-		else // (ideologyOptiongsString == "keep_major")
+		else // (ideologiesOptionString.getString() == "keep_major")
 		{
 			ideologiesOptions = ideologyOptions::keep_major;
 		}
-
-		if (obj->safeGetString("debug") == "yes")
+	});
+	registerKeyword(std::regex("debug"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString debugString(theStream);
+		if (debugString.getString() == "yes")
 		{
 			debug = true;
 		}
-
-		if (obj->safeGetString("remove_cores") == "false")
+	});
+	registerKeyword(std::regex("remove_cores"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString removecoreString(theStream);
+		if (removecoreString.getString() == "false")
 		{
 			removeCores = false;
 		}
-	}
-	else
+	});
+	registerKeyword(std::regex("create_factions"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString createFactionsString(theStream);
+		if (createFactionsString.getString() == "no")
+		{
+			createFactions = false;
+		}
+	});
+	std::string versionMethod;
+	registerKeyword(std::regex("HoI4VersionMethod"), [&versionMethod](const std::string& unused, std::istream& theStream){
+		commonItems::singleString versionMethodString(theStream);
+		versionMethod = versionMethodString.getString();
+	});
+	std::string manualVersionString;
+	registerKeyword(std::regex("HoI4Version"), [&manualVersionString](const std::string& unused, std::istream& theStream){
+		commonItems::singleString versionString(theStream);
+		manualVersionString = versionString.getString();
+	});
+
+	LOG(LogLevel::Info) << "Reading configuration file";
+	parseStream(theStream);
+
+	if (versionMethod == "automatic")
 	{
-		LOG(LogLevel::Error) << "Could not open configuration.txt";
-		exit(-1);
+		version = getAutomaticHoI4Version();
 	}
+	else if (versionMethod == "manualEntry")
+	{
+		version = HoI4::Version(manualVersionString);
+	}
+	else // (versionMethod == "hardcoded")
+	{
+		version = HoI4::Version();
+	}
+	Log(LogLevel::Debug) << "HoI4 version is " << version;
 }
 
 
 HoI4::Version Configuration::getAutomaticHoI4Version()
 {
-	ifstream systemLog(HoI4DocumentsPath + "/logs/system.log");
+	std::ifstream systemLog(HoI4DocumentsPath + "/logs/system.log");
 	if (systemLog.is_open())
 	{
 		while (!systemLog.eof())
 		{
 			char buffer[256];
 			systemLog.getline(buffer, sizeof(buffer));
-			string line(buffer);
+			std::string line(buffer);
 			int versionPosition = line.find("Version: ");
-			if (versionPosition != string::npos)
+			if (versionPosition != std::string::npos)
 			{
 				int position1 = line.find_first_of(' ', versionPosition);
 				int position2 = line.find_first_of(' ', position1 + 1) + 2;
 				int position3 = line.find_first_of(' ', position2 + 1);
-				string versionString = line.substr(position2, position3 - position2);
+				std::string versionString = line.substr(position2, position3 - position2);
 				return HoI4::Version(versionString);
 			}
 		}
@@ -185,4 +196,14 @@ HoI4::Version Configuration::getAutomaticHoI4Version()
 
 	LOG(LogLevel::Warning) << "Could not automatically set HoI4 version. Using the hardcoded version setting instead.";
 	return HoI4::Version();
+}
+
+
+ConfigurationFile::ConfigurationFile(const std::string& filename)
+{
+	registerKeyword(std::regex("configuration"), [](const std::string& unused, std::istream& theStream){
+		theConfiguration.instantiate(theStream);
+	});
+
+	parseFile(filename);
 }

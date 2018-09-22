@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,41 +21,60 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HoI4LEADER_H_
-#define HoI4LEADER_H_
+#ifndef HOI4_LEADER_H_
+#define HOI4_LEADER_H_
 
 
-#include <stdio.h>
+#include <fstream>
 #include <string>
 #include <vector>
-#include "../Mappers/Mapper.h"
 #include "../V2World/Leader.h"
-using namespace std;
 
 
-class HoI4Leader
+namespace HoI4
+{
+
+class General
 {
 	public:
-		HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, const string& _country, const string& _type, leaderTraitsMap& _traitsMap, vector<string>& portraits);
-		HoI4Leader(Vic2::Leader* srcLeader, const string& _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits);
-		void output(FILE* output);
+		General(const Vic2::Leader* srcLeader, const std::string& portrait);
+		General(const General&) = default;
 
-		string getType()	const { return type; }
+		friend std::ofstream& operator << (std::ofstream& output, const General& instance);
 
 	private:
-		HoI4Leader(const HoI4Leader&) = delete;
-		HoI4Leader& operator=(const HoI4Leader&) = delete;
+		General& operator=(const General&) = delete;
 
-		unsigned int		ID;
-		string				name;
-		string				country;
-		string				type;
-		int					skill;
-		int					rank;
-		string				picture;
-		vector<string>	traits;
+		std::string name;
+		std::string picture;
+		std::vector<std::string> traits;
+		int skill = 1;
+		int attackSkill = 1;
+		int defenseSkill = 1;
+		int planningSkill = 1;
+		int logisticsSkill = 1;
 };
 
 
+class Admiral
+{
+	public:
+		Admiral(const Vic2::Leader* srcLeader, const std::string& portrait);
+		Admiral(const Admiral&) = default;
 
-#endif	// HoI4LEADER_H_
+		friend std::ofstream& operator << (std::ofstream& output, const Admiral& instance);
+
+	private:
+		Admiral& operator=(const Admiral&) = delete;
+
+		std::string name;
+		std::string picture;
+		std::vector<std::string> traits;
+		int skill = 1;
+};
+
+}
+
+
+
+#endif	// HOI4_LEADER_H_

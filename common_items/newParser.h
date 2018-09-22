@@ -38,31 +38,34 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 namespace commonItems
 {
-	typedef std::function<void(const std::string&, std::istream&)> parsingFunction;
 
-	class parser
-	{
-		public:
-			parser();
+typedef std::function<void(const std::string&, std::istream&)> parsingFunction;
 
-			~parser() = default;
-			parser(const parser&) = default;
-			parser& operator=(const parser&) = default;
+class parser
+{
+	public:
+		parser() = default;
+		~parser() = default;
+		parser(const parser&) = default;
+		parser(parser&&) = default;
+		parser& operator=(const parser&) = default;
+		parser& operator=(parser&&) = default;
 
-			void registerKeyword(std::regex keyword, parsingFunction);
-			void parseStream(std::istream& theStream);
-			void parseFile(const std::string& filename);
+		void registerKeyword(std::regex keyword, parsingFunction);
+		void parseStream(std::istream& theStream);
+		void parseFile(const std::string& filename);
 
-			void clearRegisteredKeywords() { registeredKeywords.clear(); }
+		void clearRegisteredKeywords() noexcept { registeredKeywords.clear(); }
 
-			std::optional<std::string> getNextToken(std::istream& theStream);
-			std::optional<std::string> getNextTokenWithoutMatching(std::istream& theStream);
+		std::optional<std::string> getNextToken(std::istream& theStream);
+		std::optional<std::string> getNextTokenWithoutMatching(std::istream& theStream);
 
-		private:
-			std::list<std::pair<std::regex, parsingFunction>> registeredKeywords;
-			std::string nextToken;
-			int braceDepth;
-	};
+	private:
+		std::list<std::pair<std::regex, parsingFunction>> registeredKeywords;
+		std::string nextToken;
+		int braceDepth = 0;
+};
+
 }
 
 

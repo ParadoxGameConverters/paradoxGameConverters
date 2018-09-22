@@ -26,15 +26,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Faction.h"
 #include "HoI4Focus.h"
 #include "HoI4World.h"
+#include "MapData.h"
 #include "../Mappers/ProvinceDefinitions.h"
-#include "../Mappers/ProvinceNeighborMapper.h"
-#include "../Mappers/StateMapper.h"
 #include "../V2World/Party.h"
+#include "../V2World/World.h"
 #include "Log.h"
 
 
 
-HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
+HoI4WarCreator::HoI4WarCreator(const HoI4::World* world, const HoI4::MapData& theMapData):
 	genericFocusTree(new HoI4FocusTree),
 	theWorld(world),
 	AggressorFactions(),
@@ -43,7 +43,7 @@ HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
 	provinceToOwnerMap()
 {
 	ofstream AILog;
-	if (Configuration::getDebug())
+	if (theConfiguration.getDebug())
 	{
 		AILog.open("AI-log.txt");
 	}
@@ -56,11 +56,11 @@ HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
 
 	set<shared_ptr<HoI4Faction>> factionsAtWar;
 	LOG(LogLevel::Info) << "Generating major wars";
-	generateMajorWars(AILog, factionsAtWar, world->getMajorIdeologies(), world);
+	generateMajorWars(AILog, factionsAtWar, world->getMajorIdeologies(), world, theMapData);
 	LOG(LogLevel::Info) << "Generating additional wars";
-	generateAdditionalWars(AILog, factionsAtWar, worldStrength);
+	generateAdditionalWars(AILog, factionsAtWar, worldStrength, theMapData);
 
-	if (Configuration::getDebug())
+	if (theConfiguration.getDebug())
 	{
 		AILog.close();
 	}
@@ -145,7 +145,7 @@ double HoI4WarCreator::calculateWorldStrength(ofstream& AILog) const
 		worldStrength += GetFactionStrength(Faction, 3);
 	}
 
-	if (Configuration::getDebug())
+	if (theConfiguration.getDebug())
 	{
 		AILog << "Total world strength: " << worldStrength << "\n\n";
 	}
@@ -153,9 +153,9 @@ double HoI4WarCreator::calculateWorldStrength(ofstream& AILog) const
 }
 
 
-void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, const std::set<std::string>& majorIdeologies, const HoI4World* world)
+void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, const std::set<std::string>& majorIdeologies, const HoI4::World* world, const HoI4::MapData& theMapData)
 {
-	if (Configuration::getDebug())
+	if (theConfiguration.getDebug())
 	{
 		AILog << "Creating major wars\n";
 	}
@@ -168,19 +168,19 @@ void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<shared_ptr<HoI4Facti
 
 			if (country.second->getGovernmentIdeology() == "fascism")
 			{
-				newFactionsAtWar = fascistWarMaker(country.second, AILog, world);
+				newFactionsAtWar = fascistWarMaker(country.second, AILog, world, theMapData);
 			}
 			else if (country.second->getGovernmentIdeology() == "communism")
 			{
-				newFactionsAtWar = communistWarCreator(country.second, majorIdeologies, AILog);
+				newFactionsAtWar = communistWarCreator(country.second, majorIdeologies, AILog, theMapData);
 			}
 			else if (country.second->getGovernmentIdeology() == "absolutist")
 			{
-				newFactionsAtWar = absolutistWarCreator(country.second);
+				newFactionsAtWar = absolutistWarCreator(country.second, theMapData);
 			}
 			else if (country.second->getGovernmentIdeology() == "radical")
 			{
-				newFactionsAtWar = radicalWarCreator(country.second);
+				newFactionsAtWar = radicalWarCreator(country.second, theMapData);
 			}
 			else if (country.second->getGovernmentIdeology() == "democratic")
 			{
@@ -203,7 +203,7 @@ double HoI4WarCreator::calculatePercentOfWorldAtWar(ofstream& AILog, const set<s
 	}
 
 	double percentOfWorldAtWar = countriesAtWarStrength / worldStrength;
-	if (Configuration::getDebug())
+	if (theConfiguration.getDebug())
 	{
 		AILog << "Fraction of world at war " << percentOfWorldAtWar << "\n";
 	}
@@ -212,7 +212,7 @@ double HoI4WarCreator::calculatePercentOfWorldAtWar(ofstream& AILog, const set<s
 }
 
 
-void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, double worldStrength)
+void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, double worldStrength, const HoI4::MapData& theMapData)
 {
 	auto countriesEvilnessSorted = findEvilCountries();
 
@@ -220,7 +220,7 @@ void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, set<shared_ptr<HoI4
 	{
 		if (!isImportantCountry(countriesEvilnessSorted[i]))
 		{
-			if (Configuration::getDebug())
+			if (theConfiguration.getDebug())
 			{
 				auto name = countriesEvilnessSorted[i]->getSourceCountry()->getName("english");
 				if (name)
@@ -229,7 +229,7 @@ void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, set<shared_ptr<HoI4
 				}
 			}
 			vector<shared_ptr<HoI4Faction>> newCountriesatWar;
-			newCountriesatWar = neighborWarCreator(countriesEvilnessSorted[i], AILog);
+			newCountriesatWar = neighborWarCreator(countriesEvilnessSorted[i], AILog, theMapData);
 
 			for (auto addedFactions : newCountriesatWar)
 			{
@@ -260,9 +260,7 @@ vector<shared_ptr<HoI4Country>> HoI4WarCreator::findEvilCountries() const
 
 	for (auto country : theWorld->getCountries())
 	{
-		double v1 = rand() % 95 + 1;
-		v1 = v1 / 100;
-		double evilness = v1;
+		double evilness = 0.5;
 		if (country.second->getGovernmentIdeology() == "fascism")
 			evilness += 5;
 		if (country.second->getGovernmentIdeology() == "absolutist")
@@ -295,7 +293,7 @@ vector<shared_ptr<HoI4Country>> HoI4WarCreator::findEvilCountries() const
 }
 
 
-void HoI4WarCreator::setSphereLeaders(const V2World* sourceWorld)
+void HoI4WarCreator::setSphereLeaders(const Vic2::World* sourceWorld)
 {
 	for (auto greatPower: theWorld->getGreatPowers())
 	{
@@ -597,9 +595,9 @@ shared_ptr<HoI4Faction> HoI4WarCreator::findFaction(shared_ptr<HoI4Country> Chec
 }
 
 
-map<string, shared_ptr<HoI4Country>> HoI4WarCreator::getNeighbors(shared_ptr<HoI4Country> checkingCountry)
+map<string, shared_ptr<HoI4Country>> HoI4WarCreator::getNeighbors(shared_ptr<HoI4Country> checkingCountry, const HoI4::MapData& theMapData)
 {
-	map<string, shared_ptr<HoI4Country>> neighbors = getImmediateNeighbors(checkingCountry);
+	map<string, shared_ptr<HoI4Country>> neighbors = getImmediateNeighbors(checkingCountry, theMapData);
 	if (neighbors.size() == 0)
 	{
 		neighbors = getNearbyCountries(checkingCountry);
@@ -609,13 +607,13 @@ map<string, shared_ptr<HoI4Country>> HoI4WarCreator::getNeighbors(shared_ptr<HoI
 }
 
 
-map<string, shared_ptr<HoI4Country>> HoI4WarCreator::getImmediateNeighbors(shared_ptr<HoI4Country> checkingCountry)
+map<string, shared_ptr<HoI4Country>> HoI4WarCreator::getImmediateNeighbors(shared_ptr<HoI4Country> checkingCountry, const HoI4::MapData& theMapData)
 {
 	map<string, shared_ptr<HoI4Country>> neighbors;
 
 	for (auto province: checkingCountry->getProvinces())
 	{
-		for (int provinceNumber: provinceNeighborMapper::getNeighbors(province))
+		for (int provinceNumber: theMapData.getNeighbors(province))
 		{
 			if (!provinceDefinitions::isLandProvince(province))
 			{
@@ -688,7 +686,7 @@ double HoI4WarCreator::GetFactionStrength(const shared_ptr<HoI4Faction> Faction,
 }
 
 
-vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4Country> Leader, ofstream& AILog, const HoI4World* world)
+vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4Country> Leader, ofstream& AILog, const HoI4::World* world, const HoI4::MapData& theMapData)
 {
 	vector<shared_ptr<HoI4Faction>> CountriesAtWar;
 	auto name = Leader->getSourceCountry()->getName("english");
@@ -707,7 +705,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4C
 	vector<shared_ptr<HoI4Country>> EqualTargets;
 	vector<shared_ptr<HoI4Country>> DifficultTargets;
 	//getting country provinces and its neighbors
-	auto AllNeighbors = getNeighbors(Leader);
+	auto AllNeighbors = getNeighbors(Leader, theMapData);
 	map<string, shared_ptr<HoI4Country>> CloseNeighbors;
 	//gets neighbors that are actually close to you
 	for (auto neigh: AllNeighbors)
@@ -824,7 +822,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4C
 	vector<vector<int>> demandedStates;
 	for (unsigned int i = 0; i < nan.size(); i++)
 	{
-		set<int> borderStates = findBorderState(Leader, nan[i], world);
+		set<int> borderStates = findBorderState(Leader, nan[i], world, theMapData);
 		demandedStates.push_back(sortStatesByCapitalDistance(borderStates, Leader, world));
 	}
 	FocusTree->addFascistSudetenBranch(Leader, nan, demandedStates, theWorld);
@@ -832,12 +830,15 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4C
 
 	//events for allies
 	auto newAllies = GetMorePossibleAllies(Leader);
-	if (newAllies.size() > 0 && Leader->getFaction() == nullptr)
+	if (theConfiguration.getCreateFactions())
 	{
-		vector<shared_ptr<HoI4Country>> self;
-		self.push_back(Leader);
-		auto newFaction = make_shared<HoI4Faction>(Leader, self);
-		Leader->setFaction(newFaction);
+		if (newAllies.size() > 0 && Leader->getFaction() == nullptr)
+		{
+			vector<shared_ptr<HoI4Country>> self;
+			self.push_back(Leader);
+			auto newFaction = make_shared<HoI4Faction>(Leader, self);
+			Leader->setFaction(newFaction);
+		}
 	}
 
 	vector<shared_ptr<HoI4Faction>> FactionsAttackingMe;
@@ -856,7 +857,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4C
 		{
 			FactionsAttackingMeStrength += GetFactionStrengthWithDistance(Leader, attackingFaction->getMembers(), 3);
 		}
-		if (Configuration::getDebug())
+		if (theConfiguration.getDebug())
 		{
 			if (name)
 			{
@@ -879,7 +880,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4C
 				auto relations = Leader->getRelations(GC->getTag());
 				if ((relations) && ((*relations)->getRelations() > 0) && (maxGCAlliance < 1))
 				{
-					if (Configuration::getDebug())
+					if (theConfiguration.getDebug())
 					{
 						if (name)
 						{
@@ -904,14 +905,17 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4C
 							}
 						}
 					}
-					if (GC->getFaction() == nullptr)
+					if (theConfiguration.getCreateFactions())
 					{
-						vector<shared_ptr<HoI4Country>> self;
-						self.push_back(GC);
-						auto newFaction = make_shared<HoI4Faction>(GC, self);
-						GC->setFaction(newFaction);
+						if (GC->getFaction() == nullptr)
+						{
+							vector<shared_ptr<HoI4Country>> self;
+							self.push_back(GC);
+							auto newFaction = make_shared<HoI4Faction>(GC, self);
+							GC->setFaction(newFaction);
+						}
+						theWorld->getEvents()->createFactionEvents(Leader, GC);
 					}
-					theWorld->getEvents()->createFactionEvents(Leader, GC);
 					newAllies.push_back(GC);
 					maxGCAlliance++;
 				}
@@ -961,7 +965,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4C
 }
 
 
-vector<shared_ptr<HoI4Faction>> HoI4WarCreator::communistWarCreator(shared_ptr<HoI4Country> Leader, const std::set<std::string>& majorIdeologies, ofstream& AILog)
+vector<shared_ptr<HoI4Faction>> HoI4WarCreator::communistWarCreator(shared_ptr<HoI4Country> Leader, const std::set<std::string>& majorIdeologies, ofstream& AILog, const HoI4::MapData& theMapData)
 {
 	vector<shared_ptr<HoI4Faction>> CountriesAtWar;
 	//communism still needs great country war events
@@ -976,7 +980,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::communistWarCreator(shared_ptr<H
 		LOG(LogLevel::Info) << "Calculating AI for a country";
 		LOG(LogLevel::Info) << "Calculating Neighbors for a country";
 	}
-	auto AllNeighbors = getNeighbors(Leader);
+	auto AllNeighbors = getNeighbors(Leader, theMapData);
 	map<string, shared_ptr<HoI4Country>> Neighbors;
 	for (auto neigh: AllNeighbors)
 	{
@@ -1187,7 +1191,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::democracyWarCreator(shared_ptr<H
 }
 
 
-vector<shared_ptr<HoI4Faction>> HoI4WarCreator::absolutistWarCreator(shared_ptr<HoI4Country> country)
+vector<shared_ptr<HoI4Faction>> HoI4WarCreator::absolutistWarCreator(shared_ptr<HoI4Country> country, const HoI4::MapData& theMapData)
 {
 	auto focusTree = genericFocusTree->makeCustomizedCopy(*country);
 
@@ -1201,8 +1205,8 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::absolutistWarCreator(shared_ptr<
 		LOG(LogLevel::Info) << "Doing neighbor calcs for a country";
 	}
 
-	auto weakNeighbors = findWeakNeighbors(country);
-	auto weakColonies = findWeakColonies(country);
+	auto weakNeighbors = findWeakNeighbors(country, theMapData);
+	auto weakColonies = findWeakColonies(country, theMapData);
 	focusTree->addAbsolutistEmpireNationalFocuses(country, weakColonies, weakNeighbors);
 
 	auto greatPowerTargets = getGreatPowerTargets(country);
@@ -1215,16 +1219,16 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::absolutistWarCreator(shared_ptr<
 }
 
 
-vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<HoI4Country> country, ofstream & AILog)
+vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<HoI4Country> country, ofstream & AILog, const HoI4::MapData& theMapData)
 {
 	// add small wars against neigbors for non-great powers
 	vector<shared_ptr<HoI4Faction>> countriesAtWar;
-	auto weakNeighbors = findWeakNeighbors(country);
+	auto weakNeighbors = findWeakNeighbors(country, theMapData);
 
 	int numWarsWithNeighbors = 0;
 	vector<shared_ptr<HoI4Focus>> newFocuses;
 
-	if (Configuration::getDebug())
+	if (theConfiguration.getDebug())
 	{
 		auto name = country->getSourceCountry()->getName("english");
 		if (name)
@@ -1239,6 +1243,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<Ho
 
 	for (auto target : weakNeighbors)
 	{
+		auto focusTree = genericFocusTree->makeCustomizedCopy(*country);
 		if (numWarsWithNeighbors >= 2)
 		{
 			break;
@@ -1258,7 +1263,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<Ho
 
 		set<string> Allies = country->getAllies();
 		date startDate = date("1937.01.01");
-		startDate.delayedByMonths(relations / -4);
+		startDate.increaseByMonths(relations / -4);
 		if (Allies.find(target->getTag()) == Allies.end())
 		{
 			auto possibleTargetName = target->getSourceCountry()->getName("english");
@@ -1274,57 +1279,12 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<Ho
 			}
 
 			countriesAtWar.push_back(findFaction(country));
-			if (Configuration::getDebug())
+			if (theConfiguration.getDebug())
 			{
 				AILog << "Creating focus to attack " + targetName << "\n";
 			}
 
-			shared_ptr<HoI4Focus> newFocus = make_shared<HoI4Focus>();
-			newFocus->id = "War" + target->getTag() + country->getTag();
-			newFocus->icon = "GFX_goal_generic_major_war";
-			newFocus->text = "War with " + targetName;//change to faction name later
-			newFocus->available = "= {\n";
-			newFocus->available += "			has_war = no\n";
-			newFocus->available += "			date > " + startDate.toString() + "\n";
-			newFocus->available += "		}";
-			newFocus->xPos = 24;
-			newFocus->yPos = 0;
-			newFocus->cost = 10;
-			newFocus->bypass = "= {\n";
-			newFocus->bypass += "			has_war_with = " + target->getTag() + "\n";
-			newFocus->bypass += "		}";
-			newFocus->aiWillDo = "= {\n";
-			newFocus->aiWillDo += "			factor = " + to_string(10 - numWarsWithNeighbors * 5) + "\n";
-			newFocus->aiWillDo += "			modifier = {\n";
-			newFocus->aiWillDo += "				factor = 0\n";
-			newFocus->aiWillDo += "				strength_ratio = { tag = " + target->getTag() + " ratio < 0.8 }\n";
-			newFocus->aiWillDo += "			}";
-			if (weakNeighbors.size() > 2) //make ai have this as a 0 modifier if they are at war
-			{
-				newFocus->aiWillDo += "\n";
-				newFocus->aiWillDo += "			modifier = {\n";
-				newFocus->aiWillDo += "				factor = 0\n";
-				newFocus->aiWillDo += "				OR = {\n";
-				for (auto target2 : weakNeighbors)
-				{
-					if (target != target2)
-					{
-						newFocus->aiWillDo += "					has_war_with = " + target2->getTag() + "\n";
-					}
-				}
-				newFocus->aiWillDo += "				}\n";
-				newFocus->aiWillDo += "			}";
-			}
-			newFocus->aiWillDo += "\n";
-			newFocus->aiWillDo += "		}";
-			newFocus->completionReward += "= {\n";
-			newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
-			newFocus->completionReward += "			create_wargoal = {\n";
-			newFocus->completionReward += "				type = annex_everything\n";
-			newFocus->completionReward += "				target = " + target->getTag() + "\n";
-			newFocus->completionReward += "			}\n";
-			newFocus->completionReward += "		}";
-			newFocuses.push_back(newFocus);
+			focusTree->addNeighborWarBranch(country->getTag(), weakNeighbors, target, targetName, startDate, numWarsWithNeighbors);
 
 			numWarsWithNeighbors++;
 		}
@@ -1344,18 +1304,18 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<Ho
 }
 
 
-vector<shared_ptr<HoI4Faction>> HoI4WarCreator::radicalWarCreator(shared_ptr<HoI4Country> country)
+vector<shared_ptr<HoI4Faction>> HoI4WarCreator::radicalWarCreator(shared_ptr<HoI4Country> country, const HoI4::MapData& theMapData)
 {
-	return absolutistWarCreator(country);
+	return absolutistWarCreator(country, theMapData);
 }
 
-set<int> HoI4WarCreator::findBorderState(shared_ptr<HoI4Country> country, shared_ptr<HoI4Country> neighbor, const HoI4World * world)
+set<int> HoI4WarCreator::findBorderState(shared_ptr<HoI4Country> country, shared_ptr<HoI4Country> neighbor, const HoI4::World* world, const HoI4::MapData& theMapData)
 {
 	set<int> demandedStates;
 	std::map<int,int> provinceToStateIdMapping = world->getProvinceToStateIDMap();
 	for (auto leaderprov : country->getProvinces())
 	{
-		for (int prov : provinceNeighborMapper::getNeighbors(leaderprov))
+		for (int prov : theMapData.getNeighbors(leaderprov))
 		{
 			if (!provinceDefinitions::isLandProvince(prov))
 			{
@@ -1375,15 +1335,15 @@ set<int> HoI4WarCreator::findBorderState(shared_ptr<HoI4Country> country, shared
 	return demandedStates;
 }
 
-vector<int> HoI4WarCreator::sortStatesByCapitalDistance(set<int> stateList, shared_ptr<HoI4Country> country, const HoI4World* world)
+vector<int> HoI4WarCreator::sortStatesByCapitalDistance(set<int> stateList, shared_ptr<HoI4Country> country, const HoI4::World* world)
 {
 	multimap<double, int> statesWithDistance;
 	pair<int, int> capitalCoords = getCapitalPosition(country);
-	map<int, HoI4State*> statesMapping = world->getStates();
+	map<int, HoI4::State*> statesMapping = world->getStates();
 
 	for (int stateID : stateList)
 	{
-		HoI4State* stateObj = statesMapping[stateID];
+		HoI4::State* stateObj = statesMapping[stateID];
 		int provCapID = stateObj->getVPLocation();
 		pair<int, int> stateVPCoords = getProvincePosition(provCapID);
 		double distanceSquared = pow(capitalCoords.first - stateVPCoords.first, 2)
@@ -1400,12 +1360,12 @@ vector<int> HoI4WarCreator::sortStatesByCapitalDistance(set<int> stateList, shar
 }
 
 
-vector<shared_ptr<HoI4Country>> HoI4WarCreator::findWeakNeighbors(shared_ptr<HoI4Country> country)
+vector<shared_ptr<HoI4Country>> HoI4WarCreator::findWeakNeighbors(shared_ptr<HoI4Country> country, const HoI4::MapData& theMapData)
 {
 	vector<shared_ptr<HoI4Country>> weakNeighbors;
 
 	auto allies = country->getAllies();
-	for (auto neighbor: findCloseNeighbors(country))
+	for (auto neighbor: findCloseNeighbors(country, theMapData))
 	{
 		if (allies.find(neighbor.second->getTag()) != allies.end())
 		{
@@ -1431,11 +1391,11 @@ vector<shared_ptr<HoI4Country>> HoI4WarCreator::findWeakNeighbors(shared_ptr<HoI
 }
 
 
-map<string, shared_ptr<HoI4Country>> HoI4WarCreator::findCloseNeighbors(shared_ptr<HoI4Country> country)
+map<string, shared_ptr<HoI4Country>> HoI4WarCreator::findCloseNeighbors(shared_ptr<HoI4Country> country, const HoI4::MapData& theMapData)
 {
 	map<string, shared_ptr<HoI4Country>> closeNeighbors;
 
-	for (auto neighbor: getNeighbors(country))
+	for (auto neighbor: getNeighbors(country, theMapData))
 	{
 		if ((neighbor.second->getCapitalStateNum() != 0) && (neighbor.first != ""))
 		{
@@ -1451,12 +1411,12 @@ map<string, shared_ptr<HoI4Country>> HoI4WarCreator::findCloseNeighbors(shared_p
 }
 
 
-vector<shared_ptr<HoI4Country>> HoI4WarCreator::findWeakColonies(shared_ptr<HoI4Country> country)
+vector<shared_ptr<HoI4Country>> HoI4WarCreator::findWeakColonies(shared_ptr<HoI4Country> country, const HoI4::MapData& theMapData)
 {
 	vector<shared_ptr<HoI4Country>> weakColonies;
 
 	auto allies = country->getAllies();
-	for (auto neighbor: findFarNeighbors(country))
+	for (auto neighbor: findFarNeighbors(country, theMapData))
 	{
 		if (allies.find(neighbor.second->getTag()) != allies.end())
 		{
@@ -1482,11 +1442,11 @@ vector<shared_ptr<HoI4Country>> HoI4WarCreator::findWeakColonies(shared_ptr<HoI4
 }
 
 
-map<string, shared_ptr<HoI4Country>> HoI4WarCreator::findFarNeighbors(shared_ptr<HoI4Country> country)
+map<string, shared_ptr<HoI4Country>> HoI4WarCreator::findFarNeighbors(shared_ptr<HoI4Country> country, const HoI4::MapData& theMapData)
 {
 	map<string, shared_ptr<HoI4Country>> farNeighbors;
 
-	for (auto neighbor: getNeighbors(country))
+	for (auto neighbor: getNeighbors(country, theMapData))
 	{
 		if (neighbor.second->getCapitalStateNum() != 0)
 		{

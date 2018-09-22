@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,25 +22,43 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "CountryMapping.h"
-#include <algorithm>
 #include <iomanip>
-#include <iostream>
-#include <set>
-#include <sstream>
-#include <utility>
-#include "ParadoxParserUTF8.h"
 #include "../V2World/World.h"
-#include "../HOI4World/HoI4World.h"
 #include "Log.h"
-#include "OSCompatibilityLayer.h"
+#include "ParserHelpers.h"
 
 
 
-CountryMapper* CountryMapper::instance = nullptr;
+class countryMappingRule: commonItems::parser
+{
+	public:
+		explicit countryMappingRule(std::istream& theStream);
+
+		std::string getVic2Tag() const { return Vic2Tag; }
+		std::vector<std::string> getHoI4Tags() const { return HoI4Tags; }
+
+	private:
+		std::string Vic2Tag;
+		std::vector<std::string> HoI4Tags;
+};
 
 
+countryMappingRule::countryMappingRule(std::istream& theStream)
+{
+	registerKeyword(std::regex("vic"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString mapping(theStream);
+		Vic2Tag = mapping.getString();
+	});
+	registerKeyword(std::regex("hoi"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString mapping(theStream);
+		HoI4Tags.push_back(mapping.getString());
+	});
 
-CountryMapper::CountryMapper():
+	parseStream(theStream);
+}
+
+
+CountryMapper::CountryMapper(const Vic2::World* srcWorld):
 	Vic2TagToHoI4TagsRules(),
 	V2TagToHoI4TagMap(),
 	generatedHoI4TagPrefix('X'),
@@ -48,74 +66,23 @@ CountryMapper::CountryMapper():
 {
 	LOG(LogLevel::Info) << "Getting country mappings";
 	readRules();
+	createMappings(srcWorld);
 }
 
 
 void CountryMapper::readRules()
 {
+	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream){
+		countryMappingRule rule(theStream);
+		Vic2TagToHoI4TagsRules.insert(make_pair(rule.getVic2Tag(), rule.getHoI4Tags()));
+	});
+
 	LOG(LogLevel::Info) << "Reading country mapping rules";
-	vector<shared_ptr<Object>> ruleNodes = getRules();
-	for (auto rule: ruleNodes)
-	{
-		importRule(rule);
-	}
+	parseFile("country_mappings.txt");
 }
 
 
-vector<shared_ptr<Object>> CountryMapper::getRules() const
-{
-	auto countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
-	if (countryMappingsFile)
-	{
-		vector<shared_ptr<Object>> nodes = countryMappingsFile->getLeaves();
-		if (nodes.empty())
-		{
-			LOG(LogLevel::Error) << "country_mappings.txt does not contain a mapping";
-			exit(-1);
-		}
-
-		return nodes[0]->getLeaves();
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Failed to parse country_mappings.txt";
-		exit(-1);
-	}
-}
-
-
-void CountryMapper::importRule(shared_ptr<Object> rule)
-{
-	vector<shared_ptr<Object>> ruleItems = rule->getLeaves();
-
-	string newVic2Tag;
-	vector<string>	HoI4Tags;
-	for (auto item: ruleItems)
-	{
-		string key = item->getKey();
-		std::transform(key.begin(), key.end(), key.begin(), ::toupper);
-
-		if (key == "VIC")
-		{
-			newVic2Tag = item->getLeaf();
-			std::transform(newVic2Tag.begin(), newVic2Tag.end(), newVic2Tag.begin(), ::toupper);
-		}
-		else if (key == "HOI")
-		{
-			string newHoI4Tag = item->getLeaf();
-			std::transform(newHoI4Tag.begin(), newHoI4Tag.end(), newHoI4Tag.begin(), ::toupper);
-			HoI4Tags.push_back(newHoI4Tag);
-		}
-		else
-		{
-			LOG(LogLevel::Warning) << "Ignoring unknown key '" << key << "' while mapping countries";
-		}
-	}
-	Vic2TagToHoI4TagsRules.insert(make_pair(newVic2Tag, HoI4Tags));
-}
-
-
-void CountryMapper::CreateMappings(const Vic2::World* srcWorld)
+void CountryMapper::createMappings(const Vic2::World* srcWorld)
 {
 	LOG(LogLevel::Info) << "Creating country mapping";
 	resetMappingData();
@@ -134,7 +101,7 @@ void CountryMapper::resetMappingData()
 }
 
 
-void CountryMapper::makeOneMapping(const string& Vic2Tag)
+void CountryMapper::makeOneMapping(const std::string& Vic2Tag)
 {
 	auto mappingRule = Vic2TagToHoI4TagsRules.find(Vic2Tag);
 
@@ -147,13 +114,13 @@ void CountryMapper::makeOneMapping(const string& Vic2Tag)
 
 	if (!mapped)
 	{
-		string HoI4Tag = generateNewHoI4Tag(Vic2Tag);
+		std::string HoI4Tag = generateNewHoI4Tag(Vic2Tag);
 		mapToNewTag(Vic2Tag, HoI4Tag);
 	}
 }
 
 
-bool CountryMapper::mapToFirstUnusedVic2Tag(const vector<string>& possibleHoI4Tags, const string& Vic2Tag)
+bool CountryMapper::mapToFirstUnusedVic2Tag(const std::vector<std::string>& possibleHoI4Tags, const std::string& Vic2Tag)
 {
 	for (auto possibleHoI4Tag: possibleHoI4Tags)
 	{
@@ -161,7 +128,7 @@ bool CountryMapper::mapToFirstUnusedVic2Tag(const vector<string>& possibleHoI4Ta
 		{
 			V2TagToHoI4TagMap.insert(make_pair(Vic2Tag, possibleHoI4Tag));
 			HoI4TagToV2TagMap.insert(make_pair(possibleHoI4Tag, Vic2Tag));
-			LogMapping(Vic2Tag, possibleHoI4Tag, "mapping rule");
+			logMapping(Vic2Tag, possibleHoI4Tag, "mapping rule");
 
 			return true;
 		}
@@ -171,11 +138,11 @@ bool CountryMapper::mapToFirstUnusedVic2Tag(const vector<string>& possibleHoI4Ta
 }
 
 
-string CountryMapper::generateNewHoI4Tag(const string& Vic2Tag)
+std::string CountryMapper::generateNewHoI4Tag(const std::string& Vic2Tag)
 {
-	ostringstream generatedHoI4TagStream;
-	generatedHoI4TagStream << generatedHoI4TagPrefix << setfill('0') << setw(2) << generatedHoI4TagSuffix;
-	string newTag = generatedHoI4TagStream.str();
+	std::ostringstream generatedHoI4TagStream;
+	generatedHoI4TagStream << generatedHoI4TagPrefix << std::setfill('0') << std::setw(2) << generatedHoI4TagSuffix;
+	std::string newTag = generatedHoI4TagStream.str();
 
 	++generatedHoI4TagSuffix;
 	if (generatedHoI4TagSuffix > 99)
@@ -188,27 +155,27 @@ string CountryMapper::generateNewHoI4Tag(const string& Vic2Tag)
 }
 
 
-void CountryMapper::mapToNewTag(const string& Vic2Tag, const string& HoI4Tag)
+void CountryMapper::mapToNewTag(const std::string& Vic2Tag, const std::string& HoI4Tag)
 {
 	V2TagToHoI4TagMap.insert(make_pair(Vic2Tag, HoI4Tag));
 	HoI4TagToV2TagMap.insert(make_pair(HoI4Tag, Vic2Tag));
-	LogMapping(Vic2Tag, HoI4Tag, "generated tag");
+	logMapping(Vic2Tag, HoI4Tag, "generated tag");
 }
 
 
-void CountryMapper::LogMapping(const string& sourceTag, const string& targetTag, const string& reason) const
+void CountryMapper::logMapping(const std::string& sourceTag, const std::string& targetTag, const std::string& reason) const
 {
 	LOG(LogLevel::Debug) << "Mapping " << sourceTag << " -> " << targetTag << " (" << reason << ')';
 }
 
 
-bool CountryMapper::tagIsAlreadyAssigned(const string& HoI4Tag) const
+bool CountryMapper::tagIsAlreadyAssigned(const std::string& HoI4Tag) const
 {
 	return (HoI4TagToV2TagMap.find(HoI4Tag) != HoI4TagToV2TagMap.end());
 }
 
 
-optional<string> CountryMapper::GetHoI4Tag(const string& V2Tag) const
+std::optional<std::string> CountryMapper::getHoI4Tag(const std::string& V2Tag) const
 {
 	auto findIter = V2TagToHoI4TagMap.find(V2Tag);
 	if (findIter != V2TagToHoI4TagMap.end())
@@ -222,7 +189,7 @@ optional<string> CountryMapper::GetHoI4Tag(const string& V2Tag) const
 }
 
 
-optional<string> CountryMapper::GetVic2Tag(const string& HoI4Tag) const
+std::optional<std::string> CountryMapper::getVic2Tag(const std::string& HoI4Tag) const
 {
 	auto findIter = HoI4TagToV2TagMap.find(HoI4Tag);
 	if (findIter != HoI4TagToV2TagMap.end())

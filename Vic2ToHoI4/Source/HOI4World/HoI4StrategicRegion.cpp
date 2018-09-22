@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,45 +24,65 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "HoI4StrategicRegion.h"
 #include "Log.h"
-#include "ParadoxParserUTF8.h"
+#include "newParser.h"
+#include "ParserHelpers.h"
 #include <fstream>
-using namespace std;
 
 
 
-HoI4StrategicRegion::HoI4StrategicRegion(const string& _filename):
-	filename(_filename),
-	ID(0),
-	oldProvinces(),
-	newProvinces(),
-	weatherObj()
+class region: commonItems::parser
 {
-	auto fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/strategicregions/" + filename);
-	if (fileObj)
-	{
-		auto regionObj = fileObj->safeGetObject("strategic_region");
-		if (regionObj != nullptr)
-		{
-			ID = regionObj->safeGetInt("id", ID);
+	public:
+		explicit region(std::istream& theStream);
 
-			for (auto provinceString: regionObj->safeGetTokens("provinces"))
-			{
-				oldProvinces.push_back(stoi(provinceString));
-			}
+		auto getID() const { return ID; }
+		auto getProvinces() const { return provinces; }
+		auto getWeather() const { return weather; }
 
-			weatherObj = regionObj->safeGetObject("weather");
-		}
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/map/strategicregions/" << filename;
-	}
+	private:
+		int ID = 0;
+		std::vector<int> provinces;
+		std::string weather;
+};
+
+
+region::region(std::istream& theStream)
+{
+	registerKeyword(std::regex("id"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleInt idString(theStream);
+		ID = idString.getInt();
+	});
+	registerKeyword(std::regex("provinces"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::intList provinceInts(theStream);
+		provinces = provinceInts.getInts();
+	});
+	registerKeyword(std::regex("weather"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::stringOfItem weatherString(theStream);
+		weather = weatherString.getString();
+	});
+	registerKeyword(std::regex("[a-zA-Z0-9_]+"), commonItems::ignoreItem);
+
+	parseStream(theStream);
 }
 
 
-void HoI4StrategicRegion::output(const string& path) const
+HoI4StrategicRegion::HoI4StrategicRegion(const std::string& _filename):
+	filename(_filename)
 {
-	ofstream out(path + filename);
+	registerKeyword(std::regex("strategic_region"), [this](const std::string& unused, std::istream& theStream){
+		region theRegion(theStream);
+		ID = theRegion.getID();
+		oldProvinces = theRegion.getProvinces();
+		weather = theRegion.getWeather();
+	});
+
+	parseFile(theConfiguration.getHoI4Path() + "/map/strategicregions/" + _filename);
+}
+
+
+void HoI4StrategicRegion::output(const std::string& path) const
+{
+	std::ofstream out(path + filename);
 	if (!out.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open " << path << filename;
@@ -70,7 +90,7 @@ void HoI4StrategicRegion::output(const string& path) const
 	}
 
 	out << "strategic_region={\n";
-	out << "\tid=" << ID << endl;
+	out << "\tid=" << ID << "\n";
 	out << "\tname=\"STRATEGICREGION_" << ID << "\"\n";
 	out << "\tprovinces={\n";
 	out << "\t\t";
@@ -78,9 +98,9 @@ void HoI4StrategicRegion::output(const string& path) const
 	{
 		out << province << " ";
 	}
-	out << endl;
+	out << "\n";
 	out << "\t}\n";
-	out << *weatherObj;
+	out << "\tweather " << weather << "\n";
 	out << "}";
 
 	out.close();

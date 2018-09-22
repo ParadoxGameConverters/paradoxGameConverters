@@ -23,7 +23,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "CommonCountryData.h"
 #include "ParserHelpers.h"
-#include "NewParserToOldParserConverters.h"
 #include "../Color.h"
 #include "../Configuration.h"
 #include "OSCompatibilityLayer.h"
@@ -64,7 +63,7 @@ Vic2::commonCountryData::commonCountryData(const std::string& filename, const st
 	bool parsedFile = false;
 	if (mod != "")
 	{
-		std::string file = Configuration::getV2Path() + "/mod/" + mod + "/common/countries/" + filename;
+		std::string file = theConfiguration.getVic2Path() + "/mod/" + mod + "/common/countries/" + filename;
 		if (Utils::DoesFileExist(file))
 		{
 			parseFile(file);
@@ -73,7 +72,7 @@ Vic2::commonCountryData::commonCountryData(const std::string& filename, const st
 	}
 	if (!parsedFile)
 	{
-		std::string file = Configuration::getV2Path() +  "/common/countries/" + filename;
+		std::string file = theConfiguration.getVic2Path() +  "/common/countries/" + filename;
 		if (Utils::DoesFileExist(file))
 		{
 			parseFile(file);

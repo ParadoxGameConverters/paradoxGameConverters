@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "ParserHelpers.h"
-
+#include "Pop.h"
 
 
 Vic2::Regiment::Regiment(std::istream& theStream)
@@ -50,6 +50,11 @@ Vic2::Regiment::Regiment(std::istream& theStream)
 		commonItems::singleDouble experienceDouble(theStream);
 		experience = experienceDouble.getDouble();
 	});
+	registerKeyword(std::regex("pop"), [this](const std::string& unused, std::istream& theStream){
+                commonItems::simpleObject pop_def(theStream);
+                pop_id = pop_def.getValueAsInt("id");
+	});
+
 	registerKeyword(std::regex("[A-Za-z0-9_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
@@ -60,6 +65,19 @@ Vic2::Regiment::Regiment(std::istream& theStream)
 	}
 }
 
+bool Vic2::Regiment::isMobilised() const
+{
+        auto* pop = Vic2::Pop::getByID(pop_id);
+        if (pop == nullptr)
+        {
+                return false;
+        }
+        if (pop->getType() == "soldiers")
+        {
+                return false;
+        }
+        return true;
+}
 
 Vic2::Army::Army(const std::string& type, std::istream& theStream):
 	navy(type == "navy")
@@ -101,3 +119,4 @@ Vic2::Army::Army(const std::string& type, std::istream& theStream):
 		LOG(LogLevel::Warning) << "Army or Navy " << name << " has no location";
 	}
 }
+

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,108 +25,87 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, const string& _country, const string& _type, leaderTraitsMap& _traitsMap, vector<string>& portraits):
-	ID(Configuration::getNextLeaderID()),
-	name(firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()]),
-	country(_country),
-	type(_type),
-	skill(0),
-	rank(1),
-	picture(""),
-	traits()
-{
-	//picture	= portraits[rand() % portraits.size()];
-
-	//if (rand() % 4 > 0)
-	//{
-	//	vector<string> allTraits = _traitsMap.find(_type)->second;
-	//	traits.push_back(allTraits[rand() % allTraits.size()]);
-
-	//	if (rand() % 10 > 8)
-	//	{
-	//		string secondTrait = allTraits[rand() % allTraits.size()];
-	//		while (traits[0] == secondTrait)
-	//		{
-	//			secondTrait = allTraits[rand() % allTraits.size()];
-	//		}
-	//		traits.push_back(secondTrait);
-	//	}
-	//}
-}
-
-
-HoI4Leader::HoI4Leader(Vic2::Leader* srcLeader, const string& _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits):
-	ID(Configuration::getNextLeaderID()),
+HoI4::General::General(const Vic2::Leader* srcLeader, const std::string& portrait):
 	name(srcLeader->getName()),
-	country(_country),
-	type(""),
-	skill(static_cast<int>(srcLeader->getPrestige() * 22.5f)),
-	rank(4),
-	picture(""),
-	traits()
+	skill(static_cast<int>(srcLeader->getPrestige() * 22.5f) + 1),
+	picture(portrait)
 {
-	if (srcLeader->getType() == "land")
+	if (skill > 4)
 	{
-		type = "land";
-	}
-	else if (srcLeader->getType() == "sea")
-	{
-		type = "sea";
+		skill = 4;
 	}
 
-	if (skill > 9)
+	/*auto possiblePersonalities = landPersonalityMap.find(srcLeader->getPersonality());
+	if ((possiblePersonalities != landPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
 	{
-		skill = 9;
+		traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
 	}
-
-	//picture	= portraits[rand() % portraits.size()];
-
-	if (type == "land")
+	auto possibleBackgrounds = landBackgroundMap.find(srcLeader->getBackground());
+	if ((possibleBackgrounds != landBackgroundMap.end()) && (possibleBackgrounds->second.size() > 0))
 	{
-		auto possiblePersonalities = landPersonalityMap.find(srcLeader->getPersonality());
-		if ((possiblePersonalities != landPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
-		{
-			traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
-		}
-		auto possibleBackgrounds = landBackgroundMap.find(srcLeader->getBackground());
-		if ((possibleBackgrounds != landBackgroundMap.end()) && (possibleBackgrounds->second.size() > 0))
-		{
-			traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
-		}
-	}
-	else if (type == "sea")
-	{
-		auto possiblePersonalities = seaPersonalityMap.find(srcLeader->getPersonality());
-		if ((possiblePersonalities != seaPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
-		{
-			traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
-		}
-		auto possibleBackgrounds = seaBackgroundMap.find(srcLeader->getBackground());
-		if ((possibleBackgrounds != seaBackgroundMap.end()) && (possibleBackgrounds->second.size() > 0))
-		{
-			traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
-		}
-	}
+		traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
+	}*/
 }
 
 
-void HoI4Leader::output(FILE * output)
+std::ofstream& HoI4::operator<< (std::ofstream& output, const HoI4::General& instance)
 {
-	fprintf(output, "%u = {\n", ID);
-	fprintf(output, "\tname = \"%s\"\n", name.c_str());
-	fprintf(output, "\tcountry = %s\n", country.c_str());
-	fprintf(output, "\ttype = %s\n", type.c_str());
-	fprintf(output, "\tskill = %d", skill);
-	fprintf(output, "\tmax_skill = 9\n");
-	fprintf(output, "\tloyalty = 1.00\n");
-	fprintf(output, "\tpicture = %s\n", picture.c_str());
-	for (auto trait: traits)
+	output << "create_corps_commander = {\n";
+	output << "\tname = \"" << instance.name << "\"\n";
+	output << "\tpicture = \"" << instance.picture << "\"\n";
+	output << "\ttraits = { ";
+	for (auto trait: instance.traits)
 	{
-		fprintf(output, "\tadd_trait = %s\n", trait.c_str());
+		output << trait << " ";
 	}
-	fprintf(output, "\thistory = {\n");
-	fprintf(output, "\t\t1936.1.1 = { rank = %d }\n", rank);
-	fprintf(output, "\t\t1970.1.1 = { rank = 0 }\n");
-	fprintf(output, "\t}\n");
-	fprintf(output, "}\n");
+	output << "}\n";
+	output << "\tskill = " << instance.skill << "\n";
+	output << "\tattack_skill = " << instance.attackSkill << "\n";
+	output << "\tdefense_skill = " << instance.defenseSkill << "\n";
+	output << "\tplanning_skill = " << instance.planningSkill << "\n";
+	output << "\tlogistics_skill = " << instance.logisticsSkill << "\n";
+	output << "}\n";
+
+	return output;
+}
+
+
+HoI4::Admiral::Admiral(const Vic2::Leader* srcLeader, const std::string& portrait):
+	name(srcLeader->getName()),
+	skill(static_cast<int>(srcLeader->getPrestige() * 22.5f) + 1),
+	picture(portrait)
+{
+	if (skill > 4)
+	{
+		skill = 4;
+	}
+
+	/*auto possiblePersonalities = seaPersonalityMap.find(srcLeader->getPersonality());
+	if ((possiblePersonalities != seaPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
+	{
+		traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
+	}
+	auto possibleBackgrounds = seaBackgroundMap.find(srcLeader->getBackground());
+	if ((possibleBackgrounds != seaBackgroundMap.end()) && (possibleBackgrounds->second.size() > 0))
+	{
+		traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
+	}*/
+}
+
+
+std::ofstream& HoI4::operator<< (std::ofstream& output, const HoI4::Admiral& instance)
+{
+	output << "create_navy_leader = {\n";
+	output << "\tname = \"" << instance.name << "\"\n";
+	output << "\tpicture = \"" << instance.picture << "\"\n";
+	output << "\ttraits = { ";
+	for (auto trait: instance.traits)
+	{
+		output << trait << " ";
+	}
+	output << "}\n";
+	output << "\tskill = " << instance.skill << "\n";
+	output << "}\n";
+
+	return output;
 }

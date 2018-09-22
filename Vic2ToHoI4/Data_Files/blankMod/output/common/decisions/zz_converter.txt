@@ -1,0 +1,842 @@
+TUR_name_category = {
+	
+	TUR_turkey_dec = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = TUR
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			OR = {
+				is_subject = yes
+				AND = {
+					NOT = { any_owned_state = { is_on_continent = africa } }
+					NOT = { any_owned_state = { is_on_continent = asia } }
+					NOT = { any_owned_state = { is_core_of = AUS } }
+					NOT = { any_owned_state = { is_core_of = YUG } }
+				}
+			}
+		}
+
+		visible = {
+			original_tag = TUR
+			NOT = { has_country_flag = ye_olde_ottomans }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = TUR_turkey
+			add_stability = -0.05
+			hidden_effect = {
+				set_country_flag = ye_olde_ottomans
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	TUR_the_ottomans_dec = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = TUR
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			OR = {
+				any_owned_state = { is_on_continent = africa }
+				any_owned_state = { is_on_continent = asia }
+				any_owned_state = { is_core_of = AUS }
+				any_owned_state = { is_core_of = YUG }
+			}
+		}
+
+		visible = {
+			original_tag = TUR
+			has_dlc = "Waking the Tiger"
+			has_country_flag = ye_olde_ottomans
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = OTT_UNIFIED
+			add_stability = 0.05
+			hidden_effect = {
+				news_event = { id = wtt_news.61 hours = 6 }
+				clr_country_flag = ye_olde_ottomans
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+}
+
+formable_nations = {
+
+	GER_union = {
+
+		icon = GFX_decision_category_ger_reichskommissariats
+
+		allowed = {
+			NOT = { country_exists = GER }
+			NOT = { original_tag = AUS }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = GER }
+			custom_trigger_tooltip = {
+				tooltip = form_country_germany_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = GER
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = GER }
+			NOT = { original_tag = AUS }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = GER
+			add_stability = 0.05
+			hidden_effect = {
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = GER
+					set_state_flag = GER_state
+				}
+				every_state = {
+					limit = { has_state_flag = GER_state }
+					add_core_of = ROOT
+					clr_state_flag = GER_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	ITA_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = ITA }
+			NOT = { original_tag = VAT }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = ITA }
+			custom_trigger_tooltip = {
+				tooltip = form_eu_italy_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = ITA
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = ITA }
+			NOT = { original_tag = VAT }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = ITA
+			add_stability = 0.05
+			hidden_effect = {
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = ITA
+					set_state_flag = ITA_state
+				}
+				every_state = {
+					limit = { has_state_flag = ITA_state }
+					add_core_of = ROOT
+					clr_state_flag = ITA_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	ARA_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = SAU }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = SAU }
+			custom_trigger_tooltip = {
+				tooltip = form_country_arabia_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = SAU
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = SAU }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = ARA_UNIFIED
+			add_stability = 0.05
+			hidden_effect = {
+				news_event = { id = wtt_news.67 hours = 6 }
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = SAU
+					set_state_flag = SAU_state
+				}
+				every_state = {
+					limit = { has_state_flag = SAU_state }
+					add_core_of = ROOT
+					clr_state_flag = SAU_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	SCA_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = SCA }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = SCA }
+			custom_trigger_tooltip = {
+				tooltip = form_country_scandinavia_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = SCA
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = SCA }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = SCA
+			add_stability = 0.05
+			hidden_effect = {
+				news_event = { id = wtt_news.53 hours = 6 }
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = SCA
+					set_state_flag = SCA_state
+				}
+				every_state = {
+					limit = { has_state_flag = SCA_state }
+					add_core_of = ROOT
+					clr_state_flag = SCA_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	ENG_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = ENG }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = ENG }
+			custom_trigger_tooltip = {
+				tooltip = form_country_britain_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = ENG
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = ENG }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = ENG
+			add_stability = 0.05
+			hidden_effect = {
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = ENG
+					set_state_flag = ENG_state
+				}
+				every_state = {
+					limit = { has_state_flag = ENG_state }
+					add_core_of = ROOT
+					clr_state_flag = ENG_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	FRA_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = FRA }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = FRA }
+			custom_trigger_tooltip = {
+				tooltip = form_eu_france_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = FRA
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = FRA }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = FRA
+			add_stability = 0.05
+			hidden_effect = {
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = FRA
+					set_state_flag = FRA_state
+				}
+				every_state = {
+					limit = { has_state_flag = FRA_state }
+					add_core_of = ROOT
+					clr_state_flag = FRA_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	YUG_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = YUG }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = YUG }
+			custom_trigger_tooltip = {
+				tooltip = form_country_yugoslavia_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = YUG
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = YUG }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = YUG
+			add_stability = 0.05
+			hidden_effect = {
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = YUG
+					set_state_flag = YUG_state
+				}
+				every_state = {
+					limit = { has_state_flag = YUG_state }
+					add_core_of = ROOT
+					clr_state_flag = YUG_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	ROM_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = ROM }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = ROM }
+			custom_trigger_tooltip = {
+				tooltip = form_country_romania_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = ROM
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = ROM }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = ROM
+			add_stability = 0.05
+			hidden_effect = {
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = ROM
+					set_state_flag = ROM_state
+				}
+				every_state = {
+					limit = { has_state_flag = ROM_state }
+					add_core_of = ROOT
+					clr_state_flag = ROM_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	HUN_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = HUN }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = HUN }
+			custom_trigger_tooltip = {
+				tooltip = form_country_hungary_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = HUN
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = HUN }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = HUN
+			add_stability = 0.05
+			hidden_effect = {
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = HUN
+					set_state_flag = HUN_state
+				}
+				every_state = {
+					limit = { has_state_flag = HUN_state }
+					add_core_of = ROOT
+					clr_state_flag = HUN_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	CZE_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = CZE }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = CZE }
+			custom_trigger_tooltip = {
+				tooltip = form_country_czechoslovakia_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = CZE
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = CZE }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = CZE
+			add_stability = 0.05
+			hidden_effect = {
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = CZE
+					set_state_flag = CZE_state
+				}
+				every_state = {
+					limit = { has_state_flag = CZE_state }
+					add_core_of = ROOT
+					clr_state_flag = CZE_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	SOV_union = {
+
+		icon = GFX_decision_category_sov_great_patriotic_war
+
+		allowed = {
+			NOT = { country_exists = SOV }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = SOV }
+			custom_trigger_tooltip = {
+				tooltip = form_country_russia_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = SOV
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = SOV }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = SOV
+			add_stability = 0.05
+			hidden_effect = {
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = SOV
+					set_state_flag = SOV_state
+				}
+				every_state = {
+					limit = { has_state_flag = SOV_state }
+					add_core_of = ROOT
+					clr_state_flag = SOV_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	RAJ_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = RAJ }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = RAJ }
+			custom_trigger_tooltip = {
+				tooltip = form_country_india_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = RAJ
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = RAJ }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = RAJ
+			add_stability = 0.05
+			hidden_effect = {
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = RAJ
+					set_state_flag = RAJ_state
+				}
+				every_state = {
+					limit = { has_state_flag = RAJ_state }
+					add_core_of = ROOT
+					clr_state_flag = RAJ_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	PLC_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = PLC }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = PLC }
+			custom_trigger_tooltip = {
+				tooltip = form_country_commonwealth_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = PLC
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = PLC }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = PLC_unified
+			add_stability = 0.05
+			hidden_effect = {
+				news_event = { id = wtt_news.57 hours = 6 }
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = PLC
+					set_state_flag = PLC_state
+				}
+				every_state = {
+					limit = { has_state_flag = PLC_state }
+					add_core_of = ROOT
+					clr_state_flag = PLC_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	BAL_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = BAL }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = BAL }
+			custom_trigger_tooltip = {
+				tooltip = form_country_baltic_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = BAL
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = BAL }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = BAL_unified
+			add_stability = 0.05
+			hidden_effect = {
+				news_event = { id = wtt_news.60 hours = 6 }
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = BAL
+					set_state_flag = BAL_state
+				}
+				every_state = {
+					limit = { has_state_flag = BAL_state }
+					add_core_of = ROOT
+					clr_state_flag = BAL_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	CHI_union = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			NOT = { country_exists = CHI }
+			has_dlc = "Waking the Tiger"
+		}
+
+		available = {
+			is_subject = no
+			capital_scope = { is_core_of = CHI }
+			custom_trigger_tooltip = {
+				tooltip = form_country_chinese_required_states_tt
+				NOT = {
+					any_state = {
+						is_core_of = CHI
+						NOT = { is_owned_by = ROOT }
+					}
+				}
+			}
+		}
+
+		visible = {
+			NOT = { country_exists = CHI }
+			NOT = { has_country_flag = conv_unified }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = CHI_unified
+			add_stability = 0.05
+			hidden_effect = {
+				news_event = { id = wtt_news.60 hours = 6 }
+				set_country_flag = conv_unified
+				every_state = {
+					limit = { NOT = { is_core_of = ROOT } }
+					remove_core_of = CHI
+					set_state_flag = CHI_state
+				}
+				every_state = {
+					limit = { has_state_flag = CHI_state }
+					add_core_of = ROOT
+					clr_state_flag = CHI_state
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+}

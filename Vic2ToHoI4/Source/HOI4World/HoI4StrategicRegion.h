@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,33 +26,32 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Object.h"
+#include "newParser.h"
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
-class HoI4StrategicRegion
+class HoI4StrategicRegion: commonItems::parser
 {
 	public:
-		explicit HoI4StrategicRegion(const string& _filename);
-		void output(const string& path) const;
+		explicit HoI4StrategicRegion(const std::string& _filename);
+		void output(const std::string& path) const;
 
-		int			getID() const				{ return ID; }
-		vector<int>	getOldProvinces() const	{ return oldProvinces; }
+		int getID() const { return ID; }
+		std::vector<int>	getOldProvinces() const	{ return oldProvinces; }
 
-		void	addNewProvince(int province)	{ newProvinces.push_back(province); }
+		void addNewProvince(int province) { newProvinces.push_back(province); }
 
 	private:
 		HoI4StrategicRegion(const HoI4StrategicRegion&) = delete;
 		HoI4StrategicRegion& operator=(const HoI4StrategicRegion&) = delete;
 
-		string filename;
-		int ID;
-		vector<int>	oldProvinces;
-		vector<int>	newProvinces;
-		shared_ptr<Object> weatherObj;
+		std::string filename;
+		int ID = 0;
+		std::vector<int> oldProvinces;
+		std::vector<int> newProvinces;
+		std::string weather;
 };
 
 

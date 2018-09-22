@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParserHelpers.h"
 #include "Issues.h"
 
-
+std::map<int, Vic2::Pop*> Vic2::Pop::pop_map;
 
 Vic2::Pop::Pop(const std::string& typeString, std::istream& theStream):
 	type(typeString)
@@ -68,7 +68,11 @@ Vic2::Pop::Pop(const std::string& typeString, std::istream& theStream):
 			possibleIssue = getNextTokenWithoutMatching(theStream);
 		}
 	});
-	registerKeyword(std::regex("id"), commonItems::ignoreItem);
+	registerKeyword(std::regex("id"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleInt idInt(theStream);
+		id = idInt.getInt();
+	});
 	registerKeyword(std::regex("[a-z\\_]+"), [this](const std::string& cultureString, std::istream& theStream)
 	{
 		if (culture == "no_culture")
@@ -85,6 +89,7 @@ Vic2::Pop::Pop(const std::string& typeString, std::istream& theStream):
 	registerKeyword(std::regex("[A-Za-z0-9\\_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
+        pop_map[id] = this;
 }
 
 
@@ -100,3 +105,5 @@ float Vic2::Pop::getIssue(const std::string& issueName) const
 		return 0.0f;
 	}
 }
+
+Vic2::Pop* Vic2::Pop::getByID(int idx) { return pop_map[idx]; }

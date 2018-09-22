@@ -53,7 +53,7 @@ class State: commonItems::parser
 {
 	public:
 		State(std::istream& theStream, const std::string& ownerTag);
-		State(std::set<std::pair<int, Province*>> theProvinces);
+		explicit State(std::set<std::pair<int, Province*>> theProvinces);
 
 		void determineEmployedWorkers();
 		void determineIfPartialState();
@@ -67,6 +67,7 @@ class State: commonItems::parser
 		std::set<int> getProvinceNums() const { return provinceNums; }
 		std::string getOwner() const { return owner; }
 		std::string getStateID() const { return stateID; }
+		std::optional<int> getCapitalProvince() const { return capitalProvince; }
 		bool isPartialState() const { return partialState; }
 		int getEmployedWorkers() const { return employedWorkers; }
 
@@ -75,6 +76,7 @@ class State: commonItems::parser
 		State& operator=(const State&) = delete;
 
 		void setID();
+		void setCapital();
 
 		workerStruct countEmployedWorkers() const;
 		workerStruct limitWorkersByFactoryLevels(const workerStruct& workers) const;
@@ -88,6 +90,7 @@ class State: commonItems::parser
 
 		std::set<int> provinceNums;
 		std::set<const Province*> provinces;
+		std::optional<int> capitalProvince;
 
 		int factoryLevel = 0;
 		int employedWorkers = 0;
