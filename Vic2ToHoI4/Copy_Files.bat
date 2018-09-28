@@ -30,9 +30,9 @@ copy "Data_Files\converterFocuses.txt" "release\converterFocuses.txt"
 copy "Data_Files\ai_peaces.txt" "release\ai_peaces.txt"
 
 rem **Copy flags**
-rem del "Release\flags" /Q /S /F
-rem rmdir "Release\flags" /Q /S
-rem xcopy "Data_Files\flags" "release\flags" /Y /E /I
+del "Release\flags" /Q /S /F
+rmdir "Release\flags" /Q /S
+xcopy "Data_Files\flags" "release\flags" /Y /E /I
 
 rem **Create changelog**
 del release\changelog.txt
