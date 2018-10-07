@@ -24,9 +24,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef HOI4_FOCUS_TREE
 #define HOI4_FOCUS_TREE
 
-#include "HoI4World.h"
+
+
 #include "Events.h"
 #include "newParser.h"
+#include "Date.h"
 #include <memory>
 #include <set>
 #include <string>
@@ -36,9 +38,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 class HoI4Country;
 class HoI4Focus;
+
+
 namespace HoI4
 {
-	class Events;
+class Events;
+class World;
 }
 
 
@@ -49,7 +54,7 @@ class HoI4FocusTree: commonItems::parser
 		HoI4FocusTree() = default;
 		explicit HoI4FocusTree(const HoI4Country& country);
 
-		shared_ptr<HoI4FocusTree> makeCustomizedCopy(const HoI4Country& country) const;
+		std::shared_ptr<HoI4FocusTree> makeCustomizedCopy(const HoI4Country& country) const;
 		void setNextFreeColumn(int newFreeColumn) { nextFreeColumn = newFreeColumn; }
 
 		void addGenericFocusTree(const std::set<std::string>& majorIdeologies);
@@ -59,8 +64,9 @@ class HoI4FocusTree: commonItems::parser
 		void addCommunistCoupBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& coupTargets, const std::set<std::string>& majorIdeologies);
 		void addCommunistWarBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& warTargets, HoI4::Events* events);
 		void addFascistAnnexationBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& annexationTargets, HoI4::Events* events);
-		void addFascistSudetenBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& sudetenTargets, const std::vector<std::vector<int>>& demandedStates, const HoI4World* world);
+		void addFascistSudetenBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& sudetenTargets, const std::vector<std::vector<int>>& demandedStates, const HoI4::World* world);
 		void addGPWarBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& newAllies, const std::vector<std::shared_ptr<HoI4Country>>& GCTargets, const std::string& ideology, HoI4::Events* events);
+		void addNeighborWarBranch(const std::string& tag, const std::vector<std::shared_ptr<HoI4Country>>& weakNeighbors, const std::shared_ptr<HoI4Country>& targetNeighbors, const std::string targetName, const date startDate, int numWarsWithNeighbors);
 		void removeFocus(const std::string& id);
 
 		void output(const std::string& filename) const;

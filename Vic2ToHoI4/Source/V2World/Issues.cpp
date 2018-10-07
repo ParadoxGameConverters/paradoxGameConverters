@@ -34,7 +34,7 @@ Vic2::issues Vic2::issuesInstance;
 class issueHelper: commonItems::parser
 {
 	public:
-		issueHelper(std::istream& theStream);
+		explicit issueHelper(std::istream& theStream);
 
 		std::vector<std::string> getIssues() { return issues; }
 
@@ -46,7 +46,7 @@ class issueHelper: commonItems::parser
 class partiesIssueHelper: commonItems::parser
 {
 	public:
-		partiesIssueHelper(std::istream& theStream);
+		explicit partiesIssueHelper(std::istream& theStream);
 
 		std::vector<issueHelper> getIssues() { return issues; }
 
@@ -82,7 +82,7 @@ void Vic2::issues::instantiate()
 		}
 	});
 
-	parseFile(Configuration::getV2Path() + "/common/issues.txt");
+	parseFile(theConfiguration.getVic2Path() + "/common/issues.txt");
 }
 
 

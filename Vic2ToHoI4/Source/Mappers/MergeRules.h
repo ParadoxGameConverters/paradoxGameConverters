@@ -34,7 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class MergeRules: commonItems::parser
 {
 	public:
-		MergeRules();
+		MergeRules() noexcept;
 
 		std::map<std::string, std::vector<std::string>> getRules() const { return rules; }
 

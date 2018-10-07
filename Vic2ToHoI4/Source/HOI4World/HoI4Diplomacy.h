@@ -38,7 +38,7 @@ class HoI4Agreement;
 class HoI4Diplomacy
 {
 	public:
-		HoI4Diplomacy(): agreements() {}
+		HoI4Diplomacy() = default;
 		void output() const;
 
 		void addAgreement(const HoI4Agreement* agr);

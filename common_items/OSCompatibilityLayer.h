@@ -1,4 +1,5 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
+
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
 "Software"), to deal in the Software without restriction, including
@@ -6,8 +7,10 @@ without limitation the rights to use, copy, modify, merge, publish,
 distribute, sublicense, and/or sell copies of the Software, and to
 permit persons to whom the Software is furnished to do so, subject to
 the following conditions:
+
 The above copyright notice and this permission notice shall be included
 in all copies or substantial portions of the Software.
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -106,11 +109,15 @@ namespace Utils
 
 	std::string convertUTF8ToASCII(const std::string& UTF8);
 	std::string convertUTF8To8859_15(const std::string& UTF8);
-	std::string convertUTF16ToUTF8(std::wstring UTF16);
-	std::string convert8859_15ToASCII(std::string input);
+	std::string convertUTF8ToWin1252(const std::string& UTF8);
+	std::string convertUTF16ToUTF8(const std::wstring& UTF16);
+	std::string convert8859_15ToASCII(const std::string& input);
 	std::string convert8859_15ToUTF8(const std::string& input);
-	std::wstring convert8859_15ToUTF16(std::string UTF8);
-	std::wstring convertUTF8ToUTF16(std::string UTF8);
+	std::wstring convert8859_15ToUTF16(const std::string& input);
+	std::string convertWin1252ToASCII(const std::string& Win1252);
+	std::string convertWin1252ToUTF8(const std::string& Win1252);
+	std::wstring convertWin1252ToUTF16(const std::string& Win1252);
+	std::wstring convertUTF8ToUTF16(const std::string& UTF8);
 
 	// converts a string in the system dependent wchar_t encoding to UTF-8
 	std::string convertToUTF8(const std::wstring &input);

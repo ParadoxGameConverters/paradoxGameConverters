@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,39 +21,65 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4NAVY_H_
-#define HOI4NAVY_H_
+#ifndef HOI4_NAVY_H_
+#define HOI4_NAVY_H_
 
 
 
-#include <string>
 #include <fstream>
-using namespace std;
+#include <string>
+#include <vector>
 
 
 
-class HoI4Ship
+namespace HoI4
+{
+
+class Ship
 {
 	public:
-		HoI4Ship(const string& _name, const string& _type, const string& _equipment, const string& _owner);
-		HoI4Ship(const HoI4Ship&) = default;
+		Ship(const std::string& _name, const std::string& _type, const std::string& _equipment, const std::string& _owner);
+		Ship(const Ship&) = default;
 
-		friend ofstream& operator << (ofstream& output, const HoI4Ship& instance);
+		friend std::ofstream& operator << (std::ofstream& output, const Ship& instance);
 
 	private:
-		HoI4Ship& operator=(const HoI4Ship&) = delete;
+		Ship& operator=(const Ship&) = delete;
 
-		string	name;
-		string	type;
-		string  equipment;
-		string	owner;
+		std::string name;
+		std::string type;
+		std::string equipment;
+		std::string owner;
 };
 
 
-class HoI4Navy
+std::ofstream& operator << (std::ofstream& output, const Ship& instance);
+
+
+class Navy
 {
+	public:
+		Navy(const std::string& _name, int _location, int _base);
+
+		void addShip(const Ship& newShip) { ships.push_back(newShip); }
+
+		int getNumShips() const { return ships.size(); }
+
+		friend std::ofstream& operator << (std::ofstream& output, const Navy& instance);
+
+	private:
+		std::string name;
+		int location;
+		int base;
+		std::vector<Ship> ships;
 };
 
 
+std::ofstream& operator << (std::ofstream& output, const Navy& instance);
 
-#endif	// HOI4NAVY_H_
+
+}
+
+
+
+#endif // HOI4_NAVY_H_

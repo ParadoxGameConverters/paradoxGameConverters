@@ -24,12 +24,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Ideas.h"
 #include "IdeaGroup.h"
 #include "../Configuration.h"
-#include "ParadoxParserUTF8.h"
 #include <fstream>
 
 
 
-HoI4::Ideas::Ideas()
+HoI4::Ideas::Ideas() noexcept
 {
 	importIdeologicalIdeas();
 	importGeneralIdeas();
@@ -38,21 +37,17 @@ HoI4::Ideas::Ideas()
 
 void HoI4::Ideas::importIdeologicalIdeas()
 {
-	auto fileObject = parser_UTF8::doParseFile("ideologicalIdeas.txt");
-	if (fileObject)
-	{
-		auto ideologyObjects = fileObject->getLeaves();
-		for (auto ideologyObject: ideologyObjects)
-		{
-			std::string ideaName = ideologyObject->getKey();
-			ideologicalIdeas.insert(make_pair(ideaName, ideologyObject->getLeaves()));
-		}
-	}
+	registerKeyword(std::regex("[a-zA-Z_]+"), [this](const std::string& ideology, std::istream& theStream){
+		ideologicalIdeas.insert(make_pair(ideology, IdeaGroup(ideology, theStream)));
+	});
+
+	parseFile("ideologicalIdeas.txt");
 }
 
 
 void HoI4::Ideas::importGeneralIdeas()
 {
+	clearRegisteredKeywords();
 	registerKeyword(std::regex("[a-zA-Z_]+"), [this](const std::string& ideaGroupName, std::istream& theStream){
 		generalIdeas.push_back(std::make_unique<IdeaGroup>(ideaGroupName, theStream));
 	});
@@ -278,7 +273,7 @@ void HoI4::Ideas::updateIdeas(std::set<std::string> majorIdeologies)
 }
 
 
-void HoI4::Ideas::output(std::set<std::string> majorIdeologies) const
+void HoI4::Ideas::output(const std::set<std::string>& majorIdeologies) const
 {
 	outputIdeologicalIdeas(majorIdeologies);
 	outputGeneralIdeas();
@@ -287,7 +282,7 @@ void HoI4::Ideas::output(std::set<std::string> majorIdeologies) const
 
 void HoI4::Ideas::outputIdeologicalIdeas(std::set<std::string> majorIdeologies) const
 {
-	std::ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/convertedIdeas.txt");
+	std::ofstream ideasFile("output/" + theConfiguration.getOutputName() + "/common/ideas/convertedIdeas.txt");
 	ideasFile << "ideas = {\n";
 	ideasFile << "\tcountry = {\n";
 	for (auto majorIdeology: majorIdeologies)
@@ -295,9 +290,9 @@ void HoI4::Ideas::outputIdeologicalIdeas(std::set<std::string> majorIdeologies) 
 		auto ideologicalIdea = ideologicalIdeas.find(majorIdeology);
 		if (ideologicalIdea != ideologicalIdeas.end())
 		{
-			for (auto idea: ideologicalIdea->second)
+			for (auto idea: ideologicalIdea->second.getIdeas())
 			{
-				ideasFile << *idea;
+				ideasFile << idea;
 				ideasFile << "\n";
 			}
 		}
@@ -310,9 +305,9 @@ void HoI4::Ideas::outputIdeologicalIdeas(std::set<std::string> majorIdeologies) 
 
 void HoI4::Ideas::outputGeneralIdeas() const
 {
-	auto manpowerFile = openIdeaFile("output/" + Configuration::getOutputName() + "/common/ideas/_manpower.txt");
-	auto economicFile = openIdeaFile("output/" + Configuration::getOutputName() + "/common/ideas/_economic.txt");
-	auto genericFile = openIdeaFile("output/" + Configuration::getOutputName() + "/common/ideas/zzz_generic.txt");
+	auto manpowerFile = openIdeaFile("output/" + theConfiguration.getOutputName() + "/common/ideas/_manpower.txt");
+	auto economicFile = openIdeaFile("output/" + theConfiguration.getOutputName() + "/common/ideas/_economic.txt");
+	auto genericFile = openIdeaFile("output/" + theConfiguration.getOutputName() + "/common/ideas/zzz_generic.txt");
 
 	std::for_each(generalIdeas.begin(), generalIdeas.end(), [&manpowerFile, &economicFile, &genericFile](auto& theGroup){
 		if (theGroup->getName() == "mobilization_laws")

@@ -38,7 +38,7 @@ class Party: commonItems::parser
 {
 	public:
 		Party() = default;
-		Party(std::istream& theStream);
+		explicit Party(std::istream& theStream);
 
 		std::string getName() const { return name; }
 		std::string getIdeology() const { return ideology; }

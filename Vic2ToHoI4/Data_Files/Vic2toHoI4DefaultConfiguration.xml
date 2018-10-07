@@ -23,8 +23,8 @@
 						<entryOptions>
 							<entryOption>
 								<name>hardcoded</name>
-								<friendlyName>Hard Coded (1.5.3)</friendlyName>
-								<description>Use the HoI4 version hard coded into the converter (1.5.3)</description>
+								<friendlyName>Hard Coded (1.5.4)</friendlyName>
+								<description>Use the HoI4 version hard coded into the converter (1.5.4)</description>
 								<isDefault>true</isDefault>
 							</entryOption>
 							<entryOption>
@@ -46,7 +46,7 @@
 						<friendlyName>HoI4 Version</friendlyName>
 						<description>If manually entering the HoI4 version, set this to the desired version</description>
 						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-						<value>1.5.3</value>
+						<value>1.5.4</value>
 					</preference>
 					<preference>
 						<name>industrial_shape_factor</name>
@@ -124,6 +124,25 @@
 								<name>false</name>
 								<friendlyName>False</friendlyName>
 								<description>Don't remove cores that should be removed.</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+						</entryOptions>
+					</preference>
+					<preference>
+						<name>create_factions</name>
+						<friendlyName>Create Factions</friendlyName>
+						<description>Whether or not to create factions</description>
+						<entryOptions>
+							<entryOption>
+								<name>yes</name>
+								<friendlyName>Yes</friendlyName>
+								<description>Create factions</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>no</name>
+								<friendlyName>no</friendlyName>
+								<description>Do not create factions</description>
 								<isDefault>false</isDefault>
 							</entryOption>
 						</entryOptions>

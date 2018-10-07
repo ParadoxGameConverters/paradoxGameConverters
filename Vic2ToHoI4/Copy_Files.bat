@@ -14,7 +14,7 @@ copy "Data_Files\country_mappings.txt" "release\country_mappings.txt
 copy "Data_Files\governmentMapping.txt" "release\governmentMapping.txt
 copy "Data_Files\license.txt" "release\license.txt"
 copy "Data_Files\tech_mapping.txt" "release\tech_mapping.txt"
-copy "Data_Files\unit_mapping.txt" "release\unit_mapping.txt"
+copy "Data_Files\unit_mappings.txt" "release\unit_mappings.txt"
 copy "Data_Files\FAQ.txt" "release\FAQ.txt"
 copy "Data_Files\resources.txt" "release\resources.txt"
 copy "Data_Files\positions.txt" "release\positions.txt"

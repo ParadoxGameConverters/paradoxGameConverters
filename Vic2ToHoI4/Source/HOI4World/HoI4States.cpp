@@ -22,39 +22,55 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4States.h"
+#include "ImpassableProvinces.h"
 #include "HoI4State.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
-#include "ParadoxParserUTF8.h"
 #include "../Mappers/CountryMapping.h"
-#include "../Mappers/ImpassableProvinceMapper.h"
 #include "../Mappers/ProvinceDefinitions.h"
-#include "../Mappers/StateMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/Country.h"
 #include "../V2World/Province.h"
 #include "../V2World/State.h"
+#include "../V2World/StateDefinitions.h"
 #include "../V2World/World.h"
 #include <fstream>
 
 
 
-HoI4States::HoI4States(const Vic2::World* _sourceWorld):
+HoI4States::HoI4States(const Vic2::World* _sourceWorld, const CountryMapper& countryMap):
 	sourceWorld(_sourceWorld),
 	ownersMap(),
 	coresMap(),
 	assignedProvinces(),
 	states(),
-	provinceToStateIDMap(),
-	nextStateID(1)
+	provinceToStateIDMap()
 {
+	int num;
+
 	LOG(LogLevel::Info) << "Converting states";
-	determineOwnersAndCores();
-	createStates();
+	registerKeyword(std::regex("state"), [this, &num](const std::string& unused, std::istream& theStream){
+		defaultStates.insert(make_pair(num, new HoI4::State(theStream)));
+	});
+
+	LOG(LogLevel::Info) << "Finding impassable provinces";
+
+	std::set<std::string> statesFiles;
+	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/history/states", statesFiles);
+	for (auto stateFile: statesFiles)
+	{
+		num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
+		parseFile(theConfiguration.getHoI4Path() + "/history/states/" + stateFile);
+	}
+
+	HoI4::impassableProvinces theImpassables(defaultStates);
+
+	determineOwnersAndCores(countryMap);
+	createStates(theImpassables, countryMap);
 }
 
 
-void HoI4States::determineOwnersAndCores()
+void HoI4States::determineOwnersAndCores(const CountryMapper& countryMap)
 {
 	for (auto provinceNumber: provinceDefinitions::getLandProvinces())
 	{
@@ -70,7 +86,7 @@ void HoI4States::determineOwnersAndCores()
 			auto oldOwner = selectProvinceOwner(potentialOwners);
 
 
-			auto HoI4Tag = CountryMapper::getHoI4Tag(oldOwner->getTag());
+			auto HoI4Tag = countryMap.getHoI4Tag(oldOwner->getTag());
 			if (!HoI4Tag)
 			{
 				LOG(LogLevel::Warning) << "Could not map states owned by " << oldOwner->getTag() << " in Vic2, as there is no mathcing HoI4 country.";
@@ -78,7 +94,7 @@ void HoI4States::determineOwnersAndCores()
 			}
 			ownersMap.insert(make_pair(provinceNumber, *HoI4Tag));
 
-			vector<string> cores = determineCores(*sourceProvinceNums, oldOwner);
+			vector<string> cores = determineCores(*sourceProvinceNums, oldOwner, countryMap, *HoI4Tag);
 			coresMap.insert(make_pair(provinceNumber, cores));
 		}
 	}
@@ -87,19 +103,22 @@ void HoI4States::determineOwnersAndCores()
 
 optional<vector<int>> HoI4States::retrieveSourceProvinceNums(int provNum) const
 {
-	auto provinceLink = provinceMapper::getHoI4ToVic2ProvinceMapping().find(provNum);
-	if ((provinceLink == provinceMapper::getHoI4ToVic2ProvinceMapping().end()) || (provinceLink->second.size() == 0))
+	auto provinceLink = theProvinceMapper.getHoI4ToVic2ProvinceMapping(provNum);
+	if (provinceLink && (provinceLink->size() > 0))
 	{
-		LOG(LogLevel::Warning) << "No source for HoI4 land province " << provNum;
-		return {};
-	}
-	else if (provinceLink->second[0] == 0)
-	{
-		return {};
+		if ((*provinceLink)[0] == 0)
+		{
+			return std::nullopt;
+		}
+		else
+		{
+			return provinceLink;
+		}
 	}
 	else
 	{
-		return provinceLink->second;
+		LOG(LogLevel::Warning) << "No source for HoI4 land province " << provNum;
+		return std::nullopt;
 	}
 }
 
@@ -157,7 +176,7 @@ const Vic2::Country* HoI4States::selectProvinceOwner(const map<const Vic2::Count
 }
 
 
-vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, const Vic2::Country* Vic2Owner) const
+vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, const Vic2::Country* Vic2Owner, const CountryMapper& countryMap, const std::string& newOwner) const
 {
 	vector<string> cores;
 
@@ -171,17 +190,17 @@ vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, co
 
 		for (auto Vic2Core: (*sourceProvince)->getCores())
 		{
-			// skip this core if the country is the owner of the V2 province but not the HoI4 province
-			// (i.e. "avoid boundary conflicts that didn't exist in V2").
-			// this country may still get core via a province that DID belong to the current HoI4 owner
-			if ((Vic2Core == Vic2Owner) && (Vic2Core != Vic2Owner))
-			{
-				continue;
-			}
-
-			auto HoI4CoreTag = CountryMapper::getHoI4Tag(Vic2Core->getTag());
+			auto HoI4CoreTag = countryMap.getHoI4Tag(Vic2Core->getTag());
 			if (HoI4CoreTag)
 			{
+				// skip this core if the country is the owner of the V2 province but not the HoI4 province
+				// (i.e. "avoid boundary conflicts that didn't exist in V2").
+				// this country may still get core via a province that DID belong to the current HoI4 owner
+				if ((Vic2Core == Vic2Owner) && (*HoI4CoreTag != newOwner))
+				{
+					continue;
+				}
+
 				cores.push_back(*HoI4CoreTag);
 			}
 		}
@@ -191,7 +210,7 @@ vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, co
 }
 
 
-void HoI4States::createStates()
+void HoI4States::createStates(const HoI4::impassableProvinces& theImpassables, const CountryMapper& countryMap)
 {
 	std::set<int> ownedProvinces;
 
@@ -199,10 +218,10 @@ void HoI4States::createStates()
 	{
 		for (auto vic2State: country.second->getStates())
 		{
-			auto possibleHoI4Owner = CountryMapper::getHoI4Tag(country.first);
+			auto possibleHoI4Owner = countryMap.getHoI4Tag(country.first);
 			if (possibleHoI4Owner)
 			{
-				createMatchingHoI4State(vic2State, *possibleHoI4Owner);
+				createMatchingHoI4State(vic2State, *possibleHoI4Owner, theImpassables);
 				for (auto province: vic2State->getProvinces())
 				{
 					ownedProvinces.insert(province->getNumber());
@@ -220,18 +239,17 @@ void HoI4States::createStates()
 		}
 	}
 
-	auto stateMapping = stateMapper::getStateMapping();
 	while (unownedProvinces.size() > 0)
 	{
 		std::set<std::pair<int, Vic2::Province*>> stateProvinces;
 
-		auto stateProvinceNums = stateMapping.find(unownedProvinces.begin()->first);
-		if (stateProvinceNums == stateMapping.end())
+		auto stateProvinceNums = Vic2::theStateDefinitions.getAllProvinces(unownedProvinces.begin()->first);
+		if (stateProvinceNums.size() == 0)
 		{
 			unownedProvinces.erase(unownedProvinces.begin());
 			continue;
 		}
-		for (auto provinceNum: stateProvinceNums->second)
+		for (auto provinceNum: stateProvinceNums)
 		{
 			auto province = unownedProvinces.find(provinceNum);
 			if (province != unownedProvinces.end())
@@ -242,7 +260,7 @@ void HoI4States::createStates()
 		}
 
 		Vic2::State* newState = new Vic2::State(stateProvinces);
-		createMatchingHoI4State(newState, "");
+		createMatchingHoI4State(newState, "", theImpassables);
 	}
 
 	unsigned int manpower = getTotalManpower();
@@ -250,14 +268,14 @@ void HoI4States::createStates()
 }
 
 
-void HoI4States::createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner)
+void HoI4States::createMatchingHoI4State(const Vic2::State* vic2State, const string& stateOwner, const HoI4::impassableProvinces& theImpassables)
 {
 	unordered_set<int> passableProvinces;
 	unordered_set<int> impassableProvinces;
 	auto allProvinces = getProvincesInState(vic2State, stateOwner);
 	for (auto province: allProvinces)
 	{
-		if (impassableProvinceMapper::isProvinceImpassable(province))
+		if (theImpassables.isProvinceImpassable(province))
 		{
 			impassableProvinces.insert(province);
 		}
@@ -269,21 +287,21 @@ void HoI4States::createMatchingHoI4State(const Vic2::State* vic2State, const str
 
 	if (passableProvinces.size() > 0)
 	{
-		HoI4State* newState = new HoI4State(vic2State, nextStateID, stateOwner);
-		addProvincesAndCoresToNewState(newState, passableProvinces);
-		newState->tryToCreateVP();
-		newState->addManpower();
+		HoI4::State* newState = new HoI4::State(vic2State, nextStateID, stateOwner);
 		if (impassableProvinces.size() > 0)
 		{
 			newState->markHadImpassablePart();
 		}
+		addProvincesAndCoresToNewState(newState, passableProvinces);
+		newState->tryToCreateVP();
+		newState->addManpower();
 		states.insert(make_pair(nextStateID, newState));
 		nextStateID++;
 	}
 
 	if (impassableProvinces.size() > 0)
 	{
-		HoI4State* newState = new HoI4State(vic2State, nextStateID, stateOwner);
+		HoI4::State* newState = new HoI4::State(vic2State, nextStateID, stateOwner);
 		addProvincesAndCoresToNewState(newState, impassableProvinces);
 		newState->makeImpassable();
 		newState->tryToCreateVP();
@@ -299,10 +317,9 @@ unordered_set<int> HoI4States::getProvincesInState(const Vic2::State* vic2State,
 	unordered_set<int> provinces;
 	for (auto vic2ProvinceNum: vic2State->getProvinceNums())
 	{
-		auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(vic2ProvinceNum);
-		if (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+		if (auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(vic2ProvinceNum))
 		{
-			for (auto HoI4ProvNum: provMapping->second)
+			for (auto HoI4ProvNum: *mapping)
 			{
 				if (
 						isProvinceValid(HoI4ProvNum) &&
@@ -322,7 +339,7 @@ unordered_set<int> HoI4States::getProvincesInState(const Vic2::State* vic2State,
 }
 
 
-void HoI4States::addProvincesAndCoresToNewState(HoI4State* newState, unordered_set<int> provinces)
+void HoI4States::addProvincesAndCoresToNewState(HoI4::State* newState, unordered_set<int> provinces)
 {
 	for (auto province: provinces)
 	{
@@ -393,9 +410,9 @@ void HoI4States::output() const
 {
 	LOG(LogLevel::Debug) << "Writing states";
 
-	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/history/states"))
+	if (!Utils::TryCreateFolder("output/" + theConfiguration.getOutputName() + "/history/states"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/history/states";
+		LOG(LogLevel::Error) << "Could not create \"output/" + theConfiguration.getOutputName() + "/history/states";
 		exit(-1);
 	}
 	for (auto state: states)

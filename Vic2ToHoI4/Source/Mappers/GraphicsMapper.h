@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,82 +26,42 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "newParser.h"
 #include <map>
 #include <memory>
 #include <optional>
 #include <random>
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
-class Object;
+typedef std::map<std::string, std::vector<std::string>> cultureGroupToPortraitsMap;
+typedef std::map<std::string, cultureGroupToPortraitsMap> ideologyToPortraitsMap;
+typedef std::map<std::string, std::string> cultureGroupToGraphicalCultureMap;
 
 
 
-typedef struct
-{
-	map<string, vector<string>> element;
-} cultureGroupToPortraitsMap;
-
-
-typedef struct 
-{
-	map<string, cultureGroupToPortraitsMap> element;
-} ideologyToPortraitsMap;
-
-
-typedef map<string, string> cultureGroupToGraphicalCultureMap;
-
-
-
-class graphicsMapper
+class graphicsMapper: commonItems::parser
 {
 	public:
-		static string getLeaderPortrait(const string& cultureGroup, const string& ideology)
-		{
-			return getInstance()->GetLeaderPortrait(cultureGroup, ideology);
-		}
+		graphicsMapper() noexcept;
 
-		static string getIdeologyMinisterPortrait(const string& cultureGroup, const string& ideology)
-		{
-			return getInstance()->GetIdeologyMinisterPortrait(cultureGroup, ideology);
-		}
-
-		static optional<string> getGraphicalCulture(const string& cultureGroup)
-		{
-			return getInstance()->GetGraphicalCulture(cultureGroup);
-		}
-
-		static optional<string> get2dGraphicalCulture(const string& cultureGroup)
-		{
-			return getInstance()->Get2dGraphicalCulture(cultureGroup);
-		}
+		std::string getLeaderPortrait(const std::string& cultureGroup, const std::string& ideology);
+		std::string getIdeologyMinisterPortrait(const std::string& cultureGroup, const std::string& ideology);
+		std::string getGeneralPortrait(const std::string& cultureGroup) const;
+		std::optional<std::string> getGraphicalCulture(const std::string& cultureGroup) const;
+		std::optional<std::string> get2dGraphicalCulture(const std::string& cultureGroup) const;
 
 	private:
-		static graphicsMapper* instance;
-		static graphicsMapper* getInstance()
-		{
-			if (instance == nullptr)
-			{
-				instance = new graphicsMapper;
-			}
-			return instance;
-		}
-		graphicsMapper();
-		void loadLeaderPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings);
-		void loadIdeologyMinisterPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings);
-
 		graphicsMapper(const graphicsMapper&) = delete;
 		graphicsMapper& operator=(const graphicsMapper&) = delete;
 
-		string GetLeaderPortrait(const string& cultureGroup, const string& ideology);
-		optional<vector<string>> GetLeaderPortraits(const string& cultureGroup, const string& ideology) const;
-		string GetIdeologyMinisterPortrait(const string& cultureGroup, const string& ideology);
-		optional<vector<string>> GetIdeologyMinisterPortraits(const string& cultureGroup, const string& ideology) const;
-		optional<string> GetGraphicalCulture(const string& cultureGroup) const;
-		optional<string> Get2dGraphicalCulture(const string& cultureGroup) const;
+		void loadLeaderPortraitMappings(const std::string& cultureGroup, std::map<std::string, std::vector<std::string>> portraitMappings);
+		void loadIdeologyMinisterPortraitMappings(const std::string& cultureGroup, std::map<std::string, std::vector<std::string>> portraitMappings);
+
+		std::optional<std::vector<std::string>> getLeaderPortraits(const std::string& cultureGroup, const std::string& ideology) const;
+		std::optional<std::vector<std::string>> getIdeologyMinisterPortraits(const std::string& cultureGroup, const std::string& ideology) const;
 
 		ideologyToPortraitsMap leaderPortraitMappings;
 		ideologyToPortraitsMap ideologyMinisterMappings;

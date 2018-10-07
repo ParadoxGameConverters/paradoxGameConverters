@@ -44,6 +44,8 @@ class IdeaGroup: commonItems::parser
 		std::optional<Idea> getIdea(const std::string& ideaName);
 		void replaceIdea(Idea newIdea);
 
+		auto getIdeas() const { return ideas; }
+
 		friend std::ostream& operator<<(std::ostream& outStream, const HoI4::IdeaGroup& outIdeaGroup);
 
 	private:

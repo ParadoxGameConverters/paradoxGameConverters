@@ -25,20 +25,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-namespace Utils 
+std::optional<std::string> Utils::GetFileFromTag(const std::string& directoryPath, const std::string& tag)
 {
-	std::optional<std::string> GetFileFromTag(const std::string& directoryPath, const std::string& tag)
+	std::set<std::string> foundFiles;
+	GetAllFilesInFolder(directoryPath, foundFiles);
+	for (std::string file: foundFiles)
 	{
-		std::set<std::string> foundFiles;
-		GetAllFilesInFolder(directoryPath, foundFiles);
-		for (std::string file: foundFiles)
+		if (tag == file.substr(0, 3))
 		{
-			if (tag == file.substr(0, 3))
-			{
-				return file;
-			}
+			return file;
 		}
-
-		return {};
 	}
+
+	return {};
 }

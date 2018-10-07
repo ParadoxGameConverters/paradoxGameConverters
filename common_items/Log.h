@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -50,6 +50,10 @@ class Log
 	public:
 		explicit Log(LogLevel);
 		~Log();
+		Log(const Log&) = delete;
+		Log operator=(const Log&) = delete;
+		Log(Log&&) = delete;
+		Log operator=(Log&&) = delete;
 
 		template<class T>	Log& operator<<(T t)
 		{

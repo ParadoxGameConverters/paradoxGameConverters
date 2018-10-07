@@ -402,15 +402,15 @@ fascism_on_the_rise = {
 political_actions = {
 	anti_fascism_raids = {
 
-    	icon = generic_civil_support
+		icon = generic_civil_support
 
-    	visible = {
+		visible = {
 			NOT = { has_government = fascism }
 		}
 
 		available = {
-            fascism > 0.1
-        }
+			fascism > 0.1
+		}
 	
 		modifier = {
 			fascism_drift = -0.05
@@ -430,7 +430,7 @@ political_actions = {
 		ai_will_do = {
 			base = 0
 		}
-    }
+	}
 
 	ban_fascism_party = {
 
@@ -907,15 +907,15 @@ democratic_on_the_rise = {
 political_actions = {
 	 anti_democratic_raids = {
 
-    	icon = generic_civil_support
+		icon = generic_civil_support
 
-    	visible = {
+		visible = {
 			NOT = { has_government = democratic }
 		}
 
 		available = {
-            democratic > 0.1
-        }
+			democratic > 0.1
+		}
 	
 		modifier = {
 			democratic_drift = -0.05
@@ -935,8 +935,8 @@ political_actions = {
 		ai_will_do = {
 			factor = 0
 		}
-    }
-	 
+	}
+
 	ban_democratic_party = {
 
 		icon = generic_civil_support
@@ -1413,15 +1413,15 @@ political_actions =
 {
 	anti_communism_raids = {
 
-    	icon = generic_civil_support
+		icon = generic_civil_support
 
-    	visible = {
+		visible = {
 			NOT = { has_government = communism }
 		}
 
 		available = {
-            communism > 0.1
-        }
+			communism > 0.1
+		}
 	
 		modifier = {
 			communism_drift = -0.05
@@ -1441,7 +1441,7 @@ political_actions =
 		ai_will_do = {
 			factor = 0
 		}
-    }
+	}
 	
 	ban_communism_party = {
 
@@ -1947,15 +1947,15 @@ absolutist_on_the_rise = {
 political_actions = {
 	anti_absolutist_raids = {
 
-    	icon = generic_civil_support
+		icon = generic_civil_support
 
-    	visible = {
+		visible = {
 			NOT = { has_government = absolutist }
 		}
 
 		available = {
-            absolutist > 0.1
-        }
+			absolutist > 0.1
+		}
 	
 		modifier = {
 			absolutist_drift = -0.05
@@ -1975,7 +1975,7 @@ political_actions = {
 		ai_will_do = {
 			base = 0
 		}
-    }
+	}
 
 	ban_absolutist_party = {
 
@@ -2453,15 +2453,15 @@ radical_on_the_rise = {
 political_actions = {
 	anti_radical_raids = {
 
-    	icon = generic_civil_support
+		icon = generic_civil_support
 
-    	visible = {
+		visible = {
 			NOT = { has_government = radical }
 		}
 
 		available = {
-            radical > 0.1
-        }
+			radical > 0.1
+		}
 	
 		modifier = {
 			radical_drift = -0.05
@@ -2481,7 +2481,7 @@ political_actions = {
 		ai_will_do = {
 			base = 0
 		}
-    }
+	}
 
 	ban_radical_party = {
 

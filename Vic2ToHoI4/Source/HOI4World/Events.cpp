@@ -37,10 +37,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 void HoI4::Events::output() const
 {
-	std::string eventpath = "output/" + Configuration::getOutputName() + "/events";
+	std::string eventpath = "output/" + theConfiguration.getOutputName() + "/events";
 	if (!Utils::TryCreateFolder(eventpath))
 	{
-		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/events\"";
+		LOG(LogLevel::Error) << "Could not create \"output/" + theConfiguration.getOutputName() + "/events\"";
 		exit(-1);
 	}
 
@@ -55,7 +55,7 @@ void HoI4::Events::output() const
 
 void HoI4::Events::outputNationalFocusEvents() const
 {
-	std::ofstream outEvents("output/" + Configuration::getOutputName() + "/events/NF_events.txt");
+	std::ofstream outEvents("output/" + theConfiguration.getOutputName() + "/events/NF_events.txt");
 	if (!outEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create NF_events.txt";
@@ -76,7 +76,7 @@ void HoI4::Events::outputNationalFocusEvents() const
 
 void HoI4::Events::outputNewsEvents() const
 {
-	std::ofstream outNewsEvents("output/" + Configuration::getOutputName() + "/events/newsEvents.txt");
+	std::ofstream outNewsEvents("output/" + theConfiguration.getOutputName() + "/events/newsEvents.txt");
 	if (!outNewsEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create newsEvents.txt";
@@ -97,7 +97,7 @@ void HoI4::Events::outputNewsEvents() const
 
 void HoI4::Events::outputPoliticalEvents() const
 {
-	std::ofstream outPoliticalEvents("output/" + Configuration::getOutputName() + "/events/converterPoliticalEvents.txt");
+	std::ofstream outPoliticalEvents("output/" + theConfiguration.getOutputName() + "/events/converterPoliticalEvents.txt");
 	if (!outPoliticalEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create converterPoliticalEvents.txt";
@@ -118,7 +118,7 @@ void HoI4::Events::outputPoliticalEvents() const
 
 void HoI4::Events::outputWarJustificationEvents() const
 {
-	std::ofstream outWarJustificationEvents("output/" + Configuration::getOutputName() + "/events/WarJustification.txt", std::ios_base::app);
+	std::ofstream outWarJustificationEvents("output/" + theConfiguration.getOutputName() + "/events/WarJustification.txt", std::ios_base::app);
 	if (!outWarJustificationEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open WarJustification.txt";
@@ -137,7 +137,7 @@ void HoI4::Events::outputWarJustificationEvents() const
 
 void HoI4::Events::outputElectionEvents() const
 {
-	std::ofstream outElectionEvents("output/" + Configuration::getOutputName() + "/events/ElectionEvents.txt");
+	std::ofstream outElectionEvents("output/" + theConfiguration.getOutputName() + "/events/ElectionEvents.txt");
 	if (!outElectionEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open ElectionEvents.txt";
@@ -159,7 +159,7 @@ void HoI4::Events::outputElectionEvents() const
 
 void HoI4::Events::outputStabilityEvents() const
 {
-	std::ofstream outStabilityEvents("output/" + Configuration::getOutputName() + "/events/stability_events.txt");
+	std::ofstream outStabilityEvents("output/" + theConfiguration.getOutputName() + "/events/stability_events.txt");
 	if (!outStabilityEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open StabilityEvents.txt";
@@ -228,8 +228,8 @@ void HoI4::Events::createFactionEvents(std::shared_ptr<HoI4Country> Leader, std:
 	Event nfEvent;
 	nfEvent.type = "country_event";
 	nfEvent.id = "NFEvents." + std::to_string(nationalFocusEventNumber++);
-	nfEvent.title = "\"Alliance?\"";
-	nfEvent.descriptions.push_back("desc = \"Alliance with " + leaderName + "?\"");
+	nfEvent.title = "\"Alliance Offer\"";
+	nfEvent.descriptions.push_back("desc = \"We have been invited to an alliance with " + leaderName + ". Should we accept the invitation?\"");
 	nfEvent.picture = "news_event_generic_sign_treaty1";
 	nfEvent.majorEvent = false;
 	nfEvent.triggeredOnly = true;
@@ -244,6 +244,16 @@ void HoI4::Events::createFactionEvents(std::shared_ptr<HoI4Country> Leader, std:
 		yesOption += "				value = 200\n";
 		yesOption += "			}\n";
 		yesOption += "			dismantle_faction = yes";
+		yesOption += "		}\n";
+		yesOption += "		if = {\n";
+		yesOption += "			limit = {\n";
+		yesOption += "				" + Leader->getTag() + " = {\n";
+		yesOption += "					is_in_faction = no\n";
+		yesOption += "				}\n";
+		yesOption += "			}\n";
+		yesOption += "			" + Leader->getTag() + " = {\n";
+		yesOption += "				create_faction = " + leaderName + "\n";
+		yesOption += "			}\n";
 		yesOption += "		}\n";
 		yesOption += "		" + Leader->getTag() + " = {\n";
 		yesOption += "			add_to_faction = " + newAlly->getTag() + "\n";
@@ -267,8 +277,8 @@ void HoI4::Events::createFactionEvents(std::shared_ptr<HoI4Country> Leader, std:
 	Event newsEventYes;
 	newsEventYes.type = "news_event";
 	newsEventYes.id = "news." + to_string(newsEventNumber);
-	newsEventYes.title = "\"" + newAllyName + " Now an Ally with " + leaderName + "!\"";
-	newsEventYes.descriptions.push_back("desc = \"They are now allies\"");
+	newsEventYes.title = "\"" + newAllyName + " formalizes alliance with " + leaderName + "\"";
+	newsEventYes.descriptions.push_back("desc = \"The leaders of both countries have announced their intent of military cooperation.\"");
 	newsEventYes.picture = "news_event_generic_sign_treaty1";
 	newsEventYes.majorEvent = true;
 	newsEventYes.triggeredOnly = true;
@@ -281,8 +291,8 @@ void HoI4::Events::createFactionEvents(std::shared_ptr<HoI4Country> Leader, std:
 	Event newsEventNo;
 	newsEventNo.type = "news_event";
 	newsEventNo.id = "news." + to_string(newsEventNumber + 1);
-	newsEventNo.title = "\"" + newAllyName + " Refused the Alliance offer of " + leaderName + "!\"";
-	newsEventNo.descriptions.push_back("desc = \"They are not allies\"");
+	newsEventNo.title = "\"" + newAllyName + " refuses the alliance offer of " + leaderName + "\"";
+	newsEventNo.descriptions.push_back("desc = \"The alliance negotiations ended in disagreement.\"");
 	newsEventNo.picture = "news_event_generic_sign_treaty1";
 	newsEventNo.majorEvent = true;
 	newsEventNo.triggeredOnly = true;
@@ -868,6 +878,7 @@ void HoI4::Events::addFiftyPercentEvents(const std::set<std::string>& majorIdeol
 		optionC += "	}";
 		fiftyPercentEvent.options.push_back(optionC);
 		politicalEvents.push_back(fiftyPercentEvent);
+		eventNumbers.insert(make_pair(std::string("fiftyPercent") + ideology, politicalEventNumber));
 		politicalEventNumber++;
 	}
 }
@@ -1284,7 +1295,7 @@ void HoI4::Events::createStabilityEvents(const std::set<std::string>& majorIdeol
 		}
 	);
 
-	parseFile(Configuration::getHoI4Path() + "/events/stability_events.txt");
+	parseFile(theConfiguration.getHoI4Path() + "/events/stability_events.txt");
 
 	if (majorIdeologies.count("democratic") == 0)
 	{
@@ -1362,4 +1373,18 @@ void HoI4::Events::createStabilityEvents(const std::set<std::string>& majorIdeol
 	option += "		set_country_flag = { flag = draft_dodging_resolved days = 90 }\n";
 	option += "	}";
 	conscriptionRebellion->second.options.push_back(option);
+}
+
+
+std::optional<int> HoI4::Events::getEventNumber(const std::string& eventName) const
+{
+	auto eventRecord = eventNumbers.find(eventName);
+	if (eventRecord != eventNumbers.end())
+	{
+		return eventRecord->second;
+	}
+	else
+	{
+		return std::nullopt;
+	}
 }

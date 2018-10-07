@@ -62,6 +62,8 @@ class Events: commonItems::parser
 		void addPartyChoiceEvent(const std::string& countryTag, const std::set<Vic2::Party, std::function<bool (const Vic2::Party&, const Vic2::Party&)>>& parties, HoI4::OnActions& onActions, const std::set<std::string>& majorIdeologies);
 		void createStabilityEvents(const std::set<std::string>& majorIdeologies);
 
+		std::optional<int> getEventNumber(const std::string& eventName) const;
+
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 
 
@@ -95,6 +97,8 @@ class Events: commonItems::parser
 		std::map<std::string, Event> stabilityEvents;
 		std::map<std::string, Event> strikesEvents;
 		std::map<std::string, Event> mutinyEvents;
+
+		std::map<std::string, int> eventNumbers;
 };
 
 }

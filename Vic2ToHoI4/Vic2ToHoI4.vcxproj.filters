@@ -21,12 +21,6 @@
     <ClCompile Include="..\common_items\Log.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
-    <ClCompile Include="..\common_items\Object.cpp">
-      <Filter>CommonItems</Filter>
-    </ClCompile>
-    <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp">
-      <Filter>CommonItems</Filter>
-    </ClCompile>
     <ClCompile Include="Source\HOI4World\HoI4Army.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
@@ -60,9 +54,6 @@
     <ClCompile Include="..\common_items\WinUtils.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
-    <ClCompile Include="..\common_items\ParadoxParser8859_15.cpp">
-      <Filter>CommonItems</Filter>
-    </ClCompile>
     <ClCompile Include="..\common_items\CommonUtils.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
@@ -89,19 +80,10 @@
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\Mapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mappers\CoastalHoI4Provinces.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
     <ClCompile Include="Source\Mappers\CountryMapping.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mappers\StateMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
     <ClCompile Include="Source\Mappers\V2Localisations.cpp">
@@ -116,9 +98,6 @@
     <ClCompile Include="Source\HOI4World\HoI4Focus.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\StateCategoryMapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
     <ClCompile Include="Source\HOI4World\HoI4WarCreator.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
@@ -128,35 +107,14 @@
     <ClCompile Include="Source\Mappers\ProvinceDefinitions.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\ProvinceNeighborMapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\HOI4World\HoI4SupplyZones.cpp">
-      <Filter>HoI4World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\HOI4World\HoI4Agreement.cpp">
       <Filter>HoI4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mappers\NamesMapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mappers\CultureGroupMapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mappers\ReformMapper.cpp">
-      <Filter>Mappers</Filter>
     </ClCompile>
     <ClCompile Include="Source\Mappers\GraphicsMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
     <ClCompile Include="Source\HOI4World\HOI4Ideology.cpp">
       <Filter>HoI4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mappers\InventionsMapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mappers\ImpassableProvinceMapper.cpp">
-      <Filter>Mappers</Filter>
     </ClCompile>
     <ClCompile Include="..\common_items\newParser.cpp">
       <Filter>CommonItems</Filter>
@@ -169,9 +127,6 @@
     </ClCompile>
     <ClCompile Include="Source\HOI4World\Decision.cpp">
       <Filter>HoI4World</Filter>
-    </ClCompile>
-    <ClCompile Include="..\common_items\NewParserToOldParserConverters.cpp">
-      <Filter>CommonItems</Filter>
     </ClCompile>
     <ClCompile Include="..\common_items\ParserHelpers.cpp">
       <Filter>CommonItems</Filter>
@@ -248,18 +203,66 @@
     <ClCompile Include="Source\HOI4World\OnActions.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\V2World\StateDefinitions.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\StateCategories.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Names.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Inventions.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\ImpassableProvinces.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\CultureGroups.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\SupplyZones.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\TechMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Resources.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\IdeologyFile.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\MapData.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\CoastalProvinces.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\MilitaryMappings.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Regiment.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\DivisionTemplate.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Division.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\UnitMap.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\AllMilitaryMappings.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
     <ClInclude Include="..\common_items\Log.h">
-      <Filter>CommonItems</Filter>
-    </ClInclude>
-    <ClInclude Include="..\common_items\Object.h">
-      <Filter>CommonItems</Filter>
-    </ClInclude>
-    <ClInclude Include="..\common_items\ParadoxParserUTF8.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Army.h">
@@ -291,9 +294,6 @@
     <ClInclude Include="Source\HOI4World\HoI4State.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
-    <ClInclude Include="..\common_items\ParadoxParser8859_15.h">
-      <Filter>CommonItems</Filter>
-    </ClInclude>
     <ClInclude Include="..\common_items\OSCompatibilityLayer.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
@@ -320,19 +320,10 @@
     <ClInclude Include="Source\Mappers\GovernmentMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mappers\Mapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\ProvinceMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\CountryMapping.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mappers\StateMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\V2Localisations.h">
@@ -350,9 +341,6 @@
     <ClInclude Include="Source\HOI4World\HoI4Focus.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mappers\StateCategoryMapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4WarCreator.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
@@ -363,35 +351,14 @@
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\bitmap_image.hpp" />
-    <ClInclude Include="Source\Mappers\ProvinceNeighborMapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\HOI4World\HoI4SupplyZones.h">
-      <Filter>HoI4World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Agreement.h">
       <Filter>HoI4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mappers\NamesMapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mappers\CultureGroupMapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mappers\ReformMapper.h">
-      <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\GraphicsMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HOI4Ideology.h">
       <Filter>HoI4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mappers\InventionsMapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h">
-      <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="..\common_items\newParser.h">
       <Filter>CommonItems</Filter>
@@ -404,9 +371,6 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\Decisions.h">
       <Filter>HoI4World</Filter>
-    </ClInclude>
-    <ClInclude Include="..\common_items\NewParserToOldParserConverters.h">
-      <Filter>CommonItems</Filter>
     </ClInclude>
     <ClInclude Include="..\common_items\ParserHelpers.h">
       <Filter>CommonItems</Filter>
@@ -481,6 +445,60 @@
       <Filter>HoI4World</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\OnActions.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\StateDefinitions.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\StateCategories.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Names.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Inventions.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\ImpassableProvinces.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\CultureGroups.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\SupplyZones.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\TechMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Resources.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\IdeologyFile.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\MapData.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\CoastalProvinces.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\MilitaryMappings.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Regiment.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\DivisionTemplate.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Division.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\UnitMap.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\AllMilitaryMappings.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>

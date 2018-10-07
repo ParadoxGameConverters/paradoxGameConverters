@@ -32,42 +32,40 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-class Object;
-
-
-
 struct date
 {
 	public:
-		date() : year(1), month(1), day(1) {};
 		explicit date(std::string _init);
-		date(const date& _init);
-		explicit date(const std::shared_ptr<Object> _init);
 
-		const date& operator=(const date& _rhs);
-		bool operator==(const date& _rhs) const;
-		bool operator!=(const date& _rhs) const;
-		bool operator<(const date& _rhs) const;
-		bool operator>(const date& _rhs) const;
-		bool operator<=(const date& _rhs) const;
-		bool operator>=(const date& _rhs) const;
+		date() = default; 
+		date(const date&) = default;
+		date(date&&) = default;
+		~date() = default;
+		date& operator=(const date&) = default;
+
+		bool operator==(const date& _rhs) const noexcept;
+		bool operator!=(const date& _rhs) const noexcept;
+		bool operator<(const date& _rhs) const noexcept;
+		bool operator>(const date& _rhs) const noexcept;
+		bool operator<=(const date& _rhs) const noexcept;
+		bool operator>=(const date& _rhs) const noexcept;
 
 		friend std::ostream& operator<<(std::ostream&, const date&);
 	
-		float diffInYears(const date& _rhs) const;
+		float diffInYears(const date& _rhs) const noexcept;
 
-		void delayedByMonths(const int _months);
-		void subtractYears(const int _years);
+		void increaseByMonths(const int _months) noexcept;
+		void subtractYears(const int _years) noexcept;
 
-		bool isSet() const;
+		bool isSet() const noexcept;
 		std::string toString() const;
 
 	private:
-		int calculateDayInYear() const;
+		int calculateDayInYear() const noexcept;
 
-		int year;
-		int month;
-		int day;
+		int year = 1;
+		int month = 1;
+		int day = 1;
 };
 
 

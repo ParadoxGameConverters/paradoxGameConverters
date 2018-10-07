@@ -45,6 +45,7 @@ class Regiment: commonItems::parser // also Ship
 		double getStrength() const { return strength; }
 		double getOrganization() const { return organization; }
 		double getExperience() const { return experience; }
+		bool isMobilised() const;
 
 	private:
 		Regiment(const Regiment&) = delete;
@@ -55,6 +56,7 @@ class Regiment: commonItems::parser // also Ship
 		double strength = 0.0;
 		double organization = 0.0;
 		double experience = 0.0;
+                int pop_id = 0;
 };
 
 

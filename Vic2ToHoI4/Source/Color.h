@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,66 +26,70 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "newParser.h"
 #include <array>
 #include <iostream>
 #include <memory>
 
 
 
-class Object;
-
-
 namespace ConverterColor
 {
-	struct red
-	{
-		red() { Red = 0; }
-		red(int r): Red(r) {}
-		int Red;
-	};
-	struct green
-	{
-		green() { Green = 0; }
-		green(int g): Green(g) {}
-		int Green;
-	};
-	struct blue
-	{
-		blue() { Blue = 0; }
-		blue(int b): Blue(b) {}
-		int Blue;
-	};
 
-	class Color
-	{
-		public:
-			Color();
-			explicit Color(red r, green g, blue b);
-			explicit Color(std::shared_ptr<Object> colorObject);
-			Color(const Color&) = default;
-			Color& operator=(const Color&) = default;
+struct red
+{
+	red() noexcept { Red = 0; }
+	explicit red(int r): Red(r) {}
+	int Red;
+};
+struct green
+{
+	green() noexcept { Green = 0; }
+	explicit green(int g): Green(g) {}
+	int Green;
+};
+struct blue
+{
+	blue() noexcept { Blue = 0; }
+	explicit blue(int b): Blue(b) {}
+	int Blue;
+};
 
-			// Randomly adjust the RGB values up or down (within the range 0-255)
-			// with a normal distribution of the given standard deviation.
-			void RandomlyFlunctuate(int stdDev);
 
-			friend std::ostream& operator<<(std::ostream&, const Color&);
+class Color: commonItems::parser
+{
+	public:
+		Color() = default;
+		explicit Color(red r, green g, blue b);
+		explicit Color(std::istream& theStream);
+		Color(const Color&) = default;
+		Color(Color&&) = default;
+		Color& operator=(const Color&) = default;
+		Color& operator=(Color&&) = default;
+		~Color() = default;
 
-			void GetRGB(red& r, green& g, blue& b) const;
+		// Randomly adjust the RGB values up or down (within the range 0-255)
+		// with a normal distribution of the given standard deviation.
+		void RandomlyFlunctuate(int stdDev);
 
-			bool operator == (const Color& right) const;
-			bool operator != (const Color& right) const;
-			bool operator < (const Color& right) const;
+		friend std::ostream& operator<<(std::ostream&, const Color&);
 
-			// Returns true if the color has been initialized with an RGB triplet.
-			operator bool() const;
+		void GetRGB(red& r, green& g, blue& b) const;
 
-		private:
-			bool initialized;
-			std::array<int, 3> c;
-	};
+		bool operator == (const Color& right) const;
+		bool operator != (const Color& right) const;
+		bool operator < (const Color& right) const;
 
-	std::ostream& operator<<(std::ostream& out, const Color& color);
+		// Returns true if the color has been initialized with an RGB triplet.
+		operator bool() const;
+
+	private:
+		bool initialized = false;
+		std::array<int, 3> c = {0,0,0};
+};
+
+std::ostream& operator<<(std::ostream& out, const Color& color);
+
 }
 
 

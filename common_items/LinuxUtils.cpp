@@ -1014,11 +1014,19 @@ namespace Utils
 		return ConvertString<string, string>("UTF−8", "ISO−8859−15", UTF8);
 	}
 	
+
+	std::string convertUTF8ToWin1252(const std::string& UTF8)
+	{
+		using namespace std;
+		return ConvertString<string, string>("UTF−8", "CP1252", UTF8);
+	}
+
+
 	/*
 		Warning: The input string should not be encoded in UTF-16 but in the system dependent wchar_t encoding
 		see convertUTF8ToUTF16 for full explanation
 	*/
-	std::string convertUTF16ToUTF8(std::wstring UTF16)
+	std::string convertUTF16ToUTF8(const std::wstring& UTF16)
 	{
 		using namespace std;
 		return ConvertString<wstring, string>("wchar_t", "UTF-8", UTF16);
@@ -1035,10 +1043,23 @@ namespace Utils
 		This is an implementation of the original Windows-based API which uses UTF-16 LE as the system dependent wchar_t encoding
 		This behaviour is replicated on Linux but it uses the (system dependent) wchar_t encoding.
 	*/
-	std::wstring convert8859_15ToUTF16(std::string UTF8)
+	std::wstring convert8859_15ToUTF16(const std::string& UTF8)
 	{
 		using namespace std;
 		return ConvertString<string, wstring>("ISO−8859−15", "wchar_t", UTF8);
+	}
+	
+	std::string convertWin1252ToUTF8(const std::string& Win1252)
+	{
+		using namespace std;
+		return ConvertString<string, string>("CP1252", "UTF-8", Win1252);
+	}
+
+
+	std::wstring convertWin1252ToUTF16(const std::string& Win1252)
+	{
+		using namespace std;
+		return ConvertString<string, wstring>("CP1252", "wchar_t", Win1252);
 	}
 
 	/*
@@ -1046,20 +1067,20 @@ namespace Utils
 		This is an implementation of the original Windows-based API which uses UTF-16 LE as the system dependent wchar_t encoding
 		This behaviour is replicated on Linux but it uses the (system dependent) wchar_t encoding.
 	*/
-	std::wstring convertUTF8ToUTF16(std::string UTF8)
+	std::wstring convertUTF8ToUTF16(const std::string& UTF8)
 	{
 		using namespace std;
 		return ConvertString<string, wstring>("UTF-8", "wchar_t",UTF8);
 	}
 
 	
-	std::string convertToUTF8(const std::wstring &input)
+	std::string convertToUTF8(const std::wstring& input)
 	{
 		using namespace std;
 		return ConvertString<wstring, string>("wchar_t", "UTF-8",input);
 	}
 
-	std::string normalizeUTF8Path(const std::string &utf_8_path){
+	std::string normalizeUTF8Path(const std::string& utf_8_path){
 		return utf_8_path;
 	};
 }

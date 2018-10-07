@@ -39,17 +39,7 @@ HoI4Localisation* HoI4Localisation::instance = nullptr;
 
 
 
-HoI4Localisation::HoI4Localisation():
-	stateLocalisations(),
-	VPLocalisations(),
-	countryLocalisations(),
-	originalFocuses(),
-	newFocuses(),
-	ideaLocalisations(),
-	genericIdeaLocalisations(),
-	originalEventLocalisations(),
-	newEventLocalisations(),
-	politicalPartyLocalisations()
+HoI4Localisation::HoI4Localisation() noexcept
 {
 	importLocalisations();
 	prepareIdeaLocalisations();
@@ -59,20 +49,20 @@ HoI4Localisation::HoI4Localisation():
 void HoI4Localisation::importLocalisations()
 {
 	set<string> filenames;
-	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/localisation", filenames);
+	Utils::GetAllFilesInFolder(theConfiguration.getHoI4Path() + "/localisation", filenames);
 	for (auto filename: filenames)
 	{
 		if (filename.substr(0, 5) == "focus")
 		{
-			importFocusLocalisations(Configuration::getHoI4Path() + "/localisation/" + filename);
+			importFocusLocalisations(theConfiguration.getHoI4Path() + "/localisation/" + filename);
 		}
 		else if (filename.substr(0, 5) == "ideas")
 		{
-			importGenericIdeaLocalisations(Configuration::getHoI4Path() + "/localisation/" + filename);
+			importGenericIdeaLocalisations(theConfiguration.getHoI4Path() + "/localisation/" + filename);
 		}
 		else if (filename.substr(0, 6) == "events")
 		{
-			importEventLocalisations(Configuration::getHoI4Path() + "/localisation/" + filename);
+			importEventLocalisations(theConfiguration.getHoI4Path() + "/localisation/" + filename);
 		}
 	}
 
@@ -180,10 +170,10 @@ void HoI4Localisation::prepareIdeaLocalisations()
 }
 
 
-void HoI4Localisation::CreateCountryLocalisations(const pair<const string&, const string&>& tags)
+void HoI4Localisation::CreateCountryLocalisations(const pair<const string&, const string&>& tags, const governmentMapper& governmentMap)
 {
-	addLocalisationsForAllGovernments(tags, make_pair(string(""), string("_DEF")));
-	addLocalisationsForAllGovernments(tags, make_pair(string("_ADJ"), string("")));
+	addLocalisationsForAllGovernments(tags, make_pair(string(""), string("_DEF")), governmentMap);
+	addLocalisationsForAllGovernments(tags, make_pair(string("_ADJ"), string("")), governmentMap);
 
 	if (!addNeutralLocalisation(tags, make_pair(string(""), string("_DEF"))))
 	{
@@ -196,9 +186,9 @@ void HoI4Localisation::CreateCountryLocalisations(const pair<const string&, cons
 }
 
 
-void HoI4Localisation::addLocalisationsForAllGovernments(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes)
+void HoI4Localisation::addLocalisationsForAllGovernments(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes, const governmentMapper& governmentMap)
 {
-	for (auto mapping: governmentMapper::getGovernmentMappings())
+	for (auto mapping: governmentMap.getGovernmentMappings())
 	{
 		auto localisationForGovernment = V2Localisations::GetTextInEachLanguage(tags.first + "_" + mapping.vic2Government + suffixes.first);
 		addLocalisationsInAllLanguages(tags.second, suffixes, mapping.HoI4GovernmentIdeology, localisationForGovernment);
@@ -279,6 +269,45 @@ void HoI4Localisation::addLocalisation(const string& newKey, languageToLocalisat
 }
 
 
+void HoI4Localisation::UpdateMainCountryLocalisation(const std::string& HoI4Key, const std::string& Vic2Tag, const std::string& Vic2Government)
+{
+	if (!attemptToUpdateMainCountryLocalisation(HoI4Key, Vic2Tag + "_" + Vic2Government))
+	{
+		attemptToUpdateMainCountryLocalisation(HoI4Key, Vic2Tag);
+	}
+	if (!attemptToUpdateMainCountryLocalisation(HoI4Key + "_DEF", Vic2Tag + "_" + Vic2Government))
+	{
+		attemptToUpdateMainCountryLocalisation(HoI4Key + "_DEF", Vic2Tag);
+	}
+	if (!attemptToUpdateMainCountryLocalisation(HoI4Key + "_ADJ", Vic2Tag + "_" + Vic2Government + "_ADJ"))
+	{
+		attemptToUpdateMainCountryLocalisation(HoI4Key + "_ADJ", Vic2Tag + "_ADJ");
+	}
+}
+
+
+bool HoI4Localisation::attemptToUpdateMainCountryLocalisation(const std::string& HoI4Key, const std::string& Vic2Key)
+{
+	if (auto Vic2Text = V2Localisations::GetTextInEachLanguage(Vic2Key); Vic2Text.size() > 0)
+	{
+		for (auto textInLanguage: Vic2Text)
+		{
+			auto HoI4Localisations = getExistingLocalisationsInLanguage(textInLanguage.first);
+			if (auto HoI4Localisation = HoI4Localisations->second.find(HoI4Key); HoI4Localisation != HoI4Localisations->second.end())
+			{
+				HoI4Localisation->second = textInLanguage.second;
+			}
+		}
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
 void HoI4Localisation::AddNonenglishCountryLocalisations()
 {
 	auto englishLocalisations = countryLocalisations.find("english");
@@ -348,19 +377,16 @@ void HoI4Localisation::AddStateLocalisations(const HoI4States* states)
 		}
 
 		int VPPositionInHoI4 = state.second->getVPLocation();
-		auto VPProvinceMapping = provinceMapper::getHoI4ToVic2ProvinceMapping().find(VPPositionInHoI4);
-		if (
-			(VPProvinceMapping != provinceMapper::getHoI4ToVic2ProvinceMapping().end()) &&
-			(VPProvinceMapping->second.size() > 0)
-			)
+		auto VPProvinceMapping = theProvinceMapper.getHoI4ToVic2ProvinceMapping(VPPositionInHoI4);
+		if (VPProvinceMapping && (VPProvinceMapping->size() > 0))
 		{
-			for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
+			for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage("PROV" + to_string((*VPProvinceMapping)[0])))
 			{
 				addVPLocalisationForLanguage(state.second, Vic2NameInLanguage);
 			}
 		}
 
-		if (Configuration::getDebug())
+		if (theConfiguration.getDebug())
 		{
 			addDebugLocalisations(state);
 		}
@@ -371,17 +397,14 @@ void HoI4Localisation::AddStateLocalisations(const HoI4States* states)
 }
 
 
-void HoI4Localisation::addDebugLocalisations(const pair<const int, HoI4State*>& state)
+void HoI4Localisation::addDebugLocalisations(const pair<const int, HoI4::State*>& state)
 {
 	for (auto VPPositionInHoI4: state.second->getDebugVPs())
 	{
-		auto VPProvinceMapping = provinceMapper::getHoI4ToVic2ProvinceMapping().find(VPPositionInHoI4);
-		if (
-				(VPProvinceMapping != provinceMapper::getHoI4ToVic2ProvinceMapping().end()) &&
-				(VPProvinceMapping->second.size() > 0)
-			)
+		auto VPProvinceMapping = theProvinceMapper.getHoI4ToVic2ProvinceMapping(VPPositionInHoI4);
+		if (VPProvinceMapping && (VPProvinceMapping->size() > 0))
 		{
-			for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
+			for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage("PROV" + to_string((*VPProvinceMapping)[0])))
 			{
 				getExistingVPLocalisation(Vic2NameInLanguage.first).insert(make_pair("VICTORY_POINTS_" + to_string(VPPositionInHoI4), Vic2NameInLanguage.second));
 			}
@@ -390,13 +413,10 @@ void HoI4Localisation::addDebugLocalisations(const pair<const int, HoI4State*>& 
 
 	for (auto VPPositionInHoI4: state.second->getSecondaryDebugVPs())
 	{
-		auto VPProvinceMapping = provinceMapper::getHoI4ToVic2ProvinceMapping().find(VPPositionInHoI4);
-		if (
-			(VPProvinceMapping != provinceMapper::getHoI4ToVic2ProvinceMapping().end()) &&
-			(VPProvinceMapping->second.size() > 0)
-			)
+		auto VPProvinceMapping = theProvinceMapper.getHoI4ToVic2ProvinceMapping(VPPositionInHoI4);
+		if (VPProvinceMapping && (VPProvinceMapping->size() > 0))
 		{
-			for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
+			for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage("PROV" + to_string((*VPProvinceMapping)[0])))
 			{
 				getExistingVPLocalisation(Vic2NameInLanguage.first).insert(make_pair("VICTORY_POINTS_" + to_string(VPPositionInHoI4), "_" + Vic2NameInLanguage.second));
 			}
@@ -405,7 +425,7 @@ void HoI4Localisation::addDebugLocalisations(const pair<const int, HoI4State*>& 
 }
 
 
-void HoI4Localisation::addStateLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage)
+void HoI4Localisation::addStateLocalisationForLanguage(const HoI4::State* state, const pair<const string, string>& Vic2NameInLanguage)
 {
 	string key = string("STATE_") + to_string(state->getID());
 
@@ -424,7 +444,7 @@ void HoI4Localisation::addStateLocalisationForLanguage(const HoI4State* state, c
 }
 
 
-void HoI4Localisation::addVPLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage)
+void HoI4Localisation::addVPLocalisationForLanguage(const HoI4::State* state, const pair<const string, string>& Vic2NameInLanguage)
 {
 	getExistingVPLocalisation(Vic2NameInLanguage.first).insert(make_pair("VICTORY_POINTS_" + to_string(state->getVPLocation()),	Vic2NameInLanguage.second));
 }
@@ -594,7 +614,7 @@ void HoI4Localisation::UpdateLocalisationWithCountry(const std::string& key, con
 void HoI4Localisation::Output() const
 {
 	LOG(LogLevel::Debug) << "Writing localisations";
-	string localisationPath = "output/" + Configuration::getOutputName() + "/localisation";
+	string localisationPath = "output/" + theConfiguration.getOutputName() + "/localisation";
 	if (!Utils::TryCreateFolder(localisationPath))
 	{
 		LOG(LogLevel::Error) << "Could not create localisation folder";

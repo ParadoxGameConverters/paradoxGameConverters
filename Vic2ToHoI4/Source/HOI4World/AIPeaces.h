@@ -40,7 +40,7 @@ namespace HoI4
 class AIPeaces: commonItems::parser
 {
 	public:
-		AIPeaces();
+		AIPeaces() noexcept;
 
 		void updateAIPeaces(std::set<std::string> majorIdeologies);
 

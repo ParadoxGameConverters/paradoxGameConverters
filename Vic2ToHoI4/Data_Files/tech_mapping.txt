@@ -35,6 +35,7 @@ tech_map =
 		vic2 = flintlock_rifles		
 		infantry_weapons = 1	
 		gw_artillery = 1
+		tech_support = 1
 		early_destroyer = 1
 		early_light_cruiser = 1
 		early_heavy_cruiser = 1
@@ -51,20 +52,27 @@ tech_map =
 	# HoI4 Infantry Equipment I <- Vic2 Invention Army/Light Armament/Modern Divisional Structure/Interwar Cavalry
 	link = {
 		vic2 = interwar_cavalry
-		infantry_weapons1 = 1		
+		infantry_weapons1 = 1
+		tech_recon = 1
 	}
 
 	# HoI4 Support Weapons I <- Vic2 Invention Army/Light Armament/Modern Divisional Structure/Interwar Infantry
 	link = {
 		vic2 = interwar_infantry
 		support_weapons = 1
+		tech_engineers = 1
 	}	
 
 	# HoI4 Marines I <- Vic2 Invention Navy/Naval Leadership/Modern Naval Training/Amphibious Warfare Training
 	link = {
 		vic2 = amphibious_warfare_training
 		marines = 1
-	}	
+	}
+	
+	link = {
+		vic2 = armoured_cars
+		motorised_infantry = 1
+	}
 
 	# =========================
 	# === HOI4 ARMOR FOLDER ===
@@ -96,7 +104,14 @@ tech_map =
 	link = {
 		vic2 = heavy_artillery
 		interwar_artillery = 1
-	}	
+	}
+	
+	link = {
+		vic2 = improved_anti_aircraft_artillery
+		interwar_antiair = 1
+	}
+	
+	
 
 	# ========================
 	# === HOI4 NAVY FOLDER ===
@@ -124,6 +139,12 @@ tech_map =
 	link = {
 		vic2 = modern_battleships
 		basic_battleship = 1
+	}
+	
+	# HoI4 transport
+	link = {
+		vic2 = steamer_transports
+		transport = 1
 	}
 
 	# ============================

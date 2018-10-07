@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -33,14 +33,14 @@ provinceDefinitions* provinceDefinitions::instance = nullptr;
 
 
 
-provinceDefinitions::provinceDefinitions():
+provinceDefinitions::provinceDefinitions() noexcept:
 	landProvinces(),
 	colorToProvinceMap()
 {
-	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
+	ifstream definitions(theConfiguration.getHoI4Path() + "/map/definition.csv");
 	if (!definitions.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
+		LOG(LogLevel::Error) << "Could not open " << theConfiguration.getHoI4Path() << "/map/definition.csv";
 		exit(-1);
 	}
 
@@ -81,6 +81,10 @@ provinceDefinitions::provinceDefinitions():
 		if (line == "land")
 		{
 			landProvinces.insert(provNum);
+		}
+		else if (line == "sea")
+		{
+			seaProvinces.insert(provNum);
 		}
 	}
 }

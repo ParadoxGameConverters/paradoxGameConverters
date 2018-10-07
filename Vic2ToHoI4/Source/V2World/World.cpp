@@ -25,25 +25,27 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
-#include "ParadoxParser8859_15.h"
-#include "ParadoxParserUTF8.h"
 #include "ParserHelpers.h"
 #include "CommonCountryData.h"
 #include "Country.h"
 #include "Diplomacy.h"
 #include "Issues.h"
+#include "Inventions.h"
 #include "Party.h"
 #include "Province.h"
 #include "State.h"
+#include "StateDefinitions.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/MergeRules.h"
 #include "../Mappers/ProvinceMapper.h"
 
 
 
-Vic2::World::World(const string& filename)
+Vic2::World::World(const std::string& filename)
 {
-	Vic2::issuesInstance.instantiate();
+	issuesInstance.instantiate();
+	theStateDefinitions.initialize();
+	inventions theInventions;
 
 	std::vector<int> GPIndexes;
 	registerKeyword(std::regex("great_nations"), [&GPIndexes, this](const std::string& unused, std::istream& theStream)
@@ -59,14 +61,14 @@ Vic2::World::World(const string& filename)
 
 	std::vector<std::string> tagsInOrder;
 	tagsInOrder.push_back(""); // REB (first country is index 1
-	registerKeyword(std::regex("[A-Z]{3}"), [&tagsInOrder, this](const std::string& countryTag, std::istream& theStream)
+	registerKeyword(std::regex("[A-Z]{3}"), [&tagsInOrder, &theInventions, this](const std::string& countryTag, std::istream& theStream)
 	{
-		countries[countryTag] = new Country(countryTag, theStream);
+		countries[countryTag] = new Country(countryTag, theStream, theInventions, theCultureGroups);
 		tagsInOrder.push_back(countryTag);
 	});
-	registerKeyword(std::regex("[A-Z][0-9]{2}"), [&tagsInOrder, this](const std::string& countryTag, std::istream& theStream)
+	registerKeyword(std::regex("[A-Z][0-9]{2}"), [&tagsInOrder, &theInventions, this](const std::string& countryTag, std::istream& theStream)
 	{
-		countries[countryTag] = new Country(countryTag, theStream);
+		countries[countryTag] = new Country(countryTag, theStream, theInventions, theCultureGroups);
 		tagsInOrder.push_back(countryTag);
 	});
 
@@ -86,7 +88,7 @@ Vic2::World::World(const string& filename)
 	setGreatPowerStatus(GPIndexes, tagsInOrder);
 	setProvinceOwners();
 	addProvinceCoreInfoToCountries();
-	if (Configuration::getRemoveCores())
+	if (theConfiguration.getRemoveCores())
 	{
 		removeSimpleLandlessNations();
 	}
@@ -100,8 +102,6 @@ Vic2::World::World(const string& filename)
 	readCountryFiles();
 	setLocalisations();
 	handleMissingCountryCultures();
-
-	CountryMapper::createMappings(this);
 
 	overallMergeNations();
 	checkAllProvincesMapped();
@@ -231,7 +231,7 @@ void Vic2::World::determineEmployedWorkers()
 
 void Vic2::World::removeEmptyNations()
 {
-	map<string, Country*> newCountries;
+	std::map<std::string, Country*> newCountries;
 
 	for (auto country: countries)
 	{
@@ -261,27 +261,27 @@ void Vic2::World::readCountryFiles()
 {
 	bool countriesDotTxtRead = false;
 
-	for (auto vic2Mod: Configuration::getVic2Mods())
+	for (auto vic2Mod: theConfiguration.getVic2Mods())
 	{
-		if (processCountriesDotTxt(Configuration::getV2Path() + "/mod/" + vic2Mod + "/common/countries.txt", vic2Mod))
+		if (processCountriesDotTxt(theConfiguration.getVic2Path() + "/mod/" + vic2Mod + "/common/countries.txt", vic2Mod))
 		{
 			countriesDotTxtRead = true;
 		}
 	}
 	if (!countriesDotTxtRead)
 	{
-		if (!processCountriesDotTxt(Configuration::getV2Path() + "/common/countries.txt", ""))
+		if (!processCountriesDotTxt(theConfiguration.getVic2Path() + "/common/countries.txt", ""))
 		{
-			LOG(LogLevel::Error) << "Could not open " << Configuration::getV2Path() + "/common/countries.txt";
+			LOG(LogLevel::Error) << "Could not open " << theConfiguration.getVic2Path() + "/common/countries.txt";
 			exit(-1);
 		}
 	}
 }
 
 
-bool Vic2::World::processCountriesDotTxt(const string& countryListFile, const string& mod)
+bool Vic2::World::processCountriesDotTxt(const std::string& countryListFile, const std::string& mod)
 {
-	ifstream V2CountriesInput(countryListFile);
+	std::ifstream V2CountriesInput(countryListFile);
 	if (!V2CountriesInput.is_open())
 	{
 		return false;
@@ -289,15 +289,15 @@ bool Vic2::World::processCountriesDotTxt(const string& countryListFile, const st
 
 	while (!V2CountriesInput.eof())
 	{
-		string line;
+		std::string line;
 		getline(V2CountriesInput, line);
 		if (shouldLineBeSkipped(line))
 		{
 			continue;
 		}
 
-		string tag = line.substr(0, 3);
-		string countryFileName = extractCountryFileName(line);
+		std::string tag = line.substr(0, 3);
+		std::string countryFileName = extractCountryFileName(line);
 		commonCountryData countryData(countryFileName, mod);
 		if (countries.find(tag) != countries.end())
 		{
@@ -315,15 +315,15 @@ bool Vic2::World::processCountriesDotTxt(const string& countryListFile, const st
 }
 
 
-bool Vic2::World::shouldLineBeSkipped(const string& line) const
+bool Vic2::World::shouldLineBeSkipped(const std::string& line) const
 {
 	return ((line[0] == '#') || (line.size() < 3) || (line.substr(0, 12) == "dynamic_tags"));
 }
 
 
-string Vic2::World::extractCountryFileName(const string& countryFileLine) const
+std::string Vic2::World::extractCountryFileName(const std::string& countryFileLine) const
 {
-	string countryFileName;
+	std::string countryFileName;
 	int start = countryFileLine.find_first_of('/');
 	int size = countryFileLine.find_last_of('\"') - start;
 	countryFileName = countryFileLine.substr(start, size);
@@ -343,7 +343,7 @@ void Vic2::World::overallMergeNations()
 }
 
 
-void Vic2::World::mergeNations(const string& masterTag, const vector<string>& slaveTags)
+void Vic2::World::mergeNations(const std::string& masterTag, const std::vector<std::string>& slaveTags)
 {
 	auto master = getCountry(masterTag);
 	if (master)
@@ -361,7 +361,7 @@ void Vic2::World::mergeNations(const string& masterTag, const vector<string>& sl
 }
 
 
-optional<Vic2::Country*> Vic2::World::getCountry(const string& tag) const
+std::optional<Vic2::Country*> Vic2::World::getCountry(const std::string& tag) const
 {
 	auto countryItr = countries.find(tag);
 	if (countryItr != countries.end())
@@ -389,7 +389,7 @@ void Vic2::World::handleMissingCountryCultures()
 {
 	for (auto country: countries)
 	{
-		country.second->handleMissingCulture();
+		country.second->handleMissingCulture(theCultureGroups);
 	}
 }
 
@@ -410,10 +410,10 @@ std::optional<const Vic2::Province*> Vic2::World::getProvince(int provNum) const
 
 void Vic2::World::checkAllProvincesMapped() const
 {
-	auto Vic2ToHoI4ProvinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping();
 	for (auto province: provinces)
 	{
-		if (Vic2ToHoI4ProvinceMapping.find(province.first) == Vic2ToHoI4ProvinceMapping.end())
+		auto mapping = theProvinceMapper.getVic2ToHoI4ProvinceMapping(province.first);
+		if (!mapping)
 		{
 			LOG(LogLevel::Warning) << "No mapping for Vic2 province " << province.first;
 		}

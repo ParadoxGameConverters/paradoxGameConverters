@@ -22,7 +22,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Advisor.h"
-#include "NewParserToOldParserConverters.h"
 #include "ParserHelpers.h"
 
 
@@ -37,11 +36,6 @@ HoI4::Advisor::Advisor(const std::string& ideology, std::istream& theStream):
 	registerKeyword(std::regex("picture"), [this](const std::string& unused, std::istream& theStream){
 		commonItems::singleString pictureString(theStream);
 		picture = pictureString.getString();
-	});
-	registerKeyword(std::regex("on_add"), [this](const std::string& unused, std::istream& theStream){
-		auto onAddObj = commonItems::convertUTF8Object(unused, theStream);
-		auto eventObjs = onAddObj->getLeaves();
-		event = eventObjs[0]->getLeaf();
 	});
 	registerKeyword(std::regex("[A-Za-z0-9_]+"), commonItems::ignoreItem);
 
@@ -61,12 +55,6 @@ void HoI4::Advisor::output(std::ofstream& output, const std::string& tag) const
 		output << trait << " ";
 	}
 	output << "}\n";
-	if (event != "")
-	{
-		output << "\t\t\ton_add = {\n";
-		output << "\t\t\t\tcountry_event = " << event << "\n";
-		output << "\t\t\t}\n";
-	}
 	if (picture != "")
 	{
 		output << "\t\t\tpicture = " << picture << "\n";
