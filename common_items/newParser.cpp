@@ -78,7 +78,10 @@ void commonItems::parser::parseStream(std::istream& theStream)
 
 			else
 			{
-				LOG(LogLevel::Warning) << "Unknown token while parsing stream: " << *token;
+				int streamPos = theStream.tellg();
+				LOG(LogLevel::Warning)
+					<< "Unknown token while parsing stream: " << *token
+					<< " (Position: " << streamPos << ")";
 			}
 		}
 		else
