@@ -119,6 +119,14 @@ namespace Frontend.Core.Model.Preferences
         }
 
         /// <summary>
+        ///     Determines if selecting multiple entries is allowed, so frontend uses checkboxes instead of radio buttons.
+        /// </summary>
+        /// <value>
+        ///     <c>true</c> if yes; otherwise, <c>false</c>.
+        /// </value>
+        public bool AllowMultipleSelections { get; set; }
+
+        /// <summary>
         ///     Gets the list of pre-defined IPreferenceEntry objects. These are the pre-defined user choices, if not null.
         /// </summary>
         /// <value>

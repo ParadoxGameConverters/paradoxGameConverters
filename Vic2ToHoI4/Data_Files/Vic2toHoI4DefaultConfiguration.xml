@@ -166,6 +166,32 @@
 							</entryOption>
 						</entryOptions>
 					</preference>
+					<preference>
+						<name>ideologies_choice</name>
+						<friendlyName>ideologies_choice</friendlyName>
+						<description>ideologies_choice</description>
+						<allowMultipleSelections>true</allowMultipleSelections>
+						<entryOptions>
+							<entryOption>
+								<name>communism</name>
+								<friendlyName>communism</friendlyName>
+								<description>communism</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>absolutist</name>
+								<friendlyName>absolutist</friendlyName>
+								<description>absolutist</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>democracy</name>
+								<friendlyName>democracy</friendlyName>
+								<description>democracy</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+						</entryOptions>
+					</preference>
 				</preferences>
 			</category>
 		</categories>

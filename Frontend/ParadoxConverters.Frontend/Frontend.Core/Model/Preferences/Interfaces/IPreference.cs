@@ -70,6 +70,14 @@ namespace Frontend.Core.Model.Preferences.Interfaces
         ///     The selected entry.
         /// </value>
         IPreferenceEntry SelectedEntry { get; set; }
+
+        /// <summary>
+        ///     Determines if selecting multiple entries is allowed, so frontend uses checkboxes instead of radio buttons.
+        /// </summary>
+        /// <value>
+        ///     <c>true</c> if yes; otherwise, <c>false</c>.
+        /// </value>
+        bool AllowMultipleSelections { get; set; }
     }
 
     /// <summary>
