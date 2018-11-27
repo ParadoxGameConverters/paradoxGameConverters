@@ -116,10 +116,18 @@ void Configuration::instantiate(std::istream& theStream)
 		{
 			ideologiesOptions = ideologyOptions::keep_all;
 		}
+		else if (ideologiesOptionString.getString() == "specified")
+		{
+			ideologiesOptions = ideologyOptions::specified;
+		}
 		else // (ideologiesOptionString.getString() == "keep_major")
 		{
 			ideologiesOptions = ideologyOptions::keep_major;
 		}
+	});
+	registerKeyword(std::regex("ideologies_choice"), [this](const std::string& unused, std::istream& theStream){
+		commonItems::singleString choiceString(theStream);
+		specifiedIdeologies.push_back(choiceString.getString());
 	});
 	registerKeyword(std::regex("debug"), [this](const std::string& unused, std::istream& theStream){
 		commonItems::singleString debugString(theStream);

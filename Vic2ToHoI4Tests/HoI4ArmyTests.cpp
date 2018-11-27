@@ -169,6 +169,76 @@ TEST_CLASS(HoI4ArmyTests)
 
 			delete Vic2Army;
 		}
+		TEST_METHOD(ExperienceConverts)
+		{
+			HoI4::Army theArmy;
+			std::vector<const Vic2::Army*> Vic2Armies;
+			std::istringstream armyInput(	"=\n"\
+												  "\t{\n"\
+												  "\t\tname=\"I. Legio\"\n"\
+												  "\t\tlocation=496\n"\
+												  "\t\tregiment=\n"\
+												  "\t\t{\n"\
+												  "\t\t\texperience=50.000\n"\
+												  "\t\t\tcount=1\n"\
+												  "\t\t\ttype=infantry\n"\
+												  "\t\t}\n"\
+												  "\t}");
+			Vic2::Army* Vic2Army = new Vic2::Army("army", armyInput);
+			Vic2Armies.push_back(Vic2Army);
+			theArmy.addSourceArmies(Vic2Armies);
+
+			std::stringstream mappingsInput("= {\n"\
+													  "\tmap = {\n"\
+													  "\t\tlink = {\n"\
+													  "\t\t\tvic = infantry\n"\
+													  "\t\t\thoi = {\n"\
+													  "\t\t\t\tcategory = land\n"\
+													  "\t\t\t\ttype = infantry\n"\
+													  "\t\t\t\tequipment = infantry_equipment_0\n"\
+													  "\t\t\t\tsize = 3\n"\
+													  "\t\t\t}\n"\
+													  "\t\t}\n"\
+													  "\t}\n"\
+													  "\tdivision_templates = {\n"\
+													  "\t\tdivision_template= {\n"\
+													  "\t\t\tname = \"Light Infantry Brigade\"\n"\
+													  "\t\t\tregiments = {\n"\
+													  "\t\t\t\tinfantry = { x = 0 y = 0 }\n"\
+													  "\t\t\t}\n"\
+													  "\t\t}\n"\
+													  "\t}\n"\
+													  "}"
+			);
+			HoI4::militaryMappings theMilitaryMappings(std::string("default"), mappingsInput);
+			theArmy.convertArmies(theMilitaryMappings, 0);
+
+			std::ostringstream output;
+			output << theArmy;
+			Assert::AreEqual(std::string("\tdivision = {\n"\
+												  "\t\tname = \"1. Light Infantry Brigade\"\n"\
+												  "\t\tlocation = 11821\n"\
+												  "\t\tdivision_template = \"Light Infantry Brigade\"\n"\
+												  "\t\tstart_experience_factor = 0.5\n"\
+												  "\t\tstart_equipment_factor = 0.7\n"\
+												  "\t}\n"\
+												  "\tdivision = {\n"\
+												  "\t\tname = \"2. Light Infantry Brigade\"\n"\
+												  "\t\tlocation = 11821\n"\
+												  "\t\tdivision_template = \"Light Infantry Brigade\"\n"\
+												  "\t\tstart_experience_factor = 0.5\n"\
+												  "\t\tstart_equipment_factor = 0.7\n"\
+												  "\t}\n"\
+												  "\tdivision = {\n"\
+												  "\t\tname = \"3. Light Infantry Brigade\"\n"\
+												  "\t\tlocation = 11821\n"\
+												  "\t\tdivision_template = \"Light Infantry Brigade\"\n"\
+												  "\t\tstart_experience_factor = 0.5\n"\
+												  "\t\tstart_equipment_factor = 0.7\n"\
+												  "\t}\n"), output.str());
+
+			delete Vic2Army;
+		}
 		TEST_METHOD(DivisionsCanMapToLaterTemplate)
 		{
 			HoI4::Army theArmy;

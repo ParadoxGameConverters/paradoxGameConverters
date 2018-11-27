@@ -39,7 +39,7 @@ TEST_CLASS(DivisionTests)
 	public:
 		TEST_METHOD(BlankDivisionTypeOutputsProperly)
 		{
-			HoI4::DivisionType division("", "", 0);
+			HoI4::DivisionType division("", "", 0, 0.0);
 			std::ostringstream output;
 			output << division;
 
@@ -48,14 +48,14 @@ TEST_CLASS(DivisionTests)
 			expectedOutput << "\t\tname = \"\"\n";
 			expectedOutput << "\t\tlocation = 0\n";
 			expectedOutput << "\t\tdivision_template = \"\"\n";
-			expectedOutput << "\t\tstart_experience_factor = 0.3\n";
+			expectedOutput << "\t\tstart_experience_factor = 0.0\n";
 			expectedOutput << "\t\tstart_equipment_factor = 0.7\n";
 			expectedOutput << "\t}\n";
 			Assert::AreEqual(expectedOutput.str(), output.str());
 		}
 		TEST_METHOD(ConfiguredDivisionTypeOutputsProperly)
 		{
-			HoI4::DivisionType division("Test Division", "Light Infantry Brigade", 42);
+			HoI4::DivisionType division("Test Division", "Light Infantry Brigade", 42, 0.3);
 			std::ostringstream output;
 			output << division;
 
@@ -71,7 +71,7 @@ TEST_CLASS(DivisionTests)
 		}
 		TEST_METHOD(CopiedDivisionTypeOutputsProperly)
 		{
-			HoI4::DivisionType division("Test Division", "Light Infantry Brigade", 42);
+			HoI4::DivisionType division("Test Division", "Light Infantry Brigade", 42, 0.3);
 			HoI4::DivisionType division2 = division;
 			std::ostringstream output;
 			output << division2;
