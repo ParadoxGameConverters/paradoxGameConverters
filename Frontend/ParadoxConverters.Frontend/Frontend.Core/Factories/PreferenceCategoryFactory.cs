@@ -41,12 +41,15 @@ namespace Frontend.Core.Factories
                     preference.useCurlyBraces = XElementHelper.ReadBoolValue(foundPreference,
                         "useCurlyBraces", false);
 
+                    preference.AllowMultipleSelections = XElementHelper.ReadBoolValue(foundPreference, "allowMultipleSelections", false);
+
                     category.Preferences.Add(preference);
                 };
 
                 // Determine preference type
                 var isDate = XElementHelper.ReadBoolValue(foundPreference, "isDate", false);
                 var isNumeric = XElementHelper.ReadBoolValue(foundPreference, "isNumeric", false);
+                var allowsMultipleSelections = XElementHelper.ReadBoolValue(foundPreference, "allowMultipleSelections", false);
 
                 if (isDate)
                 {
@@ -86,6 +89,25 @@ namespace Frontend.Core.Factories
                     foreach (var entry in foundEntries)
                     {
                         preference.Entries.Add(BuildPreferenceEntry<INumericPreferenceEntry>(preference, entry));
+                    }
+
+                    readSharedProperties(preference);
+                }
+                else if (allowsMultipleSelections)
+                {
+                    var preference = new StringListPreference();
+
+                    //preference.MinValue = XElementHelper.ReadStringValue(foundPreference, "minValue", false);
+                    //preference.MaxValue = XElementHelper.ReadStringValue(foundPreference, "maxValue", false);
+                    //preference.Value = XElementHelper.ReadStringValue(foundPreference, "value", false);
+
+                    // Read the list of entryOption tags
+                    var foundEntries = XElementHelper.ReadEnumerable(foundPreference, "entryOption", false);
+
+                    // For each tag, read the values into a new PreferenceEntry object
+                    foreach (var entry in foundEntries)
+                    {
+                        preference.Entries.Add(BuildPreferenceEntry<IStringListPreferenceEntry>(preference, entry));
                     }
 
                     readSharedProperties(preference);
@@ -164,6 +186,16 @@ namespace Frontend.Core.Factories
                 {
                     Parent = (IDatePreference) parent,
                     Name = XElementHelper.ReadDateValue(foundEntry, "name", dateFormat)
+                };
+
+                return readSharedProperties(entry);
+            }
+            if (parent is IStringListPreference)
+            {
+                var entry = new StringListPreferenceEntry
+                {
+                    Parent = (IStringListPreference)parent,
+                    Name = XElementHelper.ReadStringValue(foundEntry, "name")
                 };
 
                 return readSharedProperties(entry);

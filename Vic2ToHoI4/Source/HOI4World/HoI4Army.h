@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Division.h"
 #include "DivisionTemplate.h"
 #include "MilitaryMappings.h"
+#include "../V2World/Army.h"
 #include <string>
 #include <map>
 #include <vector>
@@ -46,6 +47,13 @@ class Army;
 namespace HoI4
 {
 
+
+typedef struct {
+	double unitSize;
+	Vic2::Regiment* regiment;
+} sizedRegiment;
+
+
 class Army
 {
 	public:
@@ -58,8 +66,8 @@ class Army
 		friend std::ostream& operator << (std::ostream& output, const Army& theArmy);
 
 	private:
-		void convertArmyDivisions(const militaryMappings& theMilitaryMappings, std::map<std::string, double>& BattalionsAndCompanies, int location);
-		bool sufficientUnits(const std::map<std::string, double>& units, const std::map<std::string, std::string>& subs, const std::map<std::string, int>& req);
+		void convertArmyDivisions(const militaryMappings& theMilitaryMappings, std::map<std::string, std::vector<sizedRegiment>>& BattalionsAndCompanies, int location);
+		bool sufficientUnits(const std::map<std::string, std::vector<sizedRegiment>>& units, const std::map<std::string, std::string>& subs, const std::map<std::string, int>& req);
 
 		std::vector<const Vic2::Army*> sourceArmies;
 		std::vector<DivisionType> divisions;

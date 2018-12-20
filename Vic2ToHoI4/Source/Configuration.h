@@ -37,6 +37,7 @@ enum class ideologyOptions
 {
 	keep_major,
 	keep_all,
+	specified,
 	keep_default
 };
 
@@ -59,6 +60,7 @@ class Configuration: commonItems::parser
 		double getIndustrialShapeFactor() const { return industrialShapeFactor; }
 		double getIcFactor() const { return icFactor; }
 		ideologyOptions getIdeologiesOptions() const { return ideologiesOptions; }
+		std::vector<std::string> getSpecifiedIdeologies() const { return specifiedIdeologies; }
 		bool getRemoveCores() const { return removeCores; }
 		bool getCreateFactions() const { return createFactions; }
 		HoI4::Version getHOI4Version() const { return version; }
@@ -91,6 +93,7 @@ class Configuration: commonItems::parser
 		double industrialShapeFactor = 0.0;
 		double icFactor = 0.0;
 		ideologyOptions ideologiesOptions = ideologyOptions::keep_major;
+		std::vector<std::string> specifiedIdeologies;
 		bool removeCores = true;
 		bool createFactions = true;
 		HoI4::Version version;

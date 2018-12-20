@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "militaryMappings.h"
+#include "MilitaryMappings.h"
 #include "newParser.h"
 #include <map>
 #include <string>

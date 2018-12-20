@@ -35,10 +35,15 @@ namespace Frontend.Core.Views.TemplateSelectors
                 //Predefined choices, directly editable values
                 return element.FindResource("PredefinedValuesWithDirectOverrideTemplate") as DataTemplate;
             }
-            if (preference.HasPreDefinedChoices && !preference.HasDirectlyEditableValue)
+            if (preference.HasPreDefinedChoices && !preference.HasDirectlyEditableValue && !preference.AllowMultipleSelections)
             {
                 // Only predefined choices - regardless of whether they're numeric or not.
                 return element.FindResource("PredefinedItemsPreferenceTemplate") as DataTemplate;
+            }
+            if (preference is IStringListPreference)
+            {
+                // Checkboxes
+                return element.FindResource("PredefinedItemsCheckboxPreferenceTemplate") as DataTemplate;
             }
             if (!preference.HasPreDefinedChoices && preference.HasDirectlyEditableValue &&
                 preference is INumericPreference)

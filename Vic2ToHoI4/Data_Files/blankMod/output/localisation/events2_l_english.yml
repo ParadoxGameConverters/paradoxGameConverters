@@ -492,4 +492,11 @@
  war_justification.radicalradical200.t:0 "[From.GetLeader] Calls for Intervention in [Root.GetAdjectiveCap] Economy"
  war_justification.radicalradical200.d:0 "'It is with heavy heart that we must confront the reality of our situation: An invasion of [Root.GetName] may be our only recourse. It is of too great a strategic advantage to attempt any other solution in our current situation. Although we trust that neither the [From.GetAdjective] nor the [Root.GetAdjective] people want war, but history has led us to this point and our options are limited. We can only hope that through this assertion of our military power, we can avoid further bloodshed in the future.'\n\nAlthough it is a popular theory that democracies do not go to war against other democracies, recent developments have pointed to a [From.GetAdjective] invasion of [Root.GetName] in the future. History may surprise us yet."
  war_justification.radicalradical200.a:0 "[From.GetName] is a dubious regime anyway, pursuing such aggressive action."
-
+ anti_communist_raids:0 "Raids against Communism"
+ anti_communist_raids_desc:0 "The astoundingly high popularity of the [Root.GetCommunistParty] can only make us fear while the [Root.GetRulingIdeology] government risks to lose its power. It's obvious something needs to be done."
+ ban_communism_party:0 "Ban [Root.GetCommunistParty]"
+ ban_communism_party_desc:0 "Supported by the [?party_popularity@communism|%R1] of our population, the Red Menace needs to be eradicated from our politics."
+ anti_fascism_raids:0 "Raids against Fascism"
+ anti_fascism_raids_desc:0 "The astoundingly high popularity of the [Root.GetFascistParty] can only make us fear while the [Root.GetRulingIdeology] government risks to lose its power. It's obvious something needs to be done."
+ ban_fascism_party:0 "Ban [Root.GetFascistParty]"
+ ban_fascism_party_desc:0 "Supported by the [?party_popularity@fascism|%R1] of our population, the Black Menace needs to be eradicated from our politics."

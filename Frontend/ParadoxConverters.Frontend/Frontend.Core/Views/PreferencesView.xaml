@@ -53,6 +53,15 @@
             </Border>
         </DataTemplate>
 
+        <DataTemplate x:Key="PredefinedCheckboxStringEntryTemplate">
+            <Border Style="{StaticResource EntryBorderStyle}">
+                <Grid>
+                    <CheckBox Content="{Binding FriendlyName}"
+                              IsChecked="{Binding IsSelected}" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+
         <DataTemplate x:Key="NumericPredefinedWithOverridePreferenceEntryTemplate">
             <Border Style="{StaticResource EntryBorderStyle}">
                 <Grid>
@@ -206,6 +215,28 @@
 
                     <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="1"
                                   ItemTemplate="{StaticResource PredefinedStringEntryTemplate}" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PredefinedItemsCheckboxPreferenceTemplate">
+            <Border Style="{StaticResource PreferenceBorderStyle}" Margin="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource FirstColumnWidth}" />
+                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               Margin="{StaticResource EntryTemplateHeaderMargin}" />
+
+                    <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="1"
+                                  ItemTemplate="{StaticResource PredefinedCheckboxStringEntryTemplate}" />
                 </Grid>
             </Border>
         </DataTemplate>

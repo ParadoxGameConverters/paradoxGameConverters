@@ -77,22 +77,22 @@ namespace Frontend.Core.Model.PreferenceEntries
 
                 isSelected = value;
 
-                if (value)
-                {
-                    UpdateParentUserChoice();
-                }
+                UpdateParentUserChoice();
 
                 NotifyOfPropertyChange(() => IsSelected);
             }
         }
 
         /// <summary>
-        ///     Updates the parent user choice. (Sets the parent's "SelectedEntry" property to this.
+        ///     Updates the parent user choice. (Sets the parent's "SelectedEntry" property to this).
         /// </summary>
-        protected void UpdateParentUserChoice()
+        protected virtual void UpdateParentUserChoice()
         {
-            var parent = Parent as IPreference;
-            parent.SelectedEntry = this;
+            if (this.isSelected)
+            {
+                var parent = Parent as IPreference;
+                parent.SelectedEntry = this;
+            }
         }
     }
 }

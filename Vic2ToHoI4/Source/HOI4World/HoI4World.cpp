@@ -282,6 +282,15 @@ void HoI4::World::identifyMajorIdeologies()
 		}
 		majorIdeologies.insert("neutrality");
 	}
+	else if (theConfiguration.getIdeologiesOptions() == ideologyOptions::specified)
+	{
+		for (auto ideology: theConfiguration.getSpecifiedIdeologies())
+		{
+			majorIdeologies.insert(ideology);
+		}
+	}
+	// keep default is accomplished by only importing the default ideologies, so we can include
+	//		all ideologies the converter knows for both keep_default and keep_all
 	else
 	{
 		for (auto ideology: ideologies)
@@ -1488,6 +1497,7 @@ void HoI4::World::outputRelations() const
 		}
 		out << abs(i) << " = {\n";
 		out << "\tvalue = " << i << "\n";
+		out << "\tdecay = 1\n";
 		out << "}\n";
 	}
  	out << "private_channels_trade = {\n";
