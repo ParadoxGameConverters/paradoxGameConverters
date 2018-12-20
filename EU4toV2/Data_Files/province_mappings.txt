@@ -25568,6 +25568,7 @@
 	link = { eu4 = 1164 v2 = 1956 v2 = 1958 v2 = 1973 v2 = 1957 resettable = yes }	# 0 "Cameroon -> Douala, Kribi, Bata, Buea
 	link = { eu4 = 1097 v2 = 1955 }	# 0 "Fernando Po -> Fernando Pó
 	link = { eu4 = 1800 v2 = 2005 v2 = 2008 v2 = 2006 v2 = 2007 v2 = 2013 v2 = 2009 v2 = 2010 v2 = 1984 v2 = 1986 v2 = 1989 v2 = 1987 v2 = 1988 v2 = 2011 v2 = 2014 v2 = 790 v2 = 2015 v2 = 2012 }	# 0 "Limpopo -> Huambo, Ondjiva, Kuito, Mavinga, Mongu, Malanje, Saurimo, Kananga, Lusambo, Munza, Bunkeya, Mussumba, Kubanda, Kasempa, Kitwe, Monzo, Lusaka
+	link = { eu4 = 1797 v2 = 1975 v2 = 1976 v2 = 1981 v2 = 1980 v2 = 1977 v2 = 1993 v2 = 1994 v2 = 1985 v2 = 1992 v2 = 1995 v2 = 1996 v2 = 1990 v2 = 1991 v2 = 1997 v2 = 1998 v2 = 1982 }	# 0 "Northern Congo Basin -> Moanda, Makokou, Impfondo, Djambala, Nkuna, Irebu, Nsheng, Kumbana, Basoko, Gemena, Kisangani, Nyangwe, Uvira, Mungbane, Baramo, Kinshasa
 	# Ivory Coast
 	link = { eu4 = 1147 v2 = 1931 v2 = 1928 v2 = 1923 v2 = 1924 }	# 0 "Benin -> Warri, Benin, Lagos, Abeokuta
 	link = { eu4 = 1151 v2 = 1932 }	# 0 "Bonny -> Bonny

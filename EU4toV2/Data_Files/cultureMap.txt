@@ -310,7 +310,7 @@ link = { vic2 = quechua eu4 = inca eu4 = chimuan }
 link = { vic2 = aimara eu4 = aimara  eu4 = diaguita }
 link = { vic2 = amazonian eu4 = amazonian eu4 = maipurean }
 link = { vic2 = tupi eu4 = tupinamba eu4 = tupi }
-link = { vic2 = je eu4 = ge }
+link = { vic2 = je eu4 = ge eu4 = goitaca eu4 = teremembe }
 link = { vic2 = guarani eu4 = guarani eu4 = charruan }
 link = { vic2 = patagonian eu4 = patagonian eu4 = het }
 link = { vic2 = araucanian eu4 = huarpe eu4 = mapuche }

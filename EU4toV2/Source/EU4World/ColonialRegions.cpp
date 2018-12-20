@@ -59,6 +59,7 @@ namespace EU4
 		registerKeyword(std::regex("culture"), commonItems::ignoreObject);
 		registerKeyword(std::regex("religion"), commonItems::ignoreObject);
 		registerKeyword(std::regex("names"), commonItems::ignoreObject);
+		registerKeyword(std::regex("extra_province_names"), commonItems::ignoreObject);
 		registerKeyword(std::regex("provinces"), [this](const std::string& unused, std::istream& theStream)
 			{
 				auto equals = getNextToken(theStream);
