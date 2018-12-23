@@ -59,6 +59,7 @@ link = { vic = SLV hoi = SLO }	# Slovakia
 link = { vic = SWI hoi = SCH }	# Switzerland
 link = { vic = ROM hoi = ROM }	# Romania	=> Romania
 link = { vic = CZH hoi = CZE }	# Czechoslovakia
+link = { vic = CRO hoi = CRO }  # Croatia
 
 link = { vic = ALB hoi = ALB }	# Albania
 link = { vic = BUL hoi = BUL }	# Bulgaria
@@ -78,6 +79,7 @@ link = { vic = NEJ hoi = SAU }	# Nejd		=> Saudi Arabia
 link = { vic = OMA hoi = OMN }	# Oman
 link = { vic = PER hoi = PER }	# Persia
 link = { vic = YEM hoi = YEM }	# Yemen
+link = { vic = SYR hoi = SYR }  # Syria (modded)
 
 link = { vic = HND hoi = IND }	# India
 link = { vic = NEP hoi = NEP }	# Nepal
